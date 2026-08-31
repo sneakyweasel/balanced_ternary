@@ -553,6 +553,200 @@ def write_parity_artifacts(
     return data
 
 
+LATER_VALLEY_P = 9.0 / 8.0  # least expanding even-terminating circuit OOE
+
+
+def o_min_and_theta(length: int) -> tuple[int, float]:
+    """Minimal admissible o and θ = 1 − 2^L/3^o."""
+
+    pow2 = 1 << length
+    pow3 = 1
+    odd_count = 0
+    while pow3 <= pow2:
+        pow3 *= 3
+        odd_count += 1
+    return odd_count, (pow3 - pow2) / pow3
+
+
+def weight_sum_terms(
+    n: int,
+    length: int,
+    odd_count: int,
+    *,
+    later_valley_p: float = 1.0,
+) -> float:
+    """Naive weight form Σ 1/(P x ln n) at CycleMin n.
+
+    Valleys sit at n, internals at t = ⌊n^{3/2}⌋, evens at n².
+    The start valley is charged at P = 1; any remaining valleys
+    at later_valley_p (1 for P ≡ 1, 9/8 for the OOE test).
+    Internals and evens stay at P = 1.
+    """
+
+    if n < 3:
+        return math.inf
+    even_count = length - odd_count
+    valleys = adversarial_valley_count(length, odd_count)
+    climb = max(odd_count - valleys, 0)
+    log_n = math.log(n)
+    image = first_odd_image(n)
+    if image < 3:
+        return math.inf
+    if valleys <= 0:
+        valley_term = 0.0
+    elif later_valley_p <= 1.0 or valleys == 1:
+        valley_term = valleys / (n * log_n)
+    else:
+        valley_term = (1.0 / (n * log_n)) + (
+            (valleys - 1) / (later_valley_p * n * log_n)
+        )
+    climb_term = climb / (image * log_n)
+    even_term = even_count / (n * n * log_n)
+    return valley_term + climb_term + even_term
+
+
+def weight_rhs(
+    n: int,
+    length: int,
+    odd_count: int,
+    *,
+    const: float = EPS_CONST,
+    later_valley_p: float = 1.0,
+) -> float:
+    return const * weight_sum_terms(
+        n, length, odd_count, later_valley_p=later_valley_p
+    )
+
+
+def weight_rhs_upper(
+    n: int,
+    length: int,
+    odd_count: int,
+    *,
+    const: float = EPS_CONST,
+    later_valley_p: float = 1.0,
+) -> float:
+    raw = weight_rhs(
+        n, length, odd_count, const=const, later_valley_p=later_valley_p
+    )
+    if not math.isfinite(raw):
+        return math.inf
+    return raw * (1.0 + PARITY_REL_GUARD) + PARITY_ABS_PAD
+
+
+def weight_excludes(
+    length: int,
+    odd_count: int,
+    theta: float,
+    n0: int,
+    *,
+    const: float = EPS_CONST,
+    later_valley_p: float = 1.0,
+) -> bool:
+    start = max(n0 + 1, MIN_STATE)
+    theta_lo = theta * (1.0 - PARITY_REL_GUARD)
+    return theta_lo > weight_rhs_upper(
+        start,
+        length,
+        odd_count,
+        const=const,
+        later_valley_p=later_valley_p,
+    )
+
+
+def prefix_weight_row(
+    length: int,
+    *,
+    floor: int = PUBLISHED_FLOOR,
+    const: float = EPS_CONST,
+) -> dict[str, Any]:
+    odd_count, theta = o_min_and_theta(length)
+    start = max(floor + 1, MIN_STATE)
+    parity = parity_rhs(start, length, odd_count, const=const)
+    p1 = weight_rhs(start, length, odd_count, const=const, later_valley_p=1.0)
+    p98 = weight_rhs(
+        start, length, odd_count, const=const, later_valley_p=LATER_VALLEY_P
+    )
+    return {
+        "L": length,
+        "o": odd_count,
+        "e": length - odd_count,
+        "theta": theta,
+        "n": start,
+        "parity_rhs": parity,
+        "weight_P_ge_1_rhs": p1,
+        "weight_later_valley_9_8_rhs": p98,
+        "parity_excludes": parity_excludes(
+            length, odd_count, theta, floor, const=const
+        ),
+        "weight_P_ge_1_excludes": weight_excludes(
+            length, odd_count, theta, floor, const=const, later_valley_p=1.0
+        ),
+        "weight_later_valley_9_8_excludes": weight_excludes(
+            length,
+            odd_count,
+            theta,
+            floor,
+            const=const,
+            later_valley_p=LATER_VALLEY_P,
+        ),
+        "weight_P_ge_1_ge_parity": p1 + PARITY_ABS_PAD >= parity,
+    }
+
+
+def prefix_weight_scan(
+    *,
+    floor: int = PUBLISHED_FLOOR,
+    const: float = EPS_CONST,
+) -> dict[str, Any]:
+    """Compare prefix-weight bounds on the parity leftover set."""
+
+    payload = json.loads(
+        (DATA_DIR / "exceptions_parity.json").read_text(encoding="utf-8")
+    )
+    lengths = list(payload["lengths"])
+    rows = [
+        prefix_weight_row(length, floor=floor, const=const)
+        for length in lengths
+    ]
+    killed_p1 = [row["L"] for row in rows if row["weight_P_ge_1_excludes"]]
+    killed_98 = [
+        row["L"] for row in rows if row["weight_later_valley_9_8_excludes"]
+    ]
+    weaker = [row["L"] for row in rows if not row["weight_P_ge_1_ge_parity"]]
+    spotlight = next(row for row in rows if row["L"] == 25781)
+    return {
+        "bound": "prefix_weight",
+        "floor": floor,
+        "n": max(floor + 1, MIN_STATE),
+        "later_valley_p": LATER_VALLEY_P,
+        "leftover_count": len(rows),
+        "killed_by_parity": [row["L"] for row in rows if row["parity_excludes"]],
+        "killed_by_weight_P_ge_1": killed_p1,
+        "killed_by_weight_later_valley_9_8": killed_98,
+        "weight_P_ge_1_weaker_failures": weaker,
+        "no_leftover_excluded": not killed_p1 and not killed_98,
+        "certified_no_leftover_excluded": not killed_p1
+        and not any(row["parity_excludes"] for row in rows),
+        "spotlight_25781": spotlight,
+        "rows": rows,
+        "halt_theorem": False,
+        "no_cycle_all_lengths": False,
+    }
+
+
+def write_prefix_weight_artifacts(
+    payload: dict[str, Any] | None = None,
+    *,
+    floor: int = PUBLISHED_FLOOR,
+) -> dict[str, Any]:
+    data = payload if payload is not None else prefix_weight_scan(floor=floor)
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    path = DATA_DIR / "prefix_weights.json"
+    path.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
+    return data
+
+
 def eliahou_leftover(
     length: int,
     exceptions: list[int] | tuple[int, ...] | set[int],

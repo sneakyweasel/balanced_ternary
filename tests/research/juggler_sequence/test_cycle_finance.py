@@ -33,11 +33,15 @@ from research.juggler_sequence.cycle_finance import (
     orbit_slack,
     parity_excludes,
     parity_n_max,
+    parity_rhs,
     parity_survives_floor,
+    prefix_weight_row,
     probe_payload,
     render_markdown,
     sha256_int_list,
     verify_floor,
+    weight_excludes,
+    weight_rhs,
 )
 
 REPO = Path(__file__).resolve().parents[3]
@@ -243,6 +247,79 @@ def test_parity_table_pins_first_survivor():
     assert sha256_int_list(payload["lengths"]) == payload["sha256_lengths"]
 
 
+PREFIX_WEIGHT_LATER_VALLEY_KILLS = [
+    81643,
+    82697,
+    83751,
+    84805,
+    85859,
+    86913,
+    87967,
+    89021,
+    90075,
+    91129,
+    92183,
+    93237,
+    94291,
+    95345,
+    96399,
+    97453,
+    98507,
+    99561,
+]
+
+
+def test_prefix_weight_25781_does_not_exclude():
+    row = prefix_weight_row(25781)
+    assert row["o"] == 16266
+    assert row["e"] == 9515
+    assert not row["parity_excludes"]
+    assert not row["weight_P_ge_1_excludes"]
+    assert not row["weight_later_valley_9_8_excludes"]
+    assert row["weight_P_ge_1_ge_parity"]
+    assert row["weight_P_ge_1_rhs"] >= row["parity_rhs"]
+    start = PUBLISHED_FLOOR + 1
+    assert weight_rhs(start, 25781, 16266, later_valley_p=1.0) >= parity_rhs(
+        start, 25781, 16266
+    )
+    assert not weight_excludes(
+        25781, 16266, row["theta"], PUBLISHED_FLOOR, later_valley_p=1.0
+    )
+    assert not weight_excludes(
+        25781, 16266, row["theta"], PUBLISHED_FLOOR, later_valley_p=9.0 / 8.0
+    )
+
+
+def test_prefix_weight_scan_pins_no_certified_exclusion():
+    payload = json.loads(
+        (
+            REPO / "data" / "research" / "juggler" / "cycle_finance"
+            / "prefix_weights.json"
+        ).read_text(encoding="utf-8")
+    )
+    assert payload["leftover_count"] == 141
+    assert payload["floor"] == PUBLISHED_FLOOR
+    assert payload["n"] == PUBLISHED_FLOOR + 1
+    assert payload["killed_by_parity"] == []
+    assert payload["killed_by_weight_P_ge_1"] == []
+    assert payload["weight_P_ge_1_weaker_failures"] == []
+    assert payload["certified_no_leftover_excluded"] is True
+    assert payload["killed_by_weight_later_valley_9_8"] == (
+        PREFIX_WEIGHT_LATER_VALLEY_KILLS
+    )
+    assert payload["no_leftover_excluded"] is False
+    spot = payload["spotlight_25781"]
+    assert spot["L"] == 25781
+    assert not spot["parity_excludes"]
+    assert not spot["weight_P_ge_1_excludes"]
+    assert not spot["weight_later_valley_9_8_excludes"]
+    assert spot["weight_P_ge_1_ge_parity"]
+    assert 25781 not in payload["killed_by_weight_later_valley_9_8"]
+    assert PREFIX_WEIGHT_LATER_VALLEY_KILLS == [
+        81643 + 1054 * k for k in range(18)
+    ]
+
+
 def test_crude_table_unchanged_at_published_floor():
     exceptions = json.loads(
         (
@@ -280,6 +357,9 @@ def test_dossier_boundary():
     assert "import Problems.Juggler.CycleHeightFinance" not in paper
     assert "cycleMin_finance" in note
     assert "Length-only parity finance" in dossier
+    assert "Prefix-weight comparison" in dossier
+    assert "prefix_weights.json" in dossier
+    assert "juggler_cycle_prefix_weight_leftover_killer" in note
     assert "25780" in note
     assert "cycle_word_length_eighty_four_or_ge_eighty_five" in note
     assert "cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five" in note

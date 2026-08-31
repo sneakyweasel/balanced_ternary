@@ -15883,4 +15883,39 @@ Best next question
   E_par(10^6) that the parity bound leaves alive?
 ```
 
+## Juggler cycle prefix-weight finance (leftover-killer)
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether the exact unroll \(\theta=\sum\varepsilon_i/(t_0 P_{i+1})\) yields a length-only bound that excludes some \(L\) in \(\mathcal E_{\mathrm{par}}(10^6)\)
+- **Hypotheses:** keeping suffix weights \(1/P_i\) shrinks the floor-error budget on leftover lengths
+- **Major results:** Comparison lemma **EXACT — HUMAN PROOF**: \(P\ge\log x/\log n\ge 1\) on a `CycleMin`, so \(P\equiv 1\) is weaker than the published \(1/(x\log x)\) form. Scan of \(141\) leftovers at \(n=10^6+1\): parity and \(P\equiv 1\) exclude nothing; \(P\equiv 1\) RHS \(\ge\) parity RHS on every leftover. Optimistic later-valley \(P\ge 9/8\) would drop \(81643+1054k\) (\(k=0,\ldots,17\)); \(L=25781\) still lives. Artifact `prefix_weights.json`. No Paper A edit, no Lean, no ledger row
+- **Refuted ideas:** prefix-weight leftover-killer (`juggler_cycle_prefix_weight_leftover_killer`). Later-valley \(P\ge 9/8\) is not a length-only theorem
+- **Literature:** same Simons–de Weger template; this is a weaker evaluation of the existing unroll
+- **Open:** none from prefix weights
+- **Decision:** CLOSE the leftover-killer. The finance branch stays PROMOTE
+
+```text
+What was learned
+- the published 1/(x log x) form already uses the envelope P ≥ log x / log n
+- P ≥ 1 is weaker on every state with x > n; on leftovers it never excludes
+- valleys dominate: at L=25781 the valley term is ~32× θ at n=10^6+1
+- later-valley P ≥ 9/8 would drop 18 large 1054-family lengths, not 25781
+- near-convergents can keep later-valley P closer to 1 than 9/8
+Strongest theorem
+- P ≥ log x / log n ≥ 1 on a CycleMin, so the naive weight form
+  does not improve the published parity sum
+Strongest refutation
+- exact unrolling weights 1/P_i do not certified-exclude any
+  leftover in E_par(10^6)
+Reusable machinery
+- weight_rhs / prefix_weight_scan / prefix_weights.json
+Branch status
+- CLOSE
+Why
+- the only certified length-only P-constraint is weaker than
+  parity finance; the 9/8 diagnostic is not a theorem
+Best next question
+- none from prefix weights
+```
+
 

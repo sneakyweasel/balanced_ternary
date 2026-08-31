@@ -7,3 +7,5 @@ Not a halt theorem. The floor is COMPUTATIONALLY VERIFIED.
 Regenerate with `python -m research.juggler_sequence.cycle_finance`.
 Length-only parity table: `exceptions_parity.json`
 (`write_parity_artifacts`; does not replace this crude table).
+Prefix-weight leftover scan: `prefix_weights.json`
+(`write_prefix_weight_artifacts`; does not replace either table).

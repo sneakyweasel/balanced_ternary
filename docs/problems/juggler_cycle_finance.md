@@ -228,6 +228,43 @@ length-only bound. The optimal uniform coefficient
 \(-\ln(1-\delta)\le c_*\delta\) on \([0,1/6]\) is
 \(c_*=6\ln(6/5)\). The published table keeps \(6/5\). \(\blacksquare\)
 
+### Prefix-weight comparison (EXACT — HUMAN PROOF)
+
+The exact unroll without converting the suffix weights is
+
+\[
+\theta
+=\sum_{i=0}^{L-1}\frac{\varepsilon_i}{t_0\,P_{i+1}}
+\le
+\frac65\sum_{i=0}^{L-1}\frac1{P_{i+1}\,x_{i+1}\ln n}.
+\]
+
+Dropping future \(\varepsilon\ge 0\) gives the envelope
+\(t_{i+1}\le P_{i+1}t_0\), i.e.
+\(P_{i+1}\ge\ln x_{i+1}/\ln n\). On a `CycleMin` one has
+\(x\ge n\), so \(\ln x/\ln n\ge 1\). Therefore
+
+\[
+\frac1{P\,x\ln n}
+\le
+\frac1{x\ln x}
+\qquad\text{whenever }P\ge\frac{\ln x}{\ln n}.
+\]
+
+The published \(6/5\) identity already uses that conversion.
+The CycleMin prefix law \(P_k\ge 1\) (`cycleMin_prefix_pow_le`)
+is a weaker lower bound on \(P\) than the envelope whenever
+\(x>n\). On the ideal trajectory \(x=n^{P}\) the two forms
+coincide. Charging every state at \(P\equiv 1\) therefore does
+not improve the parity sum; it enlarges the internal and even
+terms (\(1/(t\ln n)\) versus \(1/(t\ln t)\), and
+\(1/(n^2\ln n)\) versus \(1/(2n^2\ln n)\)). A leftover-killing
+gain would require a length-only lower bound on \(P\) that
+beats \(\ln x/\ln n\) on the expensive states. Those states
+are the valleys (\(x=n\)). The start has \(P=0\)-prefix \(1\);
+later valleys on a near-convergent word can keep \(P\)
+arbitrarily close to \(1\). \(\blacksquare\)
+
 ## Current literature
 
 - Collatz m-cycle exclusion by financing-versus-gap plus bounds on
@@ -310,6 +347,10 @@ It is not required.
 - Length-only parity finance
   \(\sum 1/(x_i\ln x_i)\le e/(n\ln n)+(o-e)/(t\ln t)+e/(2n^2\ln n)\) —
   **EXACT — HUMAN PROOF** (this dossier; joint-minima at \(m=e\))
+- Prefix-weight comparison: \(P\ge\ln x/\ln n\ge 1\) on a
+  `CycleMin`, so the naive \(P\equiv 1\) unroll is weaker than the
+  published \(1/(x\ln x)\) form —
+  **EXACT — HUMAN PROOF** (this dossier)
 - No cycle word of length \(\le 19\) —
   **EXACT — LEAN VERIFIED** (`no_cycle_word_length_le_nineteen`)
 - Period is \(84\) or \(\ge 85\) —
@@ -361,7 +402,8 @@ It is not required.
   [juggler_cycle_finance.json](../research/juggler_cycle_finance.json)
 - Dataset: `data/research/juggler/cycle_finance/`
   (`exceptions.json` crude table;
-  `exceptions_parity.json` length-only parity table)
+  `exceptions_parity.json` length-only parity table;
+  `prefix_weights.json` leftover-weight scan)
 - Tests: `tests/research/juggler_sequence/test_cycle_finance.py`
 
 Science window: gap table \(L\le 10^5\) with exact bignum
@@ -388,8 +430,15 @@ target, not a conjecture entered in `conjectures/`.)
 
 ## Counterexamples
 
-None. The per-step bound \(\varepsilon_i\le(6/5)/x_{i+1}\) held at
+The per-step bound \(\varepsilon_i\le(6/5)/x_{i+1}\) held at
 every measured step; see Results.
+
+The hypothesis that exact unrolling weights \(1/P_i\) exclude a
+parity leftover at \(N_0=10^6\) is **REFUTED**
+(`conjectures/refuted/juggler_cycle_prefix_weight_leftover_killer.json`):
+\(P\equiv 1\) is weaker than parity on all \(141\) leftovers;
+later-valley \(P\ge 9/8\) is not a length-only law, and even
+under that diagnostic \(L=25781\) survives.
 
 ## Formalization
 
@@ -509,6 +558,21 @@ and `data/research/juggler/cycle_finance/`.
   both tables already exclude it. Lengths \(19\), \(38\),
   \(57\), and \(76\) are no longer Lean leftovers. Not a new
   inequality.
+- **Prefix-weight leftover scan** — **COMPUTATIONALLY VERIFIED**
+  (`prefix_weights.json`): at \(n=10^6+1\), none of the \(141\)
+  parity leftovers is excluded by parity or by the naive
+  \(P\equiv 1\) weight form. The \(P\equiv 1\) right-hand side is
+  at least the parity right-hand side on every leftover (weaker,
+  as the comparison lemma requires). An optimistic later-valley
+  constraint \(P\ge 9/8\) (least expanding even-terminating
+  circuit `OOE`) would exclude the eighteen lengths
+  \(81643+1054k\) for \(k=0,\ldots,17\); the frontier leftover
+  \(L=25781\) still fails
+  (\(\theta\approx 2.55\cdot 10^{-5}\) versus
+  \(\mathrm{RHS}_{9/8}\approx 7.35\cdot 10^{-4}\)). Those
+  eighteen kills are not certified: later valleys on a
+  near-convergent word can keep \(P\) closer to \(1\) than
+  \(9/8\).
 - **Exceptional structure**: the \(166\) exceptions are exactly the
   near-convergent lengths — multiples of \(25781\) plus
   combinations with earlier convergents. The record
@@ -566,7 +630,12 @@ and `data/research/juggler/cycle_finance/`.
   maximizers do **not** reduce leftover-word or CycleMin
   candidates to a one-parameter necklace
   ([juggler_cycle_christoffel.md](juggler_cycle_christoffel.md),
-  **CLOSE**).
+  **CLOSE**). Prefix-weight finance
+  (\(P\equiv 1\), or optimistic later-valley \(P\ge 9/8\)) is
+  **CLOSE** as a leftover-killer
+  (`juggler_cycle_prefix_weight_leftover_killer`): the naive
+  weight form is weaker than parity and excludes nothing; the
+  \(9/8\) diagnostic is not a length-only theorem.
 
 ## Decision
 
@@ -586,9 +655,18 @@ The residual-floor campaign past \(\approx 4756\) is **PARK**.
 Joint/height kill every \(m\) at \(1981\), still machinery
 gravity.
 
-Best next question: can the exact unrolling weights \(1/P_i\)
-exclude some leftover in \(\mathcal E_{\mathrm{par}}(10^6)\)
-that the parity bound leaves alive?
+The prefix-weight leftover-killer is **CLOSE**. The exact
+unroll with \(P\ge 1\) is weaker than the published envelope
+conversion and excludes none of the \(141\) leftovers. An
+optimistic later-valley \(P\ge 9/8\) would drop eighteen large
+members of the \(1054\)-family; it is not a theorem, and
+\(L=25781\) still lives. Keep the comparison lemma as negative
+knowledge. No Paper A edit.
+
+Best next question: none from prefix weights. The remaining
+finance slack on \(\mathcal E_{\mathrm{par}}(10^6)\) is the
+valley term at \(P=1\), which is an \(m\)-bound or valley-height
+question already parked or refuted at the residual floor.
 
 Length \(84\) at \(m\ge 3\) at floor \(261\) is **REFUTED** as a
 leftover-killer
@@ -597,6 +675,8 @@ upper cell \((p+1)^{2^r}\) is also **REFUTED**
 ([juggler_cycle_ceiling_finance.md](juggler_cycle_ceiling_finance.md)).
 A second-valley bound \(\ge 281\) is also **REFUTED**
 ([juggler_cycle_second_valley.md](juggler_cycle_second_valley.md)).
+Prefix weights \(1/P_i\) are also **REFUTED** as a leftover-killer
+(`juggler_cycle_prefix_weight_leftover_killer`).
 Run-height packing does not improve the length-only
 \(n_{\max}\) at \(o_{\min}\).
 

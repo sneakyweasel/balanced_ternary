@@ -229,6 +229,15 @@ These were run. None of them changes the leftover.
 - Near-tight monochrome rigidity — **REFUTED**.
 - Christoffel / mechanical-word one-parameter reduction —
   **REFUTED**.
+- Prefix-weight leftover-killer (\(P\equiv 1\), or optimistic
+  later-valley \(P\ge 9/8\)) — **CLOSE**
+  (`juggler_cycle_prefix_weight_leftover_killer`). The published
+  \(1/(x\log x)\) form already uses the envelope
+  \(P\ge\log x/\log n\ge 1\); charging \(P\equiv 1\) is weaker
+  and excludes none of the \(141\) leftovers at \(n=10^6+1\).
+  Later-valley \(P\ge 9/8\) would drop
+  \(81643+1054k\) (\(k=0,\ldots,17\)) but is not a theorem, and
+  \(L=25781\) still lives.
 
 ## What this theorem is not
 

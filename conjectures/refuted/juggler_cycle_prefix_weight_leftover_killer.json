@@ -1,0 +1,21 @@
+{
+  "id": "juggler_cycle_prefix_weight_leftover_killer",
+  "title": "Exact unrolling weights 1/P_i exclude a leftover in the parity set at N0=10^6",
+  "statement": "Keeping the suffix weights 1/P_i in the cycle-finance unroll, instead of converting them by the envelope P ≥ log x / log n, yields a length-only bound that certified-excludes at least one L in E_par(10^6).",
+  "status": "REFUTED",
+  "counterexamples": [
+    "P ≥ 1 is weaker than the envelope already used for 1/(x log x). On every one of the 141 leftovers at n=10^6+1, the naive weight RHS is at least the parity RHS, and none is excluded",
+    "L=25781, e=9515, n=10^6+1: θ≈2.55e-5 versus parity RHS≈8.27e-4 and P≡1 RHS≈8.27e-4 (about 32 times too large). Internals and evens are already 1e-7 and 1e-10",
+    "Optimistic later-valley P≥9/8 (OOE) still misses L=25781 (RHS≈7.35e-4). It would drop only 81643+1054k for k=0..17, and those kills are not certified: near-convergent prefixes can keep later-valley P closer to 1 than 9/8"
+  ],
+  "first_seen": "juggler cycle prefix-weight finance",
+  "lean_reference": "cycleMin_prefix_pow_le",
+  "literature": [
+    "simons-de-weger-2005-collatz-m-cycles"
+  ],
+  "mathematical_domain": "Juggler cycle finance / prefix weights",
+  "notes": "The comparison lemma is negative knowledge, not a new leftover table. No Paper A edit, no ledger row, no Lean. Not a halt theorem.",
+  "origin": "docs/problems/juggler_cycle_finance.md",
+  "proof_reference": "docs/problems/juggler_cycle_finance.md",
+  "tested_range": "141 parity leftovers at n=10^6+1; bounds parity, P≡1, later-valley P=9/8; spotlight L=25781"
+}
