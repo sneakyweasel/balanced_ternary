@@ -15986,4 +15986,38 @@ Best next question
 - none from cyclic run packing
 ```
 
+## Juggler cycle Fourier / peak–valley spectrum
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether the closed peak–valley wave of a hypothetical Juggler cycle imposes a spectral constraint strong enough to reduce the finance error budget below run-type packing on \(\mathcal E_{\mathrm{run}}(10^6)\)
+- **Hypotheses:** many finance-expensive valleys require high-frequency content incompatible with the exact O/E transition law
+- **Major results:** Parseval increment and O/E increment identities **REPARAMETERIZATION** / **EXACT — HUMAN PROOF**: the spectral moment is \(1/16\) plus a defect remainder. Every closed increment wave with \(|\Delta t|\approx t/2\) achieves it. At \(L=19\) bunched (\(m=1\)) and mechanical `OOE`/`OE` (\(m=7\)) both hit \(1/16\). On all \(99\) leftovers the closed run-type wave hits the moment, sign-changes equal \(2m\), and packed heights reproduce `budget_rhs`; none dies. Controls \(365/501/1517/6187\) sit at the same moment with tail \(\ge 0.095\). Artifact `cycle_fourier/summary.json`. No ledger row, no Paper A, no Lean
+- **Refuted ideas:** spectral leftover-killer (`juggler_cycle_fourier_leftover_killer`); band-limit \(m\le L/12\)
+- **Literature:** classical DFT / Parseval; same Simons–de Weger finance template
+- **Open:** none from Fourier
+- **Decision:** CLOSE. The run-type theorem stays PROMOTE
+
+```text
+What was learned
+- the spectral moment 1/16 is the O/E increment law in Fourier language
+- bunched (m=1) and mechanical run-type (m=e) waves share that moment
+- sign(Δt)=s and #sign-changes=2m is time-domain, not a bound on m
+- log-state L2 mass sees peaks; finance sees valleys
+- band-limit tails are ≥0.05; none of the 99 leftovers dies
+Strongest theorem
+- ∑(Δt)² = (1/4)∑t² − ∑s t ε + ∑ε², hence the energy-weighted
+  mean of sin²(πk/L) is 1/16 plus an explicit defect remainder
+Strongest refutation
+- Fourier does not beat budget_rhs on E_run(10^6)
+Reusable machinery
+- closed_increment_wave / spectral_moment / cycle_fourier/summary.json
+Branch status
+- CLOSE
+Why
+- every relevant spectral bound is achieved by abstract cyclic
+  waves that already satisfy the known transition inequalities
+Best next question
+- none from Fourier
+```
+
 

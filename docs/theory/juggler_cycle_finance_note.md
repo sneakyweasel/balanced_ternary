@@ -247,6 +247,13 @@ These were run. None of them changes the leftover.
   packing is already the relaxed finance maximum on the \(99\)
   survivors. Cheap-`OOE` adjacency is `power_bound_word` and does
   not prove \(N_{\mathrm{cheap}}<o-e\).
+- Closed peak–valley Fourier leftover-killer — **CLOSE**
+  (`juggler_cycle_fourier_leftover_killer`). Parseval plus the
+  O/E increment law is the spectral moment \(1/16\), achieved by
+  every cyclic wave with \(|\Delta t|\approx t/2\), including both
+  the bunched word and the mechanical `OOE`/`OE` necklace. None
+  of the \(99\) leftovers dies. Band-limit \(m\le L/12\) fails
+  (tail \(\ge 0.05\)).
 - Prefix-weight leftover-killer (\(P\equiv 1\), or optimistic
   later-valley \(P\ge 9/8\)) — **CLOSE**
   (`juggler_cycle_prefix_weight_leftover_killer`). The published

@@ -205,7 +205,7 @@ def spectral_moment(values: list[float], *, cyclic: bool = True) -> dict[str, fl
     delta = increments(values, cyclic=cyclic)
     delta2 = sum(step * step for step in delta)
     if energy <= 0.0:
-        return {"moment": math.nan, "energy": energy, "delta2": delta2}
+        return {"moment": None, "energy": energy, "delta2": delta2}
     return {
         "moment": delta2 / (4.0 * energy),
         "energy": energy,
@@ -274,7 +274,7 @@ def tail_energy_frac(values: list[float], degree: int) -> float:
     length = len(hats)
     total = sum(coeff.real * coeff.real + coeff.imag * coeff.imag for coeff in hats)
     if total <= 0.0:
-        return math.nan
+        return None
     tail = 0.0
     for index, coeff in enumerate(hats):
         freq = min(index, length - index)
@@ -384,7 +384,7 @@ def abstract_row(
     closed = closed_increment_wave(word, math.log(n))
     closed_t = closed["t"] if closed["ok"] else []
     closed_moment = (
-        spectral_moment(closed_t)["moment"] if closed_t else math.nan
+        spectral_moment(closed_t)["moment"] if closed_t else None
     )
     packed_moment = spectral_moment(packed)["moment"]
     valley_rt = cyclic_valleys(word)
@@ -399,7 +399,7 @@ def abstract_row(
     bunched_moment = (
         spectral_moment(bunched_closed["t"])["moment"]
         if bunched_closed["ok"]
-        else math.nan
+        else None
     )
     closed_hits = (
         closed["ok"] and abs(closed_moment - MOMENT_TARGET) <= CLOSED_MOMENT_TOL
@@ -470,12 +470,13 @@ def fourier_scan(
     controls = [control_row(n) for n in CONTROLS]
     small = abstract_row(84, n=start, const=const)
     bunched_witness = abstract_row(BUNCHED_WITNESS, n=start, const=const)
-    identity_wave = closed_increment_wave("OOEOEOOE", math.log(start))
+    identity_word = "OOEOOE"
+    identity_wave = closed_increment_wave(identity_word, math.log(start))
     identity_ok = bool(
         identity_wave["ok"]
         and parseval_increment_holds(identity_wave["t"])
         and oe_increment_identity(
-            identity_wave["t"], "OOEOEOOE", float(identity_wave["eps"])
+            identity_wave["t"], identity_word, float(identity_wave["eps"])
         )
     )
     both_hit = all(row["both_hit_target"] for row in rows)
@@ -587,7 +588,9 @@ def write_fourier_artifacts(
         }
         for row in data["rows"]
     ]
-    path.write_text(json.dumps(slim, indent=2) + "\n", encoding="utf-8")
+    path.write_text(
+        json.dumps(slim, indent=2, allow_nan=False) + "\n", encoding="utf-8"
+    )
     return data
 
 
