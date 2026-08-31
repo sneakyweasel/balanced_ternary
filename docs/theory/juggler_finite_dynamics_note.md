@@ -38,9 +38,13 @@ that every start through \(10^6\) reaches \(1\), and with the
 parity-aware form of the floor-error budget, there is no
 nontrivial cycle of length at most \(25780\). Through length
 \(10^5\), only an explicit set
-\(\mathcal E\) of \(141\) lengths remains admissible to the bound.
-A separate finite-word analysis shows that every nontrivial cycle
-has at least four even letters and hence period at least eleven.
+\(\mathcal E\) of \(141\) lengths remains admissible to that
+length-only bound. A run-type packing of the same identity leaves
+a subset \(\mathcal E_{\mathrm{run}}\) of \(99\) lengths,
+organised as three affine families on the unimodular basis
+\((25781,16266)\), \((1054,665)\). A separate finite-word analysis
+shows that every nontrivial cycle has at least four even letters
+and hence period at least eleven.
 
 **2020 Mathematics Subject Classification.** 11B83, 37P99, 11Y55.
 
@@ -75,7 +79,8 @@ letters, so the period is at least eleven. Section 4 turns the
 formal surplus \(3^o-2^L\) into a bound on the cycle minimum.
 With the verified descent floor through \(10^6\), the
 parity-aware form of that bound excludes every period at most
-\(25780\).
+\(25780\). The same identity, packed by odd-run type, leaves
+only \(99\) admissible lengths through \(10^5\).
 
 Write \(N_0=10^6\) for the *verified descent floor*: the
 computational verification reported by Weisstein [5], recomputed
@@ -105,10 +110,16 @@ Equivalently, any nontrivial cycle has period at least \(25781\)
 **Secondary theorem.**
 If a nontrivial cycle has period \(L\le 10^5\), then \(L\) belongs
 to an explicit set \(\mathcal E\) of \(141\) lengths (Theorem B;
-Theorem 4.6(B)). Membership in \(\mathcal E\) means only that the
-finance inequality at the verified descent floor \(10^6\) does
-not exclude \(L\). It does not mean that a cycle of that length
-exists, or that the length is dynamically plausible.
+Theorem 4.6(B)). The same \(6/5\) identity, packed by odd-run type
+at a cycle minimum, excludes a further \(42\) of those lengths and
+leaves a subset \(\mathcal E_{\mathrm{run}}\) of \(99\) lengths
+(Theorem 4.8), organised as three affine families on the
+unimodular basis \((25781,16266)\), \((1054,665)\)
+(Proposition 4.9). Membership in \(\mathcal E\) or
+\(\mathcal E_{\mathrm{run}}\) means only that the corresponding
+form of the finance inequality at the verified descent floor
+\(10^6\) does not exclude \(L\). It does not mean that a cycle of
+that length exists, or that the length is dynamically plausible.
 
 **Supporting structural theorem.**
 Every nontrivial cycle word has at least four even letters, and
@@ -120,7 +131,9 @@ Theorems A and B are the finance inequality of Theorem 4.4, in
 the conservative \(6/5\) form of Corollary 4.5, at the
 verified descent floor \(N_0=10^6\) reported by Weisstein [5].
 These results give no control over the remaining lengths in
-\(\mathcal E\), and they do not imply termination.
+\(\mathcal E_{\mathrm{run}}\), and they do not imply termination.
+The lattice of Proposition 4.9 organises the leftover list; it
+does not constrain an actual cycle.
 
 The logical dependency is
 \[
@@ -175,7 +188,10 @@ verified descent floor \(10^6\), appear to be new. The leftover
 packaging, period at least \(X\) or a named admissible family,
 follows Eliahou [13]. For this nonlinear floor-power map, the
 elementary log-envelope plus that floor already forces
-\(L\ge 25781\).
+\(L\ge 25781\). The three families of Proposition 4.9 are the
+surplus intermediate fractions of \(\log 2/\log 3\) that still
+beat run-type finance at this floor; that continued-fraction
+identification is classical.
 
 **Novelty statement.**
 For the exact Juggler map, the one-step floor cells yield the
@@ -198,8 +214,12 @@ named there. They are finite computations, not a termination proof.
 
 Theorem 4.6 uses an exact-integer first-passage run through
 \(10^6\), together with an exact gap table of lengths up to
-\(10^5\). The floor itself is the verified descent floor
-reported by Weisstein [5]; the first-passage run is an independent
+\(10^5\). Theorems 4.7--4.8 reuse that table under the run-type
+packing. Proposition 4.9 is integer arithmetic, formalized in
+Lean; the identification of the \(99\) lattice points with
+\(\mathcal E_{\mathrm{run}}\) is the table of Theorem 4.8. The
+floor itself is the verified descent floor reported by
+Weisstein [5]; the first-passage run is an independent
 recomputation of that same floor, not a new record. Checksums and
 regeneration commands are in Appendix B.
 
@@ -210,6 +230,7 @@ Lean:        leanprover/lean4:v4.33.0
 Mathlib:     v4.33.0 (lake-manifest rev db584cd6d46c92f209a44c0f1c829460d327499d)
 Build:       lake build Problems.JugglerPaper   (from formal/)
 Computation: python -m research.juggler_sequence.cycle_finance
+             (parity table); run-type table in budget_opt.json
 SHA-256:     Appendix B
 ```
 
@@ -1401,6 +1422,139 @@ therefore not admissible at this floor. Membership of
 \(25781\) in \(\mathcal E\) means only that the present method
 does not exclude it.
 
+The length-only bound charges every valley at the cycle minimum.
+A cycle cannot put an \(\mathtt{OE}\)-start at that minimum: the
+next state is even and, by Theorem 3.2, at least \(n^2\). An
+\(n\)-circuit with \(k\) odd letters and \(\ell\) even letters
+lands at most at \(n^{3^k/2^{k+\ell}}\) (floors only make the
+landing smaller), so the landing stays at least \(n\) only if
+\(3^k\ge 2^{k+\ell}\). In particular \(k=1\) is impossible from
+\(n\), and a \(k=2\) circuit from \(n\) can take only
+\(\ell=1\).
+
+**Theorem 4.7 (run-type packing).**
+Let \(w\) be a cycle word of length \(L\) with \(o=o_{\min}(L)\)
+odd letters and \(e=L-o\) even letters, based at a cycle
+minimum \(n\ge 12\). Write \(v\) for the least odd integer with
+\(v^3\ge n^4\), and write \(t=\lfloor n^{3/2}\rfloor\). Then
+\(o-e<e\), the largest number of \(n\)-scale valleys compatible
+with the even cap is \(o-e\) copies of \(\mathtt{OOE}\), and the
+remaining \(2e-o\) circuits are \(\mathtt{OE}\) from \(v\). The
+cycle minimum occurs once, so
+\[
+\sum_{i=1}^{L}\frac{1}{x_i\log x_i}
+\le
+\frac{1}{n\log n}
++\frac{o-e-1}{(n+2)\log(n+2)}
++\frac{2e-o}{v\log v}
++\frac{1}{t\log t}
++\frac{o-e-1}{t_+\log t_+}
++\frac{e}{2n^2\log n},
+\]
+where \(t_+=J(n+2)\). Combined with the \(6/5\) unroll this is
+strictly smaller than the parity sum of Corollary 4.5 whenever
+\(2e-o>0\). Sending the cycle maximum to infinity removes one
+even term and does not change the valley packing.
+
+*Proof.* Formal expansion at \(o_{\min}\) forces \(3o<2L\) on
+every leftover length in range, equivalently \(o-e<e\). The
+even-cap comparison \(3^k\ge 2^{k+\ell}\) is the ideal power
+envelope; floors only help. An \(\mathtt{OE}\)-start is followed
+by an even state, so Theorem 3.2 gives \(J(v)\ge n^2\) and
+therefore \(v^3\ge n^4\). Unique visit of the cycle minimum is
+periodicity. The displayed sum charges one cheap valley at
+\(n\), the remaining \(o-e-1\) cheap valleys at the next odd
+integer \(n+2\), the expensive valleys at \(v\), one internal
+odd at \(t\), the remaining internals at \(J(n+2)\), and every
+even at \(n^2\). Any deeper odd run or any higher valley only
+decreases the sum. \(\square\)
+
+**Theorem 4.8 (run-type table).**
+At the verified descent floor \(N_0=10^6\), the packed comparison
+of Theorem 4.7 excludes the \(42\) lengths
+\(56347+1054k\) for \(k=0,\ldots,41\) and leaves an explicit
+set \(\mathcal E_{\mathrm{run}}=\mathcal E_{\mathrm{run}}(10^6)\)
+of \(99\) lengths. The first survivor remains \(25781\). In
+particular, if a nontrivial cycle has period \(L\le 10^5\), then
+\(L\in\mathcal E_{\mathrm{run}}\).
+
+*Proof.* The \(141\) lengths of Theorem 4.6(B) are tested at
+\(n=10^6+1\) against the packed right-hand side. The comparison
+is certified on each length: no entry is left uncertain. The
+\(42\) excluded lengths are exactly the arithmetic progression
+named in the statement. The complementary set in that range is
+\(\mathcal E_{\mathrm{run}}\). Checksums are Appendix B.
+\(\square\)
+
+Membership in \(\mathcal E_{\mathrm{run}}\) is still only
+admissibility to this bound. The period cutoff remains
+\(25781\). Unique visit of \(n\) and a bound on the cycle
+maximum do not change the kill list.
+
+**Proposition 4.9 (survivor lattice).**
+Write \(v_*=(25781,16266)\) and \(v_{1054}=(1054,665)\). Then
+\[
+25781\cdot 665-1054\cdot 16266=1,
+\]
+so these two vectors are a unimodular basis of \(\mathbb Z^2\).
+Every length in \(\mathcal E_{\mathrm{run}}\), and every one of
+the \(42\) packing deaths of Theorem 4.8, is of the form
+\[
+(L,o_{\min})=a\,v_*+b\,v_{1054}.
+\]
+With the table cap \(L\le 10^5\), the three affine slices are
+
+| Family | Coordinates | Count | Lengths |
+|---|---|---|---|
+| \(F_1\) | \(a=1\), \(b=0,\ldots,28\) | \(29\) | \(25781+1054k\) through \(55293\) |
+| \(F_2\) | \(a=2\), \(b=-1,\ldots,45\) | \(47\) | \(50508+1054k\) through \(98992\) |
+| \(F_3\) | \(a=3\), \(b=-1,\ldots,21\) | \(23\) | \(76289+1054k\) through \(99477\) |
+| packing deaths | \(a=1\), \(b=29,\ldots,70\) | \(42\) | \(56347+1054k\) through \(99561\) |
+
+The seeds are
+\[
+50508=2\cdot 25781-1054,\qquad
+76289=3\cdot 25781-1054=50508+25781.
+\]
+Thus \(F_2\) begins at the next principal convergent of
+\(\log 2/\log 3\) and \(F_3\) at the Farey sum of the two
+previous seeds. Packing truncates only \(F_1\); \(F_2\) and
+\(F_3\) die at the table cap. The Lean form is the unimodular
+identity, the two seeds, the generator comparison
+\(3^{665}>2^{1054}\), and the three family lists. The
+identification of those \(99\) points with
+\(\mathcal E_{\mathrm{run}}\) is Theorem 4.8.
+
+*Proof.* The determinant identity and the two seed identities
+are integer arithmetic. The generator comparison
+\(3^{665}>2^{1054}>3^{664}\) is a finite power comparison, so
+\(o_{\min}(1054)=665\). Direct evaluation of \(o_{\min}\) on the
+\(141\) lengths of Theorem 4.6(B) shows that each pair
+\((L,o_{\min})\) is one of the displayed lattice points, with
+the \(42\) packing deaths exactly the \(F_1\) continuation
+\(b\ge 29\). The three family counts sum to \(99\). \(\square\)
+
+Write \(r(L)=3^{o_{\min}(L)}/2^L\) and
+\(\rho=3^{665}/2^{1054}\). Then \(\rho>1\), and within each
+family the step \((L,o)\mapsto(L+1054,o+665)\) is the identity
+\(r(L+1054)=\rho\,r(L)\). In the notation
+\(\theta=1-2^L/3^o\) of Section 4,
+\[
+\theta(L+1054)=\Bigl(1-\frac1\rho\Bigr)+\frac{\theta(L)}{\rho}.
+\]
+That is why \(F_1\) hits the packed wall first: at \(L=55293\)
+the packed right-hand side is about \(1.012\,\theta\), while the
+next lattice point \(L=56347\) has packed right-hand side about
+\(0.9967\,\theta\). The length \(L=50508\) is loose because it
+is a better approximant (\(\theta\approx 7.26\cdot 10^{-6}\)),
+not because finance treats it specially.
+
+The three families are different continued-fraction objects.
+The lattice is a change of coordinates for \((L,o)\). It does
+not supply a relation
+\(\operatorname{Cycle}(L,o)\Rightarrow\Phi(L+1054,o+665)\)
+between hypothetical cycles.
+
 ## 5. Remarks
 
 A start \(n\ge 2\) has a *descent certificate* if there exists a
@@ -1426,9 +1580,11 @@ and the relative slack of a single letter tends to \(0\) with the
 state (Section 2).
 
 These results provide no control over the remaining lengths in
-\(\mathcal E\), and in particular do not imply termination or
-exclude all cycles. It is open whether every start reaches \(1\),
-and open whether a cycle of an admissible leftover length exists.
+\(\mathcal E_{\mathrm{run}}\), and in particular do not imply
+termination or exclude all cycles. The lattice of
+Proposition 4.9 organises that list; it does not constrain an
+actual cycle. It is open whether every start reaches \(1\), and
+open whether a cycle of an admissible leftover length exists.
 
 Lean names for the theorems of Sections 2, 3, and 4 are in
 Appendix A. The formalization and the finance tables are pinned
@@ -1440,8 +1596,10 @@ The proofs in the text are ordinary integer arguments. The names
 below are the corresponding Lean theorems in
 `formal/Problems/Juggler/`, imported by `Problems.JugglerPaper`.
 A Lean identity is not a `native_decide` table; the tables of
-Section 3 are of the second kind. Theorem 4.6 is a verified
-computation outside Lean.
+Section 3 are of the second kind. Theorems 4.6 and 4.8 are
+verified computations outside Lean. Proposition 4.9's arithmetic
+is Lean; its identification with \(\mathcal E_{\mathrm{run}}\)
+is Theorem 4.8.
 
 | Text | Lean |
 |---|---|
@@ -1483,6 +1641,9 @@ computation outside Lean.
 | Lemma 4.2 | `log_step_even`, `log_step_odd` |
 | Lemma 4.3 | `cycleMin_log_envelope` |
 | Theorem 4.4 | `cycleMin_finance` |
+| Theorem 4.7 | run-type packing; human proof, not Lean |
+| Theorem 4.8 | run-type table; verified computation, not Lean |
+| Proposition 4.9 | `run_survivor_unimodular`, `run_survivor_seed_F2`, `run_survivor_seed_F3`, `three_pow_step_gt_two_pow_step`, `runSurvivors_length` |
 | short certificates (Section 5) | `even_finiteProgress`, `odd_even_finiteProgress` |
 | no certificate \(\Rightarrow\) odd-to-odd | `no_finiteProgress_implies_odd_odd` |
 | induction to \(1\) | `reachesOne_of_all_finiteProgress` |
@@ -1530,10 +1691,26 @@ The parity table is written by
 `research.juggler_sequence.cycle_finance.write_parity_artifacts`.
 The first-passage file is regenerated by
 `python -m research.juggler_sequence.cycle_finance`.
-The finite leftover tables of Section 3 are the Lean
-`native_decide` evaluations named in Appendix A
-(`LeftoverEval.lean`, `LeftoverShort.lean`,
-`LeftoverFamilies.lean`).
+
+The run-type table of Theorem 4.8 is
+`data/research/juggler/cycle_finance/budget_opt.json`. The
+\(42\) excluded lengths are
+`killed_by_budget`; their SHA-256, serialized as a JSON list of
+integers with no spaces, is
+`9d108776d6dc5dc1ae2594058850463cd2d3995cc57b9811471f08e3b818b90a`.
+The complementary \(99\) lengths are \(\mathcal E_{\mathrm{run}}\).
+Their SHA-256, in the same serialization, is
+`9e2098923ccb39933630b116133a3fc2ddaf98ace4eb76dbab9b5ab9f6e604e6`.
+The first few survivors remain
+\[
+25781,\;26835,\;27889,\;28943,\;29997;
+\]
+the last survivor is \(99477\). The three families and the
+unimodular basis are Proposition 4.9. The finite leftover tables
+of Section 3 are the Lean `native_decide` evaluations named in
+Appendix A (`LeftoverEval.lean`, `LeftoverShort.lean`,
+`LeftoverFamilies.lean`). The lattice arithmetic of
+Proposition 4.9 is `RunSurvivorLattice.lean`.
 
 ## Appendix C. Composition of the global defect
 

@@ -11,7 +11,8 @@ development is in `formal/Problems/Juggler/`; it contains no `sorry`
 or `admit`. The review object for **Paper A** is the paper barrel
 `formal/Problems/JugglerPaper.lean` (`lake build Problems.JugglerPaper`).
 That file imports only the modules named by Paper A (Appendix A of
-the note), including `CycleFinance.lean` for Theorem 4.4. It does
+the note), including `CycleFinance.lean` for Theorem 4.4 and
+`RunSurvivorLattice.lean` for Proposition 4.9. It does
 not import `GapCells.lean` or `CycleHeightFinance.lean`. Laboratory
 satellites remain in `formal/Problems/Juggler.lean` and are not the
 review object.
@@ -496,6 +497,28 @@ cycleMin_finance :
   n * log n * (3^oddCount w - 2^w.length) ≤ w.length * 3^oddCount w
     (CycleFinance.lean)
 ```
+
+The run-type packing (Paper A Theorem 4.7) and the \(99\)-length
+table (Theorem 4.8) are not Lean. The lattice arithmetic of
+Proposition 4.9 is a cycle leaf under this barrel:
+
+```text
+run_survivor_unimodular :
+  Lstar * Ostep - Lstep * Ostar = 1
+run_survivor_seed_F2 :
+  latticePoint 2 (-1) = (50508, 31867)
+run_survivor_seed_F3 :
+  latticePoint 3 (-1) = (76289, 48133)
+three_pow_step_gt_two_pow_step :
+  3 ^ 665 > 2 ^ 1054
+runSurvivors_length :
+  runSurvivors.length = 99
+    (RunSurvivorLattice.lean)
+```
+
+Those identities organise \(\mathcal E_{\mathrm{run}}\). They do
+not constrain an actual cycle. The identification of the \(99\)
+lattice points with the run-type table is Theorem 4.8, not Lean.
 
 Companion names leftover \(84\), residual floor \(261\), and the
 census through length \(19\) are listed in Appendix A of the note.

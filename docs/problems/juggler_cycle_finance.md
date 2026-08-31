@@ -587,8 +587,9 @@ and `data/research/juggler/cycle_finance/`.
   \(n\) takes only one even. The leftover set shrinks from
   \(141\) to \(99\) (\(56347+1054k\), \(k=0,\ldots,41\) die).
   First survivor remains \(25781\). Unique visit and
-  \(M\to\infty\) do not bind. Paper A still prints the parity
-  table.
+  \(M\to\infty\) do not bind. Paper A prints the parity table
+  as Theorem 4.6 and the run-type leftover with the lattice as
+  Theorems 4.7--4.8 and Proposition 4.9.
 - **Exceptional structure**: the \(166\) exceptions are exactly the
   near-convergent lengths — multiples of \(25781\) plus
   combinations with earlier convergents. The record

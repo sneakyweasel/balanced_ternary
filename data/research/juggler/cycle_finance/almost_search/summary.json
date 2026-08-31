@@ -1,0 +1,1300 @@
+{
+  "bound": "almost_search",
+  "phase": 1,
+  "L": 25781,
+  "o": 16266,
+  "e": 9515,
+  "theta": 2.5459198127264017e-05,
+  "floor": 1000000,
+  "lab_floor": 2000000,
+  "n": 1000001,
+  "n_max_run": 19010076,
+  "n_max_par": 26254995,
+  "oo_oe": [
+    6751,
+    2764
+  ],
+  "envelope_E": 0.0003517937108825177,
+  "words": {
+    "extremal": {
+      "circuits": 9515,
+      "a0": 2,
+      "max_odd_run": 2,
+      "max_even_run": 1,
+      "n_ooe": 6751,
+      "n_oe": 2764,
+      "n_other": 0,
+      "two_type": true,
+      "odd": 16266,
+      "even": 9515,
+      "length": 25781,
+      "prefix": "OOEOOEOOEOEOOEOOEOEOOEOOEOOEOEOO",
+      "suffix": "OOEOEOOEOOEOOEOEOOEOOEOEOOEOOEOE",
+      "prefix_ok": true,
+      "min_log_surplus": 2.545952156651765e-05,
+      "min_k": 25781
+    },
+    "christoffel": {
+      "circuits": 9515,
+      "a0": 2,
+      "max_odd_run": 2,
+      "max_even_run": 1,
+      "n_ooe": 6751,
+      "n_oe": 2764,
+      "n_other": 0,
+      "two_type": true,
+      "odd": 16266,
+      "even": 9515,
+      "length": 25781,
+      "prefix": "OOEOOEOOEOEOOEOOEOEOOEOOEOOEOEOO",
+      "suffix": "OOEOEOOEOOEOOEOEOOEOOEOEOOEOOEOE",
+      "prefix_ok": true,
+      "min_log_surplus": 2.545952156651765e-05,
+      "min_k": 25781
+    },
+    "packed_block": {
+      "circuits": 9515,
+      "a0": 2,
+      "max_odd_run": 2,
+      "max_even_run": 1,
+      "n_ooe": 6751,
+      "n_oe": 2764,
+      "n_other": 0,
+      "two_type": true,
+      "odd": 16266,
+      "even": 9515,
+      "length": 25781,
+      "prefix": "OOEOOEOOEOEOOEOOEOEOOEOOEOOEOEOO",
+      "suffix": "OOEOEOOEOOEOOEOEOOEOOEOEOOEOOEOE",
+      "prefix_ok": true,
+      "min_log_surplus": 2.545952156651765e-05,
+      "min_k": 25781
+    },
+    "extremal_eq_christoffel": true,
+    "christoffel_eq_packed": true
+  },
+  "forward": {
+    "n_seen": 8505038,
+    "drops": 8497557,
+    "bit_hits": 7481,
+    "survived": 0,
+    "o_hits": 0,
+    "max_steps": 257,
+    "hardest": 6127057,
+    "max_bits": 275927,
+    "hist": {
+      "le_10": 7442857,
+      "le_50": 1004851,
+      "bit_cap": 7481,
+      "le_100": 47890,
+      "le_257": 1959
+    },
+    "longest": [
+      {
+        "steps": 257,
+        "n": 6127057,
+        "odds": 162,
+        "bits": 13739
+      },
+      {
+        "steps": 233,
+        "n": 3536177,
+        "odds": 147,
+        "bits": 11759
+      },
+      {
+        "steps": 218,
+        "n": 10378361,
+        "odds": 137,
+        "bits": 15763
+      },
+      {
+        "steps": 199,
+        "n": 3327485,
+        "odds": 125,
+        "bits": 13355
+      },
+      {
+        "steps": 199,
+        "n": 10258153,
+        "odds": 125,
+        "bits": 4721
+      },
+      {
+        "steps": 197,
+        "n": 18540341,
+        "odds": 124,
+        "bits": 9185
+      },
+      {
+        "steps": 194,
+        "n": 2764649,
+        "odds": 122,
+        "bits": 9648
+      },
+      {
+        "steps": 194,
+        "n": 13805323,
+        "odds": 122,
+        "bits": 5145
+      },
+      {
+        "steps": 192,
+        "n": 3476081,
+        "odds": 121,
+        "bits": 7234
+      },
+      {
+        "steps": 192,
+        "n": 4555349,
+        "odds": 121,
+        "bits": 6143
+      },
+      {
+        "steps": 191,
+        "n": 6922899,
+        "odds": 120,
+        "bits": 9725
+      },
+      {
+        "steps": 191,
+        "n": 13192277,
+        "odds": 120,
+        "bits": 15964
+      },
+      {
+        "steps": 186,
+        "n": 8546705,
+        "odds": 117,
+        "bits": 7787
+      },
+      {
+        "steps": 184,
+        "n": 2589235,
+        "odds": 116,
+        "bits": 9457
+      },
+      {
+        "steps": 184,
+        "n": 4615741,
+        "odds": 116,
+        "bits": 6148
+      },
+      {
+        "steps": 184,
+        "n": 8798501,
+        "odds": 116,
+        "bits": 10958
+      },
+      {
+        "steps": 184,
+        "n": 8691327,
+        "odds": 116,
+        "bits": 3032
+      },
+      {
+        "steps": 178,
+        "n": 12406185,
+        "odds": 112,
+        "bits": 15128
+      },
+      {
+        "steps": 176,
+        "n": 16168369,
+        "odds": 111,
+        "bits": 7882
+      },
+      {
+        "steps": 176,
+        "n": 17397669,
+        "odds": 111,
+        "bits": 12654
+      },
+      {
+        "steps": 176,
+        "n": 18567615,
+        "odds": 111,
+        "bits": 10037
+      },
+      {
+        "steps": 175,
+        "n": 5302759,
+        "odds": 110,
+        "bits": 14904
+      },
+      {
+        "steps": 175,
+        "n": 8975767,
+        "odds": 110,
+        "bits": 8787
+      },
+      {
+        "steps": 175,
+        "n": 8853171,
+        "odds": 110,
+        "bits": 9106
+      }
+    ],
+    "at_L": [],
+    "n_at_L": 0,
+    "best_E_at_L": null,
+    "best_at_L": null,
+    "lo": 2000001,
+    "hi": 19010076,
+    "target_L": 25781,
+    "target_o": 16266,
+    "step_cap": 25781,
+    "bit_cap": 16384,
+    "workers": 22,
+    "elapsed_s": 10.27724510000553,
+    "bit_seed_sample": [
+      2000321,
+      2006691,
+      2006697,
+      2007209,
+      2012335,
+      2012933,
+      2012935,
+      2022047,
+      2023615,
+      2024773,
+      2025133,
+      2025309,
+      2025671,
+      2026137,
+      2026401,
+      2029865,
+      2029905,
+      2032931,
+      2033347,
+      2040677
+    ],
+    "resolved": {
+      "n_seeds": 64,
+      "drops": 60,
+      "unresolved": 4,
+      "unresolved_sample": [
+        3053595,
+        14413127,
+        14788433,
+        15971461
+      ],
+      "n_at_L": 0,
+      "best_E_at_L": null,
+      "max_steps": 154,
+      "hardest": 11001861,
+      "max_bits": 275927,
+      "hist": {
+        "le_100": 39,
+        "le_257": 15,
+        "bit_cap": 4,
+        "le_50": 6
+      },
+      "longest": [
+        {
+          "steps": 154,
+          "n": 11001861,
+          "odds": 97,
+          "bits": 24611
+        },
+        {
+          "steps": 151,
+          "n": 10916975,
+          "odds": 95,
+          "bits": 98602
+        },
+        {
+          "steps": 148,
+          "n": 11281231,
+          "odds": 93,
+          "bits": 180096
+        },
+        {
+          "steps": 148,
+          "n": 12289303,
+          "odds": 93,
+          "bits": 73489
+        },
+        {
+          "steps": 138,
+          "n": 5529017,
+          "odds": 87,
+          "bits": 64570
+        },
+        {
+          "steps": 130,
+          "n": 18161389,
+          "odds": 82,
+          "bits": 36618
+        },
+        {
+          "steps": 129,
+          "n": 2646891,
+          "odds": 81,
+          "bits": 21309
+        },
+        {
+          "steps": 127,
+          "n": 17347331,
+          "odds": 80,
+          "bits": 59292
+        },
+        {
+          "steps": 123,
+          "n": 2287041,
+          "odds": 77,
+          "bits": 18045
+        },
+        {
+          "steps": 119,
+          "n": 13902263,
+          "odds": 75,
+          "bits": 58504
+        },
+        {
+          "steps": 116,
+          "n": 6655717,
+          "odds": 73,
+          "bits": 26829
+        },
+        {
+          "steps": 116,
+          "n": 12132085,
+          "odds": 73,
+          "bits": 28235
+        },
+        {
+          "steps": 116,
+          "n": 13744613,
+          "odds": 73,
+          "bits": 119889
+        },
+        {
+          "steps": 113,
+          "n": 4599965,
+          "odds": 71,
+          "bits": 45424
+        },
+        {
+          "steps": 105,
+          "n": 9588581,
+          "odds": 66,
+          "bits": 62611
+        },
+        {
+          "steps": 100,
+          "n": 2385189,
+          "odds": 63,
+          "bits": 173916
+        },
+        {
+          "steps": 99,
+          "n": 7593003,
+          "odds": 62,
+          "bits": 18532
+        },
+        {
+          "steps": 97,
+          "n": 3183231,
+          "odds": 61,
+          "bits": 57531
+        },
+        {
+          "steps": 97,
+          "n": 8271255,
+          "odds": 61,
+          "bits": 36762
+        },
+        {
+          "steps": 96,
+          "n": 8908905,
+          "odds": 60,
+          "bits": 58363
+        },
+        {
+          "steps": 96,
+          "n": 11984501,
+          "odds": 60,
+          "bits": 16719
+        },
+        {
+          "steps": 92,
+          "n": 7123685,
+          "odds": 58,
+          "bits": 30313
+        },
+        {
+          "steps": 91,
+          "n": 16388125,
+          "odds": 57,
+          "bits": 38340
+        },
+        {
+          "steps": 88,
+          "n": 14628201,
+          "odds": 55,
+          "bits": 54216
+        }
+      ],
+      "elapsed_s": 1.3682829999597743,
+      "bit_cap": 200000,
+      "step_cap": 400,
+      "n_bit_hits": 7481,
+      "sampled": 64
+    },
+    "n_bit_hits": 7481,
+    "unresolved_high_peaks": 7421,
+    "sample_unresolved": 4
+  },
+  "follow": {
+    "extremal": {
+      "n": 589,
+      "lo": 1000001,
+      "hi": 1020001,
+      "stride": 34,
+      "min_depth": 1,
+      "max_depth": 11,
+      "mean_depth": 2.033955857385399,
+      "complete": 0,
+      "best": null,
+      "fail_letter": {
+        "O": 416,
+        "E": 173
+      },
+      "fail_parity": {
+        "E!=O": 416,
+        "O!=E": 173
+      }
+    },
+    "christoffel": {
+      "n": 589,
+      "lo": 1000001,
+      "hi": 1020001,
+      "stride": 34,
+      "min_depth": 1,
+      "max_depth": 11,
+      "mean_depth": 2.033955857385399,
+      "complete": 0,
+      "best": null,
+      "fail_letter": {
+        "O": 416,
+        "E": 173
+      },
+      "fail_parity": {
+        "E!=O": 416,
+        "O!=E": 173
+      }
+    },
+    "packed_block": {
+      "n": 589,
+      "lo": 1000001,
+      "hi": 1020001,
+      "stride": 34,
+      "min_depth": 1,
+      "max_depth": 11,
+      "mean_depth": 2.033955857385399,
+      "complete": 0,
+      "best": null,
+      "fail_letter": {
+        "O": 416,
+        "E": 173
+      },
+      "fail_parity": {
+        "E!=O": 416,
+        "O!=E": 173
+      }
+    }
+  },
+  "follow_longest": {
+    "extremal": {
+      "n": 24,
+      "max_depth": 8,
+      "mean_depth": 2.75
+    },
+    "christoffel": {
+      "n": 24,
+      "max_depth": 8,
+      "mean_depth": 2.75
+    },
+    "packed_block": {
+      "n": 24,
+      "max_depth": 8,
+      "mean_depth": 2.75
+    }
+  },
+  "backward": {
+    "extremal": {
+      "n_endpoints": 96,
+      "complete": 0,
+      "min_E": null,
+      "best": null,
+      "max_blocks_done": 2,
+      "n_blocks": 9515,
+      "fail_kind": {
+        "empty_run_preimage": 96
+      },
+      "fail_block": {
+        "2,1": 96
+      },
+      "errors": []
+    },
+    "christoffel": {
+      "n_endpoints": 96,
+      "complete": 0,
+      "min_E": null,
+      "best": null,
+      "max_blocks_done": 2,
+      "n_blocks": 9515,
+      "fail_kind": {
+        "empty_run_preimage": 96
+      },
+      "fail_block": {
+        "2,1": 96
+      },
+      "errors": []
+    },
+    "packed_block": {
+      "n_endpoints": 96,
+      "complete": 0,
+      "min_E": null,
+      "best": null,
+      "max_blocks_done": 2,
+      "n_blocks": 9515,
+      "fail_kind": {
+        "empty_run_preimage": 96
+      },
+      "fail_block": {
+        "2,1": 96
+      },
+      "errors": []
+    }
+  },
+  "mitm": {
+    "extremal": {
+      "ok": false,
+      "follow_front": 1,
+      "front_len": 12890,
+      "back_ok": false,
+      "back_fail": "empty_run_preimage",
+      "gap": null
+    },
+    "christoffel": {
+      "ok": false,
+      "follow_front": 1,
+      "front_len": 12890,
+      "back_ok": false,
+      "back_fail": "empty_run_preimage",
+      "gap": null
+    },
+    "packed_block": {
+      "ok": false,
+      "follow_front": 1,
+      "front_len": 12890,
+      "back_ok": false,
+      "back_fail": "empty_run_preimage",
+      "gap": null
+    }
+  },
+  "min_E": null,
+  "common_fail_kind": {
+    "empty_run_preimage": 288
+  },
+  "common_fail_block": {
+    "2,1": 288
+  },
+  "dominant_fail_block": "2,1",
+  "leftover": {
+    "L": 25781,
+    "min_E": null,
+    "envelope_E": 0.0003517937108825177,
+    "ratio_to_envelope": null,
+    "complete_prescribed": false,
+    "survived_L": 0,
+    "unusually_close": false,
+    "exact_cycle": false,
+    "kills": false
+  },
+  "envelope_dominated": true,
+  "unusually_close": false,
+  "exact_cycle": false,
+  "leftover_killer": false,
+  "requires_word_enumeration": false,
+  "halt_theorem": false,
+  "no_cycle_all_lengths": false,
+  "sha256_L": "ff6a12b985b96860071e453ae5e3858243c8674a9f7fedfba86dbc5fa00b20bf",
+  "calibration_L19": {
+    "bound": "almost_search",
+    "phase": 1,
+    "L": 19,
+    "o": 12,
+    "e": 7,
+    "theta": 0.01345963145485576,
+    "floor": 12,
+    "lab_floor": 2000000,
+    "n": 13,
+    "n_max_run": 106,
+    "n_max_par": 133,
+    "oo_oe": [
+      5,
+      2
+    ],
+    "envelope_E": 0.035126118639566314,
+    "words": {
+      "extremal": {
+        "circuits": 7,
+        "a0": 2,
+        "max_odd_run": 2,
+        "max_even_run": 1,
+        "n_ooe": 5,
+        "n_oe": 2,
+        "n_other": 0,
+        "two_type": true,
+        "odd": 12,
+        "even": 7,
+        "length": 19,
+        "prefix": "OOEOOEOOEOEOOEOOEOE",
+        "suffix": "OOEOOEOOEOEOOEOOEOE",
+        "prefix_ok": true,
+        "min_log_surplus": 0.013551033378355726,
+        "min_k": 19
+      },
+      "christoffel": {
+        "circuits": 7,
+        "a0": 2,
+        "max_odd_run": 2,
+        "max_even_run": 1,
+        "n_ooe": 5,
+        "n_oe": 2,
+        "n_other": 0,
+        "two_type": true,
+        "odd": 12,
+        "even": 7,
+        "length": 19,
+        "prefix": "OOEOOEOOEOEOOEOOEOE",
+        "suffix": "OOEOOEOOEOEOOEOOEOE",
+        "prefix_ok": true,
+        "min_log_surplus": 0.013551033378355726,
+        "min_k": 19
+      },
+      "packed_block": {
+        "circuits": 7,
+        "a0": 2,
+        "max_odd_run": 2,
+        "max_even_run": 1,
+        "n_ooe": 5,
+        "n_oe": 2,
+        "n_other": 0,
+        "two_type": true,
+        "odd": 12,
+        "even": 7,
+        "length": 19,
+        "prefix": "OOEOOEOOEOEOOEOOEOE",
+        "suffix": "OOEOOEOOEOEOOEOOEOE",
+        "prefix_ok": true,
+        "min_log_surplus": 0.013551033378355726,
+        "min_k": 19
+      },
+      "extremal_eq_christoffel": true,
+      "christoffel_eq_packed": true
+    },
+    "forward": {
+      "n_seen": 1995,
+      "drops": 1879,
+      "bit_hits": 0,
+      "survived": 116,
+      "o_hits": 19,
+      "max_steps": 19,
+      "hardest": 163,
+      "max_bits": 2545,
+      "hist": {
+        "le_10": 1719,
+        "le_50": 276
+      },
+      "longest": [
+        {
+          "steps": 19,
+          "n": 3989,
+          "odds": 13,
+          "bits": 65
+        },
+        {
+          "steps": 19,
+          "n": 3987,
+          "odds": 15,
+          "bits": 328
+        },
+        {
+          "steps": 19,
+          "n": 3981,
+          "odds": 13,
+          "bits": 259
+        },
+        {
+          "steps": 19,
+          "n": 3973,
+          "odds": 16,
+          "bits": 982
+        },
+        {
+          "steps": 19,
+          "n": 3957,
+          "odds": 13,
+          "bits": 97
+        },
+        {
+          "steps": 19,
+          "n": 3955,
+          "odds": 15,
+          "bits": 328
+        },
+        {
+          "steps": 19,
+          "n": 3951,
+          "odds": 14,
+          "bits": 109
+        },
+        {
+          "steps": 19,
+          "n": 3937,
+          "odds": 14,
+          "bits": 218
+        },
+        {
+          "steps": 19,
+          "n": 3897,
+          "odds": 13,
+          "bits": 172
+        },
+        {
+          "steps": 19,
+          "n": 3889,
+          "odds": 13,
+          "bits": 129
+        },
+        {
+          "steps": 19,
+          "n": 3863,
+          "odds": 12,
+          "bits": 230
+        },
+        {
+          "steps": 19,
+          "n": 3841,
+          "odds": 13,
+          "bits": 115
+        },
+        {
+          "steps": 19,
+          "n": 3795,
+          "odds": 14,
+          "bits": 515
+        },
+        {
+          "steps": 19,
+          "n": 3741,
+          "odds": 13,
+          "bits": 229
+        },
+        {
+          "steps": 19,
+          "n": 3547,
+          "odds": 14,
+          "bits": 861
+        },
+        {
+          "steps": 19,
+          "n": 3527,
+          "odds": 14,
+          "bits": 108
+        },
+        {
+          "steps": 19,
+          "n": 3513,
+          "odds": 13,
+          "bits": 85
+        },
+        {
+          "steps": 19,
+          "n": 3439,
+          "odds": 16,
+          "bits": 965
+        },
+        {
+          "steps": 19,
+          "n": 3431,
+          "odds": 15,
+          "bits": 322
+        },
+        {
+          "steps": 19,
+          "n": 3383,
+          "odds": 12,
+          "bits": 339
+        },
+        {
+          "steps": 19,
+          "n": 3303,
+          "odds": 12,
+          "bits": 89
+        },
+        {
+          "steps": 19,
+          "n": 3279,
+          "odds": 13,
+          "bits": 337
+        },
+        {
+          "steps": 19,
+          "n": 3271,
+          "odds": 16,
+          "bits": 959
+        },
+        {
+          "steps": 19,
+          "n": 3205,
+          "odds": 13,
+          "bits": 189
+        }
+      ],
+      "at_L": [
+        {
+          "n": 265,
+          "steps": 19,
+          "odds": 12,
+          "image": 285,
+          "E": 0.07547169811320754,
+          "o_match": true,
+          "bits": 104
+        },
+        {
+          "n": 491,
+          "steps": 19,
+          "odds": 12,
+          "image": 534,
+          "E": 0.08757637474541752,
+          "o_match": true,
+          "bits": 97
+        },
+        {
+          "n": 539,
+          "steps": 19,
+          "odds": 12,
+          "image": 587,
+          "E": 0.08905380333951762,
+          "o_match": true,
+          "bits": 66
+        },
+        {
+          "n": 677,
+          "steps": 19,
+          "odds": 12,
+          "image": 739,
+          "E": 0.0915805022156573,
+          "o_match": true,
+          "bits": 91
+        },
+        {
+          "n": 877,
+          "steps": 19,
+          "odds": 12,
+          "image": 961,
+          "E": 0.09578107183580388,
+          "o_match": true,
+          "bits": 251
+        },
+        {
+          "n": 1123,
+          "steps": 19,
+          "odds": 12,
+          "image": 1235,
+          "E": 0.09973285841495994,
+          "o_match": true,
+          "bits": 110
+        },
+        {
+          "n": 1437,
+          "steps": 19,
+          "odds": 12,
+          "image": 1586,
+          "E": 0.10368823938761308,
+          "o_match": true,
+          "bits": 68
+        },
+        {
+          "n": 1459,
+          "steps": 19,
+          "odds": 12,
+          "image": 1611,
+          "E": 0.1041809458533242,
+          "o_match": true,
+          "bits": 86
+        },
+        {
+          "n": 1673,
+          "steps": 19,
+          "odds": 12,
+          "image": 1851,
+          "E": 0.10639569635385535,
+          "o_match": true,
+          "bits": 155
+        },
+        {
+          "n": 1999,
+          "steps": 19,
+          "odds": 12,
+          "image": 2217,
+          "E": 0.10905452726363181,
+          "o_match": true,
+          "bits": 63
+        },
+        {
+          "n": 1989,
+          "steps": 19,
+          "odds": 12,
+          "image": 2206,
+          "E": 0.10910005027652087,
+          "o_match": true,
+          "bits": 94
+        },
+        {
+          "n": 2081,
+          "steps": 19,
+          "odds": 12,
+          "image": 2309,
+          "E": 0.10956271023546373,
+          "o_match": true,
+          "bits": 84
+        },
+        {
+          "n": 2155,
+          "steps": 19,
+          "odds": 12,
+          "image": 2392,
+          "E": 0.10997679814385151,
+          "o_match": true,
+          "bits": 90
+        },
+        {
+          "n": 2213,
+          "steps": 19,
+          "odds": 12,
+          "image": 2458,
+          "E": 0.11070944419340262,
+          "o_match": true,
+          "bits": 214
+        },
+        {
+          "n": 2833,
+          "steps": 19,
+          "odds": 12,
+          "image": 3157,
+          "E": 0.11436639604659371,
+          "o_match": true,
+          "bits": 124
+        },
+        {
+          "n": 3203,
+          "steps": 19,
+          "odds": 12,
+          "image": 3575,
+          "E": 0.11614111770215423,
+          "o_match": true,
+          "bits": 126
+        },
+        {
+          "n": 3303,
+          "steps": 19,
+          "odds": 12,
+          "image": 3689,
+          "E": 0.1168634574629125,
+          "o_match": true,
+          "bits": 89
+        },
+        {
+          "n": 3383,
+          "steps": 19,
+          "odds": 12,
+          "image": 3779,
+          "E": 0.11705586757315992,
+          "o_match": true,
+          "bits": 339
+        },
+        {
+          "n": 3863,
+          "steps": 19,
+          "odds": 12,
+          "image": 4323,
+          "E": 0.1190784364483562,
+          "o_match": true,
+          "bits": 230
+        },
+        {
+          "n": 163,
+          "steps": 19,
+          "odds": 13,
+          "image": 5334194,
+          "E": 32724.116564417178,
+          "o_match": false,
+          "bits": 84
+        },
+        {
+          "n": 229,
+          "steps": 19,
+          "odds": 13,
+          "image": 14938256,
+          "E": 65231.55895196507,
+          "o_match": false,
+          "bits": 339
+        },
+        {
+          "n": 329,
+          "steps": 19,
+          "odds": 13,
+          "image": 45137689,
+          "E": 137195.62310030396,
+          "o_match": false,
+          "bits": 272
+        },
+        {
+          "n": 357,
+          "steps": 19,
+          "odds": 13,
+          "image": 57866587,
+          "E": 162090.28011204483,
+          "o_match": false,
+          "bits": 489
+        },
+        {
+          "n": 425,
+          "steps": 19,
+          "odds": 13,
+          "image": 98329907,
+          "E": 231363.48705882352,
+          "o_match": false,
+          "bits": 168
+        }
+      ],
+      "n_at_L": 116,
+      "best_E_at_L": 0.07547169811320754,
+      "best_at_L": {
+        "n": 265,
+        "steps": 19,
+        "odds": 12,
+        "image": 285,
+        "E": 0.07547169811320754,
+        "o_match": true,
+        "bits": 104
+      },
+      "lo": 13,
+      "hi": 4001,
+      "target_L": 19,
+      "target_o": 12,
+      "step_cap": 19,
+      "bit_cap": 4096,
+      "workers": 1,
+      "elapsed_s": 0.00842889997875318,
+      "bit_seed_sample": [],
+      "resolved": {
+        "n_seeds": 0,
+        "drops": 0,
+        "unresolved": 0,
+        "unresolved_sample": [],
+        "n_at_L": 0,
+        "best_E_at_L": null,
+        "max_steps": 0,
+        "hardest": 0,
+        "max_bits": 0,
+        "hist": {},
+        "longest": [],
+        "elapsed_s": 0.0,
+        "bit_cap": 200000,
+        "step_cap": 19,
+        "n_bit_hits": 0,
+        "sampled": 0
+      },
+      "n_bit_hits": 0,
+      "unresolved_high_peaks": 0,
+      "sample_unresolved": 0
+    },
+    "follow": {
+      "extremal": {
+        "n": 59,
+        "lo": 13,
+        "hi": 2001,
+        "stride": 34,
+        "min_depth": 1,
+        "max_depth": 6,
+        "mean_depth": 1.88135593220339,
+        "complete": 0,
+        "best": null,
+        "fail_letter": {
+          "O": 35,
+          "E": 24
+        },
+        "fail_parity": {
+          "E!=O": 35,
+          "O!=E": 24
+        }
+      },
+      "christoffel": {
+        "n": 59,
+        "lo": 13,
+        "hi": 2001,
+        "stride": 34,
+        "min_depth": 1,
+        "max_depth": 6,
+        "mean_depth": 1.88135593220339,
+        "complete": 0,
+        "best": null,
+        "fail_letter": {
+          "O": 35,
+          "E": 24
+        },
+        "fail_parity": {
+          "E!=O": 35,
+          "O!=E": 24
+        }
+      },
+      "packed_block": {
+        "n": 59,
+        "lo": 13,
+        "hi": 2001,
+        "stride": 34,
+        "min_depth": 1,
+        "max_depth": 6,
+        "mean_depth": 1.88135593220339,
+        "complete": 0,
+        "best": null,
+        "fail_letter": {
+          "O": 35,
+          "E": 24
+        },
+        "fail_parity": {
+          "E!=O": 35,
+          "O!=E": 24
+        }
+      }
+    },
+    "follow_longest": {
+      "extremal": {
+        "n": 24,
+        "max_depth": 10,
+        "mean_depth": 3.3333333333333335
+      },
+      "christoffel": {
+        "n": 24,
+        "max_depth": 10,
+        "mean_depth": 3.3333333333333335
+      },
+      "packed_block": {
+        "n": 24,
+        "max_depth": 10,
+        "mean_depth": 3.3333333333333335
+      }
+    },
+    "backward": {
+      "extremal": {
+        "n_endpoints": 17,
+        "complete": 0,
+        "min_E": null,
+        "best": null,
+        "max_blocks_done": 2,
+        "n_blocks": 7,
+        "fail_kind": {
+          "empty_run_preimage": 17
+        },
+        "fail_block": {
+          "2,1": 12,
+          "1,1": 5
+        },
+        "errors": []
+      },
+      "christoffel": {
+        "n_endpoints": 17,
+        "complete": 0,
+        "min_E": null,
+        "best": null,
+        "max_blocks_done": 2,
+        "n_blocks": 7,
+        "fail_kind": {
+          "empty_run_preimage": 17
+        },
+        "fail_block": {
+          "2,1": 12,
+          "1,1": 5
+        },
+        "errors": []
+      },
+      "packed_block": {
+        "n_endpoints": 17,
+        "complete": 0,
+        "min_E": null,
+        "best": null,
+        "max_blocks_done": 2,
+        "n_blocks": 7,
+        "fail_kind": {
+          "empty_run_preimage": 17
+        },
+        "fail_block": {
+          "2,1": 12,
+          "1,1": 5
+        },
+        "errors": []
+      }
+    },
+    "mitm": {
+      "extremal": {
+        "ok": false,
+        "follow_front": 1,
+        "front_len": 9,
+        "back_ok": false,
+        "back_fail": "empty_run_preimage",
+        "gap": null
+      },
+      "christoffel": {
+        "ok": false,
+        "follow_front": 1,
+        "front_len": 9,
+        "back_ok": false,
+        "back_fail": "empty_run_preimage",
+        "gap": null
+      },
+      "packed_block": {
+        "ok": false,
+        "follow_front": 1,
+        "front_len": 9,
+        "back_ok": false,
+        "back_fail": "empty_run_preimage",
+        "gap": null
+      }
+    },
+    "min_E": 0.07547169811320754,
+    "common_fail_kind": {
+      "empty_run_preimage": 51
+    },
+    "common_fail_block": {
+      "2,1": 36,
+      "1,1": 15
+    },
+    "dominant_fail_block": "2,1",
+    "leftover": {
+      "L": 19,
+      "min_E": 0.07547169811320754,
+      "envelope_E": 0.035126118639566314,
+      "ratio_to_envelope": 2.1485920174566533,
+      "complete_prescribed": false,
+      "survived_L": 232,
+      "unusually_close": false,
+      "exact_cycle": false,
+      "kills": false
+    },
+    "envelope_dominated": true,
+    "unusually_close": false,
+    "exact_cycle": false,
+    "leftover_killer": false,
+    "requires_word_enumeration": false,
+    "halt_theorem": false,
+    "no_cycle_all_lengths": false,
+    "sha256_L": "f0182db7bed8a117ee1a8d0e3e28365045f1722562453f629ed75e67553c49dd"
+  }
+}

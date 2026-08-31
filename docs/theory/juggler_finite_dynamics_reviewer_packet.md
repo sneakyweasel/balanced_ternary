@@ -10,16 +10,22 @@ The former single note has been split into two manuscripts:
   *Lower bounds for nontrivial cycles of the Juggler map.*
   Local word obstructions plus a global finance inequality give
   a cycle-length lower bound. Main theorem A: no period
-  \(\le 1053\). Secondary theorem B: periods \(\le 10^5\) lie in
-  an explicit admissible set \(\mathcal E\) of \(397\) lengths.
+  \(\le 25780\). Secondary theorem B: periods \(\le 10^5\) lie in
+  an explicit admissible set \(\mathcal E\) of \(141\) lengths.
+  Run-type packing leaves a subset \(\mathcal E_{\mathrm{run}}\)
+  of \(99\) lengths (Theorems 4.7--4.8), organised as three
+  affine families on the unimodular basis
+  \((25781,16266)\), \((1054,665)\) (Proposition 4.9).
   Supporting structural theorem C: every nontrivial cycle has at
   least four even letters, hence period at least eleven. The
   financing inequality is Theorem 4.4; A and B are Theorem 4.6
   at the verified descent floor \(10^6\) reported by Weisstein.
-  Lean formalizes the exact claims except Theorem 4.6, which is
-  a verified computation. Membership in \(\mathcal E\) means only
-  that the bound does not exclude the length. Leftover \(84\)
-  is a laboratory companion, not a paper theorem.
+  Lean formalizes the exact claims except Theorems 4.6 and 4.8,
+  which are verified computations; Proposition 4.9's arithmetic
+  is Lean. Membership in \(\mathcal E\) or
+  \(\mathcal E_{\mathrm{run}}\) means only that the bound does
+  not exclude the length. Leftover \(84\) is a laboratory
+  companion, not a paper theorem.
 - **Paper B** —
   [juggler_parity_discrepancy_note.md](juggler_parity_discrepancy_note.md):
   *Parity equidistribution of nested floor powers, with descent
@@ -85,13 +91,16 @@ fewer than four even letters, so a nontrivial cycle has period at
 least eleven. A financing inequality at a cycle minimum
 restricts every remaining period to a near-convergent of
 \(\ln 2/\ln 3\), or to a huge length; with a verified floor through
-\(10^6\) there is no period \(\le 1053\). Even and odd-to-even starts
+\(10^6\) there is no period \(\le 25780\). Run-type packing
+leaves \(99\) lengths through \(10^5\), as three affine families
+of \(\log 2/\log 3\). Even and odd-to-even starts
 carry uniform short certificates; the starts not covered by those
 certificates are exactly the odd-to-odd class, not the starts with
 no descent of any length. The small-cycle census is Theorems 3.6
 and 3.8; the family theorems are 3.12--3.21; the even-count
 assembly is Theorem 3.22 (Theorem C); finance is Theorems
-4.4--4.6 (Theorems A and B); short certificates are a remark
+4.4--4.8 and Proposition 4.9 (Theorems A and B, then the
+run-type leftover); short certificates are a remark
 in Section 5.
 
 **Paper B.** An exact-linearization discrepancy calculus with a
@@ -129,7 +138,10 @@ says nothing about the deterministic shift).
 | Cycle surplus \(\Delta_w(n)=n^{3^{\#O}}-n^{2^{\lvert w\rvert}}\) (Corollary 2.7); per-step slack bound \(x^e<(J(x)+1)^2\) | **EXACT — LEAN VERIFIED** | no uniform per-step tax exists |
 | Finance inequality (Theorem 4.4) | **EXACT — LEAN VERIFIED** | `cycleMin_finance`; constant \(1\); not a halt theorem |
 | Per-length exclusion given a floor (Corollary 4.5) | **EXACT — HUMAN PROOF** | \(6/5\) table; conservative relative to Theorem 4.4 |
-| Verified computation (Theorem 4.6) | **COMPUTATIONALLY VERIFIED** | verified descent floor \(10^6\); no period \(\le 1053\); \(397\) exceptions through \(10^5\); first length not excluded is \(1054\) |
+| Verified computation (Theorem 4.6) | **COMPUTATIONALLY VERIFIED** | verified descent floor \(10^6\); no period \(\le 25780\); \(141\) exceptions through \(10^5\); first length not excluded is \(25781\) |
+| Run-type packing (Theorem 4.7) | **EXACT — HUMAN PROOF** | \(\mathtt{OE}\)-starts lift to \(n^{4/3}\); not Lean |
+| Run-type table (Theorem 4.8) | **COMPUTATIONALLY VERIFIED** | \(42\) of the \(141\) die; \(99\) remain; first survivor still \(25781\) |
+| Survivor lattice (Proposition 4.9) | **EXACT — LEAN VERIFIED** | unimodular basis and family arithmetic; identification with \(\mathcal E_{\mathrm{run}}\) is Theorem 4.8 |
 | Lean leftover \(84\) or \(\ge 85\) | **EXACT — LEAN VERIFIED** | Appendix A companion; formalization lag relative to Theorem 4.6 |
 | Four-block expanding chain \(1999\to\cdots\to887471\) (Section 5) | **EXACT — LEAN VERIFIED** | one certified hard path; not a growth theorem |
 | Even and odd-to-even starts have uniform short certificates (Section 5) | **EXACT — LEAN VERIFIED** | not all descent certificates |

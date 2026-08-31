@@ -1,14 +1,14 @@
 # Juggler cycle-finance budget optimization
 
-Status: **EXPLORATORY**
+Status: **ABSORBED** (Paper A Theorems 4.7--4.8 and Proposition 4.9)
 
 Refinement of
 [juggler_cycle_finance.md](juggler_cycle_finance.md), not a new
 paper. It asks whether minimum uniqueness, odd-run type, and the
 cycle maximum force a strictly smaller length-only error budget
 than parity finance on \(\mathcal E_{\mathrm{par}}(10^6)\). Not a
-halt theorem, not a leftover-word census, not a floor raise, and
-not a Paper A edit.
+halt theorem, not a leftover-word census, and not a floor raise.
+Paper A now prints the packing and the lattice.
 
 ## Problem
 
@@ -184,8 +184,9 @@ It is not required.
 - Tests: `tests/research/juggler_sequence/test_cycle_budget_opt.py`,
   `test_cycle_run_extremum.py`,
   `test_cycle_prefix_feasibility.py`
-- Window: the \(141\) parity leftovers at \(n=10^6+1\). Fast suite
-  only. No CLI. No Lean.
+-   Window: the \(141\) parity leftovers at \(n=10^6+1\). Fast suite
+  only. No CLI. Lean arithmetic of the leftover lattice is
+  `RunSurvivorLattice.lean`.
 
 ## Conjectures
 
@@ -211,8 +212,11 @@ See
 
 ## Formalization
 
-None. The packing is Python-checked against the parity leftover
-list. No `CycleBudgetOpt.lean`. Paper A is unchanged.
+The packing inequality is a human proof (Paper A Theorem 4.7).
+The \(99\)-list is a verified table (Theorem 4.8). The lattice
+arithmetic is `formal/Problems/Juggler/RunSurvivorLattice.lean`
+(Proposition 4.9), imported by `Problems.JugglerPaper`. No
+`CycleBudgetOpt.lean`: Lean does not prove the packed comparison.
 
 ## Results
 
@@ -267,14 +271,17 @@ at \(n^{4/3}\), using only `cycleMin_even_ge_sq` and the ideal
 power cap on \(n\)-circuits. It shrinks
 \(\mathcal E_{\mathrm{par}}(10^6)\) from \(141\) to \(99\). The
 period cutoff stays \(25780\). Uniqueness and the maximum do not
-bind. Paper A still prints the parity table. Not a halt theorem.
+bind. Paper A prints the parity table as Theorem 4.6 and the
+run-type leftover with the lattice as Theorems 4.7--4.8 and
+Proposition 4.9. Not a halt theorem.
 
 The cyclic run-type leftover-killer is **CLOSE**
 (`juggler_cycle_run_extremum_leftover_killer`). Two-type is
 already the relaxed finance maximum. Cheap-`OOE` adjacency is
 `power_bound_word` and does not prove \(N_{\mathrm{cheap}}<o-e\).
 No leftover among the \(99\) dies. Keep the exchange lemma as
-negative knowledge. No Paper A edit.
+negative knowledge. The leftover set and its lattice are in
+Paper A; the cyclic leftover-killer is not.
 
 The prefix-expansion leftover-killer is **CLOSE**
 (`juggler_cycle_prefix_feasibility_leftover_killer`). The
@@ -330,5 +337,6 @@ leftover \(L=25781\) still has a factor-\(23\) valley gap at
 
 ## Publication assessment
 
-Status: `EXPLORATORY`. Laboratory refinement of the finance
-dossier; not a second manuscript and not a Paper A edit.
+Status: `ABSORBED`. Laboratory refinement of the finance
+dossier; the packing and lattice are Paper A Theorems 4.7--4.8
+and Proposition 4.9. Not a second manuscript.

@@ -5521,11 +5521,23 @@
   {
     "id": "J-cycle-budget-opt-instance",
     "tag": "COMPUTATIONALLY VERIFIED",
-    "statement": "At n = 10^6+1 the run-type 6/5 packing is strictly below the parity RHS on every one of the 141 lengths in E_par(10^6). It certified-excludes the 42 lengths 56347+1054k for k = 0..41 and leaves 99 leftovers. First survivor remains L = 25781 (θ ≈ 2.55e-5 versus packed RHS ≈ 5.89e-4). Dropping one even term (M → ∞) does not change the kill list. Paper A still prints the parity table. Not a halt theorem.",
-    "source": "docs/problems/juggler_cycle_budget_opt.md",
+    "statement": "At n = 10^6+1 the run-type 6/5 packing is strictly below the parity RHS on every one of the 141 lengths in E_par(10^6). It certified-excludes the 42 lengths 56347+1054k for k = 0..41 and leaves 99 leftovers. First survivor remains L = 25781 (θ ≈ 2.55e-5 versus packed RHS ≈ 5.89e-4). Dropping one even term (M → ∞) does not change the kill list. Paper A Theorem 4.8. Not a halt theorem.",
+    "source": "docs/theory/juggler_finite_dynamics_note.md",
     "lean": "",
     "tests": [
-      "tests/research/juggler_sequence/test_cycle_budget_opt.py"
+      "tests/research/juggler_sequence/test_cycle_budget_opt.py",
+      "tests/research/juggler_sequence/test_cycle_run_survivor_lattice.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-run-survivor-lattice",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "The vectors (25781, 16266) and (1054, 665) are a unimodular basis of Z^2: 25781·665 − 1054·16266 = 1. The seeds 50508 = 2·25781 − 1054 and 76289 = 3·25781 − 1054 are the next principal convergent and the Farey sum. The generator satisfies 3^665 > 2^1054 ≥ 3^664. The three affine families F1 (a=1, b=0..28), F2 (a=2, b=−1..45), F3 (a=3, b=−1..21) are 99 distinct lattice points; the F1 continuation b=29..70 is 42 further points. Lean: run_survivor_unimodular, run_survivor_seed_F2, run_survivor_seed_F3, three_pow_step_gt_two_pow_step, runSurvivors_length. This is Paper A Proposition 4.9's arithmetic. Identification of those 99 points with E_run(10^6) is the computational table J-cycle-budget-opt-instance / Theorem 4.8, not this row. Not a cycle obstruction and not a halt theorem.",
+    "source": "docs/theory/juggler_finite_dynamics_note.md",
+    "lean": "Problems/Juggler/RunSurvivorLattice.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_run_survivor_lattice.py"
     ],
     "related_conjectures": []
   }

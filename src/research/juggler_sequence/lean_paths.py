@@ -34,6 +34,7 @@ PAPER_MODULES: tuple[str, ...] = (
     "ExpansionSlack",
     "NearTightScale",
     "CycleFinance",
+    "RunSurvivorLattice",
 )
 
 LAYERS: dict[str, Path] = {
@@ -103,6 +104,7 @@ LAYERS: dict[str, Path] = {
     "GapCells": JUGGLER_DIR / "GapCells.lean",
     "Escape": JUGGLER_DIR / "Escape.lean",
     "CycleFinance": JUGGLER_DIR / "CycleFinance.lean",
+    "RunSurvivorLattice": JUGGLER_DIR / "RunSurvivorLattice.lean",
     "CycleHeightFinance": JUGGLER_DIR / "CycleHeightFinance.lean",
 }
 
@@ -198,6 +200,7 @@ WORD_LANGUAGE = LAYERS["WordLanguage"]
 GAP_CELLS = LAYERS["GapCells"]
 ESCAPE = LAYERS["Escape"]
 CYCLE_FINANCE = LAYERS["CycleFinance"]
+RUN_SURVIVOR_LATTICE = LAYERS["RunSurvivorLattice"]
 CYCLE_HEIGHT_FINANCE = LAYERS["CycleHeightFinance"]
 
 DELETED_ENGINE = (

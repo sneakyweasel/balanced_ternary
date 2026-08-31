@@ -16422,4 +16422,35 @@ Best next question
 - none from two-step defect anti-clustering
 ```
 
+## Paper A absorbs the 99-survivor lattice
+
+- **Date:** 2026-08-31
+- **Objective:** Put the run-type leftover of \(99\) lengths and its unimodular lattice into Paper A and Lean
+- **Hypotheses:** the lattice arithmetic is an exact integer statement; the \(99\)-list is already the run-type table
+- **Major results:** Paper A Theorems 4.7--4.8 and Proposition 4.9. Lean `RunSurvivorLattice.lean`: unimodular identity, seeds \(50508\) and \(76289\), \(3^{665}>2^{1054}\), family cards \(29+47+23=99\). Identification of those \(99\) points with \(\mathcal E_{\mathrm{run}}(10^6)\) remains Theorem 4.8, not Lean. Ledger `J-run-survivor-lattice`. The lattice still does not constrain actual cycles
+- **Refuted ideas:** none; this is absorption of existing CLOSE/PROMOTE records, not a new leftover-killer
+- **Literature:** continued-fraction intermediates of \(\ln 2/\ln 3\); existing finance and run-type packing
+- **Open:** none from the absorption
+- **Decision:** PROMOTE as a Paper A edit. The run-type theorem stays PROMOTE. The lattice stays CLOSE as an obstruction
+
+```text
+What was learned
+- the 99 and the 42 packing deaths are one unimodular CF slice
+- Lean can take the arithmetic; the finance table stays computational
+- Paper A can name E_run without claiming a cycle law
+Strongest theorem
+- (L,o_min)=a(25781,16266)+b(1054,665) on the surplus side, now Lean
+Strongest refutation
+- none (editorial absorption)
+Reusable machinery
+- RunSurvivorLattice.lean
+Branch status
+- PROMOTE as a Paper A / Lean record
+Why
+- the leftover set was already known; the paper and the review
+  object should print it
+Best next question
+- none from recording the lattice
+```
+
 

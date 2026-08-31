@@ -21,6 +21,7 @@ import Problems.Juggler.NormalizedDefect
 import Problems.Juggler.ExpansionSlack
 import Problems.Juggler.NearTightScale
 import Problems.Juggler.CycleFinance
+import Problems.Juggler.RunSurvivorLattice
 
 /-!
 # Juggler paper barrel (Paper A)
@@ -95,6 +96,11 @@ The note's Lean-tagged theorems are listed in its Appendix A:
 * 4.2 `log_step_even`, `log_step_odd`
 * 4.3 `cycleMin_log_envelope`
 * 4.4 `cycleMin_finance`
+* 4.7--4.8 run-type packing and the 99-length table
+      (human proof and verified computation; not Lean)
+* 4.9 `run_survivor_unimodular`, `run_survivor_seed_F2`,
+      `run_survivor_seed_F3`, `three_pow_step_gt_two_pow_step`,
+      `runSurvivors_length`
 * short certificates (Section 5):
       `even_finiteProgress`, `odd_even_finiteProgress`
 * no certificate implies odd-to-odd:
@@ -116,6 +122,10 @@ cycles are impossible. Theorems 3.12--3.21 assemble as Theorem 3.22:
 no cycle word has even-count at most three, so a nontrivial cycle
 has period at least eleven. Section 4 excludes later periods by
 financing. Theorem 4.6 is a verified computation, not a Lean
-theorem. `FiniteCoeffStopConjecture` is a laboratory target, not a claim
+theorem. Theorems 4.7--4.8 are the run-type refinement (human
+proof plus a verified table). Proposition 4.9 is the lattice
+arithmetic in `RunSurvivorLattice.lean`; the identification of
+those 99 points with the run-type table is Theorem 4.8, not Lean.
+`FiniteCoeffStopConjecture` is a laboratory target, not a claim
 of the note.
 -/

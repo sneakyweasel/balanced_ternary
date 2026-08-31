@@ -6,8 +6,9 @@ This records the Diophantine organization of
 \(\mathcal E_{\mathrm{run}}(10^6)\), the \(99\) lengths that
 survive both the length-only parity \(6/5\) table and the
 run-type packing at \(N_0=10^6\), \(L\le 10^5\). It is not a
-halt theorem, not a leftover-word census, not a Paper A edit,
-and not a new finance identity. The finance writeup is
+halt theorem, not a leftover-word census, and not a new finance
+identity. Paper A prints the packing as Theorems 4.7--4.8 and
+the lattice as Proposition 4.9. The finance writeup is
 [juggler_cycle_finance_note.md](juggler_cycle_finance_note.md).
 The packing that cuts \(141\) to \(99\) is
 [juggler_cycle_budget_opt.md](../problems/juggler_cycle_budget_opt.md).
@@ -192,4 +193,7 @@ different CF objects when reading the list. Do not attack the
 finance-conditioned, or Christoffel leftover-killers under a
 change of basis.
 
-No ledger row. No Lean. No Paper A edit.
+Ledger: `J-run-survivor-lattice` (arithmetic) and the existing
+run-type instance row. Lean: `RunSurvivorLattice.lean`, imported
+by `Problems.JugglerPaper`. Paper A: Theorems 4.7--4.8 and
+Proposition 4.9.

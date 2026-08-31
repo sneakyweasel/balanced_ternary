@@ -4,9 +4,11 @@ Author: Philippe Cochin. Date: 31 August 2026.
 Status: **PAPER_CANDIDATE**. The publication draft is dated 31 August 2026
 and is not submitted. It is a cycle-length note titled
 *Lower bounds for nontrivial cycles of the Juggler map*:
-finance plus the verified descent floor \(10^6\) give \(L\ge 1054\)
-(Theorem A) and an admissible set of \(397\) lengths through
-\(10^5\) (Theorem B). The even-count assembly is Theorem C
+finance plus the verified descent floor \(10^6\) give \(L\ge 25781\)
+(Theorem A) and an admissible set of \(141\) lengths through
+\(10^5\) (Theorem B). Run-type packing leaves \(99\) of those
+lengths, as three affine families (Theorems 4.7--4.8,
+Proposition 4.9). The even-count assembly is Theorem C
 (period at least eleven). Section 4 is the financing inequality.
 The envelope is the tool; the defect is motivation, not the
 input to finance.
@@ -29,9 +31,10 @@ math note:
 > classification of even-count \(\le 3\) exclude every such cycle
 > word (Theorem C: period at least eleven). A financing inequality
 > at a cycle minimum, plus the verified descent floor \(10^6\),
-> excludes every period at most \(1053\) (Theorem A) and leaves
-> only an explicit admissible set of \(397\) lengths through
-> \(10^5\) (Theorem B). Membership in that set is not evidence
+> excludes every period at most \(25780\) (Theorem A) and leaves
+> only an explicit admissible set of \(141\) lengths through
+> \(10^5\) (Theorem B). Run-type packing leaves \(99\) of those
+> lengths. Membership in that set is not evidence
 > for a cycle. The paper does not prove termination.
 
 Every substantive claim must be linked to one of:
@@ -143,7 +146,14 @@ added to `bt.*`.
   **EXACT — HUMAN PROOF** (Paper A Corollary 4.5);
 - verified computation at floor \(10^6\) —
   **COMPUTATIONALLY VERIFIED** (Paper A Theorem 4.6; no period
-  \(\le 1053\); \(397\) exceptions through \(10^5\));
+  \(\le 25780\); \(141\) exceptions through \(10^5\));
+- run-type packing and the \(99\)-length leftover —
+  **EXACT — HUMAN PROOF** / **COMPUTATIONALLY VERIFIED**
+  (Paper A Theorems 4.7--4.8);
+- survivor lattice of those \(99\) lengths —
+  **EXACT — LEAN VERIFIED** arithmetic
+  (Paper A Proposition 4.9; identification with the table is
+  Theorem 4.8);
 - cycle surplus \(\Delta_w(n)=n^{3^{\#O(w)}}-n^{2^{|w|}}\) and the
   per-step slack-scale bound \(x^e<(J(x)+1)^2\) —
   **EXACT — LEAN VERIFIED** (`image_eq_start_defectRatio`,
@@ -215,7 +225,7 @@ double-gap identity used by the kernel theorem; the analytic estimates
 themselves are human proofs and stay outside Lean. The Paper A review
 object is `formal/Problems/JugglerPaper.lean` and does not import
 `GapCells` or `CycleHeightFinance`. It imports `CycleFinance` for
-Theorem 4.4, the leftover-family modules
+Theorem 4.4, `RunSurvivorLattice` for Proposition 4.9, the leftover-family modules
 `LeftoverTwoEven`, `FirstETransport`, `BunchedEEE`, `BunchedEOEE`,
 and `BunchedEOOEE`, and `EvenCountThree` for Theorem 3.22. The formal map is
 [juggler_finite_dynamics_formalization.md](../theory/juggler_finite_dynamics_formalization.md).
@@ -235,7 +245,8 @@ standalone checkability. The stack now consists of:
   envelopes, exact defects, cycle restrictions, the small-cycle
   census (Theorems 3.6 and 3.8), leftover families
   (Theorems 3.12--3.21), even-count assembly (Theorem 3.22:
-  period at least eleven), finance (Theorems 4.4--4.6), short
+  period at least eleven), finance (Theorems 4.4--4.8,
+  Proposition 4.9), short
   certificates as a remark. The complement of those
   certificates is the odd-to-odd class. Lean is an independent
   check except Theorem 4.6; no density claims; leftover
@@ -297,8 +308,10 @@ Section 5).
 
 Paper A is a cycle-length note titled *Lower bounds for
 nontrivial cycles of the Juggler map*: finance plus the published
-floor \(10^6\) give Theorems A and B (\(L\ge 1054\); \(397\)
-admissible lengths through \(10^5\)); the even-count assembly is
+floor \(10^6\) give Theorems A and B (\(L\ge 25781\); \(141\)
+admissible lengths through \(10^5\)); run-type packing leaves
+\(99\) of those lengths as three affine families (Theorems
+4.7--4.8, Proposition 4.9); the even-count assembly is
 Theorem C. Section 4 is the financing inequality. The envelope
 is the tool. Short certificates are a remark in Section 5.
 Leftover \(84\) is a laboratory companion, not a paper theorem.

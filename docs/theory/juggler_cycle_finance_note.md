@@ -208,7 +208,9 @@ unimodular basis \((25781,16266)\), \((1054,665)\); packing
 cuts only \(F_1\) after \(L=55293\). That organization does
 not constrain actual cycles
 ([juggler_run_survivor_lattice_note.md](juggler_run_survivor_lattice_note.md)).
-Paper A still prints the parity table.
+Paper A prints the parity table as Theorem 4.6 and the run-type
+refinement with the lattice as Theorems 4.7--4.8 and
+Proposition 4.9.
 
 ## Attacks that stop
 
@@ -317,8 +319,10 @@ These were run. None of them changes the leftover.
 - Not `juggler_reaches_one`, not `no_cycle_word_any_length`, and
   not `no_cycle_word_length_eleven`.
 - Not a leftover-word census of the length-\(11\) short-gap
-  families. Paper A prints Theorem 4.4 and the floor-\(10^6\)
-  parity leftover (prefix \(25780\)); Lean leftover \(84\) is an
+  families. Paper A prints Theorem 4.4, the floor-\(10^6\)
+  parity leftover (prefix \(25780\), Theorem 4.6), the run-type
+  leftover of \(99\) lengths (Theorems 4.7--4.8), and the
+  survivor lattice (Proposition 4.9); Lean leftover \(84\) is an
   Appendix A companion.
 - Not a second manuscript.
 
@@ -345,7 +349,8 @@ packaging, on a different map.
 | Length leftover | `cycle_word_length_eighty_four_or_ge_eighty_five` |
 | Height leftover | `cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five` |
 | Eliahou packaging | `cycle_word_eliahou_leftover` |
+| Survivor lattice | `run_survivor_unimodular`, `runSurvivors_length` |
 
 No `sorry`. `Problems.JugglerPaper` imports `CycleFinance` for
-Theorem 4.4. It does not import `CycleHeightFinance`. Leftover
-refinements stop.
+Theorem 4.4 and `RunSurvivorLattice` for Proposition 4.9. It does
+not import `CycleHeightFinance`. Leftover refinements stop.
