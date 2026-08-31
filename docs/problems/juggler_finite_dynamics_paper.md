@@ -4,17 +4,14 @@ Author: Philippe Cochin. Date: 31 August 2026.
 Status: **PAPER_CANDIDATE**. The publication draft is dated 31 August 2026
 and is not submitted. It is titled
 *Cycle financing and a period lower bound for the Juggler map*.
-Three contributions: the cycle-minimum finance inequality
-(Theorem 4.4); the even-count obstruction \(e\ge 4\), hence
-period at least eleven (Theorem 3.22); and \(L\ge 25781\) at
-the verified descent floor \(10^6\) (Theorem 4.6(A)).
-Finance-survivor lengths through \(10^5\) (141, then 99 after
-run packing, three affine families) are supporting material.
-Family calculations live in Appendix D. The exact global defect
-is recorded in Appendix C; Theorem 4.4 uses only its
-nonnegativity. Section 5 names the dual program: a
-state-distribution upper bound on \(\sum 1/(x_i\log x_i)\).
-That bound is not proved. Return-cost coupling
+The contribution is known verification through \(10^6\) plus the
+new finance inequality, hence \(L\ge 25781\). Theorem 3.22 is
+the Section 3 headline; Lemma 3.21b is the canonical run form
+at the start of that section. Theorem 4.7 is the supporting
+run-packing refinement. Lemma 4.4b is the odd-count
+monotonicity. Finance-survivor arithmetic is secondary.
+Family calculations live in Appendix D. Peak/run bounds and
+return-cost coupling are not paper claims. Return-cost coupling
 ([juggler_cycle_valley_coupling.md](juggler_cycle_valley_coupling.md))
 is **CLOSE**: it does not certify \(N_{\mathrm{cheap}}<o-e\)
 as a leftover-killer.
@@ -292,11 +289,13 @@ the pure amplitude-product model (Conjecture 7.5)?
 ## Decision
 
 **PROMOTE** Paper A as the submission candidate after the
-referee-style presentation rewrite: title and abstract now
-foreground finance and \(25781\); Section 3 has an explicit
-structural / elimination / corollary spine with family proofs
-in Appendix D; finance-survivor lengths and the lattice are
-secondary; the computational trust boundary is Proposition 1.3.
+second referee pass: the abstract and introduction now state
+known floor plus new finance implies \(L\ge 25781\); Section 3
+opens with the canonical run form and headlines Theorem 3.22;
+Lemma 4.4b records odd-count monotonicity; Theorem 4.7 is
+retained as the second supporting result; 141→99 and the
+lattice are further demoted. Peak bounds and the closed
+return-cost branch stay out of the note.
 The unused global defect stays in Appendix C. Option B is not
 reopened. The state-distribution finance program stays **PARK**.
 Return-cost coupling is **CLOSE**.

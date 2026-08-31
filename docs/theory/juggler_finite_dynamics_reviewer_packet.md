@@ -8,17 +8,19 @@ The former single note has been split into two manuscripts:
 - **Paper A** —
   [juggler_finite_dynamics_note.md](juggler_finite_dynamics_note.md):
   *Cycle financing and a period lower bound for the Juggler map.*
-  Three contributions: the cycle-minimum finance inequality
-  (Theorem 4.4); the even-count obstruction \(e\ge 4\), hence
-  period at least eleven (Theorem 3.22); and the consequence
-  \(L\ge 25781\) at the verified descent floor \(10^6\)
-  (Theorem 4.6(A)). Finance-survivor lengths through \(10^5\)
-  are supporting material (141 lengths, 99 after run packing,
-  three affine families). The core lemmas are mechanized in
-  Lean 4; selected finite classifications and the descent floor
+  The contribution is
+  known verification through \(10^6\) plus the new
+  Juggler-specific finance inequality, hence \(L\ge 25781\).
+  Theorem 3.22 (\(e\ge 4\)) is the Section 3 headline.
+  Theorem 4.7 is the supporting run-packing refinement.
+  Finance-survivor arithmetic is secondary. Lemma 4.4b is the
+  odd-count monotonicity used to evaluate the table at
+  \(o_{\min}\). The core lemmas are mechanized in Lean 4;
+  selected finite classifications and the descent floor
   (Proposition 1.3) are independently certified computations.
   Leftover \(84\) is a laboratory companion, not a paper
-  theorem.
+  theorem. Peak/run bounds and the closed return-cost branch
+  are not paper claims.
 - **Paper B** —
   [juggler_parity_discrepancy_note.md](juggler_parity_discrepancy_note.md):
   *Parity equidistribution of nested floor powers, with descent

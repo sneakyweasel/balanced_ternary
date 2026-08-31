@@ -1,0 +1,22 @@
+{
+  "id": "juggler_cycle_peak_count",
+  "title": "No CycleMin itinerary has p=1 by trailing-evens cells, independently of height finance",
+  "statement": "Every CycleMin one-peak word w=O^o E^e with e>=4 and 2^{o+e}<3^o is impossible by the trailing-evens cell plus the odd-run envelope or the O7-style +1-chain. This would give a floor-free p>=2 orthogonal to e>=4 and to height/joint-minima finance.",
+  "status": "REFUTED",
+  "counterexamples": [
+    "p is the existing circuit count m. On E_run(10^6) (99 lengths), joint-minima and height packing already kill m=1 and m=2 at n=10^6+1, so leftover p>=3 is a Section 4 corollary",
+    "Denom-cell n^{3^o}>2^{e_o}(n+1)^{2^{o+e}} leaks at leftover (o,e): O^{12}E^7 (L=19) through N0=10^{12}, and O^{16266}E^{9515} (L=25781), O^{34886}E^{20407} (L=55293)",
+    "The +1-chain that fires (N0=55 at L=19, N0=12492 at L=25781, N0=401 at L=55293) has slack exactly 3^o-2^L, the CycleMin slack identity already named for e=4 as slack_of_four_even",
+    "Theorem 4.7 packing achieves p=e, so p<=cL-C with c<0.36907 is false at the word level; o-1 never binds on expanding L>=4"
+  ],
+  "first_seen": "juggler cycle peak count",
+  "lean_reference": "cycleMin_finance",
+  "literature": [
+    "simons-de-weger-2005-collatz-m-cycles"
+  ],
+  "mathematical_domain": "Juggler cycle finance / peak count",
+  "notes": "Phase 0 only. p≡m. Target A is packaging. Not a reopen of peak-descent, return-cost, or Section 5. No Lean, no Paper A edit. Not a halt theorem.",
+  "origin": "docs/problems/juggler_cycle_peak_count.md",
+  "proof_reference": "docs/problems/juggler_cycle_peak_count.md",
+  "tested_range": "E_run(10^6) 99 leftovers at n=10^6+1 for m=1,2; cell grid 4<=e<=12 with o from o_min through +3; leftover one-peak words L=25781 and L=55293; O^7 EEEE exponent check"
+}

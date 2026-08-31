@@ -1,0 +1,21 @@
+{
+  "id": "juggler_cycle_cluster_amplify",
+  "title": "Cheap-cluster Amplify closes the n^3 gap and beats formal surplus",
+  "statement": "For w_k=(OOE)^k with 1≤k≤25, first-defect Amplify / G(n,w_k) stays bounded away from 0, or exceeds 1, at n=10^6+1 or on a realized cheap start. The k cubic lifts close the n^3 gap that a single OOE cannot close.",
+  "status": "REFUTED",
+  "counterexamples": [
+    "Exact linear exponent: Amplify is n^{9^k-3}ρ against G~n^{9^k}. Appending one OOE adds 8·9^k to the linear exponent, so (9^k-3)+8·9^k=9^{k+1}-3. The gap is 3 for every k≤25",
+    "Optimistic ρ~n^{3/2} leaves gap 3/2 for every k. Cubics over linear are n^{ρ-3} at the last odd lift, so they stay behind the linear term by n^3 and cannot close the surplus gap",
+    "Realized k=1: 365, 1517, and 1000057 all have Amplify<Δ<G. Realized follow depth of OOE is 4, 3, 2, and 0 at those seeds, so a 25-block cheap cluster is not even followed"
+  ],
+  "first_seen": "juggler cheap-cluster Amplify versus surplus",
+  "lean_reference": "amplifyDefect",
+  "literature": [
+    "simons-de-weger-2005-collatz-m-cycles"
+  ],
+  "mathematical_domain": "Juggler cycle finance / cluster Amplify",
+  "notes": "Phase 0 only. Not a reopen of the length-11 Amplify gap. No Lean, no Paper A edit. Option B is closed as a finance input on cheap OOE clusters. Not a halt theorem.",
+  "origin": "docs/problems/juggler_cycle_cluster_amplify.md",
+  "proof_reference": "docs/problems/juggler_cycle_cluster_amplify.md",
+  "tested_range": "Exact dyadic exponents k=1..25; inductive step k=0..24; realized OOE at 365, 1517, 1000057; follow depth at those seeds and n=10^6+1"
+}

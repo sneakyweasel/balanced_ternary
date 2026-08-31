@@ -691,6 +691,8 @@ and `data/research/juggler/cycle_finance/`.
   ([juggler_cycle_valley_coupling.md](juggler_cycle_valley_coupling.md)).
   Cheap-band descent next-run type is also **CLOSE**
   ([juggler_cycle_descent_next_run.md](juggler_cycle_descent_next_run.md)).
+  Cheap-cluster Amplify versus surplus is also **CLOSE**
+  ([juggler_cycle_cluster_amplify.md](juggler_cycle_cluster_amplify.md)).
   The program stays **PARK**.
 
 ## Decision
@@ -796,12 +798,18 @@ The cheap-band descent leftover-killer is **CLOSE**
 \(1000057\to 5623773\). \(297\) of \(1210\) cheap-band
 `OOE` landings in the \(20\,000\)-window start \(a=2\).
 
-Best next question: none from cheap-band next-run type. The
-state-distribution program of Paper A Section 5 stays **PARK**:
-\(O^5E^3\) is the shortest descent from \(9/8\), exact reset is
-impossible, every-circuit later-valley lower bounds collapse
-to \(n^{1+\varepsilon}\), and a cheap-band descent can start
-\(a=2\). The factor-\(23\) valley gap at \(L=25781\) is
+The cheap-cluster Amplify leftover-killer is **CLOSE**
+(`juggler_cycle_cluster_amplify`): on \((\mathtt{OOE})^k\)
+the linear Amplify exponent is \(9^k-3\), so the \(n^3\)
+gap is invariant under appending `OOE`. Optimistic
+\(\rho\asymp n^{3/2}\) leaves gap \(3/2\). Cubics stay
+\(n^{-3}\) behind the linear term. Realized `OOE` at
+\(365\), \(1517\), \(1000057\) has Amplify \(<G\).
+
+Best next question: none from cheap-cluster Amplify. The
+state-distribution program of Paper A Section 5 stays **PARK**.
+Option B is closed as a finance input on cheap `OOE`
+clusters. The factor-\(23\) valley gap at \(L=25781\) is
 unchanged as a certified charge.
 
 Length \(84\) at \(m\ge 3\) at floor \(261\) is **REFUTED** as a
@@ -840,6 +848,9 @@ leftover-killer
 Cheap-band descent next-run type is also **REFUTED** as a
 leftover-killer
 (`juggler_cycle_descent_next_run`).
+Cheap-cluster Amplify versus surplus is also **REFUTED** as a
+leftover-killer
+(`juggler_cycle_cluster_amplify`).
 Run-height packing does not improve the length-only
 \(n_{\max}\) at \(o_{\min}\).
 

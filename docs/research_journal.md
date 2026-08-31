@@ -16684,4 +16684,103 @@ Best next question
 - none from cheap-band next-run type
 ```
 
+## Juggler cheap-cluster Amplify versus surplus
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether first-defect Amplify on \(w_k=(\mathtt{OOE})^k\) beats \(G=n^{9^k}-n^{8^k}\) for some \(k\le 25\)
+- **Hypotheses:** \(k\) cubic lifts close the \(n^3\) gap that a single `OOE` cannot close
+- **Major results:** False. The linear Amplify exponent is \(9^k-3\). Appending `OOE` adds \(8\cdot 9^k\), so \((9^k-3)+8\cdot 9^k=9^{k+1}-3\). The gap is \(3\) for every \(k\le 25\); optimistic \(\rho\asymp n^{3/2}\) leaves gap \(3/2\). At the last odd lift, cubics over linear are \(n^{\rho-3}\). Realized `OOE` at \(365\), \(1517\), \(1000057\) has Amplify \(<\Delta<G\). Follow depth is \(4,3,2,0\). Artifact `cluster_amplify/summary.json`. No ledger row, no Paper A, no Lean
+- **Refuted ideas:** cheap-cluster Amplify leftover-killer (`juggler_cycle_cluster_amplify`)
+- **Literature:** closed length-11 Amplify surplus; `amplifyDefect`; cheap-band descent CLOSE
+- **Open:** none from cheap-cluster Amplify
+- **Decision:** CLOSE. Option B is closed as a finance input on cheap `OOE` clusters. The Section 5 program stays PARK
+
+```text
+What was learned
+- the n^3 Amplify gap is invariant under appending OOE
+- max-rho leaves gap 3/2 for every k
+- cubics stay n^{-3} behind the linear term
+- realized OOE loses; a 25-block cluster is not followed
+Strongest theorem
+- linear Amplify exponent on (OOE)^k is 9^k-3
+Strongest refutation
+- Amplify/G ~ n^{-3} for every cheap-cluster length
+Reusable machinery
+- cycle_cluster_amplify.py; cluster_amplify/summary.json
+Branch status
+- CLOSE
+Why
+- appending OOE adds the same 8·9^k to Amplify and to surplus.
+  The length-11 n^3 obstruction is the cheap-cluster obstruction
+Best next question
+- none from cheap-cluster Amplify
+```
+
+## Juggler cycle peak count
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether every CycleMin one-peak word \(O^o E^e\) (\(e\ge 4\)) is impossible for a cell/return reason that is not already height finance
+- **Hypotheses:** \(p=\#\{\text{nonempty odd runs}\}\) is a new axis between Section 3 and Section 4; one-peak words die by trailing-evens cells; a sharper \(p\le cL\) with \(c<0.36907\) may exist
+- **Major results:** \(p\equiv m\). Target A is packaging: \(p\le e\) is already in Paper A §4, \(p\le o-1\) never binds on expanding \(L\ge 4\), and Theorem 4.7 achieves \(p=e\). On \(\mathcal E_{\mathrm{run}}(10^6)\) (99 lengths) joint-minima and height packing kill \(m=1\) and \(m=2\) at \(n=10^6+1\). Denom-cell leaks at \(O^{12}E^7\) and at leftover \((16266,9515)\), \((34886,20407)\). +1-chain fires (N0 \(=55,12492,401\)) with slack \(3^o-2^L\). Artifact `peak_count/summary.json`. No Paper A, no Lean
+- **Refuted ideas:** uniform no-\(p=1\) by cells (`juggler_cycle_peak_count`); sharper combinatorial \(c<0.36907\)
+- **Literature:** Lemma 3.21b; Theorems 3.12, 3.14, 3.22, 4.7; `slack_of_four_even`; m-finance / height packing; closed peak-descent as a different \(p\)
+- **Open:** none from peak count as a new axis
+- **Decision:** CLOSE. Section 5 stays PARK. Do not auto-open \(p=2\)
+
+```text
+What was learned
+- peak count p is the existing circuit count m
+- p <= min(e, o-1) < 0.36907 L is packaging
+- o-1 never binds; Theorem 4.7 achieves p = e
+- height and joint-minima already kill leftover m=1 and m=2
+- leftover denom-cell leaks; +1-chain slack is 3^o-2^L
+Strongest theorem
+- none new
+Strongest refutation
+- O^{12}E^7 denom-cell leaks; leftover p>=3 is a Section 4 corollary
+Reusable machinery
+- cycle_peak_count.py; peak_count/summary.json
+Branch status
+- CLOSE
+Why
+- the one-peak geometry is m=1. Cells either leak at leftover
+  scale or restate CycleMin slack. The upper bound is already
+  in the run form and the expansion law
+Best next question
+- none from peak count
+```
+
+## Paper A second referee pass: mechanism, \(o_{\min}\), Section 3 headline
+
+- **Date:** 2026-08-31
+- **Objective:** Apply the reread of the 29-page draft: sell one mechanism and one result; move the canonical run form to the start of Section 3; prove odd-count monotonicity in the text; demote 141→99 further; do not add peak bounds or the closed return-cost branch
+- **Hypotheses:** none; editorial plus one human lemma already used by the table
+- **Major results:** Abstract and introduction now state known verification through \(10^6\) plus the new finance inequality implies \(L\ge 25781\). Lemma 3.21b moves after Theorem 3.2. Theorem 3.22 is the Section 3 headline. Lemma 4.4b: the parity comparison is strictest at \(o_{\min}\) because \(\theta\) increases and \(R\) decreases. Theorem 4.7 stays as the run-packing refinement. Proposition 4.9 is one compact lattice statement. Peak/run geometry is named in Section 5 only as a future direction. No new Lean, no new experiment, no new branch
+- **Refuted ideas:** none; return-cost and peak count remain CLOSE in their dossiers
+- **Literature:** none added
+- **Open:** none from this editorial pass
+- **Decision:** PROMOTE the rewritten note as the submission candidate
+
+```text
+What was learned
+- the floor is known; the theorem is what the floor implies
+- o_min is a lemma, not a slogan
+- e>=4 is the Section 3 theorem; the census is supporting
+- 141→99 is leftover arithmetic, not a dynamical theorem
+- peak bounds stay out until they change the cutoff
+Strongest theorem
+- unchanged (Theorem 4.4 and Theorem 4.6(A))
+Strongest refutation
+- none; presentation only
+Reusable machinery
+- none
+Branch status
+- PROMOTE
+Why
+- the report asked for hierarchy and one missing monotonicity
+  paragraph; both are now in the note
+Best next question
+- none from this editorial pass
+```
+
 

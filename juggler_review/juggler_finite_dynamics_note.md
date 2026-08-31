@@ -26,22 +26,27 @@ J(n)=
 \]
 It is conjectured that every positive integer eventually reaches \(1\).
 
-A realized parity word obeys a power envelope, so a cycle word is
-formally expanding. Floor remainders must finance the surplus
-\(3^o-2^L\). At a cycle minimum this yields the financing inequality
+We derive a cycle-minimum financing inequality by combining the
+exact floor-power cells of \(J\) with a logarithmic defect
+estimate. For a hypothetical cycle of length \(L\) with \(o\) odd
+steps and minimum \(n\), the floor errors must satisfy
 \[
 n\log n\cdot(3^o-2^L)\le L\cdot 3^o.
 \]
-Combined with the independently verified descent that every start
-through \(10^6\) reaches \(1\), there is no nontrivial cycle of
-length at most \(25780\). Equivalently, any nontrivial cycle has
-period at least \(25781\). A separate inverse-cell analysis shows
-that every nontrivial cycle has at least four even letters, and
-hence period at least eleven.
-
-The core mathematical lemmas are mechanized in Lean 4; selected
-finite classifications and the descent floor are independently
-certified computations.
+The novelty is not a new computational record. It is the
+implication
+\[
+\text{known verification through }10^6
+\ +\
+\text{this inequality}
+\quad\Rightarrow\quad
+L\ge 25781.
+\]
+Thus any nontrivial Juggler cycle, if one exists, has period at
+least \(25781\). We also prove that every such cycle contains at
+least four even steps, and hence has period at least eleven. The
+core arguments are formalized in Lean 4; the finite numerical
+tables are independently certified computations.
 
 **2020 Mathematics Subject Classification.** 11B83, 37P99, 11Y55.
 
@@ -63,45 +68,32 @@ A word of length \(k\) with \(o\) odd letters has ideal exponent
 \(3^o/2^k\). Floors are applied after every letter, and a word is
 available only when the orbit realizes those parities.
 
-The architecture is
+Write \(N_0=10^6\) for the *verified descent floor* reported by
+Weisstein [5] and recomputed here by exact first-passage. The
+contribution is the implication
+\[
+\text{existing verification through }10^6
+\ +\
+\text{new Juggler-specific finance}
+\quad\Rightarrow\quad
+L\ge 25781.
+\]
+The mechanism is the interaction of three elementary facts:
+exact integer cells, a logarithmic defect, and cycle
+minimality. Together they convert a formal exponential surplus
+into a finite accumulated floor-error budget. The logarithm
+inequality \(\log(1+u)\le u\) is the only analytic input; it
+is not the content of the theorem.
 
-```text
-                hypothetical cycle
-                         |
-                         v
-               minimum-based rotation
-                         |
-              +----------+----------+
-              v                     v
-       word restrictions       finance law
-              |                     |
-              v                     v
-           e >= 4             n <= n_max(L)
-              |                     |
-              +----------+----------+
-                         v
-                  n >= 107 if cycle
-                         |
-                         v
-               n_max(L) > 10^6
-                         |
-                         v
-                    L >= 25781
-```
-
-Section 3 excludes every cycle word with fewer than four even
-letters, so the period is at least eleven. Section 4 converts
-floor defects into a bound on the cycle minimum. With the
-verified descent floor through \(10^6\), that bound excludes
-every period at most \(25780\).
-
-Write \(N_0=10^6\) for the *verified descent floor*: the
-computational verification reported by Weisstein [5], recomputed
-here by exact first-passage. The contribution is the structural
-implication: exact floor defects finance the formal expansion of
-a cycle word, and therefore force the minimum of a hypothetical
-cycle below the verified descent region unless the period is at
-least \(25781\).
+Roadmap. Section 2 records the power envelope and the exact
+defect identity that explains it. Section 3 classifies
+minimum-based cycle words and proves that every nontrivial
+cycle has at least four even letters. Section 4 unrolls the
+cell logarithm around a cycle minimum, obtains the finance
+inequality, and applies it at the known floor \(10^6\). A
+run-type packing of the same identity is a supporting
+refinement; the arithmetic of the leftover lengths is
+secondary.
 
 Throughout, \(\mathbb N=\{1,2,3,\ldots\}\). Write \(J^k\) for the
 \(k\)-fold iterate. A nonempty realized word \(w\) with
@@ -138,16 +130,10 @@ there is no nontrivial Juggler cycle of length at most \(25780\).
 Equivalently, any nontrivial cycle has period at least \(25781\)
 (Theorem 4.6(A)).
 
-The supporting material of Section 4 records the finance-survivor
-lengths through \(10^5\): an explicit set \(\mathcal E\) of
-\(141\) lengths (Theorem 4.6(B)), of which run-type packing
-leaves \(99\) (Theorem 4.8), organised as three affine families
-(Proposition 4.9). Membership means only that the corresponding
-form of the inequality does not exclude \(L\).
-
-Theorems 4.6(A) and 4.6(B) are the finance inequality of
-Theorem 4.4, in the conservative \(6/5\) form of Corollary 4.5,
-at the verified descent floor reported by Weisstein [5].
+Theorem 4.6(A) is Theorem 4.4, in the conservative \(6/5\) form
+of Corollary 4.5, at that floor. Theorem 4.7 is a run-type
+refinement of the same defect sum. The leftover lengths through
+\(10^5\) are supporting material, not a second main theorem.
 
 ### 1.1 Related work
 
@@ -183,9 +169,8 @@ The layers of the argument are as follows.
    inequality of Theorem 4.4.
 6. *New consequence:* \(L\ge 25781\) at the verified descent
    floor \(10^6\).
-7. *New computational organization:* the run-packing description
-   of the finance-survivor lengths (Theorems 4.7--4.8,
-   Proposition 4.9).
+7. *Supporting organization:* the run-packing refinement of the
+   same defect sum (Theorem 4.7).
 
 Financing as an idea, logarithmic step inequalities, and the
 continued-fraction phenomenon are not claimed as new. The
@@ -224,13 +209,10 @@ same computational verification; the run here is an independent
 recomputation. The certificate files, SHA-256 hashes, and
 regeneration commands are Appendix B.
 
-Theorem 4.6 applies Corollary 4.5 to this input, together with an
-exact gap table of lengths up to \(10^5\). Theorems 4.7--4.8 reuse
-that table under the run-type packing. Proposition 4.9 is integer
-arithmetic, formalized in Lean; the identification of the \(99\)
-lattice points with \(\mathcal E_{\mathrm{run}}\) is the table of
-Theorem 4.8. Theorem 4.7 is a human proof. This is not a claim
-that the paper as a whole is formally verified.
+Theorem 4.6 applies Corollary 4.5 to this input. Theorem 4.7 is
+a human proof; Theorem 4.8 reuses the gap table under that
+packing. Proposition 4.9 is integer arithmetic in Lean. This is
+not a claim that the paper as a whole is formally verified.
 
 ```text
 Repository:  https://github.com/sneakyweasel/balanced_ternary
@@ -314,41 +296,30 @@ n^{3^{\#O(w)}}=J^{|w|}(n)^{2^{|w|}}+\Delta_w(n),\qquad\Delta_w(n)\ge0.
 \]
 The identity, its vanishing law, and the two-term composition are
 Theorems 2.4--2.6 and Corollary 2.7 in Appendix C. A mixed realized
-word has \(\Delta_w(n)>0\). We record this stronger exact identity
-for future work; the present theorems require only its
-nonnegativity. Theorem 4.4 is a logarithmic envelope argument and
-does not take \(\Delta_w\) as an input.
+word has \(\Delta_w(n)>0\). This explains why the envelope of
+Theorem 2.2 is true, and why a mixed cycle word is formally
+expanding. Theorem 4.4 uses only the nonnegativity
+\(\Delta_w(n)\ge0\).
 
-A quantitative lower bound stronger than positivity --- a run-level,
-valley-level, or minimum-return tax on \(\Delta_w\) --- would
-improve the finance bound. No such uniform local tax exists: the
-relative slack of a single letter tends to \(0\) with the state.
-A dual refinement is a tighter upper bound on the state sum
-\(\sum 1/(x_i\log x_i)\) itself, using realizable cycle geometry
-rather than a uniform price; that is named in Section 5 and is
-not proved here.
+No uniform local tax exists: the relative slack of a single
+letter tends to \(0\) with the state. Finance must therefore be
+a global comparison, not a fixed cost per odd or even step. A
+quantitative itinerary-dependent lower bound on \(\Delta_w\), or
+a tighter upper bound on \(\sum 1/(x_i\log x_i)\), would improve
+the period cutoff; neither is proved here.
 
-## 3. Inverse cells and the census
+## 3. Structural restrictions on cycle words
 
-The aim of this section is a structural even-count obstruction,
-not a length-by-length census. After the one-step cells and the
-small-period reductions, the argument has three layers.
-
-**Structural lemma.**
-Any minimum-based cycle with at most three even letters has one
-of finitely many canonical geometries \(O^aEO^bEO^cE\)
-(Lemma 3.21b).
-
-**Elimination lemma.**
-Each geometry falls into one of three mechanisms
-(Lemma 3.21a): a next-square obstruction, long odd-run growth
-against a last-even cell, or a finite exceptional window. The
-family theorems 3.12--3.21 record that exhaustion; their
-proofs are Appendix D.
-
-**Corollary.**
-Every nontrivial cycle has at least four even letters, and hence
-period at least eleven (Theorem 3.22, Corollary 3.23).
+The headline of this section is Theorem 3.22: every nontrivial
+cycle word has at least four even letters, and hence period at
+least eleven. The small-period censuses (Theorems 3.6 and 3.8)
+are supporting. After the one-step cells, a minimum-based word
+has a canonical run form. There are only three even-count
+regimes with \(e\le 3\); each reduces to a finite collection of
+geometries \(O^aEO^bEO^cE\). Those geometries are eliminated by
+a next-square obstruction, by long odd-run growth against a
+last-even cell, or by a finite exceptional window. The family
+calculations are Appendix D.
 
 The exact one-step fibers are
 \[
@@ -428,6 +399,29 @@ inequality. On a cycle minimum, if a later state \(y\) is even, its
 successor is at least \(n\). Thus \(n\le J(y)=\lfloor\sqrt y\rfloor\),
 so \(n^2\le y\), and the preceding argument applies to that prefix.
 \(\square\)
+
+**Lemma 3.21b (canonical run form).**
+After rotation to a minimum-based orientation, the word begins
+with \(OO\) and ends with \(E\); hence every word with
+\(1\le e\le 3\) even letters has the canonical run decomposition
+\(O^aEO^bEO^cE\) (unused runs empty). The case \(e=0\) is
+all-odd and is already forbidden by the last-letter restriction.
+No other cyclic rotation needs a separate case.
+
+*Proof.* Theorem 3.2: the minimum is odd, so the word cannot
+begin with \(E\) or \(OE\), and it cannot end with an odd letter.
+Thus a minimum-based word starts \(OO\) and ends \(E\), so
+\(e\ge 1\). The remaining letters are odd runs separated by the
+\(e\) even letters, so the word is \(O^{a_1}E\cdots O^{a_e}E\)
+with \(a_1\ge 2\). For \(e\le 3\) this is \(O^aEO^bEO^cE\) with
+unused runs empty. Every cycle word has a minimum-based rotation
+of the same even-count, and that orientation is already in this
+form. \(\square\)
+
+Thus it is enough to exclude the three regimes \(e=1,2,3\). The
+rest of the section does that. Theorems 3.6 and 3.8 record the
+short-period consequences; Theorem 3.22 is the structural
+statement.
 
 **Lemma 3.3 (coarse lower envelope).**
 For \(n\ge 1\), write \(q=\lfloor\sqrt n\rfloor\). Then
@@ -661,8 +655,9 @@ even cell. For \(O^3EO^2E\) the same bootstrap applies with suffix
 state after \(OOO\) is even, so the next even letter is not
 realized. \(\square\)
 
-The census of Theorems 3.6 and 3.8 is a statement about period. The
-same cells organise leftover words by even-count. Write
+Theorems 3.6 and 3.8 are supporting period statements. The
+structural claim is the even-count exclusion of Theorem 3.22.
+The same cells organise leftover words by even-count. Write
 \[
 e_a=2\bigl(3^a-2^a\bigr)
 \]
@@ -786,28 +781,9 @@ cycle word has fewer than four even letters, so a nontrivial
 cycle has period at least eleven (Theorem 3.22). Section 4
 excludes later periods by financing.
 
-A cycle minimum starts with two odd letters, ends with an even
-letter, and is formally expanding (Theorem 3.2). Every integer
-\(2\le n<12\) reaches \(1\), so a cycle minimum is at least
-\(12\). Write \(e\) for the number of even letters.
-
-**Lemma 3.21b (canonical run form).**
-After rotation to a minimum-based orientation, the word begins
-with \(OO\) and ends with \(E\); hence every word with
-\(1\le e\le 3\) even letters has the canonical run decomposition
-\(O^aEO^bEO^cE\) (unused runs empty). The case \(e=0\) is
-all-odd and is already forbidden by the last-letter restriction.
-No other cyclic rotation needs a separate case.
-
-*Proof.* Theorem 3.2: the minimum is odd, so the word cannot
-begin with \(E\) or \(OE\), and it cannot end with an odd letter.
-Thus a minimum-based word starts \(OO\) and ends \(E\), so
-\(e\ge 1\). The remaining letters are odd runs separated by the
-\(e\) even letters, so the word is \(O^{a_1}E\cdots O^{a_e}E\)
-with \(a_1\ge 2\). For \(e\le 3\) this is \(O^aEO^bEO^cE\) with
-unused runs empty. Every cycle word has a minimum-based rotation
-of the same even-count, and that orientation is already in this
-form. \(\square\)
+Every integer \(2\le n<12\) reaches \(1\), so a cycle minimum is
+at least \(12\). Write \(e\) for the number of even letters.
+Lemma 3.21b is the canonical run form.
 
 **Lemma 3.21a (classification).**
 Every minimum-based cycle word with at most three even letters
@@ -980,8 +956,6 @@ based at a cycle minimum \(n\ge 2\). Then
 \[
 n\log n\cdot(3^o-2^L)\le L\cdot 3^o.
 \]
-The rest of the note exists to establish this inequality and
-apply it at the verified descent floor.
 
 *Proof.* Apply Lemma 4.3 at \(k=L\). Periodicity gives
 \(x_L=n\) and \(o_L=o\), so
@@ -993,18 +967,14 @@ multiplying by \(n\) is the claim. \(\square\)
 
 \vspace{0.4em}
 
-This is the conceptual centre of the note. The left-hand side is
-the formal exponential surplus \(3^o-2^L\) scaled by
-\(n\log n\); the right-hand side is the floor-error budget
-available from \(L\) steps. A cycle must expand under the
-idealized map, but the exact orbit returns, so the surplus must
-be paid by floor errors. At large state size those errors are
-too small to finance a non-negligible surplus. The only analytic
-input is \(\log(1+u)\le u\). The Lean form is exactly Theorem 4.4
-(constant \(1\)).
-
-This is a floor-power realization of a financing method, not a
-new method. The Juggler-specific inequality is Contribution 1.
+This is the conceptual centre of the note. Exact cells give a
+one-step logarithmic defect; cycle minimality lets the defect
+be unrolled against the cycle minimum; the formal surplus
+\(3^o-2^L\) must then be paid by a finite accumulated budget.
+Ideal dynamics expands and exact dynamics returns, so the floor
+errors finance the expansion. The inequality \(\log(1+u)\le u\)
+is the only analytic input; the content is that interaction.
+The Lean form is exactly Theorem 4.4 (constant \(1\)).
 
 The computational table of Theorem 4.6 uses a weaker per-step
 bound, valid on every cycle because every start below \(12\)
@@ -1052,8 +1022,37 @@ The optimal uniform coefficient on \([0,1/6]\) is
 \(6\log(6/5)\). It does not change the first surviving length
 below, and the table keeps \(6/5\).
 
-The right-hand side is largest at the least admissible odd count
-\(o_{\min}(L)=\min\{o:3^o>2^L\}\). Define
+**Lemma 4.4b (odd-count monotonicity).**
+Write \(\theta(o)=1-2^L/3^o\) and
+\[
+R(o)=e+(o-e)\alpha+\frac{e}{2n},
+\qquad
+e=L-o,
+\qquad
+\alpha=\frac{n\log n}{t\log t}.
+\]
+The displayed parity comparison is
+\(n\log n\cdot\theta(o)\le(6/5)R(o)\). For every \(n\ge 12\)
+one has \(\alpha<1/2\), hence
+\[
+R(o+1)-R(o)=2\alpha-1-\frac1{2n}<0.
+\]
+Also \(\theta(o+1)>\theta(o)\). Therefore if the comparison
+fails at some admissible \(o\), it fails at every larger odd
+count. Equivalently, the largest \(n\) at which the comparison
+can hold occurs at the least admissible odd count
+\(o_{\min}(L)=\min\{o:3^o>2^L\}\).
+
+*Proof.* The difference \(R(o+1)-R(o)\) is the displayed
+coefficient of \(o\). For \(n\ge 12\) one has
+\(t=\lfloor n^{3/2}\rfloor\ge n^{3/2}-1>2n\), hence
+\(\alpha<(n\log n)/(2n\log(2n))=(\log n)/(2\log(2n))<1/2\).
+The map \(o\mapsto\theta(o)\) is strictly increasing on
+integers \(o\) with \(3^o>2^L\). If
+\(n\log n\cdot\theta(o)>(6/5)R(o)\), then
+\(n\log n\cdot\theta(o+1)>(6/5)R(o)>(6/5)R(o+1)\). \(\square\)
+
+Define
 \[
 \gamma(L)=\frac{3^{o_{\min}(L)}}{2^L}-1,
 \]
@@ -1062,13 +1061,8 @@ the displayed parity inequality can still hold at
 \(o=o_{\min}(L)\). The coarser comparison
 \(n\log n\le (6/5)L\cdot 3^{o_{\min}}/(3^{o_{\min}}-2^L)\) is
 used only as a check; Theorem 4.6 uses \(n_{\max}(L)\) from the
-parity form.
-The quantity \(\gamma(L)\) is the one-sided relative gap of
-\(L\log 2\) to the next multiple of \(\log 3\). It is small
-when \(o_{\min}/L\) is a good one-sided approximation to
-\(\log 2/\log 3\). The finance-survivor lengths are those
-approximants, together with their multiples and sums, that
-still beat the bound at the given floor.
+parity form. Lemma 4.4b is why that table may be computed at
+\(o_{\min}\) alone.
 
 **Proposition 4.4a (finance-survivor algorithm).**
 Fix a verified descent floor \(N_0\). For each integer
@@ -1107,33 +1101,25 @@ Every integer \(2\le n\le 10^6\) reaches \(1\). Consequently:
 (B) if a nontrivial cycle has period \(L\le 10^5\), then
 \(L\in\mathcal E\), where \(\lvert\mathcal E\rvert=141\).
 
-In particular, any nontrivial cycle has period at least \(25781\).
-The first finance-survivor length is \(25781\). That is a
-property of the bound.
+The bound closes continuously through \(25780\); \(25781\) is
+the first integer for which this particular inequality does not
+exclude a cycle.
 
-*Proof.* The descent floor is Proposition 1.3.
-
-The gap table computes \(o_{\min}(L)\) by exact integer
-arithmetic and \(n_{\max}(L)\) from the parity inequality for
-every \(1\le L\le 10^5\). Corollary 4.5 at \(N_0=10^6\) excludes
-every \(L\) with \(n_{\max}(L)\le 10^6\). The complementary set
-in that range is exactly \(\mathcal E\). The contiguous excluded
-prefix is \(L\le 25780\). The record (one-sided
-best-approximation) lengths in range are
-\[
-1,\;3,\;11,\;19,\;84,\;569,\;1054,\;25781,\;50508,
-\]
-with parity
-\(n_{\max}=3,7,25,133,2323,23568,788014,26254995,162848325\).
-The first seven of those already satisfy \(n_{\max}\le 10^6\)
-and are excluded. The first length not excluded by the present
-bound is \(L=25781\). The remaining elements of \(\mathcal E\)
-include multiples of \(25781\) and combinations of those
-one-sided best-approximation lengths; the defining algorithm
-and checksums are Appendix B.
+*Proof.* The descent floor is Proposition 1.3. The gap table
+computes \(o_{\min}(L)\) and \(n_{\max}(L)\) for every
+\(1\le L\le 10^5\) by Lemma 4.4b. Corollary 4.5 at \(N_0=10^6\)
+excludes every \(L\) with \(n_{\max}(L)\le 10^6\). The
+contiguous excluded prefix is \(L\le 25780\). The complementary
+set in range is \(\mathcal E\); checksums are Appendix B.
 \(\square\)
 
-### Finance-survivor lengths
+### Run packing
+
+Theorem 4.7 refines the crude charge \(L/(n\log n)\) by
+separating the unique minimum, \(\mathtt{OOE}\)-scale valleys,
+\(\mathtt{OE}\)-scale valleys, internal odds, and evens. It is
+the second supporting result of the note. The \(141\to 99\)
+count is only the leftover of that comparison.
 
 The length-only bound charges every valley at the cycle minimum.
 A cycle cannot put an \(\mathtt{OE}\)-start at that minimum: the
@@ -1169,7 +1155,10 @@ strictly smaller than the parity sum of Corollary 4.5 whenever
 \(2e-o>0\). Sending the cycle maximum to infinity removes one
 even term and does not change the valley packing.
 
-*Proof.* Formal expansion at \(o_{\min}\) forces \(3o<2L\) on
+*Proof.* The statement is at \(o=o_{\min}(L)\). Lemma 4.4b
+already excludes every larger odd count from the parity
+comparison used in Theorem 4.6; the packing is a refinement at
+that same odd count. Formal expansion at \(o_{\min}\) forces \(3o<2L\) on
 every leftover length in range, equivalently \(o-e<e\). The
 even-cap comparison \(3^k\ge 2^{k+\ell}\) is the ideal power
 envelope; floors only help. An \(\mathtt{OE}\)-start is followed
@@ -1199,10 +1188,9 @@ named in the statement. The complementary set in that range is
 \(\mathcal E_{\mathrm{run}}\). Checksums are Appendix B.
 \(\square\)
 
-The period cutoff remains \(25781\). Unique visit of \(n\) and
-a bound on the cycle maximum do not change the kill list.
+The period cutoff remains \(25781\).
 
-### Arithmetic structure of the finance-survivor lengths
+### Arithmetic structure of the finance survivors
 
 **Proposition 4.9 (finance-survivor lattice).**
 Write \(v_*=(25781,16266)\) and \(v_{1054}=(1054,665)\). Then
@@ -1212,98 +1200,51 @@ Write \(v_*=(25781,16266)\) and \(v_{1054}=(1054,665)\). Then
 so these two vectors are a unimodular basis of \(\mathbb Z^2\).
 Every length in \(\mathcal E_{\mathrm{run}}\), and every one of
 the \(42\) packing deaths of Theorem 4.8, is of the form
-\[
-(L,o_{\min})=a\,v_*+b\,v_{1054}.
-\]
-With the table cap \(L\le 10^5\), the three affine slices are
+\((L,o_{\min})=a\,v_*+b\,v_{1054}\). With the table cap
+\(L\le 10^5\) the \(99\) survivors fall in three affine slices
+of counts \(29\), \(47\), and \(23\). The identification with
+\(\mathcal E_{\mathrm{run}}\) is Theorem 4.8. This is a change
+of coordinates for \((L,o)\), not a relation between
+hypothetical cycles.
 
-| Family | Coordinates | Count | Lengths |
-|---|---|---|---|
-| \(F_1\) | \(a=1\), \(b=0,\ldots,28\) | \(29\) | \(25781+1054k\) through \(55293\) |
-| \(F_2\) | \(a=2\), \(b=-1,\ldots,45\) | \(47\) | \(50508+1054k\) through \(98992\) |
-| \(F_3\) | \(a=3\), \(b=-1,\ldots,21\) | \(23\) | \(76289+1054k\) through \(99477\) |
-| packing deaths | \(a=1\), \(b=29,\ldots,70\) | \(42\) | \(56347+1054k\) through \(99561\) |
+*Proof.* The determinant identity is integer arithmetic. The
+generator comparison \(3^{665}>2^{1054}>3^{664}\) gives
+\(o_{\min}(1054)=665\). Direct evaluation of \(o_{\min}\) on
+the \(141\) lengths of Theorem 4.6(B) places each pair
+\((L,o_{\min})\) on the displayed lattice, with the \(42\)
+packing deaths the \(F_1\) continuation \(b\ge 29\). \(\square\)
 
-The seeds are
-\[
-50508=2\cdot 25781-1054,\qquad
-76289=3\cdot 25781-1054=50508+25781.
-\]
-Thus \(F_2\) begins at the next principal convergent of
-\(\log 2/\log 3\) and \(F_3\) at the Farey sum of the two
-previous seeds. Packing truncates only \(F_1\); \(F_2\) and
-\(F_3\) die at the table cap. The Lean form is the unimodular
-identity, the two seeds, the generator comparison
-\(3^{665}>2^{1054}\), and the three family lists. The
-identification of those \(99\) points with
-\(\mathcal E_{\mathrm{run}}\) is Theorem 4.8.
+## 5. Limitations and future directions
 
-*Proof.* The determinant identity and the two seed identities
-are integer arithmetic. The generator comparison
-\(3^{665}>2^{1054}>3^{664}\) is a finite power comparison, so
-\(o_{\min}(1054)=665\). Direct evaluation of \(o_{\min}\) on the
-\(141\) lengths of Theorem 4.6(B) shows that each pair
-\((L,o_{\min})\) is one of the displayed lattice points, with
-the \(42\) packing deaths exactly the \(F_1\) continuation
-\(b\ge 29\). The three family counts sum to \(99\). \(\square\)
-
-The lattice classifies the finance-survivor lengths of this
-inequality. It is a change of coordinates for \((L,o)\), not a
-relation between hypothetical cycles.
-
-## 5. Remarks
+The result does not imply termination. The remaining
+finance-survivor lengths are uncontrolled, and existence of a
+cycle at such a length is open.
 
 A start \(n\ge 2\) has a *descent certificate* if there exists a
 realized finite word \(w\) with \(J^{|w|}(n)<n\). Even starts
-realize \(E\): \(\lfloor\sqrt n\rfloor<n\). An odd start with even
-image realizes \(OE\), and \(J^2(n)\le n^{3/4}<n\). The starts
-not covered by those two words are exactly the odd-to-odd starts.
-If every start above \(1\) has some descent certificate, ordinary
-strong induction yields arrival at \(1\). That hypothesis is not
-proved.
-
-The first odd-to-odd image expands, so ordinary strong induction
-cannot fire on the odd-to-odd class. A uniform run bound on
-expanding blocks is likewise unavailable: four consecutive expanding
-blocks occur already at
+realize \(E\); an odd start with even image realizes \(OE\). The
+complement of those two words is the odd-to-odd class. If every
+start above \(1\) has some descent certificate, strong induction
+yields arrival at \(1\). That hypothesis is not proved, and a
+uniform run bound on expanding blocks is unavailable: four
+consecutive expanding blocks occur already at
 \[
 1999\xrightarrow{OOE}5169
 \xrightarrow{OOOOEE}50093
 \xrightarrow{OOE}193753
-\xrightarrow{OOE}887471,
+\xrightarrow{OOE}887471.
 \]
-and the relative slack of a single letter tends to \(0\) with the
-state (Section 2.4).
 
-The remaining finance-survivor lengths are uncontrolled. It is
-open whether every start reaches \(1\), and open whether a
-cycle of a finance-survivor length exists.
-
-The identity behind the computational table is state-dependent:
-\[
-1-\frac{2^L}{3^o}
-\le
-\frac65\sum_{i=1}^{L}\frac{1}{x_i\log x_i}.
-\]
-Theorem 4.4, Corollary 4.5, and Theorem 4.7 are successive upper
-bounds on that sum: first the uniform charge \(L/(n\log n)\), then
-the parity split into cycle-minimum valleys, internal odds at
-\(\lfloor n^{3/2}\rfloor\), and evens at \(n^2\), then the run-type
-packing that lifts \(\mathtt{OE}\)-starts to scale \(n^{4/3}\).
-Each step uses only coarse, length-only geometry. The first
-survivor remains \(25781\) because \(o-e\) valleys may still sit
-at the cycle minimum. A dynamically constrained bound
-\[
-\max\sum_{i=1}^{L}\frac{1}{x_i\log x_i},
-\]
-the maximum running over state sequences compatible with the exact
-one-step cells of Section 3 and with a realized cycle word, would
-replace those length-only prices by a state-distribution
-inequality. No such bound is proved here. The present note is the
-first successful coarse version of that comparison.
+Theorem 4.7 is organized around odd-run packing. A nontrivial
+constraint \(p_{\min}(L)\le p\le p_{\max}(L)\) on the number of
+odd runs of a hypothetical cycle would feed the same
+optimization; no such bound is proved here. A state-dependent
+lower bound on \(\Delta_w\), or a sharper upper bound on
+\(\sum 1/(x_i\log x_i)\) than minimum-state charging, could
+raise the cutoff. Neither is claimed.
 
 Lean names are in Appendix A. The computational certificate is
-Proposition 1.3. Theorem 4.6 applies that certificate.
+Proposition 1.3.
 
 ## Appendix A. Lean names
 
@@ -1357,6 +1298,7 @@ formally verified.
 | Lemma 4.2 | `log_step_even`, `log_step_odd` |
 | Lemma 4.3 | `cycleMin_log_envelope` |
 | Theorem 4.4 | `cycleMin_finance` |
+| Lemma 4.4b | odd-count monotonicity; human proof, not Lean |
 | Theorem 4.7 | run-type packing; human proof, not Lean |
 | Theorem 4.8 | run-type table; verified computation, not Lean |
 | Proposition 4.9 | `run_survivor_unimodular`, `run_survivor_seed_F2`, `run_survivor_seed_F3`, `three_pow_step_gt_two_pow_step`, `runSurvivors_length` |
