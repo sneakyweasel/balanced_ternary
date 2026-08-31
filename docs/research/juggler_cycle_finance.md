@@ -13,7 +13,7 @@ The floor is COMPUTATIONALLY VERIFIED, not Lean.
 - floor: every 2 <= n <= `1000000` reaches 1: `True` (max first-passage steps `253` at seed `78901`, peak `6342922` bits)
 - contiguous excluded prefix at this floor: L <= `1053`
 - exceptional lengths at this floor: `397`
-- Eliahou leftover: period `38`, or one of `397` listed near-convergents, or `>= 100000`
+- Eliahou leftover: period `57`, or one of `397` listed near-convergents, or `>= 100000`
 
 per-step finance bounds hold on every measured orbit step; descent induction verifies every n <= 1000000 reaches 1; finance excludes every cycle length L <= 1053 at once, far beyond the length-8 census; exceptional lengths are exactly the near-convergent ones.
 

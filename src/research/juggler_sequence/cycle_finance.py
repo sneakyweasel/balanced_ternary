@@ -20,8 +20,8 @@ descent-induction floor (every n <= N0 reaches 1), and stress-tests
 the per-step bound eps_i <= (6/5)/x_{i+1} on real orbit segments.
 A verified floor N0 excludes every length with n_max(L) <= N0.
 Lean: CycleFinance.lean (cycleMin_finance, no_cycle_word_length_le_nineteen,
-cycle_word_length_thirty_eight_or_ge_thirty_nine, cycle_word_eliahou_leftover).
-Eliahou leftover: period 38, or a listed near-convergent, or >= 10^5.
+cycle_word_length_fifty_seven_or_ge_fifty_eight, cycle_word_eliahou_leftover).
+Eliahou leftover: period 57, or a listed near-convergent, or >= 10^5.
 """
 
 from __future__ import annotations
@@ -69,7 +69,7 @@ STEP_CAP = 100_000
 BIT_CAP = 10_000_000
 EXCEPTION_LIST_CAP = 500
 ELIAHOU_TABLE_CUTOFF = 100_000
-ELIAHOU_LEAN_PERIOD = 38
+ELIAHOU_LEAN_PERIOD = 57
 
 # L <= 8 with n_max(L) <= 11: finance + the Lean residual floor kill
 # these lengths without the census; {3, 6} stay census-only.
@@ -104,6 +104,8 @@ EXISTING_LEAN = (
     "no_cycle_word_length_le_nineteen",
     "cycle_word_length_ge_thirty",
     "cycle_word_length_thirty_eight_or_ge_thirty_nine",
+    "finance_excludes_length_thirtyeight",
+    "cycle_word_length_fifty_seven_or_ge_fifty_eight",
 )
 
 FORBIDDEN_THEOREMS = (

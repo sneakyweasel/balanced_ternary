@@ -960,8 +960,7 @@ theorem cycle_word_length_ge_thirty {n : ℕ} {w : List Branch}
   · exact h30
 
 /-- If a nontrivial cycle exists, its period is `38` or at least `39`.
-Length `19` is the near-convergent killed by the floor `257`;
-`30`–`37` die by the same comparison. -/
+Weaker leftover: `log 257 > 61/11` also kills `38`. -/
 theorem cycle_word_length_thirty_eight_or_ge_thirty_nine
     {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (h : CycleWord n w) :
@@ -971,13 +970,160 @@ theorem cycle_word_length_thirty_eight_or_ge_thirty_nine
   obtain ⟨h38, h39⟩ := hc
   exact no_cycle_word_length_lt_thirty_eight hn (by omega) h
 
+/-- Finance excludes length `38`: `2^38 < 3^24` and
+`(15677/11)(3^{24} - 2^{38}) > 38 · 3^{24}`. -/
+theorem finance_excludes_length_thirtyeight {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 38) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_fifty_seven hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 23 ≤ 2 ^ 38) (by norm_num)
+
+theorem finance_excludes_length_thirtynine {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 39) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_fifty_seven hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 24 ≤ 2 ^ 39) (by norm_num)
+
+theorem finance_excludes_length_forty {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 40) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_fifty_seven hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 25 ≤ 2 ^ 40) (by norm_num)
+
+theorem finance_excludes_length_fortyone {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 41) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_fifty_seven hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 25 ≤ 2 ^ 41) (by norm_num)
+
+theorem finance_excludes_length_fortytwo {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 42) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_fifty_seven hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 26 ≤ 2 ^ 42) (by norm_num)
+
+theorem finance_excludes_length_fortythree {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 43) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_fifty_seven hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 27 ≤ 2 ^ 43) (by norm_num)
+
+theorem finance_excludes_length_fortyfour {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 44) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_fifty_seven hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 27 ≤ 2 ^ 44) (by norm_num)
+
+theorem finance_excludes_length_fortyfive {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 45) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_fifty_seven hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 28 ≤ 2 ^ 45) (by norm_num)
+
+theorem finance_excludes_length_fortysix {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 46) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_fifty_seven hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 29 ≤ 2 ^ 46) (by norm_num)
+
+theorem finance_excludes_length_fortyseven {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 47) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_fifty_seven hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 29 ≤ 2 ^ 47) (by norm_num)
+
+theorem finance_excludes_length_fortyeight {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 48) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_fifty_seven hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 30 ≤ 2 ^ 48) (by norm_num)
+
+theorem finance_excludes_length_fortynine {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 49) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_fifty_seven hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 30 ≤ 2 ^ 49) (by norm_num)
+
+theorem finance_excludes_length_fifty {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 50) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_fifty_seven hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 31 ≤ 2 ^ 50) (by norm_num)
+
+theorem finance_excludes_length_fiftyone {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 51) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_fifty_seven hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 32 ≤ 2 ^ 51) (by norm_num)
+
+theorem finance_excludes_length_fiftytwo {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 52) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_fifty_seven hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 32 ≤ 2 ^ 52) (by norm_num)
+
+theorem finance_excludes_length_fiftythree {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 53) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_fifty_seven hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 33 ≤ 2 ^ 53) (by norm_num)
+
+theorem finance_excludes_length_fiftyfour {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 54) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_fifty_seven hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 34 ≤ 2 ^ 54) (by norm_num)
+
+theorem finance_excludes_length_fiftyfive {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 55) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_fifty_seven hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 34 ≤ 2 ^ 55) (by norm_num)
+
+theorem finance_excludes_length_fiftysix {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 56) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_fifty_seven hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 35 ≤ 2 ^ 56) (by norm_num)
+
+/-- No cycle word of length below `57`. -/
+theorem no_cycle_word_length_lt_fifty_seven {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hLt : w.length < 57) : ¬CycleWord n w := by
+  intro h
+  rcases Nat.lt_or_ge w.length 38 with h37 | h38
+  · exact no_cycle_word_length_lt_thirty_eight hn h37 h
+  · have hsplit : w.length = 38 ∨ w.length = 39 ∨ w.length = 40 ∨
+        w.length = 41 ∨ w.length = 42 ∨ w.length = 43 ∨
+        w.length = 44 ∨ w.length = 45 ∨ w.length = 46 ∨
+        w.length = 47 ∨ w.length = 48 ∨ w.length = 49 ∨
+        w.length = 50 ∨ w.length = 51 ∨ w.length = 52 ∨
+        w.length = 53 ∨ w.length = 54 ∨ w.length = 55 ∨
+        w.length = 56 := by
+      omega
+    rcases hsplit with
+      hL | hL | hL | hL | hL | hL | hL | hL | hL |
+      hL | hL | hL | hL | hL | hL | hL | hL | hL | hL
+    · exact finance_excludes_length_thirtyeight hn hL h
+    · exact finance_excludes_length_thirtynine hn hL h
+    · exact finance_excludes_length_forty hn hL h
+    · exact finance_excludes_length_fortyone hn hL h
+    · exact finance_excludes_length_fortytwo hn hL h
+    · exact finance_excludes_length_fortythree hn hL h
+    · exact finance_excludes_length_fortyfour hn hL h
+    · exact finance_excludes_length_fortyfive hn hL h
+    · exact finance_excludes_length_fortysix hn hL h
+    · exact finance_excludes_length_fortyseven hn hL h
+    · exact finance_excludes_length_fortyeight hn hL h
+    · exact finance_excludes_length_fortynine hn hL h
+    · exact finance_excludes_length_fifty hn hL h
+    · exact finance_excludes_length_fiftyone hn hL h
+    · exact finance_excludes_length_fiftytwo hn hL h
+    · exact finance_excludes_length_fiftythree hn hL h
+    · exact finance_excludes_length_fiftyfour hn hL h
+    · exact finance_excludes_length_fiftyfive hn hL h
+    · exact finance_excludes_length_fiftysix hn hL h
+
+/-- If a nontrivial cycle exists, its period is `57` or at least `58`.
+Length `38` is killed by `log 257 > 61/11`; `39`–`56` die by the
+same comparison. `L=57` survives `15677/11`. The next record
+near-convergent is `L=84`. -/
+theorem cycle_word_length_fifty_seven_or_ge_fifty_eight
+    {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleWord n w) :
+    w.length = 57 ∨ 58 ≤ w.length := by
+  by_contra hc
+  push Not at hc
+  obtain ⟨h57, h58⟩ := hc
+  exact no_cycle_word_length_lt_fifty_seven hn (by omega) h
+
 /-- Finance table cutoff used by the Eliahou leftover. -/
 def eliahouTableCutoff : ℕ := 10 ^ 5
 
-/-- Eliahou leftover: period `38`, a listed near-convergent, or at
+/-- Eliahou leftover: period `57`, a listed near-convergent, or at
 least the finance table cutoff. -/
 def EliahouLeftover (L : ℕ) (exceptions : List ℕ) : Prop :=
-  L = 38 ∨ L ∈ exceptions ∨ eliahouTableCutoff ≤ L
+  L = 57 ∨ L ∈ exceptions ∨ eliahouTableCutoff ≤ L
 
 /-- Every length in `[30, cutoff)` outside the named family is
 already excluded. Instantiated by the computational gap table. -/
@@ -986,19 +1132,19 @@ def EliahouTable (exceptions : List ℕ) : Prop :=
     2 ≤ n → 30 ≤ w.length → w.length < eliahouTableCutoff →
       w.length ∉ exceptions → ¬CycleWord n w
 
-/-- Bookkeeping: the Lean leftover `38` or `≥ 39`, plus the finance
+/-- Bookkeeping: the Lean leftover `57` or `≥ 58`, plus the finance
 table, is the Eliahou leftover. Not a new inequality. -/
 theorem cycle_word_eliahou_leftover {n : ℕ} {w : List Branch}
     {exceptions : List ℕ} (hn : 2 ≤ n) (h : CycleWord n w)
     (hTable : EliahouTable exceptions) :
     EliahouLeftover w.length exceptions := by
-  rcases cycle_word_length_thirty_eight_or_ge_thirty_nine hn h with h38 | h39
-  · exact Or.inl h38
+  rcases cycle_word_length_fifty_seven_or_ge_fifty_eight hn h with h57 | h58
+  · exact Or.inl h57
   · rcases Nat.lt_or_ge w.length eliahouTableCutoff with hlt | hge
     · have hmem : w.length ∈ exceptions := by
         by_contra hne
         have h30 : 30 ≤ w.length :=
-          le_trans (by decide : (30 : ℕ) ≤ 39) h39
+          le_trans (by decide : (30 : ℕ) ≤ 58) h58
         exact hTable n w hn h30 hlt hne h
       exact Or.inr (Or.inl hmem)
     · exact Or.inr (Or.inr hge)

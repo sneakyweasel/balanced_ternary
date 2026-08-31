@@ -15253,4 +15253,41 @@ Best next question
   with m>=3, or a later near-convergent?
 ```
 
+## Juggler cycle finance log 257 tighter than 11/2
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether a tighter Lean lower bound on \(\log 257\), or a few more odd residual seeds, excludes \(L=38\), or whether the next real leftover is the convergent \(L=84\)
+- **Hypotheses:** exact \(257\ln 257\approx1426>1421.2=n_{\mathrm{need}}(38)\), so a rational certificate between \(11/2=5.5\) and \(\ln 257\approx5.549\) kills \(L=38\) with no new floor
+- **Major results:** `log_two_hundred_fifty_seven_gt` is now \(\log 257>61/11\) (**EXACT — LEAN VERIFIED**; \(e<2.7182818286\) and \(e^{61}<257^{11}\)). Finance constant \(15677/11\approx1425.18\) excludes \(L=38\) and \(39\)–\(56\). Leftover `cycle_word_length_fifty_seven_or_ge_fifty_eight`. Eliahou period moves \(38\to 57\). \(L=57\) (need \(1430.8\)) and \(L=76\) (need \(1440.5\)) are cheap \(19\)-gap multiples; \(L=84\) needs \(\approx40269\) (exact-log floor \(\approx4756\)). A few more odd seeds at \(11/2\) would also have killed \(38\) (floor \(259\)) and then \(57\) (\(261\)) and \(76\) (\(263\)), still leaving \(84\). Ledger rows `J-log-two-hundred-fifty-seven-gt-sixty-one-elevenths`, `J-cycle-word-length-fifty-seven-or-ge-fifty-eight`. Paper A unchanged. Not a halt theorem
+- **Refuted ideas:** that \(L=84\) is the next Lean leftover after \(38\); that killing \(38\) requires a floor past \(297\) or new odd-orbit certificates
+- **Literature:** `juggler_cycle_finance`; `cycle_word_length_thirty_eight_or_ge_thirty_nine`
+- **Open:** cheap leftovers \(57\), \(76\), \(95,\ldots\) versus the record convergent \(L=84\)
+- **Decision:** PROMOTE. Length 38 dies by a tighter log certificate at the existing floor
+
+```text
+What was learned
+- log 257 > 61/11 is Lean-feasible with the existing e bound
+- 257*(61/11)=15677/11≈1425.18 kills L=38 (need 1421.19)
+  and 39-56; L=57 survives
+- no new residual seeds; 11/2 was the only slack
+- L=57 and L=76 are cheap 19-gap multiples, not L=84
+- L=84 needs ≈40269; exact-log floor ≈4756
+Strongest theorem
+- cycle_word_length_fifty_seven_or_ge_fifty_eight
+  (EXACT — LEAN VERIFIED)
+Strongest refutation
+- L=84 is the next Lean leftover after 38
+Reusable machinery
+- log_two_hundred_fifty_seven_gt at 61/11;
+  finance constant 15677/11
+Branch status
+- PROMOTE
+Why
+- L=38 dies by sharpening the existing log certificate,
+  without a floor campaign
+Best next question
+- are the cheap leftovers 57 and 76 worth a few more
+  odd seeds, or is the next real target L=84?
+```
+
 
