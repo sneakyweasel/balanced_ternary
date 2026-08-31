@@ -15918,4 +15918,38 @@ Best next question
 - none from prefix weights
 ```
 
+## Juggler cycle-finance budget optimization (run-type packing)
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether uniqueness + odd-run type + maximum force a strictly smaller length-only error budget than parity finance on \(\mathcal E_{\mathrm{par}}(10^6)\)
+- **Hypotheses:** a cycle cannot concentrate many valleys at \(n\), keep all odd runs short, and keep the maximum small
+- **Major results:** \(n\)-circuit even cap and `OE`-start \(v^3\ge n^4\) **EXACT — HUMAN PROOF**. Adversarial packing is \(o-e\) copies of `OOE` from \(n\) and \(2e-o\) copies of `OE` from \(n^{4/3}\). At \(n=10^6+1\) the packed RHS is strictly below parity on all \(141\) leftovers and certified-excludes \(42\) lengths \(56347+1054k\) (\(k=0,\ldots,41\)); \(99\) remain. First survivor still \(25781\) (factor \(23\)). Unique visit and \(M\to\infty\) do not bind. Artifact `budget_opt.json`. Ledger `J-cycle-budget-opt-finance`, `J-cycle-budget-opt-instance`. No Paper A edit, no Lean
+- **Refuted ideas:** uniqueness or a bound on \(M\) as the leftover-killer. Height packing at \(\tau_j\) for \(j\ge 2\) is not forced at \(o_{\min}\)
+- **Literature:** same Simons–de Weger template; this is a stricter length-only evaluation of `cycleMin_even_ge_sq` plus the ideal power cap
+- **Open:** none from this packing
+- **Decision:** PROMOTE the run-type bound as laboratory mathematics. Paper A still prints the parity table. Stop
+
+```text
+What was learned
+- an n-circuit cannot start OE; an OO-circuit from n takes only one even
+- max n-valleys is o-e, not e; the other 2e-o valleys sit at n^{4/3}
+- uniqueness and M → ∞ do not bind on E_par(10^6)
+- at o_min every internal can still sit at T(n); deeper runs are not forced
+- 42 leftovers die; first survivor 25781 still has a factor-23 valley gap
+Strongest theorem
+- run-type 6/5 packing is strictly smaller than parity whenever 2e-o > 0
+Strongest refutation
+- the parity bound is not extremal, but uniqueness and the maximum
+  are not the reason
+Reusable machinery
+- oe_start_min / budget_rhs / budget_opt.json
+Branch status
+- PROMOTE
+Why
+- F is a reusable length-only theorem, not a reparameterization of
+  parity, and it shrinks E_par(10^6) from 141 to 99
+Best next question
+- none from this packing
+```
+
 

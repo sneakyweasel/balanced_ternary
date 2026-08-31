@@ -16,6 +16,8 @@ The compiled Lean is `Problems/Juggler/CycleFinance.lean` and
 Ledger: `J-cycle-finance-inequality`,
 `J-cycle-parity-finance`,
 `J-cycle-parity-finance-instance`,
+`J-cycle-budget-opt-finance`,
+`J-cycle-budget-opt-instance`,
 `J-residual-floor-two-hundred-sixty-one`,
 `J-residual-floor-two-million`,
 `J-cycle-word-length-eighty-four-or-ge-eighty-five`,
@@ -191,6 +193,14 @@ at floor \(257\); length \(84\) at \(m=1,2\) already in Lean at
 constant \(1\)). The length-only special case \(m=e\) is the
 parity table of Paper A Theorem 4.6. Finer run-height packing
 does not improve that length-only \(n_{\max}\) at \(o_{\min}\).
+Run-type packing
+([juggler_cycle_budget_opt.md](../problems/juggler_cycle_budget_opt.md))
+is strictly stronger than parity: an \(n\)-circuit cannot start
+`OE`, and an `OO`-circuit from \(n\) takes only one even. At
+\(N_0=10^6\) it excludes \(42\) of the \(141\) leftovers
+(\(56347+1054k\), \(k=0,\ldots,41\)) and leaves \(99\). First
+survivor remains \(25781\). Unique visit and the cycle maximum
+do not bind. Paper A still prints the parity table.
 
 ## Attacks that stop
 

@@ -351,6 +351,10 @@ It is not required.
   `CycleMin`, so the naive \(P\equiv 1\) unroll is weaker than the
   published \(1/(x\ln x)\) form —
   **EXACT — HUMAN PROOF** (this dossier)
+- Run-type packing: \(o-e\) copies of `OOE` from \(n\) and
+  \(2e-o\) copies of `OE` from \(n^{4/3}\) —
+  **EXACT — HUMAN PROOF**
+  ([juggler_cycle_budget_opt.md](juggler_cycle_budget_opt.md))
 - No cycle word of length \(\le 19\) —
   **EXACT — LEAN VERIFIED** (`no_cycle_word_length_le_nineteen`)
 - Period is \(84\) or \(\ge 85\) —
@@ -403,7 +407,8 @@ It is not required.
 - Dataset: `data/research/juggler/cycle_finance/`
   (`exceptions.json` crude table;
   `exceptions_parity.json` length-only parity table;
-  `prefix_weights.json` leftover-weight scan)
+  `prefix_weights.json` leftover-weight scan;
+  `budget_opt.json` run-type leftover scan)
 - Tests: `tests/research/juggler_sequence/test_cycle_finance.py`
 
 Science window: gap table \(L\le 10^5\) with exact bignum
@@ -573,6 +578,16 @@ and `data/research/juggler/cycle_finance/`.
   eighteen kills are not certified: later valleys on a
   near-convergent word can keep \(P\) closer to \(1\) than
   \(9/8\).
+- **Run-type budget packing** — **EXACT — HUMAN PROOF** /
+  **COMPUTATIONALLY VERIFIED**
+  (`budget_opt.json`,
+  [juggler_cycle_budget_opt.md](juggler_cycle_budget_opt.md)):
+  an \(n\)-circuit cannot start `OE` and an `OO`-circuit from
+  \(n\) takes only one even. The leftover set shrinks from
+  \(141\) to \(99\) (\(56347+1054k\), \(k=0,\ldots,41\) die).
+  First survivor remains \(25781\). Unique visit and
+  \(M\to\infty\) do not bind. Paper A still prints the parity
+  table.
 - **Exceptional structure**: the \(166\) exceptions are exactly the
   near-convergent lengths — multiples of \(25781\) plus
   combinations with earlier convergents. The record
@@ -635,7 +650,11 @@ and `data/research/juggler/cycle_finance/`.
   **CLOSE** as a leftover-killer
   (`juggler_cycle_prefix_weight_leftover_killer`): the naive
   weight form is weaker than parity and excludes nothing; the
-  \(9/8\) diagnostic is not a length-only theorem.
+  \(9/8\) diagnostic is not a length-only theorem. Run-type
+  packing is **PROMOTE**
+  ([juggler_cycle_budget_opt.md](juggler_cycle_budget_opt.md)):
+  it shrinks \(\mathcal E_{\mathrm{par}}(10^6)\) to \(99\)
+  leftovers without moving the first survivor.
 
 ## Decision
 
@@ -663,10 +682,11 @@ members of the \(1054\)-family; it is not a theorem, and
 \(L=25781\) still lives. Keep the comparison lemma as negative
 knowledge. No Paper A edit.
 
-Best next question: none from prefix weights. The remaining
-finance slack on \(\mathcal E_{\mathrm{par}}(10^6)\) is the
-valley term at \(P=1\), which is an \(m\)-bound or valley-height
-question already parked or refuted at the residual floor.
+Best next question: none from prefix weights or from run-type
+packing. The frontier leftover \(L=25781\) still has a
+factor-\(23\) valley gap after the `OE`-start lift. The remaining
+slack is an \(m\)-bound or valley-height question already parked
+or refuted at the residual floor.
 
 Length \(84\) at \(m\ge 3\) at floor \(261\) is **REFUTED** as a
 leftover-killer

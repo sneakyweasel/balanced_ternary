@@ -359,7 +359,9 @@ def test_dossier_boundary():
     assert "Length-only parity finance" in dossier
     assert "Prefix-weight comparison" in dossier
     assert "prefix_weights.json" in dossier
+    assert "budget_opt.json" in dossier
     assert "juggler_cycle_prefix_weight_leftover_killer" in note
+    assert "juggler_cycle_budget_opt.md" in note
     assert "25780" in note
     assert "cycle_word_length_eighty_four_or_ge_eighty_five" in note
     assert "cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five" in note

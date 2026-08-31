@@ -9,3 +9,5 @@ Length-only parity table: `exceptions_parity.json`
 (`write_parity_artifacts`; does not replace this crude table).
 Prefix-weight leftover scan: `prefix_weights.json`
 (`write_prefix_weight_artifacts`; does not replace either table).
+Run-type leftover scan: `budget_opt.json`
+(`write_budget_opt_artifacts`; does not replace the tables).
