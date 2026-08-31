@@ -1,0 +1,168 @@
+{
+  "bound": "entry_corridor",
+  "n": 1000001,
+  "published_floor": 1000000,
+  "corridor": {
+    "n": 1000001,
+    "n4": 1000004000006000004000001,
+    "np1_4": 1000008000024000032000016,
+    "v_lo": 100000135,
+    "v_hi": 100000265,
+    "oe_start": 100000135,
+    "n_entry": 33,
+    "min_v": 100000135,
+    "max_v": 100000265,
+    "all_in_corridor": true,
+    "oe_start_le_min": true,
+    "width": 130
+  },
+  "last_block": {
+    "oe_ge_n": 33,
+    "deep_ge_n": 0,
+    "only_oe_among_OaE": true,
+    "ee_count": 1000004000006000003,
+    "ee_formula": "n(n^2+n+1)",
+    "necklace_last_run_eq_one": true,
+    "forced_oe_as_complete_cyclemin": false,
+    "oo_suffix_at_n": false,
+    "n_is_cyclemin_launch": false,
+    "launch_overshoots": false,
+    "deep_layers": [
+      {
+        "a": 2,
+        "n_ge_n": 0,
+        "envelope_below_n": true
+      },
+      {
+        "a": 3,
+        "n_ge_n": 0,
+        "envelope_below_n": true
+      },
+      {
+        "a": 4,
+        "n_ge_n": 0,
+        "envelope_below_n": true
+      }
+    ]
+  },
+  "entry": [
+    100000135,
+    100000137,
+    100000139,
+    100000141,
+    100000143,
+    100000145,
+    100000147,
+    100000149,
+    100000151,
+    100000153,
+    100000155,
+    100000157,
+    100000159,
+    100000161,
+    100000163,
+    100000231,
+    100000233,
+    100000235,
+    100000237,
+    100000239,
+    100000241,
+    100000243,
+    100000245,
+    100000247,
+    100000249,
+    100000251,
+    100000253,
+    100000255,
+    100000257,
+    100000259,
+    100000261,
+    100000263,
+    100000265
+  ],
+  "forward_seam": {
+    "n": 1000001,
+    "T_n": 1000001500,
+    "T2_n": 31622,
+    "first_peak": 1000001500,
+    "first_e_landing": 31622,
+    "a0": 1,
+    "overshoots": false,
+    "n_states": 3
+  },
+  "first_block": {
+    "n_entry": 33,
+    "n_f1": 5101,
+    "n_f2": 1,
+    "n_f3": 0,
+    "f1_occupied": true,
+    "f2_occupied": true,
+    "f3_empty": true,
+    "f2_witness": 12915515
+  },
+  "witness_21": {
+    "u": 12915515,
+    "v": 100000159,
+    "n": 1000001,
+    "realized": true,
+    "peak_u": 10000031967154500,
+    "peak_v": 1000002385000
+  },
+  "three_ooe_envelope": {
+    "num": 2048,
+    "den": 2187,
+    "below_anchor": true,
+    "note": "suffix dual of 243<256; not a leftover-killer"
+  },
+  "survivors": {
+    "n_survivors": 99,
+    "n_feasible": 99,
+    "n_infeasible": 0,
+    "first": {
+      "L": 25781,
+      "o": 16266
+    },
+    "all_feasible": true
+  },
+  "collisions": [],
+  "entry_cell": {
+    "n": 1000001,
+    "lo": 1000002000001,
+    "hi": 1000004000004,
+    "first_even": 1000002000002,
+    "count": 1000001,
+    "width": 2000003,
+    "rel_width": 1.999999e-06,
+    "contains_n2": false,
+    "n2_odd": true
+  },
+  "decision": {
+    "classification": "ENTRY_CORRIDOR_CLOSED",
+    "decision": "CLOSE",
+    "reason": "isolated-E last run OE is oo_suffix_threshold at the last valley versus the last-even cell; trailing EE is CycleMin-legal of size n(n^2+n+1); the first backward block is the archived occupied (2,1); three OOE is 2048<2187; the 99 remain feasible",
+    "necklace_last_run_eq_one": true,
+    "ee_open": true,
+    "deep_empty": true,
+    "first_occupied": true,
+    "f3_empty": true,
+    "join_21": true,
+    "exact_collision": false,
+    "survivors_feasible": true,
+    "three_ooe_below_anchor": true,
+    "new_emptiness": false,
+    "leftover_killer": false,
+    "halt_theorem": false,
+    "raise_n0": false,
+    "open_55293": false,
+    "paper_a_edit": false,
+    "archived": [
+      "last_even_ne_odd_sq",
+      "oo_suffix_threshold",
+      "F2_gt_v",
+      "oe_start_min",
+      "terminal_21_realized",
+      "2048_lt_2187",
+      "trailing_evens_cell"
+    ]
+  }
+}

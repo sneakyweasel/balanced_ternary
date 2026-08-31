@@ -234,6 +234,76 @@ theorem no_cycleMin_bootstrap_last_gap {n : ℕ} {u : List Branch} {c : ℕ}
         (odd_run_suffix_threshold hc3)
         (le_trans (by decide : (3 : ℕ) ≤ 5) hn5) h
 
+/-- Trailing odd-run of any word: the prefix is empty or ends even. -/
+theorem exists_trailing_odds :
+    ∀ w : List Branch,
+      ∃ u a, w = u ++ List.replicate a Branch.odd ∧
+        (u = [] ∨ u.getLast? = some Branch.even)
+  | [] => ⟨[], 0, by simp, Or.inl rfl⟩
+  | b :: rest => by
+      obtain ⟨u, a, hsplit, hcut⟩ := exists_trailing_odds rest
+      cases u with
+      | nil =>
+          have hrest : rest = List.replicate a Branch.odd := by
+            simpa using hsplit
+          cases b with
+          | odd =>
+              refine ⟨[], a + 1, ?_, Or.inl rfl⟩
+              simp [List.replicate_succ, hrest]
+          | even =>
+              refine ⟨[Branch.even], a, ?_, Or.inr (by simp)⟩
+              simp [hrest]
+      | cons x xs =>
+          refine ⟨b :: x :: xs, a, ?_, ?_⟩
+          · simp [hsplit]
+          · have hx : (x :: xs).getLast? = some Branch.even := by
+              simpa using hcut
+            have hne : x :: xs ≠ [] := List.cons_ne_nil x xs
+            simpa [List.getLast?_cons_of_ne_nil hne] using hx
+
+/-- A CycleMin word cannot end `O^a E` for `a ≥ 2`. This is
+`no_cycleMin_odd_run` when the prefix is empty and
+`no_cycleMin_bootstrap_last_gap` after an internal even. -/
+theorem cycleMin_not_last_odd_run_ge_two {n a : ℕ} {u : List Branch}
+    (hn : 2 ≤ n) (ha : 2 ≤ a)
+    (h : CycleMin n (u ++ List.replicate a Branch.odd ++ [Branch.even]))
+    (hcut : u = [] ∨ u.getLast? = some Branch.even) : False := by
+  rcases hcut with hu | hu
+  · subst hu
+    simpa using no_cycleMin_odd_run hn ha h
+  · obtain ⟨u0, rfl⟩ := (List.getLast?_eq_some_iff).mp hu
+    exact no_cycleMin_bootstrap_last_gap hn ha (by
+      simpa [List.append_assoc] using h)
+
+/-- On a CycleMin word ending `O^a E` with `a ≥ 1` and the preceding
+letter not odd, the last odd-run has length exactly one. Paper A §3
+writes that last excursion as unconstrained `O^{a_e}E`; this is the
+`OOEOOE` sandwich of Theorem 3.6 at an arbitrary last valley. -/
+theorem cycleMin_last_odd_run_eq_one {n a : ℕ} {u : List Branch}
+    (hn : 2 ≤ n) (ha : 1 ≤ a)
+    (h : CycleMin n (u ++ List.replicate a Branch.odd ++ [Branch.even]))
+    (hcut : u = [] ∨ u.getLast? = some Branch.even) :
+    a = 1 := by
+  by_contra hne
+  exact cycleMin_not_last_odd_run_ge_two hn (by omega) h hcut
+
+/-- Every CycleMin word ends `O^a E` with `a ≤ 1`. The case `a = 0`
+is a trailing even run of length at least two. -/
+theorem exists_cycleMin_last_odd_run {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n w) :
+    ∃ u a, w = u ++ List.replicate a Branch.odd ++ [Branch.even] ∧
+      a ≤ 1 ∧ (u = [] ∨ u.getLast? = some Branch.even) := by
+  have hlast := cycleMin_getLast_even hn h
+  obtain ⟨pref, hpref⟩ := (List.getLast?_eq_some_iff).mp hlast
+  obtain ⟨u, a, hsplit, hcut⟩ := exists_trailing_odds pref
+  refine ⟨u, a, ?_, ?_, hcut⟩
+  · simp [hpref, hsplit]
+  · cases lt_or_ge a 2 with
+    | inl hlt => omega
+    | inr hge =>
+        exact (cycleMin_not_last_odd_run_ge_two hn hge
+          (by simpa [hpref, hsplit] using h) hcut).elim
+
 theorem eq_two_even_form {w : List Branch}
     (h2 : evenCount w = 2) (hend : w.getLast? = some Branch.even) :
     ∃ a c, w =

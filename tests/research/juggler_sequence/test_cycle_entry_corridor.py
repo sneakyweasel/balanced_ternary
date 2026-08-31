@@ -20,6 +20,7 @@ from research.juggler_sequence.cycle_entry_corridor import (
     verify_21,
 )
 from research.juggler_sequence.cycle_entry_excursion import run_layer
+from research.juggler_sequence.lean_paths import EVEN_COUNT_THREE, has_named
 from research.juggler_sequence.power_words import floor_power
 
 REPO = Path(__file__).resolve().parents[3]
@@ -55,10 +56,13 @@ def test_ee_entry_count_is_closed_form():
 
 
 def test_necklace_last_run_overshoots_on_oo():
-    assert oo_suffix_holds(START)
-    t2 = floor_power(floor_power(START))
-    assert t2 >= (START + 1) ** 2
-    assert last_run_overshoots(START, START, 2) is True
+    # published-floor+1 is odd but starts OE, so it is not a CycleMin launch.
+    assert oo_suffix_holds(START) is False
+    v = 1_000_057
+    assert oo_suffix_holds(v) is True
+    t2 = floor_power(floor_power(v))
+    assert t2 >= (v + 1) ** 2
+    assert last_run_overshoots(v, v, 2) is True
 
 
 def test_only_oe_among_odd_runs_into_n():
@@ -134,3 +138,12 @@ def test_dossier_and_conjecture_record_close():
     rec = get_conjecture("juggler_cycle_entry_corridor")
     assert rec["status"] == "REFUTED"
     assert rec["counterexamples"]
+
+
+def test_isolated_e_last_run_is_lean():
+    text = EVEN_COUNT_THREE.read_text(encoding="utf-8")
+    assert has_named(text, "cycleMin_last_odd_run_eq_one")
+    assert has_named(text, "cycleMin_not_last_odd_run_ge_two")
+    assert has_named(text, "exists_cycleMin_last_odd_run")
+    dossier = DOSSIER.read_text(encoding="utf-8")
+    assert "cycleMin_last_odd_run_eq_one" in dossier

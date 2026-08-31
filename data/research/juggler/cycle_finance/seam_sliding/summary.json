@@ -1,0 +1,123 @@
+{
+  "bound": "seam_sliding",
+  "archived": [
+    "cycleWord_rotateWord",
+    "rotateWord_even_run",
+    "cycle_trailing_evens_lt",
+    "even_run_scale_barrier",
+    "odd_cell_unique",
+    "oddLanding_preimage_unique",
+    "no_cycle_word_even_count_le_three"
+  ],
+  "canonical_seams": [
+    "EO",
+    "OE"
+  ],
+  "interior_e_cuts": [
+    "E|EEE",
+    "EE|EE",
+    "EEE|E"
+  ],
+  "necklace": {
+    "base": "OOEEEE",
+    "cuts": {
+      "E|EEE": "EEEOOE",
+      "EE|EE": "EEOOEE",
+      "EEE|E": "EOOEEE"
+    },
+    "interior_cuts_same_class": true,
+    "lean": "cycleWord_rotateWord / rotateWord_even_run"
+  },
+  "backward_slide": {
+    "peak": 100,
+    "r": 2,
+    "descent": [
+      100,
+      10,
+      3
+    ],
+    "climb_start": 102,
+    "climb": [
+      102,
+      10,
+      3
+    ],
+    "first_intersection": 10,
+    "valley": 3,
+    "peak_on_climb": false,
+    "valley_on_shared_tail": true,
+    "first_is_interior": true,
+    "backward_slide_is_first_intersection": false,
+    "forward_slide_is_first_intersection": false
+  },
+  "backward_slide_r3": {
+    "first_intersection": 100,
+    "peak_on_climb": false,
+    "backward_slide_is_first_intersection": false,
+    "first_is_interior": true
+  },
+  "scale": [
+    {
+      "peak": 100,
+      "r": 2,
+      "valley": 3,
+      "descent": [
+        100,
+        10,
+        3
+      ],
+      "trailing_cell": 256,
+      "peak_lt_trailing_cell": true,
+      "approx": "P ~ V^4 is the trailing-evens two-sided cell"
+    },
+    {
+      "peak": 10000,
+      "r": 3,
+      "valley": 3,
+      "descent": [
+        10000,
+        100,
+        10,
+        3
+      ],
+      "trailing_cell": 65536,
+      "peak_lt_trailing_cell": true,
+      "approx": "P ~ V^8 is the trailing-evens two-sided cell"
+    }
+  ],
+  "odd_interior": {
+    "first_intersection": false,
+    "lean": "odd_cell_unique / oddLanding_preimage_unique",
+    "note": "O^r interiors are not first meetings, so O-sliding is vacuous"
+  },
+  "run_length": {
+    "even_count_ge_four": true,
+    "lean": "no_cycle_word_even_count_le_three",
+    "cell": "cycle_trailing_evens_lt at each r",
+    "note": "how long E^r can be is the archived even-count plus the cell"
+  },
+  "decision": {
+    "classification": "SEAM_SLIDING_CLOSED",
+    "decision": "CLOSE",
+    "reason": "interior E-cuts are rotateWord of the same necklace; a first intersection interior to E^r cannot be slid to the peak or treated as first at the valley; P < (V+1)^{2^r} is cycle_trailing_evens_lt; the EO/OE reduction is the closed intersection taxonomy",
+    "necklace_collapses": true,
+    "backward_slide_fails": true,
+    "scale_is_trailing_evens": true,
+    "new_inequality": false,
+    "leftover_killer": false,
+    "reopens_intersection_taxonomy": false,
+    "reopens_entry_corridor": false,
+    "halt_theorem": false,
+    "raise_n0": false,
+    "paper_a_edit": false,
+    "archived": [
+      "cycleWord_rotateWord",
+      "rotateWord_even_run",
+      "cycle_trailing_evens_lt",
+      "even_run_scale_barrier",
+      "odd_cell_unique",
+      "oddLanding_preimage_unique",
+      "no_cycle_word_even_count_le_three"
+    ]
+  }
+}

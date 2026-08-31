@@ -1,0 +1,439 @@
+{
+  "bound": "e_block",
+  "n": 1000001,
+  "published_floor": 1000000,
+  "canonical_types": [
+    "I_peak_OE",
+    "II_valley_EO",
+    "III_even_block_Er"
+  ],
+  "push_rules": {
+    "odd_interior": "OO interior is not first: unique odd parent (odd_cell_unique / oddLanding_preimage_unique); push to peak",
+    "peak_r1_to_n": "O|E with next even to n is the archived OE corridor; do not reopen",
+    "valley_oe_to_n": "E|O plus immediate OE return to n is the same corridor",
+    "even_interior": "determinism shares the future, so push through the common E^r suffix to the next valley; the invariant is r"
+  },
+  "r1_corridor": {
+    "n": 1000001,
+    "u3_lo": 1000004000006000004000001,
+    "u3_hi": 1000008000024000032000016,
+    "n4": 1000004000006000004000001,
+    "np1_4": 1000008000024000032000016,
+    "matches_outer": true,
+    "strictness": "n^4 < u^3 from cycle_last_even_ne_odd_sq"
+  },
+  "envelopes": {
+    "r2_even": {
+      "v": 1000001,
+      "r": 2,
+      "p_lo": 1000004000006000004000001,
+      "p_hi": 1000008000024000032000016
+    },
+    "r2_odd_parent": {
+      "v": 1000001,
+      "r": 2,
+      "u3_lo": 1000008000028000056000070000056000028000008000001,
+      "u3_hi": 1000016000112000448001120001792001792001024000256
+    },
+    "r3_even": {
+      "v": 1000001,
+      "r": 3,
+      "p_lo": 1000008000028000056000070000056000028000008000001,
+      "p_hi": 1000016000112000448001120001792001792001024000256
+    },
+    "r3_odd_parent": {
+      "v": 1000001,
+      "r": 3,
+      "u3_lo": 1000016000120000560001820004368008008011440012870011440008008004368001820000560000120000016000001,
+      "u3_hi": 1000032000480004480029120139776512513464323294725857288200200945671454724587521966080524288065536
+    },
+    "note": "last-run v=n: p ~ n^{2^r}, u ~ n^{2^{r+1}/3}; r=2 is n^8 <= u^3 < (n+1)^8"
+  },
+  "first_run_cap": {
+    "a0_max": 8,
+    "r_max": 6,
+    "is_expansion_test": true,
+    "note": "2^{a0+r} <= 3^{a0} is power_bound_word plus even_run_scale_barrier",
+    "rows": [
+      {
+        "a0": 2,
+        "r": 1,
+        "allows": true,
+        "lhs": 8,
+        "rhs": 9
+      },
+      {
+        "a0": 2,
+        "r": 2,
+        "allows": false,
+        "lhs": 16,
+        "rhs": 9
+      },
+      {
+        "a0": 2,
+        "r": 3,
+        "allows": false,
+        "lhs": 32,
+        "rhs": 9
+      },
+      {
+        "a0": 2,
+        "r": 4,
+        "allows": false,
+        "lhs": 64,
+        "rhs": 9
+      },
+      {
+        "a0": 2,
+        "r": 5,
+        "allows": false,
+        "lhs": 128,
+        "rhs": 9
+      },
+      {
+        "a0": 2,
+        "r": 6,
+        "allows": false,
+        "lhs": 256,
+        "rhs": 9
+      },
+      {
+        "a0": 3,
+        "r": 1,
+        "allows": true,
+        "lhs": 16,
+        "rhs": 27
+      },
+      {
+        "a0": 3,
+        "r": 2,
+        "allows": false,
+        "lhs": 32,
+        "rhs": 27
+      },
+      {
+        "a0": 3,
+        "r": 3,
+        "allows": false,
+        "lhs": 64,
+        "rhs": 27
+      },
+      {
+        "a0": 3,
+        "r": 4,
+        "allows": false,
+        "lhs": 128,
+        "rhs": 27
+      },
+      {
+        "a0": 3,
+        "r": 5,
+        "allows": false,
+        "lhs": 256,
+        "rhs": 27
+      },
+      {
+        "a0": 3,
+        "r": 6,
+        "allows": false,
+        "lhs": 512,
+        "rhs": 27
+      },
+      {
+        "a0": 4,
+        "r": 1,
+        "allows": true,
+        "lhs": 32,
+        "rhs": 81
+      },
+      {
+        "a0": 4,
+        "r": 2,
+        "allows": true,
+        "lhs": 64,
+        "rhs": 81
+      },
+      {
+        "a0": 4,
+        "r": 3,
+        "allows": false,
+        "lhs": 128,
+        "rhs": 81
+      },
+      {
+        "a0": 4,
+        "r": 4,
+        "allows": false,
+        "lhs": 256,
+        "rhs": 81
+      },
+      {
+        "a0": 4,
+        "r": 5,
+        "allows": false,
+        "lhs": 512,
+        "rhs": 81
+      },
+      {
+        "a0": 4,
+        "r": 6,
+        "allows": false,
+        "lhs": 1024,
+        "rhs": 81
+      },
+      {
+        "a0": 5,
+        "r": 1,
+        "allows": true,
+        "lhs": 64,
+        "rhs": 243
+      },
+      {
+        "a0": 5,
+        "r": 2,
+        "allows": true,
+        "lhs": 128,
+        "rhs": 243
+      },
+      {
+        "a0": 5,
+        "r": 3,
+        "allows": false,
+        "lhs": 256,
+        "rhs": 243
+      },
+      {
+        "a0": 5,
+        "r": 4,
+        "allows": false,
+        "lhs": 512,
+        "rhs": 243
+      },
+      {
+        "a0": 5,
+        "r": 5,
+        "allows": false,
+        "lhs": 1024,
+        "rhs": 243
+      },
+      {
+        "a0": 5,
+        "r": 6,
+        "allows": false,
+        "lhs": 2048,
+        "rhs": 243
+      },
+      {
+        "a0": 6,
+        "r": 1,
+        "allows": true,
+        "lhs": 128,
+        "rhs": 729
+      },
+      {
+        "a0": 6,
+        "r": 2,
+        "allows": true,
+        "lhs": 256,
+        "rhs": 729
+      },
+      {
+        "a0": 6,
+        "r": 3,
+        "allows": true,
+        "lhs": 512,
+        "rhs": 729
+      },
+      {
+        "a0": 6,
+        "r": 4,
+        "allows": false,
+        "lhs": 1024,
+        "rhs": 729
+      },
+      {
+        "a0": 6,
+        "r": 5,
+        "allows": false,
+        "lhs": 2048,
+        "rhs": 729
+      },
+      {
+        "a0": 6,
+        "r": 6,
+        "allows": false,
+        "lhs": 4096,
+        "rhs": 729
+      },
+      {
+        "a0": 7,
+        "r": 1,
+        "allows": true,
+        "lhs": 256,
+        "rhs": 2187
+      },
+      {
+        "a0": 7,
+        "r": 2,
+        "allows": true,
+        "lhs": 512,
+        "rhs": 2187
+      },
+      {
+        "a0": 7,
+        "r": 3,
+        "allows": true,
+        "lhs": 1024,
+        "rhs": 2187
+      },
+      {
+        "a0": 7,
+        "r": 4,
+        "allows": true,
+        "lhs": 2048,
+        "rhs": 2187
+      },
+      {
+        "a0": 7,
+        "r": 5,
+        "allows": false,
+        "lhs": 4096,
+        "rhs": 2187
+      },
+      {
+        "a0": 7,
+        "r": 6,
+        "allows": false,
+        "lhs": 8192,
+        "rhs": 2187
+      },
+      {
+        "a0": 8,
+        "r": 1,
+        "allows": true,
+        "lhs": 512,
+        "rhs": 6561
+      },
+      {
+        "a0": 8,
+        "r": 2,
+        "allows": true,
+        "lhs": 1024,
+        "rhs": 6561
+      },
+      {
+        "a0": 8,
+        "r": 3,
+        "allows": true,
+        "lhs": 2048,
+        "rhs": 6561
+      },
+      {
+        "a0": 8,
+        "r": 4,
+        "allows": true,
+        "lhs": 4096,
+        "rhs": 6561
+      },
+      {
+        "a0": 8,
+        "r": 5,
+        "allows": false,
+        "lhs": 8192,
+        "rhs": 6561
+      },
+      {
+        "a0": 8,
+        "r": 6,
+        "allows": false,
+        "lhs": 16384,
+        "rhs": 6561
+      }
+    ],
+    "a0_2_forbids_r2": true,
+    "a0_3_forbids_r2": true,
+    "a0_4_allows_r2": true,
+    "a0_5_forbids_r3": true,
+    "a0_6_allows_r3": true
+  },
+  "last_run": {
+    "n": 1000001,
+    "r1_archived_oe": true,
+    "r2_count": 1000004000006000003,
+    "r2_formula": "n(n^2+n+1)",
+    "r3_found": true,
+    "r3_witness": {
+      "r": 1000008000032000080000136000160000128000064000016,
+      "q": 1000004000008000008000004,
+      "p": 1000002000002
+    }
+  },
+  "realized_first_runs": {
+    "lo": 13,
+    "hi": 2001,
+    "n_oo_launches": 502,
+    "counts": {
+      "1": 250,
+      "2": 127,
+      "3": 60,
+      "4": 15,
+      "5": 38,
+      "6": 11,
+      "8": 1
+    },
+    "n_r_ge_2": 252,
+    "first_r2": {
+      "n": 25,
+      "a0": 3,
+      "r": 2,
+      "peak": 52214,
+      "valley": 15,
+      "cyclemin_shaped": false
+    },
+    "n_cyclemin_shaped": 291,
+    "shaped_counts": {
+      "1": 250,
+      "2": 36,
+      "3": 4,
+      "5": 1
+    },
+    "n_shaped_r_ge_2": 41,
+    "first_shaped_r2": {
+      "n": 115,
+      "a0": 5,
+      "r": 2,
+      "peak": 4446080344234036,
+      "valley": 8165,
+      "cyclemin_shaped": true
+    }
+  },
+  "decision": {
+    "classification": "E_BLOCK_CLOSED",
+    "decision": "CLOSE",
+    "reason": "r=1 recovers the archived OE corridor; first-run r is 2^{a0+r} <= 3^{a0} (power_bound plus scale barrier); last-run r>=2 is the occupied EE/EEE family; a short OO climb can realize r>=2 only by dropping below n",
+    "r1_recovers_oe": true,
+    "first_run_is_expansion": true,
+    "predicted_a0_r_pairs": true,
+    "last_run_r_ge_2_occupied": true,
+    "first_run_r_ge_2_realized": true,
+    "first_run_r_ge_2_cyclemin_shaped": true,
+    "new_emptiness": false,
+    "new_inequality": false,
+    "leftover_killer": false,
+    "reopens_entry_corridor": false,
+    "reopens_intersection_taxonomy": false,
+    "halt_theorem": false,
+    "raise_n0": false,
+    "paper_a_edit": false,
+    "archived": [
+      "odd_cell_unique",
+      "oddLanding_preimage_unique",
+      "cycle_trailing_evens_lt",
+      "even_run_scale_barrier",
+      "power_bound_word",
+      "cycle_last_even_ne_odd_sq",
+      "ee_entry_count",
+      "corridor_bounds"
+    ]
+  }
+}

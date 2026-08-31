@@ -17129,42 +17129,175 @@ Best next question
 - a genuine lower bound on the number of odd runs (already §5)
 ```
 
-## Juggler CycleMin backward entry corridor
+## Juggler CycleMin entry corridor
 
 - **Date:** 2026-08-31
-- **Objective:** Decide whether the CycleMin last excursion is exactly `OE`, with the entry valley in the two-sided \(n^{4/3}\) cell, and whether the exact 1–2-block backward corridor from that cell empties or collides with the forced forward `OO` lift for a reason that is not last-even / `oe_start_min` / \(F_2(v)>v\) / \(243<256\) / `empty_ooe`
-- **Hypotheses:** the circular seam is a local CycleMin theorem (last run length 1, two-sided corridor, pre-entry \(b\le 2\)) whose backward tree is not the archived prefix/inverse package
-- **Major results:** Classification **ENTRY_CORRIDOR_GREEN**. Lemma A is **EXACT — HUMAN PROOF**: every CycleMin necklace ends `OE` (the `OOEOOE` sandwich of Theorem 3.6 at the last valley). Lemma B is the integer corridor \(n^4<v^3<(n+1)^4\). Lemma C has envelope \(n_0=5\). At \(n=10^6+1\): \(33\) entry valleys, all in-corridor, cheapest `oe_start_min`; \(F_1\) has \(5101\) AboveAnchor predecessors; one \(F_2\) witness \(12915515\to 100000159\); \(F_3\) empty; second block \(5133\) occupied / \(5071\) `empty_ooe`; zero unarchived deaths; zero exact collisions. The floor representative does not realize `OO`; first legal start \(1000057\) overshoots and lands at \(5623773\). Artifact `entry_corridor/summary.json`. No leftover-killer conjecture, no ledger row, no Paper A, no Lean, no \(N_0\) raise
-- **Refuted ideas:** the 2-block backward tree collides with the forward `OO` lift; pre-entry is always `OE` at this \(n\); \(n=10^6+1\) is itself a CycleMin start; \(v^3<(n+1)^{8/3}\)
-- **Literature:** last-even / Lemma 3.4(i)/(iv); `oe_start_min`; entry-excursion CLOSE; cyclic-valley wrap `OE`; \(243<256\); inverse-width / almost-search archived deaths
-- **Open:** Lean `cycleMin_last_odd_run_eq_one`
-- **Decision:** PROMOTE the named last-run lemma. The tree stays a negative-knowledge census
+- **Objective:** Decide whether a CycleMin \(n\) has a forced incoming `OE` seam, and whether the backward entry corridor then fails to join the forward launch for a reason that is not last-even / `oo_suffix` / \(F_2(v)>v\) / \(2048<2187\) / realized \((2,1)\)
+- **Hypotheses:** the two sides of \(n\) are asymmetric enough that exact closure, not finance, cuts the last run and a thin backward tree \(\mathcal B_n\)
+- **Major results:** Classification **ENTRY_CORRIDOR_CLOSED**. Isolated-E last run \(a_e=1\) is **EXACT — LEAN VERIFIED** / **REPARAMETERIZATION** of `oo_suffix_threshold` versus the last-even cell (`cycleMin_last_odd_run_eq_one` in `EvenCountThree.lean`; ledger `J-cyclemin-last-odd-run`). Trailing `EE` is **EXACT — HUMAN PROOF**: count \(n(n^2+n+1)\), all of scale \(n^4\), so “every CycleMin word ends `OE`” is false and \(\mathcal B_n\) is not thin. At \(n=10^6+1\): \(33\) OE valleys, all in \(n^4<v^3<(n+1)^4\); \(a\ge 2\) empty; first backward block \(F_1=5101\), \(F_2\) witness \(12915515\to 100000159\to n\), \(F_3\) empty; no launch collision; \(2048<2187\); \(99/99\) survivors composition-feasible. Artifact `entry_corridor/summary.json`. No leftover-killer, no Paper A, no \(N_0\) raise, no finance reopen
+- **Refuted ideas:** incoming run is forced `OE` on every CycleMin word (`juggler_cycle_entry_corridor`); \(\mathcal B_n\) is a thin scale-restricted tree; the seam lifts the \(99\) into an infeasible run composition
+- **Literature:** last-even / `oo_suffix_threshold`; `oe_start_min`; entry-excursion CLOSE; cyclic-valley wrap `OE`; cell-bridge terminal \((2,1)\); trailing-evens cell; \(243<256\)
+- **Open:** none from the entry corridor
+- **Decision:** CLOSE. The run-type theorem stays PROMOTE
 
 ```text
 What was learned
-- every CycleMin necklace ends OE (last odd-run length 1)
-- the last valley sits in n^4 < v^3 < (n+1)^4
-- pre-entry b<=2 already at n=5 by the OOO envelope
-- at 10^6+1 the F1 cell is occupied (5101); one F2 witness exists
-- F3 is empty; the second block dies only on empty_ooe
-- n=10^6+1 does not realize OO; 1000057 does and overshoots
-- no exact collision with either forward seam
+- isolated-E last run OE is oo_suffix at the last valley
+- trailing EE is CycleMin-legal of size n(n^2+n+1)
+- B_n is therefore not a thin backward corridor
+- the OE slice is the archived 33-valley cell at n^{4/3}
+- the first backward block is the archived occupied (2,1)
+- three OOE is 2048<2187; the 99 remain feasible
 Strongest theorem
-- on a CycleMin start n>=5 the last excursion is OE
+- on an isolated-E CycleMin necklace, a_e=1
 Strongest refutation
-- 5101 OE predecessors and 12915515 --OOE--> 100000159;
-  zero seam collisions; floor n is not OO-legal
+- EE count n(n^2+n+1); 12915515 --OOE--> 100000159 --OE--> n;
+  99/99 composition-feasible
 Reusable machinery
-- corridor_bounds / fibre_tag_only / entry_corridor/summary.json
+- ee_entry_count / corridor_bounds / entry_corridor/summary.json
 Branch status
-- PROMOTE
+- CLOSE
 Why
-- Lemma A is a reusable CycleMin word-shape that Paper A §3
-  does not name. The backward tree is occupied archived cells
-  and is not a leftover-killer. Lean is the follow-up, not a
-  third block
+- exact closure did determine the structure, and the structure
+  is the archived seam plus an enormous trailing-EE cell.
+  Finance was not asked to invent the word
 Best next question
-- Lean cycleMin_last_odd_run_eq_one
+- none from the CycleMin entry corridor
+```
+
+## Juggler CycleMin last odd-run Lean
+
+- **Date:** 2026-08-31
+- **Objective:** Package the isolated-E last-run comparison as Lean without reopening the entry-corridor tree
+- **Hypotheses:** `no_cycleMin_odd_run` and `no_cycleMin_bootstrap_last_gap` already cover \(a_e\ge 2\); the named wrappers do not force incoming `OE`
+- **Major results:** `cycleMin_last_odd_run_eq_one`, `cycleMin_not_last_odd_run_ge_two`, `exists_cycleMin_last_odd_run`, `exists_trailing_odds` in `EvenCountThree.lean`. Ledger `J-cyclemin-last-odd-run`. Branch stays **CLOSE**. Not imported by `JugglerPaper`
+- **Refuted ideas:** none new
+- **Literature:** `oo_suffix_threshold`; last-even cell; Theorem 3.6 `OOEOOE`
+- **Open:** none from the entry corridor
+- **Decision:** CLOSE remains. Isolated-E last run is now Lean
+
+```text
+What was learned
+- isolated-E a_e=1 is already the two archived last-gap lemmas
+- every CycleMin word ends O^a E with a <= 1; a = 0 is trailing EE
+- naming that fact does not thin B_n
+Strongest theorem
+- cycleMin_last_odd_run_eq_one
+Strongest refutation
+- none new; EE count still kills forced-OE
+Reusable machinery
+- J-cyclemin-last-odd-run; four names in EvenCountThree.lean
+Branch status
+- CLOSE
+Why
+- Lean packaged a reparameterization of archived cells; the
+  corridor tree stays closed
+Best next question
+- none from the CycleMin entry corridor
+```
+
+## Juggler CycleMin cyclic seam types
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether the local parity word on both sides of a CycleMin \(n\) is a small finite set of seam types with any inequality that is not start-OO / no-end-O / last-even / trailing-evens / `oo_suffix`
+- **Hypotheses:** classifying the cut by the letters touching \(n\) is a useful replacement for the OE-privileged corridor; return through \(O\) might still be open in the genuine-cycle setting
+- **Major results:** Classification **CYCLIC_SEAM_CLOSED**. The \(2{+}2\) window is exactly \(\{\mathtt{OE}\mid\mathtt{OO},\mathtt{EE}\mid\mathtt{OO}\}\) (**REPARAMETERIZATION** of `cycleMin_starts_two_odds` plus `exists_cycleMin_last_odd_run`). Return \(O\) is empty under the \(\ge n\) tube (`cycleMin_not_end_odd`). Both legal types occupied at \(n=10^6+1\): \(33\) OE, \(n(n^2+n+1)\) EE; left \(\mathtt{OOE}\) empty; \(\mathtt{EEE}\) realized. Launch split on \([13,2001)\): \(252\) \(\mathtt{OOE}\), \(250\) \(\mathtt{OOO}\), first witnesses \(33\) and \(25\). Artifact `cyclic_seam/summary.json`. No corridor reopen, no finance, no Paper A, no new Lean, no \(N_0\) raise
+- **Refuted ideas:** a 2-sided seam type produces a new cell (`juggler_cycle_cyclic_seam`); CycleMin return can be odd
+- **Literature:** `cycleMin_starts_two_odds`; `cycleMin_not_end_odd`; `exists_cycleMin_last_odd_run`; last-even / trailing-evens; entry-corridor CLOSE
+- **Open:** none from the cyclic seam
+- **Decision:** CLOSE. The run-type theorem stays PROMOTE
+
+```text
+What was learned
+- CycleMin cut is not a free origin: first two letters are OO
+- return through O is already Lean-false (cell below n)
+- the 2+2 window has exactly two types: OE|OO and EE|OO
+- both are archived cells, and both are occupied
+- 3+3 only lengthens E^r or records T^2 parity
+- this is a distinction from the OE corridor, not a new invariant
+Strongest theorem
+- exists_cycleMin_last_odd_run plus cycleMin_starts_two_odds
+Strongest refutation
+- no odd predecessor >= n; 33 OE and n(n^2+n+1) EE;
+  252 OOE / 250 OOO launches in [13,2001)
+Reusable machinery
+- launch_word / launch_split / cyclic_seam/summary.json
+Branch status
+- CLOSE
+Why
+- the finite list is the existing first/last-letter Lean; each
+  type's inequality is an archived cell
+Best next question
+- none from the CycleMin cyclic seam
+```
+
+## Juggler first-intersection taxonomy
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether the first shared point of a forward trajectory from \(n\) with a hypothetical cycle, classified by valley / odd ascent / peak / even descent, imposes a two-sided envelope that is not `odd_cell_unique` / the CycleMin \(2{+}2\) seam / peak finance / trailing-EE count
+- **Hypotheses:** first-intersection geometry is finer than the archived seam; the peak case \(F_{\mathrm{climb}}(x)\le x\le D_{\mathrm{cycle}}(x)\) might open a new gap; odd interiors might push to seams rather than die
+- **Major results:** Classification **INTERSECTION_TAXONOMY_CLOSED**. If \(n\) is on the cycle, the first intersection is \(n\) and the window is the archived pair \(\{\mathtt{OE}\mid\mathtt{OO},\mathtt{EE}\mid\mathtt{OO}\}\). Odd+odd and climb-created-peak meetings are empty by `odd_cell_unique` / `oddLanding_preimage_unique` (**EXACT — LEAN VERIFIED** / **REPARAMETERIZATION**). Peak two-sided scale is `cycle_peak_finance` / `COMPOSITION_REPACKAGING`. The only bulk distinct-parent channel is even+even, count \(n(n^2+n+1)\). No probe, no census, no new Lean, no Paper A, no ledger row, no \(N_0\) raise, no finance reopen
+- **Refuted ideas:** a first-intersection taxonomy produces a new cell (`juggler_cycle_intersection_taxonomy`); two trajectories can first meet by two odd arrivals; the climb can manufacture the same peak the cycle manufactured
+- **Literature:** `odd_cell_unique`; `oddLanding_preimage_unique`; `cycleMin_starts_two_odds`; `cycleMin_not_odd_even`; cyclic-seam CLOSE; entry-corridor CLOSE; peak-descent / extremal-composition CLOSE
+- **Open:** none from the first-intersection taxonomy
+- **Decision:** CLOSE. The run-type theorem stays PROMOTE
+
+```text
+What was learned
+- on a CycleMin orbit the first intersection is n, not a later valley or peak
+- odd+odd first meeting is already Lean-false (unique odd parent)
+- a climb-created peak cannot be a first intersection
+- the photogenic peak comparison is extremal composition under a new name
+- the only bulk distinct-parent channel is the archived EE tree
+- the eight-row table is machinery gravity, not a new invariant
+Strongest theorem
+- oddLanding_preimage_unique: at most one odd parent
+Strongest refutation
+- first-intersection leftover-killer; climb-created peak as a
+  two-sided envelope; interior OO as a first meeting
+Reusable machinery
+- none; the record is the dossier and the refuted conjecture
+Branch status
+- CLOSE
+Why
+- every row is odd_cell_unique, the archived 2+2 seam, peak
+  finance, or the EE count n(n^2+n+1)
+Best next question
+- none from the first-intersection taxonomy
+```
+
+## Juggler cyclic seam sliding
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether sliding a first-intersection cut through a homogeneous \(E^r\) (or \(O^r\)) run produces a two-sided envelope, or a restriction on \(r\), that is not `rotateWord` / `cycle_trailing_evens_lt` / `even_run_scale_barrier` / `odd_cell_unique` / the archived \(\mathtt{OE}\)/\(\mathtt{EO}\) cells
+- **Hypotheses:** interior \(E\)-cuts collapse to one cyclic geometry, so only \(\mathtt{EO}\) and \(\mathtt{OE}\) plus run length remain, and choosing the peak or valley boundary yields a stronger inequality
+- **Major results:** Classification **SEAM_SLIDING_CLOSED**. Interior cuts \(E\mid EEE\), \(EE\mid EE\), \(EEE\mid E\) are `rotateWord` of \(\mathtt{OOEEEE}\) (**REPARAMETERIZATION** of `cycleWord_rotateWord` / `rotateWord_even_run`). A first intersection interior to \(E^r\) cannot be slid to the peak and is not first at the valley: witness \(100\xrightarrow{E}10\xrightarrow{E}3\) versus \(102\xrightarrow{E}10\xrightarrow{E}3\). Peak / valley transfer \(P<(V+1)^{2^r}\) is `cycle_trailing_evens_lt`. \(O^r\) interiors are not first meetings. Artifact `seam_sliding/summary.json`. No taxonomy reopen, no finance, no Paper A, no new Lean, no \(N_0\) raise
+- **Refuted ideas:** first-intersection sliding to either boundary of a homogeneous run (`juggler_cycle_seam_sliding`); \(P\approx V^{2^r}\) as a new cell
+- **Literature:** `cycleWord_rotateWord`; `rotateWord_even_run`; `cycle_trailing_evens_lt`; `even_run_scale_barrier`; `odd_cell_unique`; intersection-taxonomy CLOSE; cyclic-seam CLOSE
+- **Open:** none from cyclic seam sliding
+- **Decision:** CLOSE. The run-type theorem stays PROMOTE
+
+```text
+What was learned
+- interior E-cuts are one necklace; there is no combinatorial entry location inside E^r
+- a first intersection is a distinguished state and does not slide backward to the peak
+- the valley lies on the shared tail but is not first
+- P ~ V^{2^r} is the trailing-evens cell
+- reducing to EO and OE plus run length is the closed taxonomy under a cleaner name
+- how long E^r can be is even-count plus that cell, not a sliding consequence
+Strongest theorem
+- cycleWord_rotateWord: a cyclic shift of a cycle word is a cycle word
+Strongest refutation
+- 102 and 100 first meet at 10, not at the peak 100 and not at the valley 3
+Reusable machinery
+- rotate_word / backward_slide_witness / seam_sliding/summary.json
+Branch status
+- CLOSE
+Why
+- combinatorial sliding is already Lean rotation; first-intersection
+  sliding is false backward; the numerical transfer is an archived cell
+Best next question
+- none from cyclic seam sliding
 ```
 
 

@@ -5540,5 +5540,16 @@
       "tests/research/juggler_sequence/test_cycle_run_survivor_lattice.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "J-cyclemin-last-odd-run",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "On a CycleMin word that ends O^a E with a ≥ 1 and the preceding letter not odd, the last odd-run has length exactly one. Equivalently, a CycleMin word cannot end O^a E for a ≥ 2. This is no_cycleMin_odd_run when the prefix is empty and no_cycleMin_bootstrap_last_gap after an internal even: oo_suffix_threshold at the last valley versus the last-even cell, the OOEOOE sandwich of Theorem 3.6. Every CycleMin word ends O^a E with a ≤ 1; a = 0 is a trailing even run of length at least two and is not excluded. Lean: exists_trailing_odds, cycleMin_not_last_odd_run_ge_two, cycleMin_last_odd_run_eq_one, exists_cycleMin_last_odd_run in EvenCountThree.lean. Not a forced-OE incoming side, not a leftover-killer, and not a halt theorem. Not imported by JugglerPaper.",
+    "source": "docs/problems/juggler_cycle_entry_corridor.md",
+    "lean": "Problems/Juggler/EvenCountThree.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_entry_corridor.py"
+    ],
+    "related_conjectures": []
   }
 ]

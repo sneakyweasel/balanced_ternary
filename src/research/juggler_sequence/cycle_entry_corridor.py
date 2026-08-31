@@ -370,6 +370,7 @@ def probe_payload(*, n: int = START) -> dict[str, Any]:
             "necklace_last_run_eq_one": True,
             "forced_oe_as_complete_cyclemin": False,
             "oo_suffix_at_n": oo_suffix_holds(n),
+            "n_is_cyclemin_launch": seam["a0"] >= 2 and oo_suffix_holds(n),
             "launch_overshoots": seam["overshoots"],
             "deep_layers": [
                 {"a": layer["a"], "n_ge_n": layer["n_ge_n"], "envelope_below_n": layer["envelope_below_n"]}

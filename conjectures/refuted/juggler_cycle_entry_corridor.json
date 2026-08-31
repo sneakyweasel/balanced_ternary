@@ -1,0 +1,22 @@
+{
+  "id": "juggler_cycle_entry_corridor",
+  "title": "The CycleMin seam forces incoming OE and a thin backward corridor that cannot join the launch",
+  "statement": "Every CycleMin cycle has incoming run OE (not merely last letter E), the backward entry corridor is a thin scale-restricted tree with a_{-2}<=2 and no three consecutive OOE, and intersecting that tree with the forward launch corridor produces a cyclic obstruction that is not last-even / oo_suffix / F2(v)>v / 2048<2187 / realized (2,1) and that makes some run-survivor infeasible.",
+  "status": "REFUTED",
+  "counterexamples": [
+    "trailing EE is CycleMin-legal: n(n^2+n+1) even-even two-step preimages, all of scale n^4",
+    "isolated-E a_e=1 is oo_suffix_threshold at the last valley versus the last-even cell",
+    "12915515 --OOE--> 100000159 --OE--> 1000001 occupies the first backward block",
+    "all 99 Proposition 4.9 points remain composition-feasible; 2048<2187 is the suffix dual of 243<256"
+  ],
+  "first_seen": "juggler CycleMin entry corridor",
+  "lean_reference": "oo_suffix_threshold",
+  "literature": [
+    "simons-de-weger-2005-collatz-m-cycles"
+  ],
+  "mathematical_domain": "Juggler cycle finance / CycleMin entry corridor",
+  "notes": "Phase 0 only. Isolated-E last run OE is a REPARAMETERIZATION of oo_suffix_threshold plus last-even. Trailing EE opens B_n. No K=11, no 1054k, no L=55293, no floor raise, no finance reopen. No Paper A edit, no ledger row, no Lean. Not a halt theorem.",
+  "origin": "docs/problems/juggler_cycle_entry_corridor.md",
+  "proof_reference": "docs/problems/juggler_cycle_entry_corridor.md",
+  "tested_range": "n=10^6+1; O^a E for a<=4; EE closed form; one-block pullback; (2,1) witness 12915515; 99 lattice points; three-OOE envelope 2048/2187"
+}
