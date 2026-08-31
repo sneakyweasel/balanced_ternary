@@ -94,7 +94,9 @@ No cycle of any length — not claimed.
 - Whole-cycle finance — **EXACT — LEAN VERIFIED**
   (`cycleMin_finance`,
   [juggler_cycle_finance.md](juggler_cycle_finance.md)); Lean
-  leftover is period \(84\) or \(\ge 85\) at residual floor \(261\)
+  leftover is period \(84\) with \(m\ge 3\) or \(\ge 85\) at
+  residual floor \(261\)
+  (`cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five`)
 - Joint-minima finance — **EXACT — HUMAN PROOF**
   ([juggler_cycle_m_finance.md](juggler_cycle_m_finance.md));
   tabulated there at floor \(53\), not at \(257\)
@@ -150,8 +152,13 @@ It is not required.
   **EXACT — HUMAN PROOF**
 - No length-38 cycle at floor \(257\), any \(m\) —
   **EXACT — HUMAN PROOF** (existing joint-minima, new floor)
-- Length-84 1-cycle and 2-cycle impossible at floor \(257\) —
-  **EXACT — HUMAN PROOF**
+- Length-84 1-cycle and 2-cycle impossible at floor \(261\) —
+  **EXACT — LEAN VERIFIED**
+  (`no_cycleMin_length_eighty_four_of_circuit_le_two`)
+- Laboratory leftover period \(84\) with \(m\ge 3\), or
+  \(\ge 85\) —
+  **EXACT — LEAN VERIFIED**
+  (`cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five`)
 - Adversarial circuit-partition — **REPARAMETERIZATION** of
   `cycleMin_finance`
 - Peak finance, extremal composition — not reopened
@@ -168,7 +175,9 @@ It is not required.
 - Focus lengths \(19,38,84,168\). Finance-surviving scan \(L\le 200\)
   at floor \(257\). Comparison table at floor \(53\). Leftover-\(84\)
   kill floors: `l84_floors.json` (live Lean floor \(261\)).
-- No CLI. No new Lean. Paper A is unchanged.
+- No CLI. Lean leftover in `CycleHeightFinance.lean` (not a
+  `PositionFinance` / `CyclePositionFinance` layer). Paper A is
+  unchanged.
 
 ## Conjectures
 
@@ -185,10 +194,15 @@ does it for every \(m\).
 
 ## Formalization
 
-None added. `CycleFinance.lean` is unchanged. Not added:
-`CyclePositionFinance.lean`, `PositionFinance.lean`,
-`cycle_position_finance`, `OddRunHeight`. No `sorry`. Paper A is
-unchanged. Not a halt theorem.
+`CycleHeightFinance.lean` sits on `CycleFinance.lean` and packages
+the inv-sum height cap at floor \(261\): length \(84\) with at
+most two odd-runs is impossible, leftover
+`cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five`.
+Not added: `CyclePositionFinance.lean`, `PositionFinance.lean`,
+`cycle_position_finance`, `cycle_height_finance`,
+`OddRunHeight`. The full \(6/5\) greedy packing stays
+**EXACT — HUMAN PROOF**. No `sorry`. Paper A is unchanged. Not a
+halt theorem.
 
 ## Results
 
@@ -209,12 +223,13 @@ Classification **POSITION_FINANCE_GREEN**. Regenerate with
   survivor \(\le 200\) except the near-convergents
   \(84,103,168,187\) (and length \(19\), already dead by global
   finance at this floor).
-- **Length 84** — **EXACT — HUMAN PROOF**: the height law excludes
-  \(m=1\) and \(m=2\); joint-minima excludes none. This is the
-  first leftover pair that needs the new law at floor \(257\).
-  The same picture holds at the live Lean floor \(261\). Length
-  \(168\) dies for \(m\le 4\) by the same packing; \(103\) and
-  \(187\) lose a few large-\(m\) slots.
+- **Length 84** — **EXACT — LEAN VERIFIED** at constant \(1\)
+  and floor \(261\): at most two odd-runs are impossible
+  (`no_cycleMin_length_eighty_four_of_circuit_le_two`). The
+  \(6/5\) greedy packing that also kills \(m=1,2\) at floor
+  \(257\) remains **EXACT — HUMAN PROOF**. Joint-minima excludes
+  none. Length \(168\) dies for \(m\le 4\) by the same packing;
+  \(103\) and \(187\) lose a few large-\(m\) slots.
 - **Leftover-\(84\) kill floors** — **COMPUTATIONALLY VERIFIED**
   (existing inequalities evaluated at new \(n\); `l84_floors.json`).
   Lean constant \(1\): height kills \(m=1\) at \(121\), \(m=2\)
@@ -237,35 +252,35 @@ Classification **POSITION_FINANCE_GREEN**. Regenerate with
 ## Open questions
 
 The Lean leftover is
-`cycle_word_length_eighty_four_or_ge_eighty_five`. The
-human-proof exclusion of length \(38\), and of length \(84\) as a
-1-cycle or 2-cycle, is not in Lean. Length \(84\) with \(m\ge 3\)
-still needs a larger floor or a different argument. Raising the
-residual floor to \(1981\) or \(4756\) to kill every \(m\) is
-**PARK**.
+`cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five`.
+Length \(84\) with \(m\ge 3\) still needs a larger floor or a
+different argument. Raising the residual floor to \(1981\) or
+\(4756\) to kill every \(m\) is **PARK**. The full \(6/5\) greedy
+packing and the length-38 joint-minima evaluation stay human
+proof.
 
 ## Decision
 
 **PROMOTE**. The odd-run height law is not a reparameterization of
 `cycleMin_finance` and it excludes leftover \((L,m)\) that
 joint-minima misses — in particular every length-84 1-cycle and
-2-cycle at floor \(257\). Length \(38\) dies for every \(m\) by
-the *old* joint-minima bound at this floor, so the motivating
-\(L=38\) example is a floor evaluation, not a height-law
-consequence. Circuit-partition without a height law remains a
-reparameterization. No Lean in this phase. Not a new paper. Not a
-halt theorem.
+2-cycle at floor \(261\), now **EXACT — LEAN VERIFIED**. Length
+\(38\) dies for every \(m\) by the *old* joint-minima bound at
+floor \(257\), so the motivating \(L=38\) example is a floor
+evaluation, not a height-law consequence. Circuit-partition
+without a height law remains a reparameterization. Not a new
+paper. Not a halt theorem.
 
 The residual-floor campaign to \(1981\) or \(4756\) is **PARK**.
 
-Best next question: formalize the odd-run height law on
-`CycleFinance.lean` so the Lean leftover becomes period \(84\)
-with \(m\ge 3\), or a later near-convergent.
+Best next question: exclude length \(84\) at \(m\ge 3\) by a
+different argument at floor \(261\), or stop and write the
+finance theorem as it stands.
 
 ## Publication assessment
 
 Status: `EXPLORATORY`. Refinement of m-finance, not a new paper.
-One exact human-proof height law with a leftover consequence
-(length \(84\) cannot be a 1-cycle or 2-cycle) and one exact
-evaluation of the existing joint-minima bound (no length-38
-cycle). Not Lean, not a totality result, not Paper A.
+The \(m\le 2\) leftover at constant \(1\) is **EXACT — LEAN
+VERIFIED**. The full \(6/5\) greedy packing and the length-38
+joint-minima evaluation remain human proof. Not a totality
+result, not Paper A.

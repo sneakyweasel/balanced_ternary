@@ -27,6 +27,7 @@ from research.juggler_sequence.lean_paths import (
     CYCLE_CORE,
     CYCLE_EXTREMA,
     CYCLE_FINANCE,
+    CYCLE_HEIGHT_FINANCE,
     DYNAMICS,
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
@@ -59,6 +60,9 @@ EXISTING_LEAN = (
     "reachesOne_of_lt_two_hundred_fifty_seven",
     "cycleMin_even_ge_sq",
     "floorPower_odd_mono",
+    "cycleCircuitCount",
+    "no_cycleMin_length_eighty_four_of_circuit_le_two",
+    "cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five",
 )
 
 FORBIDDEN_THEOREMS = (
@@ -437,6 +441,8 @@ def lean_api_present() -> dict[str, bool]:
         + "\n"
         + CYCLE_FINANCE.read_text(encoding="utf-8")
         + "\n"
+        + CYCLE_HEIGHT_FINANCE.read_text(encoding="utf-8")
+        + "\n"
         + CYCLE_EXTREMA.read_text(encoding="utf-8")
         + "\n"
         + (JUGGLER_DIR / "TerminationFloor257.lean").read_text(encoding="utf-8")
@@ -610,7 +616,8 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "",
         "Odd-run height refinement of joint-minima m-finance.",
         "Not a new paper. Not a halt theorem.",
-        "No new Lean.",
+        "Height leftover lives in CycleHeightFinance.lean; "
+        "no PositionFinance layer.",
         "",
         "## Metadata",
         "",

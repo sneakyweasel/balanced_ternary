@@ -101,6 +101,7 @@ LAYERS: dict[str, Path] = {
     "GapCells": JUGGLER_DIR / "GapCells.lean",
     "Escape": JUGGLER_DIR / "Escape.lean",
     "CycleFinance": JUGGLER_DIR / "CycleFinance.lean",
+    "CycleHeightFinance": JUGGLER_DIR / "CycleHeightFinance.lean",
 }
 
 DYNAMICS = LAYERS["Dynamics"]
@@ -195,6 +196,7 @@ WORD_LANGUAGE = LAYERS["WordLanguage"]
 GAP_CELLS = LAYERS["GapCells"]
 ESCAPE = LAYERS["Escape"]
 CYCLE_FINANCE = LAYERS["CycleFinance"]
+CYCLE_HEIGHT_FINANCE = LAYERS["CycleHeightFinance"]
 
 DELETED_ENGINE = (
     ENGINE_DIR / "FloorPower.lean",
@@ -233,7 +235,7 @@ def pre_finance_text() -> str:
     branch did not add a census.” Finance later proved those lengths
     by a different inequality; they must not flip those probes.
     """
-    return juggler_text(exclude=("CycleFinance",))
+    return juggler_text(exclude=("CycleFinance", "CycleHeightFinance"))
 
 
 def cycle_kernel_text() -> str:

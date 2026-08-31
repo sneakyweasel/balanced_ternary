@@ -79,8 +79,11 @@ bookkeeping on `cycle_word_length_eighty_four_or_ge_eighty_five`
 plus the finance table: not a new inequality. The instance at the
 Python floor \(N_0=10^6\) is the existing family of \(397\)
 near-convergent lengths. Length \(84\) is the Lean-named leftover
-and is computationally already excluded. Lengths \(19\), \(38\),
-\(57\), and \(76\) die at the Lean residual floor \(261\).
+and is computationally already excluded; height finance further
+requires at least three odd-runs
+(`cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five`).
+Lengths \(19\), \(38\), \(57\), and \(76\) die at the Lean
+residual floor \(261\).
 
 ### Proof of the finance inequality
 
@@ -233,6 +236,9 @@ It is not required.
   (`cycle_word_length_eighty_four_or_ge_eighty_five`);
   the cheap leftovers \(57\) and \(76\) die at the floor \(261\);
   \(L=84\) is the next record near-convergent
+- Period is \(84\) with at least three odd-runs, or \(\ge 85\) —
+  **EXACT — LEAN VERIFIED**
+  (`cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five`)
 - Period is \(57\) or \(\ge 58\) —
   **EXACT — LEAN VERIFIED**
   (`cycle_word_length_fifty_seven_or_ge_fifty_eight`), the
@@ -281,7 +287,9 @@ No CLI. Lean: `CycleFinance.lean` (`cycleMin_finance`,
 `cycle_finance_min_two_hundred_fifty_seven`,
 `no_cycle_word_length_le_nineteen`,
 `cycle_word_length_eighty_four_or_ge_eighty_five`,
-`cycle_word_eliahou_leftover`), `TerminationFloor257.lean`
+`cycle_word_eliahou_leftover`), `CycleHeightFinance.lean`
+(`cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five`),
+`TerminationFloor257.lean`
 (`reachesOne_of_lt_two_hundred_fifty_seven`), and
 `Termination.lean` (`reachesOne_of_lt_fifty_three`). Paper A is
 unchanged.
@@ -304,12 +312,16 @@ envelope is `cycleMin_log_envelope`; the inequality is
 `cycleMin_finance`. The residual floor `257`
 (`reachesOne_of_lt_two_hundred_fifty_seven`) gives
 `cycle_finance_min_two_hundred_sixty_one`, hence
-`no_cycle_word_length_le_nineteen` and the leftover
+`no_cycle_word_length_le_nineteen` and the length leftover
 `cycle_word_length_eighty_four_or_ge_eighty_five`. Lengths `19`
 and `30`–`83` die by finance at floors `257` and `261`. The
 floor-`261` comparison uses \(261\log 257>15921/11\); \(L=84\)
-survives. Eliahou packaging `cycle_word_eliahou_leftover`
-rewrites that leftover plus the finance table as period `84`, or
+survives the uniform bound. `CycleHeightFinance.lean` keeps the
+inv-sum defects and excludes every length-`84` word with at most
+two odd-runs, so the laboratory leftover is
+`cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five`.
+Eliahou packaging `cycle_word_eliahou_leftover` still rewrites
+the length leftover plus the finance table as period `84`, or
 a listed near-convergent, or at least `10^5`. There is no theorem named
 `no_cycle_word_length_eleven`: that name is reserved by the
 parked leftover-word probes. No `sorry`. Paper A is unchanged.
@@ -358,11 +370,13 @@ and `data/research/juggler/cycle_finance/`.
   \(\approx 2.5\cdot10^{13}\)).
 - **Lean census extension** — **EXACT — LEAN VERIFIED**: no cycle
   word of length \(\le 19\); lengths \(30\)–\(83\) die at floors
-  \(257\) and \(261\); any remaining cycle has period \(84\) or
-  \(\ge 85\). The cheap leftovers \(57\) and \(76\) die at floor
-  \(261\) (`finance_excludes_length_fiftyseven`,
-  `finance_excludes_length_seventysix`). \(L=84\) survives
-  \(\tfrac{15921}{11}\) (need \(\approx 40269\)).
+  \(257\) and \(261\); any remaining cycle has period \(84\) with
+  at least three odd-runs, or \(\ge 85\). The cheap leftovers
+  \(57\) and \(76\) die at floor \(261\)
+  (`finance_excludes_length_fiftyseven`,
+  `finance_excludes_length_seventysix`). Uniform finance leaves
+  \(L=84\) open (\(\tfrac{15921}{11}\), need \(\approx 40269\));
+  height finance kills \(m\le 2\).
 - **Floor** — **COMPUTATIONALLY VERIFIED**: every
   \(2\le n\le 10^6\) has a finite first passage below its start,
   hence by strong induction reaches \(1\). Max first-passage length
@@ -405,8 +419,9 @@ and `data/research/juggler/cycle_finance/`.
 
 ## Open questions
 
-- The Lean leftover is \(L=84\) or \(L\ge 85\); Eliahou packaging
-  names it as \(84\), or a listed near-convergent, or \(\ge 10^5\).
+- The Lean leftover is \(L=84\) with at least three odd-runs, or
+  \(L\ge 85\); Eliahou packaging still names the length leftover
+  as \(84\), or a listed near-convergent, or \(\ge 10^5\).
   Cheap \(19\)-gap cousins \(95,114,\ldots\) sit in the
   \(\ge 85\) bucket. Global finance kills \(L=84\) only at residual
   floor \(4756\) (constant \(1\); Python \(n_{\max}=5599\)). That
@@ -414,10 +429,11 @@ and `data/research/juggler/cycle_finance/`.
   \(19694\) bits at \(n=2183\), and \(4756>53^2\). Joint-minima
   and the height law kill every \(m\) first, at floor \(1981\)
   (constant \(1\)), still \(859\) odds with a \(900\)-bit peak.
-  Height already kills \(L=84\) as a 1-cycle or 2-cycle at the
-  live floor \(261\). The hypothesis that \(4756\) is the cheapest
-  kill is **REFUTED**
+  Height kills \(L=84\) as a 1-cycle or 2-cycle at the live floor
+  \(261\), now **EXACT — LEAN VERIFIED**. The hypothesis that
+  \(4756\) is the cheapest kill is **REFUTED**
   (`conjectures/refuted/juggler_cycle_finance_l84_floor_4756.json`).
+  Length \(84\) with \(m\ge 3\) is the remaining named leftover.
 - The exceptional near-convergent lengths need a larger verified
   floor (each factor of \(10^3\) in floor pushes the frontier
   roughly one convergent out). The finance inequality bounds the
@@ -439,30 +455,32 @@ and `data/research/juggler/cycle_finance/`.
 
 **PROMOTE**. Two extra odd seeds (\(257\), \(259\); five steps
 each) raise the residual floor to \(261\) and exclude the cheap
-leftovers \(57\) and \(76\). The Lean-verified leftover is the
-record convergent: period \(84\) or \(\ge 85\). Eliahou packaging
-rewrites it as period \(84\), or a listed near-convergent, or
-\(\ge 10^5\). Exact \(\log 257\) cannot kill \(57\). This is not
-a leftover-word census. The Python floor \(N_0=10^6\) remains
+leftovers \(57\) and \(76\). The length leftover is the record
+convergent: period \(84\) or \(\ge 85\). Height finance then
+kills every length-\(84\) word with at most two odd-runs, so the
+laboratory leftover is period \(84\) with \(m\ge 3\), or
+\(\ge 85\). Eliahou packaging still rewrites the length leftover
+as period \(84\), or a listed near-convergent, or \(\ge 10^5\).
+Exact \(\log 257\) cannot kill \(57\). This is not a leftover-word
+census. The Python floor \(N_0=10^6\) remains
 **COMPUTATIONALLY VERIFIED**. Paper A is unchanged.
 
 The residual-floor campaign past \(\approx 4756\) is **PARK**.
-Height already kills \(L=84\) at \(m=1,2\) at floor \(261\);
-joint/height kill every \(m\) at \(1981\), still machinery
-gravity. No new Lean in that comparison.
+Joint/height kill every \(m\) at \(1981\), still machinery
+gravity.
 
-Best next question: formalize the odd-run height law on
-`CycleFinance.lean` so the Lean leftover becomes period \(84\)
-with \(m\ge 3\), or a later convergent.
+Best next question: exclude length \(84\) at \(m\ge 3\) by a
+different argument at floor \(261\), or stop and write the
+finance theorem as it stands.
 
 ## Publication assessment
 
 Status: `THEOREM`. One exact inequality (`cycleMin_finance`,
 **EXACT — LEAN VERIFIED**) with a genuinely new consequence
-(wholesale cycle-length exclusion: Lean leftover \(84\) or
-\(\ge 85\), Eliahou leftover \(84\) or a listed near-convergent
-or \(\ge 10^5\), computational prefix \(\le1053\)) and a clear
-literature distinction: the Simons–de Weger financing-versus-gap
-template transferred to a floor-power map where defects are
-relatively \(O(1/x)\) in logarithms. Not a totality result; the
-escape half is untouched.
+(wholesale cycle-length exclusion: Lean leftover \(84\) with
+\(m\ge 3\) or \(\ge 85\), Eliahou leftover \(84\) or a listed
+near-convergent or \(\ge 10^5\), computational prefix
+\(\le1053\)) and a clear literature distinction: the Simons–de
+Weger financing-versus-gap template transferred to a floor-power
+map where defects are relatively \(O(1/x)\) in logarithms. Not a
+totality result; the escape half is untouched.

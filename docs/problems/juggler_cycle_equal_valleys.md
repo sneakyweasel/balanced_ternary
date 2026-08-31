@@ -57,9 +57,10 @@ No cycle of any length — not claimed.
 
 ## Current literature
 
-- Cycle finance leftover is period \(84\) or \(\ge 85\) —
+- Cycle finance leftover is period \(84\) with \(m\ge 3\) or
+  \(\ge 85\) —
   **EXACT — LEAN VERIFIED**
-  (`cycle_word_length_eighty_four_or_ge_eighty_five`,
+  (`cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five`,
   [juggler_cycle_finance.md](juggler_cycle_finance.md))
 - Prefix itinerary: `follows_take`, `image_take_of_le` —
   **EXACT — LEAN VERIFIED** (`Itinerary.lean`)
@@ -67,7 +68,7 @@ No cycle of any length — not claimed.
   **EXACT — HUMAN PROOF**
   ([juggler_cycle_m_finance.md](juggler_cycle_m_finance.md))
 - Odd-run height law; \(L=84\) at \(m=1,2\) dies at floor \(261\) —
-  **EXACT — HUMAN PROOF**
+  **EXACT — LEAN VERIFIED**
   ([juggler_cycle_position_finance.md](juggler_cycle_position_finance.md))
 - Residual-floor campaign to \(4756\) / \(1981\) —
   **PARK** / **REFUTED** as the cheapest kill of \(L=84\)

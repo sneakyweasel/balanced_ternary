@@ -15403,4 +15403,42 @@ Best next question
   the finance theorem as it stands
 ```
 
+## Juggler cycle height leftover
+
+- **Date:** 2026-08-31
+- **Objective:** Formalize the odd-run height law so the Lean leftover becomes period \(84\) with \(m\ge 3\), or length \(\ge 85\)
+- **Hypotheses:** the inv-sum form of `cycleMin_finance` plus a uniform height cap at floor \(261\) excludes every length-\(84\) `CycleMin` with at most two odd-runs
+- **Major results:** `cycleMin_log_envelope_inv` and `cycleMin_finance_inv_sum` keep the defects as \(\sum 1/x_i\). Certificates `floorPower 261 = 4216` and `floorPower 4217 = 273845` classify first-odd / later-odd / even-even / valley terms. The uniform cap \(2/261+2/4217+84/273845+31/68121\) is strictly below \(\theta\cdot 61/11\) at \(o\ge 53\). `no_cycleMin_length_eighty_four_of_circuit_le_two` is **EXACT — LEAN VERIFIED**. Leftover `cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five`. Residual floor stays \(261\). No `PositionFinance` layer. Paper A unchanged. Not a halt theorem
+- **Refuted ideas:** none new; the \(4756\) residual-floor campaign stays **PARK**
+- **Literature:** `juggler_cycle_finance`; `juggler_cycle_position_finance`; `juggler_cycle_m_finance`
+- **Open:** length \(84\) with \(m\ge 3\)
+- **Decision:** PROMOTE. The laboratory leftover is now period \(84\) with at least three odd-runs, or \(\ge 85\)
+
+```text
+What was learned
+- inv-sum finance plus a four-term height overcount kills
+  L=84 at m<=2 at floor 261
+- the uniform cap 2/261+2/4217+84/273845+31/68121 is
+  below theta * 61/11 for every o>=53
+- first-odd / later-odd certificates are 4217 and 273845
+- Eliahou leftover stays length-only (84, listed, or >=10^5)
+- residual-floor factory to 1981/4756 remains PARK
+Strongest theorem
+- cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five
+  (EXACT — LEAN VERIFIED)
+Strongest refutation
+- none new
+Reusable machinery
+- CycleHeightFinance.lean: oddRunDepth, cycleCircuitCount,
+  inv-sum envelope, uniform L=84 m<=2 cap
+Branch status
+- PROMOTE
+Why
+- the unpaid Lean packaging of the height law is now the
+  laboratory leftover, without a PositionFinance layer
+Best next question
+- exclude length 84 at m>=3 at floor 261, or stop and write
+  the finance theorem as it stands
+```
+
 

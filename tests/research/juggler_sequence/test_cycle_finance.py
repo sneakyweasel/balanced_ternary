@@ -199,5 +199,7 @@ def test_dossier_boundary():
     assert "cycle_word_formally_expanding" in dossier
     assert "simons-de-weger-2005-collatz-m-cycles" in dossier
     assert "cycle_word_eliahou_leftover" in dossier
+    assert "cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five" in dossier
     assert "theorem no_cycle_word_any_length" not in dossier
     assert "CycleFinance" not in paper
+    assert "CycleHeightFinance" not in paper

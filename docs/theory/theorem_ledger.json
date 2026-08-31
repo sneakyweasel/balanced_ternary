@@ -5315,10 +5315,22 @@
   {
     "id": "J-cycle-word-length-eighty-four-or-ge-eighty-five",
     "tag": "EXACT — LEAN VERIFIED",
-    "statement": "If a nontrivial Juggler cycle word exists at n ≥ 2, its period is 84 or at least 85. Lengths ≤ 56 are excluded at floor 257; lengths 57–83 are excluded by cycle_finance_min_two_hundred_sixty_one at 15921/11 (finance_excludes_length_fiftyseven, finance_excludes_length_seventysix, and companions, packaged as no_cycle_word_length_lt_eighty_four). Length 84 is the next record near-convergent (need ≈ 40269). Lean theorem cycle_word_length_eighty_four_or_ge_eighty_five. Strengthened by J-cycle-word-eliahou-leftover, which rewrites this leftover plus the finance table as period 84, a listed near-convergent, or at least 10^5. This is not a no-cycle-of-any-length theorem, and not a halt theorem.",
+    "statement": "If a nontrivial Juggler cycle word exists at n ≥ 2, its period is 84 or at least 85. Lengths ≤ 56 are excluded at floor 257; lengths 57–83 are excluded by cycle_finance_min_two_hundred_sixty_one at 15921/11 (finance_excludes_length_fiftyseven, finance_excludes_length_seventysix, and companions, packaged as no_cycle_word_length_lt_eighty_four). Length 84 is the next record near-convergent (need ≈ 40269). Lean theorem cycle_word_length_eighty_four_or_ge_eighty_five. Strengthened by J-cycle-word-length-eighty-four-m-ge-three-or-ge-eighty-five, which kills length 84 with at most two odd-runs, and by J-cycle-word-eliahou-leftover, which rewrites the length leftover plus the finance table as period 84, a listed near-convergent, or at least 10^5. This is not a no-cycle-of-any-length theorem, and not a halt theorem.",
     "source": "docs/problems/juggler_cycle_finance.md",
     "lean": "Problems/Juggler/CycleFinance.lean",
     "tests": [
+      "tests/research/juggler_sequence/test_cycle_finance.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-cycle-word-length-eighty-four-m-ge-three-or-ge-eighty-five",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "If a nontrivial Juggler cycle word exists at n ≥ 2, its period is 84 with at least three odd-runs on a CycleMin rotation, or at least 85. At residual floor 261 the inv-sum form of cycleMin_finance (constant 1) plus a uniform odd-run height cap excludes every length-84 CycleMin with cycleCircuitCount ≤ 2: valleys ≤ m/n, first odds ≤ m/4217, later odds ≤ o/273845, evens ≤ e/n², using floorPower 261 = 4216 and floorPower 4217 = 273845. Lean theorems no_cycleMin_length_eighty_four_of_circuit_le_two and cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five in CycleHeightFinance.lean. This is not the 6/5 greedy packing of J-cycle-position-finance, not an exclusion of length 84 at m ≥ 3, not a no-cycle-of-any-length theorem, and not a halt theorem.",
+    "source": "docs/problems/juggler_cycle_position_finance.md",
+    "lean": "Problems/Juggler/CycleHeightFinance.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_position_finance.py",
       "tests/research/juggler_sequence/test_cycle_finance.py"
     ],
     "related_conjectures": []
@@ -5363,7 +5375,7 @@
   {
     "id": "J-cycle-position-finance",
     "tag": "EXACT — HUMAN PROOF",
-    "statement": "On a Juggler CycleMin start n ≥ 3 with m local minima and o odd letters, after j consecutive odd steps from a valley the state is at least τ_j, where τ_0=n and τ_{j+1} is the least odd integer ≥ T(τ_j). At most m climb interiors can sit at each height τ_j, so θ ≤ (6/5)(m/(n ln n)+Σ_j C_j/(τ_j ln τ_j)+(L−o)/(n² · 2 ln n)) with greedy C_j = min(m, remaining climbs). This is strictly stronger than charging every climb at T(n) whenever o−m > m. At floor 257 it excludes every length-84 1-cycle and 2-cycle (joint-minima misses both). Adversarial circuit-partition without a height law remains a reparameterization of cycleMin_finance. Not a halt theorem and not a new paper.",
+    "statement": "On a Juggler CycleMin start n ≥ 3 with m local minima and o odd letters, after j consecutive odd steps from a valley the state is at least τ_j, where τ_0=n and τ_{j+1} is the least odd integer ≥ T(τ_j). At most m climb interiors can sit at each height τ_j, so θ ≤ (6/5)(m/(n ln n)+Σ_j C_j/(τ_j ln τ_j)+(L−o)/(n² · 2 ln n)) with greedy C_j = min(m, remaining climbs). This is strictly stronger than charging every climb at T(n) whenever o−m > m. At floor 257 it excludes every length-84 1-cycle and 2-cycle (joint-minima misses both). The Lean leftover J-cycle-word-length-eighty-four-m-ge-three-or-ge-eighty-five packages the m≤2 exclusion at constant 1 and floor 261; the full 6/5 greedy packing is not Lean. Adversarial circuit-partition without a height law remains a reparameterization of cycleMin_finance. Not a halt theorem and not a new paper.",
     "source": "docs/problems/juggler_cycle_position_finance.md",
     "lean": "",
     "tests": [

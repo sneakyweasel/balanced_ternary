@@ -212,15 +212,16 @@ Classification **M_CYCLE_FINANCE_GREEN**. Regenerate with
 ## Open questions
 
 The Lean leftover is
-`cycle_word_length_eighty_four_or_ge_eighty_five` (floor \(261\)).
-Evaluating the *same* joint-minima bound at floor \(257\) excludes
-every length-38 cycle; the odd-run height refinement
+`cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five`
+(floor \(261\)). Evaluating the *same* joint-minima bound at
+floor \(257\) excludes every length-38 cycle; the odd-run height
+refinement
 ([juggler_cycle_position_finance.md](juggler_cycle_position_finance.md))
-then kills length \(84\) as a 1-cycle or 2-cycle. Joint-minima
+kills length \(84\) as a 1-cycle or 2-cycle in Lean. Joint-minima
 kills no \(m\) for \(L=84\) at the live floor. Raising the
 residual floor to \(1981\) (all \(m\)) or \(4756\) (global
 finance) is **PARK**. Length \(84\) with \(m\ge 3\) still needs a
-formalized height law or a different argument.
+different argument.
 
 ## Decision
 
@@ -232,10 +233,9 @@ every length-19 1-cycle. Adversarial circuit-partition is a
 reparameterization and is not promoted. No Lean in this phase. Paper
 A is unchanged. Not a halt theorem.
 
-Best next question: formalize the odd-run height law (or
-joint-minima) on `CycleFinance.lean` so the Lean leftover becomes
-period \(84\) with \(m\ge 3\), or a later near-convergent. The
-floor-\(257\) evaluation, the height refinement, and the PARK of
+Best next question: exclude length \(84\) at \(m\ge 3\) at floor
+\(261\), or stop and write the finance theorem as it stands. The
+floor-\(257\) evaluation, the height leftover, and the PARK of
 the \(4756\) residual-floor campaign are recorded in
 [juggler_cycle_position_finance.md](juggler_cycle_position_finance.md).
 

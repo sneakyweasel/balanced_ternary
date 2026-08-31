@@ -35,12 +35,16 @@ Dynamics → Iteration → Termination → Itinerary → WordStats
                               Residuals          CycleExtrema / leftover
                                                       ↓
                                                 CycleFinance
+                                                      ↓
+                                            CycleHeightFinance
 ```
 
 `CycleFinance` is a cycle leaf under `CycleCore` / leftover census
-(wholesale length exclusion from the finance inequality). It is not
-a corridor primitive and is not imported by `Corridor`,
-`EvenCountThree`, or `Problems.JugglerPaper`.
+(wholesale length exclusion from the finance inequality).
+`CycleHeightFinance` packages the inv-sum odd-run height cap on
+that leaf. Neither is a corridor primitive, and neither is
+imported by `Corridor`, `EvenCountThree`, or
+`Problems.JugglerPaper`.
 
 `CycleCore` imports `Envelope` + `Cells` + `MinimumRelative`, not
 `Residuals`. `Cycles.lean` re-exports Core + Obstructions + Extrema.
@@ -62,7 +66,8 @@ a corridor primitive and is not imported by `Corridor`,
 | Consumer | `CycleMin` + `aboveAnchor_of_cycleMin` | `CycleCore.lean` |
 | Consumer | `MinimalNonTerm` + `aboveAnchor_of_minimalNonTerm` | `Minimal.lean` |
 | Consumer | named `no_cycle_word_*` / isolated CycleMin wrappers | `CycleObstructions.lean` |
-| Consumer | cycle finance leftover (`L=19` or `L≥30`) | `CycleFinance.lean` |
+| Consumer | cycle finance leftover (`L=84` or `L≥85`) | `CycleFinance.lean` |
+| Consumer | height leftover (`L=84` with \(m\ge 3\), or \(L\ge 85\)) | `CycleHeightFinance.lean` |
 | Consumer | `ReturnBelow` | `Residuals.lean` |
 
 `EscapeEpisode` is Python-only. Do not merge `HasFiniteStop` with

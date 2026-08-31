@@ -20,8 +20,12 @@ descent-induction floor (every n <= N0 reaches 1), and stress-tests
 the per-step bound eps_i <= (6/5)/x_{i+1} on real orbit segments.
 A verified floor N0 excludes every length with n_max(L) <= N0.
 Lean: CycleFinance.lean (cycleMin_finance, no_cycle_word_length_le_nineteen,
-cycle_word_length_eighty_four_or_ge_eighty_five, cycle_word_eliahou_leftover).
+cycle_word_length_eighty_four_or_ge_eighty_five, cycle_word_eliahou_leftover)
+and CycleHeightFinance.lean
+(cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five).
 Eliahou leftover: period 84, or a listed near-convergent, or >= 10^5.
+The laboratory leftover is period 84 with at least three odd-runs,
+or length >= 85.
 """
 
 from __future__ import annotations
@@ -36,6 +40,7 @@ from typing import Any
 
 from research.juggler_sequence.lean_paths import (
     CYCLE_FINANCE,
+    CYCLE_HEIGHT_FINANCE,
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
     has_named,
@@ -111,6 +116,7 @@ EXISTING_LEAN = (
     "finance_excludes_length_fiftyseven",
     "finance_excludes_length_seventysix",
     "cycle_word_length_eighty_four_or_ge_eighty_five",
+    "cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five",
 )
 
 FORBIDDEN_THEOREMS = (
@@ -125,9 +131,14 @@ FORBIDDEN_NEW_API = (
     "FinanceBound",
 )
 
-REQUIRED_LEAN_FILES = (CYCLE_FINANCE,)
+REQUIRED_LEAN_FILES = (CYCLE_FINANCE, CYCLE_HEIGHT_FINANCE)
 FORBIDDEN_LEAN_FILES = (JUGGLER_DIR / "Finance.lean",)
-PAPER_FORBIDDEN = ("CycleFinance", "FinanceInequality", "FinanceBound")
+PAPER_FORBIDDEN = (
+    "CycleFinance",
+    "CycleHeightFinance",
+    "FinanceInequality",
+    "FinanceBound",
+)
 
 
 def git_commit() -> str:
