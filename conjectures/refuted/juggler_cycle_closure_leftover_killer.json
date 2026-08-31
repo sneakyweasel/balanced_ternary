@@ -1,0 +1,21 @@
+{
+  "id": "juggler_cycle_closure_leftover_killer",
+  "title": "Exact cyclic floor closure empties a surviving (L,o) in E_run(10^6) without enumerating words",
+  "statement": "Forward/backward exact floor intervals, or a low-dimensional remainder after eliminating intermediate states, rule out at least one leftover pair (L, o_min(L)) in E_run(10^6), in particular L=25781 or L=55293, for every admissible CycleMin word.",
+  "status": "REFUTED",
+  "counterexamples": [
+    "Word-independent hull is T ≤ n^{P_L} with no word-free lower bound better than 1. At L=25781 the finance window [10^6+1, 26254995] meets the envelope hi ≈ 2.627e7. At L=55293 the window [10^6+1, 1388975] meets envelope hi ≈ 1.414e6",
+    "Mechanical OOE/OE interval at L=25781 is [986891, 25482877] and meets the start. One extreme OE-run crashes; the union over orders still meets. Emptying one necklace at L=55293 is not a pair theorem",
+    "OE is the exponent cell z^4 ≤ x^3 < (z+1)^4 (singleton). OOE can sit one below floor(x^{9/8}). Cycle remainder n^{3^o}-n^{2^L}=Δ is global_defect_identity; gcd(n,Δ)=n^{2^L} is tautological. Odd inverse uniqueness is odd_cell_unique"
+  ],
+  "first_seen": "juggler exact cycle-floor closure",
+  "lean_reference": "global_defect_identity",
+  "literature": [
+    "simons-de-weger-2005-collatz-m-cycles"
+  ],
+  "mathematical_domain": "Juggler cycle finance / exact floor closure",
+  "notes": "Local cells and the cycle identity are existing machinery. Pair-level closure does not beat the envelope. No Paper A edit, no ledger row, no Lean. Not a halt theorem.",
+  "origin": "docs/problems/juggler_cycle_closure.md",
+  "proof_reference": "docs/problems/juggler_cycle_closure.md",
+  "tested_range": "L=25781 and L=55293 at n in [10^6+1, n_max_par]; OE/OOE/OOOE/OOEOE/OOEOOE samples 400; odd inverse chains at 3,13,37,365,1000001"
+}

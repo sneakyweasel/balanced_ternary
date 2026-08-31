@@ -13,3 +13,5 @@ Run-type leftover scan: `budget_opt.json`
 (`write_budget_opt_artifacts`; does not replace the tables).
 Cyclic run-extremum scan: `run_extremum.json`
 (`write_run_extremum_artifacts`; does not replace the tables).
+Prefix-feasibility scan: `prefix_feasibility.json`
+(`write_prefix_feasibility_artifacts`; does not replace the tables).

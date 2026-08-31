@@ -16020,4 +16020,71 @@ Best next question
 - none from Fourier
 ```
 
+## Juggler cycle prefix-expansion feasibility
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether a run-type leftover \((L,o_{\min})\) admits any cyclic \(O/E\) lattice path whose every prefix stays expanding, together with \(a_0\ge 2\) and first-OO \(R(2)=0\)
+- **Hypotheses:** a near-convergent endpoint \(3^o>2^L\) cannot be assembled from prefixes with \(3^{o_k}\ge 2^k\)
+- **Major results:** Extremal path \(o_k=r(k)\) **EXACT — HUMAN PROOF**: unique tight lattice path from \((0,0)\) to \((L,o_{\min})\), starts `OOE`, first isolated-`OE` count \(0\). On all \(99\) leftovers, including \(25781\) (\(o=16266\)) and \(55293\), \(\mathcal A_{L,o}\) is nonempty. Ceiling Christoffel of slope \(o_{\min}/L\) is a second witness. Artifact `prefix_feasibility.json`. No ledger row, no Paper A, no Lean
+- **Refuted ideas:** prefix-expansion leftover-killer (`juggler_cycle_prefix_feasibility_leftover_killer`)
+- **Literature:** Beatty / mechanical words; `aboveAnchor_not_envelope_drop`; `J-cyclemin-first-oo-r-bound`; Christoffel necklace rigidity already REFUTED
+- **Open:** none from prefix expansion
+- **Decision:** CLOSE. The run-type theorem stays PROMOTE
+
+```text
+What was learned
+- the unique extremal path o_k = r(k) realises every leftover
+- it starts OOE, so a0 = 2 and R(2) = 0 hold automatically
+- ceiling Christoffel of slope o_min/L is a second witness
+- prefix expansion is the endpoint inequality plus a0 >= 2
+- none of the 99 leftovers dies
+Strongest theorem
+- o_k = r(k) is an admissible prefix path to (L, o_min)
+  for every L >= 1
+Strongest refutation
+- near-convergent (L, o_min) does not force a prefix deficit
+Reusable machinery
+- extremal_word / prefix_feasibility.json
+Branch status
+- CLOSE
+Why
+- every survivor has a constructive symbolic path; the attack
+  has no leftover leverage beyond the known endpoint envelope
+Best next question
+- none from prefix expansion
+```
+
+## Juggler exact cycle-floor closure
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether exact forward/backward floor intervals empty a leftover \((L,o)\) in \(\mathcal E_{\mathrm{run}}(10^6)\), especially \(L=25781\) and \(L=55293\), without enumerating words
+- **Hypotheses:** near-convergent exponent balance can hold while the coupled integer/floor system cannot close
+- **Major results:** OE cell \(z^4\le x^3<(z+1)^4\) **EXACT — HUMAN PROOF** (singleton; \(400\) samples gap \(0\)). OOE landing is a singleton with possible floor lag \(1\). Word-independent hull is \(T\le n^{P_L}\) (**REPARAMETERIZATION** of `power_bound_word`) and meets both finance windows. Mechanical necklace interval meets at \(L=25781\) (\([986891,25482877]\)); one extreme order crashes; the union still meets. Cycle remainder is `global_defect_identity`; odd inverses are `odd_cell_unique`; first versus last cells are CycleMin extrema at different indices. Artifact `cycle_closure/summary.json`. No ledger row, no Paper A, no Lean
+- **Refuted ideas:** pair-level closure leftover-killer (`juggler_cycle_closure_leftover_killer`)
+- **Literature:** existing Cells / GlobalDefect / cyclic feasibility / backward geometry; same Simons–de Weger finance template
+- **Open:** none from exact pair-level closure
+- **Decision:** CLOSE. The run-type theorem stays PROMOTE
+
+```text
+What was learned
+- OE is the exponent cell plus evenness of T(x); the image is a singleton
+- OOE can sit one below floor(x^{9/8}); that is slack, not a tighter cell
+- word-independent intervals are T ≤ n^{P_L} and stay feasible
+- first-odd and last-even cells are different indices (existing overshoot)
+- the cycle identity is global_defect_identity; gcd is tautological
+Strongest theorem
+- if x --OE--> z then z^4 ≤ x^3 < (z+1)^4
+Strongest refutation
+- exact floor closure does not empty (25781, 16266) or (55293, 34886)
+Reusable machinery
+- oe_cell_holds / word_independent_hull / cycle_closure/summary.json
+Branch status
+- CLOSE
+Why
+- pair-level closure is the envelope plus the existing cells;
+  a kill would require fixing a complete word
+Best next question
+- none from exact pair-level closure
+```
+
 

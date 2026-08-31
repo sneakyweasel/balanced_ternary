@@ -178,11 +178,12 @@ It is not required.
 ## Experiments
 
 - Probe: `research.juggler_sequence.cycle_budget_opt`,
-  `cycle_run_extremum`
+  `cycle_run_extremum`, `cycle_prefix_feasibility`
 - Dataset: `data/research/juggler/cycle_finance/budget_opt.json`,
-  `run_extremum.json`
+  `run_extremum.json`, `prefix_feasibility.json`
 - Tests: `tests/research/juggler_sequence/test_cycle_budget_opt.py`,
-  `test_cycle_run_extremum.py`
+  `test_cycle_run_extremum.py`,
+  `test_cycle_prefix_feasibility.py`
 - Window: the \(141\) parity leftovers at \(n=10^6+1\). Fast suite
   only. No CLI. No Lean.
 
@@ -201,6 +202,12 @@ The hypothesis that cyclic run-depth / adjacency forces
 \(S_{\mathrm{exact}}<\texttt{budget_rhs}\) and shrinks the
 \(99\) leftovers is **REFUTED**
 (`conjectures/refuted/juggler_cycle_run_extremum_leftover_killer.json`).
+
+The hypothesis that a near-convergent leftover has no
+prefix-expanding \(O/E\) path is **REFUTED**
+(`conjectures/refuted/juggler_cycle_prefix_feasibility_leftover_killer.json`).
+See
+[juggler_cycle_prefix_feasibility.md](juggler_cycle_prefix_feasibility.md).
 
 ## Formalization
 
@@ -232,6 +239,14 @@ list. No `CycleBudgetOpt.lean`. Paper A is unchanged.
   not drop \(N_{\mathrm{cheap}}\) below \(o-e\) and excludes
   none of the \(99\).
 
+- **Prefix-expansion feasibility** — **COMPUTATIONALLY VERIFIED**
+  (`prefix_feasibility.json`): every one of the \(99\) leftovers
+  admits the extremal path \(o_k=r(k)\) and the ceiling
+  Christoffel word of slope \(o_{\min}/L\). Both start `OOE`
+  with first isolated-`OE` count \(0\). No leftover dies.
+  Separate dossier:
+  [juggler_cycle_prefix_feasibility.md](juggler_cycle_prefix_feasibility.md).
+
 ## Open questions
 
 None from cyclic run packing. The necklace
@@ -257,9 +272,20 @@ already the relaxed finance maximum. Cheap-`OOE` adjacency is
 No leftover among the \(99\) dies. Keep the exchange lemma as
 negative knowledge. No Paper A edit.
 
-Best next question: none from cyclic run packing. The frontier
-leftover \(L=25781\) still has a factor-\(23\) valley gap at
-\(P=1\).
+The prefix-expansion leftover-killer is **CLOSE**
+(`juggler_cycle_prefix_feasibility_leftover_killer`). The
+extremal path \(o_k=r(k)\) realises every leftover, including
+\(25781\) and \(55293\). Prefix constraints collapse to the
+endpoint plus \(a_0\ge 2\). No leftover among the \(99\) dies.
+
+Exact pair-level floor closure is **CLOSE**
+(`juggler_cycle_closure_leftover_killer`). Word-independent
+intervals are the exponent envelope. No leftover \((L,o)\)
+dies.
+
+Best next question: none from cyclic run packing, prefix
+expansion, or exact pair-level closure. The frontier leftover
+\(L=25781\) still has a factor-\(23\) valley gap at \(P=1\).
 
 ## Publication assessment
 

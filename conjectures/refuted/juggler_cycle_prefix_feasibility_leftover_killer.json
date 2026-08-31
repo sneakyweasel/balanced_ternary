@@ -1,0 +1,21 @@
+{
+  "id": "juggler_cycle_prefix_feasibility_leftover_killer",
+  "title": "Near-convergent endpoint pairs cannot be realized by any prefix-expanding cyclic O/E path",
+  "statement": "For a run-type leftover (L, o_min), the set A_{L,o} of cyclic O/E words with o_L = o_min, a0 >= 2, first isolated-OE r <= R(a0), and 3^{o_k} >= 2^k on every prefix is empty. In particular this kills L=25781 or an infinite near-convergent family.",
+  "status": "REFUTED",
+  "counterexamples": [
+    "The unique extremal path o_k = r(k) = min{r: 3^r >= 2^k} is a lattice path from (0,0) to (L, o_min) for every L >= 1. Every prefix satisfies 3^{o_k} >= 2^k by construction",
+    "The path starts OOE, so a0 = 2 and the first isolated-OE count is 0 = R(2). It is not a prefix OOEOE",
+    "On all 99 run-type leftovers at N0=10^6, including L=25781 (o=16266) and L=55293, A_{L,o} is nonempty. The ceiling Christoffel word of slope o_min/L is a second witness"
+  ],
+  "first_seen": "juggler cycle prefix-expansion feasibility",
+  "lean_reference": "aboveAnchor_not_envelope_drop",
+  "literature": [
+    "simons-de-weger-2005-collatz-m-cycles"
+  ],
+  "mathematical_domain": "Juggler cycle finance / prefix Diophantine order",
+  "notes": "Prefix expansion plus a0 >= 2 is equivalent to the endpoint inequality 3^o > 2^L. A nonempty A_{L,o} is not an integer cycle. No Paper A edit, no ledger row, no Lean. Not a halt theorem.",
+  "origin": "docs/problems/juggler_cycle_prefix_feasibility.md",
+  "proof_reference": "docs/problems/juggler_cycle_prefix_feasibility.md",
+  "tested_range": "99 run-type leftovers; spotlight L=25781 and L=55293; exact integer 2^k vs 3^{o_k}"
+}

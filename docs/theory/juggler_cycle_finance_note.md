@@ -254,6 +254,12 @@ These were run. None of them changes the leftover.
   the bunched word and the mechanical `OOE`/`OE` necklace. None
   of the \(99\) leftovers dies. Band-limit \(m\le L/12\) fails
   (tail \(\ge 0.05\)).
+- Exact pair-level floor-closure leftover-killer — **CLOSE**
+  (`juggler_cycle_closure_leftover_killer`). Word-independent
+  forward/backward intervals are the exponent envelope
+  \(T\le n^{P_L}\). Local OE is the cell \(z^4\le x^3<(z+1)^4\).
+  The cycle remainder is `global_defect_identity`. Neither
+  \(L=25781\) nor \(L=55293\) dies as a pair.
 - Prefix-weight leftover-killer (\(P\equiv 1\), or optimistic
   later-valley \(P\ge 9/8\)) — **CLOSE**
   (`juggler_cycle_prefix_weight_leftover_killer`). The published

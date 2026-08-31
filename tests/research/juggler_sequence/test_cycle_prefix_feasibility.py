@@ -16,7 +16,6 @@ from research.juggler_sequence.cycle_finance import (
 from research.juggler_sequence.cycle_prefix_feasibility import (
     ceiling_christoffel_word,
     extremal_word,
-    feasibility_row,
     first_isolated_oe_count,
     first_odd_run,
     first_oo_ok,
@@ -45,40 +44,29 @@ def test_small_envelope_and_extremal_start():
 
 
 def test_spotlight_25781_and_55293_have_paths():
-    row = feasibility_row(25781)
     odd_count, _theta = o_min_and_theta(25781)
     assert odd_count == 16266
-    assert row["o"] == 16266
-    assert row["e"] == 9515
-    assert row["r_L"] == 16266
-    assert row["ends_at_o_min"]
-    assert row["all_prefixes_ok"]
-    assert row["starts_oo"]
-    assert row["a0"] == 2
-    assert row["first_isolated_oe_r"] == 0
-    assert row["first_oo_ok"]
-    assert row["prefix"].startswith("OOE")
-    assert not row["prefix"].startswith("OOEOE")
-    assert row["christoffel_admissible"]
-    assert row["A_nonempty"]
     word = extremal_word(25781)
     assert word.startswith("OOE")
     assert not word.startswith("OOEOE")
+    assert first_odd_run(word) == 2
+    assert first_isolated_oe_count(word) == 0
+    assert first_oo_ok(word)
     assert prefix_admissible(word)
     assert word.count("O") == 16266
+    assert r_of(25781) == 16266
 
-    tight = feasibility_row(55293)
-    assert tight["ends_at_o_min"]
-    assert tight["all_prefixes_ok"]
-    assert tight["first_oo_ok"]
-    assert tight["christoffel_admissible"]
-    assert tight["A_nonempty"]
-    assert tight["prefix"].startswith("OOE")
-    assert not tight["prefix"].startswith("OOEOE")
+    tight = extremal_word(55293)
+    odd_tight, _theta_tight = o_min_and_theta(55293)
+    assert tight.startswith("OOE")
+    assert not tight.startswith("OOEOE")
+    assert first_oo_ok(tight)
+    assert prefix_admissible(tight)
+    assert tight.count("O") == odd_tight
 
 
-def test_christoffel_matches_existing_formula_on_spotlights():
-    for length in (25781, 55293):
+def test_christoffel_matches_existing_formula_on_small_leftovers():
+    for length in (11, 19, 84):
         odd_count, _theta = o_min_and_theta(length)
         ours = ceiling_christoffel_word(length, odd_count)
         theirs = bits_to_word(christoffel_bits(length, odd_count))

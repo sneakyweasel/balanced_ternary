@@ -655,7 +655,11 @@ and `data/research/juggler/cycle_finance/`.
   packing is **PROMOTE**
   ([juggler_cycle_budget_opt.md](juggler_cycle_budget_opt.md)):
   it shrinks \(\mathcal E_{\mathrm{par}}(10^6)\) to \(99\)
-  leftovers without moving the first survivor.
+  leftovers without moving the first survivor. Closed peak–valley
+  Fourier and exact pair-level floor closure are both **CLOSE**
+  leftover-killers
+  (`juggler_cycle_fourier_leftover_killer`,
+  `juggler_cycle_closure_leftover_killer`).
 
 ## Decision
 
@@ -688,11 +692,26 @@ The cyclic run-type leftover-killer is **CLOSE**
 already the relaxed maximum; cheap-`OOE` adjacency does not
 prove \(N_{\mathrm{cheap}}<o-e\).
 
+The prefix-expansion leftover-killer is **CLOSE**
+(`juggler_cycle_prefix_feasibility_leftover_killer`): the
+extremal path \(o_k=r(k)\) and the ceiling Christoffel word
+are admissible for every one of the \(99\) leftovers.
+
+The Fourier leftover-killer is **CLOSE**
+(`juggler_cycle_fourier_leftover_killer`): the spectral moment
+is the O/E increment law.
+
+The exact pair-level floor-closure leftover-killer is **CLOSE**
+(`juggler_cycle_closure_leftover_killer`): word-independent
+intervals reduce to the exponent envelope.
+
 Best next question: none from prefix weights, run-type packing,
-or cyclic run packing. The frontier leftover \(L=25781\) still
-has a factor-\(23\) valley gap after the `OE`-start lift. The
-remaining slack is an \(m\)-bound or valley-height question
-already parked or refuted at the residual floor.
+cyclic run packing, prefix expansion, Fourier, or exact
+pair-level closure. The frontier leftover
+\(L=25781\) still has a factor-\(23\) valley gap after the
+`OE`-start lift. The remaining slack is an \(m\)-bound or
+valley-height question already parked or refuted at the
+residual floor.
 
 Length \(84\) at \(m\ge 3\) at floor \(261\) is **REFUTED** as a
 leftover-killer
@@ -705,6 +724,13 @@ Prefix weights \(1/P_i\) are also **REFUTED** as a leftover-killer
 (`juggler_cycle_prefix_weight_leftover_killer`).
 Cyclic run-depth / adjacency is also **REFUTED** as a leftover-killer
 (`juggler_cycle_run_extremum_leftover_killer`).
+Prefix expansion of near-convergents is also **REFUTED** as a
+leftover-killer
+(`juggler_cycle_prefix_feasibility_leftover_killer`).
+Closed peak–valley Fourier is also **REFUTED** as a leftover-killer
+(`juggler_cycle_fourier_leftover_killer`).
+Exact pair-level floor closure is also **REFUTED** as a leftover-killer
+(`juggler_cycle_closure_leftover_killer`).
 Run-height packing does not improve the length-only
 \(n_{\max}\) at \(o_{\min}\).
 
