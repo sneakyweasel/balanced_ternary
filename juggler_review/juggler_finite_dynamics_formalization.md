@@ -693,6 +693,17 @@ also Lean: for every window length \(50508\le L<301994\) the greedy
 Ostrowski digits over the certified denominators reconstruct \(L\)
 and sum to at most \(37\) (`window_digit_scan`, pointwise
 `window_digit_cap`), attained at \(L=275632\) (`window_digit_max`).
+The Denjoy–Koksma hypotheses are certified as well: the matching
+numerator list \(0,1,1,3,7,24,31,179,389,9126,18641,46408,65049\)
+(`theta_convergent_numerators`, `thetaConvergents_eq_zip`),
+unimodularity \(p_{j+1}q_j-p_jq_{j+1}=(-1)^j\)
+(`theta_convergents_unimodular`), coprimality
+(`theta_convergents_coprime`), the approximation quality
+\(|\theta-p/q|<1/q^2\) for all thirteen certified pairs against the
+sandwich bounds (`theta_convergent_quality`), and the
+block-permutation fact that multiplication by \(p\) permutes
+\(\mathbb{Z}/q\) (`residue_mul_bijective`,
+`theta_block_permutations`).
 
 `OstrowskiNumeration.lean` proves the digit-cap step of Theorem 5.8
 in general form: for any denominator sequence \(q\) with \(q_0>0\),
@@ -707,11 +718,12 @@ closes the window at \(q_{13}=301994\) and gives \(s(L)\le 47\) for
 `theta_sum_eq`); a `native_decide` bridge identifies the function
 form with the fold form `greedyDigitSum` below the window endpoint
 (`greedy_eq_ostro_below_window`, corollary `greedyDigitSum_le`).
-Denjoy–Koksma and the cylinder-interval bridge from the endpoints
+Denjoy–Koksma's variation-versus-integral inequality and the
+cylinder-interval bridge from the endpoints
 to \(\theta\) itself are classical and stay prose; the
 Denjoy–Koksma comparison and the kill tables (Theorem 5.9,
 Corollary 5.10) are human proof plus certified computation, not
-Lean.
+Lean (the kill *template* is: `cycleMin_hug_kill_criterion`).
 
 ## 9. Exact floor reductions for the discrepancy paper
 

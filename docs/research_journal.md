@@ -18811,6 +18811,20 @@ Best next question
 - **Open:** the §5 envelope chain now reduces to exactly two human analytic steps — the rotation average (Prop 5.5) and Denjoy–Koksma (Thm 5.7) — plus verified numeric evaluations; a Lean DK over `AddCircle` would make the census-free window envelope fully formal
 - **Decision:** PROMOTE (formalization landed); no new mathematical branch opened
 
+## Juggler DK block hypotheses certified in Lean
+
+- **Date:** 2026-09-01
+- **Objective:** The kill-criterion pass asked whether Denjoy–Koksma (Thm 5.7) is formalizable. Split: the variation-versus-integral inequality is classical (a Mathlib-scale BV/integration project — not lab content), but the *laboratory-specific* DK hypotheses — that the certified denominators are genuinely good approximations with coprime numerators — were not yet Lean. Certify those; PARK full DK
+- **Hypotheses:** the sandwich width (\(\approx 3.5\cdot 10^{-15}\)) is far below \(1/q_{12}^2\approx 3.2\cdot 10^{-11}\), so the quality certificate should close by rational comparison — confirmed, all 13 pairs pass
+- **Major results:**
+  - **Convergent quality is Lean** (`OstrowskiSandwich.lean` extension): numerator recurrence gives \(0,1,1,3,7,24,31,179,389,9126,18641,46408,65049\) (`theta_convergent_numerators`, zip identity `thetaConvergents_eq_zip`); consecutive pairs unimodular \(p_{j+1}q_j-p_jq_{j+1}=(-1)^j\) (`theta_convergents_unimodular`); all pairs coprime (`theta_convergents_coprime`); **every certified convergent satisfies \(|\theta-p/q|<1/q^2\)** against the sandwich bounds (`theta_convergent_quality`) — the quantitative hypothesis DK needs per block
+  - **Block permutation is Lean** (`residue_mul_bijective`, `theta_block_permutations`): multiplication by the coprime numerator permutes \(\mathbb{Z}/q\) — the one-orbit-point-per-grid-cell fact behind the DK proof
+  - **Boundary kept honest:** of Theorem 5.7 only the classical variation-versus-integral inequality and the cylinder-interval bridge remain prose (KNOWN); ledger row `J-cyclemin-walk-ostrowski-arithmetic` extended (tag unchanged, EXACT — LEAN VERIFIED); Paper A §5.5, §1.2 roles, Appendix A Thm 5.7 row, paper-barrel docstring, formalization map, AGENTS.md updated; full `lake build` clean
+- **Refuted ideas:** none — the falsifier (a quality check failing, which would have falsified the certified list itself) did not fire
+- **Literature:** none new — Denjoy–Koksma is used as a known tool, per the paper's role assignment
+- **Open:** full DK on `AddCircle` (BV + circle integration) is PARKED as a Mathlib-scale project with no new mathematical consequence for the lab; the rotation average (Prop 5.5, Laplace integral) likewise stays prose
+- **Decision:** PROMOTE the hypothesis certificates (trust-boundary consolidation); PARK Lean-DK itself; no new mathematical branch opened
+
 ## Juggler above-anchor walk envelope (asymptotic descent, Phase-0)
 
 - **Date:** 2026-09-01

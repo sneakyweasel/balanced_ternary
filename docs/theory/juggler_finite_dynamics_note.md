@@ -325,7 +325,10 @@ computation. Theorem 4.7
 is a human proof; Theorem 4.8 reuses the gap table under that
 packing. Proposition 4.9 is integer arithmetic in Lean. In
 Section 5, Theorem 5.7 is a human proof (Denjoy--Koksma is used
-as a known tool) and so is the rotation identification in
+as a known tool; its per-block hypotheses — convergent quality
+\(|\theta-p/q|<1/q^2\) and the block permutation — are Lean,
+`theta_convergent_quality`, `theta_block_permutations`) and so
+is the rotation identification in
 Lemma 5.6, whose word identity itself is Lean
 (`budgetedWord_eq_hugWord`); the transport
 inequality of Theorem 5.3 (`cycleMin_transport`), the
@@ -1797,7 +1800,18 @@ rational endpoints, and the convergent recurrence are Lean
 `lower_lt_walkTheta`, `walkTheta_lt_upper`, `cf_lower_prefix`,
 `cf_upper_prefix`, `theta_convergent_denominators`,
 `OstrowskiSandwich.lean`); the cylinder-interval bridge from the
-endpoints to \(\theta\) itself is classical. A Koksma-type bound
+endpoints to \(\theta\) itself is classical. The quantitative
+hypothesis Denjoy--Koksma needs per block is also Lean: with the
+matching numerators \(0,1,1,3,7,24,31,179,389,9126,18641,
+46408,65049\) (`theta_convergent_numerators`), consecutive
+pairs are unimodular, all pairs are coprime, every certified
+convergent satisfies \(|\theta-p/q|<1/q^2\) against the
+sandwich (`theta_convergents_unimodular`,
+`theta_convergents_coprime`, `theta_convergent_quality`), and
+each block's \(q\) rotation steps permute the \(q\) grid cells
+(`theta_block_permutations`). Only the classical
+variation-versus-integral inequality itself remains prose.
+A Koksma-type bound
 with constant \(1\) (that is, \(+1/L\)) is *false* for this
 observable; the correct constant is \(2s(L)\).
 
@@ -2029,7 +2043,7 @@ formally verified.
 | Theorem 5.4 | combinatorial core `hugOdds_le_of_admissible`; cycle-word domination `cycleMin_prefix_odds_ge_hug`, `cycleMin_odds_ge_hug`; charge maximisation `stateCharge_antitone`, `hug_charge_maximal` (`WalkChargeMax.lean`); strict within-\((L,o)\) uniqueness human |
 | Proposition 5.5 | rotation average; human proof, not Lean |
 | Lemma 5.6 | `budgetedWord_eq_hugWord`, `hugOdds_pow_ge`, `hugOdds_pow_lt`, `hugOdds_pow_gt`, `hugOdds_least` |
-| Theorem 5.7 | Denjoy--Koksma (known), not Lean; quotient arithmetic `theta_sandwich_upper`, `theta_sandwich_lower`, `lower_lt_walkTheta`, `walkTheta_lt_upper`, `cf_lower_prefix`, `cf_upper_prefix`, `theta_convergent_denominators` |
+| Theorem 5.7 | Denjoy--Koksma's variation inequality (known), not Lean; quotient arithmetic `theta_sandwich_upper`, `theta_sandwich_lower`, `lower_lt_walkTheta`, `walkTheta_lt_upper`, `cf_lower_prefix`, `cf_upper_prefix`, `theta_convergent_denominators`; DK hypotheses `theta_convergent_numerators`, `theta_convergents_unimodular`, `theta_convergents_coprime`, `theta_convergent_quality` (\(|\theta-p/q|<1/q^2\)), `theta_block_permutations` |
 | Theorem 5.8 | digit cap Lean: general numeration `ostroDigit_le`, `ostro_sum_eq`, `ostro_digitSum_le`, instance `theta_digitSum_le`, `greedyDigitSum_le`; scan `window_digit_scan`, `window_digit_cap`, `window_digit_max`; Denjoy--Koksma comparison human |
 | Theorem 5.9 | kill template `cycleMin_hug_kill_criterion` (`DefectFinance.lean`); the per-length kill table is verified computation |
 | Corollary 5.10 | second floor and kill table; verified computation, not Lean |

@@ -1,4 +1,5 @@
 import Mathlib.Analysis.SpecialFunctions.Log.Basic
+import Mathlib.Data.ZMod.Basic
 import Mathlib.Tactic
 
 namespace Problems.Juggler
@@ -31,12 +32,21 @@ This file certifies that arithmetic:
   window length `50508 ≤ L < 301994` decomposes into certified
   blocks with digit sum at most `37` (`window_digit_scan`,
   `window_digit_cap`), attained at `L = 275632`
-  (`window_digit_max`).
+  (`window_digit_max`);
+* the convergent quality behind Theorem 5.7's Denjoy–Koksma
+  application: numerators (`theta_convergent_numerators`),
+  unimodularity (`theta_convergents_unimodular`), coprimality
+  (`theta_convergents_coprime`), the approximation quality
+  `|θ − p/q| < 1/q²` for all thirteen certified pairs
+  (`theta_convergent_quality`), and the block-permutation fact
+  (`residue_mul_bijective`, `theta_block_permutations`).
 
 The bridge from the shared endpoint prefix to the continued fraction
 of `θ` itself is the classical cylinder-interval fact (KNOWN); it is
-used as prose in Paper A and is not re-proved here. Denjoy–Koksma is
-likewise KNOWN. Not a cycle obstruction and not a halt theorem.
+used as prose in Paper A and is not re-proved here. Denjoy–Koksma's
+variation-versus-integral inequality is likewise KNOWN — its
+laboratory-specific hypotheses (block quality and permutation) are
+certified above. Not a cycle obstruction and not a halt theorem.
 -/
 
 /-- Upper side of the sandwich: `3^10781274 < 2^17087915`,
@@ -180,5 +190,91 @@ theorem window_digit_cap {L : ℕ} (h1 : 50508 ≤ L) (h2 : L < 301994) :
   have hall := List.all_eq_true.mp window_digit_scan L
     (List.mem_range'_1.mpr ⟨h1, by omega⟩)
   exact of_decide_eq_true hall
+
+/-!
+## Convergent quality (the Denjoy–Koksma hypothesis)
+
+Theorem 5.7 applies Denjoy–Koksma per certified block. The DK
+hypothesis is that each block length is the denominator of a *good*
+rational approximation: `|θ − p/q| < 1/q²`. This section certifies
+that quality, and the block-permutation fact it feeds, from the
+sandwich bounds — so of Theorem 5.7 only the classical
+variation-versus-integral inequality itself remains prose (KNOWN).
+-/
+
+/-- Convergent numerators from a quotient list by the standard
+recurrence `p_n = a_n p_{n-1} + p_{n-2}`, with `p_{-1} = 1` and
+`p_0 = 0` prepended to the output. -/
+def convergentNums (as : List ℕ) : List ℕ :=
+  (as.foldl
+    (fun (st : ℕ × ℕ × List ℕ) a =>
+      let next := a * st.2.1 + st.1
+      (st.2.1, next, st.2.2 ++ [next]))
+    (1, 0, [0])).2.2
+
+/-- The certified quotients produce the numerator list matching
+`theta_convergent_denominators`. -/
+theorem theta_convergent_numerators :
+    convergentNums thetaQuotients =
+      [0, 1, 1, 3, 7, 24, 31, 179, 389, 9126, 18641, 46408, 65049] := by
+  native_decide
+
+/-- The certified convergent pairs `(p_j, q_j)` of `θ`. -/
+def thetaConvergents : List (ℕ × ℕ) :=
+  [(0, 1), (1, 2), (1, 3), (3, 8), (7, 19), (24, 65), (31, 84),
+   (179, 485), (389, 1054), (9126, 24727), (18641, 50508),
+   (46408, 125743), (65049, 176251)]
+
+/-- The pair list is exactly the zipped numerator/denominator
+recurrences. -/
+theorem thetaConvergents_eq_zip :
+    thetaConvergents =
+      (convergentNums thetaQuotients).zip
+        (convergentDenoms thetaQuotients) := by
+  native_decide
+
+/-- Unimodularity of consecutive certified pairs:
+`p_{j+1} q_j − p_j q_{j+1} = (−1)^j`. -/
+theorem theta_convergents_unimodular :
+    ∀ i < 12,
+      ((thetaConvergents[i + 1]!).1 * (thetaConvergents[i]!).2 : ℤ) -
+        (thetaConvergents[i]!).1 * (thetaConvergents[i + 1]!).2 =
+          (-1) ^ i := by
+  native_decide
+
+/-- Every certified pair is coprime. -/
+theorem theta_convergents_coprime :
+    ∀ pq ∈ thetaConvergents, Nat.Coprime pq.1 pq.2 := by
+  decide
+
+/-- **Convergent quality** (the Denjoy–Koksma hypothesis for the
+certified blocks): every certified convergent approximates `θ` to
+within `1/q²`, certified against the sandwich bounds. -/
+theorem theta_convergent_quality :
+    ∀ pq ∈ thetaConvergents,
+      |walkTheta - (pq.1 : ℝ) / pq.2| < 1 / (pq.2 : ℝ) ^ 2 := by
+  have hlo := lower_lt_walkTheta
+  have hhi := walkTheta_lt_upper
+  intro pq hpq
+  fin_cases hpq <;>
+  · rw [abs_sub_lt_iff]
+    constructor
+    · exact lt_of_lt_of_le (sub_lt_sub_right hhi _) (by norm_num)
+    · exact lt_of_lt_of_le (sub_lt_sub_left hlo _) (by norm_num)
+
+/-- Multiplication by a coprime residue permutes `ZMod q` — the
+block-permutation fact behind Denjoy–Koksma: the `q` rotation steps
+of one certified block visit the `q` grid cells bijectively. -/
+theorem residue_mul_bijective (q p : ℕ) (h : Nat.Coprime p q) :
+    Function.Bijective (fun i : ZMod q => (p : ZMod q) * i) :=
+  (ZMod.unitOfCoprime p h).mulLeft_bijective
+
+/-- Instance for every certified block. -/
+theorem theta_block_permutations :
+    ∀ pq ∈ thetaConvergents,
+      Function.Bijective
+        (fun i : ZMod pq.2 => ((pq.1 : ℕ) : ZMod pq.2) * i) :=
+  fun pq hpq =>
+    residue_mul_bijective pq.2 pq.1 (theta_convergents_coprime pq hpq)
 
 end Problems.Juggler

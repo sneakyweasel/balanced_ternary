@@ -135,9 +135,14 @@ The note's Lean-tagged theorems are listed in its Appendix A:
 * 5.5 (certified quotient arithmetic) `theta_sandwich_upper`,
       `theta_sandwich_lower`, `lower_lt_walkTheta`,
       `walkTheta_lt_upper`, `cf_lower_prefix`, `cf_upper_prefix`,
-      `theta_convergent_denominators` (`OstrowskiSandwich.lean`);
-      Denjoy--Koksma itself and the cylinder-interval bridge stay
-      human/KNOWN
+      `theta_convergent_denominators`; convergent quality
+      `theta_convergent_numerators`, `theta_convergents_unimodular`,
+      `theta_convergents_coprime`, `theta_convergent_quality`
+      (`|θ − p/q| < 1/q²` for all certified pairs), block
+      permutations `residue_mul_bijective`,
+      `theta_block_permutations` (`OstrowskiSandwich.lean`);
+      Denjoy--Koksma's variation inequality and the
+      cylinder-interval bridge stay human/KNOWN
 * 5.8 (digit cap) general Ostrowski numeration `ostroDigit_le`,
       `ostro_sum_eq`, `ostro_digitSum_le`, θ instance
       `theta_digitSum_le`, `greedyDigitSum_le`
