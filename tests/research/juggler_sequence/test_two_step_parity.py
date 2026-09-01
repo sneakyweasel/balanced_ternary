@@ -50,6 +50,7 @@ from research.juggler_sequence.two_step_parity import (
     x1_remainder_reduction_scan,
     v_level_cell_scan,
     w_gap_freeze_scan,
+    w_carry_run_scan,
     lemma_a_prime_scan,
     lemma_m_scan,
     level2_gap_check,
@@ -447,6 +448,7 @@ def test_anti_overclaim_depth5_flag():
     assert ANTI_OVERCLAIM["length7_remainder_engine_proved"] is True
     assert ANTI_OVERCLAIM["length7_passenger_theorem_t_refuted"] is True
     assert ANTI_OVERCLAIM["length7_vdc3_chirps_proved"] is True
+    assert ANTI_OVERCLAIM["length7_x3_qr3_carry_refuted"] is True
     assert ANTI_OVERCLAIM["increment_first_k3_refuted"] is True
     assert ANTI_OVERCLAIM["x1_absorption_k3_refuted"] is True
     assert ANTI_OVERCLAIM["k3_toolkit_parked"] is True
@@ -846,6 +848,7 @@ def test_w_family_33_32_algebra():
     assert ANTI_OVERCLAIM["length7_remainder_engine_proved"] is True
     assert ANTI_OVERCLAIM["length7_passenger_theorem_t_refuted"] is True
     assert ANTI_OVERCLAIM["length7_vdc3_chirps_proved"] is True
+    assert ANTI_OVERCLAIM["length7_x3_qr3_carry_refuted"] is True
     assert ANTI_OVERCLAIM["depth7_engine_contracting_proved"] is False
 
 

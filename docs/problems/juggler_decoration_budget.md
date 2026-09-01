@@ -173,7 +173,10 @@ Do not open a \(P_0\)-effectiveness campaign.
 (ratio \(3P^{-1/48}\to 0\)); \(|j|\le 3\) on every
 sampled orbit; the \(7:4\) composite is single-signed;
 term count is a fixed \(9\). Not a Theorem-T witness.
-Do not retag the kernel. Paper B frozen. Best next
+Do not retag the kernel. The printed \(|t|\le P^{1/16}\)
+and “at most eight” holes are absorbed in the 2 September
+2026 Paper B writeup (\(|q_d|\le 4P^{1/24}\), nine
+decorations). Claim set still \(13/16\). Best next
 question: one independent human check of Section 5.
 
 ## Publication assessment

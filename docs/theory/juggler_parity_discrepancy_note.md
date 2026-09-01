@@ -1,7 +1,7 @@
 ---
 title: Parity equidistribution of nested floor powers, with descent applications to the Juggler map
 author: Philippe Cochin
-date: 29 August 2026
+date: 2 September 2026
 subtitle: Working draft. Not submitted.
 header-includes:
   - \AtBeginDocument{\author{Philippe Cochin \\ \texttt{philippe@cochin.fr}}}
@@ -631,7 +631,10 @@ the second-difference identity
 \(y-x\le8P\,(V/(c_7S))^{1/2}\). Summing the \(O_E(1)\) pieces gives
 (i). For (ii): on the complement, \(f''\) is continuous with
 \(|f''|\ge V\), hence single-signed on each maximal interval, and
-\(|f''|\le|A|+|B|+|C|+|g''|\le C(E)S\). \(\square\)
+\(|f''|\le|A|+|B|+|C|+|g''|\le C(E)S\). For the triple
+\(\bigl(\tfrac54,\tfrac{11}{8},\tfrac32\bigr)\) of Theorem 5.3,
+Step 5b, the \(\ell^\infty\) operator norm of the inverse is
+\(288\), and one may take \(c_7=1/288\). \(\square\)
 
 The lemma is a measure statement, not an exponential-sum estimate:
 in its one application (Theorem 5.3, Step 5b) the sublevel set
@@ -1420,11 +1423,19 @@ factor \(1+CP^{-\rho}\), the size of \(B\), so Lemma 3.3 applies at
 \(B\)'s scale.
 
 Every numerical margin in this section is claimed only for
-\(P\ge P_0\), with an absolute but ineffective \(P_0\). Several
-comparisons (for instance
-\(54P^{-25/24}\le0.1P^{-5/6}\) in Step 5b) force \(P_0\) to be
-large; the constants are not asserted to be sharp, and no
-effective threshold is computed.
+\(P\ge P_0\), with an absolute but ineffective \(P_0\). The
+comparisons stratify. The Lemma 3.7 / Lemma 5.2 window
+hypotheses first hold together on the printed majorants at a
+moderate threshold (of size \(3\cdot 10^5\)). The interpolant
+error of Step 5b is \(O(P^{-5/6})\) with leading coefficient
+\(0.11\), and is not absorbed into a smaller constant. The
+comparison \(V\le c_7S/2\) at \(c_7=1/288\) for the printed
+triple of Step 5b forces \(P_0\) to be large (of size
+\(10^{24}\)): until then a three-term zero of \(\Phi''\) can
+keep the sublevel \(\Omega_V\) of length \(\Theta(P)\) on a
+dyadic block, and the printed length \(P^{89/96}\) is the bound
+of Lemma 3.9, not a claim that the sublevel is short at small
+\(P\). The constants are not asserted to be sharp.
 
 The proof of the kernel theorem classifies the differenced pieces
 into four classes; three are handled by standard tests, and the
@@ -1435,11 +1446,11 @@ checked independently.
 
 **Lemma 5.2 (level-2 waves: the mixed-piece bound).**
 Assume (C1)–(C3), write \(\mathcal D=\{0,d_1,d_2,d_1{+}d_2\}\), and
-call a *decoration* any sum \(\rho\) of at most eight terms of the
+call a *decoration* any sum \(\rho\) of at most nine terms of the
 classes
 
 - (D1) \(q'\,\Delta_{2h}\Delta_{2h'}Y(n{+}d')\) with
-  \(|q'|\le P^{1/16}\), \(1\le h'\le2P^{1/24}\),
+  \(|q'|\le 4P^{1/24}\), \(1\le h'\le2P^{1/24}\),
   \(d'\in\mathcal D\);
 - (D2) \(-\Delta_{2h}\bigl(c\,\lfloor
   F_{\boldsymbol\kappa}(X)\rfloor\bigr)(n)\), with
@@ -1463,7 +1474,7 @@ P^{\varepsilon};
 \]
 
 (ii) *(waves)* for all integer coefficients \((q_d)_{d\in\mathcal D}\)
-with \(|q_d|\le P^{1/16}\) and
+with \(|q_d|\le 4P^{1/24}\) and
 \(t:=\sum_{d\in\mathcal D}q_d\ne0\), all
 \(\varepsilon_0\in\{0,1\}\), and \(\varphi\) of class (D3),
 \[
@@ -1515,8 +1526,10 @@ and \(\Delta_{2h_3}\varphi\) (class (D3):
 \(|(\Delta_{2h_3}\varphi)''|\le2h_3\sup|\varphi'''|
 \le6kh_1h_2h_3P^{-13/8}\le3kh_1h_2P^{-5/8}\) since
 \(h_3\le P^{1/4}\)). The hypothesis of (i) holds:
-\(th_3\le t\cdot2t^{1/3}P^{1/12}=2t^{4/3}P^{1/12}
-\le2P^{1/12+1/12}\le P^{1/2}\). Part (i) gives
+\(th_3\le t\cdot2t^{1/3}P^{1/12}=2t^{4/3}P^{1/12}\).
+With \(|q_d|\le4P^{1/24}\) one has \(t\le16P^{1/24}\), so
+\(2t^{4/3}P^{1/12}\le81P^{5/36}\le P^{1/2}\) for
+\(P\ge P_0\), and \(H_3\le3P^{7/72}\le P^{1/4}\). Part (i) gives
 \[
 |U|^2\le\frac{P^2}{H_3}
 +\Bigl(4t^{1/2}H_3^{1/2}P^{13/8}
@@ -1526,10 +1539,10 @@ and \(\Delta_{2h_3}\varphi\) (class (D3):
 and at \(H_3=\lceil t^{1/3}P^{1/12}\rceil\) the four terms are, in
 order, \(\le t^{-1/3}P^{23/12}\);
 \(\le6t^{2/3}P^{5/3}=6\,(tP^{-1/4})\,t^{-1/3}P^{23/12}
-\le6P^{1/16-1/4}\cdot t^{-1/3}P^{23/12}\);
+\le96P^{1/24-1/4}\cdot t^{-1/3}P^{23/12}\);
 \(\le6t^{-1/3}P^{1/24}P^{15/8}=6t^{-1/3}P^{23/12}\); and
 \(\le4\,(t^{1/3}P^{-1/24})\,t^{-1/3}P^{23/12}
-\le4P^{1/48-1/24}\,t^{-1/3}P^{23/12}\). Hence
+\le11P^{1/72-1/24}\,t^{-1/3}P^{23/12}\). Hence
 \(|U|^2\ll t^{-1/3}P^{23/12+\varepsilon}\), which is (ii).
 
 *Proof of (i).* Six stages; write \(\nu=n+d\) (a shift of the block
@@ -1678,12 +1691,13 @@ margin against the Stage-4 curvature
   (the second term is what the \(H_3\)-averaging of part (ii)
   absorbs: it contributes
   \(\le2h't^{-2/3}P^{43/24}\le P^{1/24-1/8}\,t^{-1/3}P^{23/12}\)
-  there). The \(\theta\)-coefficient of the decoration is
+  there).   The \(\theta\)-coefficient of the decoration is
   \(\le|q'|\bigl(2|j'|P^{-1/4}+20hh'P^{-3/4}\bigr)
-  \le6P^{1/16-1/4}+20P^{1/16+1/4+1/24-3/4}<1\): sub-unit, expanded
+  \le24P^{1/24-1/4}+160P^{1/24+1/8+1/24-3/4}
+  =24P^{-5/24}+160P^{-13/24}<1\): sub-unit, expanded
   in the Stage-2 families. Its smooth curvature has ratio
   \(\le|q'|\bigl(2|j'|P^{-5/4}+25hh'P^{-7/4}\bigr)
-  /(0.30uhP^{-3/4})\le20P^{1/16}P^{-1/2}+84P^{1/16+1/24}P^{-1}
+  /(0.30uhP^{-3/4})\le80P^{1/24-1/2}+672P^{1/24+1/24-1}
   \le P^{-1/4}\): dominated.
 - (D2). Write
   \(\Delta(c\lfloor F\rfloor)
@@ -1897,7 +1911,8 @@ displayed majorant and flat costs.
 
 *Step 4 (pieces with wave content: Lemma 5.2(ii)).* Let
 \(t=\sum_iq_i\) be the total wave frequency,
-\(|t|\le3J_2\le P^{1/16}\).
+\(|t|\le3J_2\le12P^{1/24}\), inside the coefficient budget of
+Lemma 5.2(ii).
 
 If \(t\ne0\): telescoping,
 \(\sum_iq_iY(n{+}e_i)=t\,Y(n{+}e_1)+\sum_{i\ge2}q_i\,
@@ -1957,8 +1972,9 @@ single-signed at the displayed scale. Every competitor is dominated at a display
 margin: differenced-wave modes
 \(\le0.84\,uh_1P^{-3/4}\le0.51P^{-1/4}\) (since \(uh_1\le0.6P^{1/2}\)),
 ratio \(\le0.43P^{-1/8}\) against \(\lambda_a\ge1.2P^{-1/8}\);
-resonant (D1) content \(\le6\,|q'|P^{-5/4}\cdot P^{1/16}\)-scale,
-ratio \(\le5P^{-9/16}\); slow modes
+resonant (D1) content \(\le6\,|q'|P^{-5/4}\) with
+\(|q'|\le4P^{1/24}\), ratio \(\le20P^{1/24-5/4+1/8}=20P^{-13/12}\);
+slow modes
 \(\le3J_2|j|P^{-5/4}\), ratio \(\le8P^{1/24-9/8}\); (D3) content,
 ratio \(\le3h_1h_2P^{-1/2}\le P^{-1/4}\). The \(\theta\)-sawtooth of
 the anchor has coefficient \(\tfrac9{16}k|j|P^{3/8}\)-scale with
@@ -2106,10 +2122,13 @@ differenced-wave scale present. Three regimes.
   \le\tfrac9{32}(u{+}u')P^{-5/4}
   +\lvert c_{11}''\rvert
   +8k(h_1{+}h_2)P^{-9/8}
-  \le203P^{-25/24}+0.11P^{-5/6}+16P^{-25/24}
-  \le0.1P^{-5/6}
+  \le219P^{-25/24}+0.11P^{-5/6}.
   \]
-  for \(P\ge P_0\).
+  The second term is the leading interpolant error and is not
+  absorbed into a smaller multiple of \(P^{-5/6}\). The first
+  term dies relative to it. The comparison
+  \(V\ge10\lvert f''-\Lambda\rvert\) below is read from this
+  two-term majorant, for \(P\ge P_0\).
 
   *Leading monomials.* Mean-value expansion gives
   \(\delta_h(\nu)=3h\,\xi^{1/2}\) with \(\xi\in(\nu,\nu{+}2h)\),
@@ -2175,8 +2194,16 @@ differenced-wave scale present. Three regimes.
   \(\lvert wX''\rvert\ll P^{-1/2}\).
 
   *Splitting.* Choose \(V:=3S^{1/2}P^{-11/24}\), so that
-  \(V/S\le6.7P^{-7/48}\) (hence \(V\le c_7S/2\) for \(P\ge P_0\)) and
-  \(V\ge1.35P^{-37/48}\ge10\,|f''-\Lambda|\). By Lemma 3.9 the set
+  \(V/S\le6.7P^{-7/48}\) (hence \(V\le c_7S/2\) at
+  \(c_7=1/288\) for \(P\ge P_0\)) and
+  \(V\ge1.35P^{-37/48}\ge10\,|f''-\Lambda|\) against the
+  two-term interpolant majorant. The comparison
+  \(V\le c_7S/2\) is the large ineffective threshold of the
+  standing estimates: until it holds, a three-term zero of
+  \(\Phi''\) can keep \(\Omega_V\) of length \(\Theta(P)\) on a
+  dyadic block. The length bound below is that of Lemma 3.9,
+  not a claim that the sublevel is short at small \(P\);
+  interval counts remain \(O_E(1)\). By Lemma 3.9 the set
   \(\Omega=\{\nu:|\Lambda(\nu)|\le V\}\) is a union of at most
   \(C(E)\) intervals of total length
   \(\le C(E)\,P(V/S)^{1/2}\le2.6\,C(E)\,P^{89/96}\), and on its
@@ -2332,7 +2359,7 @@ kernel is listed here with its range and its check.
   \(\pm\tfrac j2Y(n{+}d)\), \(d\in\mathcal D\), with total frequency
   \(0\). In Step 4 of Theorem 5.3 it shifts each wave coefficient
   \(q_d\) by at most \(P^{1/96}\), keeping
-  \(|q_d|\le3P^{1/24}+P^{1/96}\le P^{1/16}\) — inside
+  \(|q_d|\le3P^{1/24}+P^{1/96}\le4P^{1/24}\) — inside
   Lemma 5.2(ii)'s coefficient budget — and leaves \(t\) unchanged;
   its \(t=0\) remnants are differenced waves that shift the
   \(u\)-coefficients of Step 5 by \(\le P^{1/96}\), harmless against
@@ -2444,8 +2471,9 @@ S
 \le520\,P^{-1/2}
 \]
 by (C1) and the collision-band restriction. The balanced choice
-\(V=3S^{1/2}P^{-11/24}\) still satisfies \(V\le c_7S/2\) and
-\(V\ge10\lvert f''-\Lambda\rvert\) for \(P\ge P_0\). Transition
+  \(V=3S^{1/2}P^{-11/24}\) still satisfies \(V\le c_7S/2\) at
+  \(c_7=1/288\) and \(V\ge10\lvert f''-\Lambda\rvert\) against
+  the two-term interpolant majorant, for \(P\ge P_0\). Transition
 length and piece-boundary costs shrink (larger \(S\) shrinks
 \(V/S\) and \(V^{-1/2}\)); good pieces cost
 \(\le P\cdot(520)^{1/2}P^{-1/4}\le23P^{3/4}\). The middle band
@@ -2454,7 +2482,7 @@ therefore remains \(\ll P^{15/16+\varepsilon}\).
 The passengers of Step D are inside these estimates: the
 \(\tfrac i2X\)-term is (D3) as listed; the \(\tfrac j2Y\)-term
 shifts each \(q_d\) by at most \(P^{1/96}\), keeping
-\(\lvert q_d\rvert\le P^{1/16}\) and \(uh_1\le0.6P^{1/2}\); the
+\(\lvert q_d\rvert\le4P^{1/24}\) and \(uh_1\le0.6P^{1/2}\); the
 pure-\(m\) smooth pieces add a relative \(O(P^{-1})\) to
 \(\lambda_a'\) and \(\lambda_0'\), already present in the
 \(O(P^{-1/8})\) and \(O(hP^{-1/2})\) factors; the sub-unit
@@ -2685,7 +2713,11 @@ validations of the linearization identities of Lemmas 4.3, 4.6, 5.1,
 and 7.2, and exact-phase numerical probes of the sums \(K_c\),
 \(K_3\), and the differenced sums of Lemma 5.2 and Theorem 5.3, all
 of which exhibit cancellation at square-root scale — stronger than
-the theorems claim and stronger than they need. Probes and
+the theorems claim and stronger than they need. The same companion
+records scaled-integer gates for the exact identities of
+Section 1.1 and the named numerical margins of Section 5
+(Lemma 3.7 / Lemma 5.2 window hypotheses, the Step 5b interpolant
+majorant, and the Lemma 5.2 coefficient budget). Probes and
 validations are checks, not proofs, and no statement in this paper
 depends on them. In particular they are not evidence for
 Conjecture 7.3 or Conjecture 7.5.

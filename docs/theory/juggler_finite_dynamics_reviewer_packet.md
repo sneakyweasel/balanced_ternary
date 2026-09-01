@@ -1,7 +1,8 @@
 # Juggler reviewer packet (two manuscripts)
 
 Author: Philippe Cochin. Date: 31 August 2026.
-Status: Paper A is a submission candidate; Paper B is a working draft.
+Status: Paper A is a submission candidate; Paper B is a revised
+working draft (writeup repaired 2 September 2026; claim set still \(13/16\)).
 
 The former single note has been split into two manuscripts:
 
@@ -42,10 +43,9 @@ The former single note has been split into two manuscripts:
   discrepancy calculus, the kernel theorem, depth-4 completeness over
   odd starts, the certified-descent density \(13/16\), and the
   level-3 frontier. Human proofs; only the exact floor identities
-  beneath them are in Lean. (The former length-5/7/8 contracting
-  splits and their densities \(7/8\), \(57/64\), \(29/32\) were
-  withdrawn in the Phase-26 referee response and are laboratory
-  conjectures, not paper claims.)
+  beneath them are in Lean. (Length-5 / density \(7/8\) is a
+  laboratory theorem and is not imported. Length 7/8 and the
+  densities \(57/64\), \(29/32\) remain laboratory conjectures.)
 
 Each paper is written to be self-contained. This page is a claim map,
 not required reading for the proofs.
@@ -190,10 +190,11 @@ says nothing about the deterministic shift).
 | Triple parity discrepancy \(N^{23/24+\varepsilon}\) (Theorem 4.7) | **EXACT — HUMAN PROOF** | OOE\(*\) depth-4 words |
 | OE\(**\) splits \(N^{7/8+\varepsilon}\), \(N^{13/16+\varepsilon}\) (Theorem 4.8) | **EXACT — HUMAN PROOF** | depth 4 except OOO\(*\) |
 | Certified-descent density \(13/16\) (Corollary 4.9) | **EXACT — HUMAN PROOF** | only the three classes \(E\), \(OE\), \(OOEE\); not an \(E\)-rooted census |
-| Level-2 wave bound \(q^{-1/6}P^{23/24+\varepsilon}\) (Lemma 5.2) | **EXACT — HUMAN PROOF** | targeted third differencing; standalone statement; corrects the earlier frozen-coefficient model |
-| Kernel cancellation \(K_c(P)\ll P^{1-1/96+\varepsilon}\) (Theorem 5.3) | **EXACT — HUMAN PROOF** | \(W\)-shaped family at \(\alpha=9/8\), \(k\le P^{1/24}\); Step 5b interpolant expanded (\(\Phi=a\nu^{5/4}+b\nu^{11/8}+w\nu^{3/2}\)); \(P_0\) ineffective |
-| OOO\(*\) splits; depth 4 complete over odd starts (Theorem 6.1) | **EXACT — HUMAN PROOF** | eight O-rooted length-4 classes; Step E estimates the decorated phase at \(\lambda_a'\) and \(\lambda_0'\), not by slogan |
-| Length-5/7/8 contracting splits and densities \(7/8\), \(57/64\), \(29/32\) (withdrawn) | **CONJECTURE** | withdrawn from the paper in Phase 26; holes recorded in the ledger (growing remainder, \(E'\) control, passenger budgets) |
+| Level-2 wave bound \(q^{-1/6}P^{23/24+\varepsilon}\) (Lemma 5.2) | **EXACT — HUMAN PROOF** | targeted third differencing; standalone statement; coefficient budget \(\lvert q_d\rvert\le 4P^{1/24}\); at most nine decorations |
+| Kernel cancellation \(K_c(P)\ll P^{1-1/96+\varepsilon}\) (Theorem 5.3) | **EXACT — HUMAN PROOF** | \(W\)-shaped family at \(\alpha=9/8\), \(k\le P^{1/24}\); Step 5b interpolant two-term majorant \(219P^{-25/24}+0.11P^{-5/6}\) (no collapse to \(0.1\)); \(c_7=1/288\); \(P_0\) named and ineffective |
+| OOO\(*\) splits; depth 4 complete over odd starts (Theorem 6.1) | **EXACT — HUMAN PROOF** | eight O-rooted length-4 classes; Step D \(Y\)-passenger inside \(\lvert q_d\rvert\le 4P^{1/24}\); Step E estimates the decorated phase at \(\lambda_a'\) and \(\lambda_0'\), not by slogan |
+| Length-5 contracting splits and density \(7/8\) (not imported) | laboratory **EXACT — HUMAN PROOF** | not a paper claim; sits in the laboratory record |
+| Length-7/8 splits and densities \(57/64\), \(29/32\) (withdrawn) | **CONJECTURE** | not imported; passenger slogan **REFUTED**; inventory and \(E'\) remain |
 | Equidistribution \(\Rightarrow\) density-one descent (Proposition 7.1) | **EXACT — HUMAN PROOF** | \(O\)-rooted hypothesis; conclusion unconditional for \(d\le4\); open beyond |
 | Level-3 kernel reformulation (Lemma 7.2) | **EXACT — HUMAN PROOF** | exact Taylor identity; validated in scaled integers |
 | Level-3 kernel cancellation \(K_3(P)\ll P^{1-\delta}\) (Conjecture 7.3) | **CONJECTURE** | not claimed; square-root cancellation observed in exact probes |
@@ -208,9 +209,10 @@ says nothing about the deterministic shift).
    lack descent.
 2. Paper B Corollaries 4.2 and 4.9 are densities of uniform
    subclasses (\(3/4\) at two steps, \(13/16\) at four). Neither is a
-   density of `FiniteProgress` nor of `ReachesOne`. The former
-   \(7/8\), \(57/64\), \(29/32\) figures are withdrawn conjectures,
-   not paper claims.
+   density of `FiniteProgress` nor of `ReachesOne`. The laboratory
+   length-5 density \(7/8\) is a laboratory theorem and is not
+   imported. The figures \(57/64\) and \(29/32\) remain
+   conjectures, not paper claims.
 3. Terras–Everett prove almost-all Collatz stopping times. Neither
    paper proves the Juggler analogue; Proposition 7.1 is an
    unconditional *implication* from all-depth equidistribution, whose
@@ -235,8 +237,8 @@ says nothing about the deterministic shift).
 - Three-quarters (or \(13/16\)) of starts reach \(1\).
 - Those densities as *complete* certificate inventories: they count
   uniform classes.
-- The withdrawn length-5/7/8 splits or their densities \(7/8\),
-  \(57/64\), \(29/32\) (laboratory conjectures since Phase 26).
+- The laboratory length-5 density \(7/8\), or the length-7/8
+  densities \(57/64\), \(29/32\), as paper claims.
 - E-rooted (even-start) word classes at any depth.
 - A Collatz theorem, or a transfer of Terras's theorem to \(J\).
 - Density-one finite descent (Proposition 7.1 is conditional on

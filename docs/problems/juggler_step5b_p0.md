@@ -148,10 +148,10 @@ machinery gravity.
 
 ## Open questions
 
-A writeup repair of the interpolant RHS (any constant
-\(>0.11\)) is a Paper B edit, out of this laboratory
-branch. The independent human check of Section 5
-remains.
+The interpolant collapse is absorbed in the 2 September
+2026 Paper B writeup (two-term majorant, no
+\(0.11\le 0.1\)). Claim set still \(13/16\). The
+independent human check of Section 5 remains.
 
 ## Decision
 
@@ -169,4 +169,5 @@ another \(P_0\) census.
 ## Publication assessment
 
 Status: `EXPLORATORY`. Laboratory number / coefficient
-hole only. Not a Paper B edit.
+hole; absorbed in the 2 September 2026 writeup. Claim
+set still \(13/16\).

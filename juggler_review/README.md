@@ -1,7 +1,8 @@
 # Juggler reviewer bundle (two manuscripts)
 
-Author: Philippe Cochin. Date: 1 September 2026.
-Status: Paper A is a submission candidate; Paper B is a working draft.
+Author: Philippe Cochin. Date: 2 September 2026.
+Status: Paper A is a submission candidate; Paper B is a revised
+working draft (writeup repaired; claim set still \(13/16\)).
 
 This folder is a snapshot of the files to send for external review. It
 is not the laboratory. No termination theorem is claimed.
@@ -28,9 +29,10 @@ is not the laboratory. No termination theorem is claimed.
 2. [juggler_parity_discrepancy_note.pdf](juggler_parity_discrepancy_note.pdf)
    — **Paper B**: parity equidistribution of nested floor powers, the
    kernel theorem, depth-4 completeness over odd starts, and the
-   certified-descent density \(13/16\). Human proofs. (The former
-   length-5/7/8 splits and deeper densities were withdrawn after
-   referee review and are not claimed.)
+   certified-descent density \(13/16\). Human proofs. Writeup
+   repaired 2 September 2026 (Lemma 5.2 budget, Step 5b interpolant,
+   named \(P_0\)). Length-5 / \(7/8\) is a laboratory theorem and is
+   not imported; length 7/8 remain laboratory conjectures.
 3. [juggler_finite_dynamics_reviewer_packet.md](juggler_finite_dynamics_reviewer_packet.md)
    — claim map and falsifiers for both papers. Optional for the proofs.
 

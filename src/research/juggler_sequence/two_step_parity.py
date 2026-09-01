@@ -200,6 +200,11 @@ ANTI_OVERCLAIM = {
     # a (D1)/(D3) decoration (spawned amplitude can exceed n).
     # Theorem X stays CONJECTURE.
     "length7_vdc3_chirps_proved": True,
+    # Phase 36: X3-runs plus the Q/R3 carry do not close
+    # e(u w^{3/2}). kappa_w has mean run O(1); the sawtooth
+    # coefficient (3u/2) U^{1/2} exceeds n. Theorem X stays
+    # CONJECTURE.
+    "length7_x3_qr3_carry_refuted": True,
 }
 
 
@@ -2164,6 +2169,94 @@ def w_gap_freeze_scan(p_block: int, window: int = 400) -> dict[str, Any]:
         "max_run": max(runs) if runs else 0,
         "n_runs": len(runs),
         "frozen": bool(runs) and (sum(runs) / len(runs) >= 8),
+    }
+
+
+def w_carry_run_scan(p_block: int, window: int = 400) -> dict[str, Any]:
+    """kappa_w run length on OOEO, interior of frozen floor(dU) runs.
+
+    Lemma X3 freezes J = floor(Delta v^{1/2}). The carry is
+    kappa_w = Delta w - J in {0, 1}. U' ~ P^{1/8} >> 1, so {U}
+    rotates by {Delta U} each odd step. On the interior of a
+    J-run, {Delta U} is bounded away from the wrap, and kappa
+    cannot stay constant on the A-process window H ~ P^{5/32}.
+    """
+    s = 10**12
+    records: list[tuple[int, int]] = []
+    n = p_block + 1
+    got = 0
+    while got < window and n < 20 * p_block:
+        m = isqrt(n**3)
+        if m % 2 == 0:
+            n += 2
+            continue
+        v = isqrt(m**3)
+        if v % 2 == 1:
+            n += 2
+            continue
+        w = isqrt(v)
+        u0 = isqrt(v * s * s)
+        n2 = n + 2
+        v2 = isqrt(isqrt(n2**3) ** 3)
+        w2 = isqrt(v2)
+        u1 = isqrt(v2 * s * s)
+        floor_du = (u1 - u0) // s
+        kappa = w2 - w - floor_du
+        records.append((floor_du, kappa))
+        got += 1
+        n += 2
+
+    j_runs: list[list[int]] = []
+    current: list[int] = []
+    prev_j = None
+    for floor_du, kappa in records:
+        if prev_j is None or floor_du != prev_j:
+            if current:
+                j_runs.append(current)
+            current = [kappa]
+            prev_j = floor_du
+        else:
+            current.append(kappa)
+    if current:
+        j_runs.append(current)
+
+    kappa_runs: list[int] = []
+    interior_terms = 0
+    for run in j_runs:
+        if len(run) < 10:
+            continue
+        interior = run[2:-2]
+        interior_terms += len(interior)
+        prev = None
+        length = 0
+        for kap in interior:
+            if prev is None or kap != prev:
+                if length:
+                    kappa_runs.append(length)
+                length = 1
+                prev = kap
+            else:
+                length += 1
+        if length:
+            kappa_runs.append(length)
+
+    h_proxy = max(1, int(p_block ** (5 / 32)))
+    max_kappa = max(kappa_runs) if kappa_runs else 0
+    mean_kappa = sum(kappa_runs) / len(kappa_runs) if kappa_runs else 0.0
+    kappa_vals = {kap for _, kap in records}
+    return {
+        "got": got,
+        "n_j_runs": len(j_runs),
+        "j_mean_run": (
+            sum(len(r) for r in j_runs) / len(j_runs) if j_runs else 0.0
+        ),
+        "j_max_run": max((len(r) for r in j_runs), default=0),
+        "interior_terms": interior_terms,
+        "kappa_mean_run": mean_kappa,
+        "kappa_max_run": max_kappa,
+        "h_proxy": h_proxy,
+        "kappa_binary": kappa_vals <= {0, 1},
+        "no_affine_carry_freeze": bool(kappa_runs) and mean_kappa <= 4,
     }
 
 

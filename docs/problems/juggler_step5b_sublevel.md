@@ -202,7 +202,10 @@ Lemma 3.9. On cancellation, \(\Omega_V\) is the dyadic
 block at every laboratory \(P\) in the census: the
 global trivial bound costs \(P\), which is the already
 named \(V\le c_7S/2\) ineffectivity, not a new hole and
-not a retag of the kernel. Paper B frozen. Do not
+not a retag of the kernel. The geometry honesty
+(\(\Omega_V\) of length \(\Theta(P)\) until the large
+\(P_0\); \(c_7=1/288\)) is absorbed in the 2 September
+2026 writeup. Claim set still \(13/16\). Do not
 auto-continue.
 
 Best next question: one independent human check of

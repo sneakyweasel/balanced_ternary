@@ -1220,3 +1220,14 @@ The reduction \(w^{3/2}=n^{27/16}+O(n^{3/16}\theta_2)\)
 is not a (D1)/(D3) decoration. Flag
 `length7_vdc3_chirps_proved` is `True`. Theorem X stays
 `CONJECTURE`. Paper B is not edited. No Lemma 3.11.
+
+## Phase 36: Paper B writeup repair (frozen 13/16)
+
+Paper B Section 5 writeup repaired in
+[juggler_parity_discrepancy_note.md](../theory/juggler_parity_discrepancy_note.md).
+Lemma 5.2 budget \(\lvert q_d\rvert\le 4P^{1/24}\), nine
+decorations; Step 5b interpolant keeps the two-term
+majorant (no \(0.11\le 0.1\) collapse); \(c_7=1/288\)
+displayed; \(P_0\) named. Claim set still \(13/16\).
+`J-kernel-cancellation` not retagged. Harvest not
+imported. Reviewer bundle and PDFs synced.

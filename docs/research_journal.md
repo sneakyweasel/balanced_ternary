@@ -21164,3 +21164,63 @@ Best next question
   class?
 ```
 
+## Paper B writeup repair: frozen 13/16 (Phase 36)
+
+- **Date:** 2026-09-02
+- **Objective:** Repair the named Section 5 writeup holes
+  so Paper B is publication-ready at the frozen claim
+  set. Do not import the harvest.
+- **Hypotheses:** the kernel bound is not false; the
+  printed comparisons \(0.11\le 0.1\) and
+  \(\lvert q_d\rvert\le P^{1/16}\) are writeup defects.
+- **Major results:**
+  - Lemma 5.2 budget enlarged to \(\lvert q_d\rvert\le
+    4P^{1/24}\), at most nine decorations. Displayed
+    (ii)-from-(i) and Stage-6 ratios rerun; they die.
+  - Theorem 6.1 Step D: \(\lvert q_d\rvert\le
+    3P^{1/24}+P^{1/96}\le 4P^{1/24}\). The false
+    \(\le P^{1/16}\) line is deleted.
+  - Step 5b interpolant keeps
+    \(219P^{-25/24}+0.11P^{-5/6}\); no collapse to
+    \(0.1\). Displayed \(c_7=1/288\). Honest \(P_0\)
+    paragraph (windows \(\sim 3\cdot 10^5\); \(V\le
+    c_7S/2\) of size \(10^{24}\); \(\Omega_V\) may be
+    \(\Theta(P)\) until then).
+  - Claim set still \(13/16\). Harvest not imported.
+    `J-kernel-cancellation` not retagged.
+  - Reviewer bundle and PDFs synced.
+- **Refuted ideas:** none new. The printed interpolant
+  collapse was already **REFUTED** as a comparison
+  (Phase 32).
+- **Literature:** Paper B Lemmas 3.9, 5.2, Theorems 5.3,
+  6.1.
+- **Open:** one independent human check of the repaired
+  Section 5 remains as external debt; the in-pass
+  (ii)-from-(i) and Steps 3–5b ratios hold.
+- **Decision:** PROMOTE the writeup. No new theorem.
+  Paper B remains a revised working draft at \(13/16\).
+
+```text
+What was learned
+- 0.11 <= 0.1 is a coefficient slip, not a kernel hole
+- |q_d| <= 4 P^{1/24} covers 3 J2 + J3 at every P >= 1
+- nine decorations is a fixed constant, not a family
+- V <= c7 S/2 is the large P0; Omega_V can be the block
+  until then
+- 7/8 stays laboratory; importing it is the Phase-26
+  mistake
+Strongest theorem
+- none new; kernel / depth-4 tags unchanged
+Strongest refutation
+- none new
+Reusable machinery
+- none (writeup only)
+Branch status
+- PROMOTE (writeup); claim set frozen
+Why
+- the named printed holes are closed in the source;
+  the harvest is still not paper-safe
+Best next question
+- one independent human check of Paper B Section 5
+```
+
