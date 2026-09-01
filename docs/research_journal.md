@@ -20148,3 +20148,75 @@ Why
 Best next question
 - none from this formulation
 ```
+
+## Juggler residual-floor leftover census (L=84 rename vs jump)
+
+- **Date:** 2026-09-01
+- **Objective:** After killing leftover \(L=84\) for all \(m\) at residual floor \(1981\) (joint/height, constant \(1\)) or \(4756\) (global), is the new laboratory leftover an \(84\)-multiple or the next record \(569\)?
+- **Hypotheses:** height-at-\(1981\) also kills the \(84\)-multiples and jumps the named leftover to \(569\)
+- **Major results:** Classification **L84_RESIDUAL_FLOOR_PARK**. Height/joint at \(1981\) kill \(L=84\) and rename the leftover to \(168\) (\(o=106\), global floor \(4761\)). Global finance at \(4756\) also leaves \(168\). Height/joint at \(4756\) would jump to \(569\); the family table first reaches \(569\) by height at \(1991\) (after \(588\) dies). Companion checksums \(N1981\) (\(990\) odds, peak \(900\) bits) and \(N4756\) (\(2377\) odds, peak \(19694\) bits) are implied by \(N_0=162849448\). Atlas CUDA harvest on \([261,4756]\) is a first-descent companion. No Lean factory. Paper A unchanged. Not a halt theorem
+- **Refuted ideas:** that height at \(1981\) jumps the leftover past the \(84\)-family
+- **Literature:** `cycleMin_finance`; `CycleHeightFinance.lean`; `l84_floors.json`; `juggler_cycle_finance_l84_floor_4756` (already REFUTED); `J-residual-floor-one-hundred-sixty-two-million`
+- **Open:** none from this census. The laboratory leftover remains \(84\) with \(m\ge 3\), or \(\ge 85\)
+- **Decision:** PARK — dossier `docs/problems/juggler_cycle_l84_residual_floor.md`. No ledger row. No Lean.
+
+```text
+What was learned
+- height/joint at 1981 kill L=84 and rename the leftover to 168
+- 168 has global floor 4761, the same scale as 84's 4756
+- global at 4756 also leaves 168; height at 4756 would jump
+  to 569, first cheap jump 1991
+- both stated residual-floor campaigns stay PARK
+- N1981/N4756 checksums are implied by the 162M descent floor
+Strongest theorem
+- none new (leftover rename; COMPUTATIONALLY VERIFIED census)
+Strongest refutation
+- height-at-1981 leftover jump to 569
+Reusable machinery
+- cycle_l84_residual_floor probe: leftover census, family
+  kill floors, N1981/N4756 checksums, CUDA harvest companion
+Branch status
+- PARK
+Why
+- the cheap all-m floor is a leftover rename, not a jump;
+  the promotion criterion did not fire; do not raise the
+  Lean residual floor
+Best next question
+- the laboratory leftover remains 84 with m≥3, or ≥85
+```
+
+## Juggler residual-floor leftover census (L=84 rename vs jump)
+
+- **Date:** 2026-09-01
+- **Objective:** After killing leftover \(L=84\) for all \(m\) at residual floor \(1981\) (joint/height, constant \(1\)) or \(4756\) (global), is the new laboratory leftover an \(84\)-multiple or the next record \(569\)?
+- **Hypotheses:** height-at-\(1981\) also kills the \(84\)-multiples and jumps the named leftover to \(569\)
+- **Major results:** Classification **L84_RESIDUAL_FLOOR_PARK**. Height/joint at \(1981\) kill \(L=84\) and rename the leftover to \(168\) (\(o=106\), global floor \(4761\)). Global finance at \(4756\) also leaves \(168\). Height/joint at \(4756\) would jump to \(569\); the family table first reaches \(569\) by height at \(1991\) (after \(588\) dies). Companion checksums \(N1981\) (\(990\) odds, peak \(900\) bits) and \(N4756\) (\(2377\) odds, peak \(19694\) bits) are implied by \(N_0=162849448\). Atlas CUDA harvest on \([261,4756]\) is a first-descent companion. No Lean factory. Paper A unchanged. Not a halt theorem
+- **Refuted ideas:** that height at \(1981\) jumps the leftover past the \(84\)-family
+- **Literature:** `cycleMin_finance`; `CycleHeightFinance.lean`; `l84_floors.json`; `juggler_cycle_finance_l84_floor_4756` (already REFUTED); `J-residual-floor-one-hundred-sixty-two-million`
+- **Open:** none from this census. The laboratory leftover remains \(84\) with \(m\ge 3\), or \(\ge 85\)
+- **Decision:** PARK — dossier `docs/problems/juggler_cycle_l84_residual_floor.md`. No ledger row. No Lean.
+
+```text
+What was learned
+- height/joint at 1981 kill L=84 and rename the leftover to 168
+- 168 has global floor 4761, the same scale as 84's 4756
+- global at 4756 also leaves 168; height at 4756 would jump
+  to 569, first cheap jump 1991
+- both stated residual-floor campaigns stay PARK
+- N1981/N4756 checksums are implied by the 162M descent floor
+Strongest theorem
+- none new (leftover rename; COMPUTATIONALLY VERIFIED census)
+Strongest refutation
+- height-at-1981 leftover jump to 569
+Reusable machinery
+- cycle_l84_residual_floor probe: leftover census, family
+  kill floors, N1981/N4756 checksums, CUDA harvest companion
+Branch status
+- PARK
+Why
+- the cheap all-m floor is a leftover rename, not a jump;
+  the promotion criterion did not fire; do not raise the
+  Lean residual floor
+Best next question
+- the laboratory leftover remains 84 with m≥3, or ≥85
+```

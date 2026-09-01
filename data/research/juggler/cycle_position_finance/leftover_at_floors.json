@@ -1,0 +1,456 @@
+{
+  "live_lean_floor": 261,
+  "height_all_m_floor": 1981,
+  "global_const1_floor": 4756,
+  "even_lt_sq_unchanged_at_1981": true,
+  "named_height_leftover_at_1981": {
+    "L": 168,
+    "kind": "named",
+    "o": 106,
+    "theta": 0.004167556282360911,
+    "even_count": 62,
+    "global_kill_floor": 4761
+  },
+  "named_at_floors": {
+    "const_1": {
+      "1981": {
+        "global": {
+          "L": 84,
+          "kind": "named",
+          "o": 53,
+          "theta": 0.002085953742688774,
+          "even_count": 31,
+          "global_kill_floor": 4756
+        },
+        "joint": {
+          "L": 168,
+          "kind": "named",
+          "o": 106,
+          "theta": 0.004167556282360911,
+          "even_count": 62,
+          "global_kill_floor": 4761
+        },
+        "height": {
+          "L": 168,
+          "kind": "named",
+          "o": 106,
+          "theta": 0.004167556282360911,
+          "even_count": 62,
+          "global_kill_floor": 4761
+        }
+      },
+      "4756": {
+        "global": {
+          "L": 168,
+          "kind": "named",
+          "o": 106,
+          "theta": 0.004167556282360911,
+          "even_count": 62,
+          "global_kill_floor": 4761
+        },
+        "joint": {
+          "L": 569,
+          "kind": "named",
+          "o": 359,
+          "theta": 0.001065325380074111,
+          "even_count": 210,
+          "global_kill_floor": 49418
+        },
+        "height": {
+          "L": 569,
+          "kind": "named",
+          "o": 359,
+          "theta": 0.001065325380074111,
+          "even_count": 210,
+          "global_kill_floor": 49418
+        }
+      }
+    },
+    "six_fifths": {
+      "1981": {
+        "global": {
+          "L": 84,
+          "kind": "named",
+          "o": 53,
+          "theta": 0.002085953742688774,
+          "even_count": 31,
+          "global_kill_floor": 5600
+        },
+        "joint": {
+          "L": 84,
+          "kind": "named",
+          "o": 53,
+          "theta": 0.002085953742688774,
+          "even_count": 31,
+          "global_kill_floor": 5600
+        },
+        "height": {
+          "L": 84,
+          "kind": "named",
+          "o": 53,
+          "theta": 0.002085953742688774,
+          "even_count": 31,
+          "global_kill_floor": 5600
+        }
+      },
+      "4756": {
+        "global": {
+          "L": 84,
+          "kind": "named",
+          "o": 53,
+          "theta": 0.002085953742688774,
+          "even_count": 31,
+          "global_kill_floor": 5600
+        },
+        "joint": {
+          "L": 569,
+          "kind": "named",
+          "o": 359,
+          "theta": 0.001065325380074111,
+          "even_count": 210,
+          "global_kill_floor": 58399
+        },
+        "height": {
+          "L": 569,
+          "kind": "named",
+          "o": 359,
+          "theta": 0.001065325380074111,
+          "even_count": 210,
+          "global_kill_floor": 58399
+        }
+      }
+    }
+  },
+  "global_survivors": {
+    "const_1": {
+      "1981": [
+        84,
+        168,
+        252,
+        336,
+        355,
+        420,
+        439,
+        504,
+        523,
+        569,
+        588
+      ],
+      "4756": [
+        168,
+        252,
+        336,
+        420,
+        504,
+        569,
+        588
+      ]
+    },
+    "six_fifths": {
+      "1981": [
+        84,
+        168,
+        252,
+        271,
+        336,
+        355,
+        420,
+        439,
+        504,
+        523,
+        542,
+        569,
+        588
+      ],
+      "4756": [
+        84,
+        168,
+        252,
+        336,
+        420,
+        504,
+        569,
+        588
+      ]
+    }
+  },
+  "height_survivors": {
+    "const_1": {
+      "1981": [
+        168,
+        252,
+        336,
+        420,
+        504,
+        569,
+        588
+      ],
+      "4756": [
+        569
+      ]
+    }
+  },
+  "family_kill_floors": {
+    "const_1": [
+      {
+        "L": 84,
+        "o": 53,
+        "theta": 0.002085953742688774,
+        "even_count": 31,
+        "is_84_multiple": true,
+        "is_record": false,
+        "global": 4756,
+        "joint_all_m": 1981,
+        "height_all_m": 1981
+      },
+      {
+        "L": 168,
+        "o": 106,
+        "theta": 0.004167556282360911,
+        "even_count": 62,
+        "is_84_multiple": true,
+        "is_record": false,
+        "global": 4761,
+        "joint_all_m": 1983,
+        "height_all_m": 1983
+      },
+      {
+        "L": 252,
+        "o": 159,
+        "theta": 0.006244816695424628,
+        "even_count": 93,
+        "is_84_multiple": true,
+        "is_record": false,
+        "global": 4765,
+        "joint_all_m": 1983,
+        "height_all_m": 1983
+      },
+      {
+        "L": 336,
+        "o": 212,
+        "theta": 0.008317744039355176,
+        "even_count": 124,
+        "is_84_multiple": true,
+        "is_record": false,
+        "global": 4770,
+        "joint_all_m": 1985,
+        "height_all_m": 1985
+      },
+      {
+        "L": 420,
+        "o": 265,
+        "theta": 0.010386347352734328,
+        "even_count": 155,
+        "is_84_multiple": true,
+        "is_record": false,
+        "global": 4774,
+        "joint_all_m": 1987,
+        "height_all_m": 1987
+      },
+      {
+        "L": 504,
+        "o": 318,
+        "theta": 0.012450635655289801,
+        "even_count": 186,
+        "is_84_multiple": true,
+        "is_record": false,
+        "global": 4779,
+        "joint_all_m": 1989,
+        "height_all_m": 1989
+      },
+      {
+        "L": 569,
+        "o": 359,
+        "theta": 0.001065325380074111,
+        "even_count": 210,
+        "is_84_multiple": false,
+        "is_record": true,
+        "global": 49418,
+        "joint_all_m": 19975,
+        "height_all_m": 19975
+      },
+      {
+        "L": 588,
+        "o": 371,
+        "theta": 0.01451061794793457,
+        "even_count": 217,
+        "is_84_multiple": true,
+        "is_record": false,
+        "global": 4783,
+        "joint_all_m": 1991,
+        "height_all_m": 1991
+      }
+    ],
+    "six_fifths": [
+      {
+        "L": 84,
+        "o": 53,
+        "theta": 0.002085953742688774,
+        "even_count": 31,
+        "is_84_multiple": true,
+        "is_record": false,
+        "global": 5600,
+        "joint_all_m": 2325,
+        "height_all_m": 2325
+      },
+      {
+        "L": 168,
+        "o": 106,
+        "theta": 0.004167556282360911,
+        "even_count": 62,
+        "is_84_multiple": true,
+        "is_record": false,
+        "global": 5605,
+        "joint_all_m": 2327,
+        "height_all_m": 2327
+      },
+      {
+        "L": 252,
+        "o": 159,
+        "theta": 0.006244816695424628,
+        "even_count": 93,
+        "is_84_multiple": true,
+        "is_record": false,
+        "global": 5610,
+        "joint_all_m": 2329,
+        "height_all_m": 2329
+      },
+      {
+        "L": 336,
+        "o": 212,
+        "theta": 0.008317744039355176,
+        "even_count": 124,
+        "is_84_multiple": true,
+        "is_record": false,
+        "global": 5615,
+        "joint_all_m": 2331,
+        "height_all_m": 2331
+      },
+      {
+        "L": 420,
+        "o": 265,
+        "theta": 0.010386347352734328,
+        "even_count": 155,
+        "is_84_multiple": true,
+        "is_record": false,
+        "global": 5621,
+        "joint_all_m": 2333,
+        "height_all_m": 2333
+      },
+      {
+        "L": 504,
+        "o": 318,
+        "theta": 0.012450635655289801,
+        "even_count": 186,
+        "is_84_multiple": true,
+        "is_record": false,
+        "global": 5626,
+        "joint_all_m": 2335,
+        "height_all_m": 2335
+      },
+      {
+        "L": 569,
+        "o": 359,
+        "theta": 0.001065325380074111,
+        "even_count": 210,
+        "is_84_multiple": false,
+        "is_record": true,
+        "global": 58399,
+        "joint_all_m": 23569,
+        "height_all_m": 23569
+      },
+      {
+        "L": 588,
+        "o": 371,
+        "theta": 0.01451061794793457,
+        "even_count": 217,
+        "is_84_multiple": true,
+        "is_record": false,
+        "global": 5631,
+        "joint_all_m": 2337,
+        "height_all_m": 2337
+      }
+    ]
+  },
+  "l84_floors": {
+    "const_1": {
+      "global": 4756,
+      "joint_m1": 271,
+      "joint_all_m": 1981,
+      "height_m1": 121,
+      "height_m2": 199,
+      "height_m3": 273,
+      "height_all_m": 1981
+    },
+    "six_fifths": {
+      "global_n_max": 5599,
+      "global": 5600,
+      "joint_m1": 307,
+      "joint_all_m": 2325,
+      "height_m1": 137,
+      "height_m2": 229,
+      "height_m3": 317,
+      "height_all_m": 2325
+    }
+  },
+  "certificates": {
+    "n162849448": {
+      "present": true,
+      "path": "data/research/juggler/cycle_finance/floor_verify/N162849448/certificate.json",
+      "N0": 162849448,
+      "covers_1981": true,
+      "covers_4756": true,
+      "sha256_chunks": "35d9755ce52a225a161b009d0f3674b24a5d0add16035f09ea83cf3880414ae4",
+      "verified": true,
+      "halt_theorem": false
+    },
+    "checksums": {
+      "1981": {
+        "verified": true,
+        "odds_walked": 990,
+        "max_stopping_time": 70,
+        "hardest_seed": 193,
+        "max_bits": 900,
+        "max_bits_seed": 193,
+        "sha256_chunks": "d8211e9fdecdadc12b95566160fdeb0beed3d70d6dbe6488468acebb2548ab8f",
+        "path": "data/research/juggler/cycle_finance/floor_verify/N1981/certificate.json",
+        "implied_by_N162849448": true
+      },
+      "4756": {
+        "verified": true,
+        "odds_walked": 2377,
+        "max_stopping_time": 104,
+        "hardest_seed": 4649,
+        "max_bits": 19694,
+        "max_bits_seed": 2183,
+        "sha256_chunks": "2f1cad1d5c57b5cb3174ffa5812827446aceea53c07c5587a421b68e80d3dc3e",
+        "path": "data/research/juggler/cycle_finance/floor_verify/N4756/certificate.json",
+        "implied_by_N162849448": true
+      }
+    },
+    "harvest": {
+      "backend": "cuda",
+      "cuda_available": true,
+      "n_begin": 261,
+      "n_max": 4756,
+      "k_max": 20,
+      "overflow_count": 52,
+      "coarse": {
+        "E": 2248,
+        "OE": 1128,
+        "OOEE": 274,
+        "leftover": 722,
+        "uncapped": 72
+      },
+      "tsv": "data/research/juggler/cycle_l84_residual_floor/harvest_261_4756.tsv"
+    }
+  },
+  "decision": {
+    "classification": "L84_RESIDUAL_FLOOR_PARK",
+    "reason": "height at 1981 kills L=84 and the named leftover becomes 168, an 84-multiple with global floor still at the 84-scale; leftover rename",
+    "named_leftover": 168
+  },
+  "git": "e977233dcb5dbb14135e6597b18d502b7b1a3bc7",
+  "halt_theorem": false,
+  "no_cycle_all_lengths": false
+}

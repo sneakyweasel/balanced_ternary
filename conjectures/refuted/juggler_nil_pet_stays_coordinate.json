@@ -1,0 +1,26 @@
+{
+  "id": "juggler_nil_pet_stays_coordinate",
+  "title": "PET on the Heisenberg lift keeps the floor-correction as a coordinate",
+  "statement": "The first van der Corput / PET difference of the floor-Hardy Heisenberg orbit g(n) = ((3/2) v^{3/4}, v^{3/2}, 0), v = floor(n^{3/2}), keeps the floor-removal correction as a Mal'cev coordinate through reduction to the fundamental domain and does not re-expand it into an amplitude-product of GG/HH species.",
+  "mathematical_domain": "Juggler parity discrepancy / nilmanifold characteristic factors",
+  "origin": "docs/problems/juggler_nil_pet_reentry.md",
+  "status": "REFUTED",
+  "first_seen": "2026-09-01",
+  "tested_range": "exact Fraction group-law identities; scaled-integer species on odd pairs in (10^4, 10^4+200] and (10^6, 10^6+200]",
+  "counterexamples": [
+    "Mal'cev reduction of g(n)^{-1} g(n+h) has vertical {-A(n+h) floor(ΔB) - A(n){ΔB}}; the second term is the amplitude-product A{ΔB}",
+    "A(n+2)-A(n) ≍ (27/8) n^{1/8} >> 1 (GG species, J-intra-block-harmonic-obstruction)",
+    "ΔB is not o(1)-close to (n+h)^{9/4}-n^{9/4}: leftover ≍ n^{3/4}",
+    "re-lifting A{ΔB} as the vertical of (A(n), ΔB(n,h), 0) is J-tower-heisenberg-coordinate applied to a new pair, not a degree drop to a published Hardy-nil orbit"
+  ],
+  "proof_reference": "docs/problems/juggler_nil_pet_reentry.md",
+  "lean_reference": "",
+  "literature": [
+    "host-kra-2005-nilmanifolds",
+    "richter-2023-hardy-nilmanifolds",
+    "frantzikinakis-2009-sparse-nilmanifolds"
+  ],
+  "notes": "Fourth-layer falsifier of the rate-free nil-route, opened from the v94 CLOSE (characteristic factors had been left external). Kills PET as a method. The statement of juggler_tower_rate_free_equidistribution stays ACTIVE: Leibman/Richter on the floor-Hardy horizontal remains the unbuilt composition, and the node-wise E-share β>0.369 fallback is not opened. Not a K3 bound, not a Paper B edit, not a halt theorem.",
+  "not_a_halt_theorem": true,
+  "no_cycle_all_lengths": false
+}

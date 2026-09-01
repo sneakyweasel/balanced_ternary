@@ -1,0 +1,22 @@
+{
+  "id": "host-kra-2005-nilmanifolds",
+  "title": "Nonconventional ergodic averages and nilmanifolds",
+  "authors": ["Bernard Host", "Bryna Kra"],
+  "year": 2005,
+  "identifiers": {
+    "doi": "10.4007/annals.2005.161.397"
+  },
+  "url": {
+    "publisher": "https://doi.org/10.4007/annals.2005.161.397"
+  },
+  "problem_area": "ergodic-equidistribution",
+  "relevant_concepts": [
+    "characteristic factors of multiple ergodic averages",
+    "Host-Kra cubespaces",
+    "PET induction / van der Corput on nilsequences",
+    "nilmanifold coordinates versus Fourier expansions"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source",
+  "notes": "Ann. of Math. 161 (2005), 397-488. Characteristic-factor arguments on nilmanifolds internally use van der Corput differencing (PET). Cited by docs/problems/juggler_nil_pet_reentry.md: the first PET difference of the Juggler Heisenberg lift, after Mal'cev reduction, re-expands the floor-removal correction into the amplitude-product A{ΔB} of GG species. The paper supplies the induction schema, not a theorem about floor-Hardy entries."
+}

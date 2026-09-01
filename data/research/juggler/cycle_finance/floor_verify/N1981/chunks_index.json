@@ -1,0 +1,21 @@
+{
+  "chunks": [
+    {
+      "start": 3,
+      "stop": 1981,
+      "odds_walked": 990,
+      "step_failures": [],
+      "bit_failures": [],
+      "other_failures": [],
+      "max_steps": 70,
+      "hardest_seed": 193,
+      "max_bits": 900,
+      "max_bits_seed": 193,
+      "total_steps": 5713,
+      "step_cap": 100000,
+      "bit_cap": 512000000,
+      "exact_integer": true,
+      "floating_point_used": false
+    }
+  ]
+}
