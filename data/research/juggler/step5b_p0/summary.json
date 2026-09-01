@@ -1,0 +1,148 @@
+{
+  "c7": 0.003472222222222222,
+  "coefficients": {
+    "u_term": 203.0,
+    "c_term": 0.11,
+    "replacement": 16.0,
+    "p25_sum": 219.0,
+    "rhs": 0.1,
+    "intro_p25": 54.0
+  },
+  "first_P0": {
+    "printed_chain": null,
+    "intro_54_vs_01": 13046380695369,
+    "leftover_219_vs_01": 10817620739800119,
+    "v_covers_three_term": 1258495661293,
+    "vs_le_c7_half": 3918539669348144964960257
+  },
+  "samples": {
+    "1000000": {
+      "P": 1000000,
+      "three_term_error": 0.00012425275021668632,
+      "printed_rhs": 9.999999999999995e-07,
+      "printed_chain_holds": false,
+      "printed_gap": 0.00012325275021668632,
+      "c_term": 1.0999999999999994e-06,
+      "p25_term": 0.00012315275021668632,
+      "intro_lhs": 3.036643156027882e-05,
+      "intro_holds": false,
+      "leftover_219_holds": false,
+      "v_min": 3.201354502643233e-05,
+      "ten_error": 0.0012425275021668632,
+      "v_covers_error": false,
+      "vs_majorant": 0.8934593595494269,
+      "c7_half": 0.001736111111111111,
+      "vs_le_c7_half": false
+    },
+    "100000000": {
+      "P": 100000000,
+      "three_term_error": 1.0402067361515478e-06,
+      "printed_rhs": 2.1544346900318822e-08,
+      "printed_chain_holds": false,
+      "printed_gap": 1.018662389251229e-06,
+      "c_term": 2.3698781590350706e-08,
+      "p25_term": 1.0165079545611972e-06,
+      "intro_lhs": 2.506457970150897e-07,
+      "intro_holds": false,
+      "leftover_219_holds": false,
+      "v_min": 9.197442932282472e-07,
+      "ten_error": 1.0402067361515478e-05,
+      "v_covers_error": false,
+      "vs_majorant": 0.456465686268834,
+      "c7_half": 0.001736111111111111,
+      "vs_le_c7_half": false
+    },
+    "10000000000": {
+      "P": 10000000000,
+      "three_term_error": 8.90087397222785e-09,
+      "printed_rhs": 4.6415888336127753e-10,
+      "printed_chain_holds": false,
+      "printed_gap": 8.436715088866572e-09,
+      "c_term": 5.105747716974053e-10,
+      "p25_term": 8.390299200530445e-09,
+      "intro_lhs": 2.0688408987609318e-09,
+      "intro_holds": false,
+      "leftover_219_holds": false,
+      "v_min": 2.6424114050083393e-08,
+      "ten_error": 8.90087397222785e-08,
+      "v_covers_error": false,
+      "vs_majorant": 0.23320693942470347,
+      "c7_half": 0.001736111111111111,
+      "vs_le_c7_half": false
+    },
+    "10000000000000": {
+      "P": 10000000000000,
+      "three_term_error": 7.906415979428786e-12,
+      "printed_rhs": 1.467799267622068e-12,
+      "printed_chain_holds": false,
+      "printed_gap": 6.4386167118067184e-12,
+      "c_term": 1.6145791943842748e-12,
+      "p25_term": 6.291836785044512e-12,
+      "intro_lhs": 1.5514118100109756e-12,
+      "intro_holds": false,
+      "leftover_219_holds": false,
+      "v_min": 1.286768542366962e-10,
+      "ten_error": 7.906415979428787e-11,
+      "v_covers_error": true,
+      "vs_majorant": 0.08516114057418789,
+      "c7_half": 0.001736111111111111,
+      "vs_le_c7_half": false
+    },
+    "10000000000000000": {
+      "P": 10000000000000000,
+      "three_term_error": 9.823959688143862e-15,
+      "printed_rhs": 4.641588833612773e-15,
+      "printed_chain_holds": false,
+      "printed_gap": 5.182370854531089e-15,
+      "c_term": 5.10574771697405e-15,
+      "p25_term": 4.718211971169812e-15,
+      "intro_lhs": 1.163394732617214e-15,
+      "intro_holds": true,
+      "leftover_219_holds": false,
+      "v_min": 6.266144925377243e-13,
+      "ten_error": 9.823959688143862e-14,
+      "v_covers_error": true,
+      "vs_majorant": 0.03109864518520561,
+      "c7_half": 0.001736111111111111,
+      "vs_le_c7_half": false
+    }
+  },
+  "table": [
+    {
+      "piece": "printed_chain",
+      "first_P0": null,
+      "holds_at_1e8": false
+    },
+    {
+      "piece": "intro_54_vs_01",
+      "first_P0": 13046380695369,
+      "holds_at_1e8": false
+    },
+    {
+      "piece": "leftover_219_vs_01",
+      "first_P0": 10817620739800119,
+      "holds_at_1e8": false
+    },
+    {
+      "piece": "v_covers_three_term",
+      "first_P0": 1258495661293,
+      "holds_at_1e8": false
+    },
+    {
+      "piece": "vs_le_c7_half",
+      "first_P0": 3918539669348144964960257,
+      "holds_at_1e8": false
+    }
+  ],
+  "printed_chain_never_holds": true,
+  "anti": {
+    "halt_theorem": false,
+    "paper_a_modified": false,
+    "paper_b_modified": false,
+    "sums_evaluated": false,
+    "k3_reopened": false,
+    "kernel_retagged": false,
+    "sublevel_rerun": false,
+    "geometry_reopened": false
+  }
+}

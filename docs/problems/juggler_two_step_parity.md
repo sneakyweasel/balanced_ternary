@@ -1155,3 +1155,24 @@ effectiveness. `J-kernel-cancellation` not retagged.
 Paper B is not edited. Do not open a \(P_0\)-effectiveness
 campaign. Remaining debt: one independent human check of
 Section 5.
+
+## Phase 31: Lemma 3.7 / Lemma 5.2 hypothesis checker
+
+Child dossier
+[juggler_kernel_p0_hypotheses.md](juggler_kernel_p0_hypotheses.md).
+The five printed Lemma 3.7 / Lemma 5.2 conditions (not
+the sums) first hold together at the paper majorants
+when \(P=311486\). Full-block inventories at \(P=10^8\)
+pass. Not an effectiveness campaign and not a Paper B
+edit. Do not reopen these five lines.
+
+## Phase 32: Step 5b interpolant \(P_0\)
+
+Child dossier
+[juggler_step5b_p0.md](juggler_step5b_p0.md).
+The displayed interpolant-error chain
+\(219P^{-25/24}+0.11P^{-5/6}\le 0.1P^{-5/6}\) never
+holds (\(0.11>0.1\)). Introductory example first holds
+at \(1.30\cdot 10^{13}\); \(V/S\le c_7/2\) at
+\(3.92\cdot 10^{24}\). Not a kernel retag and not a
+Paper B edit. Do not open another \(P_0\) census.

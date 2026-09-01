@@ -1,0 +1,215 @@
+{
+  "P": 100000000,
+  "k": 1,
+  "h1": 1,
+  "h2": 2,
+  "paper_slack": {
+    "P": 100000000,
+    "lemma37_3a": {
+      "T": 3406.460345289807,
+      "B": 85.86939342183642,
+      "rhs": 694.9551473746914,
+      "holds": true,
+      "displayed_lhs": 3406.4603452898077,
+      "displayed_rhs": 696.238325041917,
+      "displayed_holds": true
+    },
+    "lemma52_s2": {
+      "T": 10000.0,
+      "rhs": 1808.0,
+      "holds": true,
+      "paper_p14_ge_19": true
+    },
+    "lemma52_th3": {
+      "t": 12.649110640673518,
+      "H3": 11,
+      "lhs": 139.1402170474087,
+      "rhs": 10000.0,
+      "holds": true
+    },
+    "lemma52_th3_t1": {
+      "t": 1.0,
+      "H3": 5,
+      "lhs": 5.0,
+      "rhs": 10000.0,
+      "holds": true
+    },
+    "holds": true
+  },
+  "integer_range": {
+    "P": 100000000,
+    "corners": [
+      [
+        1,
+        1,
+        1
+      ],
+      [
+        2,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        2
+      ],
+      [
+        2,
+        1,
+        2
+      ]
+    ],
+    "lemma37_3a_worst": {
+      "k": 2,
+      "h1": 1,
+      "h2": 2,
+      "T": 5000.0,
+      "B": 74.0,
+      "rhs": 600.0,
+      "holds": true
+    },
+    "lemma37_3a_holds": true,
+    "lemma52_s2_holds": true,
+    "lemma52_th3": {
+      "t": 12.0,
+      "H3": 11,
+      "lhs": 132.0,
+      "rhs": 10000.0,
+      "holds": true
+    },
+    "lemma52_th3_t1": {
+      "t": 1.0,
+      "H3": 5,
+      "lhs": 5.0,
+      "rhs": 10000.0,
+      "holds": true
+    },
+    "holds": true
+  },
+  "first_paper_p0": {
+    "parts": {
+      "lemma37_3a": 311486,
+      "lemma37_3a_displayed": 284438,
+      "lemma52_s2": 115472,
+      "lemma52_th3": 566
+    },
+    "joint": 311486
+  },
+  "first_integer_p0": {
+    "parts": {
+      "lemma37_3a": 12628,
+      "lemma52_s2": 115472,
+      "lemma52_th3": 144
+    },
+    "joint": 115472
+  },
+  "freeze_windows": {
+    "P": 100000000,
+    "k": 1,
+    "h1": 1,
+    "h2": 2,
+    "steps": 50000000,
+    "windows": 31,
+    "bound": 401.0,
+    "holds": true,
+    "B_min": 33.75000011920929,
+    "B_max": 36.80463624000549,
+    "E4_lo": 33.6,
+    "E4_hi": 37.0,
+    "B_in_E4": true,
+    "T": 5000.0,
+    "lemma37_holds": true
+  },
+  "branch_runs": {
+    "P": 100000000,
+    "h1": 1,
+    "h2": 2,
+    "steps": 50000000,
+    "j": 0,
+    "runs": 548,
+    "bound": 22000000.0,
+    "holds": true,
+    "max_abs_dF_over_2": 1.01252995e-05,
+    "Gprime_predicted": 3.9999999999999996e-05,
+    "Gprime_lt_1": true,
+    "live_abs_j_max": 1,
+    "live_j_gt_3": 0,
+    "C2_j_le_3": true
+  },
+  "table": [
+    {
+      "piece": "(3a) T>=8(1+|B|) paper majorant",
+      "printed": 694.9551473746914,
+      "measured": 3406.460345289807,
+      "pass": true,
+      "first_P0": 311486
+    },
+    {
+      "piece": "(3a) displayed 1/2 P^{23/48}>=15 P^{10/48}",
+      "printed": 696.238325041917,
+      "measured": 3406.4603452898077,
+      "pass": true,
+      "first_P0": 284438
+    },
+    {
+      "piece": "Lemma 5.2 Stage 3 (s2) T>=8(1+2.25 P^{1/4})",
+      "printed": 1808.0,
+      "measured": 10000.0,
+      "pass": true,
+      "first_P0": 115472
+    },
+    {
+      "piece": "Lemma 5.2(ii) t H_3<=P^{1/2}",
+      "printed": 10000.0,
+      "measured": 139.1402170474087,
+      "pass": true,
+      "first_P0": 566
+    },
+    {
+      "piece": "(3a) integer-corner T>=8(1+|B|)",
+      "printed": 600.0,
+      "measured": 5000.0,
+      "pass": true,
+      "first_P0": 12628
+    },
+    {
+      "piece": "freeze windows vs 2kh2 P^{1/4}+1",
+      "printed": 401.0,
+      "measured": 31,
+      "pass": true,
+      "first_P0": null
+    },
+    {
+      "piece": "branch runs vs 22(|j|+1) P^{3/4}",
+      "printed": 22000000.0,
+      "measured": 548,
+      "pass": true,
+      "first_P0": null
+    },
+    {
+      "piece": "branch |G'|<1 (freeze hypothesis)",
+      "printed": 1.0,
+      "measured": 1.01252995e-05,
+      "pass": true,
+      "first_P0": null
+    },
+    {
+      "piece": "live |j|<=3 (C2)",
+      "printed": 3,
+      "measured": 1,
+      "pass": true,
+      "first_P0": null
+    }
+  ],
+  "all_pass": true,
+  "anti": {
+    "halt_theorem": false,
+    "paper_a_modified": false,
+    "paper_b_modified": false,
+    "sums_evaluated": false,
+    "k3_reopened": false,
+    "step5b_computed": false,
+    "items_124_implemented": false
+  }
+}

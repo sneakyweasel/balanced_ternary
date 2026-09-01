@@ -123,23 +123,54 @@ machinery gravity.
 
 ## Results
 
-Filled after the Phase-0 census. See the Decision.
+- **Printed-majorant \(P_0=311486\) (COMPUTATIONALLY VERIFIED).**
+  First integer at which all three closed-form hypotheses
+  hold on the paper’s continuous majorants
+  \(h_1\le P^{1/48}\), \(k,h_2\le P^{1/24}\),
+  \(t\le 4P^{1/16}\). Parts: (3a)
+  \(T\ge 8(1+|B|)\) at \(311486\); displayed slack
+  \(\tfrac12 P^{23/48}\ge 15P^{10/48}\) at \(284438\)
+  (optimistic: it drops the \(+8\)); Lemma 5.2 Stage 3
+  (s2) at \(115472\); \(th_3\le P^{1/2}\) at \(566\).
+- **Integer-corner \(P_0=115472\) (COMPUTATIONALLY VERIFIED).**
+  Driven by Stage 3 (s2). The (3a) line at attainable
+  \((k,h_1,h_2)\) holds from \(12628\) because
+  \(h_1=\lfloor P^{1/48}\rfloor=1\) until \(P=2^{48}\).
+  A pass at \(P=10^8\) with \(h_1=1\) does not discharge
+  the printed majorant.
+- **Inventories at \(P=10^8\), \(k=1\), \(h_1=1\),
+  \(h_2=2\) (COMPUTATIONALLY VERIFIED).** Full odd block
+  (\(5\cdot 10^7\) steps). Freeze windows \(31\le 401\);
+  \(B\in[33.75,36.80]\) inside the (E4) box
+  \((33.6,37]\). Frozen-\(\beta\) branch runs \(548\le
+  2.2\cdot 10^7\) on the \(j=0\) start; \(|G'|\le
+  1.01\cdot 10^{-5}<1\); live \(|j|\le 1\). No hole.
+- No exponential sum was evaluated. Paper B is not
+  edited. `J-kernel-cancellation` is not retagged.
 
 ## Open questions
 
-The five Lemma 3.7 / Lemma 5.2 lines are not the source of
-the writeup’s large ineffective \(P_0\). That remains
+The five Lemma 3.7 / Lemma 5.2 lines are not the source
+of the writeup’s large ineffective \(P_0\). That remains
 Step 5b (\(54P^{-25/24}\le 0.1P^{-5/6}\)), which this
-branch does not compute.
+branch does not compute. The sibling decoration-budget
+census already named a much larger threshold
+\(P\ge 3^{48}\) for a different overflow; this is not
+that campaign.
 
 ## Decision
 
-**PROMOTE** the laboratory \(P_0\) table. Justification
-and the best next question are filled after the census
-in the same section below.
+**PROMOTE** the laboratory \(P_0\) table. The paper’s
+own Lemma 3.7 / Lemma 5.2 hypotheses first hold together
+at \(P=311486\); the inventories at \(P=10^8\) sit inside
+the printed counts; nothing failed at every feasible
+\(P\). This is not an effectiveness campaign and not a
+Paper B edit. Do not auto-continue.
 
-Best next question: none from this branch until the
-census is recorded.
+Best next question: the remaining omitted threshold in
+Section 5 is Step 5b
+(\(54P^{-25/24}\le 0.1P^{-5/6}\)), not another
+reformulation of these five lines.
 
 ## Publication assessment
 

@@ -20770,3 +20770,128 @@ Best next question
 - one independent human check of Paper B Section 5
 ```
 
+## Paper B kernel: Lemma 3.7 / Lemma 5.2 hypothesis checker (Phase 31)
+
+- **Date:** 2026-09-01
+- **Objective:** Test the five printed Lemma 3.7 / Lemma 5.2
+  conditions rather than the sums, and compute the first
+  working \(P_0\) the paper omits.
+- **Hypotheses:** A failure at every feasible \(P\) is a
+  proof hole. A first working \(P_0\) is the omitted
+  laboratory number.
+- **Major results:**
+  - Printed-majorant joint \(P_0=311486\)
+    (**COMPUTATIONALLY VERIFIED**): (3a)
+    \(T\ge 8(1+|B|)\) at \(311486\); displayed slack
+    \(\tfrac12 P^{23/48}\ge 15P^{10/48}\) at \(284438\);
+    Stage 3 (s2) at \(115472\); \(th_3\le P^{1/2}\) at
+    \(566\).
+  - Integer-corner joint \(P_0=115472\). The (3a) line
+    holds from \(12628\) because \(h_1=1\) until
+    \(2^{48}\).
+  - Full-block inventories at \(P=10^8\), \(k=1\),
+    \(h_1=1\), \(h_2=2\): freeze windows \(31\le 401\);
+    \(B\) inside (E4); frozen branch runs \(548\le
+    2.2\cdot 10^7\); \(|G'|<1\); live \(|j|\le 1\).
+  - No hole. These five lines are not the writeup’s
+    large ineffective \(P_0\).
+- **Refuted ideas:** none. The printed comparisons hold
+  past a finite threshold.
+- **Literature:** Paper B Lemmas 3.7, 5.1(iii), 5.2.
+- **Open:** Step 5b’s comparison, out of scope.
+- **Decision:** PROMOTE the table. Dossier
+  `docs/problems/juggler_kernel_p0_hypotheses.md`. No
+  Paper B edit, no ledger row, no items 1/2/4, no
+  Step 5b.
+
+```text
+What was learned
+- the five printed Lemma 3.7 / 5.2 hypotheses first
+  hold together at P = 311486 on the paper majorants
+- the displayed (3a) slack 15 P^{10/48} is slightly
+  optimistic (drops the +8); the actual line needs
+  311486 rather than 284438
+- integer (k,h1,h2) only force P0 = 115472; h1 = 1
+  until 2^{48}, so a P=10^8 pass with h1=1 does not
+  discharge the printed slack
+- full-block inventories at P=10^8 sit inside the
+  printed counts (31 vs 401 windows; 548 vs 2.2e7
+  frozen runs)
+- the writeup’s large ineffective P0 is not these
+  five lines
+Strongest theorem
+- none new; COMPUTATIONALLY VERIFIED P0 table
+Strongest refutation
+- none
+Reusable machinery
+- kernel_p0_hypotheses.py (printed slack, integer
+  corners, freeze windows, frozen-beta runs)
+Branch status
+- PROMOTE
+Why
+- the paper omitted the first working P0; the table
+  is that number, and the inventories are not a hole
+Best next question
+- Step 5b’s 54 P^{-25/24} <= 0.1 P^{-5/6}, not
+  another reformulation of these five lines
+```
+
+## Paper B kernel: Step 5b interpolant \(P_0\) (Phase 32)
+
+- **Date:** 2026-09-02
+- **Objective:** Test the printed Step 5b interpolant-error
+  chain and compute the omitted large \(P_0\).
+- **Hypotheses:** The \(0.11>0.1\) coefficient may be a
+  hole; otherwise the first \(P_0\) is the omitted
+  threshold.
+- **Major results:**
+  - Displayed chain
+    \(219P^{-25/24}+0.11P^{-5/6}\le 0.1P^{-5/6}\)
+    never holds (**REFUTED** as a printed comparison).
+    Coefficient slip; kernel bound not claimed false.
+  - Introductory example
+    \(54P^{-25/24}\le 0.1P^{-5/6}\) first holds at
+    \(P_0=1.3046380695369\cdot 10^{13}\).
+  - Leftover \(219P^{-25/24}\le 0.1P^{-5/6}\) first
+    holds at \(1.0817620739800119\cdot 10^{16}\).
+  - \(V\ge 10\lvert f''-\Lambda\rvert\) against the
+    three-term error: \(P_0=1.258495661293\cdot 10^{12}\).
+  - \(V/S\le 6.7P^{-7/48}\le c_7/2\) at
+    \(c_7=1/288\): \(P_0=3.918539669348145\cdot 10^{24}\).
+- **Refuted ideas:** the displayed interpolant-error
+  chain as written.
+- **Literature:** Paper B Theorem 5.3 Step 5b.
+- **Open:** writeup repair of the \(0.1\) constant is a
+  Paper B edit.
+- **Decision:** PROMOTE the hole and the table. Dossier
+  `docs/problems/juggler_step5b_p0.md`. No Paper B edit,
+  no kernel retag, no further \(P_0\) census.
+
+```text
+What was learned
+- the displayed Step 5b interpolant chain is impossible
+  (0.11 P^{-5/6} already exceeds 0.1 P^{-5/6})
+- the standing-estimates example 54 P^{-25/24} ≤ 0.1
+  P^{-5/6} first holds at 1.30e13
+- discarding the illegal 0.11 term still leaves
+  P0 = 1.08e16 for 219 P^{-25/24} ≤ 0.1 P^{-5/6}
+- V ≥ 10 |f''-Λ| against the three-term error needs
+  1.26e12; it would be immediate if the 0.1 claim held
+- the large ineffective line among those that can hold
+  is V/S ≤ c7/2 at 3.92e24 (c7 = 1/288)
+Strongest theorem
+- none new; kernel tag unchanged
+Strongest refutation
+- the displayed interpolant-error chain as written
+Reusable machinery
+- step5b_p0.py
+Branch status
+- PROMOTE
+Why
+- a named printed-comparison hole plus the omitted
+  large P0; not a kernel disproof
+Best next question
+- one independent human check of Paper B Section 5,
+  not another P0 census
+```
+

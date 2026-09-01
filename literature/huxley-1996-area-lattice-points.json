@@ -1,0 +1,22 @@
+{
+  "id": "huxley-1996-area-lattice-points",
+  "title": "Area, Lattice Points, and Exponential Sums",
+  "authors": ["Martin N. Huxley"],
+  "year": 1996,
+  "identifiers": {
+    "doi": "10.1093/oso/9780198534662.001.0001"
+  },
+  "url": {
+    "publisher": "https://doi.org/10.1093/oso/9780198534662.001.0001",
+    "method_survey": "https://encyclopediaofmath.org/wiki/Bombieri-Iwaniec_method"
+  },
+  "problem_area": "exponential-sums",
+  "relevant_concepts": [
+    "Bombieri-Iwaniec method (Farey dissection, resonance curves, double large sieve)",
+    "first and second spacing problems",
+    "structural ceiling: perfect spacing cannot get the zeta exponent below 3/20"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source",
+  "notes": "London Mathematical Society Monographs 13, Oxford, 1996. The monograph of the Bombieri-Iwaniec method. The ceiling statement used by docs/problems/juggler_bi_resonance_limit.md: even a complete resolution of both the first and second spacing problems cannot get the zeta exponent below 3/20 = 0.15 (recorded in the Encyclopedia of Mathematics entry 'Bombieri-Iwaniec method' and in Huxley's survey 'Integer points in plane regions and exponential sums'; the survey also places the method's working middle range at log M/log T near 1/2 with Sargos's 1995 variant near 2/5). On the BI line q = p + 1/2 the zeta exponent equals the pair coordinate p, so no BI-producible pair has p < 3/20."
+}
