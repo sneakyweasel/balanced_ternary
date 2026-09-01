@@ -36,13 +36,7 @@ import Problems.Juggler.LeftoverEval
 import Problems.Juggler.LeftoverCell
 import Problems.Juggler.LeftoverShort
 import Problems.Juggler.FirstETransportEval
-import Problems.Juggler.BunchedEOEEEval
-import Problems.Juggler.BunchedEOOEEEval
-import Problems.Juggler.BunchedEEOEEval
-import Problems.Juggler.BunchedEOEOEEval
-import Problems.Juggler.BunchedEOOOEEEval
 import Problems.Juggler.BunchedTight
-import Problems.Juggler.BunchedEOOEOEEval
 import Problems.Juggler.LeftoverFamilies
 import Problems.Juggler.PrefixTwoEvenEval
 import Problems.Juggler.PrefixTwoEven
@@ -64,6 +58,7 @@ import Problems.Juggler.WordLanguage
 import Problems.Juggler.GapCells
 import Problems.Juggler.Escape
 import Problems.Juggler.CycleFinance
+import Problems.Juggler.CycleFinanceLeftovers
 import Problems.Juggler.RunSurvivorLattice
 import Problems.Juggler.CycleHeightFinance
 import Problems.Juggler.WalkChargeWords
@@ -74,7 +69,6 @@ import Problems.Juggler.WalkTransport
 import Problems.Juggler.WalkChargeMax
 import Problems.Juggler.DefectFinance
 import Problems.Juggler.AboveAnchorWalk
-import Problems.Juggler.FlightEnvelope
 
 /-!
 # Juggler laboratory barrel

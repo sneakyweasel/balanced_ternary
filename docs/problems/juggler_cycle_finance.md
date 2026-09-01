@@ -422,10 +422,13 @@ arithmetic; floor verification by first-passage descent induction
 for all \(2\le n\le 2\cdot 10^6\); slack stress on named hard seeds
 (including \(30817\)). Tests use \(L\le 400\) and floor \(2000\).
 No CLI. Lean: `CycleFinance.lean` (`cycleMin_finance`,
-`cycle_finance_min_two_hundred_fifty_seven`,
-`no_cycle_word_length_le_nineteen`,
+`cycle_finance_min_two_hundred_fifty_seven`) with the census
+companion `CycleFinanceLeftovers.lean`
+(`no_cycle_word_length_le_nineteen`,
 `cycle_word_length_eighty_four_or_ge_eighty_five`,
-`cycle_word_eliahou_leftover`), `CycleHeightFinance.lean`
+`cycle_word_eliahou_leftover`; table-driven length exclusions over
+`financeRows53` / `financeRows257` / `financeRows261`),
+`CycleHeightFinance.lean`
 (`cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five`),
 `TerminationFloor257.lean`
 (`reachesOne_of_lt_two_hundred_fifty_seven`), and
@@ -453,15 +456,20 @@ under that diagnostic \(L=25781\) survives.
 
 ## Formalization
 
-`CycleFinance.lean` sits on `CycleCore` and `LengthEightCensus`.
-The cell logarithm bound is `log_le_two_log_add`; the unrolled
-envelope is `cycleMin_log_envelope`; the inequality is
-`cycleMin_finance`. The residual floor `257`
+`CycleFinance.lean` sits on `CycleCore` alone and carries only the
+paper inequality: the cell logarithm bound is `log_le_two_log_add`;
+the unrolled envelope is `cycleMin_log_envelope`; the inequality is
+`cycleMin_finance` (with `cycleMin_finance_inv_sum` as Corollary
+4.4c). The census lives in the laboratory companion
+`CycleFinanceLeftovers.lean`, so the walk layer no longer compiles
+it: the residual floor `257`
 (`reachesOne_of_lt_two_hundred_fifty_seven`) gives
 `cycle_finance_min_two_hundred_sixty_one`, hence
 `no_cycle_word_length_le_nineteen` and the length leftover
 `cycle_word_length_eighty_four_or_ge_eighty_five`. Lengths `19`
-and `30`–`83` die by finance at floors `257` and `261`. The
+and `30`–`83` die by finance at floors `257` and `261`, encoded as
+the row tables `financeRows53` / `financeRows257` / `financeRows261`
+with one membership lemma each. The
 floor-`261` comparison uses \(261\log 257>15921/11\); \(L=84\)
 survives the uniform bound. `CycleHeightFinance.lean` keeps the
 inv-sum defects and excludes every length-`84` word with at most

@@ -1,6 +1,6 @@
 import Mathlib.Data.Nat.Basic
 import Mathlib.Tactic
-import Problems.Juggler.CycleFinance
+import Problems.Juggler.CycleCore
 
 namespace Problems.Juggler
 

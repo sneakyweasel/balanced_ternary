@@ -7,22 +7,34 @@ The former single note has been split into two manuscripts:
 
 - **Paper A** —
   [juggler_finite_dynamics_note.md](juggler_finite_dynamics_note.md):
-  *Cycle financing and a period lower bound for the Juggler map.*
-  The contribution is
-  known verification through \(10^6\) plus the new
-  Juggler-specific finance inequality, hence \(L\ge 25781\).
-  Theorem 3.22 (\(e\ge 4\)) is the Section 3 headline.
-  Theorem 4.7 is the supporting run-packing refinement.
-  Section 4 opens with the excursion necklace of a
+  *Cycle Financing and Near-Convergent Diophantine Obstructions
+  in the Juggler Map.*
+  The contributions are the Juggler-specific finance inequality
+  (Theorem 4.4, hence \(L\ge 25781\) at the known \(10^6\)
+  floor) and the Section 5 walk-charge envelope: transport to a
+  reduced base (Theorem 5.3), hug adversary (Theorem 5.4), word
+  identity (Lemma 5.6), Denjoy--Koksma over certified Ostrowski
+  blocks (Theorem 5.7), and the census-free window theorem on
+  \([50508,301994)\) (Theorem 5.8). The kill table gives
+  \(L\ge 176251\) at the laboratory floor \(26254995\)
+  (Theorem 5.9); the main numerical result is \(L\ge 478245\)
+  at the second certified floor \(162849448\)
+  (Corollary 5.10) — a certified evaluation of the same kill
+  criterion on the survivors, including lengths beyond the
+  census-free window; it is not an extension of Theorem 5.8.
+  Theorem 3.22 (\(e\ge 4\)) is the Section 3 structural
+  headline. Theorem 4.7 is the supporting run-packing
+  refinement. Section 4 opens with the excursion necklace of a
   minimum-based word: organizing prose, not a new theorem.
   Finance-survivor arithmetic is secondary. Lemma 4.4b is the
   odd-count monotonicity used to evaluate the table at
   \(o_{\min}\). The core lemmas are mechanized in Lean 4;
-  selected finite classifications and the descent floor
-  (Proposition 1.3) are independently certified computations.
-  Leftover \(84\) is a laboratory companion, not a paper
-  theorem. Peak/run bounds and the closed return-cost branch
-  are not paper claims.
+  selected finite classifications, the descent floors
+  (Propositions 1.3 and 5.1, Corollary 5.10), and the
+  per-length kill tables are independently certified
+  computations. Leftover \(84\) is a laboratory companion, not
+  a paper theorem. Peak/run bounds and the closed return-cost
+  branch are not paper claims.
 - **Paper B** —
   [juggler_parity_discrepancy_note.md](juggler_parity_discrepancy_note.md):
   *Parity equidistribution of nested floor powers, with descent
@@ -42,7 +54,13 @@ not required reading for the proofs.
 census, and finance arguments correct at their stated
 quantifiers? (The global-defect identity is Appendix C and is not
 an input to Theorem 4.4.) Is Theorem 4.6 scoped as a verified computation,
-not a Lean theorem? For Paper B: are the depth-1–4 estimates (exponents
+not a Lean theorem? For Section 5: is the transport recursion of
+Theorem 5.3 correct with its stated constants; is the hug
+domination chain of Theorem 5.4 complete; is Denjoy--Koksma
+applied in the correct coordinate (\(\theta=\alpha/(1+\alpha)\),
+§5.5); and is Corollary 5.10 read as a certified evaluation of
+the kill criterion beyond the \([50508,301994)\) window, not as
+an extension of Theorem 5.8? For Paper B: are the depth-1–4 estimates (exponents
 \(5/6\) to \(23/24\)) sound; is the kernel theorem (Theorem 5.3,
 double Weyl differencing over the carry-branch decomposition and
 master identity of Lemma 5.1, with the level-2 wave Lemma 5.2,
@@ -80,7 +98,8 @@ Paper B; every analytic estimate of Paper B is a human proof.
 envelope. An exact compositional global defect is recorded in
 Appendix C; Theorem 4.4 uses only the envelope's nonnegativity.
 Inverse-cell geometry classifies minimum-based words with at
-most three evens; the family calculations (Appendix D) assemble
+most three evens; the small-cycle censuses and the family
+calculations (both Appendix D) assemble
 to \(e\ge 4\), hence period at least eleven (Theorem 3.22). The
 financing inequality at a cycle minimum (Theorem 4.4,
 constant \(1\)), with the convenient statewise bound of
@@ -88,9 +107,17 @@ Corollary 4.5 and the certified descent floor of
 Proposition 1.3, yields \(L\ge 25781\). Theorem 4.6 certifies
 that bound with a conservative \(6/5\) majorant; the cutoff is
 not an artifact of that majorant.
+Section 5 couples the states through one closed exponent walk:
+transport to a reduced base, the hug adversary, the word
+identity, and Denjoy--Koksma over certified Ostrowski blocks
+give a census-free envelope on \([50508,301994)\); the kill
+table yields \(L\ge 176251\) at the laboratory floor, and a
+certified evaluation of the same criterion at the second floor
+\(162849448\) — beyond the window, not through it — yields the
+main bound \(L\ge 478245\).
 Finance-survivor lengths through \(10^5\) and their lattice
 are supporting material. Short certificates are a remark in
-Section 5. Peak count \(p\) is named there as the next
+Section 6. Peak count \(p\) is named there as the next
 direction; no peak-count theorem is claimed. The same
 defect-financing pattern is noted for other piecewise
 floor-power maps and is not taken up.
@@ -137,8 +164,17 @@ says nothing about the deterministic shift).
 | Run-type table (Theorem 4.8) | **COMPUTATIONALLY VERIFIED** | \(42\) of the \(141\) die; \(99\) remain; first survivor still \(25781\) |
 | Survivor lattice (Proposition 4.9) | **EXACT — LEAN VERIFIED** | unimodular basis and family arithmetic; identification with \(\mathcal E_{\mathrm{run}}\) is Theorem 4.8 |
 | Lean leftover \(84\) or \(\ge 85\) | **EXACT — LEAN VERIFIED** | Appendix A companion; formalization lag relative to Theorem 4.6 |
-| Four-block expanding chain \(1999\to\cdots\to887471\) (Section 5) | **EXACT — LEAN VERIFIED** | one certified hard path; not a growth theorem |
-| Even and odd-to-even starts have uniform short certificates (Section 5) | **EXACT — LEAN VERIFIED** | not all descent certificates |
+| Laboratory descent floor \(26254995\) (Proposition 5.1); raised cutoff \(50508\) (Theorem 5.2) | **COMPUTATIONALLY VERIFIED** | certified first-passage input plus the Theorem 4.6 table; not Lean |
+| Transport to a reduced base (Theorem 5.3) | **EXACT — HUMAN PROOF** | Lean in log form (`cycleMin_transport`); \(n\ge 400\) hypothesis |
+| Hug charge domination (Theorem 5.4) | **EXACT — HUMAN PROOF** | maximisation Lean (`hug_charge_maximal`); strict uniqueness human, unused by kills |
+| Rotation average \(C_*\) (Proposition 5.5) | **EXACT — HUMAN PROOF** | Laplace bound Lean (`rotationAverage_gap`); ergodic identification classical prose |
+| Word identity (Lemma 5.6) | **EXACT — LEAN VERIFIED** | `budgetedWord_eq_hugWord` |
+| Denjoy--Koksma block envelope (Theorem 5.7) | **EXACT — HUMAN PROOF** | DK classical, stated in §5.5 with the \(\alpha\to\theta\) coordinate change; per-block hypotheses Lean (`theta_convergent_quality`, `theta_block_permutations`) |
+| Census-free window envelope on \([50508,301994)\) (Theorem 5.8) | **EXACT — HUMAN PROOF** | digit caps and scan Lean; valid on the window only — do not read beyond \(301994\) |
+| Kill table, period \(\ge 176251\) (Theorem 5.9) | **COMPUTATIONALLY VERIFIED** | kill template Lean (`cycleMin_hug_kill_criterion`); per-length evaluation certified computation |
+| Second floor \(162849448\), period \(\ge 478245\) (Corollary 5.10) | **COMPUTATIONALLY VERIFIED** | certified evaluation of the same criterion beyond the window; **not** an extension of Theorem 5.8 |
+| Four-block expanding chain \(1999\to\cdots\to887471\) (Section 6) | **EXACT — LEAN VERIFIED** | one certified hard path; not a growth theorem |
+| Even and odd-to-even starts have uniform short certificates (Section 6) | **EXACT — LEAN VERIFIED** | not all descent certificates |
 | No descent certificate \(\Rightarrow\) odd-to-odd | **EXACT — LEAN VERIFIED** | one direction only; complement of the short-certificate remark |
 
 ## Claim map — Paper B
@@ -254,7 +290,12 @@ Reject or revise if:
     the pre-Phase-26 drafts) is cited as a theorem of Paper B;
 12. the excursion necklace of Paper A Section 4 is quoted as a
     new theorem, or the first CycleMin peak is identified with
-    the last-even entry cell.
+    the last-even entry cell;
+13. Theorem 5.8 is quoted for a length outside
+    \([50508,301994)\), or Corollary 5.10 is described as an
+    extension of the census-free window rather than a certified
+    evaluation of the Theorem 5.9 kill criterion, or the
+    \(478245\) bound is quoted as a Lean theorem.
 
 ## Verification
 

@@ -34,6 +34,7 @@ PAPER_MODULES: tuple[str, ...] = (
     "ExpansionSlack",
     "NearTightScale",
     "CycleFinance",
+    "CycleFinanceLeftovers",
     "RunSurvivorLattice",
     "WalkChargeWords",
     "OstrowskiSandwich",
@@ -84,13 +85,7 @@ LAYERS: dict[str, Path] = {
     "LeftoverCell": JUGGLER_DIR / "LeftoverCell.lean",
     "LeftoverShort": JUGGLER_DIR / "LeftoverShort.lean",
     "FirstETransportEval": JUGGLER_DIR / "FirstETransportEval.lean",
-    "BunchedEOEEEval": JUGGLER_DIR / "BunchedEOEEEval.lean",
-    "BunchedEOOEEEval": JUGGLER_DIR / "BunchedEOOEEEval.lean",
-    "BunchedEEOEEval": JUGGLER_DIR / "BunchedEEOEEval.lean",
-    "BunchedEOEOEEval": JUGGLER_DIR / "BunchedEOEOEEval.lean",
-    "BunchedEOOOEEEval": JUGGLER_DIR / "BunchedEOOOEEEval.lean",
     "BunchedTight": JUGGLER_DIR / "BunchedTight.lean",
-    "BunchedEOOEOEEval": JUGGLER_DIR / "BunchedEOOEOEEval.lean",
     "LeftoverFamilies": JUGGLER_DIR / "LeftoverFamilies.lean",
     "PrefixTwoEvenEval": JUGGLER_DIR / "PrefixTwoEvenEval.lean",
     "PrefixTwoEven": JUGGLER_DIR / "PrefixTwoEven.lean",
@@ -111,6 +106,7 @@ LAYERS: dict[str, Path] = {
     "GapCells": JUGGLER_DIR / "GapCells.lean",
     "Escape": JUGGLER_DIR / "Escape.lean",
     "CycleFinance": JUGGLER_DIR / "CycleFinance.lean",
+    "CycleFinanceLeftovers": JUGGLER_DIR / "CycleFinanceLeftovers.lean",
     "RunSurvivorLattice": JUGGLER_DIR / "RunSurvivorLattice.lean",
     "CycleHeightFinance": JUGGLER_DIR / "CycleHeightFinance.lean",
     "WalkChargeWords": JUGGLER_DIR / "WalkChargeWords.lean",
@@ -121,7 +117,6 @@ LAYERS: dict[str, Path] = {
     "WalkChargeMax": JUGGLER_DIR / "WalkChargeMax.lean",
     "DefectFinance": JUGGLER_DIR / "DefectFinance.lean",
     "AboveAnchorWalk": JUGGLER_DIR / "AboveAnchorWalk.lean",
-    "FlightEnvelope": JUGGLER_DIR / "FlightEnvelope.lean",
 }
 
 DYNAMICS = LAYERS["Dynamics"]
@@ -187,18 +182,20 @@ FIRST_E_TRANSPORT_EVAL = LAYERS["FirstETransportEval"]
 FIRST_E_TRANSPORT = LEFTOVER_FAMILIES
 GAPPED_CYCLE_WORD = LEFTOVER_FAMILIES
 BUNCHED_EEE = LEFTOVER_FAMILIES
-BUNCHED_EOEE_EVAL = LAYERS["BunchedEOEEEval"]
+# Historical names: the isolated Bunched*Eval tables were merged
+# into LeftoverEval.lean (one maxHeartbeats header, same theorems).
+BUNCHED_EOEE_EVAL = LEFTOVER_EVAL
 BUNCHED_EOEE = LEFTOVER_FAMILIES
-BUNCHED_EOOEE_EVAL = LAYERS["BunchedEOOEEEval"]
+BUNCHED_EOOEE_EVAL = LEFTOVER_EVAL
 BUNCHED_EOOEE = LEFTOVER_FAMILIES
-BUNCHED_EEOE_EVAL = LAYERS["BunchedEEOEEval"]
+BUNCHED_EEOE_EVAL = LEFTOVER_EVAL
 BUNCHED_EEOE = LEFTOVER_FAMILIES
-BUNCHED_EOEOE_EVAL = LAYERS["BunchedEOEOEEval"]
+BUNCHED_EOEOE_EVAL = LEFTOVER_EVAL
 BUNCHED_EOEOE = LEFTOVER_FAMILIES
-BUNCHED_EOOOEE_EVAL = LAYERS["BunchedEOOOEEEval"]
+BUNCHED_EOOOEE_EVAL = LEFTOVER_EVAL
 BUNCHED_TIGHT = LAYERS["BunchedTight"]
 BUNCHED_EOOOEE = LEFTOVER_FAMILIES
-BUNCHED_EOOEOE_EVAL = LAYERS["BunchedEOOEOEEval"]
+BUNCHED_EOOEOE_EVAL = LEFTOVER_EVAL
 BUNCHED_EOOEOE = LEFTOVER_FAMILIES
 SMALL_CYCLE_CENSUS = LAYERS["SmallCycleCensus"]
 LENGTH_EIGHT_CENSUS = LAYERS["LengthEightCensus"]
@@ -216,11 +213,15 @@ WORD_LANGUAGE = LAYERS["WordLanguage"]
 GAP_CELLS = LAYERS["GapCells"]
 ESCAPE = LAYERS["Escape"]
 CYCLE_FINANCE = LAYERS["CycleFinance"]
+CYCLE_FINANCE_LEFTOVERS = LAYERS["CycleFinanceLeftovers"]
 RUN_SURVIVOR_LATTICE = LAYERS["RunSurvivorLattice"]
 CYCLE_HEIGHT_FINANCE = LAYERS["CycleHeightFinance"]
 WALK_CHARGE_WORDS = LAYERS["WalkChargeWords"]
+WALK_TRANSPORT = LAYERS["WalkTransport"]
 ABOVE_ANCHOR_WALK = LAYERS["AboveAnchorWalk"]
-FLIGHT_ENVELOPE = LAYERS["FlightEnvelope"]
+# Historical name: the open-flight transport envelope was re-rooted on
+# AboveAnchor and merged into WalkTransport.lean.
+FLIGHT_ENVELOPE = LAYERS["WalkTransport"]
 
 DELETED_ENGINE = (
     ENGINE_DIR / "FloorPower.lean",
@@ -259,7 +260,9 @@ def pre_finance_text() -> str:
     branch did not add a census.” Finance later proved those lengths
     by a different inequality; they must not flip those probes.
     """
-    return juggler_text(exclude=("CycleFinance", "CycleHeightFinance"))
+    return juggler_text(
+        exclude=("CycleFinance", "CycleFinanceLeftovers", "CycleHeightFinance")
+    )
 
 
 def cycle_kernel_text() -> str:

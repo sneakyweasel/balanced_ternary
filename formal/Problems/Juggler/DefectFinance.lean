@@ -46,18 +46,11 @@ Not a cycle obstruction by itself and not a halt theorem.
 -/
 
 /-- `−log(1−t) ≤ 1.2·t` for `0 ≤ t ≤ 1/6` — the paper's `6/5`
-majorant of `−log(1−δ)/δ` on `[0,1/6]`. -/
+majorant of `−log(1−δ)/δ` on `[0,1/6]`. Instance of the
+parameterized majorant `neg_log_one_sub_le_mul` at `c = 6/5`. -/
 theorem neg_log_one_sub_le_sixth {t : ℝ} (h0 : 0 ≤ t) (h1 : t ≤ 1 / 6) :
-    -Real.log (1 - t) ≤ 1.2 * t := by
-  have hpos : 0 < 1 - t := by linarith
-  have h2 : Real.log (1 - t)⁻¹ ≤ (1 - t)⁻¹ - 1 :=
-    Real.log_le_sub_one_of_pos (by positivity)
-  rw [Real.log_inv] at h2
-  have h3 : (1 - t)⁻¹ - 1 = t / (1 - t) := by field_simp; ring
-  have h4 : t / (1 - t) ≤ 1.2 * t := by
-    rw [div_le_iff₀ hpos]
-    nlinarith
-  linarith
+    -Real.log (1 - t) ≤ 1.2 * t :=
+  neg_log_one_sub_le_mul (by norm_num) h0 (by norm_num at h1 ⊢; linarith)
 
 /-!
 ## Per-step floor losses, image form

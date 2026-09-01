@@ -1,10 +1,5 @@
 import Problems.Juggler.PrefixTwoEvenEval
-import Problems.Juggler.BunchedEOEEEval
-import Problems.Juggler.BunchedEEOEEval
-import Problems.Juggler.BunchedEOOEEEval
-import Problems.Juggler.BunchedEOEOEEval
-import Problems.Juggler.BunchedEOOOEEEval
-import Problems.Juggler.BunchedEOOEOEEval
+import Problems.Juggler.LeftoverEval
 
 namespace Problems.Juggler
 

@@ -1,9 +1,9 @@
 # Juggler finite-dynamics paper synthesis
 
 Author: Philippe Cochin. Date: 31 August 2026.
-Status: **PAPER_CANDIDATE**. The publication draft is dated 31 August 2026
-and is not submitted. It is titled
-*Cycle financing and a period lower bound for the Juggler map*.
+Status: **PAPER_CANDIDATE**. The publication draft is dated 1 September 2026
+and is not submitted. Since the 1 September editorial passes it is titled
+*Cycle Financing and Near-Convergent Diophantine Obstructions in the Juggler Map*.
 The contribution is known verification through \(10^6\) plus the
 new finance inequality, hence \(L\ge 25781\). Theorem 3.22 is
 the Section 3 headline; Lemma 3.21b is the canonical run form
@@ -339,9 +339,12 @@ Status: Paper A `PAPER_CANDIDATE`; Paper B `WORKING_DRAFT`
 implication, \(\delta=1/96\); pending one independent check of
 Section 5).
 
-Paper A is titled *Cycle financing and a period lower bound for
-the Juggler map*. The three contributions are Theorem 4.4,
-Theorem 3.22, and Theorem 4.6(A). The finance hierarchy is
+Paper A is titled *Cycle Financing and Near-Convergent
+Diophantine Obstructions in the Juggler Map*. The main
+contributions are Theorem 4.4, Theorem 3.22, Theorem 4.6(A),
+and the Section 5 walk-charge envelope with the period bound
+\(478245\) (Corollary 5.10, a certified evaluation of the
+Theorem 5.9 kill criterion beyond the census-free window). The finance hierarchy is
 Theorem 4.4 (sharp, constant \(1\)), Corollary 4.5 (statewise
 bound), and Theorem 4.6 (conservative \(6/5\) certification).
 Finance-survivor lengths and

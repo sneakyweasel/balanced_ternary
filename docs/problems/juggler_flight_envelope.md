@@ -137,19 +137,27 @@ permitted budget of order \(\Delta/\ln n\).
 
 ## Formalization
 
-`formal/Problems/Juggler/FlightEnvelope.lean` (laboratory barrel
-`Problems.Juggler`, not `Problems.JugglerPaper`):
+`formal/Problems/Juggler/WalkTransport.lean` (the former
+`FlightEnvelope.lean` was merged into it during the September 2026
+hygiene pass; the transport induction now runs once, on
+`AboveAnchor`, and the `CycleMin` statements are corollaries via
+`aboveAnchor_of_cycleMin`):
 
 - `follows_log_le_walkWeight` — anchor-free upper envelope
   \(\log x_k\le w_k\log n\) (log form of `power_bound_word`).
-- `one_le_walkWeight_aboveAnchor` — `aboveAnchor_prefix_pow_le` in
-  weight form (\(w_k\ge 1\)).
+- `one_le_walkWeight_aboveAnchor` — `aboveAnchor_prefix_pow_le`
+  (`CycleCore.lean`) in weight form (\(w_k\ge 1\)).
 - `aboveAnchor_transport_prefix`, `aboveAnchor_transport` — the
   Theorem 5.3 transport induction with the cycle hypothesis replaced
   by the anchor hypothesis: odd injections priced at
   `aboveAnchor_iterate_ge`, even injections at
   `even_ge_sq_of_aboveAnchor`.
 - `aboveAnchor_flight_envelope` — the packaged two-sided sandwich.
+- `two_pow_le_walkWeight`, `aboveAnchor_height_of_walk` — the
+  walk-height law (`J-flight-height-law`): \(B\) doublings of walk
+  height at step \(k\) (\(2^{k+B}\le 3^{a_k}\)) force
+  \(\log x_k\ge 2^B(\log n-D)\); heights along a descent-free
+  prefix are doubly exponential in the walk height.
 
 No `sorry`; full `lake build` clean. Ledger row
 `J-flight-envelope-transport` (**EXACT — LEAN VERIFIED**).

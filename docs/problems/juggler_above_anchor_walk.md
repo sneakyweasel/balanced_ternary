@@ -184,8 +184,9 @@ laboratory barrel `Problems.Juggler`, not by `Problems.JugglerPaper`):
 - `aboveAnchor_prefix_pow_le` — `AboveAnchor n w` with \(2\le n\)
   forces \(2^k\le 3^{\mathrm{oddCount}(w_{\le k})}\) for every
   \(k\le|w|\); the proof composes `power_bound_contracts` with the
-  anchor hypothesis, mirroring `cycleMin_prefix_pow_le` with the
-  cycle hypothesis deleted.
+  anchor hypothesis. Since the September 2026 hygiene pass the
+  lemma lives in `CycleCore.lean` next to `AboveAnchor` itself,
+  and `cycleMin_prefix_pow_le` is its one-line cycle corollary.
 - `aboveAnchor_prefix_odds_ge_hug`, `aboveAnchor_odds_ge_hug` —
   composition with `hugOdds_least`: above-anchor prefixes dominate
   the exact hug word in odd count.

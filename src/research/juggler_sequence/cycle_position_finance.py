@@ -27,6 +27,7 @@ from research.juggler_sequence.lean_paths import (
     CYCLE_CORE,
     CYCLE_EXTREMA,
     CYCLE_FINANCE,
+    CYCLE_FINANCE_LEFTOVERS,
     CYCLE_HEIGHT_FINANCE,
     DYNAMICS,
     JUGGLER_DIR,
@@ -513,6 +514,9 @@ def lean_api_present() -> dict[str, bool]:
         + CYCLE_CORE.read_text(encoding="utf-8")
         + "\n"
         + CYCLE_FINANCE.read_text(encoding="utf-8")
+        + "\n"
+        # leftover instances split out of CycleFinance.lean (1 Sep 2026)
+        + CYCLE_FINANCE_LEFTOVERS.read_text(encoding="utf-8")
         + "\n"
         + CYCLE_HEIGHT_FINANCE.read_text(encoding="utf-8")
         + "\n"

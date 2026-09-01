@@ -2,7 +2,10 @@
 
 This page is the Lean companion to the two manuscripts: **Paper A**,
 [juggler_finite_dynamics_note.md](juggler_finite_dynamics_note.md)
-(cycle-length lower bounds; Lean-backed except Theorem 4.6), and **Paper B**,
+(cycle-length lower bounds; core lemmas Lean-backed, while the
+descent floors, Theorems 4.6, 4.8, 5.2, 5.9, and Corollary 5.10
+are independently certified computations, and Denjoy--Koksma and
+the ergodic identification of \(C_*\) are classical prose), and **Paper B**,
 [juggler_parity_discrepancy_note.md](juggler_parity_discrepancy_note.md)
 (parity discrepancy; human proofs over Lean-verified floor
 identities). Both are written to be readable without this page.
@@ -11,7 +14,9 @@ development is in `formal/Problems/Juggler/`; it contains no `sorry`
 or `admit`. The review object for **Paper A** is the paper barrel
 `formal/Problems/JugglerPaper.lean` (`lake build Problems.JugglerPaper`).
 That file imports only the modules named by Paper A (Appendix A of
-the note), including `CycleFinance.lean` for Theorem 4.4 and
+the note), including `CycleFinance.lean` for Theorem 4.4 (the
+census and length-exclusion companions live in
+`CycleFinanceLeftovers.lean`) and
 `RunSurvivorLattice.lean` for Proposition 4.9. It does
 not import `GapCells.lean` or `CycleHeightFinance.lean`. Laboratory
 satellites remain in `formal/Problems/Juggler.lean` and are not the
@@ -527,9 +532,11 @@ not constrain an actual cycle. The identification of the \(99\)
 lattice points with the run-type table is Theorem 4.8, not Lean.
 
 Companion names leftover \(84\), residual floor \(261\), and the
-census through length \(19\) are listed in Appendix A of the note.
-They are not paper theorems. `CycleHeightFinance.lean` is not
-imported.
+census through length \(19\) are listed in Appendix A of the note
+and live in `CycleFinanceLeftovers.lean` (table-driven length
+exclusions over `financeRows53` / `financeRows257` /
+`financeRows261`). They are not paper theorems.
+`CycleHeightFinance.lean` is not imported.
 
 ## 8.5 Excursion necklace
 
@@ -609,7 +616,7 @@ Two corollaries are Lean end to end. Cycle-word domination
 (`cycleMin_prefix_odds_ge_hug`, `cycleMin_odds_ge_hug`): every
 prefix of a minimum-based cycle word carries at least
 \(\mathrm{hugOdds}(k)\) odd letters, by composing the cycle prefix
-envelope `cycleMin_prefix_pow_le` (CycleFinance) with
+envelope `cycleMin_prefix_pow_le` (CycleCore) with
 `hugOdds_least`; the strict window `hugOdds_pow_gt` identifies
 \(\mathrm{hugOdds}\) with the strict \(o_{\min}\). Lattice bridge:
 the survivor-lattice generators of Proposition 4.9 lie on the hug
@@ -620,21 +627,30 @@ Laplace integral (Proposition 5.5) is a human proof.
 
 `WalkTransport.lean` proves the transport inequality of Theorem 5.3
 end to end in log form. The walk weight \(w_k=2^{u_k}=3^{a_k}/2^k\)
-is rational, so no real exponentiation is needed:
-`cycleMin_transport` states
+is rational, so no real exponentiation is needed. The single
+transport induction runs on the never-descending hypothesis
+`AboveAnchor` (`aboveAnchor_transport`:
 \(w_k(\ln n-D)\le\ln x_k\) with
-\(D=1.05e/n+0.7o/(n\sqrt n)\) for any CycleMin cycle at minimum
-\(n\ge 400\). Ingredients: per-step floor losses
+\(D=1.05e/n+0.7o/(n\sqrt n)\) for any descent-free prefix at anchor
+\(n\ge 400\)); the paper's `cycleMin_transport` is the closed
+instance via `aboveAnchor_of_cycleMin`, since a minimum-based cycle
+is a descent-free prefix that returns. Ingredients: per-step floor
+losses
 \(\ln T(x)\ge\tfrac32\ln x-1.05/(x\sqrt x)\) (odd, \(x\ge 9\)) and
 \(\ln T(x)\ge\tfrac12\ln x-1.05/\sqrt x\) (even, \(x\ge 441\))
-from the floor cells and \(-\ln(1-t)\le 1.05t\) on \(t\le 1/21\)
+from the floor cells and the parameterized majorant
+\(-\ln(1-t)\le ct\) on \(t\le 1-1/c\)
 (`log_floorPower_odd_ge`, `log_floorPower_even_ge`,
-`neg_log_one_sub_le`); the exact weight recursion
+`neg_log_one_sub_le_mul`; instances \(c=1.05\) here and \(c=6/5\)
+in DefectFinance); the exact weight recursion
 \(w_{k+1}=\tfrac32 w_k\) (odd), \(w_k/2\) (even); odd injections
-priced at \(x_j\ge n\) (`cycleMin_iterate_ge`) against
+priced at \(x_j\ge n\) (`aboveAnchor_iterate_ge`) against
 \(w_{j+1}\ge\tfrac32\), even injections at \(x_j\ge n^2\)
-(`cycleMin_even_ge_sq`) against \(w_{j+1}\ge 1\)
-(`one_le_walkWeight`, from `cycleMin_prefix_pow_le`).
+(`even_ge_sq_of_aboveAnchor`) against \(w_{j+1}\ge 1\)
+(`one_le_walkWeight_aboveAnchor`, from `aboveAnchor_prefix_pow_le`,
+`CycleCore.lean`). The anchor-free upper side
+`follows_log_le_walkWeight` (floors only lose) completes the
+fly-height sandwich `aboveAnchor_flight_envelope`.
 
 `WalkChargeMax.lean` closes the chain from transport to the hug
 charge (the §5.2 consequence and the analytic half of Theorem 5.4).

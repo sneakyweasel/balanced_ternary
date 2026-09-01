@@ -19049,3 +19049,215 @@ Best next question
   valleys into a whole-trajectory height law?
 ```
 
+
+
+## Paper A editorial pass (two-review arbitrage; not a numbered milestone)
+
+- **Date:** 2026-09-01
+- **Objective:** Arbitrate two external-style reviews of Paper A ("submit with cleanup" vs "major revision") and apply the agreed fixes. No mathematics changed; no ledger tags changed; no new experiment.
+- **Major results (all editorial):**
+  - **Title:** now *Cycle financing, extremal exponent walks, and a period lower bound for the Juggler map* (propagated to the reviewer packet, both READMEs, Zenodo fields, Paper B reference [22], and the paper dossier).
+  - **Window scoping (both reviews' top issue):** abstract, §1 architecture, Contribution 4, and Corollary 5.10 now say explicitly that the census-free window theorem (Thm 5.8) stops at \(301994\) and that the \(478245\) bound is a certified evaluation of the Theorem 5.9 kill criterion on survivors beyond that window — not an extension of the window theorem. \(478245\) is labeled the main numerical result; \(176251\) is the first laboratory instance.
+  - **§5.5 is now self-contained:** the Denjoy–Koksma inequality is stated, and the coordinate change from rotation by \(\alpha=\log_2(3/2)\) on \(\mathbb R/(1+\alpha)\mathbb Z\) to rotation by \(\theta=\alpha/(1+\alpha)=\log(3/2)/\log 3\) on \(\mathbb R/\mathbb Z\) is written out; the Thm 5.7 proof cites the stated form and the certified per-block quality.
+  - **Theorem 5.4 restated:** the charge-domination chain (\(a_k^{\mathrm{hug}}\le a_k\Rightarrow u_k^{\mathrm{hug}}\le u_k\Rightarrow\sum g(u_k)\le\sum g(u_k^{\mathrm{hug}})\)) is now displayed; strict uniqueness is a subordinate remark, marked unused by the kill table.
+  - **Trust boundary in the abstract:** core lemmas Lean; floors and kill tables certified computations; the paper does not claim to be formally verified as a whole.
+  - **Section 3 reframed** as structural (minimum geometry feeding §4–5; period 11 a floor-free byproduct). Full compression and renumbering were declined (arbitrage: reviewer 1's "stop changing the mathematics" wins over reviewer 2's restructure; cross-references to ledger/dossiers/Lean maps stay stable).
+  - **Editorial:** ten stray `*Proof.* *` asterisks in Appendix D fixed; log/ln notation note added in §4; Appendix B now states the exact CPU computation is authoritative and the GPU port is an optional reproducibility aid.
+  - **Companion sync:** reviewer packet updated (Section 5 claim rows, new falsifier 13 on window overreads, Section 5 review questions, Section 5→6 fixes) and copied to both homes; formalization-map header un-staled; Zenodo description rewritten to the current abstract; both PDFs rebuilt (`pandoc -f markdown+tex_math_single_backslash --pdf-engine=xelatex -V geometry:margin=1in`, 31 pages).
+- **Refuted ideas:** none (editorial pass).
+- **Second pass (same date, post-review):** an external-style re-review returned SUBMIT with two precision fixes, both applied:
+  - **Denjoy–Koksma restated for convergents:** the §5.5 statement now requires \(p_j/q_j\) to be a continued-fraction *convergent* of \(\theta\), not an arbitrary rational with \(|\theta-p/q|<1/q^2\) (the classical theorem is convergent-scoped); the text records that the certified pairs are genuine convergents (produced by the recurrence from the certified quotient prefix, `theta_convergent_denominators`, unimodular/coprime) with the quality bound and block permutations as additional Lean-verified facts.
+  - **Ergodic identification made precise:** Proposition 5.5 and the follow-up paragraph now say the identification of \(C_*\) uses the standard extension of unique-ergodicity Birkhoff convergence from continuous to Riemann-integrable observables (the observable is monotone with one wrap jump, hence Riemann integrable and BV) — bare unique ergodicity is not invoked on a discontinuous observable.
+  - **Disclaimer trim:** classical layer list compressed to seven items; "not a halt theorem" now appears once (§6); "not formally verified as a whole" once in the abstract and once in §1.2 (Appendix A repetition dropped). Title shortening was offered as optional and declined to avoid churn. PDFs rebuilt (31 pages) and synced to the Zenodo kit. Paper A is frozen for submission.
+- **Decision:** none — Paper A remains PAPER_CANDIDATE; no branch opened.
+
+## Flight walk-divergence: the Paper B x hug flights question (consolidation; not a numbered milestone)
+
+- **Date:** 2026-09-01
+- **Objective:** Answer the above-anchor branch's best next question: can the proved depth-\(\le 4\) parity layer of Paper B kill extremal hug-hugging descent-free flights the way parity/walk finance killed short cycle leftovers?
+- **Hypotheses:** the hug-domination floor (Lean, new since Paper B) might let the proved ambient layer act pointwise on open flights; falsifier: every route reduces to the REFUTED ambient-to-orbit transfer or the parked K3/JJ wall.
+- **Major results:**
+  - **Flight walk-divergence (EXACT - HUMAN PROOF, `J-flight-walk-divergence`):** every descent-free flight has unbounded exponent walk. Walk \(\le B\) forces states \(\le n^{2^B}\) (Lean `power_bound_word`), hence eventual periodicity (pigeonhole), and the period word is strictly expanding (Lean `cycle_strict_envelope`: \(2^p<3^o\), equality impossible), so the walk gains \(\delta=\log_2(3^o/2^p)>0\) per traversal - contradiction. With the Lean hug band \(0\le u^{\mathrm{hug}}<\log_2 3\), no flight stays within bounded excess of the hug word: the extremal hug-hugging adversary is cycle-exclusive.
+  - **Flight dichotomy at the frontier:** a descent-free flight starts above the certified floor \(162849448\) and either enters a nontrivial cycle (min above the floor, period \(\ge 478245\)) or has unbounded states (a divergent orbit). First flight-level consequence of the cycle period bound.
+  - **Paper B answer (negative as mechanism):** its proved depth-\(\le 4\) layer is ambient-density; the transfer refutation (`TRANSFER_COMPLEX`) stands; every odd-rooted window class has positive ambient density, so no finite window is forbidden pointwise. The kill that works is pigeonhole + strict expansion, not equidistribution. The refuted transfer was not re-tested.
+  - **Probe (`flight_walk_divergence.py`, `FLIGHT_WALK_DIVERGENCE_CONFIRMED`):** hug band \(2^k\le 3^{a_k}<3\cdot 2^k\) exact over \(2\cdot 10^5\) letters (max \(u=1.58495721\)); all seven hug pairs at the leftover/survivor lengths strictly expanding; drift from \(3.0\cdot 10^{-3}\) (\(L=84\)) down to \(5.1\cdot 10^{-6}\) (\(L=478245\)); the \(L=301994\) pair overshoots by almost \(\log_2 3\) (near-convergent from above).
+  - **Maintenance:** `J-flight-envelope-transport` Lean path repaired after the `FlightEnvelope.lean` -> `WalkTransport.lean` merge.
+- **Refuted ideas:** none new (the branch honors, and does not re-test, `juggler_parity_discrepancy_transfer` and `juggler_cycle_paper_merge`).
+- **Literature:** none new.
+- **Open:** divergent orbits (case 2) are exactly the all-depth equidistribution frontier; the eventual-cycle case beyond period \(478245\) is the cycle program; neither is opened from here.
+- **Decision:** PROMOTE - dossier `docs/problems/juggler_flight_walk_divergence.md`, ledger row `J-flight-walk-divergence`.
+
+```text
+What was learned
+- bounded-walk descent-free flights are eventual cycles:
+  bounded walk -> bounded states (Lean envelope) ->
+  pigeonhole periodicity -> strictly expanding period word
+  (Lean) -> walk diverges; contradiction
+- hence sup u = infinity on every descent-free flight and the
+  hug-hugging adversary cannot be an open flight - below the
+  cycle frontier it inherits period >= 478245 and min > 1.6e8
+- Paper B's proved layer cannot see single orbits: ambient
+  density forbids no finite window; the transfer refutation
+  was the right negative knowledge and stays final
+- the cycle kills were powered by the closure identity
+  (finance); open flights have no closure identity - the
+  correct flight analogue is the pigeonhole reduction
+What was learned (cont.)
+- hug pairs at near-convergents from above (L = 301994)
+  overshoot by almost log2 3; all hug pairs are strictly
+  expanding, drift down to 5.1e-6 at the blocker length
+Strongest theorem
+- flight walk-divergence: every descent-free flight has
+  unbounded exponent walk (J-flight-walk-divergence)
+Strongest refutation
+- none new (the falsifier fired in the intended sense: the
+  Paper B route does reduce to the refuted transfer; the
+  target died by a different, unconditional mechanism)
+Reusable machinery
+- flight_walk_divergence probe (exact hug band, drift table,
+  escape times); the dichotomy as a routing statement between
+  the cycle program and the all-depth frontier
+Branch status
+- PROMOTE
+Why
+- the branch question is answered by an exact theorem that
+  retires the extremal flight adversary and cleanly routes
+  the remaining flight frontier into two named programs;
+  nothing here reopens transfer, K3, or floor campaigns
+Best next question
+- does the dichotomy plus the fan structure force the
+  eventual cycle of a bounded flight into the surviving
+  k = 1 semiconvergent fan at L = 478245, giving a
+  flight-side statement at the blocker without a new floor?
+```
+
+## Lean hygiene pass: anchor re-rooting and census split (consolidation; not a numbered milestone)
+
+- **Date:** 2026-09-01
+- **Objective:** Review the whole Juggler Lean tree and make it pristine: one transport induction, census off the walk-layer import graph, no duplicated majorants, no wrapper sprawl. No mathematical claim changed; no ledger tag changed.
+- **Major results (all structural):**
+  - **Transport re-rooted on `AboveAnchor`:** `FlightEnvelope.lean` deleted; its content merged into `WalkTransport.lean`. The ~130-line transport induction now runs once, on the never-descending hypothesis (`aboveAnchor_transport_prefix` / `aboveAnchor_transport`), and the Paper A statements `cycleMin_transport_prefix` / `cycleMin_transport` are one-line corollaries via `aboveAnchor_of_cycleMin`. This is the one change with mathematical content: every descent-free prefix, not just a hypothetical cycle, is priced by the transport envelope.
+  - **Prefix non-contraction moved to `CycleCore.lean`:** `aboveAnchor_prefix_pow_le` is the primitive; `cycleMin_prefix_pow_le` and `cycleMin_iterate_ge` are corollaries next to `AboveAnchor` itself. `WalkChargeWords.lean` and `WalkTransport.lean` now import `CycleCore` instead of `CycleFinance` — the §5 walk layer no longer compiles the §4 census.
+  - **`CycleFinance.lean` split:** the file keeps only Theorem 4.4 / Corollary 4.4c (`cycleMin_finance`, `cycleMin_finance_inv_sum`) on top of `CycleCore`; the entire census (length exclusions, floor-261 comparison, `EliahouTable`, `cycle_word_eliahou_leftover`, leftover `84`-or-`\ge 85`) moved to the laboratory companion `CycleFinanceLeftovers.lean`.
+  - **Length exclusions table-driven:** ~70 individual `finance_excludes_length_*` wrappers replaced by three row tables (`financeRows53`, `financeRows257`, `financeRows261`) with one membership lemma each (`fin_cases` + `decide`); the six named exclusions used by probes survive as corollaries. Same theorems, several hundred lines gone.
+  - **Log majorant parameterized:** `neg_log_one_sub_le_mul` (\(-\log(1-t)\le ct\) for \(t\le 1-1/c\)) in `WalkTransport.lean`; the \(1.05\) transport instance and the \(6/5\) defect-finance instance (`neg_log_one_sub_le_sixth`, `DefectFinance.lean`) are corollaries.
+  - **`Bunched*Eval` collapsed:** six isolated `native_decide` table files merged into `LeftoverEval.lean` under one `maxHeartbeats`; importers rewired.
+  - **Wiring:** `lean_paths.py` layers/constants updated (old names alias the new homes); `theorem_ledger.json` Lean paths repointed for 14 census rows and re-rendered; barrels, formalization map, and the finance / flight-envelope / above-anchor dossiers updated. Full `lake build` clean (8875 jobs, no `sorry`); fast `pytest` green.
+- **Explicitly not done (per review):** no `LeftoverFamilies`×`PrefixBunched` merge, no `CycleFinance`×`DefectFinance` merge (two majorants, two paper theorems), no Denjoy–Koksma formalization, no Lean kill tables, no reopened satellites, no hug-cylinder Lean, no \(N_0\) raise.
+- **Refuted ideas:** none (structural pass).
+- **Decision:** none — no branch opened; the tree is packaging-clean and the frontier remains Diophantine.
+
+## Walk-height law: the appearing corollary of the re-rooting (Phase 0; extends `J-flight-walk-divergence`)
+
+- **Date:** 2026-09-01
+- **Objective:** Triage the one candidate the hygiene pass surfaced: does the anchor-rooted transport envelope compose with the flight walk-divergence theorem into an unconditional doubly-exponential height law for descent-free flights?
+- **Hypotheses:** before the re-rooting the composition was not even well-typed (transport lived on `CycleMin`, and cycles are exactly the bounded-walk case); on `AboveAnchor` it should be a five-line corollary. Falsifier: the composition needs an infinite-flight hypothesis at every step, or the deficit \(D\) makes the bound vacuous at the anchor floor.
+- **Major results:**
+  - **Walk-height law (EXACT — LEAN VERIFIED, `J-flight-height-law`):** on `AboveAnchor n w` with \(n\ge 400\), a walk height of \(B\) doublings at step \(k\) (\(2^{k+B}\le 3^{a_k}\)) forces \(2^B(\log n-D)\le\log x_k\), i.e. \(x_k\ge(ne^{-D})^{2^B}\) (`aboveAnchor_height_of_walk`, weight form `two_pow_le_walkWeight`, `WalkTransport.lean`). The proof is exactly the predicted composition: \(2^B\le w_k\) from the height hypothesis, then `aboveAnchor_transport`; the \(\log n<D\) case is vacuous since \(x_k\ge 1\). Finite-word, no pigeonhole needed.
+  - **Flight consequence (rate form of the dichotomy):** composed with the human walk-divergence theorem, every descent-free flight realizes the rate along an unbounded walk — divergent orbits escape doubly exponentially in their walk height. The only human glue remains the infinite pigeonhole of `J-flight-walk-divergence`.
+  - **Nonvacuity regime recorded:** \(D<\log n\) holds for prefix lengths up to order \(n\log n/1.05\); flights start above the certified floor \(162849448\), so the law is live for astronomically long prefixes.
+  - **Wiring:** probe `flight_walk_divergence.py` asserts the new lemma; summary regenerated; dossiers (`juggler_flight_walk_divergence.md`, `juggler_flight_envelope.md`) and ledger updated; full `lake build` and fast suite green.
+- **Refuted ideas:** none. Negative knowledge honored: no priced-walk abstraction (machinery gravity, no new bound), no infinite-flight Lean framing, no hug-cylinder Lean, no constant-tightening of \(1.05\).
+- **Decision:** PROMOTE (ledger row `J-flight-height-law`) — and stop; the branch does not reopen the divergence program.
+
+```text
+What was learned
+- the re-rooting was load-bearing, not cosmetic: the height
+  law type-checks only because transport now lives on
+  AboveAnchor; on CycleMin the hypothesis class excluded
+  exactly the orbits the law prices
+- the rate side of flight divergence is finite-word
+  mathematics: only the pigeonhole (eventual periodicity of
+  bounded flights) is genuinely infinite
+- vacuity is a regime, not a defect: D < log n up to prefix
+  length ~ n log n, and flights live above 1.6e8
+Strongest theorem
+- walk-height law: 2^(k+B) <= 3^(a_k) on a descent-free
+  prefix forces x_k >= (n e^-D)^(2^B)
+  (J-flight-height-law, EXACT - LEAN VERIFIED)
+Strongest refutation
+- none
+Reusable machinery
+- two_pow_le_walkWeight (walk-height to weight conversion);
+  the law itself as the quantitative half of any future
+  divergence statement
+Branch status
+- PROMOTE
+Why
+- a finished Lean corollary of two existing theorems entered
+  the ledger with no new machinery; the flight frontier
+  routing (cycles / all-depth equidistribution) is unchanged
+Best next question
+- unchanged from the flight branch: does the dichotomy plus
+  the fan structure force the eventual cycle of a bounded
+  flight into the k = 1 semiconvergent fan at L = 478245?
+```
+
+## Paper A: referee report v10 response — retitle and the six required revisions (consolidation; not a numbered milestone)
+
+- **Date:** 2026-09-01
+- **Objective:** Apply the six required items of the version-10 referee report ("Major Revision → Accept" for a specialist venue) plus the user-directed retitle. Editorial only: no mathematics, no ledger tag, no Lean changed.
+- **Major results (all editorial):**
+  - **Title:** now *Cycle Financing and Near-Convergent Diophantine Obstructions in the Juggler Map* (propagated to the reviewer packet both copies, both READMEs, Zenodo fields and citation, Paper B reference [22] both copies, and the paper dossier).
+  - **Req 1 (headline):** the abstract now says, immediately after the finance display, that the inequality is the main theorem and every numerical period bound is an instantiation of it (or of its walk-charge refinement) at a certified descent floor — \(478245\) is the strongest instantiation, not the contribution.
+  - **Req 2 (window boundary):** the one remaining \(478245\) mention without the \(301994\) boundary (novelty-layer item 7) now says "direct evaluation of the same criterion beyond the \(301994\) window boundary"; abstract, §1, Contribution 4, and Corollary 5.10 already carried it.
+  - **Req 3 (block concatenation):** the Theorem 5.7 proof now states that \(L=\sum_jb_jq_j\) partitions the orbit segment into consecutive blocks with differing starting phases and that Denjoy–Koksma, being uniform in the starting phase, applies independently to each block.
+  - **Req 4 (Section 3 compression):** the four long proofs — Lemma 3.5, Theorem 3.6, Lemma 3.7, Theorem 3.8 — moved verbatim to Appendix D (which now opens with the small-cycle censuses before the family exclusions); the main text keeps the statements, one-line Appendix D pointers, and a roadmap sentence in the §3 framing paragraph. Numbering unchanged; all cross-references still resolve.
+  - **Req 5 (survivor convention):** §1 terminology now fixes the convention: a survivor count "through \(X\)" is inclusive, \(L\le X\).
+  - **Req 6 (reproducibility):** Appendix B gains a *Reproducibility of the second-floor kill table* paragraph: `certified_report(L, 162849448)` one-liner (CPU, authoritative; smoke-tested), the GPU per-length command, and `--survey` for the Theorem 5.9 table.
+  - **Optional items taken:** Contribution 3 heading is now "explicit conditional consequence for hypothetical cycles" (reviewer §13); the GPU passage is one sentence, with the \(450\times\)/\(10^{-13}\) performance figures moved to the walk-charge dossier (reviewer §15).
+  - **Rebuild:** both PDFs regenerated (pandoc `-f markdown+tex_math_single_backslash --pdf-engine=xelatex -V geometry:margin=1in`, 32 pages — the appendix restatements add one page while shortening the main narrative).
+- **Refuted ideas:** none (editorial pass).
+- **Decision:** none — per the report's strongest recommendation, Paper A is frozen for submission; the next mathematical work (the \(|3^o-2^L|\) semiconvergent-fan frontier) is a separate program and is not opened here.
+
+## Flight anchor-period law: the blocker dies conditionally (consolidation; not a numbered milestone)
+
+- **Date:** 2026-09-01
+- **Objective:** The walk-divergence branch's best next question: does the dichotomy plus the fan structure give a flight-side statement at the blocker \(L=478245\) without a new floor?
+- **Hypotheses:** the flight's anchor replaces the certified floor (min \(\ge\) anchor is free by the dichotomy); falsifier: a non-fan parity leftover in \((478245, 780239)\) survives DK pricing at floor \(3.5\cdot 10^8\), or kills fail floor-monotonicity.
+- **Major results:**
+  - **Anchor-transfer lemma (EXACT - HUMAN PROOF):** a bounded-walk descent-free flight from anchor \(n\) enters a cycle with min \(\ge n\); both kill right-hand sides (parity finance, DK envelope) are strictly decreasing in the floor, so kill tables at floor \(n\) apply with no descent campaign. The competition branch's hypothetical schedule points become conditional theorems.
+  - **Instance (COMPUTATIONALLY VERIFIED, `J-flight-anchor-period`):** any descent-free flight from \(n\ge 3.5\cdot 10^8\) with bounded walk enters a cycle of period \(\ge 780239\) - a \(1.63\times\) conditional extension past the unconditional \(478245\), zero descent verification. Probe: all \(301995\) lengths in \([478245, 780239]\) scanned at the anchor (conservative float prefilter with \(10\times\) safety, \(112\) exact big-int \(\theta\) resolutions, \(11\) parity survivors); the ten below \(780239\) die under the census-free DK envelope (blocker margin \(1.0053\); near-convergent combinations \(478245+\{25781, 50508, 176251, \dots\}\) at \(1.48\)-\(7.82\)); first survivor exactly \(780239\) (margin \(0.6048\)); all margins monotone up from the certified floor.
+- **Refuted ideas:** none (the falsifier did not fire: no intermediate leftover survives).
+- **Literature:** none new.
+- **Open:** automating the contiguity scan along the remaining 61 schedule levels would give the conditional ladder to period \(\sim 10^8\) at anchor \(2.64\cdot 10^{13}\) - deferred (no new mechanism; machinery gravity). The divergent-orbit case and the unconditional frontier are untouched.
+- **Decision:** PROMOTE - dossier `docs/problems/juggler_flight_anchor_period.md`, ledger row `J-flight-anchor-period`.
+
+```text
+What was learned
+- the dichotomy makes the flight's anchor a legitimate floor
+  input: min >= anchor needs no certification, so the PARKed
+  hypothetical break-even floors become conditional period laws
+- floor-monotonicity of both kill RHS forms is rigorous from
+  the formulas (1/(n ln n) scaling, C* decreasing), so all
+  certified kills persist upward for free
+- the parity leftovers between the k=1 and k=2 fan members are
+  exactly the near-convergent sums 478245 + {earlier leftovers};
+  all die at the anchor with margins >= 1.48 - the blocker
+  itself is the only tight kill (1.0053)
+- the first conditional bridge from the cycle program to the
+  termination frontier: flights now inherit schedule points
+  the unconditional program cannot afford
+Strongest theorem
+- anchor-period instance: bounded flights from n >= 3.5e8 have
+  eventual-cycle period >= 780239 (J-flight-anchor-period)
+Strongest refutation
+- none (falsifier tested and dead)
+Reusable machinery
+- flight_anchor_period probe: contiguous parity scan with sound
+  float prefilter + exact near-resonant resolution + DK pricing
+  at an arbitrary anchor floor - the template for the ladder
+Branch status
+- PROMOTE
+Why
+- the promotion criterion (contiguous conditional bound past
+  the blocker) is met on the first anchor; the ladder is named
+  and deferred before machinery gravity sets in
+Best next question
+- is there any statement about *unbounded-state* (divergent)
+  flights from the proved layers - e.g. does the flight
+  envelope force a minimum divergence rate log x_k >= c k
+  along a subsequence - or is that frontier fully behind
+  all-depth equidistribution?
+```
+

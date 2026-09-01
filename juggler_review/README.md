@@ -9,15 +9,19 @@ is not the laboratory. No termination theorem is claimed.
 ## Read this first
 
 1. [juggler_finite_dynamics_note.pdf](juggler_finite_dynamics_note.pdf)
-   — **Paper A**: *Cycle financing and a period lower bound for
-   the Juggler map*. Finance inequality plus the verified
+   — **Paper A**: *Cycle Financing and Near-Convergent
+   Diophantine Obstructions in the Juggler Map*. Finance inequality
+   plus the verified
    descent floor give \(L\ge 25781\) at \(10^6\) and
    \(L\ge 50508\) at the laboratory floor \(26254995\); the
    Section 5 walk-charge envelope (transport, hug adversary,
    Denjoy–Koksma over certified Ostrowski blocks, window
-   theorem) raises the bound to \(L\ge 176251\) at that floor,
-   and to \(L\ge 478245\) at the second certified floor
-   \(162849448\) (Corollary 5.10).
+   theorem on \([50508,301994)\)) raises the bound to
+   \(L\ge 176251\) at that floor. The main numerical result is
+   \(L\ge 478245\) at the second certified floor \(162849448\)
+   (Corollary 5.10) — a certified evaluation of the same kill
+   criterion on the survivors beyond the census-free window,
+   not an extension of the window theorem.
    Every nontrivial cycle has at least four even letters, hence
    period at least eleven. Finance-survivor lengths through
    \(10^5\) are supporting material.

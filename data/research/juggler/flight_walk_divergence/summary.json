@@ -1,0 +1,186 @@
+{
+  "experiment": "juggler_flight_walk_divergence",
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "halt_theorem": false,
+    "divergent_orbit_exists": false,
+    "all_flights_killed": false,
+    "paper_b_pointwise_transfer": false,
+    "ambient_transfer_reopened": false,
+    "asymptotic_descent_program_reopened": false,
+    "paper_a_modified": false,
+    "paper_b_modified": false
+  },
+  "hug_band": {
+    "window": 200000,
+    "violations": 0,
+    "band_ok": true,
+    "u_max": 1.58495721,
+    "u_band_top": 1.5849625,
+    "state_band_exponent": 3.0
+  },
+  "drift_table": [
+    {
+      "L": 84,
+      "o_hug": 53,
+      "strictly_expanding": true,
+      "delta_log2_per_period": 0.0030125382212844443,
+      "escape": {
+        "2.0": {
+          "traversals": 664,
+          "steps_approx": 55776
+        },
+        "10.0": {
+          "traversals": 3320,
+          "steps_approx": 278880
+        },
+        "100.0": {
+          "traversals": 33195,
+          "steps_approx": 2788380
+        }
+      }
+    },
+    {
+      "L": 1054,
+      "o_hug": 665,
+      "strictly_expanding": true,
+      "delta_log2_per_period": 6.297956883827283e-05,
+      "escape": {
+        "2.0": {
+          "traversals": 31757,
+          "steps_approx": 33471878
+        },
+        "10.0": {
+          "traversals": 158782,
+          "steps_approx": 167356228
+        },
+        "100.0": {
+          "traversals": 1587817,
+          "steps_approx": 1673559118
+        }
+      }
+    },
+    {
+      "L": 25781,
+      "o_hug": 16266,
+      "strictly_expanding": true,
+      "delta_log2_per_period": 3.673032551887445e-05,
+      "escape": {
+        "2.0": {
+          "traversals": 54451,
+          "steps_approx": 1403801231
+        },
+        "10.0": {
+          "traversals": 272255,
+          "steps_approx": 7019006155
+        },
+        "100.0": {
+          "traversals": 2722546,
+          "steps_approx": 70189958426
+        }
+      }
+    },
+    {
+      "L": 50508,
+      "o_hug": 31867,
+      "strictly_expanding": true,
+      "delta_log2_per_period": 1.0481082426849753e-05,
+      "escape": {
+        "2.0": {
+          "traversals": 190820,
+          "steps_approx": 9637936560
+        },
+        "10.0": {
+          "traversals": 954100,
+          "steps_approx": 48189682800
+        },
+        "100.0": {
+          "traversals": 9541000,
+          "steps_approx": 481896828000
+        }
+      }
+    },
+    {
+      "L": 176251,
+      "o_hug": 111202,
+      "strictly_expanding": true,
+      "delta_log2_per_period": 5.19401510246098e-06,
+      "escape": {
+        "2.0": {
+          "traversals": 385059,
+          "steps_approx": 67867033809
+        },
+        "10.0": {
+          "traversals": 1925293,
+          "steps_approx": 339334816543
+        },
+        "100.0": {
+          "traversals": 19252929,
+          "steps_approx": 3393347989179
+        }
+      }
+    },
+    {
+      "L": 301994,
+      "o_hug": 190538,
+      "strictly_expanding": true,
+      "delta_log2_per_period": 1.5849624076508917,
+      "escape": {
+        "2.0": {
+          "traversals": 2,
+          "steps_approx": 603988
+        },
+        "10.0": {
+          "traversals": 7,
+          "steps_approx": 2113958
+        },
+        "100.0": {
+          "traversals": 64,
+          "steps_approx": 19327616
+        }
+      }
+    },
+    {
+      "L": 478245,
+      "o_hug": 301739,
+      "strictly_expanding": true,
+      "delta_log2_per_period": 5.100970156490803e-06,
+      "escape": {
+        "2.0": {
+          "traversals": 392083,
+          "steps_approx": 187511734335
+        },
+        "10.0": {
+          "traversals": 1960412,
+          "steps_approx": 937557236940
+        },
+        "100.0": {
+          "traversals": 19604114,
+          "steps_approx": 9375569499930
+        }
+      }
+    }
+  ],
+  "lean": {
+    "Envelope.power_bound_word": true,
+    "Envelope.cycle_strict_envelope": true,
+    "WalkChargeWords.hugOdds_pow_ge": true,
+    "WalkChargeWords.hugOdds_pow_lt": true,
+    "WalkTransport.follows_log_le_walkWeight": true,
+    "WalkTransport.aboveAnchor_height_of_walk": true,
+    "CycleCore.aboveAnchor_prefix_pow_le": true
+  },
+  "notes": {
+    "theorem": "every descent-free flight has unbounded exponent walk: bounded walk -> bounded states (Lean envelope) -> eventually periodic (pigeonhole) -> strictly expanding period word (Lean cycle_strict_envelope) -> walk grows by delta > 0 per period, contradiction",
+    "delta": "per-period walk gain log2(3^o/2^L) of a hypothetical eventual cycle at the hug odd budget; positive for every L, so no eventual cycle keeps the walk in a band",
+    "escape": "traversals of the period needed to exceed walk excess B over the hug band",
+    "paper_b": "the proved Paper B depth-<=4 layer is ambient-density and stays transfer-blocked (TRANSFER_COMPLEX); it is not the killer and is not used"
+  },
+  "classification": "FLIGHT_WALK_DIVERGENCE_CONFIRMED"
+}

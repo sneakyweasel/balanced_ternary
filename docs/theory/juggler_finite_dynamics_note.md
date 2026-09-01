@@ -1,5 +1,5 @@
 ---
-title: Cycle financing and a period lower bound for the Juggler map
+title: "Cycle Financing and Near-Convergent Diophantine Obstructions in the Juggler Map"
 author: Philippe Cochin
 date: 1 September 2026
 keywords:
@@ -35,23 +35,31 @@ finite accumulated budget. For a hypothetical cycle of length
 \[
 n\log n\cdot(3^o-2^L)\le L\cdot 3^o.
 \]
+This inequality is the main theorem; every numerical period
+bound below is an instantiation of it, or of its coupled
+walk-charge refinement, at a certified descent floor.
 As a consequence, combining the inequality with the known
 verification through \(10^6\) yields \(L\ge 25781\); at the
 laboratory-certified descent floor \(N_0=26254995\) the same
 table yields \(L\ge 50508\). The novelty is not a new
-computational record; it is that implication. A census-free
-walk-charge envelope — transport of the floor losses to a
+computational record; it is that implication. A walk-charge
+envelope — transport of the floor losses to a
 reduced base, identification of the extremal exponent walk as a
 rotation word, and a Denjoy--Koksma bound over certified
-Ostrowski blocks — then extends the exclusion at the laboratory
-floor: any nontrivial cycle has period at least \(176251\); a
-second certified floor, \(N_0=162849448\), raises the bound to
-\(478245\). We
+Ostrowski blocks, census-free on the window
+\([50508,301994)\) — then extends the exclusion at the
+laboratory floor: any nontrivial cycle has period at least
+\(176251\). The main numerical result evaluates the same
+certified kill criterion at a second certified floor,
+\(N_0=162849448\), on the surviving lengths — including those
+beyond the census-free window: any nontrivial Juggler cycle has
+period at least \(478245\). We
 also prove that every nontrivial cycle contains at least four
 even steps, and hence has period at least eleven; that bound
-uses no descent floor. The core arguments are formalized in
-Lean 4; the finite numerical tables are independently certified
-computations.
+uses no descent floor. The core lemmas are formalized in
+Lean 4; the descent floors and the per-length kill tables are
+independently certified computations, and the paper does not
+claim to be formally verified as a whole.
 
 **2020 Mathematics Subject Classification.** 11B83, 37P99, 11Y55.
 
@@ -101,9 +109,16 @@ The laboratory instance is \(N_0=26254995\), certified by the
 same exact first-passage method (Proposition 5.1); the same
 table then gives \(L\ge 50508\) (Theorem 5.2), and the
 walk-charge envelope of Section 5 amplifies it to
-\(L\ge 176251\) (Theorem 5.9); the second certified floor
-\(N_0=162849448\) raises it to \(L\ge 478245\)
-(Corollary 5.10). The architecture is
+\(L\ge 176251\) (Theorem 5.9). The main numerical result is
+Corollary 5.10: at the second certified floor
+\(N_0=162849448\), the same kill criterion — a certified
+computation of the Theorem 5.9 comparison, evaluated directly
+on the surviving lengths, including those beyond the
+\([50508,301994)\) window of Theorem 5.8 — gives
+\(L\ge 478245\). The census-free window theorem itself stops at
+\(301994\); the second-floor extension is a certified
+evaluation of the same criterion, not an extension of that
+window. The architecture is
 \[
 \text{envelope}
 \to
@@ -149,7 +164,8 @@ secondary. Section 5 certifies the laboratory floor
 exponent-walk charge, identifies its extremal word as a
 rotation word, and proves a census-free envelope for every
 length in the window \([50508,301994)\); the resulting kill
-table gives the period bound \(176251\), and a second certified
+table gives the period bound \(176251\), and a certified
+evaluation of the same kill criterion at a second certified
 floor raises it to \(478245\) (Corollary 5.10). Section 6
 records limitations.
 
@@ -164,6 +180,8 @@ minimum-based rotation.
 All exceptional sets below are *finance-survivor* sets: lengths
 that a stated form of the finance inequality does not exclude at
 the verified descent floor. They are not candidate cycle sets.
+A survivor count "through \(X\)" is inclusive: it counts every
+surviving length \(L\le X\).
 
 ### 1.0 Main results
 
@@ -182,7 +200,8 @@ The argument classifies the minimum-based word geometry; it is
 not a raw census of words of length at most ten. This bound does
 not use the verified descent floor.
 
-**Contribution 3 — explicit global consequence.**
+**Contribution 3 — explicit conditional consequence for
+hypothetical cycles.**
 Combined with the independently verified descent floor \(N_0=10^6\),
 there is no nontrivial Juggler cycle of length at most \(25780\).
 Equivalently, any nontrivial cycle has period at least \(25781\)
@@ -190,20 +209,25 @@ Equivalently, any nontrivial cycle has period at least \(25781\)
 \(N_0=26254995\) the same table gives period at least \(50508\)
 (Theorem 5.2).
 
-**Contribution 4 — census-free walk-charge envelope.**
+**Contribution 4 — walk-charge envelope and the main period
+bound.**
 On a minimum-based cycle every state is coupled through one
 closed exponent walk. Transport of the floor losses to a
 reduced base (Theorem 5.3), identification of the extremal walk
 as the rotation (hug) word (Theorem 5.4, Lemma 5.6), and a
 Denjoy--Koksma bound over certified Ostrowski blocks
 (Theorem 5.7) give a uniform envelope for every length in the
-window \([50508,301994)\) (Theorem 5.8). At the laboratory
+window \([50508,301994)\) (Theorem 5.8) — census-free on that
+window. At the laboratory
 floor the resulting kill table leaves a single finance survivor
 below \(2\cdot 10^5\): any nontrivial cycle has period at least
-\(176251\) (Theorem 5.9). At the second certified floor
-\(N_0=162849448\) the same envelope leaves only the
-semiconvergent fan member \(478245\): any nontrivial cycle has
-period at least \(478245\) (Corollary 5.10).
+\(176251\) (Theorem 5.9), the first laboratory instance. The
+main numerical result is Corollary 5.10: at the second
+certified floor \(N_0=162849448\), the same kill criterion,
+evaluated as a certified computation on the additional
+survivors (the window theorem itself stops at \(301994\)),
+leaves only the semiconvergent fan member \(478245\): any
+nontrivial cycle has period at least \(478245\).
 
 These statements are not interchangeable. Theorem 4.4 is
 the conceptual sharp inequality (constant \(1\)). Corollary 4.5
@@ -243,30 +267,28 @@ notes and later unverified webpage floors are not used.
 
 The layers of the argument are as follows.
 
-1. *Classical idea:* cycle financing (Simons--de Weger [12]).
-2. *Classical idea:* logarithmic and continued-fraction
-   approximation of \(\log 2/\log 3\).
-3. *Classical idea:* cycle-word restrictions and leftover
-   packaging (Eliahou [13]; Lagarias [8,9]).
-4. *New object:* the exact one-step floor-power cells of \(J\).
-5. *New theorem:* the Juggler-specific cycle-minimum finance
+1. *Classical ideas, not claimed as new:* cycle financing
+   (Simons--de Weger [12]); logarithmic and continued-fraction
+   approximation of \(\log 2/\log 3\); cycle-word restrictions
+   and leftover packaging (Eliahou [13]; Lagarias [8,9]); the
+   Denjoy--Koksma inequality and Ostrowski numeration, used as
+   known tools in Section 5.
+2. *New object:* the exact one-step floor-power cells of \(J\).
+3. *New theorem:* the Juggler-specific cycle-minimum finance
    inequality of Theorem 4.4.
-6. *New consequence:* \(L\ge 25781\) at the verified descent
+4. *New consequence:* \(L\ge 25781\) at the verified descent
    floor \(10^6\).
-7. *Supporting organization:* the run-packing refinement of the
+5. *Supporting organization:* the run-packing refinement of the
    same defect sum (Theorem 4.7).
-8. *Classical ideas:* the Denjoy--Koksma inequality and
-   Ostrowski numeration, used as known tools in Section 5.
-9. *New theorem:* the reduced-base transport and the uniform
+6. *New theorem:* the reduced-base transport and the uniform
    window envelope of Section 5 (Theorems 5.3 and 5.8).
-10. *New consequence:* period at least \(176251\) at the
-    laboratory floor \(26254995\) (Theorem 5.9), and \(478245\)
-    at the second certified floor \(162849448\)
-    (Corollary 5.10).
+7. *New consequence:* period at least \(176251\) at the
+   laboratory floor \(26254995\) (Theorem 5.9), and \(478245\)
+   at the second certified floor \(162849448\)
+   (Corollary 5.10, by direct evaluation of the same criterion
+   beyond the \(301994\) window boundary).
 
-Financing as an idea, logarithmic step inequalities, the
-continued-fraction phenomenon, the Denjoy--Koksma inequality,
-and Ostrowski numeration are not claimed as new. The
+The
 argument below is elementary and independent of the Diophantine
 tools of [12]: floor-power defects are relatively \(O(1/x)\) in
 logarithms, so a uniform logarithmic floor-error bound, valid
@@ -284,7 +306,9 @@ states through the closed exponent walk and bounding the
 extremal rotation word by Denjoy--Koksma over certified
 Ostrowski blocks raises that period bound to \(176251\) at the
 laboratory floor, census-free on an explicit window of lengths,
-and to \(478245\) at the second certified floor.
+and — by certified evaluation of the same kill criterion on the
+survivors beyond that window — to \(478245\) at the second
+certified floor.
 
 ### 1.2 Verification
 
@@ -444,10 +468,22 @@ the period cutoff; neither is proved here.
 
 ## 3. Structural restrictions on cycle words
 
-The headline of this section is Theorem 3.22: every nontrivial
-cycle word has at least four even letters, and hence period at
-least eleven. The small-period censuses (Theorems 3.6 and 3.8)
-are supporting. After the one-step cells, a minimum-based word
+The role of this section in the paper is structural, not
+numerical. The minimum geometry established here — the cycle
+minimum is odd, prefixes to even states are superquadratic
+(Theorem 3.2), a minimum-based word has the canonical run form
+of Lemma 3.21b, and the last even letter lands in an explicit
+cell (Lemma 3.4(iv)) — is exactly what the finance unroll of
+Section 4 and the transport of Section 5 consume. The
+even-count exclusion (Theorem 3.22: every nontrivial cycle word
+has at least four even letters, hence period at least eleven)
+is the section's own headline, but as a period bound it is
+superseded the moment financing appears; it is retained because
+it is floor-free. The small-period censuses (Theorems 3.6
+and 3.8) are supporting. Main-text proofs are kept to the short
+structural lemmas; the longer case analyses — Lemmas 3.5
+and 3.7, the censuses of Theorems 3.6 and 3.8, and the family
+exclusions of Theorems 3.12--3.21 — are Appendix D. After the one-step cells, a minimum-based word
 has a canonical run form. There are only three even-count
 regimes with \(e\le 3\); each reduces to a finite collection of
 geometries \(O^aEO^bEO^cE\). Those geometries are eliminated by
@@ -628,98 +664,17 @@ is odd, hence at least \(3\), and realizes \(O^a\). Parts (ii) and
 **Lemma 3.5 (two length-six exclusions).**
 Neither \(OOOEOE\) nor \(OOOOEE\) is a cycle word at any \(n\ge 2\).
 
-*Proof.* First, if \(n\ge 256\), then
-\[
-n^{81}>2^{130}(n+1)^{64}.
-\]
-Indeed \(257^{64}<2\cdot 256^{64}\) because
-\((1+1/256)^{64}<e^{64/256}=e^{1/4}<2\), and
-\(256(n+1)\le 257\,n\), so \((n+1)^{64}<2n^{64}\). Then
-\(2^{130}(n+1)^{64}<2^{131}n^{64}\). Since \(n\ge 256=2^8\), one has
-\(n^{17}\ge 2^{136}\), and therefore
-\(2^{131}n^{64}<2^{136}n^{64}\le n^{81}\).
-
-For \(2\le n<256\), neither word returns to its start. This is a
-table of \(254\) evaluations of each word: at every start, either
-some letter fails to match the current parity, or the six-step image
-differs from the start. The same finite check is the Lean
-`native_decide` evaluation behind `no_cycle_word_oooeoe` and
-`no_cycle_word_ooooee` (Appendix A).
-
-Now suppose \(OOOOEE\) is a cycle word at \(n\ge 256\), and write
-\(z=J^4(n)\) for the image after the prefix \(OOOO\). Lemma 3.4(iv)
-gives \(J(z)<(n+1)^2\), and the preceding even letter gives
-\(z<(J(z)+1)^2\), hence \(z<(n+1)^4\). Lemma 3.3 on \(OOOO\) gives
-\(n^{81}\le 2^{130}z^{16}\), so
-\(n^{81}<2^{130}(n+1)^{64}\), contradicting the tail inequality.
-
-Finally suppose \(OOOEOE\) is a cycle word at \(n\ge 256\). Write
-\(z_3=J^3(n)\) and \(y=J(z_3)=\lfloor\sqrt{z_3}\rfloor\), so
-\(z_3<(y+1)^2\). Lemma 3.3 on \(OOO\) gives
-\(n^{27}\le 2^{38}z_3^8<2^{38}(y+1)^{16}\). Cubing yields
-\(n^{81}<2^{114}(y+1)^{48}\). The last letters \(OE\) give the odd-cell
-bound \(y^3<(n+1)^4\). Write \(A=n+1\ge 257\). We claim
-\((y+1)^3<2A^4\). If \(y\le A\), this is \((A+1)^3<2A^4\). If
-\(y>A\), then \(y\ge 258\), so \(3y+1<y^2\) and hence
-\((y+1)^3=y^3+3y^2+3y+1<A^4+4y^2\), while \(4y^2<A^4\) because
-\(4y^3<4A^4\le yA^4\). Raising \((y+1)^3<2A^4\) to the sixteenth
-power gives \((y+1)^{48}<2^{16}(n+1)^{64}\). Combining with the cubed
-lower envelope produces again \(n^{81}<2^{130}(n+1)^{64}\). \(\square\)
+*Proof.* Appendix D.
 
 **Theorem 3.6 (small-cycle census).**
 No word of length at most six is a cycle word at any \(n\ge 2\).
 Equivalently, a nontrivial Juggler cycle, if one exists, has period at
 least seven.
 
-*Proof.* Rotating a cycle word by one letter moves the base point one
-step along the orbit and yields another cycle word; every state of
-the cycle is at least \(2\), because an orbit that reaches \(1\) stays
-at \(1\) and cannot return to a start \(n\ge 2\).
-
-If every letter is odd, the start is odd, hence \(n\ge 3\), and the
-odd branch strictly increases there: \(J(x)>x\) for odd \(x\ge 3\),
-since \(x^3\ge(x+1)^2\). The orbit ascends strictly and never returns.
-Otherwise some letter is even, and a rotation ending just after that
-letter produces an even-terminating cycle word \(vE\) of the same
-length based at a cycle state \(m\ge 2\). It therefore suffices to
-exclude even-terminating cycle words of length at most six.
-
-By Theorem 3.2(i) a cycle word is formally expanding. No
-even-terminating word of length one or two is expanding (\(2>3^0\) and
-\(4>3\)).
-
-Length three: the only expanding candidate is \(OOE\). If \(m\ge 5\)
-realizes \(OO\), Lemma 3.4(i) gives \(J^2(m)\ge(m+1)^2\), contradicting
-Lemma 3.4(iv). The only smaller odd start is \(m=3\), where
-\(J^2(3)=11\) is odd, so the final even letter is not realized.
-
-Length four: the expanding filter requires three odd letters among the
-first three, leaving only \(O^3E\), excluded by Lemma 3.4(v).
-
-Length five: the filter requires four odd letters among the first
-four, leaving only \(O^4E\), excluded by Lemma 3.4(v).
-
-Length six: the filter requires at least four odd letters among the
-first five, leaving \(O^5E\), \(EOOOOE\), \(OEOOOE\), \(OOEOOE\),
-\(OOOEOE\), and \(OOOOEE\). Lemma 3.4(v) excludes \(O^5E\). The word
-\(EOOOOE\) rotates one step onto \(OOOOEE\), and \(OEOOOE\) rotates
-two steps onto \(OOOEOE\); both are excluded by Lemma 3.5.
-
-It remains to exclude \(OOEOOE\). Let this word be a cycle word at
-some start, and rotate to a cycle minimum \(m\ge 2\). The three
-alignments of the two even letters are \(OOEOOE\), \(OEOOEO\), and
-\(EOOEOO\). The last starts even, so it cannot be a minimum, by
-Theorem 3.2(ii). The middle starts \(OE\): the first image is even
-and strictly below \(m^2\), whereas every even state after a cycle
-minimum is at least \(m^2\), as proved in Theorem 3.2(iii). Thus the
-minimum orientation is \(OOEOOE\). In particular \(m\) is odd, so
-\(m\ge 3\). The prefix \(OOE\) must be realized. If \(m=3\), then
-\(3\to 5\to 11\) and \(11\) is odd, so \(OOE\) is not realized. Hence
-\(m\ge 5\). Write \(y=J^3(m)\) for the state after \(OOE\). Then
-\(y\ge m\) by minimality, so \(y\ge 5\). The suffix \(OO\)
-is realized at \(y\), and Lemma 3.4(i) gives
-\(J^2(y)\ge(y+1)^2\ge(m+1)^2\). The last letter is even, so
-Lemma 3.4(iv) gives \(J^2(y)<(m+1)^2\). \(\square\)
+*Proof.* Appendix D. The reduction used there — an all-odd word
+cannot return, and every mixed cycle word rotates to an
+even-terminating cycle word based at a cycle state \(m\ge 2\) —
+is reused by Theorem 3.8 and Theorem 3.22.
 
 Lemma 3.4(v) excludes every odd-run-then-even word \(O^aE\) with
 \(a\ge 3\), of any length.
@@ -727,67 +682,14 @@ Lemma 3.4(v) excludes every odd-run-then-even word \(O^aE\) with
 **Lemma 3.7 (two length-seven exclusions).**
 Neither \(OOOOEOE\) nor \(OOOOOEE\) is a cycle word at any \(n\ge 2\).
 
-*Proof.* First, if \(n\ge 14\), then
-\[
-n^{243}>2^{422}(n+1)^{128}.
-\]
-Indeed \(14(n+1)\le 15n\), so
-\((n+1)^{128}\le(15/14)^{128}n^{128}\). The finite comparison
-\(2^{422}15^{128}<14^{243}\) then yields
-\(2^{422}(n+1)^{128}<14^{115}n^{128}\le n^{243}\).
-
-For \(2\le n<14\), neither word is realized: at every such start,
-some letter fails to match the current parity. The same finite check
-is the Lean `native_decide` evaluation behind
-`no_cycle_word_ooooeoe` and `no_cycle_word_oooooee` (Appendix A).
-
-Now suppose \(OOOOOEE\) is a cycle word at \(n\ge 14\), and write
-\(z=J^5(n)\) for the image after the prefix \(OOOOO\). Lemma 3.4(iv)
-on the last even letter, together with the preceding even letter,
-gives \(z<(n+1)^4\). Lemma 3.3 on \(OOOOO\) gives
-\(n^{243}\le 2^{422}z^{32}\), so
-\(n^{243}<2^{422}(n+1)^{128}\), contradicting the tail inequality.
-
-Finally suppose \(OOOOEOE\) is a cycle word at \(n\ge 14\). Write
-\(z_4=J^4(n)\) and \(y=J(z_4)=\lfloor\sqrt{z_4}\rfloor\), so
-\(z_4<(y+1)^2\). Lemma 3.3 on \(OOOO\) gives
-\(n^{81}\le 2^{130}z_4^{16}<2^{130}(y+1)^{32}\). Cubing yields
-\(n^{243}<2^{390}(y+1)^{96}\). The last letters \(OE\) give the odd-cell
-bound \(y^3<(n+1)^4\). Write \(A=n+1\ge 15\). The same comparison
-\((y+1)^3<2A^4\) as in Lemma 3.5 holds at this smaller scale. Raising
-to the thirty-second power gives
-\((y+1)^{96}<2^{32}(n+1)^{128}\). Combining with the cubed lower
-envelope produces again \(n^{243}<2^{422}(n+1)^{128}\). \(\square\)
+*Proof.* Appendix D.
 
 **Theorem 3.8 (small-cycle census through length seven).**
 No word of length at most seven is a cycle word at any \(n\ge 2\).
 Equivalently, a nontrivial Juggler cycle, if one exists, has period at
 least eight.
 
-*Proof.* The reduction of Theorem 3.6 applies at every length: an
-all-odd word cannot return, and every mixed cycle word rotates to an
-even-terminating cycle word based at a cycle state \(m\ge 2\).
-Lengths at most six are Theorem 3.6. It remains to exclude
-even-terminating cycle words of length seven.
-
-By Theorem 3.2(i) a cycle word is formally expanding. The
-even-terminating expanding length-seven words are exactly
-\(O^6E\), \(EO^5E\), \(OEO^4E\), \(OOEO^3E\), \(O^3EO^2E\),
-\(O^4EOE\), and \(O^5EE\). Lemma 3.4(v) excludes \(O^6E\). The word
-\(EO^5E\) rotates one step onto \(O^5EE\), and \(OEO^4E\) starts
-\(OE\), so it cannot be a cycle minimum (Theorem 3.2(iii)) and
-rotates two steps onto \(O^4EOE\); both leftovers are excluded by
-Lemma 3.7.
-
-It remains to exclude \(OOEO^3E\) and \(O^3EO^2E\). Rotate either
-word to a cycle minimum \(m\ge 2\). For \(OOEO^3E\) the minimum
-orientation retains the internal even letter followed by the suffix
-\(OOO\). Then \(m\ge 3\), the prefix through that even letter is
-realized, and Lemma 3.4(ii) at threshold \(3\) contradicts the last
-even cell. For \(O^3EO^2E\) the same bootstrap applies with suffix
-\(OO\) and threshold \(5\), once \(m=3\) is removed: at \(m=3\) the
-state after \(OOO\) is even, so the next even letter is not
-realized. \(\square\)
+*Proof.* Appendix D.
 
 Theorems 3.6 and 3.8 are supporting period statements. The
 structural claim is the even-count exclusion of Theorem 3.22.
@@ -1152,7 +1054,8 @@ feed Theorem 4.7; none is proved here.
 
 Throughout this section write \(L=|w|\) and \(o=\#O(w)\) for a
 cycle word \(w\) based at a cycle minimum \(n\ge 2\). Natural
-logarithms are written \(\log\). The unique one-step fibres of
+logarithms are written \(\log\) in this section and \(\ln\) in
+Section 5; both denote the natural logarithm. The unique one-step fibres of
 Section 3 give, for every state \(x\ge 1\) with image
 \(y=J(x)\),
 \[
@@ -1578,7 +1481,7 @@ program is needed on that window. The kill table at the
 laboratory floor then yields the period bound \(176251\), and
 the second certified floor raises it to \(478245\)
 (Corollary 5.10). Throughout, survivors are finance-survivors
-in the sense of Section 1; nothing here is a halt theorem.
+in the sense of Section 1.
 
 ### 5.1 The laboratory floor
 
@@ -1682,9 +1585,21 @@ under the recorded hypothesis \(\nu>0\).
 **Theorem 5.4 (hug exchange).**
 Among nonnegative exponent walks with prescribed \((L,o)\), the
 *hug word* — take \(E\) at every step where \(u\ge 1\), else
-\(O\) — is the unique prefix-minimal admissible path. Since
-\(g\) is strictly decreasing in \(u\), the hug word uniquely
-maximises the walk charge.
+\(O\) — is prefix-minimal: writing \(a_k\) for the odd count of
+a length-\(k\) prefix,
+\[
+a_k^{\mathrm{hug}}\le a_k
+\qquad\text{for every admissible walk and every }k,
+\]
+equivalently \(u_k^{\mathrm{hug}}\le u_k\). Consequently the
+hug word maximises the walk charge: since \(g\) is strictly
+decreasing in \(u\),
+\[
+g\bigl(u_k^{\mathrm{hug}}\bigr)\ge g(u_k)
+\quad\text{for every }k,
+\qquad\text{hence}\qquad
+\sum_{k}g(u_k)\ \le\ \sum_{k}g\bigl(u_k^{\mathrm{hug}}\bigr).
+\]
 
 *Proof.* At the first disagreement with any other admissible
 word, the hug word holds \(E\) where the other holds \(O\),
@@ -1692,13 +1607,24 @@ because hug takes \(O\) only when \(E\) is illegal and the two
 words share the same prefix state. The odd-count gap
 \(\delta_k=a_k(\text{other})-a_k(\text{hug})\) is a path with
 steps in \(\{-1,0,+1\}\) that cannot go negative, since
-\(\delta=0\) restores the same state. Feasible pairs
+\(\delta=0\) restores the same state. This is the displayed
+prefix-minimality \(a_k^{\mathrm{hug}}\le a_k\); since
+\(u_k=(1+\mu)a_k-k\) with the same \(k\), it transfers verbatim
+to \(u_k^{\mathrm{hug}}\le u_k\). Feasible pairs
 (\((1+\mu)o\ge L\)) never strand: when the odd budget is
 exhausted, \(u=\text{surplus}+e_{\mathrm{left}}
 \ge e_{\mathrm{left}}\), so the remaining evens are legal.
-Prefix-minimality plus strict monotonicity of \(g\) gives
-unique maximality. The prefix-minimality core is Lean:
-`hugOdds_le_of_admissible`. \(\square\)
+Applying the strict antitonicity of \(g\) termwise and summing
+over \(k\) is the charge comparison. The prefix-minimality core
+is Lean: `hugOdds_le_of_admissible`. \(\square\)
+
+*Remark (uniqueness).* The hug word is in fact the *unique*
+prefix-minimal admissible path in its \((L,o)\) class, so it
+uniquely maximises the charge; at the first disagreement the
+competitor already carries a strictly larger prefix odd count,
+and strict monotonicity of \(g\) makes the total comparison
+strict. Uniqueness is not used by the kill table; only the
+displayed domination is.
 
 The analytic half is also Lean, in a strengthened form
 (`WalkChargeMax.lean`): the charge is antitone in the rational
@@ -1730,7 +1656,9 @@ the seed \((50508,31867)\) all satisfy \(o=o_{\min}(L)\) (Lean:
 
 **Proposition 5.5 (rotation average).**
 The infinite hug walk is the rotation by \(\alpha=\log_2(3/2)\)
-on \(\mathbb R/(1+\alpha)\mathbb Z\). Unique ergodicity gives
+on \(\mathbb R/(1+\alpha)\mathbb Z\). Unique ergodicity of the
+irrational rotation — extended, in the standard way, from
+continuous observables to Riemann-integrable ones — gives
 the charge-per-letter
 \[
 C_*(n')=\frac1{\ln 3}\int_1^3 n'^{\,1-t}\,t^{-2}\,dt
@@ -1751,8 +1679,14 @@ an exact antiderivative evaluation, giving
 at \(\nu=\ln n'\) with no quadrature
 (`rotation_average_lt`, `rotationAverage_le`,
 gap form `rotationAverage_gap`). Only the ergodic
-*identification* of \(C_*\) as the infinite-word average —
-unique ergodicity of the rotation — remains classical prose.
+*identification* of \(C_*\) as the infinite-word average
+remains classical prose. The observable has one wrap
+discontinuity, so bare unique ergodicity — uniform Birkhoff
+convergence for *continuous* observables — is not invoked
+directly: the identification uses its standard extension to
+Riemann-integrable observables of an irrational rotation, and
+the observable here is monotone with a single jump, hence
+Riemann integrable and of bounded variation.
 
 This is the infinite-word average, not a finite-\(L\)
 inequality: on the certified survey the finite leftover charge
@@ -1783,6 +1717,49 @@ invariant `hugOdds_pow_ge` / `hugOdds_pow_lt` and minimality
 
 ### 5.5 Denjoy--Koksma over certified Ostrowski blocks
 
+Two classical ingredients are used here in a fixed coordinate,
+so we record both explicitly.
+
+*The coordinate change.* The infinite hug walk is rotation by
+\(\alpha=\log_2(3/2)\) on the circle
+\(\mathbb R/(1+\alpha)\mathbb Z\) (Proposition 5.5). Rescaling
+by \(1/(1+\alpha)\) conjugates it to rotation by
+\[
+\theta=\frac{\alpha}{1+\alpha}
+=\frac{\log(3/2)}{\log 3}
+\]
+on the standard circle \(\mathbb R/\mathbb Z\): with
+\(\alpha=\log(3/2)/\log 2\) one has
+\(1+\alpha=\log 3/\log 2\), and the quotient is the display.
+The observable \(F(u)=n'^{\,1-2^u}/2^u\) is transported by the
+same rescaling; a homeomorphic change of coordinate does not
+change its total variation. All Ostrowski data below —
+quotients, convergents, digits — refer to this \(\theta\).
+
+*The Denjoy--Koksma inequality (classical; used as known).*
+If \(f:\mathbb R/\mathbb Z\to\mathbb R\) has bounded variation
+\(\mathrm{Var}(f)\) and \(p_j/q_j\) is a continued-fraction
+convergent of the irrational \(\theta\), then for every \(x\),
+\[
+\Bigl|\sum_{k=0}^{q_j-1}f(x+k\theta)-q_j\int_0^1 f\Bigr|
+\le\mathrm{Var}(f).
+\]
+The inequality is invoked below only at convergent
+denominators of \(\theta\), never at an arbitrary good rational
+approximation: the certified pairs \((p_j,q_j)\) are produced
+by the continued-fraction recurrence from the certified shared
+quotient prefix of \(\theta\)
+(`theta_convergent_denominators`, `theta_convergent_numerators`,
+`cf_lower_prefix`, `cf_upper_prefix`), so they are genuine
+convergents of \(\theta\), unimodular and coprime
+(`theta_convergents_unimodular`, `theta_convergents_coprime`).
+Their approximation quality \(|\theta-p_j/q_j|<1/q_j^2\) and
+the fact that the \(q_j\) rotation steps of one block permute
+the \(q_j\) grid cells are additionally verified in Lean
+(`theta_convergent_quality`, `theta_block_permutations`); the
+variation-versus-integral inequality itself is the classical
+statement and is not re-proved.
+
 **Theorem 5.7 (block envelope).**
 For the exact rotation prefix of length \(L\) at reduced base
 \(n'\),
@@ -1795,10 +1772,19 @@ for any decomposition \(L=\sum_j b_jq_j\) into convergent
 denominators \(q_j\) of \(\theta=\log(3/2)/\log 3\).
 
 *Proof.* The observable \(F(u)=n'^{\,1-2^u}/2^u\) decreases on
-the circle from \(F(0)=1\), so its variation including the wrap
-jump is \(<2\). The Denjoy--Koksma inequality (known) bounds
+the circle from \(F(0)=1\) to \(F\bigl((1+\alpha)^-\bigr)
+=n'^{-2}/3\), so its variation including the wrap jump is
+\(<2\); the rescaled observable on \(\mathbb R/\mathbb Z\) has
+the same variation. The Denjoy--Koksma inequality stated above,
+applied per block with the certified convergent quality
+\(|\theta-p_j/q_j|<1/q_j^2\), bounds
 the ergodic sum of each block of length \(q_j\) within
-\(\mathrm{Var}(F)\) of \(q_jC_*\). Summing the \(s(L)\) blocks
+\(\mathrm{Var}(F)\) of \(q_jC_*\). The decomposition
+\(L=\sum_jb_jq_j\) partitions the length-\(L\) orbit segment
+into consecutive blocks whose starting phases differ; since
+Denjoy--Koksma holds uniformly in the starting phase \(x\), it
+applies independently to each block, whatever phase that block
+inherits from its predecessor. Summing the \(s(L)\) blocks
 gives the display. \(\square\)
 
 The denominator list
@@ -1933,9 +1919,14 @@ leaves \(25\) survivors through \(L=6\cdot 10^5\); the walk
 charge of Theorem 5.3 kills the \(15\) below \(478245\)
 (margins \(1.198\) at \(176251\) and \(352502\), up to
 \(8.44\)); lengths \(L\le 176250\) stay excluded because both
-exclusions are monotone in the floor. The combined contiguous
+exclusions are monotone in the floor. Survivor lengths above
+\(301994\) lie beyond the window of Theorem 5.8; each kill
+there is a direct certified evaluation of the Theorem 5.9
+comparison at the reduced base, not an instance of the window
+theorem. The combined contiguous
 excluded prefix is \(478244\): any nontrivial Juggler cycle has
-period at least \(478245\).
+period at least \(478245\). This is the main numerical result
+of the paper.
 
 The sole survivor is the semiconvergent fan member
 \(478245=176251+301994\): required improvement over parity
@@ -1949,8 +1940,7 @@ certified quotients of \(\theta\), and killing the remaining
 near-convergent survivors (starting with the fan member
 \(L=478245\)) is a Diophantine question about \(|3^o-2^L|\);
 neither is attempted here. The survivors are
-finance-survivors, not candidate cycles, and nothing in this
-section is a halt theorem.
+finance-survivors, not candidate cycles.
 
 ## 6. Limitations and future directions
 
@@ -2003,8 +1993,7 @@ Selected finite classifications of Section 3 are `native_decide`
 tables (Appendix D). Theorems 4.6 and 4.8 are independently
 certified computations. Proposition 4.9's arithmetic is Lean;
 its identification with \(\mathcal E_{\mathrm{run}}\) is
-Theorem 4.8. This is not a claim that the paper as a whole is
-formally verified.
+Theorem 4.8.
 
 | Text | Lean |
 |---|---|
@@ -2155,18 +2144,37 @@ SHA-256
 `148180cbbfba93985b7a1be455fee16db97816f1534b1feca5a4740d475aeda0`
 (concatenated in length order); the direct non-kill record for
 the survivor \(478245\) (margin \(0.4334\)) is stored alongside.
-The dynamic program of Theorem 5.3 also has a GPU port
-(`research.juggler_sequence.cycle_walk_charge_gpu`, CuPy,
-IEEE double precision) that reproduces the stored CPU kill
-records to relative error below \(10^{-13}\) at roughly
-\(450\times\) speed; the entire kill table of this note
-recomputes in minutes on one consumer GPU.
+The exact-integer CPU computation with guarded comparisons is
+the authoritative record for every claim in this note; a GPU
+implementation
+(`research.juggler_sequence.cycle_walk_charge_gpu`) is provided
+as an optional reproducibility aid, no statement depends on it,
+and its performance figures live in the repository
+documentation.
 The probes are
 `research.juggler_sequence.cycle_walk_charge` (transport and
 kill table), `cycle_walk_ostrowski` (certified quotient
 sandwich and block envelope), and `cycle_walk_window` (window
 scan); artifacts live under
 `data/research/juggler/cycle_walk_*`.
+
+*Reproducibility of the second-floor kill table.* From a fresh
+checkout of the repository, `pip install -e .` followed by, for
+a survivor length \(L\),
+
+```text
+python -c "from research.juggler_sequence.cycle_walk_charge \
+import certified_report; print(certified_report(L, 162849448))"
+```
+
+recomputes the authoritative certified record behind
+Corollary 5.10 for that length (at \(L=478245\) it prints the
+non-kill); the same call through the GPU port,
+`python -m research.juggler_sequence.cycle_walk_charge_gpu L
+162849448`, reproduces it in seconds per length on one consumer
+GPU. The first-floor kill table of Theorem 5.9 is
+`python -m research.juggler_sequence.cycle_walk_charge
+--survey`.
 
 ## Appendix C. Exact floor defect
 
@@ -2242,14 +2250,175 @@ tax exists. Theorem 4.4 does not use these identities.
 
 ## Appendix D. Family exclusions
 
-This appendix records the family-by-family exhaustion used by Lemma 3.21a and Theorem 3.22. Each geometry is killed by a next-square obstruction, by long odd-run growth against a last-even cell, or by a finite exceptional window.
+This appendix records the small-cycle censuses (Lemma 3.5,
+Theorem 3.6, Lemma 3.7, Theorem 3.8) and the family-by-family
+exhaustion used by Lemma 3.21a and Theorem 3.22. Each geometry is
+killed by a next-square obstruction, by long odd-run growth
+against a last-even cell, or by a finite exceptional window.
+
+**Lemma 3.5 (two length-six exclusions).**
+Neither \(OOOEOE\) nor \(OOOOEE\) is a cycle word at any \(n\ge 2\).
+
+*Proof.* First, if \(n\ge 256\), then
+\[
+n^{81}>2^{130}(n+1)^{64}.
+\]
+Indeed \(257^{64}<2\cdot 256^{64}\) because
+\((1+1/256)^{64}<e^{64/256}=e^{1/4}<2\), and
+\(256(n+1)\le 257\,n\), so \((n+1)^{64}<2n^{64}\). Then
+\(2^{130}(n+1)^{64}<2^{131}n^{64}\). Since \(n\ge 256=2^8\), one has
+\(n^{17}\ge 2^{136}\), and therefore
+\(2^{131}n^{64}<2^{136}n^{64}\le n^{81}\).
+
+For \(2\le n<256\), neither word returns to its start. This is a
+table of \(254\) evaluations of each word: at every start, either
+some letter fails to match the current parity, or the six-step image
+differs from the start. The same finite check is the Lean
+`native_decide` evaluation behind `no_cycle_word_oooeoe` and
+`no_cycle_word_ooooee` (Appendix A).
+
+Now suppose \(OOOOEE\) is a cycle word at \(n\ge 256\), and write
+\(z=J^4(n)\) for the image after the prefix \(OOOO\). Lemma 3.4(iv)
+gives \(J(z)<(n+1)^2\), and the preceding even letter gives
+\(z<(J(z)+1)^2\), hence \(z<(n+1)^4\). Lemma 3.3 on \(OOOO\) gives
+\(n^{81}\le 2^{130}z^{16}\), so
+\(n^{81}<2^{130}(n+1)^{64}\), contradicting the tail inequality.
+
+Finally suppose \(OOOEOE\) is a cycle word at \(n\ge 256\). Write
+\(z_3=J^3(n)\) and \(y=J(z_3)=\lfloor\sqrt{z_3}\rfloor\), so
+\(z_3<(y+1)^2\). Lemma 3.3 on \(OOO\) gives
+\(n^{27}\le 2^{38}z_3^8<2^{38}(y+1)^{16}\). Cubing yields
+\(n^{81}<2^{114}(y+1)^{48}\). The last letters \(OE\) give the odd-cell
+bound \(y^3<(n+1)^4\). Write \(A=n+1\ge 257\). We claim
+\((y+1)^3<2A^4\). If \(y\le A\), this is \((A+1)^3<2A^4\). If
+\(y>A\), then \(y\ge 258\), so \(3y+1<y^2\) and hence
+\((y+1)^3=y^3+3y^2+3y+1<A^4+4y^2\), while \(4y^2<A^4\) because
+\(4y^3<4A^4\le yA^4\). Raising \((y+1)^3<2A^4\) to the sixteenth
+power gives \((y+1)^{48}<2^{16}(n+1)^{64}\). Combining with the cubed
+lower envelope produces again \(n^{81}<2^{130}(n+1)^{64}\). \(\square\)
+
+**Theorem 3.6 (small-cycle census).**
+No word of length at most six is a cycle word at any \(n\ge 2\).
+
+*Proof.* Rotating a cycle word by one letter moves the base point one
+step along the orbit and yields another cycle word; every state of
+the cycle is at least \(2\), because an orbit that reaches \(1\) stays
+at \(1\) and cannot return to a start \(n\ge 2\).
+
+If every letter is odd, the start is odd, hence \(n\ge 3\), and the
+odd branch strictly increases there: \(J(x)>x\) for odd \(x\ge 3\),
+since \(x^3\ge(x+1)^2\). The orbit ascends strictly and never returns.
+Otherwise some letter is even, and a rotation ending just after that
+letter produces an even-terminating cycle word \(vE\) of the same
+length based at a cycle state \(m\ge 2\). It therefore suffices to
+exclude even-terminating cycle words of length at most six.
+
+By Theorem 3.2(i) a cycle word is formally expanding. No
+even-terminating word of length one or two is expanding (\(2>3^0\) and
+\(4>3\)).
+
+Length three: the only expanding candidate is \(OOE\). If \(m\ge 5\)
+realizes \(OO\), Lemma 3.4(i) gives \(J^2(m)\ge(m+1)^2\), contradicting
+Lemma 3.4(iv). The only smaller odd start is \(m=3\), where
+\(J^2(3)=11\) is odd, so the final even letter is not realized.
+
+Length four: the expanding filter requires three odd letters among the
+first three, leaving only \(O^3E\), excluded by Lemma 3.4(v).
+
+Length five: the filter requires four odd letters among the first
+four, leaving only \(O^4E\), excluded by Lemma 3.4(v).
+
+Length six: the filter requires at least four odd letters among the
+first five, leaving \(O^5E\), \(EOOOOE\), \(OEOOOE\), \(OOEOOE\),
+\(OOOEOE\), and \(OOOOEE\). Lemma 3.4(v) excludes \(O^5E\). The word
+\(EOOOOE\) rotates one step onto \(OOOOEE\), and \(OEOOOE\) rotates
+two steps onto \(OOOEOE\); both are excluded by Lemma 3.5.
+
+It remains to exclude \(OOEOOE\). Let this word be a cycle word at
+some start, and rotate to a cycle minimum \(m\ge 2\). The three
+alignments of the two even letters are \(OOEOOE\), \(OEOOEO\), and
+\(EOOEOO\). The last starts even, so it cannot be a minimum, by
+Theorem 3.2(ii). The middle starts \(OE\): the first image is even
+and strictly below \(m^2\), whereas every even state after a cycle
+minimum is at least \(m^2\), as proved in Theorem 3.2(iii). Thus the
+minimum orientation is \(OOEOOE\). In particular \(m\) is odd, so
+\(m\ge 3\). The prefix \(OOE\) must be realized. If \(m=3\), then
+\(3\to 5\to 11\) and \(11\) is odd, so \(OOE\) is not realized. Hence
+\(m\ge 5\). Write \(y=J^3(m)\) for the state after \(OOE\). Then
+\(y\ge m\) by minimality, so \(y\ge 5\). The suffix \(OO\)
+is realized at \(y\), and Lemma 3.4(i) gives
+\(J^2(y)\ge(y+1)^2\ge(m+1)^2\). The last letter is even, so
+Lemma 3.4(iv) gives \(J^2(y)<(m+1)^2\). \(\square\)
+
+**Lemma 3.7 (two length-seven exclusions).**
+Neither \(OOOOEOE\) nor \(OOOOOEE\) is a cycle word at any \(n\ge 2\).
+
+*Proof.* First, if \(n\ge 14\), then
+\[
+n^{243}>2^{422}(n+1)^{128}.
+\]
+Indeed \(14(n+1)\le 15n\), so
+\((n+1)^{128}\le(15/14)^{128}n^{128}\). The finite comparison
+\(2^{422}15^{128}<14^{243}\) then yields
+\(2^{422}(n+1)^{128}<14^{115}n^{128}\le n^{243}\).
+
+For \(2\le n<14\), neither word is realized: at every such start,
+some letter fails to match the current parity. The same finite check
+is the Lean `native_decide` evaluation behind
+`no_cycle_word_ooooeoe` and `no_cycle_word_oooooee` (Appendix A).
+
+Now suppose \(OOOOOEE\) is a cycle word at \(n\ge 14\), and write
+\(z=J^5(n)\) for the image after the prefix \(OOOOO\). Lemma 3.4(iv)
+on the last even letter, together with the preceding even letter,
+gives \(z<(n+1)^4\). Lemma 3.3 on \(OOOOO\) gives
+\(n^{243}\le 2^{422}z^{32}\), so
+\(n^{243}<2^{422}(n+1)^{128}\), contradicting the tail inequality.
+
+Finally suppose \(OOOOEOE\) is a cycle word at \(n\ge 14\). Write
+\(z_4=J^4(n)\) and \(y=J(z_4)=\lfloor\sqrt{z_4}\rfloor\), so
+\(z_4<(y+1)^2\). Lemma 3.3 on \(OOOO\) gives
+\(n^{81}\le 2^{130}z_4^{16}<2^{130}(y+1)^{32}\). Cubing yields
+\(n^{243}<2^{390}(y+1)^{96}\). The last letters \(OE\) give the odd-cell
+bound \(y^3<(n+1)^4\). Write \(A=n+1\ge 15\). The same comparison
+\((y+1)^3<2A^4\) as in Lemma 3.5 holds at this smaller scale. Raising
+to the thirty-second power gives
+\((y+1)^{96}<2^{32}(n+1)^{128}\). Combining with the cubed lower
+envelope produces again \(n^{243}<2^{422}(n+1)^{128}\). \(\square\)
+
+**Theorem 3.8 (small-cycle census through length seven).**
+No word of length at most seven is a cycle word at any \(n\ge 2\).
+
+*Proof.* The reduction of Theorem 3.6 applies at every length: an
+all-odd word cannot return, and every mixed cycle word rotates to an
+even-terminating cycle word based at a cycle state \(m\ge 2\).
+Lengths at most six are Theorem 3.6. It remains to exclude
+even-terminating cycle words of length seven.
+
+By Theorem 3.2(i) a cycle word is formally expanding. The
+even-terminating expanding length-seven words are exactly
+\(O^6E\), \(EO^5E\), \(OEO^4E\), \(OOEO^3E\), \(O^3EO^2E\),
+\(O^4EOE\), and \(O^5EE\). Lemma 3.4(v) excludes \(O^6E\). The word
+\(EO^5E\) rotates one step onto \(O^5EE\), and \(OEO^4E\) starts
+\(OE\), so it cannot be a cycle minimum (Theorem 3.2(iii)) and
+rotates two steps onto \(O^4EOE\); both leftovers are excluded by
+Lemma 3.7.
+
+It remains to exclude \(OOEO^3E\) and \(O^3EO^2E\). Rotate either
+word to a cycle minimum \(m\ge 2\). For \(OOEO^3E\) the minimum
+orientation retains the internal even letter followed by the suffix
+\(OOO\). Then \(m\ge 3\), the prefix through that even letter is
+realized, and Lemma 3.4(ii) at threshold \(3\) contradicts the last
+even cell. For \(O^3EO^2E\) the same bootstrap applies with suffix
+\(OO\) and threshold \(5\), once \(m=3\) is removed: at \(m=3\) the
+state after \(OOO\) is even, so the next even letter is not
+realized. \(\square\)
 
 **Theorem 3.12 (two-even leftover families).**
 Let \(k\ge 6\) and \(n\ge 2\). Neither \(O^{k-2}EE\) nor
 \(O^{k-3}EOE\) is a cycle word at \(n\).
 
 
-*Proof.* * First, if \(n\ge 256\), then
+*Proof.* First, if \(n\ge 256\), then
 \[
 n^{3^{k-2}}>2^{e_{k-2}}(n+1)^{2^k}.
 \]
@@ -2295,7 +2464,7 @@ Let \(n\ge 2\). No minimum-based cycle word at \(n\) has the form
 \(O^aEO^bEOE\) with \(a\ge 2\) and \(b\ge 3\).
 
 
-*Proof.* * Write \(y=J^{a+1}(n)\) for the state after the first even
+*Proof.* Write \(y=J^{a+1}(n)\) for the state after the first even
 letter. Minimum-basedness gives \(y\ge n\). In the first family the
 remainder after that letter is \(O^bEE\) with \(b+2\ge 6\); in the
 second it is \(O^bEOE\) with \(b+3\ge 6\). The trailing-even and
@@ -2326,7 +2495,7 @@ Let \(a\ge 6\) and \(n\ge 2\). The word \(O^aEEE\) is not a cycle
 word at \(n\).
 
 
-*Proof.* * Write \(z=J^a(n)\). Lemma 3.9 with \(r=3\) gives
+*Proof.* Write \(z=J^a(n)\). Lemma 3.9 with \(r=3\) gives
 \(z<(n+1)^8\). Lemma 3.10 then yields
 \(n^{3^a}<2^{e_a}(n+1)^{2^{a+3}}\) on any such cycle word. For
 \(n\ge 128\) the opposite comparison
@@ -2354,7 +2523,7 @@ Let \(a\ge 5\) and \(n\ge 2\). The word \(O^aEOEE\) is not a cycle
 word at \(n\).
 
 
-*Proof.* * First let \(n\ge 4\), and write \(z=J^a(n)\),
+*Proof.* First let \(n\ge 4\), and write \(z=J^a(n)\),
 \(y=\lfloor\sqrt z\rfloor\), and \(p=J(y)\). Lemma 3.9 with
 \(r=2\) after the prefix \(O^aEO\) gives \(p<(n+1)^4\). The letter
 after \(y\) is odd, so Lemma 3.10 at length one yields
@@ -2387,7 +2556,7 @@ Let \(a\ge 4\) and \(n\ge 2\). The word \(O^aEOOEE\) is not a
 cycle word at \(n\).
 
 
-*Proof.* * First let \(n\ge 32\), and write \(z=J^a(n)\),
+*Proof.* First let \(n\ge 32\), and write \(z=J^a(n)\),
 \(y=\lfloor\sqrt z\rfloor\), and \(p\) for the image after the
 prefix \(O^aEOO\). Lemma 3.9 with \(r=2\) gives \(p<(n+1)^4\).
 The two letters after \(y\) are odd, so Lemma 3.10 at length two
@@ -2411,7 +2580,7 @@ Let \(a\ge 3\) and \(n\ge 2\). The word \(O^aEOOOEE\) is not a
 cycle word at \(n\).
 
 
-*Proof.* * First let \(a\ge 4\) and \(n\ge 3\), and write
+*Proof.* First let \(a\ge 4\) and \(n\ge 3\), and write
 \(z=J^a(n)\), \(y=\lfloor\sqrt z\rfloor\), and \(p\) for the image
 after the prefix \(O^aEOOO\). Lemma 3.9 with \(r=2\) gives
 \(p<(n+1)^4\). The three letters after \(y\) are odd, so
@@ -2457,7 +2626,7 @@ Let \(a\ge 5\) and \(n\ge 2\). The word \(O^aEEOE\) is not a
 cycle word at \(n\).
 
 
-*Proof.* * First let \(n\ge 4\), and write \(z=J^a(n)\) and \(y\)
+*Proof.* First let \(n\ge 4\), and write \(z=J^a(n)\) and \(y\)
 for the last odd letter of \(O^aEEOE\). The suffix \(EOE\) is a
 cycle suffix, so the last-odd cube of Theorem 3.15 gives
 \(y^3<(n+1)^4\). The two letters between \(z\) and \(y\) are
@@ -2484,7 +2653,7 @@ Let \(a\ge 4\) and \(n\ge 2\). The word \(O^aEOEOE\) is not a
 cycle word at \(n\).
 
 
-*Proof.* * First let \(n\ge 32\), and write \(z=J^a(n)\),
+*Proof.* First let \(n\ge 32\), and write \(z=J^a(n)\),
 \(w=\lfloor\sqrt z\rfloor\), and \(y\) for the last odd letter.
 The suffix \(EOE\) again gives \(y^3<(n+1)^4\). The one-odd
 envelope on \(w\) yields \(w^3\le 4s^2\), where \(s\) is the
@@ -2507,7 +2676,7 @@ Let \(a\ge 3\) and \(n\ge 2\). The word \(O^aEOOEOE\) is not a
 cycle word at \(n\).
 
 
-*Proof.* * First let \(a\ge 4\) and \(n\ge 4\), and write
+*Proof.* First let \(a\ge 4\) and \(n\ge 4\), and write
 \(z=J^a(n)\), \(u=\lfloor\sqrt z\rfloor\), and \(y\) for the last
 odd letter. The suffix \(EOE\) gives \(y^3<(n+1)^4\), hence
 \((y+1)^3<2(n+1)^4\). The two letters after \(u\) are odd, so
@@ -2538,7 +2707,7 @@ with \(a\ge 2\) and \(b\ge 4\), or the form \(O^aEO^bEOE\) with
 \(a\ge 2\) and \(b\ge 3\).
 
 
-*Proof.* * Every cycle word has a minimum-based rotation. It is
+*Proof.* Every cycle word has a minimum-based rotation. It is
 therefore enough to check that every cyclic shift of either word
 is an already-excluded cycle-minimum orientation.
 

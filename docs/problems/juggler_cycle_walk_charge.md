@@ -253,6 +253,12 @@ Classification **WALK_CHARGE_GREEN**.
   against the stored CPU record at \(176251\) to
   \(3.6\cdot 10^{-14}\)), DK break-even floor \(3.48\cdot 10^8\)
   — Diophantine, not computational.
+- GPU port performance (repository record; the paper now cites
+  this dossier instead of printing figures):
+  `cycle_walk_charge_gpu` (CuPy fp64 raw kernel) reproduces the
+  stored CPU kill records to relative error below \(10^{-13}\)
+  at roughly \(450\times\) speed; the full second-floor kill
+  table recomputes in minutes on one consumer GPU.
 
 ## Open questions
 

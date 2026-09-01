@@ -1,0 +1,257 @@
+{
+  "experiment": "juggler_flight_anchor_period",
+  "deep_sandwich_certified": true,
+  "scan": {
+    "range": [
+      478245,
+      780239
+    ],
+    "anchor": 350000000,
+    "n_lengths": 301995,
+    "float_killed": 301883,
+    "exact_candidates": 112,
+    "exact_killed": 101,
+    "parity_survivors": [
+      {
+        "length": 478245,
+        "odd_count": 301739,
+        "theta": 3.535699419065802e-06
+      },
+      {
+        "length": 504026,
+        "odd_count": 318005,
+        "theta": 2.899480753025779e-05
+      },
+      {
+        "length": 528753,
+        "odd_count": 333606,
+        "theta": 1.0800581190615443e-05
+      },
+      {
+        "length": 579261,
+        "odd_count": 365473,
+        "theta": 1.8065410183471323e-05
+      },
+      {
+        "length": 629769,
+        "odd_count": 397340,
+        "theta": 2.5330186398016867e-05
+      },
+      {
+        "length": 654496,
+        "odd_count": 412941,
+        "theta": 7.13589338149491e-06
+      },
+      {
+        "length": 680277,
+        "odd_count": 429207,
+        "theta": 3.259490983463551e-05
+      },
+      {
+        "length": 705004,
+        "odd_count": 444808,
+        "theta": 1.4400748997968583e-05
+      },
+      {
+        "length": 730785,
+        "odd_count": 461074,
+        "theta": 3.9859580493710676e-05
+      },
+      {
+        "length": 755512,
+        "odd_count": 476675,
+        "theta": 2.1665551835938507e-05
+      },
+      {
+        "length": 780239,
+        "odd_count": 492276,
+        "theta": 3.471192142292585e-06
+      }
+    ]
+  },
+  "dk_rows": [
+    {
+      "length": 478245,
+      "odd_count": 301739,
+      "theta": 3.535699419065802e-06,
+      "digit_sum": 2,
+      "dk_margin": 1.0053388929316383,
+      "cap_below_gap": true,
+      "dk_kills": true
+    },
+    {
+      "length": 504026,
+      "odd_count": 318005,
+      "theta": 2.899480753025779e-05,
+      "digit_sum": 4,
+      "dk_margin": 7.821030132979164,
+      "cap_below_gap": true,
+      "dk_kills": true
+    },
+    {
+      "length": 528753,
+      "odd_count": 333606,
+      "theta": 1.0800581190615443e-05,
+      "digit_sum": 3,
+      "dk_margin": 2.7773108555912907,
+      "cap_below_gap": true,
+      "dk_kills": true
+    },
+    {
+      "length": 579261,
+      "odd_count": 365473,
+      "theta": 1.8065410183471323e-05,
+      "digit_sum": 4,
+      "dk_margin": 4.239862102483919,
+      "cap_below_gap": true,
+      "dk_kills": true
+    },
+    {
+      "length": 629769,
+      "odd_count": 397340,
+      "theta": 2.5330186398016867e-05,
+      "digit_sum": 4,
+      "dk_margin": 5.467893587853197,
+      "cap_below_gap": true,
+      "dk_kills": true
+    },
+    {
+      "length": 654496,
+      "odd_count": 412941,
+      "theta": 7.13589338149491e-06,
+      "digit_sum": 3,
+      "dk_margin": 1.4822711741390928,
+      "cap_below_gap": true,
+      "dk_kills": true
+    },
+    {
+      "length": 680277,
+      "odd_count": 429207,
+      "theta": 3.259490983463551e-05,
+      "digit_sum": 5,
+      "dk_margin": 6.512979801113535,
+      "cap_below_gap": true,
+      "dk_kills": true
+    },
+    {
+      "length": 705004,
+      "odd_count": 444808,
+      "theta": 1.4400748997968583e-05,
+      "digit_sum": 4,
+      "dk_margin": 2.776711158831254,
+      "cap_below_gap": true,
+      "dk_kills": true
+    },
+    {
+      "length": 730785,
+      "odd_count": 461074,
+      "theta": 3.9859580493710676e-05,
+      "digit_sum": 4,
+      "dk_margin": 7.414311409591112,
+      "cap_below_gap": true,
+      "dk_kills": true
+    },
+    {
+      "length": 755512,
+      "odd_count": 476675,
+      "theta": 2.1665551835938507e-05,
+      "digit_sum": 5,
+      "dk_margin": 3.8977995021964396,
+      "cap_below_gap": true,
+      "dk_kills": true
+    },
+    {
+      "length": 780239,
+      "odd_count": 492276,
+      "theta": 3.471192142292585e-06,
+      "digit_sum": 3,
+      "dk_margin": 0.6047643301532988,
+      "cap_below_gap": true,
+      "dk_kills": false
+    }
+  ],
+  "first_survivor": 780239,
+  "monotonicity": {
+    "all_increased": true,
+    "rows": [
+      {
+        "length": 478245,
+        "margin_floor1": 0.43329420454346756,
+        "margin_anchor": 1.0053388929316383,
+        "increased": true
+      },
+      {
+        "length": 504026,
+        "margin_floor1": 3.370709858751523,
+        "margin_anchor": 7.821030132979164,
+        "increased": true
+      },
+      {
+        "length": 528753,
+        "margin_floor1": 1.1969200796242965,
+        "margin_anchor": 2.7773108555912907,
+        "increased": true
+      },
+      {
+        "length": 579261,
+        "margin_floor1": 1.8271006296410062,
+        "margin_anchor": 4.239862102483919,
+        "increased": true
+      },
+      {
+        "length": 629769,
+        "margin_floor1": 2.3561316591976453,
+        "margin_anchor": 5.467893587853197,
+        "increased": true
+      },
+      {
+        "length": 654496,
+        "margin_floor1": 0.6386909681520914,
+        "margin_anchor": 1.4822711741390928,
+        "increased": true
+      },
+      {
+        "length": 680277,
+        "margin_floor1": 2.8062679454654234,
+        "margin_anchor": 6.512979801113535,
+        "increased": true
+      },
+      {
+        "length": 705004,
+        "margin_floor1": 1.1963652450512585,
+        "margin_anchor": 2.776711158831254,
+        "increased": true
+      },
+      {
+        "length": 730785,
+        "margin_floor1": 3.1943906252084266,
+        "margin_anchor": 7.414311409591112,
+        "increased": true
+      },
+      {
+        "length": 755512,
+        "margin_floor1": 1.679277395802382,
+        "margin_anchor": 3.8977995021964396,
+        "increased": true
+      },
+      {
+        "length": 780239,
+        "margin_floor1": 0.26053854751855815,
+        "margin_anchor": 0.6047643301532988,
+        "increased": true
+      }
+    ]
+  },
+  "statement": "any descent-free flight from anchor n >= 350000000 with bounded exponent walk enters a nontrivial cycle of period >= 780239; lengths < 478245 are killed at the certified floor 162849448 and persist upward (RHS strictly decreasing in the floor)",
+  "anti_overclaim": {
+    "halt_theorem": false,
+    "new_unconditional_period_bound": false,
+    "floor_raise": false,
+    "descent_verification_run": false,
+    "uniform_b_theta_reopened": false,
+    "baker_reopened": false,
+    "divergent_orbit_case_touched": false
+  },
+  "git_commit": "1e92511bc2d887237d11d7a00ef962a2d7011c0a",
+  "classification": "ANCHOR_PERIOD_GREEN"
+}

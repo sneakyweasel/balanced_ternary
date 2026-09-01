@@ -565,6 +565,40 @@ theorem aboveAnchor_of_cycleMin {n : ℕ} {w : List Branch}
     rw [heq]
     exact le_of_eq himg.symm
 
+/-- On a `CycleMin`, every iterate through one period is at least
+the start (the boundary `j = L` returns to the start exactly).
+Instance of the `AboveAnchor` bridge. -/
+theorem cycleMin_iterate_ge {n : ℕ} {w : List Branch} (h : CycleMin n w) :
+    ∀ j, j ≤ w.length → n ≤ floorPower^[j] n :=
+  (aboveAnchor_of_cycleMin h).2
+
+/-- Prefix non-contraction on an `AboveAnchor` prefix: a
+walk-negative prefix would contract strictly below the anchor
+(`power_bound_contracts`), so a never-descending orbit segment
+keeps `u_k ≥ 0` at every prefix length. The primitive form; a
+minimum-based cycle is the closed instance. -/
+theorem aboveAnchor_prefix_pow_le {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : AboveAnchor n w) :
+    ∀ k, k ≤ w.length → 2 ^ k ≤ 3 ^ oddCount (w.take k) := by
+  intro k hk
+  by_contra hc
+  have hf : follows n (w.take k) := follows_take w k h.1
+  have hlen : (w.take k).length = k := by
+    simp [List.length_take, Nat.min_eq_left hk]
+  have hgap : 3 ^ oddCount (w.take k) < 2 ^ (w.take k).length := by
+    rw [hlen]; exact Nat.lt_of_not_le hc
+  have hcontr := power_bound_contracts hn hf hgap
+  rw [hlen] at hcontr
+  exact absurd hcontr (not_lt.mpr (h.2 k hk))
+
+/-- Prefix non-contraction on a `CycleMin`: an exponent-gap prefix
+would contract strictly below the cycle minimum. Closed instance of
+`aboveAnchor_prefix_pow_le`. -/
+theorem cycleMin_prefix_pow_le {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n w) :
+    ∀ k, k ≤ w.length → 2 ^ k ≤ 3 ^ oddCount (w.take k) :=
+  aboveAnchor_prefix_pow_le hn (aboveAnchor_of_cycleMin h)
+
 theorem cycle_iterate_mul_length {n : ℕ} {w : List Branch}
     (h : CycleWord n w) : ∀ q, floorPower^[q * w.length] n = n
   | 0 => by simp

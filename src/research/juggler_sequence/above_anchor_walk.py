@@ -32,6 +32,7 @@ from typing import Any
 
 from research.juggler_sequence.lean_paths import (
     ABOVE_ANCHOR_WALK,
+    CYCLE_CORE,
     MINIMUM_RELATIVE,
     WALK_CHARGE_WORDS,
     has_named,
@@ -79,7 +80,7 @@ ANTI = {
 }
 
 REQUIRED_LEAN = (
-    ("AboveAnchorWalk", "aboveAnchor_prefix_pow_le"),
+    ("CycleCore", "aboveAnchor_prefix_pow_le"),
     ("AboveAnchorWalk", "aboveAnchor_prefix_odds_ge_hug"),
     ("AboveAnchorWalk", "aboveAnchor_odds_ge_hug"),
     ("MinimumRelative", "AboveAnchor"),
@@ -333,6 +334,7 @@ def lean_wired() -> dict[str, bool]:
         "AboveAnchorWalk": ABOVE_ANCHOR_WALK.read_text(encoding="utf-8")
         if ABOVE_ANCHOR_WALK.is_file()
         else "",
+        "CycleCore": CYCLE_CORE.read_text(encoding="utf-8"),
         "MinimumRelative": MINIMUM_RELATIVE.read_text(encoding="utf-8"),
         "WalkChargeWords": WALK_CHARGE_WORDS.read_text(encoding="utf-8"),
     }

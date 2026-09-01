@@ -1,4 +1,5 @@
 import Problems.Juggler.CycleFinance
+import Problems.Juggler.CycleFinanceLeftovers
 import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 
 namespace Problems.Juggler

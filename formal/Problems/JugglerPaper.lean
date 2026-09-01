@@ -21,6 +21,7 @@ import Problems.Juggler.NormalizedDefect
 import Problems.Juggler.ExpansionSlack
 import Problems.Juggler.NearTightScale
 import Problems.Juggler.CycleFinance
+import Problems.Juggler.CycleFinanceLeftovers
 import Problems.Juggler.RunSurvivorLattice
 import Problems.Juggler.WalkChargeWords
 import Problems.Juggler.OstrowskiSandwich

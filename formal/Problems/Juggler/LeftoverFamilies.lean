@@ -1,12 +1,8 @@
 import Problems.Juggler.LeftoverShort
 import Problems.Juggler.LeftoverCell
 import Problems.Juggler.FirstETransportEval
-import Problems.Juggler.BunchedEOEEEval
-import Problems.Juggler.BunchedEOOEEEval
-import Problems.Juggler.BunchedEEOEEval
-import Problems.Juggler.BunchedEOEOEEval
 import Problems.Juggler.BunchedTight
-import Problems.Juggler.BunchedEOOEOEEval
+import Problems.Juggler.LeftoverEval
 
 namespace Problems.Juggler
 

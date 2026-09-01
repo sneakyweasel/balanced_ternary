@@ -2,8 +2,9 @@
 
 Not a halt theorem, not a divergence theorem, not a Paper A edit, and
 not a reopen of the parked asymptotic-descent envelope program. This
-branch packages the CycleMin -> AboveAnchor transport port
-(``formal/Problems/Juggler/FlightEnvelope.lean``) and audits its
+branch packages the AboveAnchor-rooted transport envelope (now the
+primitive form in ``formal/Problems/Juggler/WalkTransport.lean``;
+the cycle theorem is its closed instance) and audits its
 sharpness on realized flights.
 
 Coordinates. For a start n with first-descent time D(n) and parity
@@ -37,7 +38,6 @@ from typing import Any
 
 from research.juggler_sequence.lean_paths import (
     ABOVE_ANCHOR_WALK,
-    FLIGHT_ENVELOPE,
     LAYERS,
     has_named,
 )
@@ -88,12 +88,12 @@ ANTI = {
 }
 
 REQUIRED_LEAN = (
-    ("FlightEnvelope", "aboveAnchor_transport"),
-    ("FlightEnvelope", "aboveAnchor_transport_prefix"),
-    ("FlightEnvelope", "follows_log_le_walkWeight"),
-    ("FlightEnvelope", "aboveAnchor_flight_envelope"),
-    ("FlightEnvelope", "one_le_walkWeight_aboveAnchor"),
-    ("AboveAnchorWalk", "aboveAnchor_prefix_pow_le"),
+    ("WalkTransport", "aboveAnchor_transport"),
+    ("WalkTransport", "aboveAnchor_transport_prefix"),
+    ("WalkTransport", "follows_log_le_walkWeight"),
+    ("WalkTransport", "aboveAnchor_flight_envelope"),
+    ("WalkTransport", "one_le_walkWeight_aboveAnchor"),
+    ("CycleCore", "aboveAnchor_prefix_pow_le"),
     ("WalkTransport", "cycleMin_transport"),
 )
 
@@ -337,10 +337,8 @@ def flyer_rows(step_cap: int = STEP_CAP) -> list[dict[str, Any]]:
 
 def lean_wired() -> dict[str, bool]:
     texts = {
-        "FlightEnvelope": FLIGHT_ENVELOPE.read_text(encoding="utf-8")
-        if FLIGHT_ENVELOPE.is_file()
-        else "",
         "AboveAnchorWalk": ABOVE_ANCHOR_WALK.read_text(encoding="utf-8"),
+        "CycleCore": LAYERS["CycleCore"].read_text(encoding="utf-8"),
         "WalkTransport": LAYERS["WalkTransport"].read_text(encoding="utf-8"),
     }
     return {
