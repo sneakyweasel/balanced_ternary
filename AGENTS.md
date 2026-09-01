@@ -45,7 +45,9 @@ for external review.
  walk-charge envelope — transport, hug adversary, word identity,
  Denjoy–Koksma over certified Ostrowski blocks, window theorem on
  \([50508,301994)\) — gives period \(\ge 176251\) (§5.2–5.7,
- `J-cyclemin-walk-charge-instance`); the \(10^6\) base instance and
+ `J-cyclemin-walk-charge-instance`), and Corollary 5.10 prints the
+ second floor \(162849448\) with period \(\ge 478245\); the
+ \(10^6\) base instance and
  the \(99\)-length survivor lattice on \((25781,16266),(1054,665)\)
  (`RunSurvivorLattice.lean`) stay in §4. Discrete word layer,
  quotient arithmetic, general Ostrowski numeration (window digit

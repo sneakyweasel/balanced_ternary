@@ -10,6 +10,7 @@ from research.juggler_sequence.above_anchor_walk import (
     census,
     classify,
     descent_time,
+    descent_time_big,
     hug_odds_prefix,
     lean_wired,
     walk_profile,
@@ -54,6 +55,11 @@ def test_above_anchor_prefixes_dominate_hug() -> None:
             k += 1
             if x >= n:
                 assert odds >= hug[k], (n, k)
+
+
+def test_descent_time_big_matches_stdlib() -> None:
+    for n in range(2, 120):
+        assert descent_time_big(n) == descent_time(n)
 
 
 def test_gap_descent_flag_is_exact() -> None:

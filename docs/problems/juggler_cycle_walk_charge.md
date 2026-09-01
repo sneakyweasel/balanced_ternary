@@ -297,7 +297,11 @@ walk-charge program into Paper A Section 5
 transport is Theorem 5.3, the hug adversary Theorem 5.4, the
 word identity Lemma 5.6, the DK/Ostrowski envelope Theorem 5.7,
 the window theorem Theorem 5.8, and the kill table / period
-bound Theorem 5.9. The discrete word layer and the quotient
-arithmetic are Lean (`WalkChargeWords.lean`,
+bound Theorem 5.9; since the same-day second-floor pass the
+paper also prints Corollary 5.10 (floor \(162849448\), period
+\(\ge 478245\), the \(478245\) fan blocker, and the Appendix B
+hashes for the new certificate and the 15-kill table, plus the
+GPU reproducibility remark). The discrete word layer and the
+quotient arithmetic are Lean (`WalkChargeWords.lean`,
 `OstrowskiSandwich.lean`). The first length-only charge that
 kills a survivor-lattice seed below its parity ceiling.

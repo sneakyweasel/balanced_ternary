@@ -38,6 +38,14 @@ from research.juggler_sequence.lean_paths import (
 )
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
 
+try:  # exact big-int acceleration for the high-flyer retry pass only
+    from gmpy2 import isqrt as _gmp_isqrt
+    from gmpy2 import mpz as _mpz
+
+    HAVE_GMPY2 = True
+except ImportError:  # pragma: no cover - gmpy2 is present in the lab env
+    HAVE_GMPY2 = False
+
 REPO_ROOT = Path(__file__).resolve().parents[3]
 DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "above_anchor_walk"
 JSON_PATH = DATA_DIR / "summary.json"
@@ -49,6 +57,7 @@ SCIENCE_N_MAX = 2_000_000
 TEST_N_MAX = 400
 K_CAP = 10_000
 BIT_CAP = 2_000_000
+FINISH_BIT_CAP = 300_000_000
 NEAR_MIN_U = 0.2
 PROFILE_MAX_STEPS = 4_000
 LABORATORIES = (365, 501, 1517, 1999, 6187)
@@ -133,6 +142,45 @@ def descent_time(n: int, k_cap: int = K_CAP, bit_cap: int = BIT_CAP) -> dict[str
     return {"n": n, "resolved": False, "steps": k_cap, "peak_bits": peak_bits}
 
 
+def descent_time_big(
+    n: int, k_cap: int = K_CAP, bit_cap: int = FINISH_BIT_CAP
+) -> dict[str, Any]:
+    """High-flyer retry pass. gmpy2 mpz when available; exact arithmetic."""
+
+    if not HAVE_GMPY2:
+        return descent_time(n, k_cap=k_cap, bit_cap=bit_cap)
+    x = _mpz(n)
+    anchor = _mpz(n)
+    odds = 0
+    word: list[str] = []
+    peak_bits = x.bit_length()
+    for k in range(1, k_cap + 1):
+        if x % 2 == 1:
+            odds += 1
+            word.append("O")
+            x = _gmp_isqrt(x * x * x)
+        else:
+            word.append("E")
+            x = _gmp_isqrt(x)
+        bits = x.bit_length()
+        if bits > peak_bits:
+            peak_bits = bits
+        if bits > bit_cap:
+            return {"n": n, "resolved": False, "steps": k, "peak_bits": peak_bits}
+        if x < anchor:
+            return {
+                "n": n,
+                "resolved": True,
+                "descent_time": k,
+                "landing": int(x),
+                "odds": odds,
+                "word": "".join(word),
+                "peak_bits": peak_bits,
+                "gap_descent": 3**odds < 2**k,
+            }
+    return {"n": n, "resolved": False, "steps": k_cap, "peak_bits": peak_bits}
+
+
 def census(n_max: int, k_cap: int = K_CAP) -> dict[str, Any]:
     """Descent-time census on [2, n_max] with record tracking.
 
@@ -155,6 +203,8 @@ def census(n_max: int, k_cap: int = K_CAP) -> dict[str, Any]:
             d = 1
         else:
             res = descent_time(n, k_cap=k_cap)
+            if not res["resolved"]:
+                res = descent_time_big(n, k_cap=k_cap)
             if not res["resolved"]:
                 unresolved.append(n)
                 continue
