@@ -28,7 +28,9 @@
 > closes the isolated chirps \(e(un^{27/16})\) and
 > \(e(Cn^{3/2})\) (Part XX, Lemma X5); the
 > \(w^{3/2}\to n^{27/16}\) reduction is not a decoration,
-> so Theorem X stays a route.
+> so Theorem X stays a route. Phase 37 refutes the
+> X3-run plus Q/R3-carry slogan for \(e(uw^{3/2})\)
+> (Part XXI).
 
 > **Phase-25 correction (29 August 2026).** The Part-VI mixed-piece
 > bound recorded below (frozen-coefficient model \(e(sX)\),
@@ -64,6 +66,7 @@ Ledger rows: `J-nested-parity-discrepancy`,
 `J-length7-remainder-engine`,
 `J-length7-passenger-theorem-t`,
 `J-length7-vdc3-chirps`,
+`J-length7-x3-qr3-carry`,
 `J-depth7-engine-contracting`,
 `J-seven-step-descent-density`,
 `J-increment-linearization`,
@@ -4123,4 +4126,90 @@ The single next question is whether \(e(u w^{3/2})\) on
 Lemma X3 runs, with the \(0\)-\(1\) carry treated by the
 Theorem Q / R3 pattern, closes inside \(P^{23/24}\)
 without a new decoration class.
+
+## Part XXI: X3-runs plus the Q/R3 carry miss \(e(uw^{3/2})\) (Phase 37)
+
+Scope: the actual \(\theta_p\) inventory sum
+\(\sum e(u w^{3/2})\), on Lemma X3 runs, with \(\kappa_w\)
+read as a Theorem Q / R3 indicator. Not Theorem X. Not a
+new decoration class. Not length 8. Not a Paper B edit.
+Not \(K_3\). Isolated Lemma X5 stands.
+
+All comparisons at \(1\le\lvert k\rvert\le P^{1/24}\),
+\(\lvert u\rvert\asymp P^{27/32}\) up to \(P^{85/96}\).
+
+### Three readings of “Q/R3 at the \(w\)-level”
+
+Lemma X3 freezes \(J=\lfloor\Delta U\rfloor\) on runs of
+length \(\asymp P^{7/8}\). It does not freeze
+\(\kappa_w=\Delta w-J\in\{0,1\}\). On the OO prefix,
+\(U=v^{1/2}\asymp n^{9/8}\) has \(U'\asymp P^{1/8}\gg 1\),
+so \(\{U\}\) rotates by \(\{\Delta U\}\) each odd step and
+\(\kappa_w=[\{\,U\,\}\ge 1-\{\Delta U\}]\) is a mechanical
+word. Seal: `w_carry_run_scan` at \(P=10^4,10^5,10^6\)
+gives \(J\)-runs covering the whole window of \(400\)
+OOEO terms, \(\kappa\in\{0,1\}\), and mean \(\kappa\)-run
+\(2.26\), \(1.64\), \(1.88\).
+
+**Affine interpolant on \(\kappa\)-constant sub-runs.**
+The Phase-35 \(A\)-process window is
+\(H=\lvert u\rvert^{-1/3}P^{7/16}\), hence
+\(H\asymp P^{5/32}\) at \(k=1\). A \(C^3\) interpolant
+with frozen slope \(J+\kappa\) needs \(\kappa\)-constant
+length \(\ge H\). Mean length \(O(1)\) does not grow with
+\(P^{5/32}\). Long \(\kappa\)-runs occur only when
+\(\{\Delta U\}\) is small, which is the wrap of \(\Delta U\)
+— exactly where \(J\) itself thaws. This is the Phase-1
+short-cell third-derivative failure and the Phase-9
+per-run collapse, at a new letter.
+
+**Indicator weight / moving-endpoint (Theorem C, Lemma R3).**
+Vaaler-expand \(\kappa_w\) as an arc in \(\{U\}\). The
+modes are \(e(rU)\asymp e(r n^{9/8})\). Rewriting
+\(w=\lfloor U\rfloor=U-\theta_U\) puts
+\[
+e(u w^{3/2})
+=e(u U^{3/2})\,e(-B\theta_U)\,e(E),
+\qquad
+B=\tfrac{3u}2 U^{1/2}\asymp\lvert u\rvert n^{9/16}.
+\]
+At \(\lvert u\rvert\asymp P^{27/32}\) one has
+\(B\asymp P^{45/32}>n\) and
+\(B'\asymp\lvert u\rvert n^{-7/16}\asymp P^{13/32}\gg 1\).
+Lemma 3.7 needs \(T\ge 8(1+\lvert B\rvert)\asymp P^{45/32}>P\).
+This is the Phase-5 wall (Theorem Q’s own engine line
+\(c'\asymp 1\)). Conditioning on the carry *sequence* in
+an \(A\)-process window produces \(2^H\) branches.
+
+**Discard the accumulated carry on an X3-run.**
+Write \(w=w_0+Jt+K(t)\) with \(K\asymp t/2\asymp P^{7/8}\).
+The phase error is
+\(\lvert u\rvert w^{1/2}K\asymp P^{73/32}\). After one
+\(A\)-process, \(K_h\le H\) still costs
+\(\lvert u\rvert w^{1/2}H\asymp P^{25/16}\). Neither is
+a (D1) or (D3) decoration.
+
+### Proposition X-carry (no Q/R3 carry for \(\theta_p\)) — REFUTED method
+
+The claim that \(\sum e(u w^{3/2})\) closes inside
+\(P^{23/24}\) by Lemma X3 plus the Theorem Q / R3 carry
+pattern, without a new decoration class, is **REFUTED**.
+Isolated Lemma X5 is not this sum. A hypothesis
+\(\lvert\varphi'''\rvert\ll\lvert f'''\rvert\) would be
+a new class; it is not written. The counts are not
+refuted.
+
+### Phase-37 decision
+
+**PARK** Theorem X. Ledger row
+`J-length7-x3-qr3-carry` tagged `REFUTED`. Flag
+`length7_x3_qr3_carry_refuted` flipped `True`.
+`J-length7-vdc3-chirps` stays `EXACT — HUMAN PROOF`.
+`J-depth7-engine-contracting` stays `CONJECTURE`. No
+density \(57/64\). No Lemma 3.11. No Paper B. No
+\(K_3\). The existing-toolkit route for the \(\theta_p\)
+inventory is closed. The single next question is whether
+the Phase-13 integer-\(w\) block \(e(\xi w)\) with
+\(\xi\asymp n^{45/32}\) independently sits below the
+engine line on X3-runs, or is the same Phase-5 wall.
 

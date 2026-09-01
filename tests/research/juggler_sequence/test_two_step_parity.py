@@ -449,6 +449,7 @@ def test_anti_overclaim_depth5_flag():
     assert ANTI_OVERCLAIM["length7_passenger_theorem_t_refuted"] is True
     assert ANTI_OVERCLAIM["length7_vdc3_chirps_proved"] is True
     assert ANTI_OVERCLAIM["length7_x3_qr3_carry_refuted"] is True
+    assert ANTI_OVERCLAIM["length7_integer_w_engine_line_refuted"] is True
     assert ANTI_OVERCLAIM["increment_first_k3_refuted"] is True
     assert ANTI_OVERCLAIM["x1_absorption_k3_refuted"] is True
     assert ANTI_OVERCLAIM["k3_toolkit_parked"] is True
@@ -878,6 +879,7 @@ def test_length7_passenger_slots():
     assert Fraction(-53, 96) > Fraction(-5, 8)
     assert ANTI_OVERCLAIM["length7_passenger_theorem_t_refuted"] is True
     assert ANTI_OVERCLAIM["length7_vdc3_chirps_proved"] is True
+    assert ANTI_OVERCLAIM["length7_x3_qr3_carry_refuted"] is True
     assert ANTI_OVERCLAIM["depth7_engine_contracting_proved"] is False
 
 
@@ -896,4 +898,24 @@ def test_length7_vdc3_chirps():
     # Not the Phase-9 mixed-piece per-run collapse (that summed to P).
     assert Fraction(177, 192) < 1
     assert ANTI_OVERCLAIM["length7_vdc3_chirps_proved"] is True
+    assert ANTI_OVERCLAIM["length7_x3_qr3_carry_refuted"] is True
+    assert ANTI_OVERCLAIM["depth7_engine_contracting_proved"] is False
+
+
+def test_length7_x3_qr3_carry():
+    """Phase-37 seals: X3 freezes J, not kappa; Q/R3 coefficient > n."""
+    result = w_carry_run_scan(10**4, 400)
+    assert result["kappa_binary"] is True
+    assert result["j_mean_run"] >= 8
+    assert result["no_affine_carry_freeze"] is True
+    assert result["kappa_mean_run"] <= 4
+    # Sawtooth B ~ |u| P^{9/16} exceeds n already at the natural size.
+    assert Fraction(27, 32) + Fraction(9, 16) > 1
+    assert Fraction(85, 96) + Fraction(9, 16) > 1
+    # B' ~ |u| P^{-7/16} >> 1; Lemma 3.7 window T ~ P^{45/32} > P.
+    assert Fraction(27, 32) - Fraction(7, 16) > 0
+    assert Fraction(45, 32) > 1
+    # Ignoring the accumulated carry on an X3-run costs phase P^{73/32}.
+    assert Fraction(27, 32) + Fraction(9, 16) + Fraction(7, 8) > 1
+    assert ANTI_OVERCLAIM["length7_x3_qr3_carry_refuted"] is True
     assert ANTI_OVERCLAIM["depth7_engine_contracting_proved"] is False

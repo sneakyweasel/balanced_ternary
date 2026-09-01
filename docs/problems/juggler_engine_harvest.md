@@ -3,10 +3,11 @@
 Status: **PROMOTE** (length 5, the \(\alpha=33/32\)
 \(W\)-family instance, the length-7 remainder engine, and
 the isolated length-7 chirps). Theorem X is **PARK**
-(passenger slogan **REFUTED**; isolated chirps are not the
-inventory). Density \(57/64\), length 8, and the
-Corollary R′ *family* stay **CONJECTURE**. Paper B stays
-frozen at \(13/16\).
+(passenger slogan **REFUTED**; X3 plus Q/R3 carry
+**REFUTED**; isolated chirps are not the inventory).
+Density \(57/64\), length 8, and the Corollary R′
+*family* stay **CONJECTURE**. Paper B stays frozen at
+\(13/16\).
 
 Repair of the Phase-26 withdrawn length-5 passenger holes. Not a
 new contractor family, not a \(K_3\) attack, and not a Paper B edit.
@@ -96,18 +97,21 @@ It is not required. The 2-adic / BT bridge stays closed.
   (`J-length7-passenger-theorem-t`, Phase 34) — **REFUTED**
 - Isolated length-7 chirps (`J-length7-vdc3-chirps`,
   Phase 35) — **EXACT — HUMAN PROOF**
+- Length-7 X3 plus Q/R3 carry
+  (`J-length7-x3-qr3-carry`, Phase 37) — **REFUTED**
 - Length-7 passenger inventory / Theorem X, length-8 \(E'\),
   Corollary R′ family — **CONJECTURE**
 - \(K_3\) bound — **PARK** (BB/GG/JJ)
 
 ## Experiments
 
-No new runner. Existing scanners in
+Existing scanners in
 `research.juggler_sequence.two_step_parity`
 (`oooee_indicator_identity_check`, `ooeoe_indicator_identity_check`,
 `oooee_smoothing_scan`, `ooeoe_smoothing_scan`,
-`x1_remainder_reduction_scan`) already pin Lemmas
-T1/T2, the indicator algebra, and the Part XIV reduction. Tests:
+`x1_remainder_reduction_scan`, `w_carry_run_scan`) already pin Lemmas
+T1/T2, the indicator algebra, the Part XIV reduction, and the
+Phase-37 \(\kappa_w\) run lengths. Tests:
 `tests/research/juggler_sequence/test_two_step_parity.py`.
 
 ## Conjectures
@@ -117,10 +121,10 @@ None new. Remaining harvest rows stay as they are:
 \(\alpha=33/32\) is the separate exact row
 `J-w-family-thirty-three-thirty-seconds`),
 `J-depth7-engine-contracting` (isolated chirps are
-`J-length7-vdc3-chirps`; the inventory object is
-\(e(uw^{3/2})\); passenger slogan is
-`J-length7-passenger-theorem-t`, **REFUTED**; remainder
-is `J-length7-remainder-engine`),
+`J-length7-vdc3-chirps`; X3 plus Q/R3 is
+`J-length7-x3-qr3-carry`, **REFUTED**; passenger slogan
+is `J-length7-passenger-theorem-t`, **REFUTED**;
+remainder is `J-length7-remainder-engine`),
 `J-seven-step-descent-density`, `J-depth8-engine-quartet`,
 `J-eight-step-descent-density`.
 
@@ -173,13 +177,19 @@ gravity.
   \(\ll P^{535/576}\) by one \(A\)-process plus Lemma 3.3.
   The reduction to \(n^{27/16}\) is not a decoration.
   Theorem X stays `CONJECTURE`.
+- **Proposition X-carry (REFUTED,
+  `J-length7-x3-qr3-carry`, Phase 37).**
+  Child dossier
+  [juggler_length7_x3_carry.md](juggler_length7_x3_carry.md).
+  X3 plus Q/R3 does not close \(e(uw^{3/2})\).
 
 ## Open questions
 
-The actual \(\theta_p\) sum \(e(uw^{3/2})\) on Lemma X3
-runs, with the \(0\)-\(1\) carry treated by the Theorem Q
-/ R3 pattern. Length 8 stays behind \(E'\). See the child
-[juggler_length7_vdc3.md](juggler_length7_vdc3.md).
+The Phase-13 integer-\(w\) block \(e(\xi w)\) at
+\(\xi\asymp n^{45/32}\). Length 8 stays behind \(E'\).
+See the child
+[juggler_length7_x3_carry.md](juggler_length7_x3_carry.md).
+Do not open another rewriting of \(e(uw^{3/2})\).
 
 ## Decision
 

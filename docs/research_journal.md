@@ -21224,3 +21224,47 @@ Best next question
 - one independent human check of Paper B Section 5
 ```
 
+## Paper B engine harvest: X3 plus Q/R3 miss e(u w^{3/2}) (Phase 37)
+
+- **Date:** 2026-09-02
+- **Objective:** Close \(\sum e(uw^{3/2})\) on Lemma X3 runs by treating \(\kappa_w\) as a Theorem Q / R3 indicator, inside \(P^{23/24}\), without a new decoration class.
+- **Hypotheses:** Phase 35 closed the affine interpolant; Q/R3 absorbs the \(0\)-\(1\) carry the way Theorem C does.
+- **Major results:**
+  - Lemma X3 freezes \(J=\lfloor\Delta U\rfloor\), not \(\kappa_w\). \(U'\asymp P^{1/8}\gg 1\). `w_carry_run_scan` at \(P=10^4,10^5,10^6\): \(J\) covers the window, mean \(\kappa\)-run \(2.26\), \(1.64\), \(1.88\).
+  - \(\kappa\)-constant sub-runs of length \(O(1)\) miss the \(A\)-process window \(H\asymp P^{5/32}\). Long \(\kappa\)-runs sit at the \(\{\Delta U\}\)-wrap where \(J\) thaws.
+  - \(w=U-\theta_U\) spawns \(B\asymp\lvert u\rvert n^{9/16}\). At \(\lvert u\rvert\asymp P^{27/32}\): \(B\asymp P^{45/32}>n\), \(B'\asymp P^{13/32}\gg 1\), Lemma 3.7 needs \(T\asymp P^{45/32}>P\). Phase-5 wall.
+  - Discarding the accumulated carry costs \(P^{73/32}\) on an X3-run and \(P^{25/16}\) after one \(A\)-process.
+  - **Proposition X-carry (`J-length7-x3-qr3-carry`):** the X3 plus Q/R3 slogan is **REFUTED**. Isolated Lemma X5 stands. Theorem X stays **CONJECTURE**.
+- **Refuted ideas:** “\(\kappa_w\) is an indicator weight on X3-runs in the sense of Theorem Q / R3.”
+- **Literature:** Lemma X3, X5; Theorem Q engine line; Phase-5 wall; Phase-1 short-cell and Phase-9 per-run third-derivative failures.
+- **Open:** integer-\(w\) block \(e(\xi w)\) at \(\xi\asymp n^{45/32}\); length-8 \(E'\). Do not reopen \(e(uw^{3/2})\).
+- **Decision:** PARK Theorem X. Dossier `docs/problems/juggler_length7_x3_carry.md`. Existing-toolkit route for the \(\theta_p\) inventory is closed. No Lemma 3.11, no Paper B, no \(K_3\).
+
+```text
+What was learned
+- X3 freezes J, not kappa_w
+- mean kappa-run is O(1) on X3-interiors
+- the sawtooth form has coefficient P^{45/32} > n
+- discarding the accumulated carry costs P^{73/32}
+- isolated Lemma X5 is not the inventory sum
+Strongest theorem
+- none new (X5 stands; this phase is a method kill)
+Strongest refutation
+- X3 plus Q/R3 closes e(u w^{3/2})
+  (J-length7-x3-qr3-carry)
+Reusable machinery
+- w_carry_run_scan (kappa run lengths)
+Branch status
+- PARK (Theorem X); X3/Q/R3 method CLOSE
+Why
+- every Q/R3 reading hits a named existing wall:
+  short freeze, engine line, or worse-than-trivial
+  phase error
+Best next question
+- does the Phase-13 integer-w block e(xi w) with
+  xi ~ n^{45/32} independently sit below the
+  engine line on X3-runs, or is it the same
+  Phase-5 wall?
+```
+
+

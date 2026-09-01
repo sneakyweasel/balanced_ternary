@@ -200,11 +200,17 @@ ANTI_OVERCLAIM = {
     # a (D1)/(D3) decoration (spawned amplitude can exceed n).
     # Theorem X stays CONJECTURE.
     "length7_vdc3_chirps_proved": True,
-    # Phase 36: X3-runs plus the Q/R3 carry do not close
+    # Phase 37: X3-runs plus the Q/R3 carry do not close
     # e(u w^{3/2}). kappa_w has mean run O(1); the sawtooth
     # coefficient (3u/2) U^{1/2} exceeds n. Theorem X stays
     # CONJECTURE.
     "length7_x3_qr3_carry_refuted": True,
+    # Phase 38: the Phase-13 integer-w block e(ξ w) with
+    # ξ ≍ n^{45/32} is the naive θ_w coefficient Lemma X1
+    # eliminated. Independently it sits above the engine
+    # line (ξ > n, ξ' ≫ 1). Same Phase-5 wall. Theorem X
+    # stays CONJECTURE.
+    "length7_integer_w_engine_line_refuted": True,
 }
 
 

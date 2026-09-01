@@ -105,6 +105,7 @@ for external review.
   close by one \(A\)-process plus Lemma 3.3,
   `J-length7-vdc3-chirps`, but the inventory object is
   \(e(uw^{3/2})\) and the reduction is not a decoration;
+  X3 plus Q/R3 is **REFUTED** (`J-length7-x3-qr3-carry`);
   \(E'\); the growing remainder is now an engine,
   `J-length7-remainder-engine`. Corollary R′ is still a
   family-CONJECTURE, but the instance \(\alpha=33/32\) is

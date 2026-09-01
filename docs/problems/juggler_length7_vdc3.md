@@ -134,10 +134,12 @@ None added.
 
 ## Open questions
 
-Does \(e(uw^{3/2})\) on Lemma X3 runs, with the \(0\)-\(1\)
-carry treated by the Theorem Q / R3 pattern, close inside
-\(P^{23/24}\) without a new decoration class? Length 8
-stays behind \(E'\).
+Answered in Phase 37
+([juggler_length7_x3_carry.md](juggler_length7_x3_carry.md)):
+X3 plus Q/R3 does not close \(e(uw^{3/2})\). Remaining:
+the integer-\(w\) block at \(\xi\asymp n^{45/32}\).
+Length 8 stays behind \(E'\). Do not reopen
+\(e(uw^{3/2})\).
 
 ## Decision
 

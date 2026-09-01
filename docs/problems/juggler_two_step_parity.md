@@ -117,8 +117,10 @@ It is not required. The 2-adic / BT bridge stays closed.
   Theorem-T passenger slogan is **REFUTED** (Phase 34,
   `length7_passenger_theorem_t_refuted` is `True`); the
   isolated chirps close (Phase 35,
-  `length7_vdc3_chirps_proved` is `True`); the inventory
-  object \(e(uw^{3/2})\) remains the hole
+  `length7_vdc3_chirps_proved` is `True`); the X3 plus
+  Q/R3 carry slogan is **REFUTED** (Phase 37,
+  `length7_x3_qr3_carry_refuted` is `True`); the
+  inventory object \(e(uw^{3/2})\) remains the hole
 
 - Increment-first \(K_3\) attack — **REFUTED** in Phase 14
   (`increment_first_k3_refuted` is `True`); bound not proved
@@ -1220,6 +1222,18 @@ The reduction \(w^{3/2}=n^{27/16}+O(n^{3/16}\theta_2)\)
 is not a (D1)/(D3) decoration. Flag
 `length7_vdc3_chirps_proved` is `True`. Theorem X stays
 `CONJECTURE`. Paper B is not edited. No Lemma 3.11.
+
+## Phase 37: X3-runs plus the Q/R3 carry miss \(e(uw^{3/2})\)
+
+Child dossier
+[juggler_length7_x3_carry.md](juggler_length7_x3_carry.md).
+Lemma X3 freezes \(J\), not \(\kappa_w\). Mean
+\(\kappa\)-run is \(O(1)\) on X3-interiors; the sawtooth
+form has coefficient \(P^{45/32}>n\) (lemma Part XXI,
+`J-length7-x3-qr3-carry`). Flag
+`length7_x3_qr3_carry_refuted` is `True`. Isolated
+Lemma X5 stands. Theorem X stays `CONJECTURE`. Paper B
+is not edited. No Lemma 3.11.
 
 ## Phase 36: Paper B writeup repair (frozen 13/16)
 
