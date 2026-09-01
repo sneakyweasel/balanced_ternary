@@ -50,17 +50,22 @@ for external review.
  \(10^6\) base instance and
  the \(99\)-length survivor lattice on \((25781,16266),(1054,665)\)
  (`RunSurvivorLattice.lean`) stay in §4. Discrete word layer,
- quotient arithmetic, general Ostrowski numeration (window digit
- cap \(s(L)\le 47\) structural), the transport inequality of
- Thm 5.3, the defect-to-hug-charge chain (§5.2 + Thm 5.4
- analytic half), the Thm 4.6 certified identity
+ quotient arithmetic with the DK block hypotheses
+ (\(|\theta-p/q|<1/q^2\) for all certified convergents plus block
+ permutations, `theta_convergent_quality`,
+ `theta_block_permutations`), general Ostrowski numeration
+ (window digit cap \(s(L)\le 47\) structural), the transport
+ inequality of Thm 5.3, the defect-to-hug-charge chain
+ (§5.2 + Thm 5.4 analytic half), the Thm 4.6 certified identity
  (`cycleMin_defect_finance`), and the Thm 5.9 kill template
  (`cycleMin_hug_kill_criterion`) are Lean (`WalkChargeWords.lean`,
  `OstrowskiSandwich.lean`, `OstrowskiNumeration.lean`,
  `WalkTransport.lean`, `WalkChargeMax.lean`,
  `DefectFinance.lean`); of the §5 envelope chain only the
- rotation average, Denjoy–Koksma, and the per-length kill
- evaluations remain analytic prose / verified computation. The walk program is terminal: the
+ rotation average, DK's variation-versus-integral inequality
+ (PARK: Mathlib-scale, no new lab consequence), and the
+ per-length kill evaluations remain analytic prose / verified
+ computation. The walk program is terminal: the
  fan-minimum reduction (`juggler_walk_fan_minimum_law`, CONJECTURE)
  ties further asymptotic progress to unbounded partial quotients of
  \(\log 2/\log 3\) — classical OPEN. Killing the

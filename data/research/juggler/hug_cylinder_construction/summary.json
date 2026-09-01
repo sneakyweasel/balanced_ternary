@@ -1,0 +1,296 @@
+{
+  "experiment": "juggler_hug_cylinder_construction",
+  "anti_overclaim": {
+    "halt_theorem": false,
+    "eventual_descent_theorem": false,
+    "all_depth_nonemptiness_theorem": false,
+    "k3_reopened": false,
+    "mechanical_lift_reopened": false,
+    "paper_a_modified": false,
+    "floating_point_verdict": false
+  },
+  "parity_runs": [
+    {
+      "scale_log2": 20,
+      "window": 250000,
+      "max_parity_run": 58,
+      "work_window_x13": 67.7,
+      "naive_budget_x14": 21.3,
+      "run_over_work_window": 0.8564
+    },
+    {
+      "scale_log2": 24,
+      "window": 250000,
+      "max_parity_run": 106,
+      "work_window_x13": 170.7,
+      "naive_budget_x14": 42.7,
+      "run_over_work_window": 0.6211
+    },
+    {
+      "scale_log2": 28,
+      "window": 250000,
+      "max_parity_run": 210,
+      "work_window_x13": 430.1,
+      "naive_budget_x14": 85.3,
+      "run_over_work_window": 0.4883
+    },
+    {
+      "scale_log2": 32,
+      "window": 250000,
+      "max_parity_run": 418,
+      "work_window_x13": 1083.7,
+      "naive_budget_x14": 170.7,
+      "run_over_work_window": 0.3857
+    },
+    {
+      "scale_log2": 36,
+      "window": 250000,
+      "max_parity_run": 754,
+      "work_window_x13": 2730.7,
+      "naive_budget_x14": 341.3,
+      "run_over_work_window": 0.2761
+    },
+    {
+      "scale_log2": 40,
+      "window": 250000,
+      "max_parity_run": 836,
+      "work_window_x13": 6880.8,
+      "naive_budget_x14": 682.7,
+      "run_over_work_window": 0.1215
+    }
+  ],
+  "oe_pullback": [
+    {
+      "scale_log2": 16,
+      "anchors": 24,
+      "mean_candidates": 27.9,
+      "mean_survivors": 12.62,
+      "zero_survivor_anchors": 0,
+      "survival_rate": 0.4522
+    },
+    {
+      "scale_log2": 20,
+      "anchors": 24,
+      "mean_candidates": 68.7,
+      "mean_survivors": 33.88,
+      "zero_survivor_anchors": 0,
+      "survival_rate": 0.493
+    },
+    {
+      "scale_log2": 24,
+      "anchors": 24,
+      "mean_candidates": 171.7,
+      "mean_survivors": 85.83,
+      "zero_survivor_anchors": 0,
+      "survival_rate": 0.5
+    },
+    {
+      "scale_log2": 28,
+      "anchors": 24,
+      "mean_candidates": 431.0,
+      "mean_survivors": 214.83,
+      "zero_survivor_anchors": 0,
+      "survival_rate": 0.4984
+    },
+    {
+      "scale_log2": 32,
+      "anchors": 24,
+      "mean_candidates": 1084.7,
+      "mean_survivors": 541.75,
+      "zero_survivor_anchors": 0,
+      "survival_rate": 0.4995
+    },
+    {
+      "scale_log2": 36,
+      "anchors": 24,
+      "mean_candidates": 2731.7,
+      "mean_survivors": 1369.96,
+      "zero_survivor_anchors": 0,
+      "survival_rate": 0.5015
+    },
+    {
+      "scale_log2": 40,
+      "anchors": 24,
+      "mean_candidates": 6881.8,
+      "mean_survivors": 3438.38,
+      "zero_survivor_anchors": 0,
+      "survival_rate": 0.4996
+    }
+  ],
+  "ooe_pullback": [
+    {
+      "scale_log2": 16,
+      "offset": "generic",
+      "anchor_run": 3000,
+      "anchors_with_pullback": 98,
+      "predicted_hits": 125.5,
+      "hit_over_predicted": 0.781,
+      "first_hit": {
+        "anchor": 87403,
+        "x": 24687
+      }
+    },
+    {
+      "scale_log2": 16,
+      "offset": "resonant",
+      "anchor_run": 3000,
+      "anchors_with_pullback": 90,
+      "predicted_hits": 129.6,
+      "hit_over_predicted": 0.694,
+      "first_hit": {
+        "anchor": 65538,
+        "x": 19113
+      }
+    },
+    {
+      "scale_log2": 20,
+      "offset": "generic",
+      "anchor_run": 3000,
+      "anchors_with_pullback": 69,
+      "predicted_hits": 92.3,
+      "hit_over_predicted": 0.748,
+      "first_hit": {
+        "anchor": 1398169,
+        "x": 290215
+      }
+    },
+    {
+      "scale_log2": 20,
+      "offset": "resonant",
+      "anchor_run": 3000,
+      "anchors_with_pullback": 69,
+      "predicted_hits": 95.2,
+      "hit_over_predicted": 0.724,
+      "first_hit": {
+        "anchor": 1048605,
+        "x": 224727
+      }
+    },
+    {
+      "scale_log2": 24,
+      "offset": "generic",
+      "anchor_run": 3000,
+      "anchors_with_pullback": 51,
+      "predicted_hits": 67.8,
+      "hit_over_predicted": 0.752,
+      "first_hit": {
+        "anchor": 22369687,
+        "x": 3412173
+      }
+    },
+    {
+      "scale_log2": 24,
+      "offset": "resonant",
+      "anchor_run": 3000,
+      "anchors_with_pullback": 56,
+      "predicted_hits": 70.0,
+      "hit_over_predicted": 0.8,
+      "first_hit": {
+        "anchor": 16777237,
+        "x": 2642249
+      }
+    },
+    {
+      "scale_log2": 28,
+      "offset": "generic",
+      "anchor_run": 3000,
+      "anchors_with_pullback": 39,
+      "predicted_hits": 49.8,
+      "hit_over_predicted": 0.783,
+      "first_hit": {
+        "anchor": 357914203,
+        "x": 40119827
+      }
+    },
+    {
+      "scale_log2": 28,
+      "offset": "resonant",
+      "anchor_run": 3000,
+      "anchors_with_pullback": 47,
+      "predicted_hits": 51.4,
+      "hit_over_predicted": 0.914,
+      "first_hit": {
+        "anchor": 268435465,
+        "x": 31067201
+      }
+    },
+    {
+      "scale_log2": 32,
+      "offset": "generic",
+      "anchor_run": 3000,
+      "anchors_with_pullback": 30,
+      "predicted_hits": 36.6,
+      "hit_over_predicted": 0.819,
+      "first_hit": {
+        "anchor": 5726623080,
+        "x": 471723643
+      }
+    },
+    {
+      "scale_log2": 32,
+      "offset": "resonant",
+      "anchor_run": 3000,
+      "anchors_with_pullback": 33,
+      "predicted_hits": 37.8,
+      "hit_over_predicted": 0.873,
+      "first_hit": {
+        "anchor": 4294967306,
+        "x": 365284285
+      }
+    },
+    {
+      "scale_log2": 36,
+      "offset": "generic",
+      "anchor_run": 3000,
+      "anchors_with_pullback": 19,
+      "predicted_hits": 26.9,
+      "hit_over_predicted": 0.706,
+      "first_hit": {
+        "anchor": 91625969165,
+        "x": 5546468065
+      }
+    },
+    {
+      "scale_log2": 36,
+      "offset": "resonant",
+      "anchor_run": 3000,
+      "anchors_with_pullback": 0,
+      "predicted_hits": 27.8,
+      "hit_over_predicted": 0.0,
+      "first_hit": null
+    },
+    {
+      "scale_log2": 40,
+      "offset": "generic",
+      "anchor_run": 3000,
+      "anchors_with_pullback": 16,
+      "predicted_hits": 19.8,
+      "hit_over_predicted": 0.809,
+      "first_hit": {
+        "anchor": 1466015503704,
+        "x": 65214683287
+      }
+    },
+    {
+      "scale_log2": 40,
+      "offset": "resonant",
+      "anchor_run": 3000,
+      "anchors_with_pullback": 15,
+      "predicted_hits": 20.4,
+      "hit_over_predicted": 0.735,
+      "first_hit": {
+        "anchor": 1099511627824,
+        "x": 50499692627
+      }
+    }
+  ],
+  "classification": "HUG_FLOW_CONFIRMED",
+  "flow_ledger": {
+    "per_E_regeneration_bits": "+len(X)/2",
+    "per_O_pullback_bits": "-len(X)/3 - log2(3)",
+    "per_OE_block_bits": "+5*len(X)/12",
+    "per_OOE_block_bits": "+7*len(X)/24",
+    "needed_lemmas": "hit-count lower bounds on odd-x windows of length ~(2/3)X^{1/3} for depth-<=2 nested floor parities; window above the van der Corput threshold X^{1/4}",
+    "construction_cost": "any backward construction pays ~X^{1/9} anchor pulls per OOE block, cascading multiplicatively - no cheaper than the 2^L forward scan"
+  }
+}
