@@ -18923,4 +18923,53 @@ Best next question
   density)?
 ```
 
+## Juggler hug-cylinder construction (backward freedom flow)
+
+- **Date:** 2026-09-01
+- **Objective:** Answer the realization branch's recorded question: is \(C_L\ne\emptyset\) provable for **every** depth by an explicit preimage-cylinder construction? Price the backward route exactly instead of scanning deeper.
+- **Hypotheses:** the hug block grammar (`OE`/`OOE`, O-runs \(\le 2\) since \(2\log_2(3/2)>1\), E-runs \(=1\)) bounds the analytic needs of a backward induction at depth \(\le 2\) on short windows (confirmed); pullback death at generic positions or budget-violating parity runs would kill the route (did not fire)
+- **Major results:**
+  - **Freedom-flow ledger (OBSERVATION, exponents confirmed at all scales):** the E-preimage of one valid state is the full interval \([y^2,(y+1)^2)\), so backward freedom regenerates every block. Per backward block at level scale \(2^\lambda\): E-regeneration \(+\lambda/2\) bits of harvestable suffix-realizers, O-pullback \(-\lambda/3-\log_2 3\); net `OE` \(+5\lambda/12\), `OOE` \(+7\lambda/24\) — **strictly positive both ways**. Census (probe `hug_cylinder_construction.py`, artifact `data/research/juggler/hug_cylinder_construction/summary.json`, classification `HUG_FLOW_CONFIRMED`): `OE` survival \(0.50\) with zero empty anchors at seven scales \(2^{16}\)–\(2^{40}\); `OOE` two-stage hits track the \(\frac{8/27}{2}w^{-1/9}\) law at \(0.71\)–\(0.82\) of prediction
+  - **The working window is \(X^{1/3}\), not \(X^{1/4}\):** max constant-parity runs of \(\lfloor x^{3/2}\rfloor\) over odd \(x\) (58 at \(2^{20}\) to 836 at \(2^{40}\)) stay below the \(\frac23 X^{1/3}\) window (ratio \(0.86\to 0.12\)) but **exceed** the naive quadratic-crossing budget \(\frac23 X^{1/4}\) at \(2^{36}\) and \(2^{40}\) — the induction genuinely needs the van der Corput-nontrivial regime (\(H=X^{1/3}>X^{1/4}\))
+  - **Resonance hazard isolated:** at the \(2^{36}\) resonant offset (swept \(x\approx 2^{32}\) a perfect square) parity locks and `OOE` pullbacks die completely (\(0/3000\) vs \(\approx 28\) predicted); any all-depth statement needs a sqrt-resonance exclusion
+  - **Negative knowledge:** a backward *constructor* pays \(\sim X^{1/9}\) anchor pulls per `OOE` block, cascading multiplicatively — no cheaper than the \(2^L\) forward scan; deepest certified witness stays depth \(28\)
+- **Refuted ideas:** the naive quadratic-crossing budget \(X^{1/4}\) is insufficient (measured runs exceed it); backward construction as a computational shortcut is dead
+- **Literature:** none new
+- **Open:** `juggler_hug_flow_window` (ACTIVE conjecture) — short-interval depth-\(\le 2\) parity hits at window \(\frac23 X^{1/3}\) with resonance exclusion; with the positive flow it yields \(C_L\ne\emptyset\) for every \(L\)
+- **Decision:** PARK — dossier `docs/problems/juggler_hug_cylinder_construction.md`
+
+```text
+What was learned
+- backward freedom flow of the hug word is strictly positive
+  per block (+5λ/12 OE, +7λ/24 OOE) - all-depth nonemptiness
+  reduces to short-interval depth-<=2 parity hits, not K3
+- the needed window is X^{1/3} (vdC-nontrivial), not the
+  quadratic-crossing X^{1/4}; measured runs violate the
+  latter and respect the former with growing margin
+- sqrt-resonances are a real local death mechanism for OOE
+  pullbacks (0/3000 at 2^36) - the lemma needs an exclusion
+- constructing deep witnesses backward costs no less than the
+  2^L forward scan (negative knowledge)
+Strongest theorem
+- none new (flow ledger is exponent arithmetic + census)
+Strongest refutation
+- the X^{1/4} crossing budget is insufficient at scale >= 2^36
+Reusable machinery
+- hug_cylinder_construction.py: parity-run, OE-pullback and
+  OOE-hazard censuses (exact arithmetic, generic + resonant)
+Branch status
+- PARK
+Why
+- the route to all-depth hug-cylinder nonemptiness is now a
+  single named analytic lemma (juggler_hug_flow_window) above
+  the vdC threshold and below the K3 wall; its payoff is an
+  obstruction-existence theorem, not descent progress, so it
+  does not outrank the standing frontier - park with the
+  reopening key recorded
+Best next question
+- none from this branch; the asymptotic-descent program's
+  standing targets remain juggler_asymptotic_descent and
+  juggler_descent_time_log
+```
+
 

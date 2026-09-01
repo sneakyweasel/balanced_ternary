@@ -119,6 +119,7 @@ LAYERS: dict[str, Path] = {
     "WalkChargeMax": JUGGLER_DIR / "WalkChargeMax.lean",
     "DefectFinance": JUGGLER_DIR / "DefectFinance.lean",
     "AboveAnchorWalk": JUGGLER_DIR / "AboveAnchorWalk.lean",
+    "FlightEnvelope": JUGGLER_DIR / "FlightEnvelope.lean",
 }
 
 DYNAMICS = LAYERS["Dynamics"]
@@ -217,6 +218,7 @@ RUN_SURVIVOR_LATTICE = LAYERS["RunSurvivorLattice"]
 CYCLE_HEIGHT_FINANCE = LAYERS["CycleHeightFinance"]
 WALK_CHARGE_WORDS = LAYERS["WalkChargeWords"]
 ABOVE_ANCHOR_WALK = LAYERS["AboveAnchorWalk"]
+FLIGHT_ENVELOPE = LAYERS["FlightEnvelope"]
 
 DELETED_ENGINE = (
     ENGINE_DIR / "FloorPower.lean",
