@@ -121,8 +121,9 @@ hug flight being impossible.
   (`J-cycle-period-four-hundred-seventy-eight-thousand`)
 - Paper B depth-\(\le 4\) parity equidistribution (ambient, power
   savings; certified \(\le 4\)-step descent density \(13/16\)) —
-  **EXACT — HUMAN PROOF** (two-step parity branch, PROMOTE);
-  \(7/8\) is a withdrawn **CONJECTURE** (`J-five-step-descent-density`)
+  **EXACT — HUMAN PROOF**; laboratory length-5 repair lifts the
+  certified class to \(7/8\) (`J-five-step-descent-density`) —
+  **EXACT — HUMAN PROOF**, not imported into Paper B
 - Ambient-to-orbit parity transfer — **CLOSE**, `TRANSFER_COMPLEX`
   (`juggler_parity_discrepancy_transfer`): no \(|I|\)-uniform bound,
   monochromatic run counterexample, generated images fragmented

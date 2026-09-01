@@ -3353,3 +3353,135 @@ is replaced by the exact leftover decomposition. Ledger rows
 `depth5_kernel_bound_proved` and `density_one_claimed` stay
 `False`: nothing here touches \(K_3\), and the structural law
 says the \(OOOO\) tree is where the remaining \(1/16\) lives.
+
+## Part XII: length-5 passenger repair (Phase 27)
+
+Scope: close the two named Phase-26 holes in Theorem T against the
+Phase-26 kernel (Paper B Lemma 5.2 and Theorem 6.1). Not a Paper B
+edit. Not \(K_3\). Not length 7/8. Not Corollary R′.
+
+### Slot classification (OOOE\*)
+
+The Phase-24 draft called the fifth-letter \(X\)-modes “ordinary
+first-letter passengers of Theorem S, strictly smaller than the
+\(i\le P^{1/24}\) budget.” After Phase 26 that comparison is the
+wrong slot: Theorem 6.1 budgets \(|i|\le 2P^{1/96}\), and
+Lemma 5.2(ii) budgets decorations \(|q'|\le P^{1/16}\). The modes
+are neither.
+
+Lemma T1 writes the fifth-letter phase as the smooth chirp
+\(\tfrac l2 n^{27/16}\) minus the sawtooth \(C\theta\),
+\(C=\tfrac{9l}{16}n^{3/16}\). Lemma 3.7 expands \(e(-C\{X\})\) into
+modes \(e(uX)\). Those are first-letter monomials, i.e. the
+\(r\)-modes of Lemma 5.2 Stage 2 (families \(e(r\nu^{3/2})\) with
+truncation \(R_0=P^{1/4}\)), not (D1) \(Y\)-wave decorations.
+
+Truncate the fifth letter at \(J_5=2P^{1/96}\) (the Theorem 6.1
+layer). Then \(l\le 2P^{1/96}\) and
+\[
+|C|\le\tfrac98\cdot 2\,P^{1/96+3/16}=O\bigl(P^{19/96}\bigr).
+\]
+Lemma 3.7 with \(T=R_0=P^{1/4}\) satisfies
+\(T\ge 8(1+|C|)\): \(8P^{19/96}/P^{24/96}=8P^{-5/96}\to 0\). The
+produced modes have \(|u|\le P^{1/4}\), exactly Stage 2’s existing
+budget. The draft’s \(T=P^{1/8}\) violated Lemma 3.7
+(\(P^{1/8}\ll P^{3/16}\)); that choice is discarded.
+
+The \(|q'|\le P^{1/16}\) cap is the kernel’s own \(Y\)-wave range
+(\(J_2=P^{1/24}\) after differencing), not a structural obstruction
+for \(X\)-modes. Shrinking \(J_5\) cannot fit \(lP^{3/16}\) into
+that cap (\(l_{\max}P^{3/16}\le P^{1/16}\) forces \(l<1\)); the
+repair is the correct slot, not an enlarged decoration.
+
+### Theorem 6.1 Steps D–E at the enlarged \(i\)-range
+
+Write \(I_{\mathrm{tot}}\) for the combined first-letter index:
+Theorem 6.1’s own \(|i|\le 2P^{1/96}\) plus the fifth-letter
+\(|u|\le P^{1/4}\). The combined range is \(|I_{\mathrm{tot}}|\le P^{1/4}\).
+
+- *Step D, \(i\)-passenger.* \(\Delta\Delta(\tfrac i2 X)\) has
+  second derivative \(\le 2.3\,|i|h_1h_2P^{-5/2}\). At
+  \(|i|\le P^{1/4}\) and \(h_1h_2=P^{1/16}\) this is
+  \(O(P^{1/4+1/16-5/2})=O(P^{-35/16})\), inside class (D3)
+  (\(|\varphi''|\le 3kh_1h_2P^{-5/8}\)) by
+  \(P^{-35/16}/P^{1/16-5/8}=P^{-2}\). The fifth-letter chirp
+  \(\tfrac l2 n^{27/16}\), after the same double difference, is
+  likewise (D3):
+  \(h_1h_2\cdot l\cdot P^{27/16-4}=O(P^{1/16+1/96-37/16})\).
+- *Step D, \(j\)-passenger and \(q_d\).* The fifth letter does not
+  enlarge \(j\) or the \(Y\)-wave frequencies. The written bound
+  \(|q_d|\le 3P^{1/24}+P^{1/96}\le P^{1/16}\) is unchanged.
+- *Step E, composites.* An \(X\)-mode is smooth. It does not enter
+  the kernel \(\theta\)-coefficient \(B\). The offset composite
+  \(405/512\) (ratio \(7:4\)) and the zero-offset curvature
+  \(8.27\,kh_1h_2\nu^{-5/8}\) are therefore the Phase-26 values.
+  The (D3) curvature of the new modes is dominated at the same
+  Stage-E ratios already displayed (\(\le P^{-1/4}\) against
+  \(\lambda_a'\ge 0.72P^{-1/8}\)).
+- *Lemma 5.2 Stage 5.* Modes with \(|u|\le P^{1/4}\) are a subset
+  of the Stage-2 family already bounded by \(3R_0^{1/2}P^{3/4}\log P
+  =3P^{7/8}\log P\). Collision-band mass stays \(O(\log P)\).
+- *Flat cost of Lemma 3.7.* Per point
+  \(8(1+|C|)/T=O(P^{19/96-1/4})=O(P^{-5/96})\); over a block
+  \(O(P^{1-5/96})\), inside Theorem 6.1’s \(P^{1-1/96}\) budget.
+  Fifth-letter Vaaler majorant \(4P/J_5=O(P^{1-1/96})\).
+
+Theorem 6.1 therefore applies to every fifth-letter decorated
+\(OOOE*\) mode sum, uniformly in \(|l|\le 2P^{1/96}\). Hence
+\[
+\#\mathrm{OOOEE}(N),\;\#\mathrm{OOOEO}(N)
+=\tfrac N{32}+O\bigl(N^{1-1/96+\varepsilon}\bigr).
+\]
+
+### OOEO\*: \(\lambda_2\) after Lemma 3.10
+
+The Phase-24 curvature
+\[
+\lambda_2
+=\Bigl(-\tfrac{297k}{1024}+\tfrac{27k}{128}+O(T_wP^{-7/8})
++O(JP^{-1/2})\Bigr)n^{-5/16}
+\]
+has leading combination \(-297/1024+216/1024=-81/1024=-0.079k\neq 0\).
+Lemma 3.10(a): under \(n=2r+1\), every derivative scales by the
+same power of \(2\), so curvature *ratios* and *signs* are
+invariant. The single-sign check and the dominance of the
+\(T_w\)- and \(J\)-errors (\(O(P^{-5/8})\), \(O(P^{-3/8})\) against
+\(kn^{-5/16}\)) survive without adjustment. Lemma 3.10(b): the
+\(n\)-variable van der Corput display
+\(L_B\lambda_2^{1/2}+\lambda_2^{-1/2}\) dominates the reindexed
+bound. The window-centre cancellation of the two \(\theta\)
+coefficients is algebraic (Lemmas T1/T2) and is not a Jacobian
+statement.
+
+The rest of the Phase-10 OOEO\* argument is unchanged: it never
+used Lemma 5.2 decorations. Hence
+\[
+\#\mathrm{OOEOE}(N),\;\#\mathrm{OOEOO}(N)
+=\tfrac N{32}+O\bigl(N^{43/48+\varepsilon}\bigr).
+\]
+
+### Theorem T (repaired) — EXACT — HUMAN PROOF
+
+The two displays above. Indicator identities and the decaying
+remainders of Lemmas T1/T2 are the Phase-10 exact statements
+(`oooee_indicator_identity_check`, `ooeoe_indicator_identity_check`,
+`oooee_smoothing_scan`, `ooeoe_smoothing_scan`).
+
+### Corollary U (repaired) — EXACT — HUMAN PROOF
+
+The class of starts carrying a uniform power-envelope descent
+certificate of length at most five — evens, OE, OOEE, OOOEE,
+OOEOE — has natural density \(7/8\). Densities
+\(\tfrac12+\tfrac14+\tfrac1{16}+\tfrac1{32}+\tfrac1{32}=\tfrac78\).
+The cylinders are Theorem T. The contraction \(3^3<2^5\) is
+`J-power-envelope-contraction`. Not a density of starts that reach
+\(1\). Paper B remains frozen at \(13/16\).
+
+### Phase-27 decision
+
+**PROMOTE** the length-5 repair. Ledger rows `J-depth5-contracting`
+and `J-five-step-descent-density` retagged `EXACT — HUMAN PROOF`.
+Flag `depth5_contracting_proved` flipped `True`. Length 7/8 and
+Corollary R′ stay `CONJECTURE`. No Paper B edit. No \(K_3\).
+The single next question is Corollary R′ at one concrete
+\(\alpha\neq 9/8\) (the intended consumer was \(\alpha=33/32\)).

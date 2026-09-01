@@ -124,7 +124,7 @@
     "depth4_slow_branch_proved": true,
     "kernel_double_differencing_draft": true,
     "depth4_complete_proved": true,
-    "depth5_contracting_proved": false,
+    "depth5_contracting_proved": true,
     "depth5_kernel_isolated": true,
     "depth5_kernel_bound_proved": false,
     "scale_invariant_R_extension_refuted": true,

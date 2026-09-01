@@ -3752,8 +3752,8 @@
  },
  {
   "id": "J-depth5-contracting",
-  "tag": "CONJECTURE",
-  "statement": "Conjecture (formerly Theorem T; withdrawn from Paper B in Phase 26): #OOOEE(N), #OOOEO(N) = N/32 + O(N^{1-1/96+eps}) and #OOEOE(N), #OOEOO(N) = N/32 + O(N^{43/48+eps}). The Phase-24 draft proof was a reduction by slogan: the OOOE* half rides Theorem S as a passenger theorem, but the fifth-letter shifted-window expansion produces X-modes of size ~ l P^{3/16} <= P^{11/48}, which exceeds the decoration budget |q'| <= P^{1/16} of Lemma 5.2 as literally stated, and the dominance chain of the kernel proof was never rerun with these modes; the OOEO* half's window-centre cancellation and curvature constant lambda_2 were never rechecked after the parity reindexing (factor-4 Jacobian). The drafted argument remains in the laboratory record (Phase 24) as a route, not a proof. Not a termination claim.",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Theorem T, Phase-27 repair: #OOOEE(N), #OOOEO(N) = N/32 + O(N^{1-1/96+eps}) and #OOEOE(N), #OOEOO(N) = N/32 + O(N^{43/48+eps}). The fifth-letter X-modes of the OOOE* sawtooth C θ, C ≍ l n^{3/16}, are Lemma 5.2 Stage-2 r-modes e(u X) with |u| ≤ P^{1/4} after Lemma 3.7 at T = R_0 = P^{1/4} and J_5 = 2 P^{1/96} (T ≥ 8(1+|C|) since |C| = O(P^{19/96})); they are not Lemma 5.2(ii) decorations and do not enlarge |q'|. Theorem 6.1 Steps D–E apply: the i-passenger stays (D3), B is unchanged, both sign-critical composites survive. The OOEO* curvature λ_2 = (-81/1024) k n^{-5/16} + lower terms keeps sign under Lemma 3.10(a). Withdrawn from Paper B in Phase 26; restored in the laboratory record (lemma Part XII). Not a termination claim.",
   "source": "docs/research/juggler_two_step_parity_lemma.md",
   "lean": "",
   "tests": [
@@ -3763,8 +3763,8 @@
  },
  {
   "id": "J-five-step-descent-density",
-  "tag": "CONJECTURE",
-  "statement": "Conjecture (formerly Corollary U; withdrawn from Paper B in Phase 26): the class of starts carrying a uniform power-envelope descent certificate of length at most five — evens, OE, OOEE, OOOEE, OOEOE — has natural density 7/8. Depends on row J-depth5-contracting, retagged CONJECTURE in Phase 26; the contraction step (3^3 < 2^5, row J-power-envelope-contraction) is unconditional. The proved certified density is 13/16 (row J-four-step-descent-density). Not a density of starts that reach 1.",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Corollary U, Phase-27 repair: the class of starts carrying a uniform power-envelope descent certificate of length at most five — evens, OE, OOEE, OOOEE, OOEOE — has natural density 7/8. The new cylinders are row J-depth5-contracting; the contraction 3^3 < 2^5 is row J-power-envelope-contraction. Paper B remains frozen at 13/16 (row J-four-step-descent-density, Corollary 4.9). Not a density of starts that reach 1.",
   "source": "docs/research/juggler_two_step_parity_lemma.md",
   "lean": "",
   "tests": [
@@ -3819,7 +3819,7 @@
  {
   "id": "J-seven-step-descent-density",
   "tag": "CONJECTURE",
-  "statement": "Conjecture (formerly Corollary Y; withdrawn from Paper B in Phase 26): the class of starts carrying a uniform power-envelope descent certificate of length at most seven has natural density 57/64. Depends on row J-depth7-engine-contracting, retagged CONJECTURE in Phase 26 (growing-remainder hole); the contraction step (3^4 < 2^7) is unconditional. The proved certified density is 13/16. Not a density of starts that reach 1.",
+  "statement": "Conjecture (formerly Corollary Y; withdrawn from Paper B in Phase 26): the class of starts carrying a uniform power-envelope descent certificate of length at most seven has natural density 57/64. Depends on row J-depth7-engine-contracting, retagged CONJECTURE in Phase 26 (growing-remainder hole); the contraction step (3^4 < 2^7) is unconditional. The laboratory certified density is 7/8 (row J-five-step-descent-density); Paper B prints 13/16. Not a density of starts that reach 1.",
   "source": "docs/research/juggler_two_step_parity_lemma.md",
   "lean": "",
   "tests": [
@@ -3988,7 +3988,7 @@
  {
   "id": "J-eight-step-descent-density",
   "tag": "CONJECTURE",
-  "statement": "Conjecture (formerly Corollary AB; withdrawn from Paper B in Phase 26): the class of starts carrying a uniform power-envelope descent certificate of length at most eight has natural density 29/32. Depends on rows J-depth7-engine-contracting and J-depth8-engine-quartet, both retagged CONJECTURE in Phase 26; the contraction steps are unconditional. The proved certified density is 13/16. Not a density of starts that reach 1.",
+  "statement": "Conjecture (formerly Corollary AB; withdrawn from Paper B in Phase 26): the class of starts carrying a uniform power-envelope descent certificate of length at most eight has natural density 29/32. Depends on rows J-depth7-engine-contracting and J-depth8-engine-quartet, both retagged CONJECTURE in Phase 26; the contraction steps are unconditional. The laboratory certified density is 7/8 (row J-five-step-descent-density); Paper B prints 13/16. Not a density of starts that reach 1.",
   "source": "docs/research/juggler_two_step_parity_lemma.md",
   "lean": "",
   "tests": [
@@ -6121,6 +6121,19 @@
   "related_conjectures": [
    "juggler_tower_rate_free_equidistribution",
    "juggler_nil_pet_stays_coordinate"
+  ]
+ },
+ {
+  "id": "J-hug-flow-window-depth-one",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "There is an ineffective X_0 such that for every X >= X_0 and every interval I of consecutive odd integers contained in [X, 2X] with |I| = floor((2/3) X^{1/3}), the values floor(x^{3/2}) for x in I are not all of one parity. This is Paper B Lemmas 3.2–3.4 (parity bridge, van der Corput second-derivative, Erdős–Turán) localized to the hug-flow working window: g(r) = (1/2)(2r+1)^{3/2} has g'' ≍ X^{-1/2} uniformly on the dyadic block, the h-th mode is ≪ H h^{1/2} X^{-1/4} + h^{-1/2} X^{1/4}, and cutoff K = X^{1/6} gives absolute discrepancy D ≪ X^{1/6} + X^{1/4} = o(H). No resonance exclusion is used (first-derivative locking lengthens sojourns but does not shrink g''). Not a depth-2 statement, not C_L nonempty, not a transfer theorem, not a Paper B edit, and not a halt theorem.",
+  "source": "docs/problems/juggler_hug_cylinder_construction.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_hug_cylinder_construction.py"
+  ],
+  "related_conjectures": [
+   "juggler_hug_flow_window"
   ]
  }
 ]

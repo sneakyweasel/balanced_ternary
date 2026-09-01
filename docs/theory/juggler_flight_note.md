@@ -244,6 +244,16 @@ near-returns on orbits \(n\le 2000\) land on \(\{19,38\}\).
   flight. The *height-law* reading (re-anchor after first descent
   for the \(19.6\%\) peak-after-descent class) stays PARK with the
   flight-envelope branch and is not an exclusion mechanism.
+- **Hug cylinders.** Three CLOSEs do not say prefixes cannot be
+  realized: mechanical lift dies at exact single-cell `empty_ooe`;
+  prefix realization fills to depth \(28\) and shows fixed-depth
+  equidistribution cannot kill a flight; formal-versus-realized
+  finds no extra predicate on generic prefix-NC. Construction
+  stays PARK (`juggler_hug_flow_window`): backward `OE`/`OOE`
+  freedom is positive, depth \(1\) on windows
+  \(H\asymp X^{1/3}\) is `J-hug-flow-window-depth-one`, and
+  \(C_L\ne\emptyset\) still needs depth \(2\). That existence
+  theorem is not opened from this extract.
 
 ## Endpoint
 

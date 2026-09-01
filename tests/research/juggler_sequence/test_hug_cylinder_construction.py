@@ -65,6 +65,31 @@ def test_parity_run_census_fields() -> None:
     assert row["work_window_x13"] > row["naive_budget_x14"]
 
 
+def _window_parities(x0: int, count: int) -> set[int]:
+    x = x0 if x0 % 2 == 1 else x0 + 1
+    parities: set[int] = set()
+    for _ in range(count):
+        parities.add(math.isqrt(x * x * x) % 2)
+        x += 2
+    return parities
+
+
+def test_depth1_window_both_parities() -> None:
+    """Working windows at modest X hit both parities of floor(x^{3/2})."""
+    for scale in (2**12, 2**14, 2**16):
+        h = max(1, int((2.0 / 3.0) * scale ** (1.0 / 3.0)))
+        starts = [scale + 1 if scale % 2 == 0 else scale]
+        near_sq = int(scale**0.5) ** 2
+        if near_sq % 2 == 0:
+            near_sq += 1
+        if scale <= near_sq <= 2 * scale:
+            starts.append(near_sq)
+        starts.append(scale + 2 * (h // 3) + 1)
+        for x0 in starts:
+            parities = _window_parities(x0, h)
+            assert parities == {0, 1}, (scale, x0, h, parities)
+
+
 def test_classify_gates() -> None:
     runs_ok = [{"run_over_work_window": 0.5}]
     oe_ok = [{"zero_survivor_anchors": 0, "anchors": 24}]

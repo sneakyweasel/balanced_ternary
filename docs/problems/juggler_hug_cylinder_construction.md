@@ -31,14 +31,17 @@ Counting harvestable suffix-realizers \(V\) at level scale
   (\(-\lambda/3-\log_2 3\) bits).
 
 Per block the flow is **strictly positive**: `OE` nets
-\(+5\lambda/12\) bits, `OOE` nets \(+7\lambda/24\) bits. The only
-unproved induction steps are hit-count lower bounds for depth-\(\le
-2\) nested floor parities on odd-\(x\) windows of length
+\(+5\lambda/12\) bits, `OOE` nets \(+7\lambda/24\) bits. The
+induction's remaining analytic step is a short-interval
+depth-\(\le 2\) hit on odd-\(x\) windows of length
 \(\sim\frac23 X^{1/3}\) — above the van der Corput threshold
-\(X^{1/4}\) (for \(f=x^{3/2}/2\),
-\(|\sum_H e(f)|\ll HX^{-1/4}+X^{1/4}\) is nontrivial at
-\(H=X^{1/3}\)), i.e. short-interval depth-\(\le 2\) statements, not
-the \(K_3\) wall (depth \(5\), deterministic shift).
+\(X^{1/4}\), not the \(K_3\) wall (depth \(5\), deterministic
+shift). Depth \(1\) is now a theorem: there is \(X_0\) such that
+every interval of \(\bigl\lfloor\tfrac23 X^{1/3}\bigr\rfloor\)
+consecutive odd integers in \([X,2X]\) meets both parities of
+\(\lfloor x^{3/2}\rfloor\) (`J-hug-flow-window-depth-one`).
+Depth \(2\) is still open. The existence claim
+\(C_L\ne\emptyset\) for every \(L\) is not a theorem.
 
 ## Current literature
 
@@ -50,15 +53,19 @@ the \(K_3\) wall (depth \(5\), deterministic shift).
   (realization branch, CLOSE).
 - Long-interval parity equidistribution of nested floor powers to
   depth \(\le 4\) with power savings — **EXACT — HUMAN PROOF**
-  (Paper B). The lemma needed here is its *short-interval*
-  depth-\(\le 2\) analogue.
+  (Paper B). Depth \(1\) on the working window \(H\asymp X^{1/3}\)
+  is the short-interval localization of Paper B Theorem 4.1,
+  recorded as `J-hug-flow-window-depth-one`. Depth \(2\) remains
+  the short-interval analogue of Paper B's nested statements.
 - Exact single-cell inverse hug lifts die at empty `OOE` cells —
   mechanical-lift branch, CLOSE (`empty_ooe`); consistent with the
   \(w^{-1/9}\) per-anchor hazard measured here, and superseded by
   counting over regenerated intervals.
 
 Project relationship: **PROJECT-SPECIFIC** exponent ledger on top of
-KNOWN machinery; the needed analytic lemma is OPEN.
+KNOWN van der Corput / Erdős–Turán machinery. Depth \(1\) is
+**EXACT — HUMAN PROOF** (KNOWN method, PROJECT-SPECIFIC window).
+Depth \(2\) is OPEN.
 
 ## Branch budget
 
@@ -131,21 +138,28 @@ sqrt-resonant offsets.
 
 ## Conjectures
 
-- `juggler_hug_flow_window` (ACTIVE): the short-interval
-  depth-\(\le 2\) window lemma; with the positive flow it gives
-  \(C_L\ne\emptyset\) for every \(L\).
+- `juggler_hug_flow_window` (ACTIVE): depth \(1\) is discharged by
+  `J-hug-flow-window-depth-one`; the remaining half is the
+  short-interval depth-\(2\) hit (with the measured
+  sqrt-resonance exclusion). With the positive flow that would
+  give \(C_L\ne\emptyset\) for every \(L\).
 
 ## Counterexamples
 
-None. The falsifier did not fire at generic positions; the resonant
-`OOE` death at \(2^{36}\) (below) is the hazard the lemma's
-exclusion clause must carry, not a flow refutation.
+None for the depth-\(1\) window. The falsifier did not fire at
+generic positions. The resonant `OOE` death at \(2^{36}\) (below)
+is the hazard the depth-\(2\) half must carry, not a flow
+refutation and not a depth-\(1\) emptying. Anchor \(z=1000\) has
+a monochromatic geometric `OE` cell (all even); that is the
+\(X^{1/4}\) remainder, not a counterexample to
+`J-hug-flow-window-depth-one`.
 
 ## Formalization
 
 None new. The block grammar is already Lean
-(`WalkChargeWords.lean`); the flow ledger and window lemma are
-unformalized prose/data.
+(`WalkChargeWords.lean`). The depth-\(1\) window lemma is
+**EXACT — HUMAN PROOF** (`J-hug-flow-window-depth-one`), not Lean.
+No `HugFlowWindow.lean`.
 
 ## Results
 
@@ -177,42 +191,124 @@ unformalized prose/data.
   witness stays the realization branch's depth \(28\). (The naive
   generator-chain implementation was discarded for this reason.)
 - **Route classified:** all-depth nonemptiness reduces to
-  `juggler_hug_flow_window` — short-interval depth-\(\le 2\)
-  equidistribution with resonance exclusion. This is *not* the
-  \(K_3\) wall, but it is a genuine analytic project (Paper B's
-  machinery is long-interval), and its payoff is an
+  `juggler_hug_flow_window`. Depth \(1\) is the lemma below.
+  Depth \(2\) still needs a short-interval nested hit with the
+  measured sqrt-resonance exclusion. This is *not* the \(K_3\)
+  wall. The payoff of the remaining half is an
   obstruction-existence theorem (extremal descent-free prefixes
   realized at every depth), not descent progress.
 
+- **Depth-\(1\) window lemma (`J-hug-flow-window-depth-one`,
+  EXACT — HUMAN PROOF).** There is an ineffective \(X_0\) such
+  that for every \(X\ge X_0\) and every interval \(I\) of
+  consecutive odd integers contained in \([X,2X]\) with
+  \(\lvert I\rvert=\bigl\lfloor\tfrac23 X^{1/3}\bigr\rfloor\), the
+  values \(\lfloor x^{3/2}\rfloor\) for \(x\in I\) are not all of
+  one parity. The argument is Paper B Lemmas 3.2–3.4 localized to
+  the working window; no exponent-pair upgrade and no Paper B
+  edit. The method is KNOWN; the window \(H\asymp X^{1/3}\) is
+  the PROJECT-SPECIFIC content (it is already above the van der
+  Corput threshold \(X^{1/4}\)).
+
+  *Proof.* Write \(x=2r+1\) and
+  \(g(r)=\tfrac12(2r+1)^{3/2}\). Paper B Lemma 3.2 says
+  \(\lfloor x^{3/2}\rfloor\) is odd if and only if
+  \(\{g(r)\}\ge\tfrac12\), so it is enough to show that the
+  \(H=\lvert I\rvert\) points \(\{g(r)\}\) meet both
+  \(\bigl[0,\tfrac12\bigr)\) and \(\bigl[\tfrac12,1\bigr)\).
+  The \(r\)-images of \(I\) are \(H\) consecutive integers with
+  \(r\asymp X\). Differentiating gives
+  \(g''(r)=\tfrac32(2r+1)^{-1/2}\), positive and decreasing. On
+  \(x\in[X,2X]\)
+  \[
+  \tfrac32(4X+1)^{-1/2}\le g''(r)\le\tfrac32 X^{-1/2},
+  \]
+  hence \(\lambda\le\lvert g''\rvert\le\alpha\lambda\) with
+  \(\lambda\asymp X^{-1/2}\) and \(\alpha\le 2\) for \(X\ge 1\).
+  The curvature window is **uniform** on the whole dyadic block,
+  including near perfect squares: first-derivative locking
+  \(3\sqrt{x}\approx 2\mathbb Z\) lengthens sojourns of \(\{g\}\)
+  but does not shrink \(g''\). No resonance exclusion is used.
+
+  For the \(h\)-th mode \(f=hg\), Paper B Lemma 3.3 in the
+  \(r\)-variable (or Lemma 3.10(b) read in \(n\)) gives
+  \[
+  \Bigl\lvert\sum e\bigl(hg(r)\bigr)\Bigr\rvert
+  \ll H\bigl(h X^{-1/2}\bigr)^{1/2}
+  +\bigl(h X^{-1/2}\bigr)^{-1/2}
+  = H h^{1/2}X^{-1/4}+h^{-1/2}X^{1/4}.
+  \]
+  Let \(D\) be the absolute discrepancy of the \(H\) points
+  \(\{g(r)\}\) against an interval of \(\mathbb R/\mathbb Z\).
+  Paper B Lemma 3.4 with cutoff \(K=\lfloor X^{1/6}\rfloor\)
+  yields
+  \[
+  D
+  \ll\frac HK
+  +\sum_{h=1}^{K}\frac1h
+  \bigl(H h^{1/2}X^{-1/4}+h^{-1/2}X^{1/4}\bigr)
+  \ll\frac HK+H X^{-1/4}K^{1/2}+X^{1/4},
+  \]
+  because \(\sum_{h\le K}h^{-1/2}\ll K^{1/2}\) and
+  \(\sum_{h\le K}h^{-3/2}\ll 1\). Substituting
+  \(H\asymp X^{1/3}\) and \(K=X^{1/6}\) gives
+  \(D\ll X^{1/6}+X^{1/4}\). Since \(\tfrac13>\tfrac14\), one has
+  \(D=o(H)\) as \(X\to\infty\). Choose \(X_0\) large enough that
+  \(D<H/2\). Then both halves of \(\mathbb R/\mathbb Z\) contain
+  a point, so both parities of \(\lfloor x^{3/2}\rfloor\) occur
+  in \(I\). \(\square\)
+
+  This is the short-interval form of Paper B Theorem 4.1 (that
+  theorem takes a full dyadic block of length \(M\) and gets
+  \(D\ll M^{5/6}\)). The second-derivative remainder
+  \(X^{1/4}\) is why the naive crossing budget
+  \(\tfrac23 X^{1/4}\) is not a theorem and why the census
+  runs exceed it at \(2^{36}\) and \(2^{40}\); those runs stay
+  \(o(X^{1/3})\), which is what the working window needs. The
+  resonant `OOE` death at \(2^{36}\) is depth \(2\) and is not
+  a counterexample here. The implied constants of Lemmas 3.3
+  and 3.4 make \(X_0\) ineffective; an effective threshold plus
+  a finite check is needed for a \(C_L\) induction, not for
+  this lemma. The statement is not a transfer theorem and does
+  not populate a single orbit. A single geometric `OE`
+  cell can be monochromatic at modest scale (anchor
+  \(z=1000\): six odd \(x\) in \([1000^{4/3},1001^{4/3})\),
+  all \(\lfloor x^{3/2}\rfloor\) even) — that cell has
+  length \(\asymp X^{1/4}\) at the source, which is the
+  remainder, not the working window.
+
 ## Open questions
 
-- Prove `juggler_hug_flow_window` depth \(1\) (single-`O` hits at
-  window \(X^{1/3}\)) by van der Corput / exponent pairs, with an
-  explicit resonance exclusion.
-- Does the depth-\(2\) statement follow from Paper B's elementary
-  long-interval technique localized to windows above \(X^{1/4}\)?
+- Does the depth-\(2\) half of `juggler_hug_flow_window` follow
+  from Paper B's elementary long-interval technique on the
+  image of an \(X^{1/3}\) window (length \(\asymp X^{5/6}\) at
+  scale \(X^{3/2}\)), with the measured sqrt-resonance
+  exclusion?
 
 ## Decision
 
-**PARK.** The flow ledger is positive per block, the census confirms
-every exponent at every measured scale, and the missing lemmas are
-precisely identified and recorded (`juggler_hug_flow_window`) —
-short-interval depth-\(\le 2\), above the vdC threshold, with a
-necessary resonance exclusion the census discovered. The branch does
-not close (the route is neither KNOWN nor refuted) and does not
-promote now: the payoff is an obstruction-existence theorem while
-the lab's frontier questions (cycles, termination) are terminal or
-parked behind other walls, and the lemma is a paper-sized analytic
-effort. Reopening key: prove the window lemma at depth \(1\); the
-flow ledger then makes each further depth a bookkeeping induction.
+**PARK** (branch) / **PROMOTE** (depth-\(1\) lemma). The flow
+ledger is positive per block and the census confirms every
+exponent at every measured scale. Depth \(1\) of
+`juggler_hug_flow_window` is now `J-hug-flow-window-depth-one`
+(**EXACT — HUMAN PROOF**), uniformly, with no resonance
+exclusion. The branch does not promote: the payoff is still the
+existence theorem \(C_L\ne\emptyset\) for every \(L\), and that
+needs the depth-\(2\) half. That half is bookkeeping in the
+sense of the recorded key, not a theorem written here. The
+three earlier CLOSEs (mechanical lift / empty `OOE`;
+hug-prefix realization to depth \(28\); formal-versus-realized
+prefix-NC) do not say hug prefixes cannot be realized.
 
-Best next question: none from this branch — the asymptotic-descent
-program's standing targets remain `juggler_asymptotic_descent` and
-`juggler_descent_time_log`.
+Best next question: none from this branch — depth \(2\) is the
+reopening key for the existence theorem, and it is not opened
+here. The asymptotic-descent program's standing targets remain
+`juggler_asymptotic_descent` and `juggler_descent_time_log`.
 
 ## Publication assessment
 
-Status: **EXPLORATORY**. The freedom-flow ledger and the resonance
-hazard are a tight, publishable-quality observation if the window
-lemma is ever proved; as of now, a section-length note inside any
-future descent-certificate paper.
+Status: **EXPLORATORY** (existence) / **THEOREM** (depth \(1\)).
+The freedom-flow ledger plus the depth-\(1\) window is a
+section-length note inside any future obstruction-existence
+write-up; it is not a descent-certificate paper and not a
+Paper B edit.

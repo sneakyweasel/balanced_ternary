@@ -100,8 +100,9 @@ It is not required. The 2-adic / BT bridge stays closed.
 - Even-branch depth-4 results — proved in Phase 3
   (`depth4_even_branch_proved` is `True`)
 - Depth-5 contracting splits OOOEE/OOEOE — drafted in Phase 10,
-  withdrawn in Phase 26 (`depth5_contracting_proved` is `False`);
-  certified density stays \(13/16\); \(7/8\) is **CONJECTURE**
+  withdrawn in Phase 26, repaired in Phase 27
+  (`depth5_contracting_proved` is `True`); laboratory certified
+  density \(7/8\); Paper B stays at \(13/16\)
 - OOOO\* kernel isolated — Phase 11 (`depth5_kernel_isolated`
   is `True`); bound not proved
 - Scale-invariant copy of Theorem R — **REFUTED** in Phase 12
@@ -1076,3 +1077,12 @@ before submission: one independent human check of Section 5 (the
 Phase-25 structural error was caught in-house; the Phase-26 Step-5b
 error was caught by external review — there is no reason to assume
 it was the last).
+
+## Phase 27: length-5 harvest repair
+
+Child dossier
+[juggler_engine_harvest.md](juggler_engine_harvest.md). The two
+named length-5 holes close against the Phase-26 kernel (lemma
+Part XII). Laboratory certified density moves \(13/16\to 7/8\).
+Paper B is not edited. Length 7/8 and Corollary R′ stay
+`CONJECTURE`. Flag `depth5_contracting_proved` is `True` again.

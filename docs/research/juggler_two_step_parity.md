@@ -6,8 +6,9 @@ class is **EXACT — HUMAN PROOF**
 `J-even-branch-third-letter`, `J-four-step-descent-density`,
 `J-depth4-slow-branch`, `J-kernel-cancellation`,
 `J-depth4-complete`; proofs in
-`juggler_two_step_parity_lemma.md`). Certified descent
-density 13/16. Length-5/7/8 harvest rows are CONJECTURE
+`juggler_two_step_parity_lemma.md`). Laboratory certified
+descent density 7/8 (Phase 27 length-5 repair). Paper B
+prints 13/16. Length-7/8 harvest rows stay CONJECTURE
 (Phase 26). OOOO* kernel isolated (Lemma V1); the
 scale-invariant copy of Theorem R, the increment-first
 K3 attack, and X1-absorption of K3 are **REFUTED**;
@@ -53,10 +54,10 @@ contraction `3^2 < 2^4` and is a guard, not a new theorem.
 
 The fitted exponents are envelope slopes on a geometric sample,
 label **OBSERVATION**. The analytic statements they probe are
-now theorems at every depth <= 4. Certified descent density
-is 13/16 (J-four-step-descent-density). The length-5/7/8
-engine contractors and densities 7/8, 57/64, 29/32 were
-withdrawn in Phase 26 (CONJECTURE; holes recorded).
+now theorems at every depth <= 4. Laboratory certified
+descent density is 7/8 (J-five-step-descent-density,
+Phase 27). Paper B prints 13/16. Length-7/8 densities
+57/64 and 29/32 stay CONJECTURE (Phase 26 holes).
 The OOOO* kernel K3 is isolated and the
 scale-invariant copy of Theorem R, the increment-first K3
 attack, and X1-absorption of K3 are REFUTED; the K3 toolkit is

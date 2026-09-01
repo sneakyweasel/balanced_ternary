@@ -436,7 +436,7 @@ def test_depth5_contracting_words_near_product():
 
 
 def test_anti_overclaim_depth5_flag():
-    assert ANTI_OVERCLAIM["depth5_contracting_proved"] is False
+    assert ANTI_OVERCLAIM["depth5_contracting_proved"] is True
     assert ANTI_OVERCLAIM["depth5_kernel_isolated"] is True
     assert ANTI_OVERCLAIM["depth5_kernel_bound_proved"] is False
     assert ANTI_OVERCLAIM["scale_invariant_R_extension_refuted"] is True

@@ -4,7 +4,8 @@ Status: **EXPLORATORY**
 
 Standalone application phase on the Juggler floor-power map. It is
 **not** Paper A, not a floor (\(N_0\)) campaign, not a finance reopen,
-not a density census (the proved certified density stays \(13/16\)),
+not a density census (Paper B certified density stays \(13/16\);
+laboratory length-5 repair is \(7/8\)),
 not a \(K_3\) attack, and not a claim that every positive integer
 reaches 1. It does not reopen the parked escape-episode branch, the
 closed survival-set branch, or the closed drift-first-passage branch.
@@ -53,9 +54,12 @@ quantifiers: does `AboveAnchor n w` with \(2\le n\) force, for every
   four consecutive expanding blocks from \(1999\) kill any uniform
   run bound (`J-four-block-persistent-expanding`, **EXACT — LEAN
   VERIFIED**).
-- Certified descent density \(13/16\) — **EXACT — HUMAN PROOF**
-  (`J-four-step-descent-density`); \(29/32\) is a withdrawn
-  **CONJECTURE**; density-one is conditional on all-depth
+- Certified descent density \(13/16\) in Paper B —
+  **EXACT — HUMAN PROOF** (`J-four-step-descent-density`);
+  laboratory length-5 repair \(7/8\) —
+  **EXACT — HUMAN PROOF** (`J-five-step-descent-density`);
+  \(57/64\) and \(29/32\) remain withdrawn **CONJECTURE**;
+  density-one is conditional on all-depth
   equidistribution, parked behind the BB/GG/JJ \(K_3\) ladder.
 - Uniform expanding tax — **REFUTED** (`J-expansion-slack-uniform-tax`);
   log-Lyapunov potential — **REFUTED** (`juggler_cycle_block_potential`);

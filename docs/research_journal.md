@@ -20264,3 +20264,83 @@ Best next question
   rate-free conjecture as Hardy-of-floor composition
   (Leibman on the horizontal, not PET)
 ```
+
+## Paper B engine harvest: length-5 passenger repair (Phase 27)
+
+- **Date:** 2026-09-01
+- **Objective:** Reopen the Phase-26 withdrawn harvest as repair, not nostalgia. Close the two named length-5 holes against the Phase-26 kernel. Honesty pass first: certified density in current-state surfaces was stale at \(29/32\).
+- **Hypotheses:** The \(|q'|\le P^{1/16}\) cap is the kernel's own \(Y\)-wave range, not the slot of the fifth-letter \(X\)-modes. \(\lambda_2\) is Lemma 3.10-invariant.
+- **Major results:**
+  - Honesty pass: `AGENTS.md`, branch ledger, `ANTI_OVERCLAIM` length-7/8 flags, generated census, lemma Part VII/X/XI banners, formalization note, frontier figure, and the stale \(7/8\) EXACT line in the flight-walk dossier now match Phase 26 except for the repaired length-5 rows.
+  - **Slot classification (EXACT — HUMAN PROOF):** fifth-letter modes \(e(uX)\) after Lemma 3.7 at \(T=R_0=P^{1/4}\) sit in Lemma 5.2 Stage 2, not in (D1). The draft's \(T=P^{1/8}\) violated Lemma 3.7 and is discarded.
+  - **Theorem T repaired (`J-depth5-contracting`):** \(OOOE*\) rides Theorem 6.1 at error \(N^{1-1/96+\varepsilon}\); \(OOEO*\) \(\lambda_2=-0.079k\,n^{-5/16}\) keeps sign by Lemma 3.10(a).
+  - **Corollary U repaired (`J-five-step-descent-density`):** laboratory certified density \(7/8\). Paper B stays at \(13/16\).
+- **Refuted ideas:** none. The statements were never refuted; the passenger-as-decoration slogan was the hole.
+- **Literature:** Paper B Lemma 5.2, Theorem 6.1, Lemma 3.10.
+- **Open:** Corollary R′ at one concrete \(\alpha\neq 9/8\) (intended \(33/32\)); length 7/8 remain CONJECTURE.
+- **Decision:** PROMOTE the length-5 repair. Dossier `docs/problems/juggler_engine_harvest.md`. No Paper B edit, no \(K_3\), no length-7/8 attempt.
+
+```text
+What was learned
+- the fifth-letter X-modes are Stage-2 r-modes with
+  |u| <= P^{1/4}, not Lemma 5.2(ii) decorations
+- T = P^{1/8} was an illegal Lemma 3.7 window; T = P^{1/4}
+  satisfies T >= 8(1+|C|) at J_5 = 2 P^{1/96}
+- Theorem 6.1 composites do not see an X-mode (B unchanged)
+- OOEO* λ₂ sign is Lemma 3.10(a) invariant
+- AGENTS.md and the branch ledger were still printing 29/32
+Strongest theorem
+- laboratory certified ≤5-step descent density 7/8
+  (J-five-step-descent-density)
+Strongest refutation
+- none; the Phase-26 holes were missing reruns
+Reusable machinery
+- none new (existing two_step_parity scanners)
+Branch status
+- PROMOTE (length 5 only)
+Why
+- both named length-5 holes close against the Phase-26
+  kernel; the statements were never refuted
+Best next question
+- Corollary R′ at one concrete α ≠ 9/8, starting at 33/32
+```
+
+## Juggler hug-flow window, depth 1 (short-interval localization of Paper B Thm 4.1)
+
+- **Date:** 2026-09-01
+- **Objective:** Reopen hug-cylinder construction only far enough to prove the depth-\(1\) half of `juggler_hug_flow_window`: every odd-\(x\) window of length \(\frac23 X^{1/3}\) at scale \(X\) hits both parities of \(\lfloor x^{3/2}\rfloor\).
+- **Hypotheses:** Paper B Lemmas 3.2–3.4 localize to the working window (above the van der Corput threshold \(X^{1/4}\)); first-derivative locking does not shrink \(g''\), so no resonance exclusion is needed at depth \(1\).
+- **Major results:**
+  - **Depth-\(1\) window lemma (EXACT — HUMAN PROOF, `J-hug-flow-window-depth-one`):** ineffective \(X_0\) such that every interval of \(\bigl\lfloor\tfrac23 X^{1/3}\bigr\rfloor\) consecutive odd integers in \([X,2X]\) meets both parities of \(\lfloor x^{3/2}\rfloor\). Reindex \(g(r)=\tfrac12(2r+1)^{3/2}\), \(g''\asymp X^{-1/2}\) uniformly; mode \(h\) is \(\ll H h^{1/2}X^{-1/4}+h^{-1/2}X^{1/4}\); Erdős–Turán at \(K=X^{1/6}\) gives \(D\ll X^{1/6}+X^{1/4}=o(H)\). Method is KNOWN; the window is PROJECT-SPECIFIC. Not a Paper B edit.
+  - **Resonance:** exclusion is not used at depth \(1\). The census runs \(58\)–\(836\) sit below \(\tfrac23 X^{1/3}\) and above \(\tfrac23 X^{1/4}\) at \(2^{36}\) and \(2^{40}\), matching the second-derivative remainder. The \(2^{36}\) `OOE` death is depth \(2\).
+- **Refuted ideas:** none. The three earlier CLOSEs (mechanical lift / empty `OOE`; prefix realization to depth \(28\); formal-versus-realized prefix-NC) were not re-tested and do not say hug prefixes cannot be realized.
+- **Literature:** Paper B Lemmas 3.2–3.4 and Theorem 4.1.
+- **Open:** depth \(2\) of `juggler_hug_flow_window` (ACTIVE); \(C_L\ne\emptyset\) for every \(L\) is not a theorem.
+- **Decision:** PROMOTE the lemma / PARK the construction branch — dossier `docs/problems/juggler_hug_cylinder_construction.md`. No Lean, no \(C_L\) induction, no depth-\(2\) attempt.
+
+```text
+What was learned
+- depth-1 on the X^{1/3} window is Thm 4.1 localized:
+  D ≪ X^{1/6}+X^{1/4} = o(X^{1/3})
+- g'' is uniform on [X,2X], so no sqrt-resonance
+  exclusion is needed at depth 1
+- the X^{1/4} remainder explains why the naive
+  crossing budget is not a theorem
+- C_L nonempty still needs depth 2
+- the three CLOSEs are not emptiness of C_L
+Strongest theorem
+- J-hug-flow-window-depth-one (EXACT - HUMAN PROOF)
+Strongest refutation
+- none
+Reusable machinery
+- none new (fast both-parity checks on working
+  windows and OE cells)
+Branch status
+- PROMOTE (lemma) / PARK (branch)
+Why
+- the recorded depth-1 key is a theorem; the
+  existence payoff is not, so the branch stays PARK
+Best next question
+- none from this branch; depth 2 is the reopening
+  key for C_L and is not opened here
+```

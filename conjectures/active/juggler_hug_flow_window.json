@@ -8,10 +8,10 @@
   "first_seen": "2026-09-01",
   "tested_range": "parity-run census at scales 2^20..2^40 (data/research/juggler/hug_cylinder_construction/summary.json): max constant-parity runs of floor(x^{3/2}) over odd x are 58..836, always below the (2/3)X^{1/3} working window (ratio falls 0.86 -> 0.12), though ABOVE the naive quadratic-crossing budget (2/3)X^{1/4} at 2^36 and 2^40 (754 > 341, 836 > 683); OE pullback survival is 0.50 with zero empty anchors at 7 scales; OOE two-stage pullback hits track the (8/27)/2 w^{-1/9} law at 0.69-0.92 of prediction at generic offsets, but die completely (0/3000) in the sqrt-resonant region at 2^36",
   "counterexamples": [],
-  "proof_reference": "",
+  "proof_reference": "docs/problems/juggler_hug_cylinder_construction.md (depth 1: J-hug-flow-window-depth-one)",
   "lean_reference": "",
   "literature": [],
-  "notes": "Window (2/3)X^{1/3} is above the van der Corput threshold X^{1/4} for f(x) = x^{3/2}/2 (|sum_H e(f)| << H X^{-1/4} + X^{1/4} is nontrivial for H = X^{1/3}), so depth-1 is credible by exponent pairs; depth-2 is a short-interval analogue of Paper B's proved long-interval depth<=4 statements, not the K3 wall (depth-5, deterministic shift). The resonance exclusion is necessary: measured runs exceed X^{1/4} and OOE pullbacks vanish where sqrt(x) is near-integral. Proving this would make hug cylinders (arbitrarily long descent-free extremal prefixes) provably realized at every depth - an obstruction-existence theorem, not descent progress.",
+  "notes": "Depth 1 is discharged uniformly by J-hug-flow-window-depth-one (EXACT — HUMAN PROOF): Paper B Lemmas 3.2–3.4 on the working window H ≍ X^{1/3}, no resonance exclusion, ineffective X_0. Depth 2 remains ACTIVE and is required for C_L nonempty; the 2^36 OOE death is the exclusion that half must carry. Window (2/3)X^{1/3} is above the van der Corput threshold X^{1/4} for f(x) = x^{3/2}/2. Depth-2 is a short-interval analogue of Paper B's proved long-interval depth<=4 statements, not the K3 wall (depth-5, deterministic shift). Completing depth 2 would make hug cylinders (arbitrarily long descent-free extremal prefixes) provably realized at every depth — an obstruction-existence theorem, not descent progress.",
   "not_a_halt_theorem": true,
   "no_cycle_all_lengths": false
 }

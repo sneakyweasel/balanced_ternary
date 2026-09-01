@@ -89,11 +89,18 @@ for external review.
   composition (`REPARAMETERIZATION`), odd-tower placement, DK-as-kill,
   or valley-composition exclusion (`CLOSE`: occupancy is the existing
   pigeonhole). The terminating-side height-law PARK is not an exclusion
-  mechanism. Exclusion of divergent orbits is not claimed.
-- **Termination:** certified descent density \(13/16\) (Paper B
-  Corollary 4.9); \(7/8\), \(57/64\), \(29/32\) remain **CONJECTURE**
-  (Phase-26 withdrawn harvest; holes named). The pointwise route
-  is parked behind the \(K_3\) obstruction ladder BB/GG/JJ. Not claimed.
+  mechanism. Hug-cylinder construction stays PARK
+  (`juggler_hug_flow_window`): depth \(1\) is
+  `J-hug-flow-window-depth-one`; \(C_L\neq\emptyset\) still needs
+  depth \(2\). Mechanical lift, prefix realization, and
+  formal-versus-realized do not say hug prefixes cannot be realized.
+  Exclusion of divergent orbits is not claimed.
+- **Termination:** laboratory certified descent density \(7/8\)
+  (length-5 repair, `J-five-step-descent-density`); Paper B prints
+  \(13/16\) only. Densities \(57/64\) and \(29/32\) remain
+  **CONJECTURE** (Phase-26 holes: growing remainder, \(E'\),
+  Corollary R′). The pointwise route is parked behind the \(K_3\)
+  obstruction ladder BB/GG/JJ. Not claimed.
 - **Local attacks are closed.** Fibres are parity + interval only
   (`even_cell_iff`, `odd_cell_unique`, `cell_same_next_state`): no finite
   local configuration around a hypothetical cycle is contradictory. Seam,

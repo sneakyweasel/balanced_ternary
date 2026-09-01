@@ -144,10 +144,12 @@ ANTI_OVERCLAIM = {
     # at lambda = 0; no K3 bound, no density move.
     "pure_model_shift_average_proved": True,
     "hh_derandomization_parked": True,
-    # Phase 10 drafted Theorem T / Corollary U (7/8); Phase 26
-    # withdrew both (passenger modes l P^{3/16} exceed Lemma 5.2's
-    # |q'| <= P^{1/16} as written). OOOO* at depth 5 remains open.
-    "depth5_contracting_proved": False,
+    # Phase 27 repaired Theorem T / Corollary U: fifth-letter
+    # X-modes are Lemma 5.2 Stage-2 r-modes (|u| <= P^{1/4}), not
+    # (D1) decorations; OOEO* λ₂ sign is Lemma 3.10-invariant.
+    # Laboratory certified density 7/8. Paper B stays at 13/16.
+    # OOOO* at depth 5 remains open.
+    "depth5_contracting_proved": True,
     # Phase 11: the OOOO* fifth letter is the isolated level-3
     # floor-defect kernel K3 (Lemma V1). No bound, no density move.
     "depth5_kernel_isolated": True,
@@ -2970,8 +2972,9 @@ def write_docs(row: dict[str, Any], path: Path = DOC_PATH) -> None:
         "`J-even-branch-third-letter`, `J-four-step-descent-density`,",
         "`J-depth4-slow-branch`, `J-kernel-cancellation`,",
         "`J-depth4-complete`; proofs in",
-        "`juggler_two_step_parity_lemma.md`). Certified descent",
-        "density 13/16. Length-5/7/8 harvest rows are CONJECTURE",
+        "`juggler_two_step_parity_lemma.md`). Laboratory certified",
+        "descent density 7/8 (Phase 27 length-5 repair). Paper B",
+        "prints 13/16. Length-7/8 harvest rows stay CONJECTURE",
         "(Phase 26). OOOO* kernel isolated (Lemma V1); the",
         "scale-invariant copy of Theorem R, the increment-first",
         "K3 attack, and X1-absorption of K3 are **REFUTED**;",
@@ -3018,10 +3021,10 @@ def write_docs(row: dict[str, Any], path: Path = DOC_PATH) -> None:
         "",
         "The fitted exponents are envelope slopes on a geometric sample,",
         "label **OBSERVATION**. The analytic statements they probe are",
-        "now theorems at every depth <= 4. Certified descent density",
-        "is 13/16 (J-four-step-descent-density). The length-5/7/8",
-        "engine contractors and densities 7/8, 57/64, 29/32 were",
-        "withdrawn in Phase 26 (CONJECTURE; holes recorded). ",
+        "now theorems at every depth <= 4. Laboratory certified",
+        "descent density is 7/8 (J-five-step-descent-density,",
+        "Phase 27). Paper B prints 13/16. Length-7/8 densities",
+        "57/64 and 29/32 stay CONJECTURE (Phase 26 holes). ",
         "the OOOO* kernel K3 is isolated",
         "and the scale-invariant copy of Theorem R, the",
         "increment-first K3 attack, and X1-absorption of K3",
