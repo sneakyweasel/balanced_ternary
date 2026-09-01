@@ -1,0 +1,61 @@
+{
+  "experiment": "juggler_bracket_nil_lift",
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "equidistribution_claimed": false,
+    "k3_bound_claimed": false,
+    "toolkit_reopened": false,
+    "paper_b_modified": false
+  },
+  "expansion": {
+    "n_max": 2000000,
+    "worst_taylor_ratio": 0.375,
+    "worst_n": 1483859,
+    "taylor_constant": 0.375,
+    "bound_holds": true,
+    "max_abs_r": 6.653544220377694e-08
+  },
+  "horizontal": {
+    "bins": 8,
+    "samples": 500000,
+    "occupied_cells": 512,
+    "cells": 512,
+    "max_rel_dev": 0.102848,
+    "rel_dev_cap": 0.16103136216148556,
+    "uniform": true
+  },
+  "weyl": {
+    "k_range": 2,
+    "harmonics": 124,
+    "max_ratio": 2.110757407707598,
+    "worst_harmonic": [
+      0,
+      -1,
+      0
+    ],
+    "square_root_scale": true
+  },
+  "heisenberg": {
+    "bins": 16,
+    "samples": 500000,
+    "occupied_cells": 256,
+    "cells": 256,
+    "max_rel_dev": 0.08032,
+    "rel_dev_cap": 0.10929536693794466,
+    "uniform": true
+  },
+  "notes": {
+    "identity": "{z^{3/2}} = {-(1/2) v^{9/4} + (3/2) v^{3/4} floor(v^{3/2}) + r}, |r| <= (3/8) theta^2 v^{-3/4}; the middle term is the Heisenberg vertical Mal'cev coordinate of the orbit ((3/2) v^{3/4}, v^{3/2}, 0)",
+    "consequence": "the amplitude-product class dissolves into fixed-harmonic pair statements plus one ergodic transfer along a floor-Hardy orbit; GG's amplitude drift does not apply to the horizontal base by construction",
+    "target": "conjectures/active/juggler_tower_rate_free_equidistribution.json"
+  },
+  "decision": {
+    "classification": "BRACKET_NIL_LIFT_GREEN"
+  }
+}

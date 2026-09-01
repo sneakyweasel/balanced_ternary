@@ -21,7 +21,9 @@ into one reading path. It is **not a halt theorem**, not a
 uniform \(B/\theta\) claim; the certified period bound is
 unchanged at \(176251\). It is a laboratory extract,
 not a second manuscript: together with the finance notes it is
-a coherent section for a successor of Paper A.
+a coherent section for a successor of Paper A. The open-orbit
+counterpart is the flight extract
+[juggler_flight_note.md](juggler_flight_note.md).
 
 Dossiers, in program order:
 [walk charge](../problems/juggler_cycle_walk_charge.md),

@@ -19247,6 +19247,57 @@ Best next question
   add a fourth, ergodic layer to the wall?
 ```
 
+## Bracket nil-lift: the tower phase is a Heisenberg coordinate (Phase 0; answers the rate-free branch's best next question)
+
+- **Date:** 2026-09-01
+- **Objective:** Test whether the Heisenberg lift that absorbs polynomial brackets (Bergelson–Leibman) absorbs the tower's Hardy bracket \(v^{3/4}\{v^{3/2}\}\), or whether floor-removal self-similarity adds a fourth, ergodic layer to the K3 wall.
+- **Hypotheses:** the lift is pure group algebra — polynomiality is consumed only by the equidistribution theorem applied afterwards; and \(AB=\tfrac32 v^{9/4}\) stays inside the Hardy monomial family, so the bracket should dissolve. Falsifiers: the exact Taylor error bound fails; the horizontal triple resonates; the Heisenberg vertical correlates with the abelian coordinate.
+- **Major results:**
+  - **Identity (EXACT — HUMAN PROOF, `J-tower-heisenberg-coordinate`):** \(z^{3/2}=v^{9/4}-A\theta+r\) with \(A=\tfrac32 v^{3/4}\), \(0\le r\le\tfrac38\theta^2z^{-1/2}\) (exact Lagrange midpoint), and \(A\theta=AB-A\lfloor B\rfloor\) gives \(\{z^{3/2}\}=\{-\tfrac12 v^{9/4}+\tfrac32 v^{3/4}\lfloor v^{3/2}\rfloor+r\}\) — the middle term exactly the vertical Mal'cev coordinate of the Heisenberg orbit \(((3/2)v^{3/4},v^{3/2},0)\Gamma\). The K3 kernel's phase is, up to \(O(n^{-9/8})\), a coordinate of an orbit on \(\mathbb T\times H_3(\mathbb R)/H_3(\mathbb Z)\) with horizontal torus \(((3/2)v^{3/4},v^{3/2},(1/2)v^{9/4})\bmod 1\).
+  - **Species conversion:** the amplitude-product class dissolves into fixed-harmonic pair statements — no amplitude ever multiplies a harmonic in the horizontal data, so Proposition GG's drift mechanism cannot see the base, and BB/JJ are not invoked. The wall's fourth layer did **not** materialize at the algebraic level; the single remaining open step of the rate-free route is the ergodic transfer along this specific floor-Hardy orbit.
+  - **Probe (`bracket_nil_lift.py`, `BRACKET_NIL_LIFT_GREEN`,** dyadic \((10^6,2\cdot10^6]\), exact scaled-integer roots): the Taylor constant is attained (worst witness ratio exactly \(0.375\)); horizontal triple uniform (\(512/512\) cells, max deviation \(0.103\) vs \(0.161\)); all \(124\) fixed harmonics \(|k|\le 2\) at square-root scale (max \(2.11\sqrt N\)); Heisenberg vertical/abelian pair uniform (\(0.080\) vs \(0.109\)).
+  - **Precision forensics:** a 22-digit first pass reported Taylor violations up to \(274\times\) the constant — both artifacts (float subtraction of \(10^{23}\)-scale integers; \(\theta\)-truncation amplified by \(A\approx1.8\cdot10^7\) at tiny \(\theta\)); mpmath ground truth showed \(0.374999\ldots\) at every flagged \(n\), and the 30-digit single-integer combination reproduces it.
+- **Refuted ideas:** none; the recorded falsifier for the ergodic route (bracket re-entering the amplitude-product class) did not fire at the algebraic level — where it could still fire is inside a future characteristic-factor argument, which is external mathematics.
+- **Decision:** PROMOTE — dossier `docs/problems/juggler_bracket_nil_lift.md`, ledger row `J-tower-heisenberg-coordinate`; the active conjecture `juggler_tower_rate_free_equidistribution` now carries the nil-orbit formulation. No new branch opened.
+
+```text
+What was learned
+- the Heisenberg lift of A{B} is algebra, not analysis: it
+  survives Hardy entries verbatim, and AB = (3/2)v^{9/4}
+  staying in the monomial family closes the coordinate ring
+- the K3 kernel phase is a nilmanifold-orbit coordinate up to
+  an explicit O(n^{-9/8}) error whose Taylor constant 3/8 is
+  attained; the amplitude-product class is a shadow of a
+  fixed-harmonic orbit statement
+- all 124 fixed harmonics of the horizontal triple cancel at
+  square-root scale empirically - the base looks provable,
+  and GG's drift mechanism is structurally blind to it
+- scaled-integer roots need care: two precision artifacts
+  mimicked a falsifier before ground truth cleared them
+Strongest theorem
+- J-tower-heisenberg-coordinate (EXACT - HUMAN PROOF): the
+  depth-3 tower phase is a T x Heisenberg orbit coordinate
+Strongest refutation
+- none; the fourth-layer falsifier did not fire algebraically
+Reusable machinery
+- bracket_nil_lift probe: exact scaled sqrt/root4, Weyl grid,
+  vertical/abelian censuses; the lift template iterates to
+  any tower depth (one Taylor + one vertical per floor)
+Branch status
+- PROMOTE
+Why
+- the rate-free target gained its exact formulation: one
+  floor-Hardy nil-orbit equidistribution statement, with the
+  bracket absorbed by group structure as in the polynomial
+  case; nothing in BB/GG/JJ reaches it
+Best next question
+- do the fixed-harmonic Weyl sums of the horizontal triple
+  ((3/2)v^{3/4}, v^{3/2}, (1/2)v^{9/4}) mod 1 admit power
+  savings by the existing depth-2 machinery (Theorem R's van
+  der Corput chain) - is the horizontal half of the nil-route
+  already a theorem?
+```
+
 ## Paper A: referee report v10 response — retitle and the six required revisions (consolidation; not a numbered milestone)
 
 - **Date:** 2026-09-01
@@ -19475,6 +19526,54 @@ Best next question
   reparameterization?
 ```
 
+## Record composition: widths compose, constraints do not multiply (consolidation; not a numbered milestone)
+
+- **Date:** 2026-09-01
+- **Objective:** The quantization branch's best next question: does the jump-rigidity law compose across consecutive record segments into Diophantine content beyond the envelope, or is composition a pure reparameterization?
+- **Hypotheses:** re-anchored budgets extend the rigidity window unboundedly (real); falsifier: the composed inequality is implied by finitely many per-segment applications.
+- **Major results:**
+  - **Composed law (REPARAMETERIZATION, `J-flight-record-composition`):** telescoping the per-segment law over records \(j<J\) gives \(U\le O\log_2 3-P\le U+\sum_k\Delta'_k\). This is the per-pair law at the wide record pair: the lattice \(\{o\log_2 3-p\}\) is an additive monoid, so composition cannot create new constraint types (a "quantization dissolves under summation" near-miss was caught and recorded: sums of near-lattice jumps are near-lattice).
+  - **The real gain is width:** \(\sum_k\Delta'_k\le\Delta'_{\mathrm{direct}}\) rigorously (\(\Pi(1-x_k)\ge 1-\Sigma x_k\), intermediate anchors exceed \(m_j\)), so on flights with summable record deficits the quantization holds with bounded width at all distances - past the direct vacuity cutoff \(0.63\,m_j\ln m_j\). But this is implied by finitely many applications of the existing row - exactly the falsifier.
+  - **No sequence-level constraint:** the jump sequence carries nothing beyond its totals; the state side realizes any lattice window at achievable resolutions (\(\sim 10^{-9}\) spacing at frontier anchors, far below \(\Delta'\)).
+  - **Arc closure:** with composition closed, the flight program's descriptive arc is terminal: envelope (Lean), walk-divergence dichotomy, anchor-period ladder, divergent structure, return quantization, composition. Further flight-side progress requires the cycle program's Diophantine frontier or all-depth equidistribution. The PARKed terminating-side valley-crossing composition is untouched.
+- **Refuted ideas:** the composition hope died by implication, not by counterexample; the near-miss ("dissolution") is recorded in the dossier as a false intermediate belief.
+- **Literature:** none new.
+- **Open:** none specific to composition.
+- **Decision:** CLOSE - dossier `docs/problems/juggler_flight_record_composition.md`, ledger row `J-flight-record-composition` (REPARAMETERIZATION); no probe, no Lean, no new tests (the computational content is the existing per-segment mirror).
+
+```text
+What was learned
+- the lattice {o log2 3 - p} is an additive monoid: composing
+  record segments can sharpen widths but cannot multiply
+  constraints - per-segment quantization is the maximal
+  Diophantine statement at record scale
+- re-anchoring makes the width sum beat the direct width
+  always, giving unbounded-range rigidity on deficit-summable
+  flights - real, but implied by the existing row
+- the jump sequence is constraint-free beyond its totals at
+  achievable state resolutions
+- the flight program's descriptive arc is now terminal
+Strongest theorem
+- none new (a reparameterization row records the width remark)
+Strongest refutation
+- none (falsifier fired as an implication)
+Reusable machinery
+- none (analysis only, by design)
+Branch status
+- CLOSE
+Why
+- the stop criterion fired exactly as written: composition is
+  telescoping; the promotion criterion (a constraint not
+  implied by finitely many per-segment applications) is not
+  met; recording the width remark prevents re-derivation
+Best next question
+- should the flight arc (walk-divergence dichotomy,
+  anchor-period ladder, divergent structure, return
+  quantization) be consolidated into a laboratory note - a
+  flight-side companion to Paper A's cycle sections - now
+  that the arc is closed, and which results meet the bar?
+```
+
 ## Flight uniqueness trichotomy (consolidation; not a numbered milestone)
 
 - **Date:** 2026-09-01
@@ -19566,4 +19665,49 @@ Best next question
   Diophantine blocker L=478245; pointwise emptiness of
   infinite odd towers) are not opened from here
 ```
+
+## Flight-program laboratory extract (consolidation; not a numbered milestone)
+
+- **Date:** 2026-09-01
+- **Objective:** The composition branch's standing editorial question: should the closed flight arc be a laboratory note, a flight-side companion to Paper A's cycle sections, and which results meet the bar?
+- **Hypotheses:** six promoted rows (envelope, height law, walk-divergence, anchor-period, divergent structure, return quantization) survive compression as an extract; composition, uniqueness packaging, odd-tower placement, and the DK split do not. Falsifier: nothing above `REPARAMETERIZATION` survives, or the extract only restates Paper A §5.
+- **Major results:**
+  - **Note written:** [docs/theory/juggler_flight_note.md](theory/juggler_flight_note.md). Laboratory extract, not a second manuscript, not a Paper A/B edit. Guard test `test_flight_note.py`. Reading-path links in `AGENTS.md` and a flight companion table in `docs/juggler_branch_ledger.md`; one-line pointer from the walk-charge extract.
+  - **Bar (what prints):** Lean envelope (`J-flight-envelope-transport`) and walk-height law (`J-flight-height-law`); walk-divergence and the dichotomy (`J-flight-walk-divergence`); the certified anchor-period instance at \(3.5\cdot 10^8\) / \(780239\) (`J-flight-anchor-period`); pointwise divergent structure (`J-flight-divergent-structure`); record-jump quantization with shortest near-return \(19\) (`J-flight-return-quantization`).
+  - **Bar (what does not print as a theorem):** record composition (`REPARAMETERIZATION`); uniqueness trichotomy (KNOWN packaging); odd-tower placement (`CLOSE`); DK split (pricing without closure, kill needs \(x_L=n\)); valley composition (`PARK`). All named in extract §7 so they are not re-derived.
+- **Refuted ideas:** none (editorial pass; the falsifier did not fire).
+- **Literature:** none new.
+- **Open:** none in the flight program. The two named frontiers remain unopened.
+- **Decision:** PROMOTE the extract as the reading-path record of a terminal descriptive program. No new ledger theorem row (every printed claim already has one). Paper A stays a cycle paper.
+
+```text
+What was learned
+- the flight arc has a coherent extract the same shape as
+  the walk-charge note: Lean core, human glue, one certified
+  instance, named non-theorems
+- six rows meet the bar; four closed companions do not, and
+  naming them in §7 is the anti-reopening device
+- Paper A is not the home of this material: open-orbit
+  transport is a laboratory companion, not a cycle section
+- the program is descriptively terminal; the extract is the
+  last flight-side artifact
+Strongest theorem
+- none new (the extract reprints existing ledger rows)
+Strongest refutation
+- none
+Reusable machinery
+- juggler_flight_note.md plus test_flight_note.py
+  (structure and anti-overclaim guard)
+Branch status
+- PROMOTE (extract)
+Why
+- the promotion criterion (a note that prints only surviving
+  theorems) is met; Paper A/B were not edited; no new
+  mathematics was claimed
+Best next question
+- none in the flight program; the cycle Diophantine blocker
+  L=478245 and the pointwise emptiness of infinite odd
+  towers remain the named frontiers and are not opened
+```
+
 

@@ -20,8 +20,9 @@ bt.*                        problem-independent BT mathematics
 
 1. [docs/theory/juggler_finite_dynamics_note.md](docs/theory/juggler_finite_dynamics_note.md) — Paper A: cycle-length lower bounds (word obstructions + finance + the §5 walk-charge envelope; lab extract in [juggler_walk_charge_note.md](docs/theory/juggler_walk_charge_note.md))
 2. [docs/theory/juggler_parity_discrepancy_note.md](docs/theory/juggler_parity_discrepancy_note.md) — Paper B: parity discrepancy of nested floor powers
-3. [docs/juggler_branch_ledger.md](docs/juggler_branch_ledger.md) — every branch, decision, and strongest evidence
-4. [docs/theory/juggler_cycle_finance_note.md](docs/theory/juggler_cycle_finance_note.md) and [docs/theory/juggler_run_survivor_lattice_note.md](docs/theory/juggler_run_survivor_lattice_note.md) — the cycle frontier
+3. [docs/theory/juggler_flight_note.md](docs/theory/juggler_flight_note.md) — laboratory extract: descent-free flights (envelope, dichotomy, anchor-period, divergent structure, shared lattice). Not a paper; the flight program is descriptively terminal.
+4. [docs/juggler_branch_ledger.md](docs/juggler_branch_ledger.md) — every branch, decision, and strongest evidence
+5. [docs/theory/juggler_cycle_finance_note.md](docs/theory/juggler_cycle_finance_note.md) and [docs/theory/juggler_run_survivor_lattice_note.md](docs/theory/juggler_run_survivor_lattice_note.md) — the cycle frontier
 
 Claim labels: [docs/README.md](docs/README.md).
 Research method: [docs/methodology.md](docs/methodology.md).
@@ -77,6 +78,16 @@ for external review.
  the Paper A × Paper B merge is CLOSE (`juggler_cycle_paper_merge`),
  and further \(N_0\) campaigns are PARK (the next useful floor is
  \(3.48\cdot 10^8\)).
+- **Flights:** the descent-free (open-orbit) program is descriptively
+  terminal. Extract: [juggler_flight_note.md](docs/theory/juggler_flight_note.md).
+  Lean envelope and walk-height law on `AboveAnchor`; every flight has
+  unbounded walk (hug-hugging is cycle-exclusive); bounded-walk flights
+  from \(n\ge 3.5\cdot 10^8\) have eventual period \(\ge 780239\)
+  (conditional, no new floor); divergent flights diverge pointwise with
+  recurrent hug domination and record jumps quantized to the
+  \(\log_2 3\)-lattice (shortest near-return \(19\)). Do not reopen
+  composition (`REPARAMETERIZATION`), odd-tower placement, or DK-as-kill.
+  Exclusion of divergent orbits is not claimed.
 - **Termination:** certified descent density \(29/32\); the pointwise route
   is parked behind the \(K_3\) obstruction ladder BB/GG/JJ. Not claimed.
 - **Local attacks are closed.** Fibres are parity + interval only
