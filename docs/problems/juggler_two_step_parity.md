@@ -114,7 +114,9 @@ It is not required. The 2-adic / BT bridge stays closed.
   \(W\)-family instance is **EXACT — HUMAN PROOF** (Phase 28);
   the remainder \(kE_X\) is an engine (Phase 29,
   `length7_remainder_engine_proved` is `True`); the
-  passenger inventory remains the hole
+  Theorem-T passenger slogan is **REFUTED** (Phase 30,
+  `length7_passenger_theorem_t_refuted` is `True`); the
+  sixth-letter chirps remain the hole
 
 - Increment-first \(K_3\) attack — **REFUTED** in Phase 14
   (`increment_first_k3_refuted` is `True`); bound not proved

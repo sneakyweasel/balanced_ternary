@@ -188,6 +188,12 @@ ANTI_OVERCLAIM = {
     # decaying remainder, not a (D3) decoration). Theorem X
     # still needs the passenger rerun.
     "length7_remainder_engine_proved": True,
+    # Phase 30: "Theorem T applies as a passenger" is the wrong
+    # slot. Sixth-letter θ_p modes are n^{27/16}-chirps at
+    # |u| ≍ P^{27/32}; remainder modes are n^{9/8} at
+    # |u| ≍ P^{31/96}. Neither is Stage 2. Theorem X stays
+    # CONJECTURE.
+    "length7_passenger_theorem_t_refuted": True,
 }
 
 

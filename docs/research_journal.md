@@ -21021,3 +21021,57 @@ Best next question
   not another P0 census
 ```
 
+## Two-monomial exponent-pair question exported (writing task; not a Phase-0)
+
+- **Date:** 2026-09-02
+- **Objective:** Export the remaining external question as classical
+  exponential-sum theory, not as another Juggler construction. The
+  BI-ceiling branch already answered its own question **NO** and named
+  this writing task as the only leftover.
+- **Hypotheses:** none. This is a placement export.
+- **Major results:**
+  - Note `docs/theory/exponent_pair_two_monomial.md` states the boxed
+    pair: prove \(\tfrac54 p+q<\tfrac23\) for an exponent pair
+    applicable to \(cm^{9/4}-jm^{2/3}\). Body language is
+    Graham–Kolesnik / van der Corput / Huxley / Bourgain only;
+    laboratory origin is an appendix.
+  - Known values collected: vdC \(7/8\); Huxley 2005 \(349/410\);
+    Bourgain \(95/112\); BI dream ceiling \(67/80\); EPC \(1/2\).
+  - Settled: generic hull misses; BI misses by \(81/40\) even with
+    both spacing problems perfect; \(A\)/\(B\) do not escape;
+    \(\alpha=4/9\) is mid-range.
+  - Pointers updated so the leftover is the export, not a successor
+    branch: `AGENTS.md`, both CLOSE dossiers, branch ledger,
+    this journal, the ACTIVE conjecture, and the three literature
+    rows. No new dossier, no research module, no ledger row, no Lean.
+- **Refuted ideas:** none. The disguise to avoid is wrapping the pair
+  as a Juggler itinerary / \(\beta\) / \(K_3\) object.
+- **Literature:** existing rows now also cite the theory note.
+- **Open:** the boxed pair, externally.
+- **Decision:** no new branch. The inversion and BI records stay
+  **CLOSE**. The conjecture stays **ACTIVE**.
+
+```text
+What was learned
+- the remaining question is a classical exponent-pair
+  inequality for one two-monomial phase
+- it is not a Juggler construction and must not be
+  reopened as one
+- BI cannot reach the line; the generic hull cannot
+  either; EPC would
+Strongest theorem
+- none new
+Strongest refutation
+- none new
+Reusable machinery
+- none (writing only)
+Branch status
+- no branch (export of a named leftover)
+Why
+- the BI dossier's leftover was a writing task; wrapping
+  the pair as another juggler_* Phase-0 would be
+  machinery gravity
+Best next question
+- none from this laboratory; the boxed pair is external
+```
+

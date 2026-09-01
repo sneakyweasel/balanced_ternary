@@ -122,10 +122,10 @@ exponent would be machinery gravity.
 
 ## Open questions
 
-The length-7 passenger rerun: do the sixth-letter
-\(X\)-modes and the new \(n^{9/8}\)-frequencies sit in
-Lemma 5.2 / Theorem T’s existing budgets? Length 8 stays
-behind \(E'\).
+The passenger slogan is the child
+[juggler_length7_passenger.md](juggler_length7_passenger.md)
+(Phase 30, **REFUTED** as a method). Length 8 stays behind
+\(E'\).
 
 ## Decision
 

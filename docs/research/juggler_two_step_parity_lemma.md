@@ -23,7 +23,8 @@
 > **routes**, not proofs. Phase 28 reruns Theorem R at the single
 > exponent \(\alpha=33/32\) (Part XIII); the Corollary R′ *family*
 > stays withdrawn. Phase 29 classifies the length-7 remainder as
-> an engine (Part XIV); Theorem X stays a route.
+> an engine (Part XIV); Theorem X stays a route. Phase 30
+> refutes the Theorem-T passenger slogan (Part XV).
 
 > **Phase-25 correction (29 August 2026).** The Part-VI mixed-piece
 > bound recorded below (frozen-coefficient model \(e(sX)\),
@@ -3867,3 +3868,92 @@ No \(K_3\). The single next question is the length-7
 passenger rerun: do the sixth-letter \(X\)-modes and the
 new \(n^{9/8}\)-frequencies sit in Lemma 5.2 / Theorem T’s
 existing budgets?
+
+## Part XV: length-7 passengers miss Stage 2 (Phase 30)
+
+Scope: rerun the Phase-13 slogan “Theorem T applies as a
+passenger theorem” against the Phase-26/27 slots (Lemma 5.2
+Stage 2, \(R_0=P^{1/4}\); Theorem 6.1 / Part XII
+\(\lvert I_{\mathrm{tot}}\rvert\le P^{1/4}\); (D1)
+\(\lvert q'\rvert\le P^{1/16}\); (D3)
+\(\lvert\varphi''\rvert\le 3kh_1h_2P^{-5/8}\)). Not a new
+estimate. Not length 8. Not a Paper B edit. Not \(K_3\).
+
+The two named species, and the first-letter chirp that the
+same slogan also absorbs, are classified below. Every
+comparison is at \(1\le\lvert k\rvert\le P^{1/24}\).
+
+### \(\theta_p\) is not an \(X\)-mode
+
+Lemma X1 leaves the sawtooth
+\(-\tfrac32 kw^{3/4}\theta_p\) with
+\(\theta_p=\{w^{3/2}\}\) and \(w\asymp n^{9/8}\). The
+coefficient is
+\[
+B\asymp k n^{27/32}\le P^{1/24+27/32}=P^{85/96}.
+\]
+Already at \(k=1\), \(\lvert B\rvert\asymp P^{27/32}>P^{1/4}\).
+Lemma 3.7 requires \(T\ge 8(1+\lvert B\rvert)\asymp P^{27/32}\);
+the Phase-13 window \(T\ll P^{27/32}\) is the length-5
+\(T=P^{1/8}\) error at a new scale. The produced modes have
+\(\lvert u\rvert\le\lvert B\rvert+T\asymp P^{27/32}\), which
+exceeds Stage 2’s \(R_0=P^{1/4}\) by \(P^{19/32}\).
+
+The argument is \(w^{3/2}\). On the OO prefix,
+\(w^{3/2}=v^{3/4}+O(v^{1/4})=n^{27/16}+O(n^{9/16})\), not
+\(X=n^{3/2}\). These are \(n^{27/16}\)-chirps, not
+Lemma 5.2 Stage-2 families \(e(r\nu^{3/2})\). They are not
+(D1) \(Y\)-waves (\(27/16\neq 9/4\)). Lemma 3.3 at
+curvature \(u\cdot n^{-5/16}\) costs
+\(u^{1/2}P^{27/32}\ge P^{81/64}>P\) at the natural
+\(\lvert u\rvert\asymp P^{27/32}\): the existing
+second-derivative test is worse than trivial.
+
+### The Phase-29 frequencies are not Stage 2 either
+
+Lemma X4 attaches engine modes \(e(un^{9/8})\) with
+\(\lvert u\rvert\ll kP^{9/32}\le P^{31/96}\). Now
+\(P^{31/96}>P^{1/4}=P^{24/96}\), and \(9/8\neq 3/2\).
+Against (D3),
+\(\lvert(un^{9/8})''\rvert\asymp uP^{-7/8}\le P^{-53/96}\),
+while the printed box at \(h_1h_2=1\) is
+\(P^{-5/8}=P^{-60/96}\). The modes sit outside every
+Phase-27 slot. (The isolated sum \(\sum e(kE_X)\) remains
+Lemma X4; the failure is the *passenger* citation.)
+
+### The first-letter chirp is the same mismatch
+
+Lemma A/M on \(v^{9/8}\) produces the smooth chirp
+\(e(Cn^{3/2})\) with \(C\asymp kn^{33/32}\le P^{1/24+33/32}=P^{103/96}\).
+This is an \(X\)-type phase whose coefficient already
+exceeds \(R_0\). Lemma 3.3 at curvature \(CP^{-1/2}\asymp
+P^{17/32}\) costs \(C^{1/2}P^{3/4}=P^{81/64}>P\). The
+Phase-13 “van der Corput II” is not Lemma 3.3 and is not
+in the Phase-27 budget.
+
+The \(\alpha=33/32\) \(W\)-family piece sits
+(`J-w-family-thirty-three-thirty-seconds`). The OOOEO
+remainder of Lemma X2 still decays. Neither saves the
+slogan.
+
+### Proposition X-pass (no Theorem-T passenger) — REFUTED method
+
+The claim that the length-7 sixth letter is a tame
+passenger of Theorem T / Lemma 5.2 Stage 2 is **REFUTED**.
+The Phase-13 comparisons (“\(X\)-modes smaller than
+Theorem T’s budget”, “Theorem T therefore applies”) are
+the same wrong-slot slogan Phase 27 discarded at length 5,
+at larger exponents. The counts are not refuted.
+
+### Phase-30 decision
+
+**PARK** Theorem X. Ledger row
+`J-length7-passenger-theorem-t` tagged `REFUTED`. Flag
+`length7_passenger_theorem_t_refuted` flipped `True`.
+`J-depth7-engine-contracting` stays `CONJECTURE`. No
+density \(57/64\). No vdC-III campaign. No Paper B.
+No \(K_3\). The single next question is whether a
+third-derivative van der Corput on the two chirps
+\(e(un^{27/16})\) and \(e(Cn^{3/2})\) closes them inside
+\(P^{23/24}\) without a new decoration class.
+

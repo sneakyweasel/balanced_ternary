@@ -2,9 +2,9 @@
 
 Status: **PROMOTE** (length 5, the \(\alpha=33/32\)
 \(W\)-family instance, and the length-7 remainder engine).
-Theorem X, density \(57/64\), length 8, and the Corollary R′
-*family* stay **PARK** / **CONJECTURE**. Paper B stays frozen
-at \(13/16\).
+Theorem X is **PARK** (passenger slogan **REFUTED**). Density
+\(57/64\), length 8, and the Corollary R′ *family* stay
+**CONJECTURE**. Paper B stays frozen at \(13/16\).
 
 Repair of the Phase-26 withdrawn length-5 passenger holes. Not a
 new contractor family, not a \(K_3\) attack, and not a Paper B edit.
@@ -90,8 +90,10 @@ It is not required. The 2-adic / BT bridge stays closed.
   **EXACT — HUMAN PROOF**
 - Length-7 remainder engine (`J-length7-remainder-engine`,
   Phase 29) — **EXACT — HUMAN PROOF**
-- Length-7 passenger inventory, length-8 \(E'\), Corollary R′
-  family — **CONJECTURE**
+- Length-7 “Theorem T as passenger”
+  (`J-length7-passenger-theorem-t`, Phase 30) — **REFUTED**
+- Length-7 passenger inventory / Theorem X, length-8 \(E'\),
+  Corollary R′ family — **CONJECTURE**
 - \(K_3\) bound — **PARK** (BB/GG/JJ)
 
 ## Experiments
@@ -152,13 +154,18 @@ gravity.
   [juggler_length7_remainder.md](juggler_length7_remainder.md).
   \(kE_X\) is an engine \(A\{n^{9/8}\}^2\), not a discarded
   remainder. Theorem X stays `CONJECTURE`.
+- **Proposition X-pass (REFUTED,
+  `J-length7-passenger-theorem-t`, Phase 30).**
+  Child dossier
+  [juggler_length7_passenger.md](juggler_length7_passenger.md).
+  The sixth letter is not a Stage-2 / Theorem T passenger.
 
 ## Open questions
 
-The length-7 passenger inventory (sixth-letter \(X\)-modes
-and the new \(n^{9/8}\)-frequencies). Length 8 stays behind
-\(E'\). See the child
-[juggler_length7_remainder.md](juggler_length7_remainder.md).
+A third-derivative van der Corput on the two length-7
+chirps \(e(un^{27/16})\) and \(e(Cn^{3/2})\). Length 8 stays
+behind \(E'\). See the child
+[juggler_length7_passenger.md](juggler_length7_passenger.md).
 
 ## Decision
 

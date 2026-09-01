@@ -99,8 +99,9 @@ for external review.
 - **Termination:** laboratory certified descent density \(7/8\)
   (length-5 repair, `J-five-step-descent-density`); Paper B prints
   \(13/16\) only. Densities \(57/64\) and \(29/32\) remain
-  **CONJECTURE** (Phase-26 holes: length-7 passenger inventory,
-  \(E'\); the growing remainder is now an engine,
+  **CONJECTURE** (Phase-26 holes: length-7 chirps miss
+  Stage 2, `J-length7-passenger-theorem-t` **REFUTED** as a
+  method; \(E'\); the growing remainder is now an engine,
   `J-length7-remainder-engine`. Corollary R′ is still a
   family-CONJECTURE, but the instance \(\alpha=33/32\) is
   **EXACT — HUMAN PROOF**,
@@ -154,6 +155,7 @@ for external review.
 | Conjecture record | `conjectures/{active,refuted,proved,archived}/<id>.json` |
 | Journal entry | `docs/research_journal.md` (consolidations allowed; no auto-milestones) |
 | Named theorem metadata | `docs/theory/theorem_ledger.json`, then render |
+| External leftover (not a Juggler branch) | [docs/theory/exponent_pair_two_monomial.md](docs/theory/exponent_pair_two_monomial.md) |
 
 ## How a direction runs
 

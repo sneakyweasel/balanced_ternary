@@ -13,6 +13,7 @@ from fractions import Fraction as F
 from pathlib import Path
 
 DOSSIER = Path("docs/problems/juggler_bi_resonance_limit.md")
+EXPORT_NOTE = Path("docs/theory/exponent_pair_two_monomial.md")
 
 HALF = F(1, 2)
 DENSITY = F(2, 3)  # the sub-density target for the functional (5/4)p + q
@@ -118,3 +119,14 @@ def test_dossier_headings_and_close():
     assert "huxley-1996-area-lattice-points" in dossier
     assert "huxley-2005-zeta-v" in dossier
     assert "No new ledger row" in dossier or "no new ledger row" in dossier.lower()
+    assert "exponent_pair_two_monomial.md" in dossier
+
+
+def test_export_note_states_the_pair():
+    note = EXPORT_NOTE.read_text(encoding="utf-8")
+    assert r"\tfrac54 p+q<\tfrac23" in note or r"\frac{5}{4}p+q<\frac{2}{3}" in note
+    assert "cm^{9/4}" in note or "c\\,m^{9/4}" in note
+    assert "m^{2/3}" in note
+    assert "95/112" in note
+    assert "67/80" in note
+    assert "external mathematics" in note.lower()
