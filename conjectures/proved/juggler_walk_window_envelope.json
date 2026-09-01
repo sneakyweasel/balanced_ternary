@@ -1,0 +1,19 @@
+{
+  "id": "juggler_walk_window_envelope",
+  "title": "Uniform census-free envelope on the window [50508, 301994)",
+  "statement": "Word identity: for every L, the budgeted hug word at (L, o_min) equals the exact IET L-prefix — the exact rule keeps u in [0, 1+alpha), so the prefix uses exactly o_min = ceil(L x) odds, and a first budget-forced divergence would make the exact prefix use more of one letter than its own total, a contradiction. Uniform envelope: greedy Ostrowski digits obey b_j <= a_{j+1}, so with the certified partial quotients of theta the digit sum on [50508, 301994) is at most 47 (exact scan max 37); the deficit keeps ln n' >= 17.07, so 2 s(L)/L <= 94/50508 = 1.87e-3 < 0.00514 <= J-gap, and by the DK/Ostrowski theorem C_L <= C_* + 2 s(L)/L < 1/(ln 3 ln n') for the hug word of every window length, census-free.",
+  "mathematical_domain": "Juggler cycle finance / discrepancy of irrational rotations",
+  "origin": "docs/problems/juggler_cycle_walk_window.md",
+  "status": "EXACT — HUMAN PROOF",
+  "first_seen": "2026-09-01",
+  "tested_range": "all 251486 lengths in [50508, 301994) at floor 26254995: greedy digits within caps at every level (level 1054 reaches its cap 23), exact max digit sum 37 at L = 275632, worst 2s/L over J-gap 0.1823 at L = 74654 (uniform margin >= 5.48); integer-exact word-identity spot checks at 60000, 123456, 250000, 301993 beyond the 19 leftovers",
+  "counterexamples": [],
+  "proof_reference": "docs/problems/juggler_cycle_walk_window.md",
+  "lean_reference": "",
+  "literature": [
+    "herman-1979",
+    "kuipers-niederreiter-1974"
+  ],
+  "notes": "Discharges the crude-envelope caveat 'not a theorem for every L >= 50508' on the window and retires the per-row word-identity verification of juggler_walk_dk_envelope (now a theorem for all L). Envelope only: no new kills are claimed — kills still need the per-length finance comparison theta > (6/5) B guard, and near-convergents such as L = 176251 still survive. Uniform B/theta < 1 at a fixed floor stays false. Period bound unchanged. Not a halt theorem.",
+  "not_a_halt_theorem": true
+}

@@ -18199,4 +18199,50 @@ Best next question
   census-free?
 ```
 
+## Juggler uniform window envelope
+
+- **Date:** 2026-09-01
+- **Objective:** Make the DK/Ostrowski envelope uniform: prove \(C_L<1/(\ln 3\,\ln n')\) for **every** \(L\in[50508,301994)\) at the certified floor, with no census and no DP
+- **Hypotheses:** (i) budgeted hug \(=\) exact IET prefix is a theorem for all \(L\), not a 19-row check; (ii) greedy Ostrowski digits obey \(b_j\le a_{j+1}\), so \(s(L)\) is uniformly small and \(2s/L\) stays under the \(J\)-gap on the whole window
+- **Major results:** Classification **WALK_WINDOW_GREEN**. Word identity is **EXACT — HUMAN PROOF**: the exact rule keeps \(u\in[0,1+\alpha)\), so the \(L\)-prefix uses exactly \(o_{\min}=\lceil Lx\rceil\) odds, and a first budget-forced divergence would make the exact prefix exceed one of its own letter totals. With the certified quotients, \(s(L)\le 47\) on the window and \(\ln n'\ge 17.07\), so \(2s/L\le 94/50508=1.87\cdot10^{-3}<0.00514\le\) \(J\)-gap — the envelope holds for every window length by the DK row. Exact scan of all \(251486\) lengths: every digit within cap (level \(1054\) hits \(23\) exactly), max \(s=37\) at \(L=275632\), worst \(2s/L\) over gap \(0.1823\) at \(L=74654\) — uniform margin \(\ge 5.48\). Integer-exact word spot checks at \(60000,123456,250000,301993\). Conjecture `juggler_walk_window_envelope` EXACT — HUMAN PROOF; ledger row `J-cyclemin-walk-window-envelope`. Artifact `cycle_walk_window/summary.json`
+- **Refuted ideas:** none new (no new kills claimed; uniform \(B/\theta\) stays false)
+- **Literature:** DK/Ostrowski envelope PROMOTE; Ostrowski digit bound (KNOWN); crude envelope superseded on the window
+- **Open:** is the DK constant \(2s(L)\) sharp here, or does the hug excess stay \(O(1)/L\) uniformly (leftover excesses were \(\le 1.87/L\) even at \(2s=12\))?
+- **Decision:** PROMOTE
+
+```text
+What was learned
+- hug = exact IET prefix for EVERY L: u in [0,1+alpha)
+  forces o_min odds, and a budget-forced divergence would
+  exceed a letter total — the 19-row check is now a theorem
+- greedy digits are capped by the partial quotients, so
+  s(L) <= 47 on [50508, 301994); the exact max is 37
+- 2s/L <= 94/50508 < J-gap uniformly: the crude-envelope
+  caveat "not a theorem for every L" is discharged on the
+  window; C_L < 1/(ln 3 ln n') for all 251486 lengths
+- the envelope margin is >= 5.48 everywhere; the binding
+  lengths are s-rich small L near 74654, not the seeds
+- no new kills: the finance comparison still decides and
+  near-convergents still survive
+Strongest theorem
+- for every L in [50508, 301994), C_L <= C_* + 2 s(L)/L
+  < 1/(ln 3 ln n') for the budgeted hug word (word identity
+  + digit caps + DK row)
+Strongest refutation
+- none new this phase
+Reusable machinery
+- cycle_walk_window.py (exact o_min, window digit scan,
+  word-identity checks)
+Branch status
+- PROMOTE
+Why
+- both open ends of the DK branch close on the window: the
+  word identity becomes a theorem and the envelope becomes
+  uniform and census-free; the only computational content
+  left is exact integer arithmetic
+Best next question
+- is the DK constant 2 s(L) sharp here, or does the hug
+  excess stay O(1)/L uniformly on the window?
+```
+
 

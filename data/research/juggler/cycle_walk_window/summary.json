@@ -1,0 +1,224 @@
+{
+  "model": "word identity: hug at (L, o_min) equals the exact IET prefix for every L because u stays in [0, 1+alpha) and a counting argument forbids budget divergence; uniform envelope: greedy Ostrowski digits obey b_j <= a_{j+1}, so s(L) <= sum a_{j+1} on [50508, 301994) and |C_L - C_*| <= 2 s(L)/L < J-gap for every window length",
+  "x_certification": {
+    "x_lo": [
+      10781274,
+      17087915
+    ],
+    "x_hi": [
+      10590737,
+      16785921
+    ],
+    "lower_ok": true,
+    "upper_ok": true,
+    "certified": true,
+    "interval_width": 3.4863079808686065e-15
+  },
+  "theta_cf": {
+    "partial_quotients": [
+      0,
+      2,
+      1,
+      2,
+      2,
+      3,
+      1,
+      5,
+      2,
+      23,
+      2,
+      2,
+      1,
+      1
+    ],
+    "denominators": [
+      1,
+      2,
+      3,
+      8,
+      19,
+      65,
+      84,
+      485,
+      1054,
+      24727,
+      50508,
+      125743,
+      176251
+    ],
+    "reached": 176251
+  },
+  "scan": {
+    "window": [
+      50508,
+      301994
+    ],
+    "n_lengths": 251486,
+    "digit_caps": {
+      "176251": 1,
+      "125743": 1,
+      "50508": 2,
+      "24727": 2,
+      "1054": 23,
+      "485": 2,
+      "84": 5,
+      "65": 1,
+      "19": 3,
+      "8": 2,
+      "3": 2,
+      "2": 1,
+      "1": 2
+    },
+    "max_digit_per_level": {
+      "176251": 1,
+      "125743": 1,
+      "50508": 2,
+      "24727": 2,
+      "1054": 23,
+      "485": 2,
+      "84": 5,
+      "65": 1,
+      "19": 3,
+      "8": 2,
+      "3": 2,
+      "2": 1,
+      "1": 1
+    },
+    "caps_ok": true,
+    "cap_sum": 47,
+    "max_digit_sum": 37,
+    "argmax_digit_sum": 275632,
+    "digit_sum_histogram": {
+      "1": 3,
+      "2": 32,
+      "3": 170,
+      "4": 594,
+      "5": 1522,
+      "6": 3046,
+      "7": 4987,
+      "8": 6963,
+      "9": 8624,
+      "10": 9799,
+      "11": 10471,
+      "12": 10719,
+      "13": 10708,
+      "14": 10620,
+      "15": 10560,
+      "16": 10542,
+      "17": 10540,
+      "18": 10540,
+      "19": 10540,
+      "20": 10540,
+      "21": 10540,
+      "22": 10540,
+      "23": 10540,
+      "24": 10540,
+      "25": 10534,
+      "26": 10479,
+      "27": 10244,
+      "28": 9618,
+      "29": 8453,
+      "30": 6833,
+      "31": 5039,
+      "32": 3346,
+      "33": 1932,
+      "34": 916,
+      "35": 328,
+      "36": 76,
+      "37": 8
+    },
+    "max_ratio": 0.1823153579933453,
+    "min_envelope_margin": 5.485001433815032,
+    "worst_rows": [
+      {
+        "length": 74654,
+        "digit_sum": 35,
+        "ratio_to_gap": 0.1823153579933453
+      },
+      {
+        "length": 74665,
+        "digit_sum": 35,
+        "ratio_to_gap": 0.18228849538364206
+      },
+      {
+        "length": 75223,
+        "digit_sum": 35,
+        "ratio_to_gap": 0.18093613356797011
+      },
+      {
+        "length": 75234,
+        "digit_sum": 35,
+        "ratio_to_gap": 0.18090967577914177
+      },
+      {
+        "length": 73600,
+        "digit_sum": 34,
+        "ratio_to_gap": 0.17964291858700934
+      },
+      {
+        "length": 73611,
+        "digit_sum": 34,
+        "ratio_to_gap": 0.179616070786936
+      },
+      {
+        "length": 74169,
+        "digit_sum": 34,
+        "ratio_to_gap": 0.1782646009716151
+      },
+      {
+        "length": 74180,
+        "digit_sum": 34,
+        "ratio_to_gap": 0.17823816349632082
+      },
+      {
+        "length": 74570,
+        "digit_sum": 34,
+        "ratio_to_gap": 0.1773058736913302
+      },
+      {
+        "length": 74581,
+        "digit_sum": 34,
+        "ratio_to_gap": 0.1772797197658374
+      }
+    ],
+    "all_below_gap": true
+  },
+  "word_identity": {
+    "rows": [
+      {
+        "length": 60000,
+        "o_min": 37856,
+        "odds_match": true,
+        "word_matches": true
+      },
+      {
+        "length": 123456,
+        "o_min": 77893,
+        "odds_match": true,
+        "word_matches": true
+      },
+      {
+        "length": 250000,
+        "o_min": 157733,
+        "odds_match": true,
+        "word_matches": true
+      },
+      {
+        "length": 301993,
+        "o_min": 190537,
+        "odds_match": true,
+        "word_matches": true
+      }
+    ],
+    "all_match": true
+  },
+  "classification": {
+    "label": "WALK_WINDOW_GREEN",
+    "reason": "every window length has greedy digits within the partial-quotient caps, digit sum at most 37 <= 47, and 2s/L strictly under the J-gap, so the DK envelope prices C_L < 1/(ln 3 ln n') for every L in [50508, 301994) census-free; the budgeted hug is the exact IET prefix (human counting argument, spot-checked); no new kills claimed"
+  },
+  "no_new_kills": true,
+  "not_a_halt_theorem": true,
+  "no_cycle_all_lengths": false,
+  "not_a_uniform_ratio_theorem": true,
+  "git_commit": "2cf1e62f5484e74e4dd1496d9d6e4b8e2195b746"
+}

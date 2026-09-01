@@ -5681,5 +5681,20 @@
       "juggler_walk_koksma_one_over_L",
       "juggler_walk_crude_envelope"
     ]
+  },
+  {
+    "id": "J-cyclemin-walk-window-envelope",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "Uniform census-free envelope on the window: for every L in [50508, 301994) at the certified floor, C_L <= C_*(n') + 2 s(L)/L < 1/(ln 3 ln n') for the budgeted hug word. Two lemmas: (1) word identity — for every L the budgeted hug at (L, o_min) equals the exact IET L-prefix, because the exact rule keeps u in [0, 1+α), forcing exactly o_min = ⌈L·log2/log3⌉ odds, and a first budget-forced divergence would make the exact prefix exceed its own letter total; (2) digit cap — greedy Ostrowski digits obey b_j ≤ a_{j+1}, so the certified quotients give s(L) ≤ 47 on the window, while the deficit keeps ln n' ≥ 17.07, hence 2s/L ≤ 94/50508 = 1.87e−3 < 0.00514 ≤ J-gap; conclude by J-cyclemin-walk-dk-envelope. Instance (exact scan of all 251486 lengths): every digit within cap (level 1054 hits 23 exactly), exact max s = 37 at L = 275632, worst 2s/L over gap 0.1823 at L = 74654 — uniform margin ≥ 5.48. Discharges the crude-envelope caveat on the window and retires the per-row word-identity check. Envelope only: no new kills, survivors unchanged (L = 176251), period bound unchanged. Not a halt theorem.",
+    "source": "docs/problems/juggler_cycle_walk_window.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_walk_window.py"
+    ],
+    "related_conjectures": [
+      "juggler_walk_window_envelope",
+      "juggler_walk_dk_envelope",
+      "juggler_walk_crude_envelope"
+    ]
   }
 ]
