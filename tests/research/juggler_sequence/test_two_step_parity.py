@@ -177,9 +177,9 @@ def test_anti_overclaim_flags():
     assert ANTI_OVERCLAIM["pure_model_shift_average_proved"] is True
     assert ANTI_OVERCLAIM["hh_derandomization_parked"] is True
     assert ANTI_OVERCLAIM["depth5_kernel_bound_proved"] is False
-    # Phase 23: the length-8 engine quartet (Theorem AA / Corollary
-    # AB): certified descent 29/32. K3 untouched, density one open.
-    assert ANTI_OVERCLAIM["depth8_engine_quartet_proved"] is True
+    # Phase 26: length-8 counting theorem withdrawn (|E|<1 without
+    # E'). Contraction-algebra flag stays True.
+    assert ANTI_OVERCLAIM["depth8_engine_quartet_proved"] is False
     assert ANTI_OVERCLAIM["depth8_chains_subcritical"] is True
 
 
@@ -436,11 +436,11 @@ def test_depth5_contracting_words_near_product():
 
 
 def test_anti_overclaim_depth5_flag():
-    assert ANTI_OVERCLAIM["depth5_contracting_proved"] is True
+    assert ANTI_OVERCLAIM["depth5_contracting_proved"] is False
     assert ANTI_OVERCLAIM["depth5_kernel_isolated"] is True
     assert ANTI_OVERCLAIM["depth5_kernel_bound_proved"] is False
     assert ANTI_OVERCLAIM["scale_invariant_R_extension_refuted"] is True
-    assert ANTI_OVERCLAIM["depth7_engine_contracting_proved"] is True
+    assert ANTI_OVERCLAIM["depth7_engine_contracting_proved"] is False
     assert ANTI_OVERCLAIM["increment_first_k3_refuted"] is True
     assert ANTI_OVERCLAIM["x1_absorption_k3_refuted"] is True
     assert ANTI_OVERCLAIM["k3_toolkit_parked"] is True

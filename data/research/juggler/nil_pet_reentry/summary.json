@@ -1,0 +1,72 @@
+{
+  "experiment": "juggler_nil_pet_reentry",
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "equidistribution_claimed": false,
+    "k3_bound_claimed": false,
+    "toolkit_reopened": false,
+    "paper_b_modified": false,
+    "pet_proves_equidistribution": false,
+    "conjecture_refuted": false
+  },
+  "pet_identity": {
+    "exact_identity": true,
+    "scaled_identity": true,
+    "rows": [
+      {
+        "raw_ok": true,
+        "split_ok": true,
+        "chi": "188/221"
+      },
+      {
+        "raw_ok": true,
+        "split_ok": true,
+        "chi": "7/8"
+      },
+      {
+        "raw_ok": true,
+        "split_ok": true,
+        "chi": "27/28"
+      },
+      {
+        "raw_ok": true,
+        "split_ok": true,
+        "chi": "0"
+      }
+    ],
+    "n": 1001,
+    "h": 2
+  },
+  "species": {
+    "pairs": 202,
+    "h": 2,
+    "mean_da_over_n18": 3.3750178983414933,
+    "median_da_over_n18": 3.374878929158888,
+    "leading": 3.375,
+    "min_da_over_n18": 3.3649625583614324,
+    "max_da_over_n18": 3.3850410247749423,
+    "increment_gg": true,
+    "median_frac_db": 0.5135862827301025,
+    "min_frac_db": 0.0023796558380126953,
+    "max_frac_db": 0.9832253456115723,
+    "frac_not_tiny": true,
+    "mean_leftover_over_n34": 0.4222822538728661,
+    "median_leftover_over_n34": 0.31048992896987493,
+    "leftover_not_o1": true,
+    "mean_A_frac_db_mod1": 0.5342051371206217,
+    "reentry": true
+  },
+  "decision": {
+    "classification": "NIL_PET_REENTRY_GREEN",
+    "branch": "PROMOTE",
+    "method": "CLOSE",
+    "conjecture": "ACTIVE",
+    "notes": "first PET difference of the Heisenberg lift has reduced vertical {-A(n+h) floor(ΔB) - A(n){ΔB}}; A{ΔB} is GG (A' ≍ n^{1/8}); the second lift is the same algebra, not a published Hardy-nil orbit; rate-free conjecture stays ACTIVE"
+  }
+}

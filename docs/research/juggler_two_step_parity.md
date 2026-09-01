@@ -5,12 +5,10 @@ class is **EXACT — HUMAN PROOF**
 (`J-nested-parity-discrepancy`, `J-triple-parity-discrepancy`,
 `J-even-branch-third-letter`, `J-four-step-descent-density`,
 `J-depth4-slow-branch`, `J-kernel-cancellation`,
-`J-depth4-complete`, `J-depth5-contracting`,
-`J-five-step-descent-density`, `J-depth7-engine-contracting`,
-`J-seven-step-descent-density`, `J-depth8-engine-quartet`,
-`J-eight-step-descent-density`; proofs in
+`J-depth4-complete`; proofs in
 `juggler_two_step_parity_lemma.md`). Certified descent
-density 29/32. OOOO* kernel isolated (Lemma V1); the
+density 13/16. Length-5/7/8 harvest rows are CONJECTURE
+(Phase 26). OOOO* kernel isolated (Lemma V1); the
 scale-invariant copy of Theorem R, the increment-first
 K3 attack, and X1-absorption of K3 are **REFUTED**;
 the K3 toolkit is **PARKED**.
@@ -55,10 +53,11 @@ contraction `3^2 < 2^4` and is a guard, not a new theorem.
 
 The fitted exponents are envelope slopes on a geometric sample,
 label **OBSERVATION**. The analytic statements they probe are
-now theorems at every depth <= 4, and the two length-7 engine
-contractors OOEOOEE/OOOEOEE lift certified descent to 57/64;
-the length-8 engine quartet OOEOOEOE/OOEOOOEE/OOOEOEOE/OOOEOOEE
-lifts it to 29/32; the OOOO* kernel K3 is isolated and the
+now theorems at every depth <= 4. Certified descent density
+is 13/16 (J-four-step-descent-density). The length-5/7/8
+engine contractors and densities 7/8, 57/64, 29/32 were
+withdrawn in Phase 26 (CONJECTURE; holes recorded).
+The OOOO* kernel K3 is isolated and the
 scale-invariant copy of Theorem R, the increment-first K3
 attack, and X1-absorption of K3 are REFUTED; the K3 toolkit is
 PARKED.

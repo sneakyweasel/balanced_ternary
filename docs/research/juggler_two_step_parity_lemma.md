@@ -1705,7 +1705,7 @@ steps. \(\square\) Validated (`ooeoe_smoothing_scan`) through
 \(\theta\) and \(n^{9/16}\) on \(\theta_w\); both grow slower than
 \(n\).
 
-### Theorem T (the length-5 contracting splits) — EXACT — HUMAN PROOF
+### Theorem T (the length-5 contracting splits) — ROUTE (withdrawn Phase 26)
 
 \[
 \#\mathrm{OOOEE}(N),\;\#\mathrm{OOOEO}(N)
@@ -1781,7 +1781,7 @@ Float sanity: `oooee_mode_probe` / `ooeoe_mode_probe` at
 size. Depth-5 census at \(N=10^5\): the four classes lie in
 \([3138,3181]\) against \(3125\).
 
-### Corollary U (certified-descent density \(7/8\)) — EXACT — HUMAN PROOF
+### Corollary U (certified-descent density \(7/8\)) — ROUTE (withdrawn Phase 26)
 
 The class of starts carrying a uniform power-envelope descent
 certificate of length at most five — evens, OE, OOEE, OOOEE,
@@ -2082,7 +2082,7 @@ OOOOEEE still needs the OOOO\* split and is not attempted.
 - **OOOEOEE** (\(3^4<2^7\)): Lemma A′ at
   \(s=\lfloor z^{1/2}\rfloor\), same coefficient budget.
 
-### Corollary R′ (\(W\)-family for \(\alpha\le 9/8\)) — EXACT — HUMAN PROOF
+### Corollary R′ (\(W\)-family for \(\alpha\le 9/8\)) — ROUTE (withdrawn Phase 26)
 
 Theorem R's bound \(K_c(P)\ll P^{1-1/72+\varepsilon}\) holds
 for every monomial family \(c^{(r)}\asymp k P^{\alpha-r}\)
@@ -2153,7 +2153,7 @@ floor plus a 0/1 carry. Measured (`w_gap_freeze_scan`): a
 single run covers a window of \(400\) OOEO terms at
 \(P=10^4,10^5,10^6\).
 
-### Theorem X (the length-7 engine splits) — EXACT — HUMAN PROOF
+### Theorem X (the length-7 engine splits) — ROUTE (withdrawn Phase 26)
 
 \[
 \#\mathrm{OOEOOEE}(N),\;\#\mathrm{OOEOOEO}(N),\;
@@ -2208,7 +2208,7 @@ Depth-7 census at \(N=10^5\): OOEOOEE \(792\), OOOEOEE
 (deviation \(400\ll 1.5\cdot N^{2/3}\)). Every start in
 either class with \(n\le 10^5\) satisfied \(J^7(n)<n\).
 
-### Corollary Y (certified-descent density \(57/64\)) — EXACT — HUMAN PROOF
+### Corollary Y (certified-descent density \(57/64\)) — ROUTE (withdrawn Phase 26)
 
 The class of starts carrying a uniform power-envelope descent
 certificate of length at most seven — the Corollary-U class
@@ -3269,7 +3269,7 @@ through \(n = 3\cdot10^7 + 1\), measured coefficient exponents
 all \(< 1\) (max \(0.91\) at small \(n\), decreasing toward
 \(99/128 = 0.773\)).
 
-### Theorem AA (the length-8 engine quartet). EXACT — HUMAN PROOF
+### Theorem AA (the length-8 engine quartet). ROUTE (withdrawn Phase 26)
 
 For each \(w\) in the quartet,
 \(\#\{n \le N : n \in C_w\} = 2^{-8}N + O(N^{1-1/48+\varepsilon})\).
@@ -3307,7 +3307,7 @@ all four parents at ratio \(0.002\)–\(0.045\) of cylinder size
 at \(N = 2\cdot10^5\), shrinking to \(0.006\)–\(0.011\) at
 \(N = 10^6\) — square-root scale.
 
-### Corollary AB (certified descent density 29/32). EXACT — HUMAN PROOF
+### Corollary AB (certified descent density 29/32). ROUTE (withdrawn Phase 26)
 
 The quartet words each carry the uniform certificate
 \(J^8(n) < n\) (\(3^5 < 2^8\), Corollary 2.3). Adding their

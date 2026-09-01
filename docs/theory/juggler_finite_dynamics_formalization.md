@@ -250,8 +250,9 @@ no_finiteProgress_implies_odd_odd :
 
 Thus even and odd-to-even starts have automatic finite progress. The
 density corollaries of the companion discrepancy paper (\(3/4\) at two
-steps, \(13/16\) at four, \(7/8\) at five, \(57/64\) at seven,
-\(29/32\) at eight) count uniform certificate classes. They
+steps, \(13/16\) at four) count uniform certificate classes. The
+deeper figures \(7/8\), \(57/64\), \(29/32\) are Phase-26 withdrawn
+**CONJECTURE**s and are not paper claims. They
 are not Lean cardinality theorems, not densities of all
 `FiniteProgress`, and not `ReachesOne` densities. Odd-to-odd starts
 may still descend after a longer word. The Terras analogue remains

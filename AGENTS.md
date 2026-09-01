@@ -90,7 +90,9 @@ for external review.
   or valley-composition exclusion (`CLOSE`: occupancy is the existing
   pigeonhole). The terminating-side height-law PARK is not an exclusion
   mechanism. Exclusion of divergent orbits is not claimed.
-- **Termination:** certified descent density \(29/32\); the pointwise route
+- **Termination:** certified descent density \(13/16\) (Paper B
+  Corollary 4.9); \(7/8\), \(57/64\), \(29/32\) remain **CONJECTURE**
+  (Phase-26 withdrawn harvest; holes named). The pointwise route
   is parked behind the \(K_3\) obstruction ladder BB/GG/JJ. Not claimed.
 - **Local attacks are closed.** Fibres are parity + interval only
   (`even_cell_iff`, `odd_cell_unique`, `cell_same_next_state`): no finite

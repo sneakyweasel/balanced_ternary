@@ -99,15 +99,17 @@ It is not required. The 2-adic / BT bridge stays closed.
   (`depth2_analytic_lemma_proved` is `True`)
 - Even-branch depth-4 results — proved in Phase 3
   (`depth4_even_branch_proved` is `True`)
-- Depth-5 contracting splits OOOEE/OOEOE — proved in Phase 10
-  (`depth5_contracting_proved` is `True`); certified density \(7/8\)
+- Depth-5 contracting splits OOOEE/OOEOE — drafted in Phase 10,
+  withdrawn in Phase 26 (`depth5_contracting_proved` is `False`);
+  certified density stays \(13/16\); \(7/8\) is **CONJECTURE**
 - OOOO\* kernel isolated — Phase 11 (`depth5_kernel_isolated`
   is `True`); bound not proved
 - Scale-invariant copy of Theorem R — **REFUTED** in Phase 12
   (`scale_invariant_R_extension_refuted` is `True`)
-- Length-7 engine contractors OOEOOEE/OOOEOEE — proved in
-  Phase 13 (`depth7_engine_contracting_proved` is `True`);
-  certified density \(57/64\)
+- Length-7 engine contractors OOEOOEE/OOOEOEE — drafted in
+  Phase 13, withdrawn in Phase 26
+  (`depth7_engine_contracting_proved` is `False`);
+  \(57/64\) is **CONJECTURE**
 - Increment-first \(K_3\) attack — **REFUTED** in Phase 14
   (`increment_first_k3_refuted` is `True`); bound not proved
 - X1-absorption of \(K_3\) — **REFUTED** in Phase 15
@@ -115,8 +117,9 @@ It is not required. The 2-adic / BT bridge stays closed.
 - \(K_3\) toolkit — **PARKED** in Phase 16
   (`k3_toolkit_parked` is `True`); Conjecture V open
 - Length-8 engine quartet OOEOOEOE/OOEOOOEE/OOOEOEOE/OOOEOOEE —
-  proved in Phase 23 (`depth8_engine_quartet_proved` is `True`);
-  certified density \(29/32\)
+  drafted in Phase 23, withdrawn in Phase 26
+  (`depth8_engine_quartet_proved` is `False`);
+  \(29/32\) is **CONJECTURE**
 - Global halt — not claimed
 
 ## Experiments

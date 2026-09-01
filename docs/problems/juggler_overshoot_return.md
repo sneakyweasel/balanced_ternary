@@ -57,8 +57,9 @@ totality. Do not reopen \(K_3\).
   both odd \(y\)) — **REFUTED** as a general law.
 - Even-count \(\le 3\) cycle words —
   **EXACT — LEAN VERIFIED**.
-- Paper B contractors through density \(29/32\); `OOOO*` and
-  \(K_3\) — **PARK**.
+- Paper B certified descent density \(13/16\); length-5/7/8
+  contractors and densities \(7/8\), \(57/64\), \(29/32\) are
+  withdrawn **CONJECTURE**; `OOOO*` and \(K_3\) — **PARK**.
 
 Project relationship: **extended**. The return disjunct of the
 first-even dichotomy is now excluded. The even-\(y\) halt fragment

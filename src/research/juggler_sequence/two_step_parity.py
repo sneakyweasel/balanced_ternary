@@ -144,9 +144,10 @@ ANTI_OVERCLAIM = {
     # at lambda = 0; no K3 bound, no density move.
     "pure_model_shift_average_proved": True,
     "hh_derandomization_parked": True,
-    # Phase 10: Theorem T / Corollary U close OOOEE and OOEOE;
-    # certified descent density 7/8. OOOO* at depth 5 remains open.
-    "depth5_contracting_proved": True,
+    # Phase 10 drafted Theorem T / Corollary U (7/8); Phase 26
+    # withdrew both (passenger modes l P^{3/16} exceed Lemma 5.2's
+    # |q'| <= P^{1/16} as written). OOOO* at depth 5 remains open.
+    "depth5_contracting_proved": False,
     # Phase 11: the OOOO* fifth letter is the isolated level-3
     # floor-defect kernel K3 (Lemma V1). No bound, no density move.
     "depth5_kernel_isolated": True,
@@ -154,10 +155,10 @@ ANTI_OVERCLAIM = {
     # Phase 12: copying Theorem R to K3 is REFUTED (no v-level
     # b-runs; forced inner linearization produces α = 45/16).
     "scale_invariant_R_extension_refuted": True,
-    # Phase 13: OOEOOEE and OOOEOEE close under the engine + R at
-    # alpha <= 9/8; certified descent density 57/64. OOOOEEE still
-    # needs K3.
-    "depth7_engine_contracting_proved": True,
+    # Phase 13 drafted OOEOOEE / OOOEOEE and density 57/64; Phase 26
+    # withdrew both (Taylor remainder grows like n^{9/32}; Corollary
+    # R' never rerun). OOOOEEE still needs K3.
+    "depth7_engine_contracting_proved": False,
     # Phase 14: differencing K3 first, then increment-linearizing
     # on X-cell b-runs, is REFUTED (no J-runs on those cells;
     # unfreezing J reintroduces α = 45/16).
@@ -170,14 +171,11 @@ ANTI_OVERCLAIM = {
     # Phase 16: the R/X1/increment toolkit cannot bound K3.
     # Conjecture V stays open; the bound program is parked.
     "k3_toolkit_parked": True,
-    # Phase 23: the four contracting length-8 words (OOEOOEOE,
-    # OOEOOOEE, OOOEOEOE, OOOEOOEE) close under the engine alone:
-    # interleaved even letters keep every eighth-letter chain
-    # coefficient subcritical (top scale n^{99/128}, drift
-    # n^{-29/128} < 1). Theorem AA / Corollary AB: certified
-    # descent density 29/32. K3 untouched; the OOOO tree (1/16)
-    # stays blocked at its root.
-    "depth8_engine_quartet_proved": True,
+    # Phase 23 drafted the length-8 quartet and density 29/32;
+    # Phase 26 withdrew the counting theorems (|E|<1 without E').
+    # The contraction algebra (3^a < 2^L) and the subcritical
+    # eighth-letter coefficient bound remain unconditional.
+    "depth8_engine_quartet_proved": False,
     "depth8_chains_subcritical": True,
 }
 
@@ -2971,11 +2969,10 @@ def write_docs(row: dict[str, Any], path: Path = DOC_PATH) -> None:
         "(`J-nested-parity-discrepancy`, `J-triple-parity-discrepancy`,",
         "`J-even-branch-third-letter`, `J-four-step-descent-density`,",
         "`J-depth4-slow-branch`, `J-kernel-cancellation`,",
-        "`J-depth4-complete`, `J-depth5-contracting`,",
-        "`J-five-step-descent-density`, `J-depth7-engine-contracting`,",
-        "`J-seven-step-descent-density`; proofs in",
+        "`J-depth4-complete`; proofs in",
         "`juggler_two_step_parity_lemma.md`). Certified descent",
-        "density 57/64. OOOO* kernel isolated (Lemma V1); the",
+        "density 13/16. Length-5/7/8 harvest rows are CONJECTURE",
+        "(Phase 26). OOOO* kernel isolated (Lemma V1); the",
         "scale-invariant copy of Theorem R, the increment-first",
         "K3 attack, and X1-absorption of K3 are **REFUTED**;",
         "the K3 toolkit is **PARKED**.",
@@ -3021,11 +3018,10 @@ def write_docs(row: dict[str, Any], path: Path = DOC_PATH) -> None:
         "",
         "The fitted exponents are envelope slopes on a geometric sample,",
         "label **OBSERVATION**. The analytic statements they probe are",
-        "now theorems at every depth <= 4, and the two length-5",
-        "contracting splits OOOEE/OOEOE lift certified descent to 7/8;",
-        "the two length-7 engine contractors OOEOOEE/OOOEOEE lift",
-        "certified descent to 57/64; the length-8 engine quartet",
-        "OOEOOEOE/OOEOOOEE/OOOEOEOE/OOOEOOEE lifts it to 29/32;",
+        "now theorems at every depth <= 4. Certified descent density",
+        "is 13/16 (J-four-step-descent-density). The length-5/7/8",
+        "engine contractors and densities 7/8, 57/64, 29/32 were",
+        "withdrawn in Phase 26 (CONJECTURE; holes recorded). ",
         "the OOOO* kernel K3 is isolated",
         "and the scale-invariant copy of Theorem R, the",
         "increment-first K3 attack, and X1-absorption of K3",
