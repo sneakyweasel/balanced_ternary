@@ -18839,6 +18839,20 @@ Best next question
 - **Open:** none new; the window envelope's remaining analytic trust is exactly {DK variation inequality (classical), ergodic identification (classical)} plus verified numerics
 - **Decision:** PROMOTE (formalization landed into Paper A's trust boundary); no new mathematical branch opened
 
+## Juggler kill-table numerics in Lean: PARK on certificate size
+
+- **Date:** 2026-09-01
+- **Objective:** with the kill template `cycleMin_hug_kill_criterion` Lean, ask whether the 15 per-length kill evaluations (Thm 5.9 table, today Python verified computation) can become Lean-checked rational arithmetic via certified rational bounds on exp. Phase-0 was a feasibility estimate from the recorded kill data — no implementation
+- **Hypotheses:** falsifier was certificate size or precision incompatible with kernel checking at the tightest margin — it fired
+- **Major results (feasibility estimate, no code):**
+  - the recorded margins (`new_floor_kills/`) are tight: \(1.198\) at \(L=176251\) and \(352502\), so a certified charge-sum bound must hold ~15% relative precision across sums of \(1.8\)–\(4.5\cdot 10^5\) transcendental terms with \(W_k\nu\in[17,52]\)
+  - the Lean-provable bound \(e^x\ge(1+1/m)^{\lfloor mx\rfloor}\) (`Real.add_one_le_exp`) needs \(m\approx 10^3\) for that precision, i.e. one \(\sim 1.5\cdot 10^5\)-digit rational power per term, times \(10^5\) terms, times 15 lengths — beyond any kernel/`native_decide` budget (float DP already runs \(10^3\)–\(10^4\) s per length); the exact weights \(3^{a_k}/2^k\) are \(\tfrac13\)-million-bit ratios, and compressing them certifiably is the PARKED DK route
+  - **positive side-finding:** the Python kill table runs a charge-maximizing DP over admissible walks, but `hug_charge_maximal` (Lean) already proves hug dominance — any future certified evaluation needs only the straight hug-profile sum; the DP layer is subsumed by a Lean theorem
+- **Refuted ideas:** kill-table-in-Lean at Phase-0 scope (obstruction recorded in the walk-charge dossier, not a mathematical refutation)
+- **Literature:** none new
+- **Open:** none new — the trust boundary of §5 is stable: two classical citations plus verified computation with the standard guards
+- **Decision:** PARK (certificate-size obstruction, no new mathematical consequence); the formalization consolidation arc is complete — no auto-continuation
+
 ## Juggler above-anchor walk envelope (asymptotic descent, Phase-0)
 
 - **Date:** 2026-09-01

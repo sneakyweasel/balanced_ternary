@@ -263,12 +263,32 @@ Classification **WALK_CHARGE_GREEN**.
   (`juggler_walk_fan_minimum_law`)
 - Whether the walk charge plus run-pack composition tightens the
   thin \(1.12\) margin
-- Lean packaging of the transport lemma (optional; the word
-  identity, hug prefix-minimality, and Ostrowski quotient
-  arithmetic are Lean since the consolidation:
-  `WalkChargeWords.lean`, `OstrowskiSandwich.lean`,
-  `J-cyclemin-walk-word-identity`,
-  `J-cyclemin-walk-ostrowski-arithmetic`)
+- Lean packaging of the envelope is complete as of 1 Sep 2026:
+  transport (`WalkTransport.lean`), hug charge maximality
+  (`WalkChargeMax.lean`), defect finance and the kill template
+  (`DefectFinance.lean`), DK block hypotheses and the rotation
+  average Laplace bound (`OstrowskiSandwich.lean`,
+  `RotationAverage.lean`), on top of the word identity and
+  quotient arithmetic (`WalkChargeWords.lean`,
+  `OstrowskiSandwich.lean`)
+- **Kill-table numerics in Lean: PARK (1 Sep 2026,
+  certificate-size obstruction).** Making the 15 per-length kill
+  evaluations Lean-checked rational arithmetic fails Phase-0
+  triage: the tightest margins are \(1.198\) (\(\le 20\%\) total
+  headroom), each evaluation sums \(1.8\)–\(4.5\cdot 10^5\)
+  transcendental terms \(g(\nu,W_k)\) with \(W_k\nu\in[17,52]\),
+  and the provable rational bound
+  \(e^x\ge(1+1/m)^{\lfloor mx\rfloor}\) needs \(m\approx 10^3\)
+  for margin-compatible precision — one \(\sim 150{,}000\)-digit
+  rational power *per term*, far beyond any kernel or
+  `native_decide` budget (the float DP already takes
+  \(10^3\)–\(10^4\) s per length). The exact weights
+  \(3^{a_k}/2^k\) are themselves \(\tfrac13\)-million-bit ratios;
+  compressing them certifiably is the PARKED DK route. Positive
+  side-finding: `hug_charge_maximal` (Lean) proves the hug word
+  dominates every admissible walk, so a future certified
+  evaluation needs only the straight hug-profile sum — the DP
+  layer of the kill table is already subsumed by a Lean theorem.
 
 ## Decision
 
