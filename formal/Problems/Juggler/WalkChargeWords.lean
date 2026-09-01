@@ -131,9 +131,7 @@ theorem hugOdds_le_of_admissible (a : ℕ → ℕ) (k : ℕ)
 /-- One step adds at most one odd letter. -/
 theorem hugOdds_succ_le (k : ℕ) : hugOdds (k + 1) ≤ hugOdds k + 1 := by
   rw [hugOdds_succ]
-  cases h : hugIsEven (hugOdds k) k
-  · simp [h]
-  · simp
+  cases hugIsEven (hugOdds k) k <;> simp
 
 /-- The odd count is monotone in the prefix length. -/
 theorem hugOdds_mono {j k : ℕ} (h : j ≤ k) : hugOdds j ≤ hugOdds k := by

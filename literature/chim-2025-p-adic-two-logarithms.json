@@ -1,0 +1,21 @@
+{
+  "id": "chim-2025-p-adic-two-logarithms",
+  "title": "Lower bounds for linear forms in two p-adic logarithms",
+  "authors": ["Kwok Chi Chim"],
+  "year": 2025,
+  "identifiers": {
+    "doi": "10.1016/j.jnt.2024.07.012"
+  },
+  "url": {
+    "doi": "https://doi.org/10.1016/j.jnt.2024.07.012"
+  },
+  "problem_area": "transcendence",
+  "relevant_concepts": [
+    "p-adic linear forms in two logarithms",
+    "explicit valuation bounds",
+    "archimedean plus p-adic coupling"
+  ],
+  "project_relationship": "independent",
+  "status": "published-source",
+  "notes": "Journal of Number Theory 266 (2025) 295-349 (available online 21 August 2024). Explicit lower bounds for |alpha1^{b1} - alpha2^{b2}|_p with log B dependence, improving the (log B)^2 shape of Bugeaud-Laurent 1996; p-adic analogue of Gouillon. Relevant only to a possible later archimedean-plus-2-adic/3-adic coupling (Attack B), which is not opened here. Distinct from the closed modular residue-census programme: the opportunity would be simultaneous huge valuation and huge archimedean closeness, not a forbidden residue class."
+}

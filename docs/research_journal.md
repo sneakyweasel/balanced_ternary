@@ -18468,4 +18468,95 @@ Best next question
   the exact map's fibres remain parity plus interval
 ```
 
+## Juggler archimedean / p-adic coupling
+
+- **Date:** 2026-09-01
+- **Objective:** Test literature attack B: whether a hypothetical CycleMin cycle forces one quantity to be simultaneously archimedean-close (from \(2^L\approx 3^o\)) and of large 2-adic or 3-adic valuation (from the floor cells or the return), so that LTE or Chim-type two-\(p\)-adic-logarithm bounds become incompatible
+- **Hypotheses:** floor divisibility plus archimedean closeness of the same \(Q\) is a correlated-arithmetic obstruction, not another residue census and not a better Baker constant
+- **Major results:** Classification **PADIC_COUPLING_CLOSED**. For \(L,o\ge 1\), \(3^o-2^L\) is a 2-unit and a 3-unit (exact on leftovers \(19,84,569,1054\)). \(2^L/3^o\) has valuations \(L\) and \(-o\), so Chim's comparable-powers form does not apply at \(p=2,3\) and \(\lvert 2^L-3^o\rvert_p=1\). The closeness-to-1 forms \(v_2(3^o-1)\) and \(v_3(2^L-1)\) are \(O(\log L)\) and independent of \(\theta\). On a return, LTE gives \(v_2(\Delta)=v_2(n-1)\) because the gap is odd. Last-even \(\operatorname{powGap}\) on odd landings is odd (\(v_2=0\) at \(365/1517/1000057\) \(\mathtt{OOE}\)). Local \(\mathtt{OOE}\) remainders in \([13,400)\) have \(\max v_2=4\), \(\max v_3=5\). Conjecture `juggler_cycle_padic_coupling` REFUTED. Artifact `cycle_padic_coupling/summary.json`
+- **Refuted ideas:** same-quantity 2-adic/3-adic coupling of the finance gap; Chim at \(p=2,3\) on \(2^L\) versus \(3^o\); growing valuation of \(\Delta\) or of last-even defect chunks along near-convergents
+- **Literature:** Chim 2025 two \(p\)-adic logarithms (KNOWN; does not apply); Wu–Wang 2014 measure of \(\log 3\) (KNOWN; archimedean); Rhin / SdW (already closed as a Baker transfer)
+- **Open:** none from coupling one \((L,o)\) pair at \(p=2,3\)
+- **Decision:** CLOSE
+
+```text
+What was learned
+- 3^o − 2^L is never divisible by 2 or 3, so the finance
+  gap has no 2-adic/3-adic valuation to couple with
+- 2^L/3^o is close to 1 archimedeanly because it is far
+  from 1 in Q_2 and Q_3; Chim needs comparable powers
+- LTE on the return identity produces only v_2(n−1);
+  last-even powGap on an odd landing is odd
+- Wu–Wang / Rhin remain archimedean two-logarithm bounds;
+  they do not create a p-adic coupling quantity
+Strongest theorem
+- v_2(3^o−2^L)=v_3(3^o−2^L)=0 for L,o ≥ 1, and
+  v_2(n^{3^o−2^L}−1)=v_2(n−1) on odd CycleMin n
+  (EXACT — HUMAN PROOF; LTE is KNOWN)
+Strongest refutation
+- no quantity is both archimedean-small along
+  near-convergents and of growing 2-adic or 3-adic
+  valuation; Chim's form is vacuous at p=2,3
+Reusable machinery
+- cycle_padic_coupling.py (gap-unit lemma, LTE
+  predictors, realized-word valuation census)
+Branch status
+- CLOSE
+Why
+- the coupling target is empty: the identities are unique
+  factorization plus LTE, and the floor cells do not force
+  a growing 2-adic or 3-adic valuation on the same
+  quantity that finance makes small
+Best next question
+- none from archimedean / 2-adic / 3-adic coupling of one
+  (L,o) pair
+```
+
+## Juggler fan-growth measure (Attack C)
+
+- **Date:** 2026-09-01
+- **Objective:** Transfer Wu–Wang’s measure for \(1,\log 2,\log 3\) into a rigorous growth law for survivor-fan width, and check that the laboratory CF is consistent with it
+- **Hypotheses:** \(a_{j+1}\lesssim q_j^{3.116+\varepsilon}\) caps fan width polynomially but cannot force \(a=O(1)\) or prevent \(R_{\min}\to 1\)
+- **Major results:** Classification **WALK_FAN_GROWTH_GREEN**. Transfer (EXACT — HUMAN PROOF, citing Wu–Wang): fan width \(O_\varepsilon(q^{3.1163051+\varepsilon})\). Certified \(\alpha=[0;1,1,1,2,2,3,1,5,2,23,2,2,1,1,55,1,4]\) on the stored deep sandwich. Laboratory max \(a/\mathrm{cap}=2.827\cdot 10^{-4}\) at \(q=19\); the \(55\)-fan sits at \(4.190\cdot 10^{-16}\). Wu–Wang already allows \(R_{\min}\le 1.001\) at \(q\gtrsim 14\), so the bound is vacuous as a uniform gap. Observed continuation through \(q\sim 3\cdot 10^{20}\) (max \(a=37\)) stays below \(5.17\cdot 10^{-27}\). BLS 2018 sharpens the exponent by \(10^{-4}\) and is not a new attack. Conjecture record `juggler_walk_fan_growth_measure` proved; ledger row `J-cyclemin-walk-fan-growth`. Artifact `cycle_walk_fan_growth/summary.json`
+- **Refuted ideas:** none new (reading Wu–Wang as a leftover killer or as \(a=O(1)\) is rejected; the Baker/Rhin transfer stays REFUTED)
+- **Literature:** `wu-wang-2014-irrationality-measure-log3`; `bondareva-luchin-salikhov-2018-log3-irrationality`; `rhin-1987-pade-irrationality`; fan-minimum law (laboratory)
+- **Open:** none on this attack — sharper polynomial-shape measures do not change the conclusion
+- **Decision:** PROMOTE
+
+```text
+What was learned
+- Wu-Wang gives a real polynomial cap on survivor-fan
+  width, not a leftover killer and not a bounded-quotient
+  theorem
+- the laboratory 55-fan sits 16 orders below the
+  diagnostic envelope; the observed continuation through
+  10^20 is consistent with still larger margin
+- the same envelope already allows R_min ≤ 1.001 at
+  q ≳ 14, so every priced leftover already lives where
+  Wu-Wang permits R_min arbitrarily close to 1
+- importing a sharper Baker/irrationality constant of
+  the same polynomial shape cannot remove the fan
+  obstruction
+Strongest theorem
+- a_{j+1} = O_ε(q_j^{3.1163051+ε}) for the CF of
+  log 2/log 3, hence fan width O_ε(q^{3.116+ε})
+  (EXACT — HUMAN PROOF, citing Wu-Wang)
+Strongest refutation
+- none new; "Wu-Wang kills leftovers / forces a = O(1)"
+  is a false reading, not a new counterexample
+Reusable machinery
+- cycle_walk_fan_growth.py (interval CF of α, diagnostic
+  envelope, WW-allowed R_min scales)
+Branch status
+- PROMOTE
+Why
+- the Phase-0 target is answered by a clean transferred
+  width theorem plus a consistency census that also
+  shows the bound cannot prevent R_min → 1; stop here
+Best next question
+- does a genuine Juggler cycle force two or more
+  distinct fan-quality logarithmic relations
+  simultaneously (literature attack A)?
+```
+
 

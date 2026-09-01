@@ -1,8 +1,9 @@
 # Juggler coupled exponent-walk charge
 
-Status: **ACTIVE** (transport lemma proved; certified survey
-complete — period bound 176251 at floor 26254995; new-floor
-extension running)
+Status: **PROMOTE** (transport lemma proved; certified survey
+complete — period bound 176251 at floor 26254995; consolidated
+into Paper A Section 5 on 1 September 2026; new-floor extension
+PARKED partial)
 
 Refinement of the Paper A Section 5 state-distribution program
 ([juggler_cycle_finance.md](juggler_cycle_finance.md)), answering
@@ -231,16 +232,26 @@ Classification **WALK_CHARGE_GREEN**.
 
 ## Open questions
 
-- The new-floor extension: at \(N_0=162849448\) parity alone
-  re-derives 176250 and the certified walk kills \(176251\)
-  (margin 1.198, `new_floor_kills/L176251.json`); the parity
-  leftovers through \(6\cdot 10^5\) all require improvement
-  \(\le 7.04\) except \(L=478245\) (requires 19.5). Floor
-  verification and the 14 remaining leftover DPs are running;
-  if they land, the period bound becomes 478245's predecessor
+- The new-floor extension is **PARKED partial** (1 Sep 2026
+  consolidation): at \(N_0=162849448\) parity alone re-derives
+  176250 and the certified walk kills \(176251\) (margin 1.198,
+  `new_floor_kills/L176251.json`); \(10\) leftover DP kills are
+  landed under `new_floor_kills/` (176251, 202032, 226759,
+  252540, 277267, 303048, 327775, 353556, 428791, 453518 —
+  \(303048\) at margin \(8.44\)), but \(L=478245\) (requires
+  19.5) and the floor certificate itself are unfinished
+  (verification stopped near \(99.94\%\)). No period claim is
+  made from that floor; the certified bound stays \(176251\) at
+  \(26254995\). Reopening point: finish the floor certificate
+  and the \(478245\) DP, then one decide pass
 - Whether the walk charge plus run-pack composition tightens the
   thin \(1.12\) margin
-- Lean packaging of the envelope and transport lemma (optional)
+- Lean packaging of the transport lemma (optional; the word
+  identity, hug prefix-minimality, and Ostrowski quotient
+  arithmetic are Lean since the consolidation:
+  `WalkChargeWords.lean`, `OstrowskiSandwich.lean`,
+  `J-cyclemin-walk-word-identity`,
+  `J-cyclemin-walk-ostrowski-arithmetic`)
 
 ## Decision
 
@@ -255,8 +266,17 @@ The certified survey fixed the combined contiguous cutoff at
 
 ## Publication assessment
 
-If certified, this is the first length-only charge that kills a
-survivor-lattice seed below its parity ceiling — a Paper A
-Section 5 result (state-distribution finance), upgrading
-Theorem 4.6's architecture. Until the transport lemma is exact,
-the claim tag is **CONJECTURE** with strong numerics.
+Published. The transport lemma is exact
+(`J-cyclemin-walk-transport`, **EXACT — HUMAN PROOF**) and the
+certified survey is the period bound \(176251\)
+(`J-cyclemin-walk-charge-instance`, **COMPUTATIONALLY
+VERIFIED**). The 1 September 2026 consolidation absorbed the
+walk-charge program into Paper A Section 5
+([juggler_finite_dynamics_note.md](../theory/juggler_finite_dynamics_note.md)):
+transport is Theorem 5.3, the hug adversary Theorem 5.4, the
+word identity Lemma 5.6, the DK/Ostrowski envelope Theorem 5.7,
+the window theorem Theorem 5.8, and the kill table / period
+bound Theorem 5.9. The discrete word layer and the quotient
+arithmetic are Lean (`WalkChargeWords.lean`,
+`OstrowskiSandwich.lean`). The first length-only charge that
+kills a survivor-lattice seed below its parity ceiling.

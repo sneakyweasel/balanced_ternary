@@ -1,0 +1,29 @@
+{
+  "id": "juggler_cycle_padic_coupling",
+  "title": "Archimedean closeness of 2^L and 3^o couples with a large 2-adic or 3-adic valuation on the same cycle quantity",
+  "statement": "A hypothetical CycleMin cycle forces a single integer or p-adic-unit quantity Q to be simultaneously archimedean-close (from 2^L ≈ 3^o or from a floor-corrected form A + B log 2 + C log 3) and of large 2-adic or 3-adic valuation (from the floor cells or the return identity), so that lifting-the-exponent or Chim-type two-p-adic-logarithm bounds contradict in a way that residue-modular closure and archimedean Baker do not.",
+  "status": "REFUTED",
+  "counterexamples": [
+    "3^o − 2^L is odd and ≢ 0 (mod 3) for every leftover (L,o) through 176251: v_2 = v_3 = 0 (exact on 19,84,569,1054)",
+    "2^L/3^o has v_2 = L and v_3 = −o, so it is not a 2-adic or 3-adic unit; in Q_2 the ratio − 1 tends to −1 (v_2 = 0); Chim's |α^{b1} − α^{b2}|_p form does not apply at p=2,3",
+    "gap = 3^o − 2^L is odd, so LTE gives v_2(n^{gap} − 1) = v_2(n − 1) on odd n: the return identity Δ = n^{2^L}(n^{gap} − 1) has 2-adic valuation independent of L and of θ",
+    "last-even powGap on an odd landing is odd (v_2 = 0) at 25/OOOEE, 365/OOE, 1517/OOE, 1000057/OOE: no forced high 2-valuation in the defect assembly",
+    "OOE starts in [13,400): max v_2(ρ) = 4, max v_3(ρ) = 5, never ≥ 8; cell width already caps the local valuation"
+  ],
+  "first_seen": "2026-09-01",
+  "lean_reference": "global_defect_identity",
+  "literature": [
+    "chim-2025-two-p-adic-logarithms",
+    "wu-wang-2014-irrationality-log3",
+    "rhin-1987-pade-irrationality",
+    "simons-de-weger-2005-collatz-m-cycles",
+    "laurent-mignotte-nesterenko-1995-two-logarithms"
+  ],
+  "mathematical_domain": "Juggler cycle finance / p-adic linear forms in two logarithms",
+  "notes": "Phase 0 only. Distinct from the closed modular residue census and from the closed Baker/Rhin transfer. The Chim and Wu–Wang theorems remain valid; they do not apply to a Juggler coupling quantity at p=2,3. No floor raise, no Paper A edit, no ledger row, no Lean. Not a halt theorem.",
+  "origin": "docs/problems/juggler_cycle_padic_coupling.md",
+  "proof_reference": "docs/problems/juggler_cycle_padic_coupling.md",
+  "tested_range": "exact gaps L=19,84,569,1054; modular lemma through L=176251; LTE grid odd n≤99, k≤24; realized OE/OOE/OOOEE/OOEOOE at 13,25,365,1517,1000057; OOE local defects on [13,400)",
+  "not_a_halt_theorem": true,
+  "no_cycle_all_lengths": false
+}

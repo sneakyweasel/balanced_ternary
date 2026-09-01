@@ -1,0 +1,21 @@
+{
+  "id": "chim-2025-two-p-adic-logarithms",
+  "title": "Lower bounds for linear forms in two p-adic logarithms",
+  "authors": ["Kwok Chi Chim"],
+  "year": 2025,
+  "identifiers": {
+    "doi": "10.1016/j.jnt.2024.07.012"
+  },
+  "url": {
+    "doi": "https://doi.org/10.1016/j.jnt.2024.07.012"
+  },
+  "problem_area": "transcendence",
+  "relevant_concepts": [
+    "p-adic linear forms in two logarithms",
+    "upper bounds for v_p(α_1^{b_1} − α_2^{b_2})",
+    "non-archimedean Baker method"
+  ],
+  "project_relationship": "independent",
+  "status": "classical-source",
+  "notes": "Journal of Number Theory 266 (2025) 295-349. Explicit upper bounds for v_p(α_1^{b_1} − α_2^{b_2}) with log B dependence, a p-adic analogue of Gouillon. Applies when the two powers are p-adically comparable. At p=2 and p=3 the Juggler pair 2^L and 3^o have unequal valuation, so |2^L − 3^o|_p = 1 and the bound is vacuous. docs/problems/juggler_cycle_padic_coupling.md."
+}

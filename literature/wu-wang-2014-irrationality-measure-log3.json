@@ -1,0 +1,23 @@
+{
+  "id": "wu-wang-2014-irrationality-measure-log3",
+  "title": "On the irrationality measure of log 3",
+  "authors": ["Qiang Wu", "Lihong Wang"],
+  "year": 2014,
+  "identifiers": {
+    "doi": "10.1016/j.jnt.2014.03.007",
+    "mr": "MR3208402"
+  },
+  "url": {
+    "doi": "https://doi.org/10.1016/j.jnt.2014.03.007"
+  },
+  "problem_area": "transcendence",
+  "relevant_concepts": [
+    "linear independence measure of 1, log 2, log 3",
+    "irrationality measure of log 3",
+    "explicit linear forms in logarithms",
+    "partial-quotient polynomial bound"
+  ],
+  "project_relationship": "independent",
+  "status": "classical-source",
+  "notes": "Journal of Number Theory 142 (2014) 264-273. Effective measure |a + b log 2 + c log 3| >= H^{-4.1163051-epsilon} with H = max(|b|,|c|), hence mu(log 3) <= 5.1163051. Improves Rhin 1987 (8.616) and Salikhov 2007 (5.125). Implies a polynomial bound a_{j+1} << q_j^{3.1163+epsilon} on partial quotients of log 2/log 3, not a_{j+1}=O(1). Does not kill Juggler survivor fans (those sit at the exceptional approximants any such theorem must allow) and is not a Baker-transfer reopen; docs/problems/juggler_cycle_gap_baker.md stays REFUTED. Attack C packages the transfer as a fan-width theorem: docs/problems/juggler_cycle_walk_fan_growth.md. Also literature context for the fan-multipoint attack (A)."
+}

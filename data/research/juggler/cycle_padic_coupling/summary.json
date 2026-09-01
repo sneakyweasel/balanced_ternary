@@ -1,0 +1,203 @@
+{
+  "classification": "PADIC_COUPLING_CLOSED",
+  "decision": {
+    "classification": "PADIC_COUPLING_CLOSED",
+    "decision": "CLOSE",
+    "reason": "the finance gap is a 2-unit and a 3-unit; 2^L/3^o is not a 2-adic or 3-adic unit, so Chim's |\u03b1^{b1}\u2212\u03b1^{b2}|_p form does not apply at p=2,3; LTE on n^{gap}\u22121 is v_2(n\u22121) (gap odd) and does not grow with L or with \u03b8; last-even powGap on an odd landing is odd, so there is no forced high 2-valuation in the defect assembly"
+  },
+  "all_gaps_2_and_3_units": true,
+  "lte_grid_ok": true,
+  "any_coupled": false,
+  "leftover_exact": [
+    {
+      "L": 19,
+      "o": 12,
+      "v2": 0,
+      "v3": 0,
+      "matches_lemma": true,
+      "v2_3o_minus_1": 4,
+      "v3_2L_minus_1": 0
+    },
+    {
+      "L": 84,
+      "o": 53,
+      "v2": 0,
+      "v3": 0,
+      "matches_lemma": true,
+      "v2_3o_minus_1": 1,
+      "v3_2L_minus_1": 2
+    },
+    {
+      "L": 569,
+      "o": 359,
+      "v2": 0,
+      "v3": 0,
+      "matches_lemma": true,
+      "v2_3o_minus_1": 1,
+      "v3_2L_minus_1": 0
+    },
+    {
+      "L": 1054,
+      "o": 665,
+      "v2": 0,
+      "v3": 0,
+      "matches_lemma": true,
+      "v2_3o_minus_1": 1,
+      "v3_2L_minus_1": 1
+    }
+  ],
+  "unit_obstruction": [
+    {
+      "L": 19,
+      "o": 12,
+      "v2_of_ratio": 19,
+      "v3_of_ratio": -12,
+      "is_2_adic_unit": false,
+      "is_3_adic_unit": false,
+      "v2_of_ratio_minus_1": 0,
+      "v3_of_ratio_minus_1": -12,
+      "chim_form_at_2": false,
+      "chim_form_at_3": false
+    },
+    {
+      "L": 84,
+      "o": 53,
+      "v2_of_ratio": 84,
+      "v3_of_ratio": -53,
+      "is_2_adic_unit": false,
+      "is_3_adic_unit": false,
+      "v2_of_ratio_minus_1": 0,
+      "v3_of_ratio_minus_1": -53,
+      "chim_form_at_2": false,
+      "chim_form_at_3": false
+    },
+    {
+      "L": 25781,
+      "o": 16266,
+      "v2_of_ratio": 25781,
+      "v3_of_ratio": -16266,
+      "is_2_adic_unit": false,
+      "is_3_adic_unit": false,
+      "v2_of_ratio_minus_1": 0,
+      "v3_of_ratio_minus_1": -16266,
+      "chim_form_at_2": false,
+      "chim_form_at_3": false
+    }
+  ],
+  "cycle_lte": [
+    {
+      "n": 13,
+      "L": 19,
+      "v2_Delta": 2,
+      "v2_n_minus_1": 2,
+      "grows_with_L": false
+    },
+    {
+      "n": 261,
+      "L": 84,
+      "v2_Delta": 2,
+      "v2_n_minus_1": 2,
+      "grows_with_L": false
+    },
+    {
+      "n": 365,
+      "L": 19,
+      "v2_Delta": 2,
+      "v2_n_minus_1": 2,
+      "grows_with_L": false
+    }
+  ],
+  "realized": [
+    {
+      "n": 13,
+      "word": "OE",
+      "is_return": false,
+      "v2_delta": 0,
+      "v3_delta": 0,
+      "v2_n_minus_1": 2,
+      "last_chunk_v2": 2,
+      "cancellation_2": 0,
+      "max_local_v2": 1,
+      "max_local_v3": 4,
+      "coupled": false
+    },
+    {
+      "n": 25,
+      "word": "OOOEE",
+      "is_return": false,
+      "v2_delta": 3,
+      "v3_delta": 0,
+      "v2_n_minus_1": 3,
+      "last_chunk_v2": 0,
+      "cancellation_2": -3,
+      "max_local_v2": 2,
+      "max_local_v3": 1,
+      "coupled": false
+    },
+    {
+      "n": 365,
+      "word": "OOE",
+      "is_return": false,
+      "v2_delta": 2,
+      "v3_delta": 0,
+      "v2_n_minus_1": 2,
+      "last_chunk_v2": 0,
+      "cancellation_2": -2,
+      "max_local_v2": 2,
+      "max_local_v3": 0,
+      "coupled": false
+    },
+    {
+      "n": 1517,
+      "word": "OOE",
+      "is_return": false,
+      "v2_delta": 2,
+      "v3_delta": 0,
+      "v2_n_minus_1": 2,
+      "last_chunk_v2": 0,
+      "cancellation_2": -2,
+      "max_local_v2": 2,
+      "max_local_v3": 0,
+      "coupled": false
+    },
+    {
+      "n": 1000057,
+      "word": "OOE",
+      "is_return": false,
+      "v2_delta": 3,
+      "v3_delta": 0,
+      "v2_n_minus_1": 3,
+      "last_chunk_v2": 0,
+      "cancellation_2": -3,
+      "max_local_v2": 5,
+      "max_local_v3": 1,
+      "coupled": false
+    },
+    {
+      "n": 365,
+      "word": "OOEOOE",
+      "is_return": false,
+      "v2_delta": 2,
+      "v3_delta": 0,
+      "v2_n_minus_1": 2,
+      "last_chunk_v2": 0,
+      "cancellation_2": -2,
+      "max_local_v2": 2,
+      "max_local_v3": 0,
+      "coupled": false
+    }
+  ],
+  "local_window": {
+    "word": "OOE",
+    "lo": 13,
+    "hi": 400,
+    "checked": 53,
+    "max_local_v2": 4,
+    "max_local_v3": 5,
+    "v2_at_least_8": 0
+  },
+  "not_a_halt_theorem": true,
+  "not_residue_census": true,
+  "not_baker_reopen": true,
+  "git_commit": "f0d968df72946bf84e3184a2f470c0b9e6861338"
+}

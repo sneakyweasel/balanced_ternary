@@ -18,7 +18,7 @@ bt.*                        problem-independent BT mathematics
 
 ## Juggler reading path
 
-1. [docs/theory/juggler_finite_dynamics_note.md](docs/theory/juggler_finite_dynamics_note.md) — Paper A: cycle-length lower bounds (word obstructions + finance)
+1. [docs/theory/juggler_finite_dynamics_note.md](docs/theory/juggler_finite_dynamics_note.md) — Paper A: cycle-length lower bounds (word obstructions + finance + the §5 walk-charge envelope; lab extract in [juggler_walk_charge_note.md](docs/theory/juggler_walk_charge_note.md))
 2. [docs/theory/juggler_parity_discrepancy_note.md](docs/theory/juggler_parity_discrepancy_note.md) — Paper B: parity discrepancy of nested floor powers
 3. [docs/juggler_branch_ledger.md](docs/juggler_branch_ledger.md) — every branch, decision, and strongest evidence
 4. [docs/theory/juggler_cycle_finance_note.md](docs/theory/juggler_cycle_finance_note.md) and [docs/theory/juggler_run_survivor_lattice_note.md](docs/theory/juggler_run_survivor_lattice_note.md) — the cycle frontier
@@ -31,20 +31,28 @@ for external review.
 
 ## Juggler state of the problem
 
-- **Cycles:** no nontrivial cycle of period \(\le 50507\) (laboratory
-  certified descent floor \(N_0=26254995\),
-  `J-residual-floor-twenty-six-million` /
-  `J-cycle-period-fifty-thousand`; Paper A still prints the \(10^6\)
-  instance, cutoff \(25780\)). First survivor \(L=50508\) with
-  \(n_{\max}^{\mathrm{par}}=1.63\cdot 10^8\); \(19\) parity leftovers
-  through \(2\cdot 10^5\). At the published floor the survivors are the
-  \(99\)-length lattice on the unimodular basis
-  \((25781,16266),(1054,665)\) (`RunSurvivorLattice.lean`). Killing
-  leftovers is Diophantine (\(|3^o-2^L|\) near-convergents); the direct
-  Baker/SdW transfer is **REFUTED** (`juggler_cycle_gap_baker`), the
-  Paper A × Paper B merge is CLOSE (`juggler_cycle_paper_merge`), and
-  further \(N_0\) campaigns are PARK — the \(10^7\)/\(10^8\) decades buy
-  nothing; the next useful floor is \(1.63\cdot 10^8\).
+- **Cycles:** no nontrivial cycle of period \(<176251\) at the
+ laboratory certified descent floor \(N_0=26254995\)
+ (`J-residual-floor-twenty-six-million`,
+ `J-cycle-period-fifty-thousand`, `J-cyclemin-walk-charge-instance`).
+ Since the 1 Sep 2026 consolidation Paper A prints that floor: parity
+ cutoff \(50507\) (§5.1), then the walk-charge envelope — transport,
+ hug adversary, word identity, Denjoy–Koksma over certified Ostrowski
+ blocks, window theorem on \([50508,301994)\) — gives period
+ \(\ge 176251\) (§5.2–5.7); the \(10^6\) base instance and the
+ \(99\)-length survivor lattice on \((25781,16266),(1054,665)\)
+ (`RunSurvivorLattice.lean`) stay in §4. Discrete word layer and
+ quotient arithmetic are Lean (`WalkChargeWords.lean`,
+ `OstrowskiSandwich.lean`). The walk program is terminal: the
+ fan-minimum reduction (`juggler_walk_fan_minimum_law`, CONJECTURE)
+ ties further asymptotic progress to unbounded partial quotients of
+ \(\log 2/\log 3\) — classical OPEN. The \(162849448\) floor
+ extension is PARKED partial (10 DP kills landed, \(478245\) and the
+ floor certificate unfinished — no period claim). Killing the
+ remaining near-convergents (first \(176251\)) is Diophantine; the
+ direct Baker/SdW transfer is **REFUTED** (`juggler_cycle_gap_baker`),
+ the Paper A × Paper B merge is CLOSE (`juggler_cycle_paper_merge`),
+ and further \(N_0\) campaigns are PARK.
 - **Termination:** certified descent density \(29/32\); the pointwise route
   is parked behind the \(K_3\) obstruction ladder BB/GG/JJ. Not claimed.
 - **Local attacks are closed.** Fibres are parity + interval only

@@ -1,0 +1,21 @@
+{
+  "id": "mathoverflow-2012-powers-2-3",
+  "title": "Distance between powers of 2 and powers of 3",
+  "authors": ["MathOverflow contributors"],
+  "year": 2012,
+  "identifiers": {
+    "mathoverflow": "116840"
+  },
+  "url": {
+    "html": "https://mathoverflow.net/questions/116840/distance-between-powers-of-2-and-powers-of-3"
+  },
+  "problem_area": "transcendence",
+  "relevant_concepts": [
+    "separation of neighboring 2-powers and 3-powers",
+    "exponent-shift gap",
+    "Matveev-type consequences for |2^p - 3^q|"
+  ],
+  "project_relationship": "independent",
+  "status": "expository",
+  "notes": "MathOverflow 116840 (2012). Records the elementary observation that if 2^t is unusually close to a 3-power, then 2^{t+1} sits in the middle of the neighboring 3-powers and is substantially farther away; also the standard Matveev-shape lower bound |2^p-3^q| >= max(2^p,3^q)/(e max(p,q))^C. The neighbor relation here is an exponent shift by 1, not a continued-fraction fan step Q. Cited as the separation geometry behind Attack A; the Phase-0 probe tests whether a Juggler cycle actually forces two exponent-neighbor approximations."
+}

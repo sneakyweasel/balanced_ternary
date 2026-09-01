@@ -1,7 +1,7 @@
 ---
 title: Cycle financing and a period lower bound for the Juggler map
 author: Philippe Cochin
-date: 31 August 2026
+date: 1 September 2026
 keywords:
   - Juggler map
   - Juggler sequence
@@ -36,12 +36,20 @@ finite accumulated budget. For a hypothetical cycle of length
 n\log n\cdot(3^o-2^L)\le L\cdot 3^o.
 \]
 As a consequence, combining the inequality with the known
-verification through \(10^6\) yields \(L\ge 25781\). The novelty
-is not a new computational record; it is that implication. We
+verification through \(10^6\) yields \(L\ge 25781\); at the
+laboratory-certified descent floor \(N_0=26254995\) the same
+table yields \(L\ge 50508\). The novelty is not a new
+computational record; it is that implication. A census-free
+walk-charge envelope — transport of the floor losses to a
+reduced base, identification of the extremal exponent walk as a
+rotation word, and a Denjoy--Koksma bound over certified
+Ostrowski blocks — then extends the exclusion at the laboratory
+floor: any nontrivial cycle has period at least \(176251\). We
 also prove that every nontrivial cycle contains at least four
-even steps, and hence has period at least eleven. The core
-arguments are formalized in Lean 4; the finite numerical tables
-are independently certified computations.
+even steps, and hence has period at least eleven; that bound
+uses no descent floor. The core arguments are formalized in
+Lean 4; the finite numerical tables are independently certified
+computations.
 
 **2020 Mathematics Subject Classification.** 11B83, 37P99, 11Y55.
 
@@ -75,10 +83,11 @@ n\log n\cdot(3^o-2^L)\le L\cdot 3^o.
 The inequality \(\log(1+u)\le u\) is the only analytic input; it
 is not the content of the theorem.
 
-Write \(N_0=10^6\) for the *verified descent floor* reported by
-Weisstein [5] and recomputed here by exact first-passage. That
-floor is an input, not the result. Combined with Theorem 4.4 it
-gives
+Write \(N_0\) for a *verified descent floor*: every start
+\(2\le n\le N_0\) reaches \(1\). A floor is an input, not the
+result. Two instances are used. The base instance is
+\(N_0=10^6\), reported by Weisstein [5] and recomputed here by
+exact first-passage. Combined with Theorem 4.4 it gives
 \[
 \text{known verification through }10^6
 \ +\
@@ -86,7 +95,11 @@ gives
 \quad\Rightarrow\quad
 L\ge 25781.
 \]
-The architecture is
+The laboratory instance is \(N_0=26254995\), certified by the
+same exact first-passage method (Proposition 5.1); the same
+table then gives \(L\ge 50508\) (Theorem 5.2), and the
+walk-charge envelope of Section 5 amplifies it to
+\(L\ge 176251\) (Theorem 5.9). The architecture is
 \[
 \text{envelope}
 \to
@@ -96,11 +109,25 @@ The architecture is
 \to
 n_{\max}(L)
 \to
-N_0=10^6
+N_0
 \to
-L\ge 25781.
+L\ge 25781\ \text{at}\ 10^6,
 \]
-The computation supplies the endpoint \(10^6\). The mathematics
+extended at the laboratory floor by
+\[
+\text{transport}
+\to
+\text{hug adversary}
+\to
+\text{word identity}
+\to
+\text{Denjoy--Koksma}
+\to
+\text{window}
+\to
+L\ge 176251.
+\]
+The computation supplies the endpoint \(N_0\). The mathematics
 amplifies that floor to the period bound.
 
 Roadmap. Section 2 records the power envelope and the exact
@@ -113,7 +140,13 @@ and applies it at the known floor \(10^6\). The necklace is
 the geometry of the unroll, not a fourth main theorem. A
 run-type packing of the same identity is a supporting
 refinement; the arithmetic of the leftover lengths is
-secondary.
+secondary. Section 5 certifies the laboratory floor
+\(26254995\), replaces the length-only charge by a coupled
+exponent-walk charge, identifies its extremal word as a
+rotation word, and proves a census-free envelope for every
+length in the window \([50508,301994)\); the resulting kill
+table gives the period bound \(176251\). Section 6 records
+limitations.
 
 Throughout, \(\mathbb N=\{1,2,3,\ldots\}\). Write \(J^k\) for the
 \(k\)-fold iterate. A nonempty realized word \(w\) with
@@ -148,9 +181,23 @@ not use the verified descent floor.
 Combined with the independently verified descent floor \(N_0=10^6\),
 there is no nontrivial Juggler cycle of length at most \(25780\).
 Equivalently, any nontrivial cycle has period at least \(25781\)
-(Theorem 4.6(A)).
+(Theorem 4.6(A)). At the laboratory-certified floor
+\(N_0=26254995\) the same table gives period at least \(50508\)
+(Theorem 5.2).
 
-These three statements are not interchangeable. Theorem 4.4 is
+**Contribution 4 — census-free walk-charge envelope.**
+On a minimum-based cycle every state is coupled through one
+closed exponent walk. Transport of the floor losses to a
+reduced base (Theorem 5.3), identification of the extremal walk
+as the rotation (hug) word (Theorem 5.4, Lemma 5.6), and a
+Denjoy--Koksma bound over certified Ostrowski blocks
+(Theorem 5.7) give a uniform envelope for every length in the
+window \([50508,301994)\) (Theorem 5.8). At the laboratory
+floor the resulting kill table leaves a single finance survivor
+below \(2\cdot 10^5\): any nontrivial cycle has period at least
+\(176251\) (Theorem 5.9).
+
+These statements are not interchangeable. Theorem 4.4 is
 the conceptual sharp inequality (constant \(1\)). Corollary 4.5
 is the convenient length-only statewise bound that turns a
 descent floor into a per-length exclusion. Theorem 4.6 is the
@@ -200,9 +247,16 @@ The layers of the argument are as follows.
    floor \(10^6\).
 7. *Supporting organization:* the run-packing refinement of the
    same defect sum (Theorem 4.7).
+8. *Classical ideas:* the Denjoy--Koksma inequality and
+   Ostrowski numeration, used as known tools in Section 5.
+9. *New theorem:* the reduced-base transport and the uniform
+   window envelope of Section 5 (Theorems 5.3 and 5.8).
+10. *New consequence:* period at least \(176251\) at the
+    laboratory floor \(26254995\) (Theorem 5.9).
 
-Financing as an idea, logarithmic step inequalities, and the
-continued-fraction phenomenon are not claimed as new. The
+Financing as an idea, logarithmic step inequalities, the
+continued-fraction phenomenon, the Denjoy--Koksma inequality,
+and Ostrowski numeration are not claimed as new. The
 argument below is elementary and independent of the Diophantine
 tools of [12]: floor-power defects are relatively \(O(1/x)\) in
 logarithms, so a uniform logarithmic floor-error bound, valid
@@ -215,7 +269,11 @@ produces are new.
 For this nonlinear floor-power map, exact floor defects convert
 into a cycle-financing inequality that forces the minimum of a
 hypothetical cycle below the independently verified descent
-region unless the period is at least \(25781\).
+region unless the period is at least \(25781\). Coupling the
+states through the closed exponent walk and bounding the
+extremal rotation word by Denjoy--Koksma over certified
+Ostrowski blocks raises that period bound to \(176251\) at the
+laboratory floor, census-free on an explicit window of lengths.
 
 ### 1.2 Verification
 
@@ -240,15 +298,24 @@ regeneration commands are Appendix B.
 
 **Roles.** Independently proved: the finance inequality
 (Theorem 4.4). Computational input: every \(2\le n\le 10^6\)
-reaches \(1\) (this proposition). Independently recomputed: the
-exact first-passage run of Appendix B. Not proved: global
+reaches \(1\) (this proposition), and every
+\(2\le n\le 26254995\) reaches \(1\) (Proposition 5.1, the
+laboratory instance). Independently recomputed: the exact
+first-passage runs of Appendix B. Not proved: global
 termination.
 
 Theorem 4.6 applies Corollary 4.5 to this input and certifies
 the table with the conservative coefficient \(6/5\). Theorem 4.7
 is a human proof; Theorem 4.8 reuses the gap table under that
-packing. Proposition 4.9 is integer arithmetic in Lean. This is
-not a claim that the paper as a whole is formally verified.
+packing. Proposition 4.9 is integer arithmetic in Lean. In
+Section 5, Theorems 5.3, 5.4, and 5.7, Lemma 5.6, and the
+digit-cap step of Theorem 5.8 are human proofs (Denjoy--Koksma
+is used as a known tool); Theorems 5.2 and 5.9 and the scan
+sharpening of Theorem 5.8 are independently certified
+computations at the laboratory floor, with the same trust
+boundary as Theorem 4.6 (exact integer arithmetic plus guarded
+float comparisons). This is not a claim that the paper as a
+whole is formally verified.
 
 ```text
 Repository:  https://github.com/sneakyweasel/balanced_ternary
@@ -992,7 +1059,7 @@ charge of the same sum, not a uniqueness theorem for the
 actual word. Expanding blocks can climb and a later \(OE\) can
 drop without crossing the anchor: four consecutive expanding
 blocks occur already at the certified start \(1999\) recorded
-in Section 5.
+in Section 6.
 
 #### Closure and the entry cell
 
@@ -1455,7 +1522,279 @@ the \(141\) lengths of Theorem 4.6(B) places each pair
 \((L,o_{\min})\) on the displayed lattice, with the \(42\)
 packing deaths the \(F_1\) continuation \(b\ge 29\). \(\square\)
 
-## 5. Limitations and future directions
+## 5. The laboratory instance and the walk-charge envelope
+
+Everything in Sections 2--4 is floor-generic: Corollary 4.5
+accepts any verified descent floor. This section first records
+a second, laboratory-certified instance of the same
+architecture, then replaces the length-only charge by a coupled
+exponent-walk charge. The extremal walk is identified exactly
+as a rotation word, and a Denjoy--Koksma bound over certified
+Ostrowski blocks produces an envelope valid for *every* length
+in an explicit window — no per-length census and no dynamic
+program is needed on that window. The kill table at the
+laboratory floor then yields the period bound \(176251\).
+Throughout, survivors are finance-survivors in the sense of
+Section 1; nothing here is a halt theorem.
+
+### 5.1 The laboratory floor
+
+**Proposition 5.1 (laboratory descent floor; certified
+computational input).**
+Every integer \(2\le n\le 26254995\) reaches \(1\). Precisely:
+an exact-integer first-passage run records, for each such
+\(n\), a finite realized word with image strictly below the
+start; strong induction on that image reaches \(1\). The run
+walks the \(13127497\) odd starts (even starts descend by
+\(E\)) over \(106\) contiguous chunk records. Three bit-cap
+seeds (\(7110201\), \(13184021\), \(13782577\)) are resolved
+exactly at a \(512\cdot 10^6\)-bit cap with exact integer
+square roots, the largest intermediate having \(298912128\)
+bits (seed \(7110201\)); the maximum first passage is \(325\)
+steps (seed \(15909091\)). Certificate hashes are in
+Appendix B. The floor \(26254995=n_{\max}(25781)\) is the
+cheapest floor that moves the Theorem 4.6 cutoff.
+
+**Theorem 5.2 (raised cutoff; verified computation).**
+At \(N_0=26254995\) the parity table of Theorem 4.6 excludes
+every length \(L\le 50507\): any nontrivial Juggler cycle has
+period at least \(50508\). The first finance survivor is
+\(L=50508\) with \(n_{\max}(50508)=162848325\); \(19\) parity
+survivors remain through \(L=2\cdot 10^5\) (run packing leaves
+\(11\) at the same cutoff).
+
+*Proof.* Proposition 5.1 supplies the floor; Corollary 4.5 and
+the gap table of Proposition 4.4a exclude every \(L\) with
+\(n_{\max}(L)\le 26254995\). The contiguous excluded prefix is
+\(L\le 50507\); checksums are Appendix B. \(\square\)
+
+### 5.2 Transport to a reduced base
+
+The parity and run-pack tables price valleys independently. On
+a real minimum-based cycle every state is coupled through one
+closed exponent walk. With \(a_k\) the number of odd letters
+among the first \(k\), set
+\[
+u_k=(1+\mu)a_k-k,\qquad \mu=\log_2(3/2).
+\]
+The defect-free floors give the upper envelope
+\(x_k\le n^{2^{u_k}}\), and cycle minimality forces
+\(u_k\ge 0\) at every step. The lower envelope requires
+controlling the accumulated floor losses; that is the transport
+lemma.
+
+**Theorem 5.3 (transport).**
+On a minimum-based cycle with minimum \(n\ge 400\), length
+\(L\), \(o\) odd and \(e\) even letters, every state satisfies
+\[
+x_k\ \ge\ \bigl(n\,e^{-D}\bigr)^{w_k},
+\qquad
+w_k=2^{u_k},
+\qquad
+D=\frac{1.05\,e}{n}+\frac{0.7\,o}{n^{3/2}}.
+\]
+
+*Proof.* Write \(\ln x_k\ge w_k\ln n-E_k\). The floor losses
+give the recursion \(E'\le\tfrac32E+1.05\,x^{-3/2}\) at an odd
+letter and \(E'\le\tfrac12E+1.05\,x^{-1/2}\) at an even letter,
+using \(-\ln(1-t)\le 1.05\,t\) on \(t\le 0.05\). Unrolling, the
+amplification from injection \(j\) to state \(k\) is exactly
+\(w_k/w_{j+1}\). Odd injections have \(x_j\ge n\) and
+\(w_{j+1}\ge\tfrac32\), contributing at most \(0.7\,n^{-3/2}\)
+each; even injections have \(x_j\ge n^2\) (Theorem 3.2(iii))
+and \(w_{j+1}\ge 1\), contributing at most \(1.05/n\) each.
+Hence \(E_k\le w_k D\). \(\square\)
+
+Consequently the cyclic defect sum \(\sum_i 1/(x_i\ln x_i)\) is
+bounded above by the maximum of the walk charge
+\(\sum_k g(u_k)\), \(g(u)=1/(n'^{2^u}2^u\ln n')\), over all
+nonnegative closed exponent walks with \(o\) up-steps,
+evaluated at the *reduced base* \(n'=n\,e^{-D}\). No free
+parameter remains; the walk value feeds the \(6/5\) unroll of
+Theorem 4.4 exactly as the parity charge did. At the laboratory
+floor and window lengths, \(D\le 4.6\cdot 10^{-3}\), so
+\(\ln n'\ge 17.07\).
+
+### 5.3 The adversary is the hug word
+
+**Theorem 5.4 (hug exchange).**
+Among nonnegative exponent walks with prescribed \((L,o)\), the
+*hug word* — take \(E\) at every step where \(u\ge 1\), else
+\(O\) — is the unique prefix-minimal admissible path. Since
+\(g\) is strictly decreasing in \(u\), the hug word uniquely
+maximises the walk charge.
+
+*Proof.* At the first disagreement with any other admissible
+word, the hug word holds \(E\) where the other holds \(O\),
+because hug takes \(O\) only when \(E\) is illegal and the two
+words share the same prefix state. The odd-count gap
+\(\delta_k=a_k(\text{other})-a_k(\text{hug})\) is a path with
+steps in \(\{-1,0,+1\}\) that cannot go negative, since
+\(\delta=0\) restores the same state. Feasible pairs
+(\((1+\mu)o\ge L\)) never strand: when the odd budget is
+exhausted, \(u=\text{surplus}+e_{\mathrm{left}}
+\ge e_{\mathrm{left}}\), so the remaining evens are legal.
+Prefix-minimality plus strict monotonicity of \(g\) gives
+unique maximality. The prefix-minimality core is Lean:
+`hugOdds_le_of_admissible`. \(\square\)
+
+The statement is about the \(u\ge 0\) relaxation, not about
+realized cycle words. Word-order (Christoffel) prefix-dominance
+is *false* for this family — the greedy word \(OOEO\) beats
+\(OOOE\) at \((L,o)=(4,3)\) — so the exchange argument above,
+not a dominance order, is the correct mechanism.
+
+**Proposition 5.5 (rotation average).**
+The infinite hug walk is the rotation by \(\alpha=\log_2(3/2)\)
+on \(\mathbb R/(1+\alpha)\mathbb Z\). Unique ergodicity gives
+the charge-per-letter
+\[
+C_*(n')=\frac1{\ln 3}\int_1^3 n'^{\,1-t}\,t^{-2}\,dt
+\ <\ \frac1{\ln 3\,\ln n'} .
+\]
+
+*Proof.* Substituting \(s=(t-1)\ln n'\) gives
+\(C_*=\frac1{\ln 3\,\ln n'}\int_0^{2\ln n'}
+e^{-s}(1+s/\ln n')^{-2}\,ds\), and the integrand is at most
+\(e^{-s}\). \(\square\)
+
+This is the infinite-word average, not a finite-\(L\)
+inequality: on the certified survey the finite leftover charge
+exceeds \(C_*\) by up to \(1.57\cdot 10^{-5}\), so
+\(C_L\le C_*\) is false. The next two subsections quantify the
+finite-\(L\) error.
+
+### 5.4 Word identity
+
+Write \(C_L\) for the charge-per-letter of the budgeted hug
+word at \((L,o_{\min}(L))\).
+
+**Lemma 5.6 (word identity).**
+For every \(L\), the budgeted hug word at \((L,o_{\min}(L))\)
+equals the exact rotation \(L\)-prefix generated by the integer
+rule: \(E\) at step \(k\) if and only if \(3^a\ge 2^{k+1}\),
+where \(a\) is the number of odd letters already used. In
+particular \(C_L\) is a Birkhoff average of the rotation.
+
+*Proof.* The exact rule keeps \(u\in[0,1+\alpha)\), so its
+\(L\)-prefix uses exactly
+\(o_{\min}=\lceil L\log 2/\log 3\rceil\) odd letters. A first
+budget-forced divergence between the two words would make the
+exact prefix use more of one letter than its own total, which
+is impossible. Lean: `budgetedWord_eq_hugWord`, with the window
+invariant `hugOdds_pow_ge` / `hugOdds_pow_lt` and minimality
+`hugOdds_least` (`WalkChargeWords.lean`). \(\square\)
+
+### 5.5 Denjoy--Koksma over certified Ostrowski blocks
+
+**Theorem 5.7 (block envelope).**
+For the exact rotation prefix of length \(L\) at reduced base
+\(n'\),
+\[
+\bigl|C_L-C_*(n')\bigr|\ \le\ \frac{2\,s(L)}{L},
+\qquad
+s(L)=\sum_j b_j,
+\]
+for any decomposition \(L=\sum_j b_jq_j\) into convergent
+denominators \(q_j\) of \(\theta=\log(3/2)/\log 3\).
+
+*Proof.* The observable \(F(u)=n'^{\,1-2^u}/2^u\) decreases on
+the circle from \(F(0)=1\), so its variation including the wrap
+jump is \(<2\). The Denjoy--Koksma inequality (known) bounds
+the ergodic sum of each block of length \(q_j\) within
+\(\mathrm{Var}(F)\) of \(q_jC_*\). Summing the \(s(L)\) blocks
+gives the display. \(\square\)
+
+The denominator list
+\[
+1,\,2,\,3,\,8,\,19,\,65,\,84,\,485,\,1054,\,24727,\,50508,\,
+125743,\,176251
+\]
+is certified by an interval continued fraction on the
+big-integer sandwich \(2^{17087915}>3^{10781274}\) and
+\(2^{16785921}<3^{10590737}\). The sandwich, the resulting real
+bounds on \(\theta\), the shared quotient prefix of the two
+rational endpoints, and the convergent recurrence are Lean
+(`theta_sandwich_upper`, `theta_sandwich_lower`,
+`lower_lt_walkTheta`, `walkTheta_lt_upper`, `cf_lower_prefix`,
+`cf_upper_prefix`, `theta_convergent_denominators`,
+`OstrowskiSandwich.lean`); the cylinder-interval bridge from the
+endpoints to \(\theta\) itself is classical. A Koksma-type bound
+with constant \(1\) (that is, \(+1/L\)) is *false* for this
+observable; the correct constant is \(2s(L)\).
+
+### 5.6 The window theorem
+
+**Theorem 5.8 (uniform window envelope).**
+For every \(L\in[50508,\,301994)\), at the laboratory floor,
+\[
+C_L\ \le\ C_*(n')+\frac{2\,s(L)}{L}\ <\ \frac1{\ln 3\,\ln n'}.
+\]
+
+*Proof.* Greedy Ostrowski digits obey \(b_j\le a_{j+1}\), so
+with the certified quotients
+\(\theta=[0;2,1,2,2,3,1,5,2,23,2,2,1,\ldots]\) the digit sum on
+the window satisfies \(s(L)\le 47\). The transport deficit
+keeps \(\ln n'\ge 17.07\), hence
+\[
+\frac{2\,s(L)}{L}\le\frac{94}{50508}=1.87\cdot 10^{-3}
+<0.00514\le\frac1{\ln 3\,\ln n'}-C_*(n'),
+\]
+the last gap from \(\int_0^{2\ln n}e^{-s}(1+s/\ln n)^{-2}ds
+\le 1-2/\ln n+6/(\ln n)^2\). Conclude by Lemma 5.6 and
+Theorem 5.7. \(\square\)
+
+*Scan sharpening (verified computation).* An exact scan of all
+\(251486\) window lengths gives max digit sum \(s=37\) (at
+\(L=275632\)) and a uniform envelope margin of at least
+\(5.48\). The window theorem is census-free; the scan only
+sharpens the constants.
+
+### 5.7 Kill table and the period bound
+
+The envelope controls the charge; kill decisions are the
+per-length finance comparison
+\(\theta(L)>\tfrac65\,B(L)\cdot\text{guard}\) of the
+Theorem 4.6 architecture, which is Diophantine, not
+envelope-limited.
+
+**Theorem 5.9 (verified computation; period bound at the
+laboratory floor).**
+At \(N_0=26254995\), the walk charge of Theorem 5.3 excludes
+\(18\) of the \(19\) parity survivors of Theorem 5.2 through
+\(L=2\cdot 10^5\). Kill margins run from \(1.1204\) at the seed
+\(L=50508\) (required improvement over parity \(6.87\), walk
+supplies \(7.70\); deficit \(D=7.4566\cdot 10^{-4}\)), through
+\(1.1195\) and \(1.1187\) at its multiples \(101016\) and
+\(151524\), up to \(7.69\) at the parity-marginal lengths. The
+sole walk survivor is \(L=176251\) (margin \(0.159\); required
+improvement \(48\)). The combined parity + walk contiguous
+excluded prefix is \(176250\): any nontrivial Juggler cycle has
+period at least \(176251\).
+
+*Proof.* Theorem 5.2 leaves the \(19\) parity survivors. Each
+is priced by the exact \((\text{step},\text{odd-count})\)
+lattice dynamic program at the reduced base (Theorem 5.3) and
+compared against \(\theta(L)\) under the \(6/5\) unroll;
+substituting the census-free envelope of Theorem 5.8 instead
+recovers the same \(18\) kills (margin \(1.1196\) at
+\(L=50508\); \(L=176251\) survives at \(0.1588\)). Checksums
+are Appendix B. \(\square\)
+
+*Calibration.* At the base instance \((L,N_0)=(25781,10^6)\)
+the walk charge gives margin \(0.196\) — correctly no kill
+(required improvement \(32.5\), walk supplies \(6.37\)). The
+mechanism did not change between the two floors; the target
+did.
+
+Beyond \(q_{13}=301994\) the window theorem needs deeper
+certified quotients of \(\theta\), and killing the remaining
+near-convergent survivors (starting with \(L=176251\)) is a
+Diophantine question about \(|3^o-2^L|\); neither is attempted
+here. The survivors are finance-survivors, not candidate
+cycles, and nothing in this section is a halt theorem.
+
+## 6. Limitations and future directions
 
 The result does not imply termination. The remaining
 finance-survivor lengths are uncontrolled, and existence of a
@@ -1494,8 +1833,8 @@ The Juggler-specific content is the interaction of \(x^{3/2}\)
 and \(x^{1/2}\). Analogous questions for other piecewise
 floor-power maps are not taken up here.
 
-Lean names are in Appendix A. The computational certificate is
-Proposition 1.3.
+Lean names are in Appendix A. The computational certificates
+are Propositions 1.3 and 5.1.
 
 ## Appendix A. Lean names
 
@@ -1556,7 +1895,16 @@ formally verified.
 | Theorem 4.7 | run-type packing; human proof, not Lean |
 | Theorem 4.8 | run-type table; verified computation, not Lean |
 | Proposition 4.9 | `run_survivor_unimodular`, `run_survivor_seed_F2`, `run_survivor_seed_F3`, `three_pow_step_gt_two_pow_step`, `runSurvivors_length` |
-| short certificates (Section 5) | `even_finiteProgress`, `odd_even_finiteProgress` |
+| Proposition 5.1 | laboratory floor; certified computation, not Lean |
+| Theorem 5.2 | raised cutoff; verified computation, not Lean |
+| Theorem 5.3 | transport; human proof, not Lean |
+| Theorem 5.4 | combinatorial core `hugOdds_le_of_admissible`; charge maximisation is a human proof |
+| Proposition 5.5 | rotation average; human proof, not Lean |
+| Lemma 5.6 | `budgetedWord_eq_hugWord`, `hugOdds_pow_ge`, `hugOdds_pow_lt`, `hugOdds_least` |
+| Theorem 5.7 | Denjoy--Koksma (known), not Lean; quotient arithmetic `theta_sandwich_upper`, `theta_sandwich_lower`, `lower_lt_walkTheta`, `walkTheta_lt_upper`, `cf_lower_prefix`, `cf_upper_prefix`, `theta_convergent_denominators` |
+| Theorem 5.8 | window envelope; human proof + certified scan, not Lean |
+| Theorem 5.9 | kill table; verified computation, not Lean |
+| short certificates (Section 6) | `even_finiteProgress`, `odd_even_finiteProgress` |
 | no certificate \(\Rightarrow\) odd-to-odd | `no_finiteProgress_implies_odd_odd` |
 | induction to \(1\) | `reachesOne_of_all_finiteProgress` |
 | four-block chain | `four_block_pe_1999` |
@@ -1623,6 +1971,24 @@ of Section 3 are the Lean `native_decide` evaluations named in
 Appendix A (`LeftoverEval.lean`, `LeftoverShort.lean`,
 `LeftoverFamilies.lean`). The lattice arithmetic of
 Proposition 4.9 is `RunSurvivorLattice.lean`.
+
+The laboratory instance of Section 5 has its own artifacts. The
+first-passage certificate of Proposition 5.1 is
+`data/research/juggler/cycle_finance/floor_verify/N26254995/certificate.json`;
+the SHA-256 of its chunk records is
+`cbcbb540dd860b775d2a3b4351f7cf779609104d3aaf30c342aed6b87f36c9dc`.
+The parity survivor list of Theorem 5.2 has SHA-256
+`d5946efdfac95c715ea46c81979a0eeaf40ad8a1dc893d161bab84ffa7f2afd9`.
+The walk-charge kill table of Theorem 5.9 is
+`data/research/juggler/cycle_walk_charge/survey.json`; the
+SHA-256 of the walk-alive list is
+`225d76ad12802a690934d01e2d37b3418865441a6825a015dd883c989d8942ec`.
+The probes are
+`research.juggler_sequence.cycle_walk_charge` (transport and
+kill table), `cycle_walk_ostrowski` (certified quotient
+sandwich and block envelope), and `cycle_walk_window` (window
+scan); artifacts live under
+`data/research/juggler/cycle_walk_*`.
 
 ## Appendix C. Exact floor defect
 

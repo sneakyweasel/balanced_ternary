@@ -1635,7 +1635,8 @@ steps in \(\{-1,0,+1\}\) that cannot go negative, since
 exhausted, \(u=\text{surplus}+e_{\mathrm{left}}
 \ge e_{\mathrm{left}}\), so the remaining evens are legal.
 Prefix-minimality plus strict monotonicity of \(g\) gives
-unique maximality. \(\square\)
+unique maximality. The prefix-minimality core is Lean:
+`hugOdds_le_of_admissible`. \(\square\)
 
 The statement is about the \(u\ge 0\) relaxation, not about
 realized cycle words. Word-order (Christoffel) prefix-dominance
@@ -1680,7 +1681,9 @@ particular \(C_L\) is a Birkhoff average of the rotation.
 \(o_{\min}=\lceil L\log 2/\log 3\rceil\) odd letters. A first
 budget-forced divergence between the two words would make the
 exact prefix use more of one letter than its own total, which
-is impossible. \(\square\)
+is impossible. Lean: `budgetedWord_eq_hugWord`, with the window
+invariant `hugOdds_pow_ge` / `hugOdds_pow_lt` and minimality
+`hugOdds_least` (`WalkChargeWords.lean`). \(\square\)
 
 ### 5.5 Denjoy--Koksma over certified Ostrowski blocks
 
@@ -1709,8 +1712,15 @@ The denominator list
 \]
 is certified by an interval continued fraction on the
 big-integer sandwich \(2^{17087915}>3^{10781274}\) and
-\(2^{16785921}<3^{10590737}\). A Koksma-type bound with
-constant \(1\) (that is, \(+1/L\)) is *false* for this
+\(2^{16785921}<3^{10590737}\). The sandwich, the resulting real
+bounds on \(\theta\), the shared quotient prefix of the two
+rational endpoints, and the convergent recurrence are Lean
+(`theta_sandwich_upper`, `theta_sandwich_lower`,
+`lower_lt_walkTheta`, `walkTheta_lt_upper`, `cf_lower_prefix`,
+`cf_upper_prefix`, `theta_convergent_denominators`,
+`OstrowskiSandwich.lean`); the cylinder-interval bridge from the
+endpoints to \(\theta\) itself is classical. A Koksma-type bound
+with constant \(1\) (that is, \(+1/L\)) is *false* for this
 observable; the correct constant is \(2s(L)\).
 
 ### 5.6 The window theorem
@@ -1888,10 +1898,10 @@ formally verified.
 | Proposition 5.1 | laboratory floor; certified computation, not Lean |
 | Theorem 5.2 | raised cutoff; verified computation, not Lean |
 | Theorem 5.3 | transport; human proof, not Lean |
-| Theorem 5.4 | hug exchange; human proof, not Lean |
+| Theorem 5.4 | combinatorial core `hugOdds_le_of_admissible`; charge maximisation is a human proof |
 | Proposition 5.5 | rotation average; human proof, not Lean |
-| Lemma 5.6 | word identity; human proof, not Lean |
-| Theorem 5.7 | block envelope; Denjoy--Koksma (known), not Lean |
+| Lemma 5.6 | `budgetedWord_eq_hugWord`, `hugOdds_pow_ge`, `hugOdds_pow_lt`, `hugOdds_least` |
+| Theorem 5.7 | Denjoy--Koksma (known), not Lean; quotient arithmetic `theta_sandwich_upper`, `theta_sandwich_lower`, `lower_lt_walkTheta`, `walkTheta_lt_upper`, `cf_lower_prefix`, `cf_upper_prefix`, `theta_convergent_denominators` |
 | Theorem 5.8 | window envelope; human proof + certified scan, not Lean |
 | Theorem 5.9 | kill table; verified computation, not Lean |
 | short certificates (Section 6) | `even_finiteProgress`, `odd_even_finiteProgress` |

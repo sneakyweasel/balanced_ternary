@@ -1,0 +1,19 @@
+{
+  "id": "tao-2011-hilbert-seventh-powers-2-3",
+  "title": "Hilbert's seventh problem, and powers of 2 and 3",
+  "authors": ["Terence Tao"],
+  "year": 2011,
+  "identifiers": {},
+  "url": {
+    "html": "https://terrytao.wordpress.com/2011/08/21/hilberts-seventh-problem-and-powers-of-2-and-3/"
+  },
+  "problem_area": "transcendence",
+  "relevant_concepts": [
+    "Baker theorem special case for log 2 / log 3",
+    "exponential separation of 2^p and 3^q",
+    "polynomial lower bound on the normalized gap"
+  ],
+  "project_relationship": "independent",
+  "status": "expository",
+  "notes": "What's new, 21 August 2011. Expository special case of Baker: |log 2 / log 3 - p/q| >= c/q^C, hence |3^p - 2^q| >= (c/q^C) 3^p — exponential-in-the-exponents separation with only a polynomial normalized gap. This is the shape already tested and dominated by the exact Juggler finance gap (docs/problems/juggler_cycle_gap_baker.md). Recorded so the laboratory does not re-import a generic Baker constant as a leftover killer."
+}

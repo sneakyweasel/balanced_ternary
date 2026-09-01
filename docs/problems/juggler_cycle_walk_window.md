@@ -154,8 +154,14 @@ greedy digit stays within its cap.
 
 ## Formalization
 
-None. No `WalkWindow.lean`, no `sorry`. Paper A is unchanged.
-Not a halt theorem.
+Since the 1 September 2026 consolidation the discrete side of the
+word identity is Lean: `WalkChargeWords.lean`
+(`budgetedWord_eq_hugWord`, `hugOdds_pow_ge`, `hugOdds_pow_lt`,
+`hugOdds_least`, `hugOdds_le_of_admissible`; ledger row
+`J-cyclemin-walk-word-identity`, **EXACT — LEAN VERIFIED**). The
+digit-cap argument and the scan stay human + certified
+computation. Paper A Section 5 now prints the window theorem
+(Theorem 5.8). No `sorry`. Not a halt theorem.
 
 ## Results
 

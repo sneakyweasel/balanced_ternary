@@ -1,0 +1,464 @@
+{
+  "model": "Attack A: does one CycleMin cycle force two or more distinct fan-quality (L, o) relations, so that 2^p-3^q neighbor-separation can fire? Neighbor relations distinguished: exponent-shift (L vs L+1) versus fan-step (L_k vs L_k+Q).",
+  "literature": [
+    "wu-wang-2014-irrationality-measure-log3",
+    "salikhov-2007-irrationality-measure-ln3",
+    "tao-2011-hilbert-seventh-powers-2-3",
+    "chim-2025-p-adic-two-logarithms",
+    "mathoverflow-2012-powers-2-3",
+    "rhin-1987-pade-irrationality",
+    "laurent-mignotte-nesterenko-1995-two-logarithms",
+    "simons-de-weger-2005-collatz-m-cycles"
+  ],
+  "hug_circuits": [
+    {
+      "length": 19,
+      "odd_count": 12,
+      "types": [
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          2,
+          1,
+          5
+        ]
+      ],
+      "only_short": true,
+      "n_circuits": 7
+    },
+    {
+      "length": 84,
+      "odd_count": 53,
+      "types": [
+        [
+          1,
+          1,
+          9
+        ],
+        [
+          2,
+          1,
+          22
+        ]
+      ],
+      "only_short": true,
+      "n_circuits": 31
+    },
+    {
+      "length": 1054,
+      "odd_count": 665,
+      "types": [
+        [
+          1,
+          1,
+          113
+        ],
+        [
+          2,
+          1,
+          276
+        ]
+      ],
+      "only_short": true,
+      "n_circuits": 389
+    },
+    {
+      "length": 25781,
+      "odd_count": 16266,
+      "types": [
+        [
+          1,
+          1,
+          2764
+        ],
+        [
+          2,
+          1,
+          6751
+        ]
+      ],
+      "only_short": true,
+      "n_circuits": 9515
+    },
+    {
+      "length": 50508,
+      "odd_count": 31867,
+      "types": [
+        [
+          1,
+          1,
+          5415
+        ],
+        [
+          2,
+          1,
+          13226
+        ]
+      ],
+      "only_short": true,
+      "n_circuits": 18641
+    },
+    {
+      "length": 176251,
+      "odd_count": 111202,
+      "types": [
+        [
+          1,
+          1,
+          18896
+        ],
+        [
+          2,
+          1,
+          46153
+        ]
+      ],
+      "only_short": true,
+      "n_circuits": 65049
+    }
+  ],
+  "fan_neighbors": [
+    {
+      "tag": "fanA",
+      "n_members": 56,
+      "n_pairs": 55,
+      "n_both_dirichlet": 2,
+      "any_both_dirichlet": true,
+      "min_theta_ratio": 0.44774768411303695,
+      "max_theta_ratio": 0.9820823418941118,
+      "first_pair": {
+        "L0": 176251,
+        "L1": 478245,
+        "theta0": 3.600206691677816e-06,
+        "theta1": 3.535699419065802e-06,
+        "ratio": 0.9820823418941118,
+        "dirichlet0": 0.6345400296149067,
+        "dirichlet1": 1.6909305686711245,
+        "both_dirichlet": true
+      },
+      "last_pair": {
+        "L0": 16483927,
+        "L1": 16785921,
+        "theta0": 1.1680801594062405e-07,
+        "theta1": 5.230051862325312e-08,
+        "ratio": 0.44774768411303695,
+        "dirichlet0": 1.9254548077800833,
+        "dirichlet1": 0.8779123738689556,
+        "both_dirichlet": true
+      },
+      "closest_ratio_pair": {
+        "L0": 176251,
+        "L1": 478245,
+        "theta0": 3.600206691677816e-06,
+        "theta1": 3.535699419065802e-06,
+        "ratio": 0.9820823418941118,
+        "dirichlet0": 0.6345400296149067,
+        "dirichlet1": 1.6909305686711245,
+        "both_dirichlet": true
+      }
+    },
+    {
+      "tag": "fanB",
+      "n_members": 5,
+      "n_pairs": 4,
+      "n_both_dirichlet": 4,
+      "any_both_dirichlet": true,
+      "min_theta_ratio": 0.22147217836437375,
+      "max_theta_ratio": 0.7665992128139877,
+      "first_pair": {
+        "L0": 16785921,
+        "L1": 33873836,
+        "theta0": 5.230051862325312e-08,
+        "theta1": 4.0093536406349147e-08,
+        "ratio": 0.7665992128139877,
+        "dirichlet0": 0.8779123738689556,
+        "dirichlet1": 1.3581218768887005,
+        "both_dirichlet": true
+      },
+      "last_pair": {
+        "L0": 68049666,
+        "L1": 85137581,
+        "theta0": 1.5679571525509935e-08,
+        "theta1": 3.472588861574692e-09,
+        "ratio": 0.22147217836437375,
+        "dirichlet0": 1.0669896053340615,
+        "dirichlet1": 0.29564781548201313,
+        "both_dirichlet": true
+      },
+      "closest_ratio_pair": {
+        "L0": 16785921,
+        "L1": 33873836,
+        "theta0": 5.230051862325312e-08,
+        "theta1": 4.0093536406349147e-08,
+        "ratio": 0.7665992128139877,
+        "dirichlet0": 0.8779123738689556,
+        "dirichlet1": 1.3581218768887005,
+        "both_dirichlet": true
+      }
+    }
+  ],
+  "exponent_neighbors": {
+    "n": 9,
+    "all_separated": true,
+    "min_neighbor_ratio": 45883.334169740454,
+    "worst": {
+      "length": 50508,
+      "theta": 7.264907458078721e-06,
+      "theta_plus": 0.33333817661126564,
+      "theta_minus": 0.5000036324568891,
+      "ratio_plus": 45883.334169740454,
+      "ratio_minus": 68824.5012537462,
+      "separated": true
+    },
+    "seed_50508": {
+      "length": 50508,
+      "theta": 7.264907458078721e-06,
+      "theta_plus": 0.33333817661126564,
+      "theta_minus": 0.5000036324568891,
+      "ratio_plus": 45883.334169740454,
+      "ratio_minus": 68824.5012537462,
+      "separated": true
+    },
+    "seed_176251": {
+      "length": 176251,
+      "theta": 3.600206691677816e-06,
+      "theta_plus": 0.33333573348408796,
+      "theta_minus": 0.5000018001115059,
+      "ratio_plus": 92587.9434240878,
+      "ratio_minus": 138881.4151329985,
+      "separated": true
+    }
+  },
+  "leftover_splits": {
+    "n_quality": 88,
+    "n_splits": 88,
+    "n_parent_step": 60,
+    "n_two_good": 5,
+    "two_good_examples": [
+      {
+        "a": 1054,
+        "b": 50508,
+        "sum": 51562,
+        "dirichlet_a": 0.046010428336143085,
+        "dirichlet_b": 0.36693594589264006,
+        "both_dirichlet": true,
+        "parent_step": false
+      },
+      {
+        "a": 1054,
+        "b": 176251,
+        "sum": 177305,
+        "dirichlet_a": 0.046010428336143085,
+        "dirichlet_b": 0.6345400296149067,
+        "both_dirichlet": true,
+        "parent_step": false
+      },
+      {
+        "a": 1054,
+        "b": 16785921,
+        "sum": 16786975,
+        "dirichlet_a": 0.046010428336143085,
+        "dirichlet_b": 0.8779123738689556,
+        "both_dirichlet": true,
+        "parent_step": false
+      },
+      {
+        "a": 1054,
+        "b": 85137581,
+        "sum": 85138635,
+        "dirichlet_a": 0.046010428336143085,
+        "dirichlet_b": 0.29564781548201313,
+        "both_dirichlet": true,
+        "parent_step": false
+      },
+      {
+        "a": 25781,
+        "b": 25781,
+        "sum": 51562,
+        "dirichlet_a": 0.6563635701197033,
+        "dirichlet_b": 0.6563635701197033,
+        "both_dirichlet": true,
+        "parent_step": false
+      }
+    ],
+    "examples": [
+      {
+        "a": 19,
+        "b": 65,
+        "sum": 84,
+        "dirichlet_a": 0.2557329976422652,
+        "dirichlet_b": 43.083541544146826,
+        "both_dirichlet": false,
+        "parent_step": false
+      },
+      {
+        "a": 84,
+        "b": 485,
+        "sum": 569,
+        "dirichlet_a": 0.1752201143861069,
+        "dirichlet_b": 323.16798684291706,
+        "both_dirichlet": false,
+        "parent_step": false
+      },
+      {
+        "a": 485,
+        "b": 569,
+        "sum": 1054,
+        "dirichlet_a": 323.16798684291706,
+        "dirichlet_b": 0.6061701412778935,
+        "both_dirichlet": false,
+        "parent_step": false
+      },
+      {
+        "a": 1054,
+        "b": 24727,
+        "sum": 25781,
+        "dirichlet_a": 0.046010428336143085,
+        "dirichlet_b": 16484.516699449803,
+        "both_dirichlet": false,
+        "parent_step": false
+      },
+      {
+        "a": 1054,
+        "b": 50508,
+        "sum": 51562,
+        "dirichlet_a": 0.046010428336143085,
+        "dirichlet_b": 0.36693594589264006,
+        "both_dirichlet": true,
+        "parent_step": false
+      },
+      {
+        "a": 1054,
+        "b": 51562,
+        "sum": 52616,
+        "dirichlet_a": 0.046010428336143085,
+        "dirichlet_b": 2.6254209266947686,
+        "both_dirichlet": false,
+        "parent_step": false
+      },
+      {
+        "a": 1054,
+        "b": 52616,
+        "sum": 53670,
+        "dirichlet_a": 0.046010428336143085,
+        "dirichlet_b": 4.975825831310271,
+        "both_dirichlet": false,
+        "parent_step": false
+      },
+      {
+        "a": 1054,
+        "b": 53670,
+        "sum": 54724,
+        "dirichlet_a": 0.046010428336143085,
+        "dirichlet_b": 7.418144638745996,
+        "both_dirichlet": false,
+        "parent_step": false
+      }
+    ],
+    "parent_examples": [
+      {
+        "a": 176251,
+        "b": 301994,
+        "sum": 478245,
+        "dirichlet_a": 0.6345400296149067,
+        "dirichlet_b": 201329.32683970686,
+        "both_dirichlet": false,
+        "parent_step": true
+      },
+      {
+        "a": 301994,
+        "b": 478245,
+        "sum": 780239,
+        "dirichlet_a": 201329.32683970686,
+        "dirichlet_b": 1.6909305686711245,
+        "both_dirichlet": false,
+        "parent_step": true
+      },
+      {
+        "a": 301994,
+        "b": 780239,
+        "sum": 1082233,
+        "dirichlet_a": 201329.32683970686,
+        "dirichlet_b": 2.7083594859102242,
+        "both_dirichlet": false,
+        "parent_step": true
+      },
+      {
+        "a": 301994,
+        "b": 1082233,
+        "sum": 1384227,
+        "dirichlet_a": 201329.32683970686,
+        "dirichlet_b": 3.6868267775622305,
+        "both_dirichlet": false,
+        "parent_step": true
+      },
+      {
+        "a": 301994,
+        "b": 1384227,
+        "sum": 1686221,
+        "dirichlet_a": 201329.32683970686,
+        "dirichlet_b": 4.626332439857167,
+        "both_dirichlet": false,
+        "parent_step": true
+      },
+      {
+        "a": 301994,
+        "b": 1686221,
+        "sum": 1988215,
+        "dirichlet_a": 201329.32683970686,
+        "dirichlet_b": 5.5268764690250585,
+        "both_dirichlet": false,
+        "parent_step": true
+      }
+    ]
+  },
+  "parent_factors": [
+    {
+      "tag": "fanA",
+      "q": 176251,
+      "q_odd": 111202,
+      "theta_q": 3.600206691677816e-06,
+      "Q": 301994,
+      "Q_odd": 190538,
+      "theta_Q": 0.6666666451641651,
+      "L1": 478245,
+      "theta_L1": 3.535699419065802e-06,
+      "return_forced_at_parent": false
+    },
+    {
+      "tag": "fanB",
+      "q": 16785921,
+      "q_odd": 10590737,
+      "theta_q": 5.230051862325312e-08,
+      "Q": 17087915,
+      "Q_odd": 10781275,
+      "theta_Q": 0.66666666272304,
+      "L1": 33873836,
+      "theta_L1": 4.0093536406349147e-08,
+      "return_forced_at_parent": false
+    }
+  ],
+  "classification": {
+    "label": "FAN_MULTIPOINT_CLOSED",
+    "reason": "a CycleMin cycle forces one global (L, o) pair; hug circuits are only the short Beatty letters OE/OOE on every leftover seed through 176251; exponent-neighbors (L vs L+1) on leftover-quality lengths are separated as in the powers-of-2/3 literature, but the cycle does not require theta(L+1) small; fan-neighbors (Q-steps) can both be Dirichlet-good \u2014 that is the existing fan obstruction, not a second constraint. Arithmetic leftover sums exist (88 pairs, 5 with two Dirichlet-good parts) as lattice/parent concatenations, not as two integer returns. Attack A does not fire.",
+    "hug_only_short": true,
+    "fan_neighbors_any_both_dirichlet": true,
+    "exponent_neighbors_separated": true,
+    "forced_second_fan_pair": false,
+    "decision": "CLOSE"
+  },
+  "not_a_halt_theorem": true,
+  "no_cycle_all_lengths": false,
+  "no_new_period_bound": true,
+  "no_baker_reopen": true,
+  "no_floor_raise": true,
+  "no_paper_a_edit": true,
+  "attacks_not_opened": [
+    "B_padic_coupling",
+    "C_wu_wang_fan_growth"
+  ],
+  "git_commit": "f0d968df72946bf84e3184a2f470c0b9e6861338"
+}

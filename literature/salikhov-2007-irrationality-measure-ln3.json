@@ -1,0 +1,21 @@
+{
+  "id": "salikhov-2007-irrationality-measure-ln3",
+  "title": "On the irrationality measure of ln 3",
+  "authors": ["Vladislav Kh. Salikhov"],
+  "year": 2007,
+  "identifiers": {
+    "doi": "10.1134/s1064562407060361"
+  },
+  "url": {
+    "doi": "https://doi.org/10.1134/s1064562407060361"
+  },
+  "problem_area": "transcendence",
+  "relevant_concepts": [
+    "irrationality measure of ln 3",
+    "symmetrized integral constructions",
+    "linear forms in logarithms"
+  ],
+  "project_relationship": "independent",
+  "status": "classical-source",
+  "notes": "Doklady Mathematics 76 (2007) 955-957. mu(ln 3) <= 5.125, improving Rhin 1987 (8.616). The later Wu-Wang 2014 bound 5.1163051 is the measure quoted in the Juggler log 2 / log 3 literature digest. Not imported as a leftover killer; the cycle-gap Baker transfer remains REFUTED."
+}

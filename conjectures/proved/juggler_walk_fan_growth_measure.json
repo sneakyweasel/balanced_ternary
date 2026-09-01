@@ -1,0 +1,21 @@
+{
+  "id": "juggler_walk_fan_growth_measure",
+  "title": "Wu–Wang implies a polynomial cap on survivor-fan width",
+  "statement": "Wu–Wang’s linear-independence measure |a + b log 2 + c log 3| ≥ H^{-4.1163051-ε} implies that every partial quotient of α = log 2 / log 3 satisfies a_{j+1} ≤ C_ε q_j^{3.1163051+ε} for large j. Every Juggler survivor fan L_k = q + kQ therefore has width O_ε(q^{3.1163051+ε}), and the next dangerous seed is O_ε(q^{4.1163051+ε}). The bound does not give a = O(1) and does not prevent the fan-minimum R_min ≥ exp(4/(C_ε q^{3.1163051+ε}+2)) from tending to 1. It is not a leftover killer; the Baker/Rhin transfer stays REFUTED.",
+  "mathematical_domain": "Juggler cycle finance / continued fraction of log 2 / log 3",
+  "origin": "docs/problems/juggler_cycle_walk_fan_growth.md",
+  "status": "EXACT — HUMAN PROOF",
+  "first_seen": "2026-09-01",
+  "tested_range": "certified interval CF of α on the deep sandwich 171928773/272500658 < α < 53715833/85137581: [0;1,1,1,2,2,3,1,5,2,23,2,2,1,1,55,1,4]; every certified quotient with q ≥ 19 has a/((log 3) q^{3.1163051}) ≤ 2.827e-4 (max at q=19, a=3); a=55 at q=301994 has ratio 4.190e-16; 80-digit observed continuation through q ≈ 3.26e20 (terminal dropped) has max a=37 and max ratio 5.17e-27; WW-allowed R_min ≤ 1.001 already at q ≳ 13.9",
+  "counterexamples": [],
+  "proof_reference": "docs/problems/juggler_cycle_walk_fan_growth.md",
+  "lean_reference": "",
+  "literature": [
+    "wu-wang-2014-irrationality-measure-log3",
+    "bondareva-luchin-salikhov-2018-log3-irrationality",
+    "rhin-1987-pade-irrationality"
+  ],
+  "notes": "Standard CF algebra on a published measure, packaged as a growth law for the laboratory survivor lattice. The ε=0 diagnostic envelope is consistency only (Wu–Wang has an implicit H0(ε)). Not a Baker revival. Arithmetic only; no floor verification; no new period bound. Not a halt theorem.",
+  "not_a_halt_theorem": true,
+  "no_cycle_all_lengths": false
+}

@@ -15,5 +15,5 @@
   ],
   "project_relationship": "independent",
   "status": "classical-source",
-  "notes": "Séminaire de Théorie des Nombres, Paris 1985-86, Progress in Mathematics 75, Birkhäuser, 155-187. Simons-de Weger Lemma 12 applies the Proposition on p. 160 to Lambda = (K+L) log 2 - K log 3, obtaining Lambda > exp(-13.3 (0.46057 + log K)). The Juggler cycle-gap Baker branch maps that lower bound into cycle finance; docs/problems/juggler_cycle_gap_baker.md."
+  "notes": "Séminaire de Théorie des Nombres, Paris 1985-86, Progress in Mathematics 75, Birkhäuser, 155-187. Simons-de Weger Lemma 12 applies the Proposition on p. 160 to Lambda = (K+L) log 2 - K log 3, obtaining Lambda > exp(-13.3 (0.46057 + log K)). The Juggler cycle-gap Baker branch maps that lower bound into cycle finance; docs/problems/juggler_cycle_gap_baker.md. Later irrationality measures for log 3: Salikhov 2007 (5.125) and Wu-Wang 2014 (5.1163051); neither is imported as a leftover killer."
 }

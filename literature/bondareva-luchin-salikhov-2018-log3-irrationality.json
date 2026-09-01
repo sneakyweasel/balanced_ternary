@@ -1,0 +1,21 @@
+{
+  "id": "bondareva-luchin-salikhov-2018-log3-irrationality",
+  "title": "Symmetrized polynomials in a problem of estimating of the irrationality measure of number ln 3",
+  "authors": ["I. V. Bondareva", "M. Yu. Luchin", "V. Kh. Salikhov"],
+  "year": 2018,
+  "identifiers": {
+    "doi": "10.22405/2226-8383-2018-19-1-15-25"
+  },
+  "url": {
+    "doi": "https://doi.org/10.22405/2226-8383-2018-19-1-15-25"
+  },
+  "problem_area": "transcendence",
+  "relevant_concepts": [
+    "irrationality measure of log 3",
+    "linear independence measure of 1, log 2, log 3",
+    "symmetrized integral constructions"
+  ],
+  "project_relationship": "independent",
+  "status": "classical-source",
+  "notes": "Chebyshevskii Sbornik 19 (2018) 15-25. ν(1, ln 2, ln 3) ≤ 4.116201, hence μ(log 3) ≤ 5.116201, a 10^{-4} improvement of Wu–Wang 2014. Cited by the Juggler fan-growth branch only to record that later polynomial-shape sharpenings do not change the conclusion; not imported as a new attack."
+}

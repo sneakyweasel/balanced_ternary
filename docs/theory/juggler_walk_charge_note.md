@@ -2,6 +2,18 @@
 
 Status: laboratory extract. Date: 1 September 2026.
 
+> **Consolidated.** As of the 1 September 2026 consolidation this
+> content is printed in Paper A Section 5
+> ([juggler_finite_dynamics_note.md](juggler_finite_dynamics_note.md)):
+> transport is Theorem 5.3, the hug adversary Theorem 5.4, the word
+> identity Lemma 5.6, DK/Ostrowski Theorem 5.7, the window theorem
+> Theorem 5.8, and the kill table Theorem 5.9. The discrete word
+> layer and the quotient arithmetic are Lean
+> (`WalkChargeWords.lean`, `OstrowskiSandwich.lean`;
+> `J-cyclemin-walk-word-identity`,
+> `J-cyclemin-walk-ostrowski-arithmetic`). This extract stays as the
+> program-order reading path over the nine dossiers.
+
 This consolidates the walk-charge program — seven Phase-0
 branches run at the certified descent floor \(N_0=26254995\) —
 into one reading path. It is **not a halt theorem**, not a
@@ -143,7 +155,11 @@ The walk-charge program replaced a certified DP and two finite
 censuses with a human chain: transport, hug identification,
 word identity, Denjoy–Koksma over certified Ostrowski blocks,
 and digit caps. Every claim above carries its ledger row; the
-artifacts live under `data/research/juggler/cycle_walk_*`. No
-Lean is attached to the envelope; `RunSurvivorLattice.lean` and
-the finance Lean layers are unchanged. Not a halt theorem; the
-certified period bound stays \(176251\).
+artifacts live under `data/research/juggler/cycle_walk_*`. Since
+the consolidation the discrete word layer and the quotient
+arithmetic are Lean (`WalkChargeWords.lean`,
+`OstrowskiSandwich.lean`); the transport recursion, the Laplace
+integral, Denjoy–Koksma, and the digit caps stay human.
+`RunSurvivorLattice.lean` and the finance Lean layers are
+unchanged. Not a halt theorem; the certified period bound stays
+\(176251\).

@@ -157,8 +157,15 @@ inside \(2s\in\{8,8,12,6,8,10\}\).
 
 ## Formalization
 
-None. No `WalkOstrowski.lean`, no `sorry`. Paper A is unchanged.
-Not a halt theorem.
+Since the 1 September 2026 consolidation the quotient arithmetic
+is Lean: `OstrowskiSandwich.lean` (`theta_sandwich_upper`,
+`theta_sandwich_lower`, `lower_lt_walkTheta`, `walkTheta_lt_upper`,
+`cf_lower_prefix`, `cf_upper_prefix`,
+`theta_convergent_denominators`; ledger row
+`J-cyclemin-walk-ostrowski-arithmetic`, **EXACT — LEAN
+VERIFIED**). Denjoy–Koksma and the cylinder-interval bridge stay
+KNOWN prose. Paper A Section 5 now prints the block envelope
+(Theorem 5.7). No `sorry`. Not a halt theorem.
 
 ## Results
 
