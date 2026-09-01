@@ -1,0 +1,233 @@
+{
+  "experiment": "juggler_k3_rate_free",
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "k3_bound_claimed": false,
+    "density_one_claimed": false,
+    "toolkit_reopened": false,
+    "paper_b_modified": false,
+    "ergodic_theorem_claimed": false
+  },
+  "constants": {
+    "gamma_log2_log3": 0.6309297535714574,
+    "beta_star": 0.3690702464285426,
+    "hoeffding_c": 0.03428520074056513
+  },
+  "never_negative": {
+    "d_max": 200,
+    "rows": [
+      {
+        "d": 10,
+        "count": 64,
+        "ratio": 0.0625,
+        "hoeffding": 0.7097432405317498,
+        "rate": 0.2772588722239781
+      },
+      {
+        "d": 20,
+        "count": 27328,
+        "ratio": 0.02606201171875,
+        "hoeffding": 0.5037354674805091,
+        "rate": 0.1823638257305305
+      },
+      {
+        "d": 30,
+        "count": 12771274,
+        "ratio": 0.01189417578279972,
+        "hoeffding": 0.3575228430603924,
+        "rate": 0.14772354762304826
+      },
+      {
+        "d": 40,
+        "count": 6402835000,
+        "ratio": 0.005823344508826267,
+        "hoeffding": 0.2537494211978071,
+        "rate": 0.1286470131104367
+      },
+      {
+        "d": 50,
+        "count": 3734259929440,
+        "ratio": 0.0033166890828795204,
+        "hoeffding": 0.18009693648398745,
+        "rate": 0.11417576515690886
+      },
+      {
+        "d": 60,
+        "count": 2216134944775156,
+        "ratio": 0.001922190657317014,
+        "hoeffding": 0.12782258330998597,
+        "rate": 0.1042381629333067
+      },
+      {
+        "d": 70,
+        "count": 1241503538986719152,
+        "ratio": 0.001051594401654565,
+        "hoeffding": 0.09072121449156897,
+        "rate": 0.09796353983954363
+      },
+      {
+        "d": 80,
+        "count": 803209913882910595105,
+        "ratio": 0.0006643996685743306,
+        "hoeffding": 0.0643887687582221,
+        "rate": 0.0914578334882475
+      },
+      {
+        "d": 90,
+        "count": 508520069189622659715764,
+        "ratio": 0.0004107792405544727,
+        "hoeffding": 0.04569949339231003,
+        "rate": 0.08663838461530485
+      },
+      {
+        "d": 100,
+        "count": 302560669500543257546172187,
+        "ratio": 0.00023867828362647393,
+        "hoeffding": 0.03243490653091741,
+        "rate": 0.083403940064437
+      },
+      {
+        "d": 110,
+        "count": 203300455050633918968350347728,
+        "ratio": 0.00015661697363582685,
+        "hoeffding": 0.02302045566759773,
+        "rate": 0.07965188538001891
+      },
+      {
+        "d": 120,
+        "count": 131320930040438275830258155402960,
+        "ratio": 9.879488730064897e-05,
+        "hoeffding": 0.016338612804038304,
+        "rate": 0.07685387252098803
+      },
+      {
+        "d": 130,
+        "count": 81078228152480852085643134197260810,
+        "ratio": 5.9566874479951124e-05,
+        "hoeffding": 0.011596219997331677,
+        "rate": 0.07483393027478315
+      },
+      {
+        "d": 140,
+        "count": 55235518017822053151212898306819924189,
+        "ratio": 3.962954064617462e-05,
+        "hoeffding": 0.008230338758825265,
+        "rate": 0.07239954101351483
+      },
+      {
+        "d": 150,
+        "count": 36669896893826317415292528305119465918904,
+        "ratio": 2.56927351021341e-05,
+        "hoeffding": 0.0058414273013627,
+        "rate": 0.07046201524583784
+      },
+      {
+        "d": 160,
+        "count": 25222220502623198848350914119792174865536926,
+        "ratio": 1.7257743582611233e-05,
+        "hoeffding": 0.004145913542199798,
+        "rate": 0.06854531007421302
+      },
+      {
+        "d": 170,
+        "count": 16351830486010216990550471097904743905906934041,
+        "ratio": 1.0926148867104457e-05,
+        "hoeffding": 0.002942534112405348,
+        "rate": 0.0672020686061831
+      },
+      {
+        "d": 180,
+        "count": 11280426475319943841721171095952264613328781880799,
+        "ratio": 7.360821728033408e-06,
+        "hoeffding": 0.0020884436963137885,
+        "rate": 0.06566299435347232
+      },
+      {
+        "d": 190,
+        "count": 7692858891780408788963358067379941899694575114328472,
+        "ratio": 4.902172509591492e-06,
+        "hoeffding": 0.001482258796689853,
+        "rate": 0.06434648464106545
+      },
+      {
+        "d": 200,
+        "count": 4917911213247274697935031643998322726370567793471092895,
+        "ratio": 3.0604236615202414e-06,
+        "hoeffding": 0.0010520231616693485,
+        "rate": 0.0634847860005315
+      }
+    ],
+    "monotone_decreasing": true,
+    "hoeffding_majorizes": true,
+    "hoeffding_c": 0.03428520074056513
+  },
+  "biased_adversary": {
+    "d_max": 200,
+    "beta_star": 0.3690702464285426,
+    "rows": [
+      {
+        "beta": 0.37,
+        "survivor_measure": 0.045575900452440414,
+        "chernoff": 0.9996290944497636,
+        "kl_rate": 1.8548717635671766e-06,
+        "empirical_rate": 0.015441881005082647,
+        "decays": true
+      },
+      {
+        "beta": 0.4,
+        "survivor_measure": 0.01229530791610262,
+        "chernoff": 0.6687485418779284,
+        "kl_rate": 0.0020117358057187527,
+        "empirical_rate": 0.02199268779808802,
+        "decays": true
+      },
+      {
+        "beta": 0.45,
+        "survivor_measure": 0.000440003692586038,
+        "chernoff": 0.06802243575981576,
+        "kl_rate": 0.013439588452895682,
+        "empirical_rate": 0.03864363719423093,
+        "decays": true
+      },
+      {
+        "beta": 0.5,
+        "survivor_measure": 3.0604236615202427e-06,
+        "chernoff": 0.000970560278609546,
+        "kl_rate": 0.03468818523201744,
+        "empirical_rate": 0.0634847860005315,
+        "decays": true
+      }
+    ],
+    "all_supercritical_decay": true
+  },
+  "tower": {
+    "n_max": 2000000,
+    "bins": 8,
+    "samples": 500000,
+    "occupied_cells": 512,
+    "max_abs_dev": 141.4375,
+    "max_rel_dev": 0.144832,
+    "rel_dev_cap": 0.16103136216148556,
+    "oooo_count": 62199,
+    "oooo_even_fifth_share": 0.498352063537999,
+    "split_three_sigma": 0.006014500396502945
+  },
+  "lean": {
+    "Envelope.power_bound_word": true,
+    "Envelope.cycle_strict_envelope": true
+  },
+  "notes": {
+    "reduction": "per-fixed-depth qualitative equidistribution (or any rate-free node-wise E-share >= beta > beta*) implies density-one finite descent via Proposition J's inequality with N -> infinity taken before d",
+    "target": "conjectures/active/juggler_tower_rate_free_equidistribution.json",
+    "wall": "BB/GG/JJ obstruct rated methods only; they are not reopened"
+  },
+  "decision": {
+    "classification": "K3_RATE_FREE_GREEN"
+  }
+}

@@ -35,32 +35,58 @@ within bounded excess of the hug word.
 *Proof.* Suppose \(u_k\le B\) for all \(k\). The defect-free upper
 envelope (Lean `power_bound_word` / `follows_log_le_walkWeight`)
 gives \(x_k\le n^{2^{u_k}}\le n^{2^B}\), so the flight visits
-finitely many states and is eventually periodic (pigeonhole plus
-determinism). Its period word \(v\) (length \(p\ge 1\), \(o\) odds)
-is a realized return \(T^p(x_i)=x_i\) with \(x_i\ge 2\), hence
-strictly expanding: \(2^p<3^o\) (Lean `cycle_strict_envelope`;
-\(3^o=2^p\) is impossible by unique factorization and a contracting
-return contradicts itself). So each traversal adds
+finitely many states. Determinism supplies the uniqueness lemma
+below: a first repetition closes a cycle, and until then every
+state is a new integer in the finite window
+\([n,n^{2^B}]\). Hence the flight is eventually periodic
+(pigeonhole of a finite injective prefix). Its period word \(v\)
+(length \(p\ge 1\), \(o\) odds) is a realized return
+\(T^p(x_i)=x_i\) with \(x_i\ge 2\), hence strictly expanding:
+\(2^p<3^o\) (Lean `cycle_strict_envelope`; \(3^o=2^p\) is
+impossible by unique factorization and a contracting return
+contradicts itself). So each traversal adds
 \(\delta=\log_2(3^o/2^p)>0\) to the walk: \(u_{i+tp}=u_i+t\delta\to
 \infty\), contradiction. Since the hug walk is bounded
 (\(u^{\mathrm{hug}}_k<\log_2 3\)), the excess
 \(a_k-\mathrm{hugOdds}(k)\ge(u_k-\log_2 3)/\log_2 3\) is unbounded.
 \(\square\)
 
+**Lemma (flight uniqueness; EXACT — HUMAN PROOF; KNOWN
+determinism).** If \(x_i=x_j\) with \(i<j\), then
+\(x_{i+t}=x_{j+t}\) for all \(t\ge 0\). Hence if \(r\) is the first
+repeated index, \(x_0,\ldots,x_{r-1}\) are pairwise distinct and
+\(x_r\) is the first return. This is a finite-flight combinatorial
+constraint, independent of the envelope. The pigeonhole above is
+exactly this lemma on a finite admissible window: a long
+descent-free prefix without repetition cannot outrun
+\(\#\{n,\ldots,n^{2^B}\}\).
+
 **Corollary (flight dichotomy at the laboratory frontier).** A
 descent-free flight necessarily starts at
 \(n>162\,849\,448\) (the certified floor: every smaller start
 reaches \(1\), `J-residual-floor-one-hundred-sixty-two-million` on
-top of `J-residual-floor-twenty-six-million`), and exactly one of:
+top of `J-residual-floor-twenty-six-million`). The distinction is
+not really bounded versus unbounded states. It is
 
-1. **bounded states** — it is eventually periodic and enters a
-   nontrivial cycle with minimum \(>162\,849\,448\) and period
+\[
+\text{finite injective prefix + closure}
+\quad\text{versus}\quad
+\text{infinite injective trajectory,}
+\]
+
+and exactly one of:
+
+1. **closure** — a first repetition occurs; the preperiod is
+   pairwise distinct in \(\{n,n+1,\ldots\}\) and the flight enters
+   a nontrivial cycle with minimum \(>162\,849\,448\) and period
    \(\ge 478\,245\)
    (`J-cycle-period-four-hundred-seventy-eight-thousand`); its walk
    diverges linearly at the cycle's expansion rate
    \(\delta/p\); or
-2. **unbounded states** — \(\limsup_k x_k=\infty\): a genuinely
-   divergent orbit.
+2. **infinite injective trajectory** — no state ever repeats, so
+   \(\limsup_k x_k=\infty\): a genuinely divergent orbit
+   (`J-flight-divergent-structure` upgrades this to pointwise
+   \(x_k\to\infty\) and linear peak growth).
 
 In particular the "flat" hug-hugging flight — walk in a band, states
 forever in \([n,n^3)\) (the hug band exponent is exactly
@@ -147,7 +173,9 @@ It is not required.
   survivor-lattice lengths
 - Pigeonhole eventual periodicity of bounded flights — **EXACT —
   HUMAN PROOF** (infinite-object glue; the lab's Lean idiom is
-  finite words, packaging not attempted)
+  finite words, packaging not attempted). The uniqueness lemma
+  (pairwise-distinct preperiod until first return) is the
+  combinatorial content of that pigeonhole.
 - No divergent orbit exists / all flights killed — not claimed
 
 ## Experiments
@@ -216,9 +244,13 @@ Classification **FLIGHT_WALK_DIVERGENCE_CONFIRMED**.
   extremal hug-hugging adversary of the above-anchor branch is a
   phantom: below the cycle frontier it is a cycle.
 - **Dichotomy:** descent-free flights start above \(162\,849\,448\)
-  and are either eventual cycles (period \(\ge 478\,245\), min above
-  the floor — the cycle program's jurisdiction) or divergent orbits
-  (\(\limsup x_k=\infty\) — beyond every finite-depth parity layer).
+  and are either a finite injective prefix plus closure (eventual
+  cycles, period \(\ge 478\,245\), min above the floor — the cycle
+  program's jurisdiction) or an infinite injective trajectory
+  (\(\limsup x_k=\infty\) — beyond every finite-depth parity layer;
+  pointwise structure in `J-flight-divergent-structure`). The
+  pigeonhole is uniqueness on a finite admissible window, not an
+  extra dynamical ingredient.
 - **Paper B answer:** negative as mechanism. Its proved layer is
   ambient-density; the transfer refutation stands; nothing pointwise
   survives at depth \(\le 4\) (every odd-rooted window class has

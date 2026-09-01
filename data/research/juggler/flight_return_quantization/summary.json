@@ -1,0 +1,183 @@
+{
+  "experiment": "juggler_flight_return_quantization",
+  "anti_overclaim": {
+    "halt_theorem": false,
+    "divergence_excluded": false,
+    "divergent_orbit_exists": false,
+    "near_return_exists_on_infinite_flight": false,
+    "dk_layer_extended": false,
+    "realizability_claimed": false
+  },
+  "theta_19": 0.019550009,
+  "shortest_near_return": 19,
+  "return_sets": [
+    {
+      "eps": 0.001,
+      "count": 63,
+      "first": [
+        1054,
+        2108,
+        3162,
+        4216,
+        5270,
+        6324,
+        7378,
+        8432
+      ],
+      "density": 0.00063,
+      "distinct_gaps": [
+        1054,
+        8917,
+        9971
+      ],
+      "three_gap_ok": true,
+      "boundary_gap": 7.67e-06
+    },
+    {
+      "eps": 0.005,
+      "count": 315,
+      "first": [
+        84,
+        569,
+        653,
+        1054,
+        1138,
+        1623,
+        1707,
+        2108
+      ],
+      "density": 0.00315,
+      "distinct_gaps": [
+        84,
+        401,
+        485
+      ],
+      "three_gap_ok": true,
+      "boundary_gap": 1.64e-06
+    },
+    {
+      "eps": 0.02,
+      "count": 1262,
+      "first": [
+        19,
+        84,
+        168,
+        252,
+        336,
+        420,
+        504,
+        569
+      ],
+      "density": 0.01262,
+      "distinct_gaps": [
+        19,
+        65,
+        84
+      ],
+      "three_gap_ok": true,
+      "boundary_gap": 1.35e-06
+    },
+    {
+      "eps": 0.05,
+      "count": 3155,
+      "first": [
+        19,
+        38,
+        84,
+        103,
+        122,
+        168,
+        187,
+        206
+      ],
+      "density": 0.03155,
+      "distinct_gaps": [
+        19,
+        46,
+        65
+      ],
+      "three_gap_ok": true,
+      "boundary_gap": 7.7e-07
+    }
+  ],
+  "rigidity": [
+    {
+      "anchor": 350000000,
+      "p": 19,
+      "delta_prime": 4.179930054283267e-09,
+      "admissible_fraction": 2.6372422390948704e-09,
+      "vacuity_window": 4371876380
+    },
+    {
+      "anchor": 350000000,
+      "p": 84,
+      "delta_prime": 1.8479690520686036e-08,
+      "admissible_fraction": 1.165938658629324e-08,
+      "vacuity_window": 4371876380
+    },
+    {
+      "anchor": 350000000,
+      "p": 478245,
+      "delta_prime": 0.0001052159743451273,
+      "admissible_fraction": 6.638388876535195e-05,
+      "vacuity_window": 4371876380
+    },
+    {
+      "anchor": 350000000,
+      "p": 1000000,
+      "delta_prime": 0.0002200130904358834,
+      "admissible_fraction": 0.0001388128049312067,
+      "vacuity_window": 4371876380
+    },
+    {
+      "anchor": 1000000000000,
+      "p": 19,
+      "delta_prime": 1.0415941277157965e-12,
+      "admissible_fraction": 6.571727263212047e-13,
+      "vacuity_window": 17543505470430
+    },
+    {
+      "anchor": 1000000000000,
+      "p": 84,
+      "delta_prime": 4.605245941891676e-12,
+      "admissible_fraction": 2.9055866872536695e-12,
+      "vacuity_window": 17543505470430
+    },
+    {
+      "anchor": 1000000000000,
+      "p": 478245,
+      "delta_prime": 2.6219073771858358e-08,
+      "admissible_fraction": 1.654239375375046e-08,
+      "vacuity_window": 17543505470430
+    },
+    {
+      "anchor": 1000000000000,
+      "p": 1000000,
+      "delta_prime": 5.482351943053515e-08,
+      "admissible_fraction": 3.4589789604227554e-08,
+      "vacuity_window": 17543505470430
+    }
+  ],
+  "window_mirror": {
+    "n_max": 2000,
+    "positions": 20136,
+    "upper_violations": 0,
+    "lower_violations": 0,
+    "near_return_lengths": {
+      "19": 44,
+      "38": 7
+    },
+    "quantization_misses": 0
+  },
+  "lean": {
+    "WalkTransport.aboveAnchor_transport": true,
+    "WalkTransport.follows_log_le_walkWeight": true,
+    "AboveAnchorWalk.aboveAnchor_prefix_odds_ge_hug": true,
+    "CycleCore.aboveAnchor_prefix_pow_le": true
+  },
+  "notes": {
+    "theorem": "record segments satisfy delta <= o log2(3) - p <= delta + Delta': jumps are quantized to the log2(3) lattice within the transport deficit; near-returns (delta <= eps) only at Ostrowski times theta_p <= eps + Delta'; theta_p is the hug walk height",
+    "closure_answer": "DK/parity pricing requires (near-)closure: the cycle finance identity is replaced by the jump budget delta + Delta', vacuous for drifting segments; recurrent hug domination alone prices nothing"
+  },
+  "classification": "RETURN_QUANTIZATION_CONFIRMED"
+}

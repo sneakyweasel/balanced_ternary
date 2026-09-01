@@ -72,6 +72,70 @@ eventually periodic. Then:
    \(a\ge\mathrm{hugOdds}\) restarts from infinitely many positions,
    not only from \(0\). \(\square\)
 
+**Uniqueness trichotomy (conceptual packaging of 1–2 and of the
+dichotomy, not a new theorem).** There are three different uniqueness
+statements, and they are not interchangeable.
+
+1. *Finite-flight uniqueness (KNOWN determinism).* If \(x_i=x_j\)
+   with \(i<j\), then \(x_{i+t}=x_{j+t}\) for all \(t\ge 0\). Hence
+   if \(r\) is the first repeated index, the prefix
+   \(x_0,\ldots,x_{r-1}\) is pairwise distinct and \(x_r\) is the
+   first return. An eventually periodic descent-free flight has the
+   canonical form
+   (distinct preperiod of length \(r\)) \(\to\) (cycle of period
+   \(L\)) \(\to\cdots\). This is a finite-flight combinatorial
+   constraint; it does not use walk-divergence.
+
+2. *The anchor floors both pieces.* Descent-freeness puts every
+   preperiod state in \(\{n,n+1,\ldots\}\), and the eventual cycle
+   (if any) has minimum \(\ge n\) by the same hypothesis. The cycle
+   cannot return below the floor to escape a conditional DK
+   argument. That is the actual logical content of the
+   anchor-transfer lemma (`J-flight-anchor-period`): first
+   repetition \(\Rightarrow\) unique preperiod + closed cycle, and
+   the flight's anchor is a floor for **both**.
+
+3. *Global injectivity of the divergent branch.* Non-periodicity
+   forbids any repetition, so
+   \(x_i\neq x_j\) for all \(i\neq j\). Combined with
+   \(x_k\ge n\), a divergent flight is an injective enumeration of
+   distinct integers from the half-line \([n,\infty)\). Linear peak
+   growth (point 2) is the cheapest packing law on that
+   enumeration: after \(k+1\) distinct integers all \(\ge n\), the
+   maximum is at least \(n+k\).
+
+The flight program is therefore not “bounded versus unbounded.”
+It is
+
+\[
+\text{finite injective prefix + closure}
+\quad\text{versus}\quad
+\text{infinite injective trajectory.}
+\]
+
+Cycle machinery handles closure; this theorem handles the
+infinite-injective side.
+
+**Packing caution (no exclusion claimed).** Uniqueness itself
+yields no contradiction: an infinite half-line admits injective
+enumerations, and that is compatible with divergence. A preperiod
+packing bound
+\(\text{length}\le\#\{\text{admissible states in the envelope}\}\)
+is the existing pigeonhole when the walk is bounded by \(B\)
+(states in \([n,n^{2^B}]\), already `J-flight-walk-divergence`),
+and is enormous otherwise. Hug domination constrains *words*, not
+a static thin subset of \(\mathbb Z\): the extremal hug cylinders
+are filled at the \(2^{-L}\) scale
+(`juggler_hug_prefix_realization`, CLOSE). Recurrent records
+strictly increase (point 5), so later valleys draw from a fresh
+half-line rather than a shared finite pool; later high-walk peaks
+occupy larger scales by the walk-height law. A genuine sparsity
+contradiction would need envelope windows at comparable scales to
+be over-occupied — quantitative valley composition, already PARK
+with the flight-envelope branch. Uniqueness + recurrent hug + the
+existing envelope is **not** a new attack, and is not claimed as
+one.
+
 **Sharpness.** The log-log rate in 3 is exactly attained at peaks of
 realized ascents (envelope sharpness, `J-flight-envelope-transport`):
 at every high-flyer peak the probe measures
@@ -149,7 +213,10 @@ It is not required.
 ## Candidate operations / invariants
 
 - Orbit injectivity on non-periodic flights (determinism) —
-  **EXACT — HUMAN PROOF** (one line; drives 1 and 2)
+  **EXACT — HUMAN PROOF** (one line; drives 1 and 2). The finite-
+  flight form (unique preperiod until first return) is the same
+  lemma and is KNOWN for any deterministic map; the project-
+  specific content is the combination with the Juggler anchor.
 - Pointwise envelope inversion \(u_k\ge\log_2(\log x_k/\log n)\) —
   **EXACT — LEAN VERIFIED** component + trivial inversion
 - Tail-minimum records as internal anchors — **EXACT — HUMAN
@@ -213,6 +280,11 @@ Classification **DIVERGENT_STRUCTURE_MIRRORS_CONFIRMED**.
   \(u_k\ge\log_2(\log x_k/\log n)\) and running max
   \(\ge\log_2(\log(n+k)/\log n)\); the hug excess diverges; and hug
   domination restarts from infinitely many cofinal record indices.
+- **Uniqueness reading:** linear peak growth is the distinct-state
+  packing law (the cheapest consequence of global injectivity on
+  \([n,\infty)\)); the dichotomy is finite injective prefix +
+  closure versus infinite injective trajectory. Uniqueness itself
+  is not an exclusion.
 - **Answer to the standing question:** the proved layers *do*
   describe divergent flights — with rates. Only their exclusion is
   behind all-depth equidistribution.
@@ -229,10 +301,23 @@ Classification **DIVERGENT_STRUCTURE_MIRRORS_CONFIRMED**.
   needs parity of iterated \(\lfloor x^{3/2}\rfloor\) at *all*
   depths for a single pattern — strictly weaker than full all-depth
   equidistribution, but still beyond Paper B's depth \(\le 4\).
+  *(Placed and closed by `juggler_odd_tower_fragment`: the fragment
+  is in fact incomparable to equidistribution — pointwise versus
+  density — and every lab route into it is recorded negative
+  knowledge.)*
 - Whether recurrent hug domination (point 5) has any Diophantine
-  consequence for the *word* of a divergent flight (a
-  translation-recurrent density constraint is unusual) — no route
-  visible from current layers.
+  consequence for the *word* of a divergent flight. The named
+  candidate (DK/Ostrowski pricing of those words) is answered by
+  [juggler_flight_dk_pricing.md](juggler_flight_dk_pricing.md):
+  **CLOSE**. DK prices every `AboveAnchor` hug prefix without a
+  Juggler return; the walk-charge kill still needs
+  \(\theta=1-2^L/3^o\) from \(x_L=n\).
+- State packing / admissible-set sparsity (uniqueness + recurrent
+  hug + envelope making \([n,\infty)\) too thin for an infinite
+  injective trajectory) is **PARK**: uniqueness is compatible with
+  divergence on a half-line; hug constraints are on words and the
+  cylinders are filled; records strictly increase. See the packing
+  caution above. Not a new branch.
 
 ## Decision
 

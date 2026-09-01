@@ -19193,6 +19193,60 @@ Best next question
   flight into the k = 1 semiconvergent fan at L = 478245?
 ```
 
+## K3 rate-free reduction: what density one actually needs (Phase 0; re-aims the parked K3 line without reopening it)
+
+- **Date:** 2026-09-01
+- **Objective:** Review the K3 wall (BB/GG/JJ) and answer: does density-one finite descent need the power-savings kernel bounds the wall blocks, or does a weaker, rate-free hypothesis suffice — and if so, what species of mathematics reaches it?
+- **Hypotheses:** the wall's three layers all obstruct *rated* mechanisms (differencing → BB, character windows → GG, shift de-randomization → JJ); the goal is monotone in depth, so rates may be unnecessary. Falsifiers: the reduction argument breaks, or floor-removal self-similarity obstructs the ergodic route by name.
+- **Major results:**
+  - **Lemma A — rate-free reduction (EXACT — HUMAN PROOF, `J-rate-free-density-one`):** per-fixed-depth *qualitative* equidistribution (\(\#w(N)=2^{-d}N+o(N)\) for each fixed \(d\), no rate, non-uniform in \(d\)) implies density-one finite descent. Proof: Proposition J's inequality with \(N\to\infty\) taken before \(d\to\infty\); upper density \(\le e^{-cd}\) for every \(d\). Certificates are the Lean power envelope (`power_bound_word`). Power savings — the only thing BB/GG/JJ block — is consumed nowhere.
+  - **Lemma B — biased-split reduction (same row):** full equidistribution is also unnecessary: a rate-free node-wise E-share \(\ge\beta>\beta_*=1-\log 2/\log 3\approx 0.36907\) suffices, via generating-function domination \(\sum\mu(\sigma)x^{o(\sigma)}\le(\beta+(1-\beta)x)^d\) and Chernoff at \(\gamma=\log 2/\log 3\). The empirical split is \(0.5\); the required one is \(0.37\).
+  - **Species statement:** the weakest sufficient kernel input is rate-free fixed-depth equidistribution of the floor-power tower — recorded as the single active target (`juggler_tower_rate_free_equidistribution`). By two-term Taylor (Paper B Lemma 7.2) the tower observable is a finite-complexity bracket-Hardy expression; the polynomial analogue is exactly Bergelson–Leibman's bracket calculus (brackets lift to nil-coordinates — no Fourier expansion, so GG's amplitude drift does not apply), and Frantzikinakis 2009 has the integer-part removal step for Hardy entries. Nothing published covers the nested tower: the ergodic door is unbuilt, not walled. Recorded falsifier for the route: the floor-removal correction \(\tfrac32 v^{3/4}\{v^{3/2}\}\) may re-enter the amplitude-product class inside a characteristic-factor argument — a would-be fourth layer.
+  - **Literature check:** arXiv 2510.20562 (2025) reaches *twice*-iterated Piatetski–Shapiro sequences with the classical toolkit at small amplitudes only — nested floors are an active frontier; the amplitude-product class remains untouched.
+  - **Probe (`k3_rate_free.py`, `K3_RATE_FREE_GREEN`):** exact never-negative DP profile to \(d=200\) (\(C_{200}/2^{200}=3.06\cdot 10^{-6}\), rate \(0.0635\)/letter; Hoeffding majorizes at \(0.0343\)); exact biased-adversary profile (at \(\beta=0.37\), decay \(0.0154\)/letter while Chernoff is nearly vacuous — the DP is much stronger near threshold); dyadic tower census on \((10^6,2\cdot 10^6]\) (all \(512\) joint cells occupied, max deviation \(0.145\) vs allowance \(0.161\); OOOO fifth-letter even share \(0.49835\pm 0.0060\)). Scope note: the full-range census from \(n=5\) shows a genuine \(6.4\sigma\) small-\(n\) correlation — equidistribution is asymptotic; the census follows K3's dyadic convention.
+- **Refuted ideas:** none. Negative knowledge honored: no toolkit re-entry (BB/GG/JJ final), no Paper B edit (frozen for submission), Conjectures K/V/HH stay PARKED unchanged; the positive-proportion shortcut *below* \(\beta_*\) is recorded as insufficient (contraction needs E-fraction \(>0.369\)).
+- **Decision:** PROMOTE — dossier `docs/problems/juggler_k3_rate_free.md`, ledger row `J-rate-free-density-one`, active conjecture `juggler_tower_rate_free_equidistribution`. The K3/HH quantitative line stays PARKED; no follow-on branch is opened.
+
+```text
+What was learned
+- the BB/GG/JJ wall blocks rates; density one needs no rate:
+  Proposition J with the limits swapped gives density one from
+  per-fixed-depth qualitative equidistribution
+- even biased splits suffice: any rate-free node-wise E-share
+  above 1 - log2/log3 = 0.369 gives density one; the target
+  drops from "0.5 with power savings" to "0.37 without"
+- the weakest sufficient input is ergodic-species (bracket-
+  Hardy / nilmanifold): brackets lift to nil-coordinates, so
+  GG's amplitude-drift mechanism does not formally apply
+- the exact never-negative profile decays at 0.0635/letter
+  (Hoeffding's 0.0343 is loose); near threshold the exact DP
+  beats Chernoff by four orders of magnitude
+Strongest theorem
+- rate-free reduction: qualitative fixed-depth
+  equidistribution implies density-one finite descent
+  (J-rate-free-density-one, EXACT - HUMAN PROOF)
+Strongest refutation
+- none (the wall is not contradicted, it is circumvented in
+  hypothesis space; whether the ergodic door opens is the
+  recorded falsifier)
+Reusable machinery
+- k3_rate_free probe (exact DP profiles, integer tower
+  binning); the biased-split threshold beta* as a permanent
+  target constant
+Branch status
+- PROMOTE
+Why
+- two short exact lemmas permanently weaken what the K3 line
+  must produce and re-aim it at a door no recorded
+  obstruction reaches; the parked quantitative line and the
+  frozen Paper B are untouched
+Best next question
+- does the Hardy-field bracket calculus exist: can the
+  nil-lift that absorbs polynomial brackets absorb
+  v^{3/4}{v^{3/2}}, or does floor-removal self-similarity
+  add a fourth, ergodic layer to the wall?
+```
+
 ## Paper A: referee report v10 response — retitle and the six required revisions (consolidation; not a numbered milestone)
 
 - **Date:** 2026-09-01
@@ -19313,5 +19367,203 @@ Best next question
   single pattern) be attacked as a standalone fragment of
   the all-depth frontier, or does it already embed the full
   equidistribution difficulty?
+```
+
+## Odd-tower fragment: placement and CLOSE (consolidation; not a numbered milestone)
+
+- **Date:** 2026-09-01
+- **Objective:** The divergent-structure branch's best next question: is the infinite-odd-tower fragment (\(\mathcal T_\infty=\{x:\text{all iterates of }\lfloor x^{3/2}\rfloor\text{ odd}\}\)) attackable standalone, or does it embed the full equidistribution difficulty?
+- **Hypotheses:** the fragment is incomparable to equidistribution and every lab route is recorded negative knowledge; falsifier: some proved layer gives a pointwise tower bound.
+- **Major results:**
+  - **Scope correction (machinery gravity honored):** the originally scoped tower census was dropped on discovering it duplicates the closed \(\mathcal P_r\) census (`juggler_odd_landing_sets`, `ODD_LANDING_SETS_ARE_FORWARD_ORBITS`): the depth-\(r\) tower sets *are* the iterated odd-landing sets, already measured (stay \(\approx 1/2\) through \(r=7\), singleton cells, no residue/\(\theta\)/2-adic recognition — all REFUTED, `J-odd-landing-set-structure`).
+  - **Placement (EXACT - HUMAN PROOF, recorded in the dossier):** (i) all-depth equidistribution is a density statement and cannot exclude a density-zero-but-nonempty \(\mathcal T_\infty\) - even the full program would not settle the fragment; (ii) tower exclusion is a single cylinder and implies no equidistribution - so the fragment is *incomparable* to the all-depth frontier, answering the question: neither attackable by it nor embedding it; (iii) the only counting route past depth 4 (Paper B along sparse tower-tail images) is exactly the refuted ambient-to-orbit transfer (`TRANSFER_COMPLEX`); (iv) the only pointwise routes (residues, cylinders, \(\theta\), valuation) are the refuted candidates of the odd-landing branch. A self-contained pointwise digit problem (parity of iterated isqrt(x^3)), Mahler-flavored, no lab machinery applies.
+  - **Corollary 1 (floor for towers):** every state of a hypothetical infinite odd tower exceeds \(162849448\) (tails of towers are towers; towers are strictly increasing hence descent-free; the certified floor kills all smaller starts).
+  - **Corollary 2 (doubly-exponential pinning, components Lean):** a tower from \(n\ge 400\) has walk weight exactly \((3/2)^k\), so the flight envelope pins \((3/2)^k(\log n-\Delta)\le\log x_k\le(3/2)^k\log n\); its walk \(u_k=k(\log_2 3-1)\) is the fastest any word admits.
+- **Refuted ideas:** none new (the falsifier did not fire; existing refutations were cited, not re-tested).
+- **Literature:** external check - the Juggler literature (Pickover, OEIS A007320 circle) records only the termination conjecture; no source poses the odd-tower fragment separately; the problem type parallels Mahler's Z-number problem in flavor only.
+- **Open:** \(\mathcal T_\infty=\emptyset\) itself - now placed as pointwise, incomparable to equidistribution, beyond current machinery.
+- **Decision:** CLOSE - dossier `docs/problems/juggler_odd_tower_fragment.md`; no probe, no ledger row (the corollaries are one-line instances of existing rows), no conjecture record.
+
+```text
+What was learned
+- the depth-r tower sets are the closed odd-landing sets:
+  the standalone arithmetic attack was already dead, and the
+  scoped census would have duplicated a closed branch
+- the fragment is incomparable to the equidistribution
+  program: density statements cannot exclude a nonempty
+  density-zero set, and the single cylinder implies nothing
+  back - "behind the all-depth frontier" was the wrong map
+- the flight program adds real but trivial content: towers
+  live entirely above the certified floor and are pinned
+  doubly-exponentially by the Lean envelope
+- the laboratory owns no pointwise handle on the parity of
+  isqrt along orbits; the fragment is Mahler-flavored
+  classical-open territory
+Strongest theorem
+- placement + Corollaries 1-2 (instances; no new ledger row)
+Strongest refutation
+- none (recorded kills cited, not re-tested)
+Reusable machinery
+- none (by design; the branch produced a record, not code)
+Branch status
+- CLOSE
+Why
+- the stop criterion fired exactly: all routes reduce to
+  recorded negative knowledge, and the two corollaries do not
+  justify machinery; the question is answered and the
+  frontier map is corrected
+Best next question
+- does the recurrent hug domination of divergent flights
+  (J-flight-divergent-structure, point 5) admit pricing by
+  the certified Ostrowski/DK blocks - a flight-side analogue
+  of the walk-charge envelope on translation-recurrent
+  words - or does DK pricing intrinsically require the
+  closure identity that only cycles provide?
+```
+
+## Record-jump quantization: pricing flights without closure (consolidation; not a numbered milestone)
+
+- **Date:** 2026-09-01
+- **Objective:** The odd-tower branch's best next question: does recurrent hug domination admit Ostrowski/DK pricing on divergent flights, or does DK pricing intrinsically require the closure identity of cycles?
+- **Hypotheses:** transport applied at record pairs quantizes record jumps to the \(\log_2 3\)-lattice within the deficit, with closure as the \(\delta\approx 0\) slice; falsifier: \(\Delta'\) at or above the lattice gap on all useful windows (vacuous), or a restatement of the envelope row.
+- **Major results:**
+  - **Record-jump quantization (EXACT - HUMAN PROOF, components Lean, `J-flight-return-quantization`):** at a record with anchor \(m\ge 400\), any segment of length \(p\), odd count \(o\), and doubly-log jump \(\delta=\log_2(\log M/\log m)\) satisfies \(\delta\le o\log_2 3-p\le\delta+\Delta'\), \(\Delta'=-\log_2(1-\Delta/\ln m)\), \(\Delta\le 1.05p/m\) (upper: `follows_log_le_walkWeight`; lower: `aboveAnchor_transport`; record validity: `J-flight-divergent-structure` point 5). Jumps are pinned within \(\Delta'\) of the lattice \(\{o\log_2 3-p\}\): admissible measure fraction \(O(p/(m\ln m))\) (\(4\cdot 10^{-9}\) at \(p=19\), anchor \(3.5\cdot 10^8\); vacuity only past \(\sim 0.63\,m\ln m\approx 7\cdot 10^9\) steps).
+  - **Return-time quantization:** \(\delta\le\varepsilon\) forces \(\theta_p\le\varepsilon+\Delta'\), and \(\theta_p=o_{\min}(p)\log_2 3-p\) *is the hug walk height* - near-returns only at Ostrowski times \(R_\varepsilon\): shortest \(19\) (\(\theta_{19}=0.01955\)), exact three-gap structure at all four probed \(\varepsilon\) scales on \(p\le 10^5\), and the \(\varepsilon\downarrow 0\) spectrum passes through the cycle survivor lengths (\(84\) at \(0.005\), \(1054\) at \(0.001\)): cycles and flights share one Diophantine skeleton.
+  - **Closure answer (both sides):** recurrent hug domination alone prices nothing; DK/parity pricing of segment *lengths* intrinsically requires (near-)closure, with the jump budget \(\delta+\Delta'\) exactly replacing the cycle finance identity (cycle pricing = the \(\delta=0\) boundary slice; DK charge budgets are swamped beyond deficit scale). What is unconditional on divergent flights is the jump-rigidity law.
+  - **Census mirror:** two-sided transport verified at all \(20136\) anchored-segment positions (orbits \(n\le 2000\), anchors \(\ge 400\)), zero violations; all realized near-returns (\(\delta\le 0.05\)) land on lengths \(19\) (\(44\times\)) and \(38=2\cdot 19\) (\(7\times\)) - only the two shortest quantized times, zero misses. Classification `RETURN_QUANTIZATION_CONFIRMED`.
+- **Refuted ideas:** none (the falsifier did not fire; the "pricing without closure" hope is answered negatively by analysis, not by a tested refutation).
+- **Literature:** three-gap (Steinhaus/Slater) structure used as a KNOWN classical check, not claimed.
+- **Open:** whether jump rigidity composes across consecutive record segments into a constraint on the jump sequence with Diophantine content (named, not opened; reparameterization risk).
+- **Decision:** PROMOTE - dossier `docs/problems/juggler_flight_return_quantization.md`, ledger row `J-flight-return-quantization`.
+
+```text
+What was learned
+- transport at record pairs is a Diophantine constraint: the
+  doubly-log jump delta sits within the deficit of the lattice
+  {o log2 3 - p} - divergent flights cannot jump arbitrarily
+- theta_p is the hug walk height: near-zeros of the hug walk
+  are exactly the admissible near-return times, shortest 19,
+  and the eps->0 spectrum is the cycle survivor fan - one
+  skeleton for cycles and flights
+- the closure identity is not magic: it is the delta = 0 case
+  of a jump budget, and everything the finance layer prices
+  survives with budget delta + Delta' - but only near closure;
+  drifting segments escape all length tables
+- the census sees the law: realized near-returns occur only
+  at 19 and 38
+Strongest theorem
+- record-jump quantization with explicit constants
+  (J-flight-return-quantization)
+Strongest refutation
+- none
+Reusable machinery
+- flight_return_quantization probe: exact R_eps enumeration
+  with three-gap verification and the all-anchor two-sided
+  transport mirror
+Branch status
+- PROMOTE
+Why
+- the promotion criterion (a quantization law with new
+  constants) is met exactly; both halves of the branch
+  question are answered; the composition question is named
+  and left closed
+Best next question
+- does the jump-rigidity law compose across consecutive
+  record segments (sums of near-lattice jumps against total
+  walk growth) into any constraint with Diophantine content
+  beyond the envelope, or is composition a pure
+  reparameterization?
+```
+
+## Flight uniqueness trichotomy (consolidation; not a numbered milestone)
+
+- **Date:** 2026-09-01
+- **Objective:** Name the three uniqueness statements already used in the flight program, recast the dichotomy as finite injective prefix + closure versus infinite injective trajectory, and decide whether uniqueness + recurrent hug + the envelope yields a state-packing attack on the divergent branch.
+- **Hypotheses:** uniqueness of the preperiod is a finite-flight combinatorial constraint (not a corollary of walk-divergence); the linear peak law is the distinct-state packing law; a genuine new attack would require hug-compatible states to be too sparse for an infinite injective trajectory. Falsifier for uniqueness-as-contradiction: an infinite half-line admits injective enumerations. Falsifier for packing-as-new-attack: hug constraints act on words, cylinders are filled, records strictly increase.
+- **Major results:**
+  - **Uniqueness trichotomy (KNOWN determinism + packaging of existing theorems, no new ledger row).** (1) Before the first repetition, states are pairwise distinct (finite-flight uniqueness). (2) The flight anchor floors *both* the injective preperiod and the eventual cycle (`J-flight-anchor-period` uniqueness reading). (3) A non-eventually-periodic descent-free flight is an injective enumeration of \([n,\infty)\); \(\max_{j\le k}x_j\ge n+k\) is the cheapest packing consequence (`J-flight-divergent-structure`, point 2).
+  - **Conceptual recast of the dichotomy:** the flight program is finite injective prefix + closure versus infinite injective trajectory, not “bounded versus unbounded.” Cycle machinery handles closure; the structure theorem handles the infinite-injective side.
+  - **Packing attack PARK.** Uniqueness itself is compatible with divergence on a half-line. Bounded-walk packing is the existing pigeonhole (`J-flight-walk-divergence`). Hug domination constrains words, and the extremal hug cylinders are filled at the \(2^{-L}\) scale (`juggler_hug_prefix_realization`, CLOSE). Recurrent records strictly increase, so later valleys draw from a fresh half-line; later high-walk peaks occupy larger scales by the walk-height law. A sparsity contradiction would need envelope windows at comparable scales to be over-occupied — quantitative valley composition, already PARK with the flight-envelope branch.
+- **Refuted ideas:** uniqueness-as-contradiction (KNOWN, not a Juggler obstruction). State packing as a new exclusion mechanism is not refuted as a sentence, but the natural static-count and shared-pool versions are dead for the reasons above; not recorded as a `conjectures/refuted/` id because no precise packing conjecture was stated.
+- **Literature:** none new.
+- **Open:** the word-side question named by the odd-tower CLOSE stands (DK/Ostrowski pricing of translation-recurrent hug words versus DK needing cycle closure). Not auto-opened. State packing is not that question.
+- **Decision:** CLOSE on uniqueness-as-new-theorem (KNOWN / reparameterization of existing rows). PARK on state-sparsity as an exclusion attack (obstructions recorded; reduces to PARKed valley composition). Formulation written into `juggler_flight_walk_divergence`, `juggler_flight_anchor_period`, and `juggler_flight_divergent_structure`. No probe, no ledger row, no Lean.
+
+```text
+What was learned
+- preperiod uniqueness is determinism, independent of the
+  divergent theorem; the pigeonhole is that lemma on a
+  finite envelope window
+- the anchor floors both the injective preperiod and the
+  closed cycle; the cycle cannot slip below the floor
+- linear peak growth is the distinct-state packing law,
+  the cheapest consequence of global injectivity on [n, inf)
+- uniqueness + recurrent hug + the existing envelope does
+  not make [n, inf) too thin: cylinders are filled, records
+  strictly increase, later peaks live at larger scales
+Strongest theorem
+- none new (trichotomy is packaging of J-flight-walk-divergence,
+  J-flight-anchor-period, J-flight-divergent-structure)
+Strongest refutation
+- uniqueness-as-contradiction (an infinite half-line admits
+  injective enumerations)
+Reusable machinery
+- none (documentation of existing proofs)
+Branch status
+- CLOSE on uniqueness-as-new-theorem; PARK on state packing
+Why
+- the uniqueness statements are KNOWN determinism plus the
+  existing flight theorems; the packing attack reduces to
+  PARKed valley composition and the closed hug-cylinder
+  fills; no new mathematical consequence
+Best next question
+- does the recurrent hug domination of divergent flights
+  admit pricing by the certified Ostrowski/DK blocks, or
+  does DK pricing intrinsically require the closure identity
+  that only cycles provide?
+```
+
+## Flight DK pricing: closure is the kill, not the bound (consolidation; not a numbered milestone)
+
+- **Date:** 2026-09-01
+- **Objective:** The odd-tower CLOSE's best next question: does recurrent hug domination of divergent flights admit pricing by the certified Ostrowski/DK blocks, or does DK pricing intrinsically require the closure identity that only cycles provide?
+- **Hypotheses:** translation-recurrent hug tails feed Theorem 5.9 and produce a flight-side kill; falsifier: DK applies to IET prefixes with no Juggler return, while \(\theta\) comes only from \(x_L=n\).
+- **Major results:**
+  - **Flight DK split (EXACT - HUMAN PROOF, components Lean, no new ledger row).** Pricing does not need closure: `hug_charge_maximal` takes any admissible odd-count profile; every `AboveAnchor` prefix (hence every recurrent tail) is admissible; Ostrowski/DK prices hug prefixes of every length \(L\) (Paper A Theorems 5.7-5.8); `aboveAnchor_transport` is the open unroll. The kill does need closure: `cycleMin_defect_finance` produces \(\theta=1-2^L/3^o\) by closing `cycleMin_charge_prefix` at \(x_L=n\) (`cycle_iterate_period`) and reindexing the charge sum; `cycleMin_hug_kill_criterion` is that \(\theta\) against the hug bound. An open prefix has no \(\theta\) - the same unroll is the flight envelope, compatible with descent-freeness. Recurrent restarts refresh the RHS and still supply no LHS.
+  - **Infinite hugging is already dead** by walk-divergence (pigeonhole + `cycle_strict_envelope`), not by DK. DK would only help if a finite-\(L\) deficit existed.
+  - **Answer:** DK does not intrinsically require closure to *price*; it intrinsically requires closure to *kill*. The flight-side analogue of the walk-charge envelope exists as a bound and does not constrain divergent flights beyond recorded theorems.
+- **Refuted ideas:** none new (Koksma \(+1/L\) not re-tested; no packing census; valley composition not reopened). The slogan "open flights have no closure identity" from the walk-divergence journal is here made precise rather than re-proved.
+- **Literature:** none new.
+- **Open:** none in the flight program. The cycle Diophantine blocker \(L=478245\) and pointwise emptiness of odd towers remain the named frontiers; neither is opened.
+- **Decision:** CLOSE - dossier `docs/problems/juggler_flight_dk_pricing.md`. No probe, no ledger row, no Lean. The last named laboratory attack on the divergent branch is not a theorem.
+
+```text
+What was learned
+- hug_charge_maximal and Ostrowski/DK apply to open
+  AboveAnchor prefixes; recurrent records inherit that RHS
+- θ = 1 - 2^L/3^o is the cyclic close of cycleMin_charge_prefix
+  at x_L = n; without the close the unroll is transport
+- recurrent hug domination therefore feeds the walk-charge
+  envelope as a bound and not as a kill
+- infinite hugging was already excluded by walk-divergence,
+  which does not use DK
+Strongest theorem
+- flight DK split: pricing needs no closure; the kill does
+  (packaging of existing Lean/human theorems; no ledger row)
+Strongest refutation
+- none new (the novelty hypothesis died by obstruction, not
+  by a counterexample orbit)
+Reusable machinery
+- none (distill only)
+Branch status
+- CLOSE
+Why
+- the stop criterion fired: the RHS is already available
+  off-cycle and the LHS is the cyclic close; no flight-side
+  θ-analogue is visible, and a census would not create one
+Best next question
+- none in the flight program; the two named frontiers (cycle
+  Diophantine blocker L=478245; pointwise emptiness of
+  infinite odd towers) are not opened from here
 ```
 

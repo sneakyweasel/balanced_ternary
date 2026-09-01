@@ -45,6 +45,16 @@ increasing in \(n\), \(C_*\) decreasing) are strictly decreasing.
 Hence the kill tables evaluated at floor \(n\) apply to the
 eventual cycle — no certified descent below \(n\) is needed.
 
+*Uniqueness reading.* Determinism gives a unique preperiod before
+the first repetition, and then a closed cycle. Descent-freeness
+puts **both** pieces above the anchor: every preperiod state
+satisfies \(x_i\ge n\) and \(x_i\neq x_j\) for \(i\neq j<r\), and
+the cycle minimum is also \(\ge n\). The cycle cannot slip below
+the floor to escape the conditional DK argument. The lemma is
+therefore “first repetition \(\Rightarrow\) unique preperiod +
+closed cycle, with the flight anchor a floor for both,” not merely
+“bounded walk \(\Rightarrow\) some cycle above \(n\).”
+
 **Instance (COMPUTATIONALLY VERIFIED,
 `J-flight-anchor-period`).** Any descent-free flight from anchor
 \(n\ge 3.5\cdot 10^8\) with bounded exponent walk enters a
@@ -183,7 +193,9 @@ Classification **ANCHOR_PERIOD_GREEN**.
 - **Instance:** bounded-walk descent-free flights from
   \(n\ge 3.5\cdot 10^8\) enter cycles of period \(\ge 780239\) —
   a \(1.63\times\) conditional extension past the unconditional
-  \(478245\), with zero descent verification.
+  \(478245\), with zero descent verification. The uniqueness
+  reading: the anchor floors both the injective preperiod and the
+  closed cycle; the cycle cannot return below \(n\).
 - **Structure:** the parity leftovers in \((478245,780239)\) are
   exactly the near-convergent combinations
   \(478245+\{25781,50508(\pm 1054\text{-offsets}),176251,\dots\}\);
