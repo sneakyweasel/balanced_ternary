@@ -69,6 +69,7 @@ import Problems.Juggler.CycleHeightFinance
 import Problems.Juggler.WalkChargeWords
 import Problems.Juggler.OstrowskiSandwich
 import Problems.Juggler.OstrowskiNumeration
+import Problems.Juggler.WalkTransport
 
 /-!
 # Juggler laboratory barrel

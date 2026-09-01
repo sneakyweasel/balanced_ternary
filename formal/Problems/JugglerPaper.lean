@@ -25,6 +25,7 @@ import Problems.Juggler.RunSurvivorLattice
 import Problems.Juggler.WalkChargeWords
 import Problems.Juggler.OstrowskiSandwich
 import Problems.Juggler.OstrowskiNumeration
+import Problems.Juggler.WalkTransport
 
 /-!
 # Juggler paper barrel (Paper A)
@@ -105,6 +106,11 @@ The note's Lean-tagged theorems are listed in its Appendix A:
 * 4.9 `run_survivor_unimodular`, `run_survivor_seed_F2`,
       `run_survivor_seed_F3`, `three_pow_step_gt_two_pow_step`,
       `runSurvivors_length`
+* 5.3 (transport inequality, log form) `cycleMin_transport`, with
+      per-step floor losses `log_floorPower_even_ge`,
+      `log_floorPower_odd_ge` and the weight recursion
+      (`WalkTransport.lean`); the walk-charge DP consequence stays
+      a human reduction
 * 5.4 (combinatorial core) `hugOdds_le_of_admissible`,
       cycle-word domination `cycleMin_prefix_odds_ge_hug`,
       `cycleMin_odds_ge_hug` (`WalkChargeWords.lean`); the analytic

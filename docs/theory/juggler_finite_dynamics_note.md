@@ -308,14 +308,16 @@ Theorem 4.6 applies Corollary 4.5 to this input and certifies
 the table with the conservative coefficient \(6/5\). Theorem 4.7
 is a human proof; Theorem 4.8 reuses the gap table under that
 packing. Proposition 4.9 is integer arithmetic in Lean. In
-Section 5, Theorems 5.3, 5.4, and 5.7 and Lemma 5.6 are human
-proofs (Denjoy--Koksma is used as a known tool); the digit-cap
-step and the digit scan of Theorem 5.8 are Lean-verified
-(`ostroDigit_le`, `theta_digitSum_le`, `window_digit_scan`);
-Theorems 5.2 and 5.9 are independently certified computations
-at the laboratory floor, with the same trust boundary as
-Theorem 4.6 (exact integer arithmetic plus guarded float
-comparisons). This is not a claim that the paper as a
+Section 5, Theorems 5.4 and 5.7 and Lemma 5.6 are human proofs
+(Denjoy--Koksma is used as a known tool); the transport
+inequality of Theorem 5.3 (`cycleMin_transport`) and the
+digit-cap step and digit scan of Theorem 5.8 (`ostroDigit_le`,
+`theta_digitSum_le`, `window_digit_scan`) are Lean-verified,
+while the walk-charge reduction that follows Theorem 5.3 stays
+human; Theorems 5.2 and 5.9 are independently certified
+computations at the laboratory floor, with the same trust
+boundary as Theorem 4.6 (exact integer arithmetic plus guarded
+float comparisons). This is not a claim that the paper as a
 whole is formally verified.
 
 ```text
@@ -1606,6 +1608,16 @@ each; even injections have \(x_j\ge n^2\) (Theorem 3.2(iii))
 and \(w_{j+1}\ge 1\), contributing at most \(1.05/n\) each.
 Hence \(E_k\le w_k D\). \(\square\)
 
+The transport inequality is Lean end to end in log form: the
+walk weight \(w_k=2^{u_k}=3^{a_k}/2^k\) is rational, so the
+per-step floor losses (`log_floorPower_odd_ge`,
+`log_floorPower_even_ge`), the exact weight recursion, and the
+full induction (`cycleMin_transport`, `WalkTransport.lean`) are
+elementary real arithmetic over the formalized cycle envelopes
+`cycleMin_iterate_ge`, `cycleMin_even_ge_sq`, and
+`cycleMin_prefix_pow_le`. The walk-charge consequence below
+stays a human reduction.
+
 Consequently the cyclic defect sum \(\sum_i 1/(x_i\ln x_i)\) is
 bounded above by the maximum of the walk charge
 \(\sum_k g(u_k)\), \(g(u)=1/(n'^{2^u}2^u\ln n')\), over all
@@ -1921,12 +1933,12 @@ formally verified.
 | Proposition 4.9 | `run_survivor_unimodular`, `run_survivor_seed_F2`, `run_survivor_seed_F3`, `three_pow_step_gt_two_pow_step`, `runSurvivors_length` |
 | Proposition 5.1 | laboratory floor; certified computation, not Lean |
 | Theorem 5.2 | raised cutoff; verified computation, not Lean |
-| Theorem 5.3 | transport; human proof, not Lean |
+| Theorem 5.3 | transport inequality `cycleMin_transport`, per-step losses `log_floorPower_even_ge`, `log_floorPower_odd_ge` (`WalkTransport.lean`); walk-charge reduction human |
 | Theorem 5.4 | combinatorial core `hugOdds_le_of_admissible`; cycle-word domination `cycleMin_prefix_odds_ge_hug`, `cycleMin_odds_ge_hug`; charge maximisation is a human proof |
 | Proposition 5.5 | rotation average; human proof, not Lean |
 | Lemma 5.6 | `budgetedWord_eq_hugWord`, `hugOdds_pow_ge`, `hugOdds_pow_lt`, `hugOdds_pow_gt`, `hugOdds_least` |
 | Theorem 5.7 | Denjoy--Koksma (known), not Lean; quotient arithmetic `theta_sandwich_upper`, `theta_sandwich_lower`, `lower_lt_walkTheta`, `walkTheta_lt_upper`, `cf_lower_prefix`, `cf_upper_prefix`, `theta_convergent_denominators` |
-| Theorem 5.8 | digit cap Lean: general numeration `ostroDigit_le`, `ostro_sum_eq`, `ostro_digitSum_le`, θ instance `theta_digitSum_le`, `greedyDigitSum_le`; scan `window_digit_scan`, `window_digit_cap`, `window_digit_max`; Denjoy--Koksma comparison human |
+| Theorem 5.8 | digit cap Lean: general numeration `ostroDigit_le`, `ostro_sum_eq`, `ostro_digitSum_le`, instance `theta_digitSum_le`, `greedyDigitSum_le`; scan `window_digit_scan`, `window_digit_cap`, `window_digit_max`; Denjoy--Koksma comparison human |
 | Theorem 5.9 | kill table; verified computation, not Lean |
 | short certificates (Section 6) | `even_finiteProgress`, `odd_even_finiteProgress` |
 | no certificate \(\Rightarrow\) odd-to-odd | `no_finiteProgress_implies_odd_odd` |

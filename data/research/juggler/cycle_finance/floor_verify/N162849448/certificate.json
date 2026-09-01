@@ -18,11 +18,11 @@
   "exact_integer": true,
   "floating_point_used_for_certification": false,
   "implementation": "research.juggler_sequence.cycle_floor_sensitivity.verify_floor_certified",
-  "git_commit": "6718ad5e010f914fae3d7f0e8af55f1f08d79fa9",
+  "git_commit": "a6cdf82b3739a773db1f845a208691a6024121d4",
   "sha256_chunks": "35d9755ce52a225a161b009d0f3674b24a5d0add16035f09ea83cf3880414ae4",
   "chunk_count": 547,
   "workers": 4,
-  "elapsed_s": 0.8059701999882236,
+  "elapsed_s": 20534.798579399998,
   "halt_theorem": false,
   "no_cycle_all_lengths": false
 }

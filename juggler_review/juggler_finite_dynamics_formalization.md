@@ -616,9 +616,29 @@ the survivor-lattice generators of Proposition 4.9 lie on the hug
 diagonal \(o=o_{\min}(L)\) — \((1054,665)\), \((25781,16266)\),
 \((50508,31867)\) (`hugOdds_1054`, `hugOdds_lattice_base`,
 `hugOdds_seed`, list form `hugOdds_convergent_denoms`). The real
-charge and its maximisation (the analytic half of Theorem 5.4), the
-transport lemma (Theorem 5.3), and the Laplace integral
-(Proposition 5.5) are human proofs.
+charge and its maximisation (the analytic half of Theorem 5.4) and
+the Laplace integral (Proposition 5.5) are human proofs.
+
+`WalkTransport.lean` proves the transport inequality of Theorem 5.3
+end to end in log form. The walk weight \(w_k=2^{u_k}=3^{a_k}/2^k\)
+is rational, so no real exponentiation is needed:
+`cycleMin_transport` states
+\(w_k(\ln n-D)\le\ln x_k\) with
+\(D=1.05e/n+0.7o/(n\sqrt n)\) for any CycleMin cycle at minimum
+\(n\ge 400\). Ingredients: per-step floor losses
+\(\ln T(x)\ge\tfrac32\ln x-1.05/(x\sqrt x)\) (odd, \(x\ge 9\)) and
+\(\ln T(x)\ge\tfrac12\ln x-1.05/\sqrt x\) (even, \(x\ge 441\))
+from the floor cells and \(-\ln(1-t)\le 1.05t\) on \(t\le 1/21\)
+(`log_floorPower_odd_ge`, `log_floorPower_even_ge`,
+`neg_log_one_sub_le`); the exact weight recursion
+\(w_{k+1}=\tfrac32 w_k\) (odd), \(w_k/2\) (even); odd injections
+priced at \(x_j\ge n\) (`cycleMin_iterate_ge`) against
+\(w_{j+1}\ge\tfrac32\), even injections at \(x_j\ge n^2\)
+(`cycleMin_even_ge_sq`) against \(w_{j+1}\ge 1\)
+(`one_le_walkWeight`, from `cycleMin_prefix_pow_le`). The
+walk-charge consequence — the DP over nonnegative closed walks at
+the reduced base and its feed into the \(6/5\) unroll — stays a
+human reduction.
 
 `OstrowskiSandwich.lean` certifies the quotient arithmetic of
 Theorem 5.7: the big-integer sandwich
@@ -635,11 +655,24 @@ also Lean: for every window length \(50508\le L<301994\) the greedy
 Ostrowski digits over the certified denominators reconstruct \(L\)
 and sum to at most \(37\) (`window_digit_scan`, pointwise
 `window_digit_cap`), attained at \(L=275632\) (`window_digit_max`).
+
+`OstrowskiNumeration.lean` proves the digit-cap step of Theorem 5.8
+in general form: for any denominator sequence \(q\) with \(q_0>0\),
+\(q\) monotone, and the convergent recurrence bound
+\(q_{j+1}\le a_{j+1}q_j+q_{j-1}\), greedy digits from any
+\(L<q_{n+1}\) obey the remainder invariant (`ostroRem_lt`), the
+structural cap \(b_j\le a_{j+1}\) (`ostroDigit_le`), exact
+reconstruction \(L=\sum_j b_jq_j\) when \(q_0=1\) (`ostro_sum_eq`),
+and the digit-sum cap (`ostro_digitSum_le`). The \(\theta\) instance
+closes the window at \(q_{13}=301994\) and gives \(s(L)\le 47\) for
+*every* \(L<301994\), structurally (`theta_digitSum_le`,
+`theta_sum_eq`); a `native_decide` bridge identifies the function
+form with the fold form `greedyDigitSum` below the window endpoint
+(`greedy_eq_ostro_below_window`, corollary `greedyDigitSum_le`).
 Denjoy–Koksma and the cylinder-interval bridge from the endpoints
-to \(\theta\) itself are classical and stay prose; the structural
-digit cap \(b_j\le a_{j+1}\), the Denjoy–Koksma comparison, and the
-kill table (Theorem 5.9) are human proof plus certified computation,
-not Lean.
+to \(\theta\) itself are classical and stay prose; the
+Denjoy–Koksma comparison and the kill table (Theorem 5.9) are human
+proof plus certified computation, not Lean.
 
 ## 9. Exact floor reductions for the discrepancy paper
 

@@ -18709,6 +18709,34 @@ Best next question
 - **Open:** candidate Lean theories, in rising cost order: (1) general Ostrowski numeration (greedy digits from any quotient list + structural cap \(b_j\le a_{j+1}\)) would make the Thm 5.8 digit cap window-independent; (2) mechanical/Sturmian words of slope \(\log 2/\log 3\) (balancedness of `hugWord`); (3) transport recursion (Thm 5.3, real-log bookkeeping over CycleFinance); (4) Denjoy–Koksma on `AddCircle` (research-grade, would make Thm 5.7 Lean-native). None opened
 - **Decision:** consolidation addendum recorded; no new branch, no tag inflation — analytic rows keep their tags
 
+## Juggler general Ostrowski numeration in Lean
+
+- **Date:** 2026-09-01
+- **Objective:** Land candidate theory (1) from the Lean deep pass: general Ostrowski numeration with the structural digit cap, making the Theorem 5.8 digit-cap step Lean and window-independent
+- **Hypotheses:** none — formalization of KNOWN numeration mathematics serving a published theorem
+- **Major results:**
+  - **General theory** (`OstrowskiNumeration.lean`, problem-independent over any \(q,a:\mathbb N\to\mathbb N\) with \(q_0>0\), \(q\) monotone, \(q_{j+1}\le a_{j+1}q_j+q_{j-1}\)): remainder invariant `ostroRem_lt`, structural digit cap \(b_j\le a_{j+1}\) `ostroDigit_le`, exact reconstruction \(L=\sum_j b_jq_j\) at \(q_0=1\) `ostro_sum_eq`, digit-sum cap `ostro_digitSum_le`. Reusable unchanged for any deeper certified quotient list
+  - **θ instance:** denominators are the certified list closed at \(q_{13}=301994=1\cdot 176251+125743\); hypotheses discharged by `interval_cases`/`decide` below index 13 and constancy above. Every \(L<301994\) has greedy digit sum \(\le 47=a_1+\cdots+a_{13}\) **structurally** (`theta_digitSum_le`, exact decomposition `theta_sum_eq`) — the Theorem 5.8 digit-cap step, previously a human proof, is now Lean; the scan keeps the sharper \(\le 37\) on the window
+  - **Bridge:** `native_decide` over all \(301994\) lengths identifies the function-form digits with the fold-form `greedyDigitSum` (`greedy_eq_ostro_below_window`), so the structural cap lands on the paper's object (`greedyDigitSum_le`). Module in both barrels; `lake build` clean, no `sorry`. New ledger row `J-cyclemin-walk-ostrowski-numeration` (**EXACT — LEAN VERIFIED**). Paper A §1.2 roles, Theorem 5.8 proof text, Appendix A, paper barrel docstring, and reviewer formalization map §8.7 updated; PDF rebuilt
+- **Refuted ideas:** none
+- **Literature:** Ostrowski numeration (KNOWN); the Lean content is the formalization, not the mathematics
+- **Open:** remaining Lean ladder unchanged — mechanical/Sturmian balancedness of the hug word, transport recursion (Thm 5.3), Denjoy–Koksma on `AddCircle` (Thm 5.7)
+- **Decision:** PROMOTE (theory landed and wired into Paper A's trust boundary); no new mathematical branch opened
+
+## Juggler transport lemma in Lean
+
+- **Date:** 2026-09-01
+- **Objective:** Land the next rung of the Lean ladder: is the transport recursion (Paper A Theorem 5.3) provable over the existing CycleFinance real machinery without new analytic infrastructure?
+- **Hypotheses:** the walk weight \(w_k=2^{u_k}=3^{a_k}/2^k\) is rational, so the whole proof should be elementary real arithmetic — confirmed
+- **Major results:**
+  - **Theorem 5.3 is Lean end to end in log form** (`WalkTransport.lean`, `cycleMin_transport`): on a CycleMin cycle at minimum \(n\ge 400\), every state satisfies \(w_k(\ln n-D)\le\ln x_k\) with \(D=1.05e/n+0.7o/(n\sqrt n)\); exponentiating gives the paper's \(x_k\ge(ne^{-D})^{w_k}\). No real exponentiation anywhere: \(w_k\) is the rational \(3^{a_k}/2^k\)
+  - **Ingredients, all Lean:** per-step floor losses \(\ln T(x)\ge\tfrac32\ln x-1.05/(x\sqrt x)\) (odd, \(x\ge 9\)) and \(\ln T(x)\ge\tfrac12\ln x-1.05/\sqrt x\) (even, \(x\ge 441\)) from the floor cells plus \(-\ln(1-t)\le 1.05t\) on \(t\le 1/21\); the exact weight recursion \(w_{k+1}=\tfrac32 w_k\)/odd, \(w_k/2\)/even (the paper's amplification, now definitional); odd injections at \(x_j\ge n\) (`cycleMin_iterate_ge`) against \(w_{j+1}\ge\tfrac32\), even injections at \(x_j\ge n^2\) (`cycleMin_even_ge_sq`) against \(w_{j+1}\ge 1\) (`one_le_walkWeight` = weight form of `cycleMin_prefix_pow_le`). The three cycle envelopes were already Lean — the falsifier (a missing bridge) did not fire
+  - **Boundary kept honest:** the walk-charge consequence (DP over nonnegative closed walks at the reduced base, feed into the 6/5 unroll) stays a human reduction; `J-cyclemin-walk-transport` keeps EXACT — HUMAN PROOF, new row `J-cyclemin-walk-transport-envelope` (**EXACT — LEAN VERIFIED**) carries the inequality. Module in both barrels; full `lake build` clean, no `sorry`; Paper A §1.2 roles, §5.2 proof note, Appendix A, paper-barrel docstring, reviewer formalization map §8.7 updated; PDF rebuilt
+- **Refuted ideas:** none
+- **Literature:** none new — the mathematics is Paper A's own Theorem 5.3
+- **Open:** remaining Lean ladder — mechanical/Sturmian balancedness of the hug word; Denjoy–Koksma on `AddCircle` (Thm 5.7), now the only analytic step of the §5 envelope chain without Lean
+- **Decision:** PROMOTE (formalization landed); no new mathematical branch opened
+
 ## Juggler floor 162849448 certified: period bound 478245
 
 - **Date:** 2026-09-01
