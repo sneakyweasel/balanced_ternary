@@ -3629,6 +3629,19 @@
   ]
  },
  {
+  "id": "J-heisenberg-vertical-riemann",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Riemann regularity of the Heisenberg vertical, and the precise fourth-layer falsifier at observable regularity. On X = H_3(R)/H_3(Z) the Mal'cev z-coordinate chi of the fundamental domain [0,1)^3 is bounded and discontinuous only on the faces (Haar-null), hence Riemann integrable. The nil-lift identity (row J-tower-heisenberg-coordinate) says n |-> {(3/2) m^{3/4} floor(m^{3/2})} equals chi(g(n) Gamma) for g(n) = exp(A e_12 + B e_23), A = (3/2) m^{3/4}, B = m^{3/2}, m = floor(n^{3/2}). The continuous sandwich already used for the hug observable (Paper A Prop 5.5) therefore yields: Haar equidistribution of g(n) Gamma implies equidistribution of the vertical provided the orbit does not charge the face {y = 0}, i.e. {m^{3/2}} = 0. At observable regularity the fourth ergodic layer is exactly cut-charging of {m^{3/2}} - not a new structural obstruction, and not characteristic-factor self-similarity (that recorded route-falsifier stays external). Exact hits occur when m is a square (B = k^3); they are a thin set (order P^{1/4}) and do not charge Haar. Probe (dyadic (10^6, 2*10^6], 5*10^5 odd starts): cut-mass ratios P(dist({B}, Z) < eps)/(2 eps) run 1.081 down to 1.005 along eps in {0.001,...,0.1}, all inside the Poisson cap (no atom); 4 exact square landings; 16-bin TV of the vertical law on {dist < 0.02} vs the complement is 0.012 vs allowance 0.084 (fiber does not jump; abelian control 0.008). Not an equidistribution theorem, not a K3 bound, not a halt theorem; Conjectures V/HH and the BB/GG/JJ PARK are untouched; Paper B frozen.",
+  "source": "docs/problems/juggler_heisenberg_cut.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_heisenberg_cut.py"
+  ],
+  "related_conjectures": [
+   "juggler_tower_rate_free_equidistribution"
+  ]
+ },
+ {
   "id": "J-horizontal-leftover-exponents",
   "tag": "EXACT — HUMAN PROOF",
   "statement": "First-level leftover exponents of the nil-lift horizontal triple. With m = floor(n^{3/2}), X = n^{3/2}, theta = {X}, and (A, B, C) = ((3/2) m^{3/4}, m^{3/2}, (1/2) m^{9/4}), the exact Taylor identity m^beta = X^beta - beta X^{beta-1} theta + R_beta holds at beta in {3/4, 3/2, 9/4} with |R_beta| <= |beta(beta-1)/2| theta^2 xi^{beta-2} (xi in (m, X)). The leftover after the smooth monomial is a first-level W-family of amplitude beta X^{beta-1} ~ n^{(3/2)(beta-1)}: A has leftover alpha = -3/8 (decaying, Taylor constant 3/32); B has alpha = 3/4 (the excluded special value of the withdrawn Corollary R', constant 3/8); C has alpha = 15/8 (in the gap (9/8, 9/4), constant 45/32). All three are strictly below Theorem R's engine line 9/4, so BB mechanism (II) does not fire. Combined leftover for a fixed integer harmonic k · (A,B,C) has alpha = 15/8 if k3 != 0, 3/4 if k3 = 0 and k2 != 0, and decays if only k1 is present. The m-derivative (9/8) k1 m^{-1/4} + (3/2) k2 m^{1/2} + (9/8) k3 m^{5/4} vanishes identically iff k = 0 (three distinct exponents). First-level b-runs exist (X'' ~ n^{-1/2} < 1). These sums S_k are first-level monomials in m; Theorem R bounds the second-level kernel e(c {m^{3/2}}) at c ~ n^{9/8} and is not a citation (the withdrawn Corollary R' already forbids transfer by monotonicity). The A-prime / first-difference landing (C' ~ n^{7/8} >> 1, GG species on one Weyl step of the 9/4 axis) is row J-horizontal-axis-species; the rated shortcut is row J-horizontal-theorem-r-shortcut (REFUTED). Probe witnesses: Taylor constants attained (worst ratios 0.09375, 0.375, 1.40625). Not a power-saving bound, not a K3 bound, not a halt theorem; Conjectures V/HH and the BB/GG/JJ PARK are untouched; Paper B frozen.",
@@ -3664,6 +3677,21 @@
    "tests/research/juggler_sequence/test_horizontal_weyl.py"
   ],
   "related_conjectures": [
+   "juggler_tower_rate_free_equidistribution"
+  ]
+ },
+ {
+  "id": "J-nil-lift-does-not-derandomize",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "The Heisenberg lift does not transfer Proposition 7.4 (J-shift-average-square-root) from almost every shift to lambda = 0. For arbitrary reals A, B, lambda, the identity A{B+lambda} = AB + A lambda - A floor(B+lambda) identifies -A floor(B+lambda) mod 1 as the vertical Mal'cev coordinate of g_lambda = ((A, B+lambda, 0)) — the lambda-family of J-tower-heisenberg-coordinate. The instance's special arithmetic is the real parabola A^2 = (9/4) B (tower pair A = (3/2) v^{3/4}, B = v^{3/2}) or A^2 = (9 k^2 / 16) B (pure-model pair); a parabola is not a Leibman horizontal character k1 A + k2 B in Z, so it does not close the horizontal torus and does not pin lambda = 0 as a closed, rational, or resonant fiber — the identity section is one fiber of a free center circle. Proposition JJ survives in this language: (i) integration over lambda is Haar on the center and pinning the identity section is the same specific-point problem (no new second averaging variable; named family averages stay forbidden); (ii) a Fourier mode j of the vertical coordinate is the orbit at amplitude j A (inverse self-similarity); (iii) y-translation deposits -A lambda in the center, so S_lambda decorrelates at scale 1/A_max ~ P^{-27/16} (the same scale). Consequence: the lift is a dictionary for the Proposition 7.4 shift, not a method outside BB/GG/JJ; the outside-toolkit reopen of quantitative K3 is CLOSED and Conjectures V/HH stay PARKED. Probe witnesses (exact Fractions; scaled-integer gap 0; 24 horizontal forms, min torus distance 0.0023, max spread 0.46; cheap typicality at P = 10^6: |S_0|/sqrt(L) mean 0.946 vs grid 0.888, median rank 17/32 — typicality is not a transfer). Not a K3 bound, not a proof of HH, not a halt theorem; Paper B frozen.",
+  "source": "docs/problems/juggler_lambda0_nil_transfer.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_lambda0_nil_transfer.py"
+  ],
+  "related_conjectures": [
+   "J-derandomization-obstruction",
+   "J-pure-model-amplitude-product",
    "juggler_tower_rate_free_equidistribution"
   ]
  },

@@ -65,11 +65,7 @@ from math import floor, isqrt
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.bracket_nil_lift import (
-    scaled_root4,
-    scaled_sqrt,
-    tower_data,
-)
+from research.juggler_sequence.bracket_nil_lift import scaled_root4, tower_data
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM
 from research.juggler_sequence.two_step_parity import shift_average_probe
 
@@ -136,22 +132,24 @@ def shifted_malcev_check() -> dict[str, Any]:
         if d["lhs"] != d["abelian"] + d["vertical"]:
             exact_ok = False
 
-    # scaled tower witness at lambda = 0: A{B} = AB - A floor(B)
+    # scaled tower witness at lambda = 0: A{B} = AB - A floor(B).
+    # Combine at the product scale 2 * scale^2 so the identity is
+    # an integer: r_b = z * scale + theta, hence
+    # r_a34 * theta + r_a34 * z * scale = r_a34 * r_b.
     scale = 10**DIGITS
     n = 100_001
     td = tower_data(n, DIGITS)
-    den = 2 * scale
-    a_theta = ((3 * td["r_a34"] * (td["r_b"] % scale)) % den) / den
-    ab = ((3 * td["r_a34"] * td["r_b"]) % den) / den
-    vert = td["vertical"]
-    wrap = abs((a_theta + vert) % 1.0 - ab)
-    scaled_gap = min(wrap, 1.0 - wrap)
+    theta = td["r_b"] % scale
+    lhs = 3 * td["r_a34"] * theta
+    vert = 3 * td["r_a34"] * td["z"] * scale
+    ab = 3 * td["r_a34"] * td["r_b"]
+    scaled_gap = abs(lhs + vert - ab)
     return {
         "exact_pairs": len(pairs),
         "exact_identity": exact_ok,
         "scaled_n": n,
-        "scaled_gap": scaled_gap,
-        "scaled_identity": scaled_gap < 1e-9,
+        "scaled_gap": int(scaled_gap),
+        "scaled_identity": scaled_gap == 0,
         "heisenberg_dictionary": (
             "-A floor(B+lambda) mod 1 is the vertical Mal'cev "
             "coordinate of g_lambda = ((A, B+lambda, 0))"
@@ -210,14 +208,14 @@ def identity_section() -> dict[str, Any]:
     parabola_gap = abs(td["r_a34"] ** 2 - td["r_b"] * scale)
     parabola_ok = parabola_gap <= 2 * td["r_a34"] + scale
 
-    # pure-model pair at an integer mu: A = (3/4) mu^{9/8}, B = mu^{9/4}
+    # pure-model pair at an integer mu: A = (3/4) mu^{9/8}, B = mu^{9/4}.
+    # mu^{9/8} = sqrt(mu^{9/4}), so isqrt(mu94 * scale) ~ mu^{9/8} * scale
+    # and the parabola (mu^{9/8})^2 = mu^{9/4} is mu98^2 ~ mu94 * scale.
     mu = 10**6 + 3
-    mu94 = scaled_root4(mu**9, DIGITS)  # mu^{9/4} * scale
-    mu98 = scaled_sqrt(mu94, DIGITS)  # ~ mu^{9/8} * scale, since sqrt(mu^{9/4})
-    # A^2 = (9/16) B  (k = 1): (3/4 mu^{9/8})^2 = (9/16) mu^{9/4}
-    # so (mu^{9/8})^2 = mu^{9/4}: mu98^2 / scale ~ mu94
+    mu94 = scaled_root4(mu**9, DIGITS)
+    mu98 = isqrt(mu94 * scale)
     pure_gap = abs(mu98**2 - mu94 * scale)
-    pure_ok = pure_gap <= 2 * mu98 + scale
+    pure_ok = pure_gap <= 2 * mu98 + 1
 
     chars = _character_sample([10001, 54321, 100_001, 200_001, 400_001])
     free_fiber = (

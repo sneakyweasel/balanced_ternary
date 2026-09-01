@@ -1,0 +1,103 @@
+{
+  "experiment": "juggler_heisenberg_cut",
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "equidistribution_claimed": false,
+    "characteristic_factor_claimed": false,
+    "k3_bound_claimed": false,
+    "toolkit_reopened": false,
+    "paper_b_modified": false
+  },
+  "cut_mass": {
+    "samples": 500000,
+    "rows": [
+      {
+        "eps": 0.001,
+        "count": 1081,
+        "expected": 1000.0,
+        "ratio": 1.081,
+        "ratio_cap": 1.126491106406735,
+        "ok": true
+      },
+      {
+        "eps": 0.005,
+        "count": 5249,
+        "expected": 5000.0,
+        "ratio": 1.0498,
+        "ratio_cap": 1.0565685424949238,
+        "ok": true
+      },
+      {
+        "eps": 0.01,
+        "count": 10286,
+        "expected": 10000.0,
+        "ratio": 1.0286,
+        "ratio_cap": 1.04,
+        "ok": true
+      },
+      {
+        "eps": 0.02,
+        "count": 20371,
+        "expected": 20000.0,
+        "ratio": 1.01855,
+        "ratio_cap": 1.0282842712474618,
+        "ok": true
+      },
+      {
+        "eps": 0.05,
+        "count": 50499,
+        "expected": 50000.0,
+        "ratio": 1.00998,
+        "ratio_cap": 1.0178885438199983,
+        "ok": true
+      },
+      {
+        "eps": 0.1,
+        "count": 100536,
+        "expected": 100000.0,
+        "ratio": 1.00536,
+        "ratio_cap": 1.0126491106406734,
+        "ok": true
+      }
+    ],
+    "no_atom": true,
+    "min_frac_b": 0.0,
+    "exact_zeros": 4,
+    "exact_zeros_order_p_quarter": true
+  },
+  "vertical_on_cut": {
+    "eps": 0.02,
+    "bins": 16,
+    "n_cut": 20371,
+    "n_bulk": 479629,
+    "tv": 0.011862434652046845,
+    "tv_allowance": 0.0840765866140554,
+    "fiber_agrees": true,
+    "cut_mean": 0.5004901644615614,
+    "bulk_mean": 0.5000763149979944
+  },
+  "abelian_on_cut": {
+    "eps": 0.02,
+    "bins": 16,
+    "n_cut": 20371,
+    "n_bulk": 479629,
+    "tv": 0.008455503602005528,
+    "tv_allowance": 0.0840765866140554,
+    "fiber_agrees": true,
+    "cut_mean": 0.4983359998477185,
+    "bulk_mean": 0.5000827304558573
+  },
+  "notes": {
+    "lemma": "chi is Riemann integrable on the Heisenberg nilmanifold; the vertical equals chi(g(n) Gamma); Haar equidistribution of the orbit passes to the vertical iff the orbit does not charge {y = 0}, i.e. {m^{3/2}} does not concentrate at 0",
+    "fourth_layer": "at observable regularity the fourth layer is exactly cut-charging of {m^{3/2}}; characteristic-factor self-similarity is not addressed"
+  },
+  "decision": {
+    "classification": "HEISENBERG_CUT_GREEN"
+  }
+}

@@ -19347,6 +19347,97 @@ Best next question
   algebraic lift did not produce?
 ```
 
+## Horizontal Weyl species: the Theorem-R shortcut dies (Phase 0 follow-up; GG landing)
+
+- **Date:** 2026-09-01
+- **Objective:** The leftover-only pass showed BB silent and PARKED a write-up. Finish the recorded species question: do the three horizontal monomials reduce to recorded theorems, or does some available treatment re-enter \(A'\gg 1\)?
+- **Hypotheses:** axes \(v^{3/4}\) and \(v^{3/2}\) are cheap; the abelian \(v^{9/4}\) axis is the obstruction. Falsifiers: an unwind identity fails; the \(9/4\) leftover is actually tame; one Weyl step produces a \(W\)-family past \(9/4\) or \(C'\gg 1\).
+- **Major results:**
+  - **Identities (EXACT — HUMAN PROOF, `J-horizontal-axis-species`):** Lagrange unwinds of \(v^\alpha\) through \(\theta=\{n^{3/2}\}\) at \(\alpha\in\{3/4,3/2,9/4\}\) with the recorded remainders; keep-\(m\) forms reused from Lemma G. First difference of the abelian axis: \(\Delta v=\lfloor\Delta X\rfloor+\kappa\), \(\kappa\in\{0,1\}\), carry amplitude \(C\asymp n^{15/8}<n^{9/4}\) (BB silent) and \(C'\asymp n^{7/8}\gg 1\) (GG).
+  - **Species table:** \(v^{3/4}\) decaying (classical van der Corput on \(e(kn^{9/8})\)); \(v^{3/2}\) tame (\(A'\ll 1\), Theorem C substrate; Theorem R at \(\alpha=0\) not citable); \(v^{9/4}\) unwind is HH (forbidden by `J-nested-floor-without-W-family`); \(v^{9/4}\) one Weyl step is GG.
+  - **Refutation (`J-horizontal-theorem-r-shortcut`):** the optimistic "horizontal half is already Theorem R" is false. Mixed harmonics with \(k_3\neq 0\) inherit the \(9/4\) axis. The rate-free conjecture is unharmed.
+  - **Probe (`horizontal_weyl.py`, `HORIZONTAL_WEYL_GREEN`):** Taylor constants attained (\(0.09375=3/32\), \(0.375=3/8\), \(1.40625=45/32\)) through \(n=10^{12}\); \(C/n^{15/8}\to 9/4\) and \(C'/n^{7/8}\to 135/32\) on \(240\) odd pairs; \(\min C'=7.5\cdot 10^5\).
+- **Refuted ideas:** the leftover-only hope that "BB silent \(\Rightarrow\) a write-up exists" — GG fires on the first Weyl step of the abelian axis.
+- **Decision:** PROMOTE — dossier `docs/problems/juggler_horizontal_weyl.md`, rows `J-horizontal-axis-species` and `J-horizontal-theorem-r-shortcut`. The leftover lemma stays. Paper B frozen; K3/HH PARK untouched; no follow-on branch opened.
+
+```text
+What was learned
+- leftover alphas sit below 9/4, so BB is silent, but that
+  is not a license to difference: one Weyl step on v^{9/4}
+  has C' ~ n^{7/8} >> 1 (GG)
+- unwinding v^{9/4} through {n^{3/2}} is the HH class and
+  is already forbidden by J-nested-floor-without-W-family
+- v^{3/4} and v^{3/2} are genuine reduction lemmas
+  (decaying; tame / Theorem C) and do not salvage the triple
+- Theorem R at alpha=0 is not citable (R' withdrawn)
+- the rate-free target never needed this rated bound
+Strongest theorem
+- J-horizontal-axis-species (EXACT - HUMAN PROOF): the
+  three unwinds and the GG landing of one Weyl step
+Strongest refutation
+- J-horizontal-theorem-r-shortcut: the horizontal half is
+  not already Theorem R
+Reusable machinery
+- horizontal_weyl probe: scaled-integer unwinds, exact
+  floor(sqrt(a)-sqrt(b)) carry, first-difference engine line
+Branch status
+- PROMOTE
+Why
+- two reduction lemmas plus a named obstruction permanently
+  close the recorded shortcut without reopening K3/HH
+Best next question
+- does a rate-free argument identify {v^{9/4}} without
+  unwinding through theta — unique ergodicity of the Hardy
+  monomial of floor(n^{3/2}) — or is that still the unbuilt
+  Hardy-field door?
+```
+
+## Heisenberg cut: no fourth layer at observable regularity (Phase 0; answers the nil-lift regularity question)
+
+- **Date:** 2026-09-01
+- **Objective:** Decide whether the Heisenberg vertical \(\{(3/2)m^{3/4}\lfloor m^{3/2}\rfloor\}\) is a Riemann-integrable nil-observable along the floor-Hardy orbit, or whether the floor cut adds a fourth ergodic layer.
+- **Hypotheses:** the cut \(\{y=0\}\) is Haar-null; if \(\{m^{3/2}\}\) does not concentrate at \(0\), there is no regularity wall. Falsifiers: an atom at \(0\); the vertical law jumps on the cut; the claim is already KNOWN packaging of the lift identity.
+- **Major results:**
+  - **Implication (EXACT — HUMAN PROOF, `J-heisenberg-vertical-riemann`):** \(\chi\) is RI on \(H_3(\mathbb R)/H_3(\mathbb Z)\); the lift identity says the vertical is \(\chi(g(n)\Gamma)\); Haar equidistribution of the orbit passes to the vertical iff the orbit does not charge \(\{y=0\}\), i.e. \(\{m^{3/2}\}=0\). At regularity the fourth layer is exactly that cut-charge. Characteristic-factor self-similarity is not addressed.
+  - **Exact hits:** \(m=k^2\) makes \(B=k^3\in\mathbb Z\). Thin (order \(P^{1/4}\)), not an atom.
+  - **Probe (`heisenberg_cut.py`, `HEISENBERG_CUT_GREEN`):** dyadic \((10^6,2\cdot10^6]\), \(5\cdot10^5\) odd starts. Cut-mass ratios \(1.081\) down to \(1.005\) along \(\varepsilon\in\{0.001,\ldots,0.1\}\) (no atom). Four exact square landings. Vertical TV on \(\{\mathrm{dist}<0.02\}\) is \(0.012\) vs allowance \(0.084\); abelian control \(0.008\).
+- **Refuted ideas:** none. The discontinuous-fiber wall did not fire at regularity. The recorded characteristic-factor falsifier stays external.
+- **Decision:** PROMOTE — dossier `docs/problems/juggler_heisenberg_cut.md`, ledger row `J-heisenberg-vertical-riemann`. No follow-on branch. Paper B frozen; toolkit PARK untouched.
+
+```text
+What was learned
+- the vertical is chi of the nil-lift orbit; chi is RI on
+  the Heisenberg nilmanifold (faces are Haar-null)
+- Haar equidistribution of the orbit passes to the vertical
+  iff {m^{3/2}} does not charge 0 — that is the whole
+  regularity content of the fourth layer
+- exact hits exist (m a square) and are thin, order P^{1/4};
+  they are not an atom
+- on the tested window the cut is not charged and the fiber
+  law does not jump
+- characteristic-factor self-similarity is a different
+  question and remains external
+Strongest theorem
+- J-heisenberg-vertical-riemann (EXACT - HUMAN PROOF):
+  the fourth layer at regularity is cut-charging of
+  {m^{3/2}}
+Strongest refutation
+- none (the fiber wall did not appear)
+Reusable machinery
+- heisenberg_cut probe: two-sided cut mass, exact-zero
+  square law, cut-conditioned TV
+Branch status
+- PROMOTE
+Why
+- the recorded regularity question is answered: no fourth
+  layer at this level; the remaining open is still
+  rate-free orbit equidistribution
+Best next question
+- does a rate-free argument identify the floor-Hardy orbit
+  — in particular {v^{9/4}} without unwinding through
+  theta — or is that still the unbuilt Hardy-field door?
+```
+
 ## Paper A: referee report v10 response — retitle and the six required revisions (consolidation; not a numbered milestone)
 
 - **Date:** 2026-09-01
@@ -19757,6 +19848,140 @@ Best next question
 - none in the flight program; the cycle Diophantine blocker
   L=478245 and the pointwise emptiness of infinite odd
   towers remain the named frontiers and are not opened
+```
+
+## Lambda-0 nil-transfer: the Heisenberg lift does not derandomize (Phase 0; closes the rated reopen)
+
+- **Date:** 2026-09-01
+- **Objective:** Attack 3 on termination — does today's Heisenberg lift transfer Proposition 7.4 from almost every shift to \(\lambda=0\), or does JJ survive in this language?
+- **Hypotheses:** the group law makes the Proposition 7.4 shift a Heisenberg \(y\)-translation; the special arithmetic \(A^2=\tfrac94 B\) might pin the identity section as a closed / rational / resonant fiber, or might only rephrase JJ. Falsifiers: the shifted Mal'cev identity fails; \(\lambda=0\) is a special fiber; a new average appears that is not a BB/GG/JJ-named family.
+- **Major results:**
+  - **Obstruction (EXACT — HUMAN PROOF, `J-nil-lift-does-not-derandomize`):** \(A\{B+\lambda\}=AB+A\lambda-A\lfloor B+\lambda\rfloor\) identifies \(-A\lfloor B+\lambda\rfloor\bmod 1\) as the vertical Mal'cev coordinate of \(g_\lambda=((A,B+\lambda,0))\) — the \(\lambda\)-family of `J-tower-heisenberg-coordinate`. The instance's parabola \(A^2=\tfrac94 B\) (tower) / \(A^2=\tfrac{9k^2}{16}B\) (pure model) is not a Leibman horizontal character, so \(\lambda=0\) is a free center fiber. JJ (i)–(iii) survive: integration over \(\lambda\) is Haar on the center; a vertical Fourier mode \(j\) is amplitude \(jA\); the correlation scale remains \(1/A_{\max}\). The lift is a dictionary, not a method outside the toolkit.
+  - **Probe (`lambda0_nil_transfer.py`, `LAMBDA0_NIL_TRANSFER_CLOSED`):** exact Fraction identity; scaled-integer gap \(0\); \(24\) horizontal forms wander (min torus distance \(0.0023\), max spread \(0.46\)); cheap typicality at \(P=10^6\): \(\lvert S_0\rvert/\sqrt L\) mean \(0.946\) vs grid \(0.888\), median rank \(17/32\), max \(2.10\); `shift_average_probe` oracle reproduces JJ (iii) increments \(0.077/0.736/1.472\). Typicality is not a transfer.
+- **Refuted ideas:** the novelty hypothesis that \(A^2=\tfrac94 B\) distinguishes the identity section — it is consumed by making \(AB\) a monomial and does not close the torus.
+- **Decision:** CLOSE — dossier `docs/problems/juggler_lambda0_nil_transfer.md`, ledger row `J-nil-lift-does-not-derandomize`. The outside-toolkit reopen of quantitative \(K_3\) is closed; Conjectures V/HH stay PARKED. No Paper B edit. No new branch opened.
+
+```text
+What was learned
+- the Proposition 7.4 shift is a Heisenberg y-translation:
+  -A floor(B+lambda) is the vertical Mal'cev coordinate of g_lambda
+- the special arithmetic A^2 = (9/4) B is a real parabola, not
+  a Leibman horizontal character; lambda = 0 is a free center
+  fiber and is not pinned by the lift
+- JJ (i)-(iii) survive verbatim in this language: Haar on the
+  center, inverse self-similarity at amplitude jA, correlation
+  scale 1/A — no new average and no new scale
+- |S_0| is typical of the a.e. bound (median rank 17/32); that
+  is a witness, not a transfer
+Strongest theorem
+- J-nil-lift-does-not-derandomize (EXACT - HUMAN PROOF): the
+  Heisenberg lift does not transfer Proposition 7.4 to lambda=0
+Strongest refutation
+- the identity section is not a closed / rational / resonant
+  fiber of the special arithmetic
+Reusable machinery
+- lambda0_nil_transfer probe: shifted Mal'cev check, free-fiber
+  table, JJ dictionary, cheap S_0 typicality on the existing
+  shift_average_probe grid
+Branch status
+- CLOSE
+Why
+- the only new candidate method since the Phase-21 parking of
+  HH does not leave the toolkit; the rated line stays PARKED
+  and the live termination attack remains the rate-free tower
+  target
+Best next question
+- none on the rated line; the live attack is still the
+  rate-free tower equidistribution
+```
+
+## Nil-horizontal Weyl, Lemma G path: the horizontal half is not a theorem (Phase 0; independent confirmation; CLOSE)
+
+- **Date:** 2026-09-01
+- **Objective:** Answer the nil-lift branch's recorded next question by the Lemma G keep-\(m\) route: do the fixed-harmonic Weyl sums of \(\bigl(\tfrac32 v^{3/4},v^{3/2},\tfrac12 v^{9/4}\bigr)\) already sit on named Paper B bounds, or does \(n\)-linearization re-enter the amplitude-product class?
+- **Hypotheses:** after integer-harmonic cancellation and Lemma G substitution, the \(9/4\) axis is a first-layer \(W\)-family at \(\alpha=15/8\) with GG-type drift, so "already a theorem" is false. Falsifiers: all three axes named; the \(9/4\) defect is \(o(1)\); leftover second-layer or \(\alpha\ge 9/4\).
+- **Major results:**
+  - **Coefficients (EXACT):** substituting \(m=n^{3/2}-\theta\) into Lemma G recovers \(m^{3/4}=n^{9/8}-\tfrac34 n^{-3/8}\theta+\)decaying and \(m^{9/4}=n^{27/8}-\tfrac94 n^{15/8}\theta+\tfrac{45}{32}n^{3/8}\theta^2+R_4\) (smooth coefficients sum to \(1\)).
+  - **Witnesses (`nil_horizontal_weyl.py`, `NIL_HORIZONTAL_WEYL_SPLIT`):** \(9/4\) defect ratio \(0.982\)–\(1.000\) on \(241\) used samples, absolute defect from \(8\) to \(1.6\cdot 10^{17}\) (not a remainder); \(3/4\) defect decays (ratio \(1.000\)–\(1.004\), max \(0.25\)); integer-harmonic identity on \(251\) starts; Lemma G reused.
+  - **Drift (EXACT):** \(C(n+2)-C(n)\sim\tfrac{135}{16}n^{7/8}\), window \(\tfrac{32}{135}n^{-7/8}<1\). BB silent (\(\alpha=15/8<9/4\), first layer). Catalog matches `J-horizontal-axis-species`.
+- **Refuted ideas:** none new. The claim "horizontal half is already Theorem R" is already `J-horizontal-theorem-r-shortcut` (REFUTED). Theorem R at \(\alpha=0\) is not citable.
+- **Decision:** CLOSE — dossier `docs/problems/juggler_nil_horizontal_weyl.md`. Independent confirmation of named sibling rows; no new ledger row. Paper B frozen; K3/HH PARK untouched.
+
+```text
+What was learned
+- Lemma G keep-m then substitute is the same leftover as
+  the sibling Lagrange unwind: 15/8 on the 9/4 axis, decaying
+  on the 3/4 axis
+- the 9/4 defect is not a remainder (ratios 0.982-1.000,
+  absolute size up to 10^17)
+- GG re-enters every n-reduction of the abelian coordinate;
+  BB does not (first layer, alpha < 9/4)
+- Theorem R at alpha = 0 is not a citation; the 3/2 axis
+  after integer-harmonic cancellation is Theorem C substrate
+- the catalog was already in the ledger; this path adds
+  witnesses, not a new theorem
+Strongest theorem
+- none new (REPARAMETERIZATION of J-horizontal-axis-species)
+Strongest refutation
+- none new; J-horizontal-theorem-r-shortcut already names it
+Reusable machinery
+- nil_horizontal_weyl probe: Lemma G coefficient identities,
+  scaled defect ratios, exact drift prefactors
+Branch status
+- CLOSE
+Why
+- every surviving statement is KNOWN or REPARAMETERIZATION
+  of the sibling leftover / species / shortcut rows; the
+  stop criterion fired
+Best next question
+- none from this branch; the sibling's rate-free
+  identification of {v^{9/4}} without n-unwinding is not
+  opened
+```
+
+## Lambda-0 nil-transfer: the Heisenberg lift does not derandomize (Phase 0; closes the rated reopen)
+
+- **Date:** 2026-09-01
+- **Objective:** Attack 3 on termination — does today's Heisenberg lift transfer Proposition 7.4 from almost every shift to \(\lambda=0\), or does JJ survive in this language?
+- **Hypotheses:** the group law makes the Proposition 7.4 shift a Heisenberg \(y\)-translation; the special arithmetic \(A^2=\tfrac94 B\) might pin the identity section as a closed / rational / resonant fiber, or might only rephrase JJ. Falsifiers: the shifted Mal'cev identity fails; \(\lambda=0\) is a special fiber; a new average appears that is not a BB/GG/JJ-named family.
+- **Major results:**
+  - **Obstruction (EXACT — HUMAN PROOF, `J-nil-lift-does-not-derandomize`):** \(A\{B+\lambda\}=AB+A\lambda-A\lfloor B+\lambda\rfloor\) identifies \(-A\lfloor B+\lambda\rfloor\bmod 1\) as the vertical Mal'cev coordinate of \(g_\lambda=((A,B+\lambda,0))\) — the \(\lambda\)-family of `J-tower-heisenberg-coordinate`. The instance's parabola \(A^2=\tfrac94 B\) (tower) / \(A^2=\tfrac{9k^2}{16}B\) (pure model) is not a Leibman horizontal character, so \(\lambda=0\) is a free center fiber. JJ (i)–(iii) survive: integration over \(\lambda\) is Haar on the center; a vertical Fourier mode \(j\) is amplitude \(jA\); the correlation scale remains \(1/A_{\max}\). The lift is a dictionary, not a method outside the toolkit.
+  - **Probe (`lambda0_nil_transfer.py`, `LAMBDA0_NIL_TRANSFER_CLOSED`):** exact Fraction identity; scaled-integer gap \(0\); \(24\) horizontal forms wander (min torus distance \(0.0023\), max spread \(0.46\)); cheap typicality at \(P=10^6\): \(\lvert S_0\rvert/\sqrt L\) mean \(0.946\) vs grid \(0.888\), median rank \(17/32\), max \(2.10\); `shift_average_probe` oracle reproduces JJ (iii) increments \(0.077/0.736/1.472\). Typicality is not a transfer.
+- **Refuted ideas:** the novelty hypothesis that \(A^2=\tfrac94 B\) distinguishes the identity section — it is consumed by making \(AB\) a monomial and does not close the torus.
+- **Decision:** CLOSE — dossier `docs/problems/juggler_lambda0_nil_transfer.md`, ledger row `J-nil-lift-does-not-derandomize`. The outside-toolkit reopen of quantitative \(K_3\) is closed; Conjectures V/HH stay PARKED. No Paper B edit. No new branch opened.
+
+```text
+What was learned
+- the Proposition 7.4 shift is a Heisenberg y-translation:
+  -A floor(B+lambda) is the vertical Mal'cev coordinate of g_lambda
+- the special arithmetic A^2 = (9/4) B is a real parabola, not
+  a Leibman horizontal character; lambda = 0 is a free center
+  fiber and is not pinned by the lift
+- JJ (i)-(iii) survive verbatim in this language: Haar on the
+  center, inverse self-similarity at amplitude jA, correlation
+  scale 1/A — no new average and no new scale
+- |S_0| is typical of the a.e. bound (median rank 17/32); that
+  is a witness, not a transfer
+Strongest theorem
+- J-nil-lift-does-not-derandomize (EXACT - HUMAN PROOF): the
+  Heisenberg lift does not transfer Proposition 7.4 to lambda=0
+Strongest refutation
+- the identity section is not a closed / rational / resonant
+  fiber of the special arithmetic
+Reusable machinery
+- lambda0_nil_transfer probe: shifted Mal'cev check, free-fiber
+  table, JJ dictionary, cheap S_0 typicality on the existing
+  shift_average_probe grid
+Branch status
+- CLOSE
+Why
+- the only new candidate method since the Phase-21 parking of
+  HH does not leave the toolkit; the rated line stays PARKED
+  and the live termination attack remains the rate-free tower
+  target
+Best next question
+- none on the rated line; the live attack is still the
+  rate-free tower equidistribution
 ```
 
 

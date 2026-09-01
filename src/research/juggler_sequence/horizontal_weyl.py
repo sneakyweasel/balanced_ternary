@@ -344,8 +344,6 @@ def first_difference_check(
                 if prev is not None:
                     c_prev = C_LEADING * (prev["r_v54"] / prev["scale"])
                     cprime = abs(c - c_prev) / 2.0
-                    n78 = (d["r_n38"] / d["scale"]) ** (7.0 / 3.0)  # (n^{3/8})^{7/3} = n^{7/8}
-                    # safer: n^{7/8} = n / n^{1/8} = n / (n)^{1/8}
                     r_n18 = scaled_eighth(n, digits)
                     n78 = n / (r_n18 / d["scale"]) if r_n18 else 0.0
                     if n78 > 0:

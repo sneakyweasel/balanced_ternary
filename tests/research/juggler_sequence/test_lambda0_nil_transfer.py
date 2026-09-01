@@ -36,7 +36,7 @@ def test_shifted_malcev_check_passes():
     r = shifted_malcev_check()
     assert r["exact_identity"]
     assert r["scaled_identity"]
-    assert r["scaled_gap"] < 1e-9
+    assert r["scaled_gap"] == 0
 
 
 def test_identity_section_is_free_fiber():

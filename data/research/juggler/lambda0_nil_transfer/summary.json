@@ -1,0 +1,105 @@
+{
+  "experiment": "juggler_lambda0_nil_transfer",
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "equidistribution_claimed": false,
+    "k3_bound_claimed": false,
+    "hh_proved": false,
+    "lambda0_transferred": false,
+    "toolkit_reopened": false,
+    "paper_b_modified": false,
+    "typicality_is_not_a_transfer": true
+  },
+  "shifted_malcev": {
+    "exact_pairs": 4,
+    "exact_identity": true,
+    "scaled_n": 100001,
+    "scaled_gap": 0,
+    "scaled_identity": true,
+    "heisenberg_dictionary": "-A floor(B+lambda) mod 1 is the vertical Mal'cev coordinate of g_lambda = ((A, B+lambda, 0))"
+  },
+  "identity_section": {
+    "tower_parabola": "A^2 = (9/4) B for A = (3/2) v^{3/4}, B = v^{3/2}",
+    "tower_parabola_exact_algebra": true,
+    "tower_scaled_ok": true,
+    "tower_scaled_gap": 3563073958654457233709041916,
+    "pure_parabola": "A^2 = (9 k^2 / 16) B for A = (3k/4) mu^{9/8}",
+    "pure_parabola_exact_algebra": true,
+    "pure_scaled_ok": true,
+    "leibman_character": "k1 A + k2 B in Z is a linear form; A^2 - (9/4) B = 0 is a real parabola and is not a horizontal character",
+    "character_sample": {
+      "samples": [
+        10001,
+        54321,
+        100001,
+        200001,
+        400001
+      ],
+      "forms": 24,
+      "min_torus_dist": 0.0022920540650375187,
+      "worst_form": [
+        -2,
+        0
+      ],
+      "max_spread": 0.46087646484375,
+      "no_constant_character": true
+    },
+    "fiber_type": "free_center_fiber",
+    "lambda0_special": false,
+    "reason": "the parabola is consumed by making AB a Hardy monomial; it does not close the horizontal torus and does not pin the identity section among center fibers"
+  },
+  "jj_dictionary": {
+    "i": {
+      "jj": "no second averaging variable; family averages (block index, mu_0, k-family) re-enter BB/GG/CC",
+      "heisenberg": "integration over lambda is Haar on the center (y-circle before reduction); pinning lambda = 0 is pinning the identity section. No new lattice direction appears: amplitude separation still forces A(p) ~ A(q) to imply p = q. Named family averages stay forbidden and are not retested",
+      "verdict": "survives"
+    },
+    "ii": {
+      "jj": "concentration inverse for A{B} is sum e(j A {B}) — the same class at amplitude j A",
+      "heisenberg": "a Fourier mode j of the vertical Mal'cev coordinate is the orbit at amplitude j A; the class is closed under its own inverse theory on the nilmanifold too",
+      "verdict": "survives"
+    },
+    "iii": {
+      "jj": "|dS/dlambda| <= 2 pi A_max L; decorrelation at 1/A_max ~ P^{-27/16}",
+      "heisenberg": "y-translation deposits -A lambda in the center; the translation speed is A, so the correlation length on the center circle is 1/A — the same scale, not a new one",
+      "verdict": "survives"
+    },
+    "new_average": false,
+    "new_scale": false,
+    "all_survive": true
+  },
+  "typicality": {
+    "p_block": 1000000,
+    "block_len": 31,
+    "n_lambda": 32,
+    "n_blocks": 8,
+    "mean_abs_S0_over_sqrt_L": 0.9461,
+    "mean_abs_S_lambda_over_sqrt_L": 0.8882,
+    "max_abs_S0_over_sqrt_L": 2.1047,
+    "median_rank_of_S0_among_grid": 17,
+    "grid_size": 32,
+    "typical": true,
+    "typicality_is_not_a_transfer": true,
+    "shift_average_oracle": {
+      "mean_R_over_shifts": 0.9573,
+      "stability_increments": {
+        "m=0.1": 0.077,
+        "m=1": 0.736,
+        "m=10": 1.472
+      }
+    }
+  },
+  "decision": {
+    "classification": "LAMBDA0_NIL_TRANSFER_CLOSED",
+    "reopen": "CLOSE",
+    "v_hh_status": "PARKED",
+    "new_average": false,
+    "notes": "the Heisenberg lift is a dictionary for the Proposition 7.4 shift; JJ (i)-(iii) survive; lambda = 0 is a free center fiber; Conjectures V/HH stay PARKED"
+  }
+}
