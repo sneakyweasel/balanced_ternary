@@ -1,0 +1,262 @@
+{
+  "experiment": "juggler_hug_prefix_realization",
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "halt_theorem": false,
+    "eventual_descent_theorem": false,
+    "fixed_depth_kill_claimed": false,
+    "k3_reopened": false,
+    "ambient_transfer_reopened": false,
+    "paper_a_modified": false
+  },
+  "scan": {
+    "n_max": 200000000,
+    "max_realized_depth": 28,
+    "argmax_witness": 48427569,
+    "table": [
+      {
+        "L": 1,
+        "min_witness": 3,
+        "log2_witness": 1.585,
+        "count": 99999999,
+        "count_ratio_prev": null,
+        "witness_above_anchor": true
+      },
+      {
+        "L": 2,
+        "min_witness": 3,
+        "log2_witness": 1.585,
+        "count": 50000050,
+        "count_ratio_prev": 2.0,
+        "witness_above_anchor": true
+      },
+      {
+        "L": 3,
+        "min_witness": 5,
+        "log2_witness": 2.322,
+        "count": 25004190,
+        "count_ratio_prev": 1.9997,
+        "witness_above_anchor": true
+      },
+      {
+        "L": 4,
+        "min_witness": 9,
+        "log2_witness": 3.17,
+        "count": 12506621,
+        "count_ratio_prev": 1.9993,
+        "witness_above_anchor": true
+      },
+      {
+        "L": 5,
+        "min_witness": 69,
+        "log2_witness": 6.109,
+        "count": 6252045,
+        "count_ratio_prev": 2.0004,
+        "witness_above_anchor": true
+      },
+      {
+        "L": 6,
+        "min_witness": 69,
+        "log2_witness": 6.109,
+        "count": 3128069,
+        "count_ratio_prev": 1.9987,
+        "witness_above_anchor": true
+      },
+      {
+        "L": 7,
+        "min_witness": 89,
+        "log2_witness": 6.476,
+        "count": 1563063,
+        "count_ratio_prev": 2.0012,
+        "witness_above_anchor": true
+      },
+      {
+        "L": 8,
+        "min_witness": 365,
+        "log2_witness": 8.512,
+        "count": 780574,
+        "count_ratio_prev": 2.0025,
+        "witness_above_anchor": true
+      },
+      {
+        "L": 9,
+        "min_witness": 365,
+        "log2_witness": 8.512,
+        "count": 390118,
+        "count_ratio_prev": 2.0009,
+        "witness_above_anchor": true
+      },
+      {
+        "L": 10,
+        "min_witness": 365,
+        "log2_witness": 8.512,
+        "count": 195022,
+        "count_ratio_prev": 2.0004,
+        "witness_above_anchor": true
+      },
+      {
+        "L": 11,
+        "min_witness": 429,
+        "log2_witness": 8.745,
+        "count": 97225,
+        "count_ratio_prev": 2.0059,
+        "witness_above_anchor": true
+      },
+      {
+        "L": 12,
+        "min_witness": 1517,
+        "log2_witness": 10.567,
+        "count": 48581,
+        "count_ratio_prev": 2.0013,
+        "witness_above_anchor": true
+      },
+      {
+        "L": 13,
+        "min_witness": 1517,
+        "log2_witness": 10.567,
+        "count": 24202,
+        "count_ratio_prev": 2.0073,
+        "witness_above_anchor": true
+      },
+      {
+        "L": 14,
+        "min_witness": 14855,
+        "log2_witness": 13.859,
+        "count": 12179,
+        "count_ratio_prev": 1.9872,
+        "witness_above_anchor": true
+      },
+      {
+        "L": 15,
+        "min_witness": 14855,
+        "log2_witness": 13.859,
+        "count": 6031,
+        "count_ratio_prev": 2.0194,
+        "witness_above_anchor": true
+      },
+      {
+        "L": 16,
+        "min_witness": 124613,
+        "log2_witness": 16.927,
+        "count": 3044,
+        "count_ratio_prev": 1.9813,
+        "witness_above_anchor": true
+      },
+      {
+        "L": 17,
+        "min_witness": 124613,
+        "log2_witness": 16.927,
+        "count": 1567,
+        "count_ratio_prev": 1.9426,
+        "witness_above_anchor": true
+      },
+      {
+        "L": 18,
+        "min_witness": 124613,
+        "log2_witness": 16.927,
+        "count": 797,
+        "count_ratio_prev": 1.9661,
+        "witness_above_anchor": true
+      },
+      {
+        "L": 19,
+        "min_witness": 346503,
+        "log2_witness": 18.403,
+        "count": 393,
+        "count_ratio_prev": 2.028,
+        "witness_above_anchor": true
+      },
+      {
+        "L": 20,
+        "min_witness": 346503,
+        "log2_witness": 18.403,
+        "count": 205,
+        "count_ratio_prev": 1.9171,
+        "witness_above_anchor": true
+      },
+      {
+        "L": 21,
+        "min_witness": 346503,
+        "log2_witness": 18.403,
+        "count": 98,
+        "count_ratio_prev": 2.0918,
+        "witness_above_anchor": true
+      },
+      {
+        "L": 22,
+        "min_witness": 3386615,
+        "log2_witness": 21.691,
+        "count": 47,
+        "count_ratio_prev": 2.0851,
+        "witness_above_anchor": true
+      },
+      {
+        "L": 23,
+        "min_witness": 3386615,
+        "log2_witness": 21.691,
+        "count": 29,
+        "count_ratio_prev": 1.6207,
+        "witness_above_anchor": true
+      },
+      {
+        "L": 24,
+        "min_witness": 7000663,
+        "log2_witness": 22.739,
+        "count": 13,
+        "count_ratio_prev": 2.2308,
+        "witness_above_anchor": true
+      },
+      {
+        "L": 25,
+        "min_witness": 7000663,
+        "log2_witness": 22.739,
+        "count": 9,
+        "count_ratio_prev": 1.4444,
+        "witness_above_anchor": true
+      },
+      {
+        "L": 26,
+        "min_witness": 25913839,
+        "log2_witness": 24.627,
+        "count": 4,
+        "count_ratio_prev": 2.25,
+        "witness_above_anchor": true
+      },
+      {
+        "L": 27,
+        "min_witness": 48427569,
+        "log2_witness": 25.529,
+        "count": 1,
+        "count_ratio_prev": 4.0,
+        "witness_above_anchor": true
+      },
+      {
+        "L": 28,
+        "min_witness": 48427569,
+        "log2_witness": 25.529,
+        "count": 1,
+        "count_ratio_prev": 1.0,
+        "witness_above_anchor": true
+      }
+    ],
+    "hug_prefix": "OOEOOEOOEOEOOEOOEOEOOEOOEOOE"
+  },
+  "scaling": {
+    "points": 21,
+    "slope": 0.9458,
+    "intercept": -0.183,
+    "mean_count_ratio": 2.0216
+  },
+  "classification": "HUG_CYLINDER_FILLED",
+  "notes": {
+    "prediction": "cylinder density 2^{-L}: min witness slope 1 in log2, count ratio 2",
+    "close_route": "filled cylinder at predicted scale means no fixed-depth equidistribution statement can contradict extremal descent-free flights; only infinite-depth control remains (parked K3/JJ wall)",
+    "obstruction_route": "an early empty depth or an anchor-violating witness would be a new combinatorial obstruction candidate"
+  }
+}

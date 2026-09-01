@@ -194,3 +194,31 @@ Every new problem starts from a branch budget and ends in a decision:
 Architecture: [docs/architecture/overview.md](docs/architecture/overview.md).
 Documentation map: [docs/README.md](docs/README.md).
 Journal: [docs/research_journal.md](docs/research_journal.md).
+
+## The Ballad of the Hug Word
+
+*A laboratory song, to be hummed while `lake build` runs.*
+
+> **Verse 1**
+> Oh the Juggler takes you up on odd, and down when you are even,
+> Root three-halves of what you were, no cycle worth believin'.
+> We set the floor at four hundred million, watched the orbits fall —
+> But one shy word at four-seven-eight still wouldn't die at all.
+>
+> **Chorus**
+> Hug the wall, hug the wall, cheapest walk of all,
+> Every cycle pays its debt in logs before the fall.
+> One point two per floor you lose, the ledger keeps the score —
+> And Lean has signed the bottom line: *you can't afford the tour.*
+>
+> **Verse 2**
+> The finance man says three-to-the-o must cover two-to-the-L,
+> The hug word walks the rotation line and charges you like hell.
+> Denjoy and Koksma hold the coats, the digits stay below —
+> Forty-seven, structurally, wherever the quotients go.
+>
+> **Final chorus, ritardando**
+> Hug the wall, hug the wall, the envelope is tight,
+> Transport to the reduced base and read the logs at night.
+> No `sorry` in the ledger, no cycle in the ring —
+> Just one Diophantine blocker left, and the partial quotients sing.

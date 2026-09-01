@@ -18797,6 +18797,20 @@ Best next question
 - **Open:** remaining §5 Lean ladder — Denjoy–Koksma on `AddCircle` (Thm 5.7) and the rotation average (Prop 5.5); the defect-sum finance lower bound as the missing half of a formal kill criterion
 - **Decision:** PROMOTE (formalization landed); no new mathematical branch opened
 
+## Juggler defect finance and kill criterion in Lean
+
+- **Date:** 2026-09-01
+- **Objective:** The charge pass ended on one question: can the defect-sum finance lower bound (the certified identity of Paper A Theorem 4.6, previously only the division-free form was Lean) be formalized, making the entire kill criterion — finance vs hug charge — one Lean implication?
+- **Hypotheses:** the exact per-step loss ε = m·log x − log T(x) obeys ε ≤ (6/5)/T(x) via δ ≤ 2/T(x) and −log(1−δ) ≤ (6/5)δ on [0,1/6], and the unroll is the WalkTransport weight induction run twice — confirmed
+- **Major results:**
+  - **Theorem 4.6's certified identity is Lean** (`DefectFinance.lean`, `cycleMin_defect_finance`): on a CycleMin cycle at minimum \(n\ge 400\), \(1-2^L/3^o\le\tfrac65\sum_k 1/(x_k\log x_k)\). Ingredients: image-form per-step losses (`log_floorPower_even_ge_sub` at \(x\ge 441\), `log_floorPower_odd_ge_sub` at \(x\ge 9\), majorant `neg_log_one_sub_le_sixth`), floor-only-loses upper bounds, upper invariant \(\log x_k\le w_k\log n\) (`cycleMin_log_le_weight`) pricing the amplification \(1/w_{i+1}\le\log n/\log x_{i+1}\), charged lower invariant \(w_k(\log n-C_k)\le\log x_k\) (`cycleMin_charge_prefix`), cyclic close at \(x_L=n\) with reindex \(\sum f(x_{i+1})=\sum f(x_i)\)
+  - **The kill criterion is one Lean theorem** (`cycleMin_hug_kill_criterion`): chaining with `cycleMin_defect_le_hug_charge`, every CycleMin at \(n\ge 400\) with positive reduced log-base satisfies \(1-2^L/3^o\le\tfrac65\sum_k g(\mathrm{hugWeight}_k)\) at the reduced base. The Thm 5.9 kill tables verify the numeric *failure* of this inequality per length — the implication is Lean, only the transcendental evaluation (and Cor 4.5's parity refinement) stays verified computation
+  - **Boundary kept honest:** `J-cyclemin-defect-finance-kill` (**EXACT — LEAN VERIFIED**) added; Paper A hierarchy item 4, §4 unroll note, §5.7 preamble, §1.2 roles, Appendix A (new Thm 4.6 row, Thm 5.9 row), paper-barrel docstring, formalization map, AGENTS.md updated; module in both barrels; full `lake build` clean, no `sorry`
+- **Refuted ideas:** none — the falsifier (the unroll needing the Laplace/DK layer) did not fire
+- **Literature:** none new — the mathematics is Paper A's own §4.4–4.6 and §5.7
+- **Open:** the §5 envelope chain now reduces to exactly two human analytic steps — the rotation average (Prop 5.5) and Denjoy–Koksma (Thm 5.7) — plus verified numeric evaluations; a Lean DK over `AddCircle` would make the census-free window envelope fully formal
+- **Decision:** PROMOTE (formalization landed); no new mathematical branch opened
+
 ## Juggler above-anchor walk envelope (asymptotic descent, Phase-0)
 
 - **Date:** 2026-09-01
@@ -18848,6 +18862,51 @@ Best next question
 - does depth-<=4 equidistribution contradict the extremal
   odd density that hug domination forces on a hypothetical
   descent-free flight?
+```
+
+## Juggler hug-cylinder realization (equidistribution vs descent-free flight)
+
+- **Date:** 2026-09-01
+- **Objective:** Answer the above-anchor walk branch's recorded question: can fixed-depth parity equidistribution contradict the extremal odd density that hug domination forces on a hypothetical descent-free flight? Sharp falsifiable core: is the extremal hug cylinder \(C_L\) (starts whose orbit word begins with the exact hug \(L\)-prefix) realized at every depth with minimal witness \(m(L)\) at the cylinder-predicted scale \(2^L\), or does realization die at a finite depth?
+- **Hypotheses:** equidistribution is cylinder-filling, so no fixed-depth kill exists (confirmed); an anomalously early empty depth would have been a new obstruction (did not fire)
+- **Major results:**
+  - **Hug cylinder filled at the predicted scale (COMPUTATIONALLY VERIFIED):** scan of all odd \(n\le 2\cdot 10^8\) (probe `hug_prefix_realization.py`, artifact `data/research/juggler/hug_prefix_realization/summary.json`): \(m(L)\) tracks \(2^L\) with least-squares \(\log_2\) slope \(0.946\) over \(21\) depths, cylinder counts halve per depth (mean ratio \(2.022\)), maximal realized depth \(28\) at \(n=48427569\) (\(\log_2\approx 25.5\) against horizon \(27.6\)), and every witness stays above its anchor exactly. The laboratories are hug-hugging orbits (\(365\) matches through depth \(10\), \(1517\) through \(13\))
+  - **Structural close (KNOWN facts assembled):** a fixed-depth kill would need an empty admissible cylinder, contradicting the proved depth-\(\le 4\) fills and the measured extremal fills to depth \(28\); ambient-to-orbit transfer is REFUTED and a flight's states are a zero-density set inside every power-savings exceptional set; even all-depth equidistribution yields only density-one certificates (`J-equidistribution-implies-density-one`), never pointwise survival-set emptiness (survival-set branch CLOSE). **No fixed-depth equidistribution statement can contradict a descent-free flight**; the only remaining route is infinite-depth control — the parked \(K_3\)/BB/GG/JJ wall
+- **Refuted ideas:** none new; the obstruction falsifier (early empty depth or anchor-violating witness) did not fire
+- **Literature:** none new
+- **Open:** constructive nonemptiness — is \(C_L\ne\emptyset\) provable for every \(L\) by an explicit preimage-cylinder construction (existence, not density), turning the fixed-depth close from a scan into a theorem?
+- **Decision:** CLOSE — the recorded question is answered no; statements are KNOWN ledger facts plus a confirming measurement; dossier `docs/problems/juggler_hug_prefix_realization.md`
+
+```text
+What was learned
+- the extremal hug cylinder is filled at exactly the
+  equidistribution-predicted 2^{-L} rate to depth 28, every
+  witness above-anchor; the laboratories 365/1517 are its
+  small witnesses
+- fixed-depth equidistribution populates the cylinders a
+  descent-free flight needs; it cannot empty them, and its
+  exceptional sets swallow any single sparse orbit
+- the termination frontier therefore stays exactly where the
+  walk branch put it: parity/infinite-depth (K3) or floor-
+  defect lower bounds - both parked walls
+Strongest theorem
+- none new (the close assembles KNOWN rows)
+Strongest refutation
+- none; the obstruction candidate did not materialize
+Reusable machinery
+- hug_prefix_realization.py single-cylinder witness scanner
+  (exact arithmetic, unit-window cheap states)
+Branch status
+- CLOSE
+Why
+- the question has a structural no: cylinder-filling cannot
+  contradict cylinder-selecting, and the measurement confirms
+  the extremal cylinder is populated at the predicted scale;
+  nothing here is a new theorem or a new obstruction
+Best next question
+- is hug-cylinder nonemptiness provable at every depth by an
+  explicit preimage-cylinder construction (existence, not
+  density)?
 ```
 
 

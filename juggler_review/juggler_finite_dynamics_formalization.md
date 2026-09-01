@@ -656,6 +656,28 @@ chain: the rotation average (Proposition 5.5), Denjoy–Koksma
 maximiser, and the final kill evaluations of Theorems 5.2/5.9
 and Corollary 5.10 (verified computation).
 
+`DefectFinance.lean` closes the finance side. The certified identity
+of Theorem 4.6 — \(1-2^L/3^o\le\tfrac65\sum_k 1/(x_k\log x_k)\) on
+any minimum-based cycle at \(n\ge 400\) — is Lean
+(`cycleMin_defect_finance`). Ingredients: the per-step floor losses
+in image form, \(\varepsilon\le\tfrac65/T(x)\) from
+\(\delta\le 2/T(x)\) and \(-\log(1-\delta)\le\tfrac65\delta\) on
+\([0,1/6]\) (`log_floorPower_even_ge_sub`,
+`log_floorPower_odd_ge_sub`, `neg_log_one_sub_le_sixth`), the
+floor-only-loses upper bounds (`log_floorPower_even_le`,
+`log_floorPower_odd_le`), and the `WalkTransport` weight induction
+run twice: an upper invariant \(\log x_k\le w_k\log n\)
+(`cycleMin_log_le_weight`) pricing the amplification and a charged
+lower invariant (`cycleMin_charge_prefix`), closed at \(x_L=n\).
+Chaining with `cycleMin_defect_le_hug_charge` yields the **kill
+criterion** (`cycleMin_hug_kill_criterion`): every minimum-based
+cycle at \(n\ge 400\) with positive reduced log-base satisfies
+\(1-2^L/3^o\le\tfrac65\sum_k g(\mathrm{hugWeight}\ k)\) at the
+reduced base — the full finance-versus-hug-charge implication of
+Theorem 5.9 as one Lean theorem. The per-length numeric kill
+evaluations and the parity refinement of Corollary 4.5 remain
+verified computation.
+
 `OstrowskiSandwich.lean` certifies the quotient arithmetic of
 Theorem 5.7: the big-integer sandwich
 \(3^{10781274}<2^{17087915}\), \(2^{16785921}<3^{10590737}\)

@@ -131,10 +131,10 @@ adds measurements only.
 
 - **The hug cylinder is filled at the predicted scale
   (COMPUTATIONALLY VERIFIED):** on \([3,2\cdot 10^8]\) the minimal
-  witness \(m(L)\) tracks \(2^L\) (least-squares slope \(0.977\) in
-  \(\log_2\) for \(L\ge 8\)) and cylinder counts halve per depth
-  (mean ratio \(1.987\)); maximal realized depth \(27\) at
-  \(n=112663279\) (\(\log_2\approx 26.7\), horizon
+  witness \(m(L)\) tracks \(2^L\) (least-squares slope \(0.946\) in
+  \(\log_2\) over \(21\) depths \(L\ge 8\)) and cylinder counts
+  halve per depth (mean ratio \(2.022\)); maximal realized depth
+  \(28\) at \(n=48427569\) (\(\log_2\approx 25.5\), horizon
   \(\log_2 N\approx 27.6\)); every witness stays above its anchor
   exactly. The laboratories are literally hug-hugging orbits:
   \(365\) realizes the hug prefix through depth \(10\), \(1517\)
