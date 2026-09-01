@@ -42,7 +42,7 @@ void walk_step(const double* prev, double* out,
 {
     long long a = (long long)blockIdx.x * blockDim.x + threadIdx.x;
     if (a >= width) return;
-    const double NEG = -INFINITY;
+    const double NEG = __longlong_as_double(0xfff0000000000000LL);
     double m = prev[a];
     if (a > 0) {
         double up = prev[a - 1];

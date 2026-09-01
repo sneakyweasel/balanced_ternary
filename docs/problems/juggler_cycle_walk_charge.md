@@ -248,8 +248,11 @@ Classification **WALK_CHARGE_GREEN**.
   \(2.71\times\) extension. Sole survivor
   \(478245=176251+301994\) (\(k=1\) semiconvergent fan):
   required improvement \(19.46\), walk supplies \(\approx 7.7\),
-  DK break-even floor \(3.48\cdot 10^8\) — Diophantine, not
-  computational.
+  direct DP non-kill margin \(0.4334\)
+  (`new_floor_kills/L478245.json`, GPU fp64 DP cross-checked
+  against the stored CPU record at \(176251\) to
+  \(3.6\cdot 10^{-14}\)), DK break-even floor \(3.48\cdot 10^8\)
+  — Diophantine, not computational.
 
 ## Open questions
 
