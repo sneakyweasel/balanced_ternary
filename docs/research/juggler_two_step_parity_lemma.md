@@ -3485,3 +3485,257 @@ Flag `depth5_contracting_proved` flipped `True`. Length 7/8 and
 Corollary R′ stay `CONJECTURE`. No Paper B edit. No \(K_3\).
 The single next question is Corollary R′ at one concrete
 \(\alpha\neq 9/8\) (the intended consumer was \(\alpha=33/32\)).
+
+## Part XIII: Theorem R at \(\alpha=33/32\) (Phase 28)
+
+Scope: rerun Paper B Theorem 5.3 at the single monomial family
+\(\alpha=33/32\), against the Phase-25/26 kernel (Lemmas 3.8–3.10
+and 5.1–5.2 as printed). Not the full Corollary R′ interval. Not
+length 7/8. Not a Paper B edit. Not a bound for \(\alpha>9/8\)
+(`J-scale-invariant-R-extension` remains **REFUTED**).
+
+The Phase-24 slogan (“every constraint is monotone in \(\alpha\)”)
+is discarded. Every standing estimate, window drift, and dominance
+margin is re-derived below. The only new analytic cost is the
+exponent pair \(\bigl(\tfrac54,\tfrac{41}{32}\bigr)\), which sits
+at distance \(1/32\): Lemma 3.8’s \(c_6\) is \(1/55\), still
+positive, and is absorbed by the existing ineffective \(P_0\).
+
+Write \(c=\tfrac{3k}4 n^{33/32}\) on a dyadic block \(n\sim P\),
+odd, with \(1\le k\le P^{1/24}\). The same \(H_1=P^{1/48}\),
+\(H_2=P^{1/24}\) as Theorem 5.3. Then
+\(kh_1h_2\le P^{5/48}\). Signs follow the monomial pattern
+(\(c>0\), \(c'>0\), \(c''>0\)).
+
+### Standing estimates at \(\alpha=33/32\)
+
+\[
+\begin{aligned}
+c'&=\tfrac{99k}{128}\,n^{1/32},&
+c''&=\tfrac{99k}{4096}\,n^{-31/32},\\
+\Delta_ic&=2h_ic'(\xi)\in(1.54,\,1.59)\,kh_iP^{1/32},\\
+\Delta\Delta c&=4h_1h_2c''(\xi)\in(0.049,\,0.097)\,kh_1h_2P^{-31/32}.
+\end{aligned}
+\]
+Call these (E3)\(^\dagger\)–(E4)\(^\dagger\). The printed (C1)
+\(kh_1h_2\le P^{1/8}\) still holds, with slack
+\(P^{5/48}/P^{1/8}=P^{-1/48}\); the \(\alpha\)-accurate sufficient
+condition is the weaker \(kh_1h_2\le P^{7/32}\). Lemma 5.1 and
+(E1)–(E2), (E5) are independent of \(c\). The printed Lemma 5.2
+applies *a fortiori*: its (D2)–(D3) Stage-6 dominances are upper
+bounds on \(|c|\), \(|c'|\), \(|c''|\), and each of those is
+strictly smaller than the \(\alpha=9/8\) size used to prove the
+lemma (\(33/32<9/8\), \(1/32<1/8\), \(-31/32<-7/8\)). The main
+curvature of Lemma 5.2 is a \(Y\)-wave, independent of \(c\).
+
+Sign product of (E6), at \(\beta\in\{1/4,3/4\}\):
+\[
+\alpha(\alpha-1)(\alpha+\beta-2)(\alpha+\beta-3)
+=\tfrac{33}{32}\cdot\tfrac{1}{32}\cdot(\tfrac{33}{32}+\beta-2)
+\cdot(\tfrac{33}{32}+\beta-3).
+\]
+Both last factors stay negative (\(\alpha+\tfrac14-2=-23/32\),
+\(\alpha+\tfrac34-2=-7/32\)), the first two stay positive, and
+no factor vanishes (\(\alpha\neq1\), \(\alpha\neq 2-\beta\),
+\(\alpha\neq 3-\beta\)). Product positive, same pattern as
+\(\alpha=9/8\).
+
+### Steps 1–4
+
+*Step 1.* Unchanged: \(|K_c|^2\le 2P^2/H_1+(4P/H_1)\sum|T_1|\)
+and likewise for \(T_1\), and it is enough to prove
+\(|T_2|\ll P^{23/24+\varepsilon}\).
+
+*Step 2.* \(|M_1|\le 0.10\,kh_1h_2P^{-31/32}\), so deleting
+\(M_1\) costs \(\ll kh_1h_2P^{1/32}\le P^{13/96}\), inside
+\(P^{23/24}\).
+
+*Step 3a.* \(B=\Delta_2c(n{+}d_1)\in(1.54,1.59)\,kh_2P^{1/32}\),
+with \(|B'|\le 0.10\,kh_2P^{-31/32}\). Freeze on windows where
+\(B\) moves by \(\le P^{-1/8}\) (the printed residual): at most
+\(2kh_2P^{5/32}{+}1\) windows, residual
+\(\sum|e((B{-}B_0)\{W\})-1|\le 6.3P^{7/8}\). Lemma 3.7 at
+\(T=P^{1/2}/(2h_1)\), \(J=P^{1/4}\):
+\(|B|\le P^{11/96}\) and
+\(T\ge\tfrac12 P^{23/48}\ge 8(1+|B|)\) for \(P\ge P_0\).
+Flat cost \(\le 16h_1P^{1/2}+16\,kh_1h_2P^{1/2+1/32}
+\le 16P^{25/48}+16P^{61/96}\). Modes satisfy
+\(uh_1\le P^{13/96}+P^{1/2}/2\le P^{1/2}\), so every mode is a
+Lemma 5.2(i) object. Window boundaries cost
+\(\le 2kh_2P^{5/32}\cdot 3.4P^{3/8}\le 7P^{17/32+1/12}
+\le 7P^{51/96}\).
+
+*Steps 3b–3e.* \(|(\Delta_2c)''|\le 0.05\,kh_2P^{-63/32}\) sits
+inside the printed (D3) box \(3kh_1h_2P^{-5/8}\) (ratio
+\(\le P^{-11/32}/h_1\)). Likewise \(|c''|\ll kP^{-31/32}\) is
+strictly inside (D3). The expansion inventory, mode species, and
+anchor-present-in-every-piece organization are those of
+Theorem 5.3.
+
+*Step 4.* Independent of \(\alpha\): wave pieces
+\(\ll P^{23/24+\varepsilon}\). Resonant \(t=0\) remnants are
+(D1) decorations of Step 5.
+
+### Step 5a (offset branches)
+
+On an offset branch, \(cF=\tfrac98\,kj\,\nu^{57/32}(1+O(P^{-1/4}))\).
+The smooth second derivative is
+\(\tfrac{12825}{8192}\,kj\,\nu^{-7/32}\). The window-centre
+coefficient is \(B=\tfrac9{16}kj\,\nu^{9/32}(1+O(P^{-1/4}))\),
+so \(uX''=-\tfrac{27}{64}\,kj\,\nu^{-7/32}\). Composite
+\[
+\lambda_a=\tfrac{9369}{8192}\,k|j|\,n^{-7/32}\,(1+O(P^{-1/4}))
+\in[0.8,\,1.4]\,k|j|P^{-7/32}
+\]
+for \(P\ge P_0\). The two terms have ratio
+\(12825:3456=3.711\), single-signed (the printed \(9/8\) ratio
+was \(4.375\)). Competitors against
+\(\lambda_a\ge 0.8\,P^{-7/32}\):
+
+- differenced-wave \(\le 0.51P^{-1/4}\), ratio
+  \(\le 0.64\,P^{-1/32}\);
+- resonant (D1) \(\le 6P^{-19/16}\), ratio
+  \(\le 8P^{-31/32}\);
+- slow modes \(\le 3P^{1/24}P^{-5/4}\), ratio
+  \(\le 4P^{-95/96}\);
+- (D3) \(\le 3P^{1/16}P^{-1/2}\), ratio
+  \(\le 4P^{-7/32}\).
+
+All \(\to 0\). The \(\theta\)-sawtooth has coefficient
+\(\tfrac9{16}k|j|P^{9/32}\)-scale: at most
+\(1.2k|j|P^{9/32}{+}1\) windows. Collision band: Lemma 3.8 at
+the pair \(\bigl(\tfrac{57}{32},\tfrac32\bigr)\) (distinct;
+zeros of the affine test at \(s=1\) and \(s=7/16\neq 1\)),
+scale \(M\asymp k|j|P^{-7/32}\). Band total
+\(\ll (k|j|)^{1/2}P^{57/64}\log P\). Main estimate Lemma 3.3
+per frozen run: run lengths \(\ge\tfrac1{22}P^{1/4}/(|j|{+}1)\)
+and \(\lambda_a^{-1/2}\ll P^{7/64}\) is shorter than a run
+(\(7/64<16/64\)). Assembly
+\[
+\sum_{\mathrm{runs}}\bigl(\ell\lambda_a^{1/2}+\lambda_a^{-1/2}\bigr)
+\le 1.3\,(k|j|)^{1/2}P^{57/64}
++O\bigl(k^{-1/2}P^{55/64}\bigr).
+\]
+At \(k\le P^{1/24}\):
+\((k)^{1/2}P^{57/64}\le P^{175/192}<P^{23/24}=P^{184/192}\).
+The printed \(9/8\) bottleneck \((k)^{1/2}P^{15/16}=P^{23/24}\)
+is slack here.
+
+### Step 5b (zero-offset)
+
+\(cF_{\mathrm{sm}}=\tfrac{81k}{16}h_1h_2\nu^{41/32}(1+O(hP^{-1}))\),
+and
+\[
+2c'F_{\mathrm{sm}}'+c\,F_{\mathrm{sm}}''
+=\tfrac{1701}{1024}\,kh_1h_2\,\nu^{-23/32}(1+O(hP^{-1})).
+\]
+Thus \(\lambda_0\in[0.8,\,4]\,kh_1h_2P^{-23/32}\). The
+\(\theta\)-coefficient at \(j=0\) is
+\(|B|\le 1.2\,kh_1h_2P^{-7/32}\le 1.2P^{-11/96}<1\): still
+sub-unit. Three regimes as printed, with the comparisons
+reset to \(\lambda_0\asymp kh_1h_2P^{-23/32}\).
+
+- *Anchor-dominant* (\(60\mu\le\lambda_0\)): Lemma 3.3 per run.
+  \(\sum\ell\lambda_0^{1/2}\le (kh_1h_2)^{1/2}P^{41/64}
+  \le P^{133/192}\).
+- *Mode-dominant* (\(\mu\ge 60\lambda_0\), i.e.
+  \(uh_1\ge 60\,kh_2P^{1/32}\)): Lemma 5.2(i) with the
+  undifferenced anchor as decoration. The threshold
+  \(P^{1/32}\) is *lower* than the printed \(P^{1/8}\), so
+  more of the range is mode-dominant. Anchor run-boundary
+  cost \(\le 75P^{11/16}\) as printed.
+- *Middle band.* The interpolant is the printed construction
+  with the new \(c\). Leading monomials
+  \[
+  \Phi(\nu)=a\,\nu^{5/4}+b\,\nu^{41/32}+w\,\nu^{3/2},
+  \]
+  exponents
+  \(\bigl\{\tfrac54,\tfrac{41}{32},\tfrac32\bigr\}
+  =\bigl\{\tfrac{40}{32},\tfrac{41}{32},\tfrac{48}{32}\bigr\}\)
+  pairwise distinct. Extend the printed set to
+  \(E^\dagger=E\cup\bigl\{\tfrac{41}{32},\tfrac{57}{32}\bigr\}\).
+  Lemmas 3.8–3.9 apply to any finite set of pairwise distinct
+  exponents away from \(2\); their proofs never use the
+  specific list except through \(c_6(E)\) and \(c_7(E)\).
+
+  For the close pair \(\bigl(\tfrac54,\tfrac{41}{32}\bigr)\):
+  the affine zeros are \(s=1\) and
+  \(s=\tfrac{24}{23}\). The intersection computation gives
+  \(c_6=1/55>0\). The third-derivative zero \(s=24/23\)
+  lies outside the transition
+  \(s\in\bigl(\tfrac{54}{55},\tfrac{56}{55}\bigr)\), so
+  \(|nf'''|\ge c_6|A|\) throughout that transition. The
+  three-term Vandermonde on
+  \(\bigl\{-\tfrac34,-\tfrac{23}{32},-\tfrac12\bigr\}\) is
+  invertible, hence \(c_7(E^\dagger)>0\). Both constants
+  are smaller than the printed \(c_6(E)\), \(c_7(E)\); the
+  paper already takes \(P_0\) ineffective, and
+  \(\rho_0(E^\dagger)\le\min(c_6,c_7)/8\) still absorbs the
+  \(O(P^{-1/4})\) interpolant errors for \(P\ge P_0\).
+
+  On a dyadic block the ratio \(n^{-1/32}\) varies by only
+  \(2^{-1/32}\), so the Lemma 3.8 region \(I_0\) may be the
+  whole block. That does not kill the estimate: \(\Omega_V\)
+  is still measured by Lemma 3.9. Interpolant error
+  \(|f''-\Lambda|\ll kP^{-31/32}\) (the printed
+  \(P^{-9/8}\) replacement is \(P^{-39/32}\) here). Scale
+  \[
+  S=\max\bigl(|uh_1{+}u'h_2|P^{-3/4},\,
+  kh_1h_2P^{-23/32},\,|w|P^{-1/2}\bigr),
+  \]
+  and the middle-band constraints give
+  \(S\ge cP^{-23/32}\) whenever \(kh_1h_2\ge 1\), with
+  \(S\le CP^{-23/32}\) on the collision band (or the
+  conservative printed ceiling \(300P^{-1/2}\)). The same
+  choice \(V=3S^{1/2}P^{-11/24}\) satisfies
+  \(V\ge 10|f''-\Lambda|\) and \(V\le c_7S/2\) for
+  \(P\ge P_0\). Then \(V/S\ll P^{-19/192}\), so
+  \[
+  |\Omega_V|\ll P(V/S)+P(V/S)^{1/2}
+  \ll P^{173/192}+P^{365/384},
+  \]
+  and \(365/384<23/24=368/384\). Piece-boundary and
+  Lemma 3.3 costs are at most this large. The middle band
+  totals \(\ll P^{365/384+\varepsilon}\ll P^{23/24}\).
+
+### Step 6 and the instance
+
+Additive costs improve or match the printed list (\(M_1\)
+deletion is \(P^{13/96}\) instead of \(P^{1/4}\); window
+residuals still \(P^{7/8}\); majorants unchanged). Piece
+totals: Step 4 as printed; Step 5a at \(P^{175/192}\);
+Step 5b at \(P^{365/384}\). Hence
+\(|T_2|\ll P^{23/24+\varepsilon}\) and
+\(|K_c|\ll P^{1-1/96+\varepsilon}\), uniformly in
+\(k\le P^{1/24}\).
+
+### Theorem R at \(\alpha=33/32\) — EXACT — HUMAN PROOF
+
+Let \(c\) be smooth on \((P,2P]\) with
+\(c^{(r)}\asymp kP^{33/32-r}\) for \(r=0,\ldots,4\),
+derivative signs following the monomial pattern
+(e.g. \(c=\tfrac{3k}4 n^{33/32}\)), and
+\(1\le k\le P^{1/24}\). Then
+\[
+K_c(P)\ll P^{1-1/96+\varepsilon},
+\]
+uniformly in \(k\).
+
+This is the intended consumer of the withdrawn Corollary R′.
+The family-for-all-\(\alpha\) claim
+(`J-w-family-below-nine-eighths`) stays `CONJECTURE`: each
+other target \(\alpha\) needs its own exponent set and its
+own \(c_6\). Length 7 still has the growing remainder
+\(\tfrac{45}{32}v^{1/8}\asymp n^{9/32}\).
+
+### Phase-28 decision
+
+**PROMOTE** the \(\alpha=33/32\) instance. Ledger row
+`J-w-family-thirty-three-thirty-seconds` tagged
+`EXACT — HUMAN PROOF`. Flag `w_family_alpha_33_32_proved`
+flipped `True`. The Corollary R′ family, length 7/8, and
+Paper B stay as they were. No \(K_3\). The single next
+question is the length-7 remainder: can \(kE\) with
+\(E\asymp v^{1/8}\) be kept as a subcritical extra phase
+and estimated, now that the \(\alpha=33/32\) \(W\)-family
+is a theorem?

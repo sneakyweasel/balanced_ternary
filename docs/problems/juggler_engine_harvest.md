@@ -1,6 +1,7 @@
 # Juggler Paper B engine harvest (length-5 repair)
 
-Status: **PROMOTE** (length 5 only). Length 7/8 and Corollary R′
+Status: **PROMOTE** (length 5, and the \(\alpha=33/32\)
+\(W\)-family instance). Length 7/8 and the Corollary R′ *family*
 stay **PARK** / **CONJECTURE**. Paper B stays frozen at \(13/16\).
 
 Repair of the Phase-26 withdrawn length-5 passenger holes. Not a
@@ -82,8 +83,11 @@ It is not required. The 2-adic / BT bridge stays closed.
 - Laboratory certified density \(7/8\)
   (`J-five-step-descent-density`) —
   **EXACT — HUMAN PROOF**
-- Length-7 remainder \(n^{9/32}\), length-8 \(E'\), Corollary R′ —
-  **CONJECTURE** (untouched)
+- \(W\)-family at the single exponent \(\alpha=33/32\)
+  (`J-w-family-thirty-three-thirty-seconds`, Phase 28) —
+  **EXACT — HUMAN PROOF**
+- Length-7 remainder \(n^{9/32}\), length-8 \(E'\), Corollary R′
+  family — **CONJECTURE** (untouched except the one instance)
 - \(K_3\) bound — **PARK** (BB/GG/JJ)
 
 ## Experiments
@@ -98,7 +102,10 @@ T1/T2 and the indicator algebra. Tests:
 ## Conjectures
 
 None new. Remaining harvest rows stay as they are:
-`J-w-family-below-nine-eighths`, `J-depth7-engine-contracting`,
+`J-w-family-below-nine-eighths` (family; the point
+\(\alpha=33/32\) is the separate exact row
+`J-w-family-thirty-three-thirty-seconds`),
+`J-depth7-engine-contracting`,
 `J-seven-step-descent-density`, `J-depth8-engine-quartet`,
 `J-eight-step-descent-density`.
 
@@ -126,12 +133,19 @@ gravity.
   `J-five-step-descent-density`).**
   Laboratory certified \(\le 5\)-step descent density \(7/8\).
   Paper B remains \(13/16\).
+- **Theorem R at \(\alpha=33/32\) (EXACT — HUMAN PROOF,
+  `J-w-family-thirty-three-thirty-seconds`, Phase 28).**
+  Child dossier
+  [juggler_w_family_33_32.md](juggler_w_family_33_32.md).
+  Lemma Part XIII. The Corollary R′ family stays
+  `CONJECTURE`.
 
 ## Open questions
 
-Corollary R′ at one concrete \(\alpha\neq 9/8\) (intended consumer
-\(\alpha=33/32\)). Length 7/8 stay parked behind that rerun and
-the named remainder / \(E'\) holes.
+The length-7 remainder \(n^{9/32}\). Length 8 stays behind
+\(E'\). The Corollary R′ family at any other concrete
+\(\alpha\) is a separate rerun; see the child
+[juggler_w_family_33_32.md](juggler_w_family_33_32.md).
 
 ## Decision
 

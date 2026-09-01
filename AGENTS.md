@@ -98,8 +98,10 @@ for external review.
 - **Termination:** laboratory certified descent density \(7/8\)
   (length-5 repair, `J-five-step-descent-density`); Paper B prints
   \(13/16\) only. Densities \(57/64\) and \(29/32\) remain
-  **CONJECTURE** (Phase-26 holes: growing remainder, \(E'\),
-  Corollary R′). The pointwise route is parked behind the \(K_3\)
+  **CONJECTURE** (Phase-26 holes: growing remainder, \(E'\);
+  Corollary R′ is still a family-CONJECTURE, but the instance
+  \(\alpha=33/32\) is **EXACT — HUMAN PROOF**,
+  `J-w-family-thirty-three-thirty-seconds`). The pointwise route is parked behind the \(K_3\)
   obstruction ladder BB/GG/JJ. Not claimed.
 - **Local attacks are closed.** Fibres are parity + interval only
   (`even_cell_iff`, `odd_cell_unique`, `cell_same_next_state`): no finite

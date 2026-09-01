@@ -20,5 +20,5 @@
   ],
   "project_relationship": "known",
   "status": "classical-source",
-  "notes": "Integer-part removal applies to the time index of a fixed nilrotation: if b is an ergodic nilrotation and a is Hardy of polynomial growth, (b^{floor(a(n))} x) equidistributes. That is not a Hardy monomial of a floor, and not the Juggler Mal'cev path g(v) = exp((3/2) v^{3/4} e_12 + v^{3/2} e_23) sampled at v = floor(n^{3/2}). Cited by the v^{9/4} rate-free placement (docs/problems/juggler_v94_rate_free.md): the published floor-removal step does not identify {floor(n^{3/2})^{9/4}}."
+  "notes": "Integer-part removal applies to the time index of a fixed nilrotation: if b is an ergodic nilrotation and a is Hardy of polynomial growth, (b^{floor(a(n))} x) equidistributes. That is not a Hardy monomial of a floor, and not the Juggler Mal'cev path g(v) = exp((3/2) v^{3/4} e_12 + v^{3/2} e_23) sampled at v = floor(n^{3/2}). Cited by the v^{9/4} rate-free placement (docs/problems/juggler_v94_rate_free.md) and the floor-Hardy door (docs/problems/juggler_rate_free_floor_hardy.md): the published floor-removal step does not identify {floor(n^{3/2})^{9/4}}."
 }

@@ -1,0 +1,24 @@
+{
+  "id": "tsinas-2023-pointwise-hardy-nilmanifolds",
+  "title": "Pointwise convergence in nilmanifolds along smooth functions of polynomial growth",
+  "authors": ["Konstantinos Tsinas"],
+  "year": 2023,
+  "identifiers": {
+    "doi": "10.1017/etds.2023.68",
+    "arxiv": "2203.11609"
+  },
+  "url": {
+    "publisher": "https://doi.org/10.1017/etds.2023.68",
+    "arxiv": "https://arxiv.org/abs/2203.11609"
+  },
+  "problem_area": "ergodic-equidistribution",
+  "relevant_concepts": [
+    "Hardy-field times on nilmanifolds",
+    "b_1^{a_1(n)} ... b_k^{a_k(n)} Gamma",
+    "Green-Tao polynomial-orbit segments",
+    "Host-Kra structure used after the orbit identification"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source",
+  "notes": "Ergod. Th. Dynam. Sys. 44 (2024), published 25 Sep 2023 (arXiv 2203.11609). Orbits b_i^{a_i(n)} Gamma with each a_i Hardy of polynomial growth. Same time-slot as Richter 2023: the entries must be Hardy in n. Does not cover a^{f(floor(h(n)))} with f a nonlinear Hardy monomial, and does not identify {floor(n^{3/2})^{9/4}}. The Host-Kra application is after a Hardy-time identification; it is not a license to run PET on the floor-Hardy Heisenberg lift (that method is already J-nil-pet-reentry). Cited by docs/problems/juggler_rate_free_floor_hardy.md."
+}

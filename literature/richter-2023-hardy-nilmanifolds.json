@@ -20,5 +20,5 @@
   ],
   "project_relationship": "known",
   "status": "classical-source",
-  "notes": "J. Anal. Math. 149 (2023), 421-483 (arXiv 2020). Theorem A: the orbit a_1^{f_1(n)} ... a_k^{f_k(n)} Gamma is governed by its horizontal torus when each f_i lies in a Hardy field, has polynomial growth, and satisfies property (P). The smooth model (n^{3/4}, n^{3/2}, n^{9/4}) matches; floor(n^{3/2})^{9/4} does not, because floor is not Hardy. Unwinding floor(h) to h produces the leftover (9/4) n^{15/8} {n^{3/2}}, which is not o(1), so the smooth-model theorem does not transfer. Cited by docs/problems/juggler_v94_rate_free.md."
+  "notes": "J. Anal. Math. 149 (2023), 421-483 (arXiv 2020). Theorem A: the orbit a_1^{f_1(n)} ... a_k^{f_k(n)} Gamma is governed by its horizontal torus when each f_i lies in a Hardy field, has polynomial growth, and satisfies property (P). The smooth model (n^{3/4}, n^{3/2}, n^{9/4}) matches; floor(n^{3/2})^{9/4} does not, because floor is not Hardy. Unwinding floor(h) to h produces the leftover (9/4) n^{15/8} {n^{3/2}}, which is not o(1), so the smooth-model theorem does not transfer. Cited by docs/problems/juggler_v94_rate_free.md and docs/problems/juggler_rate_free_floor_hardy.md."
 }

@@ -179,6 +179,10 @@ ANTI_OVERCLAIM = {
     # eighth-letter coefficient bound remain unconditional.
     "depth8_engine_quartet_proved": False,
     "depth8_chains_subcritical": True,
+    # Phase 28: Theorem R rerun at the single monomial family
+    # alpha = 33/32 (intended Corollary R' consumer). The
+    # family-for-all-alpha claim stays CONJECTURE.
+    "w_family_alpha_33_32_proved": True,
 }
 
 

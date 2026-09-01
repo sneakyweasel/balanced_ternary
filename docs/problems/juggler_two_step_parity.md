@@ -110,7 +110,12 @@ It is not required. The 2-adic / BT bridge stays closed.
 - Length-7 engine contractors OOEOOEE/OOOEOEE — drafted in
   Phase 13, withdrawn in Phase 26
   (`depth7_engine_contracting_proved` is `False`);
-  \(57/64\) is **CONJECTURE**
+  \(57/64\) is **CONJECTURE**. The \(\alpha=33/32\)
+  \(W\)-family instance used by those drafts is now
+  **EXACT — HUMAN PROOF** (Phase 28,
+  `w_family_alpha_33_32_proved` is `True`); the growing
+  remainder \(n^{9/32}\) remains the hole
+
 - Increment-first \(K_3\) attack — **REFUTED** in Phase 14
   (`increment_first_k3_refuted` is `True`); bound not proved
 - X1-absorption of \(K_3\) — **REFUTED** in Phase 15
@@ -1086,3 +1091,16 @@ named length-5 holes close against the Phase-26 kernel (lemma
 Part XII). Laboratory certified density moves \(13/16\to 7/8\).
 Paper B is not edited. Length 7/8 and Corollary R′ stay
 `CONJECTURE`. Flag `depth5_contracting_proved` is `True` again.
+
+## Phase 28: Theorem R at \(\alpha=33/32\)
+
+Child dossier
+[juggler_w_family_33_32.md](juggler_w_family_33_32.md).
+Paper B Theorem 5.3 rerun at the single monomial family
+\(\alpha=33/32\). Every displayed margin survives (lemma
+Part XIII). Instance row
+`J-w-family-thirty-three-thirty-seconds` is
+`EXACT — HUMAN PROOF`. Flag `w_family_alpha_33_32_proved`
+is `True`. The Corollary R′ family stays `CONJECTURE`.
+Length 7/8 stay parked behind the remainder / \(E'\) holes.
+Paper B is not edited.

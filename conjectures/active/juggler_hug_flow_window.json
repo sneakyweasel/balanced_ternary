@@ -11,7 +11,7 @@
   "proof_reference": "docs/problems/juggler_hug_cylinder_construction.md (depth 1: J-hug-flow-window-depth-one)",
   "lean_reference": "",
   "literature": [],
-  "notes": "Depth 1 is discharged uniformly by J-hug-flow-window-depth-one (EXACT — HUMAN PROOF): Paper B Lemmas 3.2–3.4 on the working window H ≍ X^{1/3}, no resonance exclusion, ineffective X_0. Depth 2 remains ACTIVE and is required for C_L nonempty; the 2^36 OOE death is the exclusion that half must carry. Window (2/3)X^{1/3} is above the van der Corput threshold X^{1/4} for f(x) = x^{3/2}/2. Depth-2 is a short-interval analogue of Paper B's proved long-interval depth<=4 statements, not the K3 wall (depth-5, deterministic shift). Completing depth 2 would make hug cylinders (arbitrarily long descent-free extremal prefixes) provably realized at every depth — an obstruction-existence theorem, not descent progress.",
+  "notes": "Depth 1 is discharged uniformly by J-hug-flow-window-depth-one (EXACT — HUMAN PROOF). The interval-iteration reading of depth 2 is CLOSED (juggler_hug_flow_depth_two): J-hug-flow-image-gap says consecutive odd x have image gap ≥ 3 floor(√x), larger than the whole second-stage working window (2/3)Y^{1/3}=(2/3)X^{1/2}, ratio → 9/2. V(I) is a 3√X-separated packing; the span ≍ X^{5/6} is not an interval of y. Depth 2 remains ACTIVE only as a possible sparse-set statement, not as interval ET. The 2^36 OOE death is still a local resonance hazard on that sparse set. Completing a sparse depth-2 would be an obstruction-existence input, not descent progress.",
   "not_a_halt_theorem": true,
   "no_cycle_all_lengths": false
 }

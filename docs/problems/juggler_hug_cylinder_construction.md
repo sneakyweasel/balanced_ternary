@@ -55,8 +55,9 @@ Depth \(2\) is still open. The existence claim
   depth \(\le 4\) with power savings — **EXACT — HUMAN PROOF**
   (Paper B). Depth \(1\) on the working window \(H\asymp X^{1/3}\)
   is the short-interval localization of Paper B Theorem 4.1,
-  recorded as `J-hug-flow-window-depth-one`. Depth \(2\) remains
-  the short-interval analogue of Paper B's nested statements.
+  recorded as `J-hug-flow-window-depth-one`. The interval-iteration reading of depth \(2\) is CLOSE
+  (`J-hug-flow-image-gap`). A sparse-set depth-\(2\) analogue
+  of Paper B is not opened.
 - Exact single-cell inverse hug lifts die at empty `OOE` cells —
   mechanical-lift branch, CLOSE (`empty_ooe`); consistent with the
   \(w^{-1/9}\) per-anchor hazard measured here, and superseded by
@@ -190,13 +191,14 @@ No `HugFlowWindow.lean`.
   cheaper than the \(2^L\) forward scan. The deepest certified
   witness stays the realization branch's depth \(28\). (The naive
   generator-chain implementation was discarded for this reason.)
-- **Route classified:** all-depth nonemptiness reduces to
-  `juggler_hug_flow_window`. Depth \(1\) is the lemma below.
-  Depth \(2\) still needs a short-interval nested hit with the
-  measured sqrt-resonance exclusion. This is *not* the \(K_3\)
-  wall. The payoff of the remaining half is an
-  obstruction-existence theorem (extremal descent-free prefixes
-  realized at every depth), not descent progress.
+- **Route classified:** all-depth nonemptiness still reduces to
+  some depth-\(2\) hit, but **not** to interval Erdős–Turán on
+  the image span. The sentence “an \(X^{1/3}\) window maps to
+  length \(\asymp X^{5/6}\) at scale \(X^{3/2}\), then Paper B
+  on that interval” is the named trap: the span is long, the
+  occupants are \(3\sqrt X\)-separated
+  (`J-hug-flow-image-gap`, satellite CLOSE). Depth \(2\) as
+  sparse-set mixing is not opened here.
 
 - **Depth-\(1\) window lemma (`J-hug-flow-window-depth-one`,
   EXACT — HUMAN PROOF).** There is an ineffective \(X_0\) such
@@ -279,11 +281,10 @@ No `HugFlowWindow.lean`.
 
 ## Open questions
 
-- Does the depth-\(2\) half of `juggler_hug_flow_window` follow
-  from Paper B's elementary long-interval technique on the
-  image of an \(X^{1/3}\) window (length \(\asymp X^{5/6}\) at
-  scale \(X^{3/2}\)), with the measured sqrt-resonance
-  exclusion?
+- None that interval ET can answer. The depth-\(2\)
+  interval-iteration route is CLOSE
+  (`juggler_hug_flow_depth_two`, `J-hug-flow-image-gap`).
+  A sparse-set depth-\(2\) statement would be a new Phase-0.
 
 ## Decision
 
@@ -300,9 +301,9 @@ three earlier CLOSEs (mechanical lift / empty `OOE`;
 hug-prefix realization to depth \(28\); formal-versus-realized
 prefix-NC) do not say hug prefixes cannot be realized.
 
-Best next question: none from this branch — depth \(2\) is the
-reopening key for the existence theorem, and it is not opened
-here. The asymptotic-descent program's standing targets remain
+Best next question: none from this branch — the depth-\(2\)
+interval-ET reopen is CLOSE (`juggler_hug_flow_depth_two`).
+The asymptotic-descent program's standing targets remain
 `juggler_asymptotic_descent` and `juggler_descent_time_log`.
 
 ## Publication assessment

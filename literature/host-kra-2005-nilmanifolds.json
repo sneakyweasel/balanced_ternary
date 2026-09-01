@@ -18,5 +18,5 @@
   ],
   "project_relationship": "known",
   "status": "classical-source",
-  "notes": "Ann. of Math. 161 (2005), 397-488. Characteristic-factor arguments on nilmanifolds internally use van der Corput differencing (PET). Cited by docs/problems/juggler_nil_pet_reentry.md: the first PET difference of the Juggler Heisenberg lift, after Mal'cev reduction, re-expands the floor-removal correction into the amplitude-product A{ΔB} of GG species. The paper supplies the induction schema, not a theorem about floor-Hardy entries."
+  "notes": "Ann. of Math. 161 (2005), 397-488. Characteristic-factor arguments on nilmanifolds internally use van der Corput differencing (PET). Cited by docs/problems/juggler_nil_pet_reentry.md and docs/problems/juggler_rate_free_floor_hardy.md: the first PET difference of the Juggler Heisenberg lift, after Mal'cev reduction, re-expands the floor-removal correction into the amplitude-product A{ΔB} of GG species. The paper supplies the induction schema, not a theorem about floor-Hardy entries."
 }

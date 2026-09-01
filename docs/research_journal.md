@@ -20344,3 +20344,55 @@ Best next question
 - none from this branch; depth 2 is the reopening
   key for C_L and is not opened here
 ```
+
+## Rate-free floor-Hardy equidistribution: the composition is the irreducible door (Phase 0; CLOSE)
+
+- **Date:** 2026-09-01
+- **Objective:** Attack `juggler_tower_rate_free_equidistribution` at the weakest level that can advance termination: is there a genuinely rate-free route through \(\lfloor n^{3/2}\rfloor^{9/4}\), or is the floor-Hardy composition the irreducible door? Do not reopen BB/GG/JJ, Theorem R, \(\lambda=0\), PET, state packing, flight DK, or the odd-tower branch.
+- **Hypotheses:** a published theorem missed by the 3-name audit covers the exact composition; or the node-wise \(\beta>\beta_*\) fallback reduces to a finite Weyl family already in a known rate-free class; or the floor can be treated intrinsically without recreating \(n^{15/8}\theta\). Falsifier: every candidate misses \(\lfloor n^{3/2}\rfloor^{9/4}\); unwind recreates HH; the \(\beta\)-reduction stays the same unbuilt composition.
+- **Major results:**
+  - **Published doors miss (KNOWN; no new ledger row).** Beyond Richter / Frantzikinakis / Boshernitzan: Tsinas 2023 is Hardy times (same slot as Richter); Bergelson–Leibman 2007 needs ordinary polynomials (\(n^{3/2}\) is not one); Fejér needs \(f'\to\infty\) (floor interpolant has \(F'=0\) a.e.; smooth leftover is not \(o(1)\)); joint-ergodicity Hardy iterates put the floor in the time slot; digital PS has a digital outer function; Beatty compositions have bounded inner error; Kolesnik / twice-iterated PS are rated and small-amplitude; Leibman / Green–Tao–Ziegler need polynomial orbits. Taylor expansion is not a citation. Classification `RATE_FREE_FLOOR_HARDY_DOOR_UNBUILT`.
+  - **Minimal missing theorem is the same composition (UNBUILT_DOOR).** After an odd landing \(x\), the next letter is E iff \(\{x^{3/2}/2\}\in[0,1/2)\). A tent of integral \(\tfrac12-\varepsilon\) (\(\varepsilon=0.12\) gives \(0.38>\beta_*\)) is uniformly approximable by a trigonometric polynomial of finite degree \(K(\beta)\), so the \(\beta\)-fallback is a finite Weyl family of one phase. Each harmonic \(e(k v^{9/4})\) still has \(A'\asymp n^{7/8}\gg 1\); finite \(K\) is not a species change.
+  - **Unwind recreates \(n^{15/8}\theta\).** Mean-value leftover is \(o(1)\) iff the outer exponent is \(<1\). For \(\alpha=9/4\) the defect is \(\tfrac94 n^{15/8}\theta\), already HH. Intrinsic floor treatment is \(\{m^{9/4}\}\) along the PS image: Boshernitzan on \(\mathbb N\) does not transfer to a density-zero subsequence, and the linear exception is Frantzikinakis.
+  - **No CF-free unique-ergodicity principle applies.** Weyl on the horizontal torus is the recorded reduction. The path is non-autonomous, so unique ergodicity of a map fails; unique ergodicity of a Hardy sequence requires Hardy-in-\(n\) entries. PET is not re-opened.
+- **Refuted ideas:** none new. The novelty hypothesis died by obstruction. PET, Theorem R, and \(\lambda=0\) were not re-tested.
+- **Literature:** `bergelson-leibman-2007-generalized-polynomials` and `tsinas-2023-pointwise-hardy-nilmanifolds` added to `literature/`.
+- **Open:** the rate-free conjecture stays ACTIVE as the external composition \(a^{f(\lfloor h(n)\rfloor)}\). The \(\beta\)-fallback is not a separate laboratory door.
+- **Decision:** CLOSE — dossier `docs/problems/juggler_rate_free_floor_hardy.md`. No probe module, no ledger row, no Lean, no Paper B edit.
+
+```text
+What was learned
+- Tsinas, Bergelson-Leibman, Fejer, joint-ergodicity
+  Hardy iterates, digital PS, Beatty, and Kolesnik all
+  miss floor(n^{3/2})^{9/4}
+- the β>β* fallback is a finite Weyl family of the
+  same phase {x^{3/2}}; A' ≍ n^{7/8} is independent
+  of the fixed harmonic degree
+- unwind leftover is o(1) iff the outer exponent is
+  <1; for 9/4 it is n^{15/8}θ
+- intrinsic floor is Hardy-along-PS; nonlinear paths
+  have no rate-free transfer theorem
+- there is no autonomous unique-ergodic map whose
+  orbit is the floor-Hardy triple
+Strongest theorem
+- none new (KNOWN mismatch table + Fejer tent +
+  elementary parity identity; no ledger row)
+Strongest refutation
+- none new (the novelty hypothesis died by
+  obstruction)
+Reusable machinery
+- literature JSON for Bergelson-Leibman 2007 and
+  Tsinas 2023; parity / tent / exponent witnesses
+  in test_rate_free_floor_hardy.py
+Branch status
+- CLOSE
+Why
+- the stop criterion fired: surviving statements
+  are KNOWN or UNBUILT_DOOR; the composition is
+  the irreducible door; the β-fallback does not
+  change the species
+Best next question
+- none from this door; the live target remains
+  juggler_tower_rate_free_equidistribution as
+  a^{f(floor(h(n)))}
+```
