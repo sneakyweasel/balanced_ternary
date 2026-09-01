@@ -318,7 +318,10 @@ first-passage runs of Appendix B. Not proved: global
 termination.
 
 Theorem 4.6 applies Corollary 4.5 to this input and certifies
-the table with the conservative coefficient \(6/5\). Theorem 4.7
+the table with the conservative coefficient \(6/5\); its
+certified identity is Lean (`cycleMin_defect_finance`,
+`DefectFinance.lean`), the per-length table stays a verified
+computation. Theorem 4.7
 is a human proof; Theorem 4.8 reuses the gap table under that
 packing. Proposition 4.9 is integer arithmetic in Lean. In
 Section 5, Theorem 5.7 is a human proof (Denjoy--Koksma is used
@@ -329,10 +332,11 @@ inequality of Theorem 5.3 (`cycleMin_transport`), the
 defect-to-hug-charge consequence of §5.2
 (`cycleMin_defect_le_charge`, `cycleMin_defect_le_hug_charge`),
 the charge-maximisation half of Theorem 5.4
-(`hug_charge_maximal`; strict uniqueness stays human), and the
+(`hug_charge_maximal`; strict uniqueness stays human), the
 digit-cap step and digit scan of Theorem 5.8 (`ostroDigit_le`,
-`theta_digitSum_le`, `window_digit_scan`) are Lean-verified;
-Theorems 5.2 and 5.9 are independently certified
+`theta_digitSum_le`, `window_digit_scan`), and the kill
+template of Theorem 5.9 (`cycleMin_hug_kill_criterion`) are
+Lean-verified; Theorems 5.2 and 5.9 are independently certified
 computations at the laboratory floor, with the same trust
 boundary as Theorem 4.6 (exact integer arithmetic plus guarded
 float comparisons). This is not a claim that the paper as a
@@ -1284,7 +1288,10 @@ These three layers must not be conflated.
    The factor \(6/5\) is a convenient uniform majorant of
    \(-\log(1-\delta)/\delta\) on \([0,1/6]\). It is not
    Theorem 4.4, and the headline cutoff \(25781\) is not an
-   artifact of that majorant.
+   artifact of that majorant. The identity itself is Lean for
+   any cycle minimum \(n\ge 400\) (`cycleMin_defect_finance`,
+   `DefectFinance.lean`); the per-length numeric table stays a
+   verified computation.
 
 The relative-defect unroll is a parallel identity, not
 Theorem 4.4 multiplied by \(6/5\). Charging every state at the
@@ -1318,6 +1325,14 @@ Writing \(\varepsilon=-\tfrac12\log(1-\delta)\) and using
 \(\varepsilon\le(6/5)/y\). Unrolling
 \(t_{i+1}=(e_i/2)\,t_i-\varepsilon_i\) around the cycle then yields
 the conservative identity displayed in item 4 of the hierarchy.
+This chain is Lean end to end (`DefectFinance.lean`): the
+per-step losses in image form (`log_floorPower_even_ge_sub`,
+`log_floorPower_odd_ge_sub`, from
+\(-\log(1-\delta)\le\tfrac65\delta\) on \([0,1/6]\),
+`neg_log_one_sub_le_sixth`), the amplification priced by the
+upper invariant \(\log x_k\le w_k\log n\)
+(`cycleMin_log_le_weight`), and the charged unroll
+(`cycleMin_charge_prefix`), closed at \(x_L=n\).
 
 On a minimum-based cycle of length \(L\) with \(o\) odd letters
 and \(e=L-o\) even letters, the last letter is even, so \(e\ge 1\)
@@ -1830,6 +1845,18 @@ per-length finance comparison
 \(\theta(L)>\tfrac65\,B(L)\cdot\text{guard}\) of the
 Theorem 4.6 architecture, which is Diophantine, not
 envelope-limited.
+
+The comparison template is itself Lean
+(`cycleMin_hug_kill_criterion`, `DefectFinance.lean`): every
+minimum-based cycle at \(n\ge 400\) with positive reduced
+log-base must satisfy
+\(1-2^L/3^o\le\tfrac65\sum_k g(\text{hugWeight}_k)\) at the
+reduced base, chaining the Lean finance inequality
+(`cycleMin_defect_finance`, the certified identity of
+Theorem 4.6) with the defect-to-hug-charge envelope of §5.2.
+The kill decisions below verify the numeric *failure* of this
+inequality per length; only that evaluation, and the parity
+refinement of Corollary 4.5, remain verified computation.
 
 **Theorem 5.9 (verified computation; period bound at the
 laboratory floor).**

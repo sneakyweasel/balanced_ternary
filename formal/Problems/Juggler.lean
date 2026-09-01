@@ -71,6 +71,7 @@ import Problems.Juggler.OstrowskiSandwich
 import Problems.Juggler.OstrowskiNumeration
 import Problems.Juggler.WalkTransport
 import Problems.Juggler.WalkChargeMax
+import Problems.Juggler.DefectFinance
 import Problems.Juggler.AboveAnchorWalk
 
 /-!

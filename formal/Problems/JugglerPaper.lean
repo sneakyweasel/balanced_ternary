@@ -27,6 +27,7 @@ import Problems.Juggler.OstrowskiSandwich
 import Problems.Juggler.OstrowskiNumeration
 import Problems.Juggler.WalkTransport
 import Problems.Juggler.WalkChargeMax
+import Problems.Juggler.DefectFinance
 
 /-!
 # Juggler paper barrel (Paper A)
@@ -102,6 +103,12 @@ The note's Lean-tagged theorems are listed in its Appendix A:
 * 4.3 `cycleMin_log_envelope`
 * 4.4 `cycleMin_finance`
 * 4.4c `cycleMin_log_envelope_inv`, `cycleMin_finance_inv_sum`
+* 4.6 (certified identity) `cycleMin_defect_finance`, with the
+      per-step image-form losses `log_floorPower_even_ge_sub`,
+      `log_floorPower_odd_ge_sub` and the invariants
+      `cycleMin_log_le_weight`, `cycleMin_charge_prefix`
+      (`DefectFinance.lean`); the numeric table stays verified
+      computation
 * 4.7--4.8 run-type packing and the 99-length table
       (human proof and verified computation; not Lean)
 * 4.9 `run_survivor_unimodular`, `run_survivor_seed_F2`,
@@ -119,6 +126,10 @@ The note's Lean-tagged theorems are listed in its Appendix A:
       half (charge maximisation) `stateCharge_antitone`,
       `hug_charge_maximal` (`WalkChargeMax.lean`); the strict
       within-`(L,o)` uniqueness of the maximiser stays human
+* 5.9 (kill mechanism) `cycleMin_hug_kill_criterion`
+      (`DefectFinance.lean`): finance vs hug charge as one Lean
+      implication; the per-length numeric kill evaluations stay
+      verified computation
 * 5.6 `budgetedWord_eq_hugWord`, `hugOdds_pow_ge`, `hugOdds_pow_lt`,
       `hugOdds_pow_gt`, `hugOdds_least` (`WalkChargeWords.lean`)
 * 5.5 (certified quotient arithmetic) `theta_sandwich_upper`,
@@ -154,8 +165,9 @@ that every orbit meets a contracting word, or that all nontrivial
 cycles are impossible. Theorems 3.12--3.21 assemble as Theorem 3.22:
 no cycle word has even-count at most three, so a nontrivial cycle
 has period at least eleven. Section 4 excludes later periods by
-financing. Theorem 4.6 is a verified computation, not a Lean
-theorem. Theorems 4.7--4.8 are the run-type refinement (human
+financing. Theorem 4.6's certified identity is Lean
+(`cycleMin_defect_finance`); its numeric table is a verified
+computation. Theorems 4.7--4.8 are the run-type refinement (human
 proof plus a verified table). Proposition 4.9 is the lattice
 arithmetic in `RunSurvivorLattice.lean`; the identification of
 those 99 points with the run-type table is Theorem 4.8, not Lean.

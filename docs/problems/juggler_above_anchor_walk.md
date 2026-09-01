@@ -200,22 +200,33 @@ No `sorry`; full `lake build` clean. Ledger row
   adversary prices descent-free flight, not only cycles. A
   hypothetical non-terminating orbit carries odd density
   \(\ge\log 2/\log 3\approx 0.631\) in every prefix.
-- **Gap descents dominate (COMPUTATIONALLY VERIFIED):** in the
-  census every resolved first descent is a gap descent — the parity
-  word itself goes exponent-negative (\(3^{a_D}<2^D\)); zero defect
-  descents were observed. Floors never push an orbit below its
-  anchor while the walk is still nonnegative, at these scales.
+- **Gap descents dominate (COMPUTATIONALLY VERIFIED):** on
+  \([2,2\cdot 10^6]\) every start descends below itself and every
+  one of the \(1999999\) first descents is a gap descent — the
+  parity word itself goes exponent-negative (\(3^{a_D}<2^D\));
+  **zero** defect descents were observed. Floors never push an
+  orbit below its anchor while the walk is still nonnegative, at
+  these scales. Max \(D=257\) at \(n=1122603\); the six
+  high-flyers \(48443,275485,412027,463157,1245741,1267909\)
+  (peaks to \(6.5\cdot 10^6\) bits) resolve in the exact gmpy2
+  retry pass with \(D\le 213\).
 - **Defects are idle (OBSERVATION):** on the laboratory and record
-  orbits the defect consumes at most a fraction \(\rho\sim 10^{-3}\)
-  of the walk slack at the tightest near-minimum visits; the
-  zero-defect adversary is effectively realized by actual orbits at
-  laboratory scales. An unconditional envelope kill would need
-  defect lower bounds that empirics do not support at small
-  heights.
+  orbits the defect consumes at most a fraction
+  \(\rho\le 3\cdot 10^{-3}\) of the walk slack at the tightest
+  near-minimum visits (max \(0.003\) at \(501\); the record orbits
+  \(34175, 78901, 1122603\) climb to \(u\sim 10\)–\(16\) and show
+  \(\rho\le 10^{-4}\)); the zero-defect adversary is effectively
+  realized by actual orbits at laboratory scales. An unconditional
+  envelope kill would need defect lower bounds that empirics do not
+  support at small heights.
 - **Descent-time scaling (OBSERVATION):** record values of
-  \(D(n)/\ln n\) sit in a bounded band rather than growing;
-  \(\sqrt{n\log n}\) is far above every record. Consistent with
-  \(D(n)=O(\log n)\) and with parity behaving quasi-randomly.
+  \(D(n)/\ln n\) grow slowly through the records — \(13.3\) at
+  \(n=193\), \(16.2\) at \(13325\), \(22.4\) at \(78901\), then
+  \(18.4\) at the final record \(1122603\) — consistent with
+  \(O(\log n)\) up to a slowly varying factor and inconclusive on
+  strict boundedness; decisively below the \(\sqrt{n\log n}\)
+  envelope scale, whose ratio falls from \(2.75\) to \(0.065\)
+  across the records.
 - **Hug tightness (OBSERVATION):** record orbits approach the hug
   bound (min gap \(0\) occurs, e.g. at \(1999\)); the Lean bound is
   attained, not slack.

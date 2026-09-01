@@ -6,7 +6,7 @@
   "origin": "docs/problems/juggler_above_anchor_walk.md",
   "status": "ACTIVE",
   "first_seen": "2026-09-01",
-  "tested_range": "record table of the [2, 2000000] census in data/research/juggler/above_anchor_walk/summary.json: D/ln n at successive record holders stays in a bounded band (about 12-16) rather than growing; the sqrt(n log n) envelope scale is far above every record",
+  "tested_range": "record table of the [2, 2000000] census in data/research/juggler/above_anchor_walk/summary.json: max D = 257 at n = 1122603; D/ln n at successive record holders grows slowly (13.3 at 193, 22.4 at 78901, 18.4 at the final record) - consistent with O(log n) up to a slowly varying factor, inconclusive on strict boundedness; the sqrt(n log n) envelope scale is far above every record (ratio falls from 2.75 to 0.065)",
   "counterexamples": [],
   "proof_reference": "",
   "lean_reference": "",

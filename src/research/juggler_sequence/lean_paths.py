@@ -40,6 +40,7 @@ PAPER_MODULES: tuple[str, ...] = (
     "OstrowskiNumeration",
     "WalkTransport",
     "WalkChargeMax",
+    "DefectFinance",
 )
 
 LAYERS: dict[str, Path] = {
@@ -116,6 +117,7 @@ LAYERS: dict[str, Path] = {
     "OstrowskiNumeration": JUGGLER_DIR / "OstrowskiNumeration.lean",
     "WalkTransport": JUGGLER_DIR / "WalkTransport.lean",
     "WalkChargeMax": JUGGLER_DIR / "WalkChargeMax.lean",
+    "DefectFinance": JUGGLER_DIR / "DefectFinance.lean",
     "AboveAnchorWalk": JUGGLER_DIR / "AboveAnchorWalk.lean",
 }
 

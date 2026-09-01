@@ -6,7 +6,7 @@
   "origin": "docs/problems/juggler_above_anchor_walk.md",
   "status": "ACTIVE",
   "first_seen": "2026-09-01",
-  "tested_range": "descent-time census [2, 2000000]: every start descends below itself (no unresolved orbits at K_CAP 10000, BIT_CAP 2e6); see data/research/juggler/above_anchor_walk/summary.json",
+  "tested_range": "descent-time census [2, 2000000]: every start descends below itself (max D = 257 at n = 1122603; the six high-flyers 48443/275485/412027/463157/1245741/1267909 resolve in the exact gmpy2 retry pass with peaks up to 6.5e6 bits); see data/research/juggler/above_anchor_walk/summary.json",
   "counterexamples": [],
   "proof_reference": "",
   "lean_reference": "Problems/Juggler/AboveAnchorWalk.lean (constraint on the negation only)",

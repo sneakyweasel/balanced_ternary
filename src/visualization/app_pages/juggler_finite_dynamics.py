@@ -207,7 +207,7 @@ def _glossary() -> None:
   holding. Lean often uses a larger algebraic cutoff.
 - **CycleMin** — the rotation that starts at the smallest value on the loop.
 - **Finance** — the cycle-minimum inequality
-  $n\log n\cdot(3^o-2^L)\\le L\\cdot 3^o$.
+  $n\\log n\\cdot(3^o-2^L)\\le L\\cdot 3^o$.
 - **$n_{\\max}(L)$** — largest minimum the $6/5$ bound still allows.
 - **$\\mathcal E$** — the 397 lengths $\\le 10^5$ still admissible to
   that bound at the verified descent floor $10^6$. Membership is not

@@ -18797,4 +18797,57 @@ Best next question
 - **Open:** remaining §5 Lean ladder — Denjoy–Koksma on `AddCircle` (Thm 5.7) and the rotation average (Prop 5.5); the defect-sum finance lower bound as the missing half of a formal kill criterion
 - **Decision:** PROMOTE (formalization landed); no new mathematical branch opened
 
+## Juggler above-anchor walk envelope (asymptotic descent, Phase-0)
+
+- **Date:** 2026-09-01
+- **Objective:** Port the §5 walk-charge layer from hypothetical cycles to **open** trajectories: does `AboveAnchor` force the nonnegative exponent walk and hug domination, and does the near-minimum slack-vs-defect ledger force eventual descent — unconditionally, or only conditional on floor-defect lower bounds? Reviewer framing: "eventual descent" / "asymptotic descent" as the concrete target between the certified-density results and full termination
+- **Hypotheses:** the walk layer constrains descent-free flight, not just cycles (confirmed, Lean); the defect route might force descent at walk near-minima (priced and found empirically idle); \(D(n)=O(\log n)\) (testable, recorded as CONJECTURE)
+- **Major results:**
+  - **Porting lemma (`J-above-anchor-hug-domination`, EXACT — LEAN VERIFIED):** `AboveAnchorWalk.lean` — an above-anchor prefix keeps \(2^k\le 3^{a_k}\) at every prefix length (`aboveAnchor_prefix_pow_le`, composing `power_bound_contracts` with the anchor hypothesis: `cycleMin_prefix_pow_le` with the cycle deleted) and hence dominates the exact hug word in odd count (`aboveAnchor_prefix_odds_ge_hug`). A hypothetical never-descending orbit carries odd density \(\ge\log 2/\log 3\approx 0.631\) in **every** prefix; the hug adversary now prices open descent-free flight. Full `lake build` clean, no `sorry`
+  - **Descent-time census \([2,2\cdot 10^6]\) (COMPUTATIONALLY VERIFIED):** every start descends below itself; max \(D=257\) at \(n=1122603\); six high-flyers (\(48443,275485,412027,463157,1245741,1267909\)) needed the exact gmpy2 retry pass, peaking at \(6.5\cdot 10^6\) bits (\(\approx 1.9\) million digits for \(275485\)) and still descending (\(D\le 213\)). Artifact `data/research/juggler/above_anchor_walk/summary.json`
+  - **Every first descent is a gap descent:** all \(1999999\) starts descend with \(3^{a_D}<2^D\) — the parity word itself goes exponent-negative; **zero defect descents** (floors never push an orbit below its anchor while the walk is still nonnegative). On laboratory and record orbits the defect consumes at most \(\rho\sim 2\cdot 10^{-3}\) of the walk slack at the tightest near-minimum visits: the zero-defect adversary is effectively realized, so an envelope kill needs defect lower bounds — exactly the deterministic-equidistribution wall (BB/GG/JJ) that parks the density program
+  - **Scaling:** record \(D/\ln n\) grows slowly through the records (\(13.3\) at \(193\), \(22.4\) at \(78901\), \(18.4\) at the final record) — consistent with \(O(\log n)\) up to a slowly varying factor and decisively below the \(\sqrt{n\log n}\) envelope scale (that ratio falls from \(2.75\) to \(0.065\)); hug tightness: the \(1999\) chain touches the hug bound (min gap \(0\))
+- **Refuted ideas:** none formally; the analytic defect route is priced as empirically idle at laboratory scales (negative knowledge, not a refutation)
+- **Literature:** none new
+- **Open:** can Paper B's depth-\(\le 4\) equidistribution kill extremal hug-hugging flights the way parity killed short cycle leftovers (the hug-domination constraint says descent-free flight is forced to the extremal odd density)?
+- **Decision:** PROMOTE the porting lemma (platform machinery, ledger row + Lean); PARK the asymptotic-descent envelope program (reduces to per-visit floor-defect lower bounds \(\equiv\) the parked equidistribution frontier); conjecture records `juggler_asymptotic_descent`, `juggler_descent_time_log` stay ACTIVE as targets, not claims
+
+```text
+What was learned
+- AboveAnchor forces the CycleMin walk hypotheses with no
+  cycle: the hug adversary prices descent-free flight
+  (Lean, one-file wrapper of existing machinery)
+- every observed first descent below the start is a gap
+  descent: parity does all the work; floor defects consume
+  ~0.2% of walk slack at the tightest near-minima
+- descent-time records track c log n (slowly varying c in
+  13-22 over four decades), far below the sqrt(n log n)
+  envelope scale; the famous high-flyers descend too
+- forcing descent through the envelope reduces exactly to
+  defect lower bounds at near-minimum visits - the same
+  wall as K3/JJ; no laboratory tool crosses it
+Strongest theorem
+- J-above-anchor-hug-domination: every prefix of a
+  hypothetical never-descending orbit dominates the exact
+  hug word in odd count (EXACT - LEAN VERIFIED)
+Strongest refutation
+- none; the zero-defect adversary being effectively
+  realized is negative knowledge pricing the analytic route
+Reusable machinery
+- AboveAnchorWalk.lean; above_anchor_walk.py descent census
+  with exact gap/defect mode verdicts and gmpy2 retry pass
+Branch status
+- PROMOTE (lemma) / PARK (envelope program)
+Why
+- the porting lemma survives as new platform structure, but
+  the census shows the binding descent mechanism is parity
+  (Paper B territory), and the envelope's missing defect
+  lower bound is equivalent to the parked equidistribution
+  frontier - further implementation buys no new consequence
+Best next question
+- does depth-<=4 equidistribution contradict the extremal
+  odd density that hug domination forces on a hypothetical
+  descent-free flight?
+```
+
 

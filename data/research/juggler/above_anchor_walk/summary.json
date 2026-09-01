@@ -70,7 +70,7 @@
       "77": 85,
       "78": 115,
       "80": 79,
-      "81": 129,
+      "81": 130,
       "83": 65,
       "85": 49,
       "86": 100,
@@ -110,12 +110,12 @@
       "140": 5,
       "142": 4,
       "143": 3,
-      "145": 5,
+      "145": 6,
       "146": 3,
       "148": 1,
-      "149": 3,
+      "149": 4,
       "151": 3,
-      "153": 4,
+      "153": 5,
       "154": 5,
       "156": 3,
       "157": 2,
@@ -124,7 +124,7 @@
       "162": 4,
       "164": 1,
       "165": 1,
-      "169": 1,
+      "169": 2,
       "170": 1,
       "172": 2,
       "173": 1,
@@ -138,6 +138,7 @@
       "195": 1,
       "199": 1,
       "203": 1,
+      "213": 1,
       "227": 1,
       "253": 1,
       "257": 1
@@ -283,21 +284,14 @@
       "15": 183,
       "16": 253,
       "17": 199,
-      "18": 203,
+      "18": 213,
       "19": 188,
       "20": 257
     },
-    "gap_descents": 1999993,
+    "gap_descents": 1999999,
     "defect_descents": 0,
     "defect_examples": [],
-    "unresolved": [
-      48443,
-      275485,
-      412027,
-      463157,
-      1245741,
-      1267909
-    ]
+    "unresolved": []
   },
   "profiles": [
     {
@@ -554,5 +548,5 @@
     "defect_descent": "first descent has 3^{a_D} >= 2^D: floors alone pushed below the anchor while the walk stayed nonnegative",
     "rho": "fraction of the walk slack (w_k - 1) ln n consumed by accumulated floor defect while above the anchor"
   },
-  "classification": "ABOVE_ANCHOR_WALK_INCOMPLETE"
+  "classification": "ABOVE_ANCHOR_WALK_GAP_DOMINANT"
 }
