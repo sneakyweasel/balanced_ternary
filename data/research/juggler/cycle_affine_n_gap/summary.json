@@ -1,0 +1,222 @@
+{
+  "model": "Does any reading of an n-dependent lower bound on |3^o-2^L| along F1/F2/F3 escape Baker dominance, or does a cycle-forced form use log n without being G log n?",
+  "lattice": {
+    "v_star": [
+      25781,
+      16266
+    ],
+    "v_step": [
+      1054,
+      665
+    ],
+    "unimodular": 1,
+    "F1": [
+      25781,
+      16266
+    ],
+    "F2": [
+      50508,
+      31867
+    ],
+    "F3": [
+      76289,
+      48133
+    ]
+  },
+  "identities": [
+    {
+      "id": "cycleMin_finance",
+      "formula": "n log n * G <= L * 3^o",
+      "uses_n": true,
+      "kind": "upper_bound_on_G",
+      "tag": "REPARAMETERIZATION",
+      "note": "the n-dependent bound in contrapositive; an upper bound on G, not a lower bound"
+    },
+    {
+      "id": "global_defect_identity",
+      "formula": "n^{3^o} = T_w(n)^{2^L} + Delta_w(n)",
+      "uses_n": true,
+      "kind": "return_identity",
+      "tag": "REPARAMETERIZATION",
+      "note": "the global defect; on a return it becomes G log n"
+    },
+    {
+      "id": "image_eq_start_defectRatio",
+      "formula": "log R = G log n on a return",
+      "uses_n": true,
+      "kind": "return_identity",
+      "tag": "REPARAMETERIZATION",
+      "note": "the only exact n-log form; not a lower bound on G"
+    },
+    {
+      "id": "exponent_budget",
+      "formula": "sum (a_i log 3 - (a_i+r_i) log 2) = Lambda",
+      "uses_n": false,
+      "kind": "homogeneous_two_log",
+      "tag": "REPARAMETERIZATION",
+      "note": "no n; Lambda = o log 3 - L log 2"
+    },
+    {
+      "id": "inhomogeneous_p_plus_lambda",
+      "formula": "|p + Lambda| >= 1 - |Lambda| for p != 0",
+      "uses_n": false,
+      "kind": "integer_shift",
+      "tag": "REFUTED",
+      "note": "juggler_inhomogeneous_ww_beats_finance; not log n"
+    },
+    {
+      "id": "height_position_finance",
+      "formula": "stronger upper bounds on theta from valley heights",
+      "uses_n": true,
+      "kind": "upper_bound_on_theta",
+      "tag": "REPARAMETERIZATION",
+      "note": "explored; still an upper bound, not a gap lower bound"
+    }
+  ],
+  "readings": [
+    {
+      "id": "R1",
+      "title": "universal linear-forms lower bound on G",
+      "status": "REFUTED",
+      "discharge": "juggler_cycle_gap_baker; Baker dominance"
+    },
+    {
+      "id": "R2",
+      "title": "finance contrapositive (n_max from exact theta)",
+      "status": "KNOWN",
+      "discharge": "cycleMin_finance; floor campaigns PARK"
+    },
+    {
+      "id": "R3",
+      "title": "new cycle-forced form using log n, not G log n",
+      "status": "REPARAMETERIZATION",
+      "discharge": "identity table: every n-form is finance or G log n"
+    },
+    {
+      "id": "R4",
+      "title": "defect-sum n-power L/n^{1+delta}",
+      "status": "REPARAMETERIZATION",
+      "discharge": "walk-charge structure; program terminal"
+    },
+    {
+      "id": "R5",
+      "title": "lattice binary recurrence |A alpha^b - B beta^b|",
+      "status": "REFUTED",
+      "discharge": "cannot beat exact theta at a known point; uniform family bounds are the imported Wu-Wang/Rhin shape"
+    }
+  ],
+  "dominance_nineteen": {
+    "length": 19,
+    "odd_count": 12,
+    "gap": 7153,
+    "theta": 0.01345963145485576,
+    "n_max_exact": 297,
+    "weaker_gap": 7152,
+    "n_max_weaker": 297,
+    "half_gap": 3576,
+    "n_max_half": 538,
+    "dominance_holds": true,
+    "half_gap_strictly_worse": true,
+    "theta_depends_only_on_L_o": true
+  },
+  "seeds": [
+    {
+      "length": 19,
+      "odd_count": 12,
+      "family": "dominance_lock",
+      "a": null,
+      "b": null,
+      "theta": 0.01345963145485576,
+      "lambda": 0.013551033378355417,
+      "n_max_exact": 297,
+      "n_max_weaker_theta": 297,
+      "dominance_holds": true,
+      "theta_depends_only_on_L_o": true,
+      "lattice_matches": true,
+      "n_star_competition": null,
+      "theta_source": "o_min_and_theta"
+    },
+    {
+      "length": 25781,
+      "odd_count": 16266,
+      "family": "F1",
+      "a": 1,
+      "b": 0,
+      "theta": 2.5459198127264017e-05,
+      "lambda": 2.5459522218149398e-05,
+      "n_max_exact": 67410774,
+      "n_max_weaker_theta": 67474704,
+      "dominance_holds": true,
+      "theta_depends_only_on_L_o": true,
+      "lattice_matches": true,
+      "n_star_competition": null,
+      "theta_source": "o_min_and_theta"
+    },
+    {
+      "length": 50508,
+      "odd_count": 31867,
+      "family": "F2",
+      "a": 2,
+      "b": -1,
+      "theta": 7.264907458078721e-06,
+      "lambda": 7.26493384764672e-06,
+      "n_max_exact": 420161535,
+      "n_max_weaker_theta": 420561942,
+      "dominance_holds": true,
+      "theta_depends_only_on_L_o": true,
+      "lattice_matches": true,
+      "n_star_competition": 23719979.411536876,
+      "theta_source": "cycle_walk_competition"
+    },
+    {
+      "length": 76289,
+      "odd_count": 48133,
+      "family": "F3",
+      "a": 3,
+      "b": -1,
+      "theta": 3.2723920626624385e-05,
+      "lambda": 3.272445606579612e-05,
+      "n_max_exact": 148669538,
+      "n_max_weaker_theta": 148810844,
+      "dominance_holds": true,
+      "theta_depends_only_on_L_o": true,
+      "lattice_matches": true,
+      "n_star_competition": null,
+      "theta_source": "o_min_and_theta"
+    },
+    {
+      "length": 478245,
+      "odd_count": 301739,
+      "family": "fanA_k1",
+      "a": null,
+      "b": null,
+      "theta": 3.535699419065802e-06,
+      "lambda": 3.5357056696657264e-06,
+      "n_max_exact": 7153289620,
+      "n_max_weaker_theta": 7160147686,
+      "dominance_holds": true,
+      "theta_depends_only_on_L_o": true,
+      "lattice_matches": true,
+      "n_star_competition": 348306663.42522544,
+      "theta_source": "cycle_walk_competition"
+    }
+  ],
+  "classification": {
+    "label": "AFFINE_N_GAP_CLOSED",
+    "decision": "CLOSE",
+    "reason": "every reading of the merge n-dependent gap is KNOWN, REPARAMETERIZATION, or already REFUTED; Baker dominance holds on L=19 and the affine seeds; no cycle-forced form uses log n except G log n / finance",
+    "identities_closed": true,
+    "no_new_form": true,
+    "readings_closed": true,
+    "dominance_holds": true,
+    "lattice_matches": true
+  },
+  "not_a_halt_theorem": true,
+  "no_cycle_all_lengths": false,
+  "no_new_period_bound": true,
+  "no_baker_reopen": true,
+  "no_floor_raise": true,
+  "no_paper_a_edit": true,
+  "no_fan_minimum_successor": true,
+  "git_commit": "669679a8ead265a923af136eec48501ceaead33d"
+}

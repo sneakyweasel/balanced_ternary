@@ -16,13 +16,13 @@
     "density_one_claimed": false
   },
   "remainder": {
-    "samples_used": 241,
-    "worst_ratio": 0.11718751595118299,
+    "samples_used": 240,
+    "worst_ratio": 0.11718749975284881,
     "worst_n": 10001,
     "bound": 0.1171875,
-    "max_abs_r3": 0.004355277427545712,
-    "max_abs_r3_n_ge_1e6": 1.0977546996415732e-18,
-    "max_r3_times_n918": 6.17313527007356e-12,
+    "max_abs_r3": 0.0043552774275457005,
+    "max_abs_r3_n_ge_1e6": 1.0989410259337745e-18,
+    "max_r3_times_n918": 6.17980648057131e-12,
     "r3_vanishes": true,
     "failed": [],
     "holds": true
@@ -50,15 +50,14 @@
     "fills_torus": true
   },
   "notes": {
-    "identity": "{v^{9/4}} = {-(5/4) n^{27/8} + (9/4) n^{15/8} floor(n^{3/2}) + (45/32) n^{3/8} {n^{3/2}}^2 + R3}, |R3| = O(n^{-9/8}); equivalently {(5/32) n^{27/8} - (9/16) n^{15/8} v + (45/32) n^{3/8} v^2 + R3}; the linear term is the Hardy-entry Heisenberg vertical",
-    "species": "nested floor dissolves; published Hardy-nil covers the orbit ((9/4) n^{15/8}, n^{3/2}, 0) Gamma x n^{27/8} as species (not a citation); the remaining passenger is tame (A2' << 1), not HH",
-    "not_claimed": "Richter is not cited as a theorem; equidistribution of {v^{9/4}} is not claimed"
+    "identity": "three-term remainder is o(1); substituting theta = X - v recovers Lemma G for m^{9/4}",
+    "species": "REPARAMETERIZATION of J-second-order-linearization; the object is the missing composition a^{f(floor(h(n)))}",
+    "not_claimed": "Richter is not cited; equidistribution of {v^{9/4}} is not claimed; no new ledger row"
   },
   "decision": {
     "classification": "V94_HARDY_LIFT_GREEN",
-    "nested_floor_dissolved": true,
-    "linear_leftover_lifted": true,
-    "door_unbuilt_only_for_tame_passenger": true,
-    "not_a_published_theorem": true
+    "reparameterization_of_lemma_g": true,
+    "not_a_published_theorem": true,
+    "door_still_unbuilt": true
   }
 }

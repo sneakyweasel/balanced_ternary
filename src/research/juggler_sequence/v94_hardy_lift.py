@@ -1,53 +1,23 @@
-"""Hardy-entry Heisenberg lift of {v^{9/4}}: the nested floor dissolves.
+"""Three-term remainder of {v^{9/4}}: witnesses that the identity is Lemma G.
 
 Not an equidistribution theorem, not a K3 bound, not a Paper B edit,
-and not a reopen of BB/GG/JJ as K3 statements.  Richter is not cited
-as a theorem.
+and not a citation of Richter.  Confirmation probe for the CLOSE
+dossier docs/problems/juggler_v94_hardy_lift.md.
 
-The horizontal-Weyl branch left {v^{9/4}}, v = floor(n^{3/2}), as
-the abelian obstruction: two-term unwind is HH, one Weyl step is GG.
-This branch asks whether a RATE-FREE identification exists that does
-not treat the linear leftover as an amplitude-product.
+After two Taylor terms the leftover (9/4) n^{15/8} theta is not o(1)
+(J-horizontal-axis-species; juggler_v94_rate_free).  One more term
+makes the remainder o(1).  Substituting theta = X - v recovers
+Lemma G (J-second-order-linearization) for m^{9/4}:
 
-**Identity (EXACT — HUMAN PROOF, `J-v94-hardy-heisenberg`).**
-Let X = n^{3/2}, v = floor(X), theta = {X}.  Taylor of x^{9/4} at X
-through the quadratic term, Lagrange remainder on the cubic:
+    v^{9/4} = (5/32) n^{27/8} - (9/16) n^{15/8} v
+              + (45/32) n^{3/8} v^2 + R4.
 
-    v^{9/4} = n^{27/8} - (9/4) n^{15/8} theta
-              + (45/32) n^{3/8} theta^2 + R3,
-    |R3| <= (15/128) v^{-3/4} theta^3 = O(n^{-9/8}).
+The Heisenberg packaging of the linear leftover is the same
+substitution.  The object is the missing composition named by the
+sibling door record.  No new ledger row.
 
-The linear leftover is the Heisenberg vertical of the HARDY pair
-A = (9/4) n^{15/8}, B = n^{3/2} (no floor in the entries):
-
-    A theta = A B - A floor(B) = (9/4) n^{27/8} - A v,
-
-hence
-
-    {v^{9/4}} = { -(5/4) n^{27/8} + (9/4) n^{15/8} v
-                  + (45/32) n^{3/8} theta^2 + R3 }.
-
-Equivalently, expanding theta = X - v,
-
-    {v^{9/4}} = { (5/32) n^{27/8} - (9/16) n^{15/8} v
-                  + (45/32) n^{3/8} v^2 + R3 },
-
-a quadratic generalized polynomial in the Hardy pair
-(n^{3/8}, floor(n^{3/2})).  The middle term of the first form is
-the vertical Mal'cev coordinate of ((9/4) n^{15/8}, n^{3/2}, 0)
-Gamma.  The quadratic passenger has amplitude A2 ~ n^{3/8} with
-A2' ~ n^{-5/8} << 1 (tame).  R3 -> 0.
-
-Consequence: the nested floor in {v^{9/4}} dissolves into a Hardy
-nil-orbit (Frantzikinakis 2009 / Richter 2022 *species*) plus a
-tame bracket square.  The two-term HH leftover is an artifact of
-stopping Taylor one term early.  Not a citation of Richter, not a
-density-one claim: the identity changes the species of the
-remaining gap.
-
-Probe: cubic-remainder witnesses (via the stable two-term leftover
-minus the quadratic); A2 / A2' leading ratios; joint census of
-({n^{15/8}}, {n^{3/2}}).
+Probe: cubic-remainder ratio against 15/128; A2' leading ratio;
+occupancy of ({n^{15/8}}, {n^{3/2}}).
 """
 
 from __future__ import annotations
@@ -62,9 +32,7 @@ import numpy as np
 from research.juggler_sequence.bracket_nil_lift import scaled_sqrt
 from research.juggler_sequence.horizontal_weyl import (
     DIGITS,
-    IDENTITY_SAMPLES,
     _axis_data,
-    _remainders,
     scaled_eighth,
 )
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM
@@ -85,7 +53,6 @@ BINS = 8
 REMAINDER_SAMPLES: tuple[int, ...] = tuple(range(5, 501, 2)) + (
     10**4 + 1,
     10**6 + 1,
-    10**8 + 1,
 )
 
 CLASS_GREEN = "V94_HARDY_LIFT_GREEN"
@@ -102,13 +69,17 @@ ANTI = {
 }
 
 
-def _r3_from_two_term(d: dict[str, Any]) -> float:
-    """R3 = R_{9/4} - (45/32) n^{3/8} theta^2 (stable combination)."""
+def _r3_num(d: dict[str, Any]) -> int:
+    """Integer numerator of R3 at denominator 32 s^3.
 
-    r94 = _remainders(d)["r94"]
-    n38 = d["r_n38"] / d["scale"]
-    theta = d["theta"]
-    return r94 - A2_LEADING * n38 * theta * theta
+    R3 = R_{9/4} - (45/32) n^{3/8} theta^2, and
+    R_{9/4} = [4 s (r_v94 - r_n278) + 9 r_n158 th] / (4 s^2).
+    """
+
+    s = d["scale"]
+    th = d["theta_scaled"]
+    num_94 = 4 * s * (d["r_v94"] - d["r_n278"]) + 9 * d["r_n158"] * th
+    return 8 * s * num_94 - 45 * d["r_n38"] * th * th
 
 
 def remainder_check(
@@ -131,17 +102,19 @@ def remainder_check(
         theta = d["theta"]
         if theta < THETA_MIN:
             continue
-        r3 = _r3_from_two_term(d)
+        num = _r3_num(d)
         used += 1
-        v34 = d["r_v34"] / d["scale"]
-        ratio = abs(r3) * v34 / (theta**3) if theta > 0 else 0.0
+        s = d["scale"]
+        th = d["theta_scaled"]
+        denom = 32 * s * th * th * th
+        ratio = abs(num) * d["r_v34"] / denom if denom else 0.0
+        r3 = num / (32 * s * s * s)
         max_abs = max(max_abs, abs(r3))
-        # |R3| <= (15/128) v^{-3/4} theta^3 <= (15/128) n^{-9/8}
         scaled = abs(r3) * (n ** (9.0 / 8.0))
-        if ratio > worst_ratio:
+        if abs(r3) >= 1e-16 and ratio > worst_ratio:
             worst_ratio = ratio
             worst_n = n
-        if ratio > BOUND_R3 * (1.0 + 1e-3):
+        if abs(r3) >= 1e-16 and ratio > BOUND_R3 * (1.0 + 1e-3):
             failed.append({"n": n, "ratio": ratio, "r3": r3})
         if n >= 10**6:
             large_used += 1
@@ -260,30 +233,24 @@ def build_summary(
         "hardy_pair": pair,
         "notes": {
             "identity": (
-                "{v^{9/4}} = {-(5/4) n^{27/8} + (9/4) n^{15/8} floor(n^{3/2})"
-                " + (45/32) n^{3/8} {n^{3/2}}^2 + R3}, |R3| = O(n^{-9/8}); "
-                "equivalently {(5/32) n^{27/8} - (9/16) n^{15/8} v "
-                "+ (45/32) n^{3/8} v^2 + R3}; the linear term is the "
-                "Hardy-entry Heisenberg vertical"
+                "three-term remainder is o(1); substituting theta = X - v "
+                "recovers Lemma G for m^{9/4}"
             ),
             "species": (
-                "nested floor dissolves; published Hardy-nil covers the "
-                "orbit ((9/4) n^{15/8}, n^{3/2}, 0) Gamma x n^{27/8} as "
-                "species (not a citation); the remaining passenger is "
-                "tame (A2' << 1), not HH"
+                "REPARAMETERIZATION of J-second-order-linearization; "
+                "the object is the missing composition a^{f(floor(h(n)))}"
             ),
             "not_claimed": (
-                "Richter is not cited as a theorem; equidistribution of "
-                "{v^{9/4}} is not claimed"
+                "Richter is not cited; equidistribution of {v^{9/4}} "
+                "is not claimed; no new ledger row"
             ),
         },
     }
     summary["decision"] = {
         "classification": CLASS_GREEN if ok else CLASS_VIOLATED,
-        "nested_floor_dissolved": True,
-        "linear_leftover_lifted": True,
-        "door_unbuilt_only_for_tame_passenger": True,
+        "reparameterization_of_lemma_g": True,
         "not_a_published_theorem": True,
+        "door_still_unbuilt": True,
     }
     return summary
 

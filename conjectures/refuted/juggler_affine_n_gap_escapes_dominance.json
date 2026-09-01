@@ -1,0 +1,27 @@
+{
+  "id": "juggler_affine_n_gap_escapes_dominance",
+  "title": "An n-dependent lower bound on |3^o-2^L| along F1/F2/F3 escapes Baker dominance",
+  "statement": "An n-dependent lower bound on |3^o-2^L| along the three affine families F1, F2, F3 of Paper A Proposition 4.9 escapes Baker dominance and is not a reparameterization of cycleMin_finance, image_eq_start_defectRatio, or the already-closed inhomogeneous form p+Lambda.",
+  "mathematical_domain": "Juggler cycle finance / Diophantine gap of 3^o-2^L",
+  "origin": "docs/problems/juggler_cycle_affine_n_gap.md",
+  "status": "REFUTED",
+  "first_seen": "2026-09-01",
+  "tested_range": "dominance lock L=19 (G=7153, n_max=297); affine samples F1=(25781,16266), F2=(50508,31867), F3=(76289,48133); live blocker L=478245 from the walk-competition artifact; identity table of six CycleMin forms; five readings of the merge sentence",
+  "counterexamples": [
+    "for each known lattice point G is determined by (L, o_min) alone; at L=19, G=7153 gives n_max=297, the adjacent gap 7152 cannot improve that ceiling, and the half-gap 3576 raises it",
+    "relative weakening theta -> 0.999 theta raises n_max on F1, F2, F3, and L=478245",
+    "every n-involving CycleMin identity is finance (upper bound on G), log R = G log n, or height/position finance (still an upper bound); p+Lambda is already REFUTED",
+    "defect-sum n-power is walk-charge structure (terminal); lattice binary recurrences cannot beat exact theta at a known point"
+  ],
+  "proof_reference": "docs/problems/juggler_cycle_affine_n_gap.md",
+  "lean_reference": "",
+  "literature": [
+    "simons-de-weger-2005-collatz-m-cycles",
+    "wu-wang-2014-irrationality-measure-log3",
+    "rhin-1987-pade-irrationality",
+    "mathoverflow-2012-powers-2-3"
+  ],
+  "notes": "Diagnostic of the merge surviving sentence (juggler_cycle_paper_merge). Baker leftover-killer stays REFUTED. Fan-minimum CF reduction is a different sentence and is not reopened. Not a halt theorem, not a floor raise, not a Paper A edit.",
+  "not_a_halt_theorem": true,
+  "no_cycle_all_lengths": false
+}

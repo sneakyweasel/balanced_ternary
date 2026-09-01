@@ -20028,3 +20028,123 @@ Best next question
   Diophantine blocker L=478245; pointwise emptiness of
   infinite odd towers) are not opened from here
 ```
+
+## \(v^{9/4}\) rate-free door: published Hardy-nil theorems miss; qualitative van der Corput is the same composition (Phase 0; CLOSE)
+
+- **Date:** 2026-09-01
+- **Objective:** The horizontal-species / Heisenberg-cut standing question: does a rate-free argument identify \(\{v^{9/4}\}\), \(v=\lfloor n^{3/2}\rfloor\), without unwinding through \(\theta=\{n^{3/2}\}\) — a published Hardy-nil theorem, or qualitative van der Corput to a recorded row — or is that still the unbuilt Hardy-field door?
+- **Hypotheses:** Richter 2023 / Frantzikinakis 2009 / Boshernitzan 1994 apply verbatim to \(n\mapsto\{\lfloor n^{3/2}\rfloor^{9/4}\}\), or the keep-\(v\) difference \(\{v(n+h)^{9/4}-v(n)^{9/4}\}\) reduces to the classical monomial \(\{n^{19/8}\}\). Falsifier: every cited theorem requires \(f\) Hardy or floor in the time slot of a fixed nilrotation, and the difference is integer dilation of \(\{v^{5/4}\}\).
+- **Major results:**
+  - **Published doors miss (EXACT — HUMAN PROOF, no new ledger row).** Richter needs Hardy times (smooth model \((n^{3/4},n^{3/2},n^{9/4})\) matches; \(\lfloor n^{3/2}\rfloor^{9/4}\) does not). Frantzikinakis puts floor in the time slot of a *fixed* nilrotation \(b^{\lfloor a(n)\rfloor}x\), not a Hardy monomial of a floor and not the Mal'cev path \(g(v)=\exp\bigl(\tfrac32 v^{3/4}e_{12}+v^{3/2}e_{23}\bigr)\). Boshernitzan needs a Hardy function of \(n\) and gives \(\{n^{27/8}\}\), not \(\{v^{9/4}\}\). The missing lemma is the composition \(a^{f(\lfloor h(n)\rfloor)}\) with \(f\) a nonlinear Hardy monomial. Unwinding \(\lfloor h\rfloor\to h\) is the leftover \(\tfrac94 n^{15/8}\theta\), not \(o(1)\), already HH/GG and forbidden by `J-nested-floor-without-W-family`. Rate-free does not transfer Richter from the smooth model.
+  - **Qualitative van der Corput does not cheapen the axis (EXACT — HUMAN PROOF, corollary of `J-horizontal-axis-species`).** \(\{v(n+h)^{9/4}-v(n)^{9/4}\}=\{\Delta v\cdot\{\tfrac94\xi^{5/4}\}\}\) with \(\Delta v\in\mathbb Z\): integer dilation of \(\{v^{5/4}\}\), not \(\{n^{19/8}\}\). Witness on the existing first-difference sample: median torus gap to the smooth monomial stays above \(10^{-4}\). The recorded \(C'\gg 1\) kills rated windows only (`J-horizontal-theorem-r-shortcut`); it does not kill qualitative equidistribution of the difference.
+- **Refuted ideas:** none new. The Theorem-R shortcut and \(\lambda=0\) derandomization were not re-tested. Characteristic-factor self-similarity stays external.
+- **Literature:** `boshernitzan-1994-hardy-fields`, `frantzikinakis-2009-sparse-nilmanifolds`, `richter-2023-hardy-nilmanifolds` added to `literature/`.
+- **Open:** the rate-free conjecture stays ACTIVE as an external Hardy-of-floor composition problem. Characteristic factors not opened.
+- **Decision:** CLOSE — dossier `docs/problems/juggler_v94_rate_free.md`. No probe module, no ledger row, no Lean, no Paper B edit. Classification `V94_RATE_FREE_DOOR_UNBUILT`.
+
+```text
+What was learned
+- Richter, Frantzikinakis, and Boshernitzan miss {v^{9/4}}:
+  Hardy times, floor in a fixed nilrotation slot, Hardy f(n)
+- the missing lemma is a^{f(floor(h(n)))} with f a nonlinear
+  Hardy monomial; unwind leftover is not o(1)
+- qualitative van der Corput on the keep-v difference is
+  integer dilation of {v^{5/4}}, not {n^{19/8}}
+- C' >> 1 is a rated-window kill, not a qualitative kill
+Strongest theorem
+- none new (KNOWN mismatch table + corollary of
+  J-horizontal-axis-species; no ledger row)
+Strongest refutation
+- none new (the novelty hypothesis died by obstruction)
+Reusable machinery
+- literature JSON for the three Hardy-nil sources; identity
+  witness reuses horizontal_weyl first_difference_check
+Branch status
+- CLOSE
+Why
+- the stop criterion fired: mismatches package the recorded
+  "door unbuilt" sentence, and the difference is the same
+  composition species; no verbatim citation and no reduction
+  to a classical monomial
+Best next question
+- none from this door; the live target remains the rate-free
+  conjecture as an external composition problem;
+  characteristic factors are not opened from here
+```
+
+## Three-term lift of \(\{v^{9/4}\}\): the identity is Lemma G (Phase 0; CLOSE)
+
+- **Date:** 2026-09-01
+- **Objective:** After the sibling literature CLOSE (`juggler_v94_rate_free`): does one more Taylor term plus a Hardy-entry Heisenberg lift identify \(\{v^{9/4}\}\) without leaving the linear leftover as HH, or is that still Lemma G / the unbuilt composition?
+- **Hypotheses:** the cubic remainder is \(o(1)\) and the lift is a new Hardy-nil coordinate. Falsifier (stop): the keep-\(v\) form is `J-second-order-linearization`.
+- **Major results:**
+  - **Reparameterization.** \(v^{9/4}=n^{27/8}-\tfrac94 n^{15/8}\theta+\tfrac{45}{32}n^{3/8}\theta^2+R_3\) with \(\lvert R_3\rvert\le\tfrac{15}{128}v^{-3/4}\theta^3=O(n^{-9/8})\). Substituting \(\theta=X-v\) recovers Lemma G for \(m^{9/4}\): \(v^{9/4}=\tfrac{5}{32}n^{27/8}-\tfrac{9}{16}n^{15/8}v+\tfrac{45}{32}n^{3/8}v^2+R_4\). The Heisenberg packaging of the linear leftover is that substitution. The object is the missing composition \(a^{f(\lfloor h(n)\rfloor)}\) the sibling already named. No new ledger row.
+  - **Two-term leftover stands.** \(\tfrac94 n^{15/8}\theta\) is not \(o(1)\); rate-free does not transfer Richter from the smooth model (`juggler_v94_rate_free`).
+  - **Probe (`v94_hardy_lift.py`, `V94_HARDY_LIFT_GREEN`):** remainder ratio attains \(15/128\); \(\lvert R_3\rvert\le 1.1\cdot10^{-18}\) at \(n\ge10^6\); \(A_2'\) leading \(0.530\) vs \(135/256\); Hardy pair occupies \(64/64\) cells. Witnesses, not a theorem.
+- **Refuted ideas:** the novelty hypothesis that the three-term lift is a new identification — it is Lemma G.
+- **Decision:** CLOSE — dossier `docs/problems/juggler_v94_hardy_lift.md`. No ledger row. Paper B frozen; toolkit PARK untouched.
+
+```text
+What was learned
+- one more Taylor term makes the remainder o(1) and recovers
+  Lemma G for m^{9/4}
+- the Heisenberg packaging of the linear leftover is the
+  substitution theta = X - v already in Lemma G
+- the two-term leftover not being o(1) stands; it does not
+  invite a Richter citation on the smooth model
+- the object is the missing composition the sibling named
+Strongest theorem
+- none new (REPARAMETERIZATION of J-second-order-linearization)
+Strongest refutation
+- none new (the novelty hypothesis died by reparameterization)
+Reusable machinery
+- v94_hardy_lift probe: cubic-remainder ratio, A2' leading
+  ratio, Hardy-pair occupancy
+Branch status
+- CLOSE
+Why
+- the stop criterion fired: every surviving statement is
+  Lemma G or the sibling placement record
+Best next question
+- none from this door; the live target remains the rate-free
+  conjecture as an external composition problem;
+  characteristic factors are not opened from here
+```
+
+## Affine n-gap diagnostic (not a numbered milestone)
+
+- **Date:** 2026-09-01
+- **Objective:** Decide whether every reading of the Paper A \(\times\) Paper B merge’s surviving sentence — an \(n\)-dependent lower bound on \(\lvert 3^o-2^L\rvert\) along \(F_1,F_2,F_3\) — is already discharged, or whether a cycle-forced form uses \(\log n\) without being \(G\log n\)
+- **Hypotheses:** a live reading exists: some exact CycleMin identity uses the floor \(n\) as a Diophantine parameter and is not finance, not `image_eq_start_defectRatio`, and not \(p+\Lambda\)
+- **Major results:** Classification **AFFINE_N_GAP_CLOSED**. Baker dominance is exact: any correct \(\delta\le G\) produces \(n_{\max}\) at least as large as the exact-gap ceiling. Locked at \(L=19\): \(G=7153\), \(n_{\max}=297\); adjacent gap \(7152\) stays at \(297\); half-gap \(3576\) raises it to \(538\). Affine samples match `RunSurvivorLattice.lean` (\(F_1=(25781,16266)\), \(F_2=(50508,31867)\), \(F_3=(76289,48133)\)); relative weakening \(\theta\mapsto 0.999\,\theta\) raises \(n_{\max}\) on those three and on the live blocker \(L=478245\) (stored competition \(\theta\), \(n^*\approx 3.48\cdot 10^8\)). Identity table: every \(n\)-involving form is finance (upper bound on \(G\)), \(\log R=G\log n\), or height/position finance (still an upper bound); \(p+\Lambda\) is already REFUTED. Five readings of the merge sentence: R1 Baker REFUTED, R2 finance KNOWN (floors PARK), R3 new \(\log n\) form REPARAMETERIZATION, R4 defect-sum \(n\)-power REPARAMETERIZATION (walk terminal), R5 lattice binary recurrence REFUTED as a leftover-killer. Slogan `juggler_affine_n_gap_escapes_dominance` **REFUTED**. Ledger row `J-affine-n-gap-escapes-dominance`. No Rhin recompute, no new CF, no floor, no Lean, no Paper A edit, no fan-minimum successor
+- **Refuted ideas:** that an \(n\)-dependent lower bound on \(\lvert 3^o-2^L\rvert\) along the affine families escapes Baker dominance (`juggler_affine_n_gap_escapes_dominance`)
+- **Literature:** `cycleMin_finance`; `RunSurvivorLattice.lean`; `juggler_cycle_gap_baker`; `juggler_inhomogeneous_ww_beats_finance`; `juggler_cycle_paper_merge`; `juggler_walk_fan_minimum_law` (not reopened); `simons-de-weger-2005-collatz-m-cycles`
+- **Open:** none from this formulation. The classical unboundedness of the dangerous-position partial quotients of \(\log 2/\log 3\) remains OPEN and is not a laboratory Phase-0
+- **Decision:** CLOSE — dossier `docs/problems/juggler_cycle_affine_n_gap.md`
+
+```text
+What was learned
+- G is a function of (L, o_min) alone; n cannot raise a lower
+  bound on |3^o-2^L| above the exact gap
+- finance is already the n-dependent bound in contrapositive
+- the only exact n-log identity is log R = G log n
+- constant-factor or lattice-specialized gap bounds cannot
+  beat exact theta at a known point
+- the fan-minimum CF question is a different sentence and
+  stays outside this branch
+Strongest theorem
+- Baker dominance: delta <= G implies n_max(delta) >= n_max(G)
+  (EXACT — HUMAN PROOF; L=19 instance COMPUTATIONALLY VERIFIED)
+Strongest refutation
+- juggler_affine_n_gap_escapes_dominance
+Reusable machinery
+- cycle_affine_n_gap probe: identity/reading tables plus the
+  L=19 dominance lock
+Branch status
+- CLOSE
+Why
+- every reading is KNOWN, REPARAMETERIZATION, or already
+  REFUTED; the stop criterion fired; no new form appeared
+Best next question
+- none from this formulation
+```

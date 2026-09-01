@@ -160,10 +160,12 @@ Classification **HEISENBERG_CUT_GREEN**.
 - The remaining open of the rate-free route is still
   equidistribution of the floor-Hardy orbit. The
   \(\{v^{9/4}\}\) identification without \(\theta\)-unwind is
-  answered by
-  [juggler_v94_rate_free.md](juggler_v94_rate_free.md): **CLOSE**
+  answered twice, both **CLOSE**:
+  [juggler_v94_rate_free.md](juggler_v94_rate_free.md)
   (published Hardy-nil doors miss; qualitative van der Corput
-  is integer dilation of \(\{v^{5/4}\}\)). External composition
+  is integer dilation of \(\{v^{5/4}\}\)) and
+  [juggler_v94_hardy_lift.md](juggler_v94_hardy_lift.md)
+  (three-term Taylor recovers Lemma G). External composition
   lemma; not a laboratory method.
 - Characteristic-factor self-similarity of floor-removal remains
   the named route-falsifier and is also external.

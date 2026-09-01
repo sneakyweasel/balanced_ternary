@@ -1,4 +1,4 @@
-"""Hardy-entry lift of {v^{9/4}}: remainder, passenger, pair census."""
+"""Three-term remainder of {v^{9/4}}: witnesses that the identity is Lemma G."""
 
 from __future__ import annotations
 
@@ -45,10 +45,9 @@ def test_summary_green_and_anti_overclaim():
         identity_samples=TEST_SAMPLES, census_n_max=TEST_CENSUS_WINDOW
     )
     assert summary["decision"]["classification"] == CLASS_GREEN
-    assert summary["decision"]["nested_floor_dissolved"]
-    assert summary["decision"]["linear_leftover_lifted"]
-    assert summary["decision"]["door_unbuilt_only_for_tame_passenger"]
+    assert summary["decision"]["reparameterization_of_lemma_g"]
     assert summary["decision"]["not_a_published_theorem"]
+    assert summary["decision"]["door_still_unbuilt"]
     assert not ANTI["equidistribution_claimed"]
     assert not ANTI["k3_bound_claimed"]
     assert not ANTI["toolkit_reopened"]

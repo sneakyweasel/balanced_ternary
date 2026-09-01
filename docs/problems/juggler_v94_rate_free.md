@@ -197,7 +197,10 @@ Classification **V94_RATE_FREE_DOOR_UNBUILT**.
 - Equidistribution of the floor-Hardy nil-orbit — still the
   active conjecture; the missing lemma is Hardy-of-floor
   composition for nil-orbits. External; not opened as a
-  laboratory branch.
+  laboratory branch. The sibling three-term reading
+  [juggler_v94_hardy_lift.md](juggler_v94_hardy_lift.md)
+  is **CLOSE**: it recovers Lemma G and does not open a
+  published door.
 - Characteristic-factor self-similarity of floor-removal remains
   the named route-falsifier and stays external.
 
