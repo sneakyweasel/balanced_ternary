@@ -5626,5 +5626,45 @@
     "related_conjectures": [
       "juggler_walk_hug_exchange"
     ]
+  },
+  {
+    "id": "J-cyclemin-walk-koksma-one-over-L",
+    "tag": "REFUTED",
+    "statement": "Leftover hug charge-per-letter satisfies C_L ≤ C_*(n') + 1/L at the certified reduced base, by Denjoy–Koksma with Var(f)<1. False: six leftover offsets violate the inequality (worst (C_hug − C_*)L = 1.868 at L = 180467). The IET prefix of the same length fails in lockstep (hug C equals IET C to 10^{-12}), so the hole is the rotation at family offsets, not a letter-budget dump. Seeds hold with constant 0.333. The crude bound C < 1/(ln 3 ln n') remains a 19-row observation, not a replacement theorem. Uniform B/θ < 1 at a fixed floor stays false. Not a halt theorem.",
+    "source": "docs/problems/juggler_cycle_walk_koksma.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_walk_koksma.py"
+    ],
+    "related_conjectures": [
+      "juggler_walk_koksma_one_over_L"
+    ]
+  },
+  {
+    "id": "J-cyclemin-walk-hitting-one",
+    "tag": "REFUTED",
+    "statement": "Equal-width bins of the IET {k θ}, θ = log₂(3/2)/log₂ 3, have occupancy |#I − L μ(I)| ≤ 1. False: at leftover L = 180467 and m = 250 the first bin [0, 1/250) has 725 points against L/m = 721.868 (error 3.13); high-precision confirmation agrees. The overshoot sits at u = 0, the peak of the charge density. Not a halt theorem.",
+    "source": "docs/problems/juggler_cycle_walk_envelope.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_walk_envelope.py"
+    ],
+    "related_conjectures": [
+      "juggler_walk_hitting_one"
+    ]
+  },
+  {
+    "id": "J-cyclemin-walk-crude-envelope",
+    "tag": "COMPUTATIONALLY VERIFIED",
+    "statement": "Leftover hug/IET charge-per-letter at the certified reduced base satisfies C_L < 1/(ln 3 ln n'). Schema (human): f decreasing and occupancy error ≤ h imply C_L ≤ (1 + h m / L)(C_* + 1/m); J ≤ 1 − 2/ln n + 6/(ln n)² gives an explicit gap under 1/(ln 3 ln n). At m = 250, h = 4, L ≥ 50508, ln n ≥ 17 the binning excess 0.005139 is below the J-gap 0.005188. Occupancy ≤ 4 holds on all 19 leftovers (max overshoot 3.35; integer census). The 6/5 unroll then excludes the same 18 lengths as the walk DP (margin 1.008 at L = 50508) and still misses L = 176251 (margin 0.143). Period bound unchanged. Hitting ≤ 1 is refuted. Koksma +1/L stays refuted. Uniform B/θ < 1 stays false. Not a halt theorem and not a theorem for every L ≥ 50508.",
+    "source": "docs/problems/juggler_cycle_walk_envelope.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_walk_envelope.py"
+    ],
+    "related_conjectures": [
+      "juggler_walk_crude_envelope",
+      "juggler_walk_hitting_one"
+    ]
   }
 ]

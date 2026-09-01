@@ -1,0 +1,21 @@
+{
+  "id": "juggler_walk_hitting_one",
+  "title": "IET equal-bin occupancy stays within 1 of L/m",
+  "statement": "For the rotation {k θ} with θ = log2(3/2)/log2(3), every equal-width bin I of the circle, and every leftover length L, the occupancy satisfies |#I - L μ(I)| ≤ 1.",
+  "mathematical_domain": "Juggler cycle finance / exponent-walk optimal control",
+  "origin": "docs/problems/juggler_cycle_walk_envelope.md",
+  "status": "REFUTED",
+  "first_seen": "2026-09-01",
+  "tested_range": "equal bins m=250 on leftover L at floor 26254995; high-precision confirmation at L=180467; extra L=19,84,1054,50508,60000,100000",
+  "counterexamples": [
+    "L=180467, first bin [0, 1/250): 725 points against L/m = 721.868 (error 3.13); high-precision Decimal agrees",
+    "L=60000 (not a leftover): overshoot exactly 4"
+  ],
+  "proof_reference": "docs/problems/juggler_cycle_walk_envelope.md",
+  "lean_reference": "",
+  "literature": [
+    "fernandez-ibanez-2026"
+  ],
+  "notes": "The overshoot is concentrated in the first bin (u=0), the peak of the charge density. Other sampled bins at L=180467 sit at 721 (error 0.87). This is why Denjoy-Koksma at constant 1 failed on offsets and why a Riemann argument needs an occupancy cap h=4, not h=1. Published Ostrowski/Schoissengeier bounds on N D_N^* are too loose for the J-slack (partial quotients 23 and 55). Not a halt theorem.",
+  "not_a_halt_theorem": true
+}

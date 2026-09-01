@@ -1,0 +1,21 @@
+{
+  "id": "juggler_walk_koksma_one_over_L",
+  "title": "Leftover hug charge sits within 1/L of the mechanical integral",
+  "statement": "On leftover (L, o_min(L)) at the certified reduced base, the hug (equivalently IET-prefix) charge-per-letter satisfies C_L <= C_*(n') + 1/L, where C_* is the Laplace integral (1/ln 3) ∫_1^3 n^{1-t} t^{-2} dt. This would be Denjoy-Koksma for Var(f)<1 and would make the 18 walk-charge kills DP-free.",
+  "mathematical_domain": "Juggler cycle finance / exponent-walk optimal control",
+  "origin": "docs/problems/juggler_cycle_walk_koksma.md",
+  "status": "REFUTED",
+  "first_seen": "2026-09-01",
+  "tested_range": "committed 19-row walk-charge survey at floor 26254995; hug C versus IET prefix versus C_* at each leftover's own n'",
+  "counterexamples": [
+    "L=180467: (C_hug - C_*)L = 1.868 > 1; IET prefix gives the same constant to 10^{-12}",
+    "Five further offsets fail +1/L: 103124, 128905, 154686, 178359, 179413"
+  ],
+  "proof_reference": "docs/problems/juggler_cycle_walk_koksma.md",
+  "lean_reference": "",
+  "literature": [
+    "fernandez-ibanez-2026"
+  ],
+  "notes": "Seeds satisfy +1/L with constant 0.333 (Euler-Maclaurin size). The failure is the rotation at family offsets, not a hug-versus-IET budget dump. Trial envelopes C_*+1/(2L) and C_*+1/(2L)+u_L/L cover only 7/19. The crude bound C < 1/(ln 3 ln n') still holds on all 19 leftovers and was already recorded by walk-exchange; it is not promoted here. Uniform B/theta<1 at a fixed floor stays false. Not a halt theorem.",
+  "not_a_halt_theorem": true
+}

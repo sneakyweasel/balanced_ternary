@@ -18072,4 +18072,83 @@ Best next question
   18 kills DP-free?
 ```
 
+## Juggler Koksma +1/L envelope
+
+- **Date:** 2026-09-01
+- **Objective:** Decide whether leftover hug \(C_L\) satisfies \(C_L\le C_*(n')+1/L\) (Denjoy–Koksma with \(\mathrm{Var}(f)<1\)), making the 18 walk-charge kills DP-free
+- **Hypotheses:** leftover \(L\) are good denominators of \(\log 2/\log 3\), so Koksma gives \(+1/L\); any leftover excess is a letter-budget dump off the IET
+- **Major results:** Classification **WALK_KOKSMA_CLOSED**. \(C_L\le C_*+1/L\) fails on six offsets \(103124,128905,154686,178359,179413,180467\); worst constant \(1.868\) at \(L=180467\). Seeds hold with constant \(0.333\). Hug equals IET prefix to \(10^{-12}\); the same six lengths fail for the rotation. Euler–Maclaurin \(+\) surplus covers only \(7/19\). Crude bound still holds on \(19/19\) (already walk-exchange). Conjecture `juggler_walk_koksma_one_over_L` moved to `conjectures/refuted/`. Artifact `cycle_walk_koksma/summary.json`
+- **Refuted ideas:** leftover \(C_L\le C_*+1/L\); the excess is a hug-versus-IET dump; \(C_*+1/(2L)+u_L/L\) is a 19-row envelope
+- **Literature:** walk exchange; unique ergodicity / Denjoy–Koksma (KNOWN); `juggler_walk_hug_exchange`; `juggler_baker_kills_near_convergents` REFUTED
+- **Open:** a proof of \(C_L<1/(\ln 3\,\ln n')\) that is not Koksma at constant \(1\)
+- **Decision:** CLOSE
+
+```text
+What was learned
+- +1/L fails on six leftover offsets; worst (C-C*)L = 1.868
+  at L=180467
+- leftover hug equals the IET prefix; the slogan fails for
+  the rotation itself
+- seeds sit at Euler-Maclaurin size 0.333, which is why
+  +1/L looked plausible
+- two-term salvages (1/(2L), plus terminal surplus) cover
+  only 7/19
+- the crude bound that would still kill 18 lengths is the
+  already-recorded 19-row observation
+Strongest theorem
+- none
+Strongest refutation
+- juggler_walk_koksma_one_over_L: six offsets, worst 180467
+Reusable machinery
+- cycle_walk_koksma.py (hug vs IET vs C_* + 1/L table)
+Branch status
+- CLOSE
+Why
+- the Phase-0 falsifier fired on the IET itself; no new
+  human envelope appeared; restating the crude bound is a
+  reparameterization of walk-exchange
+Best next question
+- can one prove C_L < 1/(ln 3 ln n') for leftover hug
+  words without using Denjoy-Koksma at constant 1?
+```
+
+## Juggler crude envelope by Riemann sums
+
+- **Date:** 2026-09-01
+- **Objective:** Prove \(C_L<1/(\ln 3\,\ln n')\) for leftover hug / IET words without Denjoy–Koksma at constant \(1\), making the 18 walk-charge kills DP-free
+- **Hypotheses:** equal-bin rotation hitting \(\lvert\#I-L\mu\rvert\le 1\) plus the Laplace slack \(1-J\) beats the left-Riemann error \(1/m\)
+- **Major results:** Classification **WALK_ENVELOPE_GREEN**. Hitting \(\le 1\) is **REFUTED** (first bin at \(L=180467\): \(725\) vs \(721.868\)). Occupancy stays within \(4\) on all 19 leftovers (max overshoot \(3.35\)). The Riemann + \(J\)-slack schema with \(m=250\), \(h=4\), \(L\ge 50508\), \(\ln n\ge 17\) has excess \(0.005139<0.005188\). All 19 leftovers sit under the binning bound. The \(6/5\) unroll then kills the same 18 lengths (margin \(1.008\) at \(50508\)) without `walk_budget`; \(L=176251\) survives (margin \(0.143\)). Period bound unchanged. Conjectures `juggler_walk_hitting_one` REFUTED, `juggler_walk_crude_envelope` ACTIVE. Artifact `cycle_walk_envelope/summary.json`
+- **Refuted ideas:** equal-bin IET occupancy stays within \(1\); Koksma \(+1/L\) (already)
+- **Literature:** walk Koksma CLOSE; walk exchange; Ostrowski/Schoissengeier (KNOWN, too loose); `juggler_baker_kills_near_convergents` REFUTED
+- **Open:** a human occupancy bound that replaces the 19-row cap \(h\le 4\)
+- **Decision:** PROMOTE
+
+```text
+What was learned
+- |#I - L mu| <= 1 is false: the first IET bin overfills
+  (3.13 at L=180467), exactly where f is largest
+- the Laplace slack 1-J is about 0.0053 at this floor, enough
+  to pay a Riemann 1/m plus occupancy 4
+- h<=4 is an exact 19-row integer census, not a charge DP
+- the 18 kills become DP-free under that envelope; 176251
+  still survives; period bound unchanged
+- published Ostrowski discrepancy bounds are too loose here
+Strongest theorem
+- given occupancy <=4, C_L < 1/(ln 3 ln n) for L>=50508
+  and ln n>=17 (Riemann + J)
+Strongest refutation
+- juggler_walk_hitting_one: first bin at L=180467
+Reusable machinery
+- cycle_walk_envelope.py (J-upper, binning bound, occupancy)
+Branch status
+- PROMOTE
+Why
+- a human comparison plus a finite occupancy certificate
+  retires walk_budget for the 18 kills; this is not Koksma
+  +1/L and not a restatement of C_hug < B
+Best next question
+- a human occupancy bound that replaces the 19-row cap
+  h<=4, so the crude envelope is census-free?
+```
+
 

@@ -1,0 +1,18 @@
+{
+  "id": "juggler_walk_crude_envelope",
+  "title": "Leftover hug charge sits under 1/(ln 3 ln n') by Riemann sums plus occupancy 4",
+  "statement": "On leftover hug/IET words at the certified reduced base, C_L < 1/(ln 3 ln n'). Proof schema: f decreasing implies C_L ≤ (1 + h m / L)(C_* + 1/m) when every equal bin has occupancy error ≤ h; J ≤ 1 - 2/ln n + 6/(ln n)^2 gives an explicit gap under 1/(ln 3 ln n). At m=250, h=4, L≥50508, ln n≥17 the schema fires. Occupancy ≤ 4 is a 19-row integer census, not a charge DP.",
+  "mathematical_domain": "Juggler cycle finance / exponent-walk optimal control",
+  "origin": "docs/problems/juggler_cycle_walk_envelope.md",
+  "status": "ACTIVE",
+  "first_seen": "2026-09-01",
+  "tested_range": "19 leftovers at floor 26254995; analytic check L=50508, ln n=17, m=250, h=4; extra hitting at L=19,84,1054,50508,60000,100000",
+  "counterexamples": [],
+  "proof_reference": "docs/problems/juggler_cycle_walk_envelope.md",
+  "lean_reference": "",
+  "literature": [
+    "fernandez-ibanez-2026"
+  ],
+  "notes": "The implication h≤4 ⇒ C_L < 1/(ln 3 ln n) is a human inequality (Riemann + J). The cap h≤4 is computationally verified on the leftovers (max overshoot 3.35). Together the 18 walk-charge kills become DP-free at this floor (margin 1.008 at 50508) and L=176251 still survives (margin 0.143). Period bound unchanged. Hitting ≤1 is refuted (juggler_walk_hitting_one). Koksma +1/L stays refuted. Uniform B/theta<1 stays false. Not a halt theorem. Not a theorem for every L≥50508.",
+  "not_a_halt_theorem": true
+}
