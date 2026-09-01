@@ -20,7 +20,10 @@
 > parity-reindexing Jacobian (new Lemma 3.10), and the old
 > Theorem 7.4's false "in particular" (now Proposition 7.4 with the
 > \(\sqrt{\log L}\) factor). Parts VII, X, and XI below are kept as
-> **routes**, not proofs.
+> **routes**, not proofs. Phase 28 reruns Theorem R at the single
+> exponent \(\alpha=33/32\) (Part XIII); the Corollary R′ *family*
+> stays withdrawn. Phase 29 classifies the length-7 remainder as
+> an engine (Part XIV); Theorem X stays a route.
 
 > **Phase-25 correction (29 August 2026).** The Part-VI mixed-piece
 > bound recorded below (frozen-coefficient model \(e(sX)\),
@@ -3563,7 +3566,7 @@ Flat cost \(\le 16h_1P^{1/2}+16\,kh_1h_2P^{1/2+1/32}
 \(uh_1\le P^{13/96}+P^{1/2}/2\le P^{1/2}\), so every mode is a
 Lemma 5.2(i) object. Window boundaries cost
 \(\le 2kh_2P^{5/32}\cdot 3.4P^{3/8}\le 7P^{17/32+1/12}
-\le 7P^{51/96}\).
+=7P^{59/96}\).
 
 *Steps 3b–3e.* \(|(\Delta_2c)''|\le 0.05\,kh_2P^{-63/32}\) sits
 inside the printed (D3) box \(3kh_1h_2P^{-5/8}\) (ratio
@@ -3739,3 +3742,128 @@ question is the length-7 remainder: can \(kE\) with
 \(E\asymp v^{1/8}\) be kept as a subcritical extra phase
 and estimated, now that the \(\alpha=33/32\) \(W\)-family
 is a theorem?
+
+## Part XIV: the length-7 remainder is an engine (Phase 29)
+
+Scope: keep \(kE_X\) in the phase and estimate it. Not
+Theorem X. Not the passenger inventory. Not length 8. Not a
+Paper B edit.
+
+On the OO prefix, \(v=\lfloor m^{3/2}\rfloor\) with
+\(m=\lfloor n^{3/2}\rfloor\), so \(v\asymp n^{9/4}\) and
+\(v^{1/8}\asymp n^{9/32}\). Lemma X1 splits
+\[
+E_X=E_p+E_w,\qquad
+E_p=\tfrac38\xi_p^{-1/2}\theta_p^2\le\tfrac38 p^{-1/2},
+\qquad
+E_w=\tfrac{45}{32}\xi_w^{1/4}\theta_w^2\le\tfrac{45}{32}v^{1/8}.
+\]
+\(E_p\asymp n^{-27/32}\) decays: discarding \(kE_p\) costs
+\(\ll kP^{5/32}\). The growing piece is \(E_w\), and
+\(\xi_w=v^{1/2}+O(1)\) gives
+\(E_w=\tfrac{45}{32}v^{1/8}\theta_w^2+O(n^{-27/32})\).
+The OOOEO remainder of Lemma X2 is already
+\(\le\tfrac38 U^{-1/2}\asymp n^{-9/16}\) and is not this hole.
+
+### Reduction to a smooth argument
+
+\[
+v=n^{9/4}-\tfrac32 n^{3/4}\theta_2+O(n^{-3/4}),
+\]
+hence
+\[
+v^{1/2}=n^{9/8}-\tfrac34 n^{-3/8}\theta_2+O(n^{-9/8}),
+\qquad
+v^{1/8}=n^{9/32}+O(n^{-39/32}).
+\]
+Thus \(\theta_w=\{v^{1/2}\}=\{n^{9/8}+\varepsilon\}\) with
+\(\varepsilon\ll n^{-3/8}\). Off the \(O(n^{-3/8})\)-neighbourhood
+of the integers (density \(O(n^{-3/8})\), trivial cost
+\(P^{5/8}\)),
+\[
+\theta_w=\{n^{9/8}\}-\tfrac34 n^{-3/8}\theta_2+O(n^{-9/8}),
+\]
+and the cross term in \(\theta_w^2\) produces, after multiplying
+by \(k n^{9/32}\), a discarded cost \(\ll kP^{29/32}\le P^{91/96}\)
+at \(k\le P^{1/24}\). Seal: `x1_remainder_reduction_scan`.
+
+The extra phase is therefore
+\[
+kE_X=A\,\{n^{9/8}\}^2+\text{decaying},\qquad
+A=\tfrac{45}{32}k\,n^{9/32}(1+O(n^{-3/2})).
+\]
+It is *not* a (D3) decoration: \(\lvert(A\{n^{9/8}\}^2)''\rvert\)
+is not \(O(kh_1h_2P^{-5/8})\). It is *not* a reason to discard
+(\(\lvert e(kE)-1\rvert P\asymp kP^{1+9/32}\) is worse than
+trivial). It *is* an engine of amplitude \(A\ll n\) in a smooth
+argument of exponent \(9/8\), with
+\((n^{9/8})'\asymp n^{1/8}\gg1\) and
+\((n^{9/8})''\asymp n^{-7/8}<1\).
+
+### Lemma X4 (quadratic-sawtooth engine) — EXACT — HUMAN PROOF
+
+Let \(1\le\lvert k\rvert\le P^{1/24}\) and let \(A\) be as
+above. Write \(F(x)=e(A\{x\}^2)\). Then \(F\) is \(1\)-periodic,
+\(\lvert F\rvert=1\), and the jump at the integers is
+\(1-e(A)\), of size \(\le2\). The Fourier coefficients satisfy
+\[
+\lvert\hat F(u)\rvert\ll\lvert A\rvert^{-1/2}+\lvert u\rvert^{-1}
+\qquad(u\neq0)
+\]
+by the Fresnel / van der Corput bound on
+\(\int_0^1 e(Ax^2-ux)\,dx\) (second derivative \(2A\),
+stationary point in \((0,1)\) iff \(u\in(0,2A)\)). Consequently,
+for odd \(n\sim P\),
+\[
+\Bigl\lvert\sum_n e(kE_X(n))\Bigr\rvert
+\ll P^{27/32+\varepsilon}.
+\]
+
+*Proof.* Expand \(F(n^{9/8})=\sum_u\hat F(u)\,e(un^{9/8})\).
+Lemma 3.3 at curvature \(u\cdot\tfrac9{64}n^{-7/8}\) gives
+\[
+\Bigl\lvert\sum_n e(un^{9/8})\Bigr\rvert
+\ll\lvert u\rvert^{1/2}P^{9/16}+\lvert u\rvert^{-1/2}P^{7/16}.
+\]
+Truncate at \(U_\ast\asymp\lvert A\rvert\asymp kP^{9/32}\)
+(beyond this, \(\lvert\hat F(u)\rvert\ll\lvert u\rvert^{-1}\)
+and the tail is a majorant of cost \(\ll P/U_\ast\)). The
+two leading sums are
+\[
+\lvert A\rvert^{-1/2}\cdot\lvert A\rvert^{3/2}P^{9/16}
+=\lvert A\rvert P^{9/16}\ll kP^{27/32},
+\]
+\[
+P^{9/16}\lvert A\rvert^{1/2}\ll k^{1/2}P^{45/64}.
+\]
+At \(k\le P^{1/24}\) both are
+\(\le P^{85/96}\) and \(\le P^{139/192}\), inside
+\(P^{23/24}=P^{184/192}\). Lemma 3.10 does not change the
+margins. \(\square\)
+
+As a factor in an ambient sum the same expansion attaches
+only engine modes \(e(un^{9/8})\) with
+\(\lvert u\rvert\ll kP^{9/32}+T\). Each is Lemma 3.3 at
+\(\ll P^{13/16}\) after the usual Lemma-3.7 window
+\(T=P^{1/2}\) (hypothesis \(T\ge8(1+\lvert A\rvert)\):
+\(\lvert A\rvert\le P^{31/96}<P^{1/2}\)). This is the class
+the Phase-13 draft already named (“remaining
+\(\theta_2\)-amplitudes are \(O(n^{9/32})\), engine”),
+except the argument is the *smooth* \(n^{9/8}\), not a
+nested floor.
+
+Whether every host in the Theorem X inventory absorbs the
+extra frequency \(\lvert u\rvert\le P^{31/96}\) is a
+passenger rerun, not this hole.
+
+### Phase-29 decision
+
+**PROMOTE** the remainder estimate. Ledger row
+`J-length7-remainder-engine` tagged `EXACT — HUMAN PROOF`.
+Flag `length7_remainder_engine_proved` flipped `True`.
+`J-depth7-engine-contracting` stays `CONJECTURE` (passenger
+inventory not rerun). No density \(57/64\). No Paper B.
+No \(K_3\). The single next question is the length-7
+passenger rerun: do the sixth-letter \(X\)-modes and the
+new \(n^{9/8}\)-frequencies sit in Lemma 5.2 / Theorem T’s
+existing budgets?

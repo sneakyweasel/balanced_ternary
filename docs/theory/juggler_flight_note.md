@@ -251,9 +251,11 @@ near-returns on orbits \(n\le 2000\) land on \(\{19,38\}\).
   finds no extra predicate on generic prefix-NC. Construction
   stays PARK (`juggler_hug_flow_window`): backward `OE`/`OOE`
   freedom is positive, depth \(1\) on windows
-  \(H\asymp X^{1/3}\) is `J-hug-flow-window-depth-one`, and
-  \(C_L\ne\emptyset\) still needs depth \(2\). That existence
-  theorem is not opened from this extract.
+  \(H\asymp X^{1/3}\) is `J-hug-flow-window-depth-one`.
+  Interval-ET depth \(2\) is CLOSE (`J-hug-flow-image-gap`):
+  the image of a depth-\(1\) window is \(3\sqrt X\)-separated,
+  not an interval. \(C_L\ne\emptyset\) is not a theorem and is
+  not opened from this extract.
 
 ## Endpoint
 

@@ -91,18 +91,34 @@ for external review.
   pigeonhole). The terminating-side height-law PARK is not an exclusion
   mechanism. Hug-cylinder construction stays PARK
   (`juggler_hug_flow_window`): depth \(1\) is
-  `J-hug-flow-window-depth-one`; \(C_L\neq\emptyset\) still needs
-  depth \(2\). Mechanical lift, prefix realization, and
-  formal-versus-realized do not say hug prefixes cannot be realized.
-  Exclusion of divergent orbits is not claimed.
+  `J-hug-flow-window-depth-one`. Interval-ET depth \(2\) is CLOSE
+  (`J-hug-flow-image-gap`): the image is \(3\sqrt X\)-separated.
+  Mechanical lift, prefix realization, and formal-versus-realized
+  do not say hug prefixes cannot be realized. Exclusion of
+  divergent orbits is not claimed.
 - **Termination:** laboratory certified descent density \(7/8\)
   (length-5 repair, `J-five-step-descent-density`); Paper B prints
   \(13/16\) only. Densities \(57/64\) and \(29/32\) remain
-  **CONJECTURE** (Phase-26 holes: growing remainder, \(E'\);
-  Corollary R′ is still a family-CONJECTURE, but the instance
-  \(\alpha=33/32\) is **EXACT — HUMAN PROOF**,
-  `J-w-family-thirty-three-thirty-seconds`). The pointwise route is parked behind the \(K_3\)
-  obstruction ladder BB/GG/JJ. Not claimed.
+  **CONJECTURE** (Phase-26 holes: length-7 passenger inventory,
+  \(E'\); the growing remainder is now an engine,
+  `J-length7-remainder-engine`. Corollary R′ is still a
+  family-CONJECTURE, but the instance \(\alpha=33/32\) is
+  **EXACT — HUMAN PROOF**,
+  `J-w-family-thirty-three-thirty-seconds`). The rated
+  pointwise route is parked behind the \(K_3\) obstruction
+  ladder BB/GG/JJ. The rate-free line is laboratory-terminal:
+  nearby reformulations of the floor-Hardy composition are
+  closed (`juggler_v94_rate_free`, `juggler_v94_hardy_lift`,
+  `juggler_nil_pet_reentry`, `juggler_rate_free_floor_hardy`).
+  The remaining problem is external: prove a rate-free
+  equidistribution theorem for \(f(\lfloor h(n)\rfloor)\) with
+  nonlinear Hardy \(f,h\)
+  (`juggler_tower_rate_free_equidistribution`, ACTIVE), or
+  discover a completely different route to the node-wise
+  E-share \(\beta>\beta_*=1-\log 2/\log 3\approx 0.36907\).
+  Do not reopen the composition door, the \(\beta\)-fallback
+  as a weaker species, PET, Theorem R, \(\lambda=0\), or
+  further literature-name audits. Not claimed.
 - **Local attacks are closed.** Fibres are parity + interval only
   (`even_cell_iff`, `odd_cell_unique`, `cell_same_next_state`): no finite
   local configuration around a hypothetical cycle is contradictory. Seam,
@@ -160,7 +176,8 @@ Then stop. Machinery gravity — new structure, new CLI, new visualization,
 no new mathematical consequence — means stop implementing, find the
 invariant or obstruction, and decide. Every branch ends in `PROMOTE`,
 `PARK`, or `CLOSE`; do not auto-open the next one. Do not raise \(N_0\),
-reopen finance, or edit Paper A from a Phase-0 branch.
+reopen finance, or edit Paper A from a Phase-0 branch. Do not
+generate nearby reformulations of the floor-Hardy composition.
 
 ## Where non-Juggler math goes
 

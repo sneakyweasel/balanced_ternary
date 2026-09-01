@@ -5,7 +5,11 @@ genuinely rate-free published route through
 \(\lfloor n^{3/2}\rfloor^{9/4}\); the floor-Hardy composition is
 the irreducible door. The \(\beta>\beta_*\) fallback is a finite
 Weyl family of that same composition, not a weaker species.
-Rate-free conjecture stays ACTIVE.)
+Nearby reformulations stop. Rate-free conjecture stays ACTIVE
+as the external problem
+\(f(\lfloor h(n)\rfloor)\) with nonlinear Hardy \(f,h\), or a
+route to \(\beta>\beta_*\) that does not pass through that
+composition.)
 
 Successor of
 [juggler_v94_rate_free](juggler_v94_rate_free.md) (**CLOSE**),
@@ -278,14 +282,30 @@ Classification **RATE_FREE_FLOOR_HARDY_DOOR_UNBUILT**.
 
 ## Open questions
 
-- Equidistribution of the floor-Hardy nil-orbit — still the
-  active conjecture; the missing lemma is Hardy-of-floor
-  composition for nil-orbits (Leibman / Richter on
-  \(a^{f(\lfloor h(n)\rfloor)}\), \(f\) nonlinear). External;
+The laboratory door is closed. Two remaining problems, neither
+a nearby reformulation:
+
+- Prove a rate-free equidistribution theorem for
+  \(f(\lfloor h(n)\rfloor)\) with nonlinear Hardy \(f,h\)
+  (Leibman / Richter composition; the circle case is
+  \(\{f(\lfloor h(n)\rfloor)\}\) equidistributes whenever
+  \(\{f(h(n))\}\) does and \(f'\circ h\not\to 0\)). External;
   not opened as a laboratory branch.
-- The \(\beta>\beta_*\) fallback is now identified as a
-  finite Weyl family of that same composition and is not a
-  separate laboratory door.
+- Or discover a completely different route to the node-wise
+  E-share \(\beta>\beta_*\approx 0.36907\): a mechanism that
+  does **not** identify the next letter through
+  \(\{x^{3/2}\}\) / \(\{v^{9/4}\}\) and does **not** reduce
+  to the same Weyl family. The \(\beta\)-fallback of
+  `J-rate-free-density-one` is not such a route.
+
+Nearby (closed; do not reopen): another literature name for
+the same composition; finite Weyl / tent / Fejér of \(\beta\);
+Taylor unwind of \(\lfloor h\rfloor\); keep-\(v\) / keep-\(m\)
+/ Lemma G packaging; PET / Host–Kra; Heisenberg leftover
+packaging; qualitative van der Corput on \(\{v^{9/4}\}\) or
+\(\{v^{5/4}\}\); Hardy-along-PS transfer; Theorem R /
+\(\lambda=0\) / BB/GG/JJ; joint-ergodicity Hardy iterates;
+digital PS / Beatty / Kolesnik.
 
 ## Decision
 
@@ -294,11 +314,13 @@ genuinely rate-free mathematical route through
 \(\lfloor n^{3/2}\rfloor^{9/4}\) in the published theory, and
 the floor-Hardy composition itself is the irreducible door.
 The \(\beta>\beta_*\) fallback does not weaken the species.
-The rate-free conjecture stays ACTIVE as that external
-composition problem. Best next question: none from this door;
-the live target remains
-`juggler_tower_rate_free_equidistribution` as
-\(a^{f(\lfloor h(n)\rfloor)}\), and no closed route is
+Nearby reformulations stop. The rate-free conjecture stays
+ACTIVE as that external composition problem. Best next
+question: none from this door. The live target is the boxed
+pair above — prove
+\(f(\lfloor h(n)\rfloor)\) equidistribution for nonlinear
+Hardy \(f,h\), or find a route to \(\beta>\beta_*\) that
+does not pass through that composition. No closed route is
 reopened.
 
 ## Publication assessment

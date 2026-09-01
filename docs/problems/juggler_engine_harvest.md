@@ -1,8 +1,10 @@
 # Juggler Paper B engine harvest (length-5 repair)
 
-Status: **PROMOTE** (length 5, and the \(\alpha=33/32\)
-\(W\)-family instance). Length 7/8 and the Corollary R′ *family*
-stay **PARK** / **CONJECTURE**. Paper B stays frozen at \(13/16\).
+Status: **PROMOTE** (length 5, the \(\alpha=33/32\)
+\(W\)-family instance, and the length-7 remainder engine).
+Theorem X, density \(57/64\), length 8, and the Corollary R′
+*family* stay **PARK** / **CONJECTURE**. Paper B stays frozen
+at \(13/16\).
 
 Repair of the Phase-26 withdrawn length-5 passenger holes. Not a
 new contractor family, not a \(K_3\) attack, and not a Paper B edit.
@@ -86,8 +88,10 @@ It is not required. The 2-adic / BT bridge stays closed.
 - \(W\)-family at the single exponent \(\alpha=33/32\)
   (`J-w-family-thirty-three-thirty-seconds`, Phase 28) —
   **EXACT — HUMAN PROOF**
-- Length-7 remainder \(n^{9/32}\), length-8 \(E'\), Corollary R′
-  family — **CONJECTURE** (untouched except the one instance)
+- Length-7 remainder engine (`J-length7-remainder-engine`,
+  Phase 29) — **EXACT — HUMAN PROOF**
+- Length-7 passenger inventory, length-8 \(E'\), Corollary R′
+  family — **CONJECTURE**
 - \(K_3\) bound — **PARK** (BB/GG/JJ)
 
 ## Experiments
@@ -95,8 +99,9 @@ It is not required. The 2-adic / BT bridge stays closed.
 No new runner. Existing scanners in
 `research.juggler_sequence.two_step_parity`
 (`oooee_indicator_identity_check`, `ooeoe_indicator_identity_check`,
-`oooee_smoothing_scan`, `ooeoe_smoothing_scan`) already pin Lemmas
-T1/T2 and the indicator algebra. Tests:
+`oooee_smoothing_scan`, `ooeoe_smoothing_scan`,
+`x1_remainder_reduction_scan`) already pin Lemmas
+T1/T2, the indicator algebra, and the Part XIV reduction. Tests:
 `tests/research/juggler_sequence/test_two_step_parity.py`.
 
 ## Conjectures
@@ -105,7 +110,9 @@ None new. Remaining harvest rows stay as they are:
 `J-w-family-below-nine-eighths` (family; the point
 \(\alpha=33/32\) is the separate exact row
 `J-w-family-thirty-three-thirty-seconds`),
-`J-depth7-engine-contracting`,
+`J-depth7-engine-contracting` (passenger inventory; the
+remainder is the separate exact row
+`J-length7-remainder-engine`),
 `J-seven-step-descent-density`, `J-depth8-engine-quartet`,
 `J-eight-step-descent-density`.
 
@@ -139,13 +146,19 @@ gravity.
   [juggler_w_family_33_32.md](juggler_w_family_33_32.md).
   Lemma Part XIII. The Corollary R′ family stays
   `CONJECTURE`.
+- **Lemma X4 (EXACT — HUMAN PROOF,
+  `J-length7-remainder-engine`, Phase 29).**
+  Child dossier
+  [juggler_length7_remainder.md](juggler_length7_remainder.md).
+  \(kE_X\) is an engine \(A\{n^{9/8}\}^2\), not a discarded
+  remainder. Theorem X stays `CONJECTURE`.
 
 ## Open questions
 
-The length-7 remainder \(n^{9/32}\). Length 8 stays behind
-\(E'\). The Corollary R′ family at any other concrete
-\(\alpha\) is a separate rerun; see the child
-[juggler_w_family_33_32.md](juggler_w_family_33_32.md).
+The length-7 passenger inventory (sixth-letter \(X\)-modes
+and the new \(n^{9/8}\)-frequencies). Length 8 stays behind
+\(E'\). See the child
+[juggler_length7_remainder.md](juggler_length7_remainder.md).
 
 ## Decision
 

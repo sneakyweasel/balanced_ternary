@@ -66,7 +66,8 @@ Depth \(2\) is still open. The existence claim
 Project relationship: **PROJECT-SPECIFIC** exponent ledger on top of
 KNOWN van der Corput / Erdős–Turán machinery. Depth \(1\) is
 **EXACT — HUMAN PROOF** (KNOWN method, PROJECT-SPECIFIC window).
-Depth \(2\) is OPEN.
+Interval-ET depth \(2\) is CLOSE. A sparse-set depth-\(2\)
+statement is not opened.
 
 ## Branch budget
 
@@ -140,10 +141,9 @@ sqrt-resonant offsets.
 ## Conjectures
 
 - `juggler_hug_flow_window` (ACTIVE): depth \(1\) is discharged by
-  `J-hug-flow-window-depth-one`; the remaining half is the
-  short-interval depth-\(2\) hit (with the measured
-  sqrt-resonance exclusion). With the positive flow that would
-  give \(C_L\ne\emptyset\) for every \(L\).
+  `J-hug-flow-window-depth-one`; the interval-iteration reading
+  of depth \(2\) is CLOSE (`J-hug-flow-image-gap`). A sparse-set
+  depth-\(2\) statement is not opened from this dossier.
 
 ## Counterexamples
 

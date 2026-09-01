@@ -119,9 +119,9 @@ exponent would be machinery gravity.
 
 ## Open questions
 
-The length-7 remainder: can \(kE\) with \(E\asymp v^{1/8}\) be
-kept as a subcritical extra phase and estimated? The
-Corollary R′ family at any other concrete
+The length-7 remainder is the child
+[juggler_length7_remainder.md](juggler_length7_remainder.md)
+(Phase 29). The Corollary R′ family at any other concrete
 \(\alpha\in(0,9/8]\setminus\{1/4,3/4,33/32\}\) is a separate
 rerun.
 

@@ -21,7 +21,7 @@ hosts the exact validators used by both review passes.
 from __future__ import annotations
 
 import json
-from math import isqrt, log
+from math import floor, isqrt, log, sqrt
 from pathlib import Path
 from typing import Any
 
@@ -183,6 +183,11 @@ ANTI_OVERCLAIM = {
     # alpha = 33/32 (intended Corollary R' consumer). The
     # family-for-all-alpha claim stays CONJECTURE.
     "w_family_alpha_33_32_proved": True,
+    # Phase 29: the Lemma X1 remainder k E, E ≍ v^{1/8} ≍ n^{9/32},
+    # is an engine in the argument n^{9/8} (not a discardable
+    # decaying remainder, not a (D3) decoration). Theorem X
+    # still needs the passenger rerun.
+    "length7_remainder_engine_proved": True,
 }
 
 
@@ -2023,6 +2028,54 @@ def sixth_ooeoo_scan(samples: tuple[int, ...]) -> dict[str, Any]:
     return {"holds": True, "count": len(samples)}
 
 
+def x1_remainder_reduction_scan(samples: tuple[int, ...]) -> dict[str, Any]:
+    """Seal for Part XIV: {v^{1/2}} tracks {n^{9/8}} to O(n^{-3/8}).
+
+    On the OO prefix, v = floor(m^{3/2}) with m = floor(n^{3/2}), so
+    v^{1/2} = n^{9/8} - (3/4) n^{-3/8} theta_2 + O(n^{-9/8}). The
+    fractional parts therefore differ by O(n^{-3/8}) except when
+    {n^{9/8}} is within that of an integer (one-step wrap). Float
+    seal only; n <= 10^6 keeps sqrt(v) inside the 53-bit mantissa.
+    """
+    near = 0
+    far_ok = 0
+    far_fail = 0
+    max_far = 0.0
+    for n in samples:
+        if n < 5 or n % 2 == 0 or n > 10**6:
+            continue
+        m = isqrt(n * n * n)
+        v = isqrt(m * m * m)
+        w = isqrt(v)
+        frac_u = sqrt(v) - w
+        n98 = n ** (9 / 8)
+        frac_n = n98 - floor(n98)
+        delta = abs(frac_u - frac_n)
+        delta = min(delta, 1.0 - delta)
+        thresh = 2.0 * n ** (-3 / 8) + 0.05
+        if min(frac_n, 1.0 - frac_n) < n ** (-3 / 8) + 0.02:
+            near += 1
+            continue
+        if delta <= thresh:
+            far_ok += 1
+            if delta > max_far:
+                max_far = delta
+        else:
+            far_fail += 1
+            return {
+                "holds": False,
+                "witness": n,
+                "delta": delta,
+                "thresh": thresh,
+            }
+    return {
+        "holds": far_fail == 0 and far_ok > 0,
+        "far_ok": far_ok,
+        "near_integer": near,
+        "max_far_delta": max_far,
+    }
+
+
 def sixth_oooeo_check(n: int, scale: int = SCALE) -> tuple[int, int]:
     """(E*scale, bound*scale) for the OOOEO* sixth-letter A' form.
 
@@ -2978,7 +3031,9 @@ def write_docs(row: dict[str, Any], path: Path = DOC_PATH) -> None:
         "`J-depth4-complete`; proofs in",
         "`juggler_two_step_parity_lemma.md`). Laboratory certified",
         "descent density 7/8 (Phase 27 length-5 repair). Paper B",
-        "prints 13/16. Length-7/8 harvest rows stay CONJECTURE",
+        "prints 13/16. W-family instance alpha = 33/32 is EXACT",
+        "(Phase 28); length-7 remainder is an engine (Phase 29).",
+        "Length-7/8 harvest rows stay CONJECTURE",
         "(Phase 26). OOOO* kernel isolated (Lemma V1); the",
         "scale-invariant copy of Theorem R, the increment-first",
         "K3 attack, and X1-absorption of K3 are **REFUTED**;",
@@ -3027,7 +3082,9 @@ def write_docs(row: dict[str, Any], path: Path = DOC_PATH) -> None:
         "label **OBSERVATION**. The analytic statements they probe are",
         "now theorems at every depth <= 4. Laboratory certified",
         "descent density is 7/8 (J-five-step-descent-density,",
-        "Phase 27). Paper B prints 13/16. Length-7/8 densities",
+        "Phase 27). Paper B prints 13/16. The W-family instance",
+        "alpha = 33/32 is EXACT (Phase 28); the length-7",
+        "remainder is an engine (Phase 29). Length-7/8 densities",
         "57/64 and 29/32 stay CONJECTURE (Phase 26 holes). ",
         "the OOOO* kernel K3 is isolated",
         "and the scale-invariant copy of Theorem R, the",

@@ -1,0 +1,597 @@
+"""Decoration-and-mode budget census for Paper B Lemma 5.2 / Theorems 5.3, 6.1.
+
+Phase-0 only. Not a Paper B edit, not a harvest reopen, not a K3
+attack, not a halt theorem. Enumerates the printed Step-3 / Step-A
+pieces at the paper's (H1, H2, k) and checks them against the
+printed budgets. Orbit geometry is sampled, not exhaustive at 10^10.
+"""
+
+from __future__ import annotations
+
+import json
+from fractions import Fraction
+from math import ceil, isqrt
+from pathlib import Path
+from typing import Any
+
+REPO_ROOT = Path(__file__).resolve().parents[3]
+DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "decoration_budget"
+JSON_PATH = DATA_DIR / "summary.json"
+
+P_LIST = (10**6, 10**8, 10**10)
+P0_T_LINE = 3**48  # |t| <= 3 J2 <= P^{1/16} needs P >= 3^{48}
+
+# Algebra of Theorem 6.1 Step E / Theorem 5.3 Step 5a.
+KERNEL_SMOOTH = Fraction(945, 512)
+KERNEL_WINDOW = Fraction(27, 64)  # = 216/512
+KERNEL_COMPOSITE = KERNEL_SMOOTH - KERNEL_WINDOW  # 729/512
+DECORATED_WINDOW = Fraction(135, 128)  # = 540/512; 2.5 * 27/64
+DECORATED_COMPOSITE = KERNEL_SMOOTH - DECORATED_WINDOW  # 405/512
+THETA_FACTOR = Fraction(5, 2)  # passengers multiply the window-centre term
+OFFSET_RATIO_DECORATED = KERNEL_SMOOTH / DECORATED_WINDOW  # 945/540 = 7/4
+
+ANTI = {
+    "halt_theorem": False,
+    "paper_a_modified": False,
+    "paper_b_modified": False,
+    "harvest_reopened": False,
+    "k3_reopened": False,
+    "kernel_retagged": False,
+}
+
+
+def paper_scales(p: float) -> dict[str, float]:
+    """Real scales as printed: H1 = P^{1/48}, H2 = J2 = P^{1/24}."""
+    return {
+        "P": p,
+        "H1": p ** (1.0 / 48.0),
+        "H2": p ** (1.0 / 24.0),
+        "J2": p ** (1.0 / 24.0),
+        "J3": p ** (1.0 / 96.0),
+        "J_W": p ** 0.25,
+        "k_kernel": p ** (1.0 / 24.0),
+        "k_depth4": 2.0 * p ** (1.0 / 96.0),
+        "cap_q": p ** (1.0 / 16.0),
+        "cap_uh": p ** 0.5,
+        "cap_h": p ** 0.125,
+        "cap_ijk": 2.0 * p ** (1.0 / 96.0),
+        "cap_d3_pp": 3.0 * (p ** (1.0 / 24.0)) * (p ** (1.0 / 48.0)) * (p ** (1.0 / 24.0)) * p ** (-5.0 / 8.0),
+        "ratio_t_over_cap": 3.0 * p ** (-1.0 / 48.0),
+    }
+
+
+def paper_ints(p: int) -> dict[str, int]:
+    """Integer shifts used on the orbit: ceil of the printed scales."""
+    return {
+        "P": p,
+        "h1": max(1, ceil(p ** (1.0 / 48.0))),
+        "h2": max(1, ceil(p ** (1.0 / 24.0))),
+        "k_kernel": max(1, ceil(p ** (1.0 / 24.0))),
+        "k_depth4": max(1, ceil(2.0 * p ** (1.0 / 96.0))),
+    }
+
+
+def _overflow_kind(value: float, cap: float, dies: bool) -> str:
+    """dies=True means value/cap → 0 as P → ∞ (P0, not Theorem-T)."""
+    if value <= cap + 1e-12:
+        return "none"
+    return "p0" if dies else "structural"
+
+
+def _row(
+    source: str,
+    klass: str,
+    value: float,
+    cap: float,
+    dies: bool,
+    *,
+    q: float | None = None,
+    u: float | None = None,
+    j: float | None = None,
+    h: float | None = None,
+    h_prime: float | None = None,
+    note: str = "",
+) -> dict[str, Any]:
+    kind = _overflow_kind(value, cap, dies)
+    return {
+        "source": source,
+        "q": q,
+        "u": u,
+        "j": j,
+        "h": h,
+        "h_prime": h_prime,
+        "class": klass,
+        "value": value,
+        "cap": cap,
+        "ratio": (value / cap) if cap else None,
+        "overflow_kind": kind,
+        "note": note,
+    }
+
+
+def combinatorial_inventory(p: float) -> dict[str, Any]:
+    """Layer A: printed expansions at the paper endpoint, no orbit scan."""
+    s = paper_scales(p)
+    h1, h2 = s["H1"], s["H2"]
+    j2, j3 = s["J2"], s["J3"]
+    k = s["k_kernel"]
+    cap_q, cap_uh, cap_h = s["cap_q"], s["cap_uh"], s["cap_h"]
+
+    # (3a) Vaaler of {W}: |u| <= B + T, B <= 1.85 k h2 P^{1/8}, T = P^{1/2}/(2 h1).
+    b_max = 1.85 * k * h2 * (p ** 0.125)
+    t_vaaler = (p ** 0.5) / (2.0 * h1)
+    u_max = b_max + t_vaaler
+    uh1 = u_max * h1
+    # Paper writes uh1 <= 1.85 P^{1/4} + P^{1/2}/2 using (C1). Direct endpoint:
+    uh1_c1 = 1.85 * (p ** 0.25) + 0.5 * (p ** 0.5)
+
+    # Products: one mode per layer, three layers. A corner can take two layers.
+    t_max = 3.0 * j2
+    qd_max = 2.0 * j2
+    qd_passenger = 3.0 * j2 + j3
+
+    # Term count of ρ: four Y-corners + u W + u' W' + D2 + D3 + slow {DD Y}.
+    term_count = 9
+    # i-passenger curvature vs (D3) cap (analytic, paper 2.3 i h1 h2 P^{-5/2}).
+    i_max = s["cap_ijk"]
+    i_curv = 2.3 * i_max * h1 * h2 * (p ** -2.5)
+    d3_cap = 3.0 * k * h1 * h2 * (p ** (-5.0 / 8.0))
+
+    rows = [
+        _row(
+            "step3a_W_uh",
+            "Lemma 5.2(i)",
+            uh1,
+            cap_uh,
+            True,
+            u=u_max,
+            h=h1,
+            note="uh1 at paper (k,H1,H2); dies because leading extra is P^{11/48}",
+        ),
+        _row(
+            "step3a_W_uh_C1",
+            "Lemma 5.2(i)",
+            uh1_c1,
+            cap_uh,
+            True,
+            u=uh1_c1 / h1,
+            h=h1,
+            note="paper's (C1) majorant 1.85 P^{1/4} + P^{1/2}/2",
+        ),
+        _row(
+            "step3a_h",
+            "Lemma 5.2(i)",
+            h1,
+            cap_h,
+            True,
+            h=h1,
+            note="H1 = P^{1/48} vs h <= P^{1/8}",
+        ),
+        _row(
+            "step3b_q_Y",
+            "D1",
+            j2,
+            cap_q,
+            True,
+            q=j2,
+            h=h1,
+            note="J2-mode on Y(n), Y(n+d1)",
+        ),
+        _row(
+            "step3c_q_Y",
+            "D1",
+            j2,
+            cap_q,
+            True,
+            q=j2,
+            h=h2,
+            note="mirror: J2-mode on Y(n+d2)",
+        ),
+        _row(
+            "step3d_q_Y",
+            "D1",
+            j2,
+            cap_q,
+            True,
+            q=j2,
+            note="M4 carries: J2 on Y(n+d), d in {0,d2,d1+d2}",
+        ),
+        _row(
+            "step3e_j",
+            "D2",
+            3.0,
+            3.0,
+            False,
+            j=3.0,
+            note="printed |j| <= 3; eight kappa-branches",
+        ),
+        _row(
+            "product_t",
+            "Lemma 5.2(ii)",
+            t_max,
+            cap_q,
+            True,
+            q=t_max,
+            note="|t| <= 3 J2 vs P^{1/16}; ratio 3 P^{-1/48}",
+        ),
+        _row(
+            "product_qd",
+            "Lemma 5.2(ii)",
+            qd_max,
+            cap_q,
+            True,
+            q=qd_max,
+            note="one corner can take two layers: |qd| <= 2 J2",
+        ),
+        _row(
+            "term_count_rho",
+            "decoration",
+            float(term_count),
+            8.0,
+            True,
+            note="4 Y-corners + 2 differenced-waves + D2 + D3 + slow; fixed 9",
+        ),
+        _row(
+            "thm61_i",
+            "Theorem 6.1",
+            i_max,
+            s["cap_ijk"],
+            False,
+            note="Vaaler J3 = P^{1/96}; range by construction",
+        ),
+        _row(
+            "thm61_j_mode",
+            "Theorem 6.1",
+            i_max,
+            s["cap_ijk"],
+            False,
+            j=i_max,
+            note="|j| <= 2 P^{1/96} by construction",
+        ),
+        _row(
+            "thm61_k",
+            "Theorem 6.1",
+            i_max,
+            s["cap_ijk"],
+            False,
+            note="|k| <= 2 P^{1/96}; sits inside kernel k <= P^{1/24}",
+        ),
+        _row(
+            "thm61_j_passenger_qd",
+            "D1",
+            qd_passenger,
+            cap_q,
+            True,
+            q=qd_passenger,
+            note="|qd| <= 3 P^{1/24} + P^{1/96} after the Y-passenger",
+        ),
+        _row(
+            "thm61_i_passenger_D3",
+            "D3",
+            i_curv,
+            d3_cap,
+            True,
+            note="2.3 i H1 H2 P^{-5/2} vs 3 k H1 H2 P^{-5/8}",
+        ),
+    ]
+    return {
+        "P": p,
+        "scales": s,
+        "rows": rows,
+        "kinds": _kind_counts(rows),
+    }
+
+
+def _kind_counts(rows: list[dict[str, Any]]) -> dict[str, int]:
+    out = {"none": 0, "p0": 0, "structural": 0}
+    for row in rows:
+        out[row["overflow_kind"]] = out.get(row["overflow_kind"], 0) + 1
+    return out
+
+
+def algebraic_theta_identities() -> dict[str, Any]:
+    """Exact fractions of the printed 4.375 → 7:4 shrink."""
+    bare_ratio = KERNEL_SMOOTH / KERNEL_WINDOW
+    return {
+        "kernel_smooth": [KERNEL_SMOOTH.numerator, KERNEL_SMOOTH.denominator],
+        "kernel_window": [KERNEL_WINDOW.numerator, KERNEL_WINDOW.denominator],
+        "kernel_composite": [KERNEL_COMPOSITE.numerator, KERNEL_COMPOSITE.denominator],
+        "decorated_window": [DECORATED_WINDOW.numerator, DECORATED_WINDOW.denominator],
+        "decorated_composite": [DECORATED_COMPOSITE.numerator, DECORATED_COMPOSITE.denominator],
+        "theta_factor": [THETA_FACTOR.numerator, THETA_FACTOR.denominator],
+        "bare_ratio": float(bare_ratio),
+        "bare_ratio_is_4.375": bare_ratio == Fraction(35, 8),
+        "decorated_ratio": float(OFFSET_RATIO_DECORATED),
+        "decorated_ratio_is_7_4": OFFSET_RATIO_DECORATED == Fraction(7, 4),
+        "composite_positive": DECORATED_COMPOSITE > 0,
+        "window_is_2.5_times_kernel": DECORATED_WINDOW == THETA_FACTOR * KERNEL_WINDOW,
+    }
+
+
+def decorated_margin_scan(p: float, k: int = 1, j: int = 1) -> dict[str, Any]:
+    """Numerical interpolant check of the 2.5 factor and 7:4 composite.
+
+    Kernel model: φ_k(θ) = (3k/4) n^{9/8} F(X-θ) on an offset branch.
+    Depth-4 model (Step E): φ_4(θ) = (9k/8) j (X-θ)^{5/4}.
+    Finite differences in θ give the θ-coefficients; second n-derivatives
+    of the smooth parts give the two curvatures.
+    """
+    n = 1.5 * p
+    x = n ** 1.5
+    ints = paper_ints(int(p)) if p >= 3 else {"h1": 1, "h2": 1}
+    h1, h2 = ints["h1"], ints["h2"]
+    d1, d2 = 2 * h1, 2 * h2
+    n0 = int(n) | 1
+    m0 = isqrt(n0**3)
+    beta1 = isqrt((n0 + d1) ** 3) - m0
+    beta2 = isqrt((n0 + d2) ** 3) - m0
+
+    def f_branch(m: float) -> float:
+        return (
+            (m + beta1 + beta2 + j) ** 1.5
+            - (m + beta1) ** 1.5
+            - (m + beta2) ** 1.5
+            + m**1.5
+        )
+
+    c = (3.0 * k / 4.0) * (n ** 1.125)
+    eps = 1e-8
+    phi_k = lambda th: c * f_branch(x - th)
+    b_k = (phi_k(eps) - phi_k(0.0)) / eps
+    b_k_pred = (9.0 / 16.0) * k * j * (n ** 0.375)
+    phi_4 = lambda th: (9.0 * k / 8.0) * j * (x - th) ** 1.25
+    b_4 = (phi_4(eps) - phi_4(0.0)) / eps
+    b_4_pred = (45.0 / 32.0) * k * j * (n ** 0.375)
+
+    # Smooth-part second derivatives at the monomial models.
+    cf_pp_k = (945.0 / 512.0) * k * j * (n ** -0.125)
+    u_term_k = -(27.0 / 64.0) * k * j * (n ** -0.125)
+    cf_pp_4 = (945.0 / 512.0) * k * j * (n ** -0.125)
+    u_term_4 = -(135.0 / 128.0) * k * j * (n ** -0.125)
+
+    return {
+        "P": p,
+        "n": n,
+        "h1": h1,
+        "h2": h2,
+        "beta1": beta1,
+        "beta2": beta2,
+        "B_kernel_fd": b_k,
+        "B_kernel_pred": b_k_pred,
+        "B_kernel_ratio": abs(b_k / b_k_pred) if b_k_pred else None,
+        "B_decorated_fd": b_4,
+        "B_decorated_pred": b_4_pred,
+        "B_decorated_ratio": abs(b_4 / b_4_pred) if b_4_pred else None,
+        "theta_factor_fd": abs(b_4 / b_k) if b_k else None,
+        "theta_factor_pred": 2.5,
+        "kernel_composite_over_kj": (cf_pp_k + u_term_k) / (k * j * n ** -0.125),
+        "kernel_ratio": abs(cf_pp_k / u_term_k),
+        "decorated_composite_over_kj": (cf_pp_4 + u_term_4) / (k * j * n ** -0.125),
+        "decorated_ratio": abs(cf_pp_4 / u_term_4),
+        "decorated_single_signed": (cf_pp_4 + u_term_4) * (k * j) > 0,
+    }
+
+
+def branch_offset(n: int, d1: int, d2: int) -> int:
+    """j = β12 - β1 - β2 = ΔΔ m, exact integers (Lemma 5.1(iii))."""
+    m = isqrt(n**3)
+    m1 = isqrt((n + d1) ** 3)
+    m2 = isqrt((n + d2) ** 3)
+    m12 = isqrt((n + d1 + d2) ** 3)
+    return m12 - m1 - m2 + m
+
+
+def _carries(n: int, d1: int, d2: int) -> tuple[int, int, int]:
+    """Level-1 carries κ = [{X} + {ΔX} >= 1] at the three shifts."""
+    s = 10**12
+
+    def frac_x(t: int) -> int:
+        return isqrt(t**3 * s * s) % s
+
+    def frac_dx(t: int, d: int) -> int:
+        return (isqrt((t + d) ** 3 * s * s) - isqrt(t**3 * s * s)) % s
+
+    def kap(t: int, d: int) -> int:
+        return 1 if frac_x(t) + frac_dx(t, d) >= s else 0
+
+    return kap(n, d1), kap(n, d2), kap(n, d1 + d2)
+
+
+def orbit_j_census(
+    p: int,
+    *,
+    window: int = 100_000,
+    samples: int = 100_000,
+    boundary: int = 2_000,
+) -> dict[str, Any]:
+    """Layer B: exact j on a window / stride / cell-boundary sample."""
+    ints = paper_ints(p)
+    h1, h2 = ints["h1"], ints["h2"]
+    d1, d2 = 2 * h1, 2 * h2
+    start = p + 1 if (p % 2 == 0) else p
+    if start % 2 == 0:
+        start += 1
+
+    max_abs = 0
+    min_j = 0
+    max_j = 0
+    witness = None
+    n_seen = 0
+    live_j: set[int] = set()
+    live_kappa: set[tuple[int, int, int]] = set()
+
+    def ingest(n: int) -> None:
+        nonlocal max_abs, min_j, max_j, witness, n_seen
+        j = branch_offset(n, d1, d2)
+        n_seen += 1
+        live_j.add(j)
+        if n_seen <= 400:
+            live_kappa.add(_carries(n, d1, d2))
+        if j < min_j:
+            min_j = j
+        if j > max_j:
+            max_j = j
+        aj = abs(j)
+        if aj > max_abs:
+            max_abs = aj
+            witness = n
+
+    # Consecutive window from the left endpoint.
+    n = start
+    for _ in range(window):
+        ingest(n)
+        n += 2
+
+    # Stride sample through (P, 2P].
+    span = p
+    stride = max(2, 2 * (span // max(samples, 1)))
+    if stride % 2 == 1:
+        stride += 1
+    n = start
+    limit = 2 * p
+    taken = 0
+    while n < limit and taken < samples:
+        ingest(n)
+        n += stride
+        taken += 1
+
+    # Cell-boundary: a short run near 3P/2, where gaps are typical.
+    n = (3 * p // 2) | 1
+    for _ in range(boundary):
+        if n >= 2 * p:
+            break
+        ingest(n)
+        n += 2
+
+    return {
+        "P": p,
+        "h1": h1,
+        "h2": h2,
+        "d1": d1,
+        "d2": d2,
+        "n_seen": n_seen,
+        "min_j": min_j,
+        "max_j": max_j,
+        "max_abs_j": max_abs,
+        "witness": witness,
+        "live_j": sorted(live_j),
+        "n_live_kappa": len(live_kappa),
+        "kappa_cap": 8,
+        "j_overflow": max_abs > 3,
+    }
+
+
+def i_passenger_curvature_fd(p: float) -> dict[str, Any]:
+    """Five-point stencil of X = n^{3/2} versus the printed (D3) cap."""
+    n = 1.5 * p
+    h = 1.0
+    xs = [((n + k * h) ** 1.5) for k in (-2, -1, 0, 1, 2)]
+    # fourth derivative: (x_{-2} - 4 x_{-1} + 6 x_0 - 4 x_1 + x_2) / h^4
+    x4 = (xs[0] - 4 * xs[1] + 6 * xs[2] - 4 * xs[3] + xs[4]) / (h**4)
+    s = paper_scales(p)
+    i_max = s["cap_ijk"]
+    h1, h2, k = s["H1"], s["H2"], s["k_kernel"]
+    i_curv = 2.0 * i_max * h1 * h2 * abs(x4)
+    d3_cap = 3.0 * k * h1 * h2 * (p ** (-5.0 / 8.0))
+    return {
+        "X4_fd": x4,
+        "X4_pred": (9.0 / 16.0) * (n ** -2.5),
+        "i_curvature": i_curv,
+        "d3_cap": d3_cap,
+        "ratio": i_curv / d3_cap if d3_cap else None,
+        "overflow_kind": _overflow_kind(i_curv, d3_cap, True),
+    }
+
+
+def classify_census(payload: dict[str, Any]) -> dict[str, Any]:
+    """Apply the Phase-0 decision rule once."""
+    kinds = {"none": 0, "p0": 0, "structural": 0}
+    for block in payload["inventories"]:
+        for key, val in block["kinds"].items():
+            kinds[key] = kinds.get(key, 0) + val
+    j_overflow = any(row["j_overflow"] for row in payload["orbits"])
+    theta_ok = (
+        payload["algebra"]["decorated_ratio_is_7_4"]
+        and payload["algebra"]["composite_positive"]
+        and payload["algebra"]["window_is_2.5_times_kernel"]
+        and all(m["decorated_single_signed"] for m in payload["margins"])
+    )
+    if j_overflow or kinds["structural"] or not theta_ok:
+        decision = "CLOSE"
+        why = "Theorem-T-type witness or 7:4 composite failed"
+    elif kinds["p0"]:
+        decision = "PARK"
+        why = (
+            "finite-P overflows die as P→∞ (ratio 3 P^{-1/48}→0); "
+            f"named P0 for |t|<=3 J2<=P^{{1/16}} is P>={P0_T_LINE}"
+        )
+    else:
+        decision = "PROMOTE"
+        why = "every printed budget holds at the three P"
+    return {
+        "decision": decision,
+        "why": why,
+        "kinds": kinds,
+        "j_overflow": j_overflow,
+        "theta_ok": theta_ok,
+        "p0_t_line": P0_T_LINE,
+    }
+
+
+def run_census(
+    p_list: tuple[int, ...] = P_LIST,
+    *,
+    orbit_window: int = 20_000,
+    orbit_samples: int = 20_000,
+    orbit_boundary: int = 1_000,
+) -> dict[str, Any]:
+    inventories = [combinatorial_inventory(float(p)) for p in p_list]
+    orbits = [
+        orbit_j_census(
+            p,
+            window=orbit_window,
+            samples=orbit_samples,
+            boundary=orbit_boundary,
+        )
+        for p in p_list
+    ]
+    margins = [decorated_margin_scan(float(p)) for p in p_list]
+    curvatures = [i_passenger_curvature_fd(float(p)) for p in p_list]
+    payload = {
+        "experiment": "juggler_decoration_budget",
+        "anti_overclaim": ANTI,
+        "P_list": list(p_list),
+        "algebra": algebraic_theta_identities(),
+        "inventories": inventories,
+        "orbits": orbits,
+        "margins": margins,
+        "i_passenger_curvatures": curvatures,
+    }
+    payload["verdict"] = classify_census(payload)
+    return payload
+
+
+def write_json(payload: dict[str, Any], path: Path = JSON_PATH) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+
+
+def main() -> None:
+    payload = run_census()
+    write_json(payload)
+    verdict = payload["verdict"]
+    print("decision", verdict["decision"])
+    print("why", verdict["why"])
+    print("kinds", verdict["kinds"])
+    for orb in payload["orbits"]:
+        print(
+            f"orbit P={orb['P']} max|j|={orb['max_abs_j']} "
+            f"live_j={orb['live_j']} n={orb['n_seen']}"
+        )
+    for inv in payload["inventories"]:
+        p0s = [r["source"] for r in inv["rows"] if r["overflow_kind"] == "p0"]
+        print(f"inventory P={inv['P']} p0={p0s}")
+
+
+if __name__ == "__main__":
+    main()

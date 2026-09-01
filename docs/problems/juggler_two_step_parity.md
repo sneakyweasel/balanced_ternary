@@ -111,10 +111,10 @@ It is not required. The 2-adic / BT bridge stays closed.
   Phase 13, withdrawn in Phase 26
   (`depth7_engine_contracting_proved` is `False`);
   \(57/64\) is **CONJECTURE**. The \(\alpha=33/32\)
-  \(W\)-family instance used by those drafts is now
-  **EXACT — HUMAN PROOF** (Phase 28,
-  `w_family_alpha_33_32_proved` is `True`); the growing
-  remainder \(n^{9/32}\) remains the hole
+  \(W\)-family instance is **EXACT — HUMAN PROOF** (Phase 28);
+  the remainder \(kE_X\) is an engine (Phase 29,
+  `length7_remainder_engine_proved` is `True`); the
+  passenger inventory remains the hole
 
 - Increment-first \(K_3\) attack — **REFUTED** in Phase 14
   (`increment_first_k3_refuted` is `True`); bound not proved
@@ -1104,3 +1104,14 @@ Part XIII). Instance row
 is `True`. The Corollary R′ family stays `CONJECTURE`.
 Length 7/8 stay parked behind the remainder / \(E'\) holes.
 Paper B is not edited.
+
+## Phase 29: length-7 remainder engine
+
+Child dossier
+[juggler_length7_remainder.md](juggler_length7_remainder.md).
+The Lemma X1 remainder \(kE_X\) is an engine
+\(A\{n^{9/8}\}^2\) with \(A\asymp kn^{9/32}\) (lemma
+Part XIV, `J-length7-remainder-engine`). Flag
+`length7_remainder_engine_proved` is `True`. Theorem X
+stays `CONJECTURE` (passenger inventory). Paper B is not
+edited.

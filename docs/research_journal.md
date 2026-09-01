@@ -20396,3 +20396,186 @@ Best next question
   juggler_tower_rate_free_equidistribution as
   a^{f(floor(h(n)))}
 ```
+
+## Paper B engine harvest: Theorem R at \(\alpha=33/32\) (Phase 28)
+
+- **Date:** 2026-09-01
+- **Objective:** Close the named Corollary R′ hole at one concrete \(\alpha\neq 9/8\), starting at the intended consumer \(\alpha=33/32\). Desk rerun of Paper B Theorem 5.3 only.
+- **Hypotheses:** The Phase-24 hole was a missing rerun, not a refutation. Most windows ease at \(33/32<9/8\); a curvature composite or the close pair \(\bigl(\tfrac54,\tfrac{41}{32}\bigr)\) can still flip.
+- **Major results:**
+  - **Standing estimates (E3)\(^\dagger\)–(E4)\(^\dagger\):** \(c'\asymp kP^{1/32}\), \(\Delta\Delta c\asymp kh_1h_2P^{-31/32}\). \(M_1\) deletion costs \(P^{13/96}\).
+  - **Lemma 5.2 a fortiori:** \(c\), \(c'\), \(c''\) are all smaller than the printed \(9/8\) sizes; the lemma’s main curvature is a \(Y\)-wave.
+  - **Offset composite:** \(\lambda_a=\tfrac{9369}{8192}k|j|n^{-7/32}\) at ratio \(3.711\), single-signed. Assembly \(P^{175/192}<P^{23/24}\).
+  - **Zero-offset:** interpolant coefficient \(1701/1024\); \(B\le 1.2P^{-11/96}<1\). Middle-band triple \(\bigl(\tfrac54,\tfrac{41}{32},\tfrac32\bigr)\) with \(E^\dagger=E\cup\{41/32,57/32\}\) and \(c_6=1/55\). Transition \(P^{365/384}<P^{23/24}\).
+  - **Instance (`J-w-family-thirty-three-thirty-seconds`):** \(K_c(P)\ll P^{1-1/96+\varepsilon}\) at \(\alpha=33/32\), uniformly in \(k\le P^{1/24}\). The Corollary R′ family stays `CONJECTURE`.
+- **Refuted ideas:** none. The scale-invariant copy at \(\alpha>9/8\) was not re-tested.
+- **Literature:** Paper B Theorem 5.3, Lemmas 3.8–3.10 and 5.1–5.2.
+- **Open:** length-7 remainder \(n^{9/32}\); Corollary R′ at any other concrete \(\alpha\).
+- **Decision:** PROMOTE the instance. Dossier `docs/problems/juggler_w_family_33_32.md`. No Paper B edit, no \(K_3\), no length-7 attempt.
+
+```text
+What was learned
+- every Theorem 5.3 margin survives at α = 33/32
+- the Phase-24 monotonicity slogan is unnecessary
+  for this instance and remains illegal as a
+  family argument
+- the only new cost is c_6(5/4, 41/32) = 1/55;
+  I_0 may be a whole dyadic block, but Ω_V is
+  still P^{365/384}
+- Lemma 5.2 applies a fortiori (smaller c)
+- the 9/8 bottleneck (k)^{1/2} P^{15/16} is slack
+  here: (k)^{1/2} P^{57/64} ≤ P^{175/192}
+Strongest theorem
+- Theorem R at α = 33/32
+  (J-w-family-thirty-three-thirty-seconds)
+Strongest refutation
+- none; the Phase-26 hole was a missing rerun
+Reusable machinery
+- none new (exact-fraction seals in
+  test_two_step_parity.py)
+Branch status
+- PROMOTE (instance only)
+Why
+- every displayed constraint of Theorem 5.3
+  survives at this exponent; the family and
+  length 7/8 were out of scope
+Best next question
+- the length-7 remainder: can kE with
+  E ≍ v^{1/8} be kept as a subcritical extra
+  phase and estimated?
+```
+
+## Paper B engine harvest: length-7 remainder engine (Phase 29)
+
+- **Date:** 2026-09-01
+- **Objective:** Close the named length-7 remainder hole: keep \(kE_X\) in the phase and estimate it. Not Theorem X.
+- **Hypotheses:** The growing envelope \(v^{1/8}\asymp n^{9/32}\) is the amplitude of a squared sawtooth in a smooth argument, not a reason to discard.
+- **Major results:**
+  - **Split:** \(E_X=E_p+E_w\) with \(E_p\asymp n^{-27/32}\) decaying. OOOEO remainder already decays.
+  - **Reduction:** \(v^{1/2}=n^{9/8}-\tfrac34 n^{-3/8}\theta_2+O(n^{-9/8})\). Seal `x1_remainder_reduction_scan` through \(n=10^6\).
+  - **Lemma X4 (`J-length7-remainder-engine`):** \(kE_X=A\{n^{9/8}\}^2\) with \(A\asymp kn^{9/32}<n\). Fresnel \(\lvert\hat F(u)\rvert\ll\lvert A\rvert^{-1/2}+\lvert u\rvert^{-1}\) plus Lemma 3.3 give \(\lvert\sum e(kE_X)\rvert\ll P^{27/32+\varepsilon}\) for \(\lvert k\rvert\le P^{1/24}\). Not (D3). Discarding remains forbidden.
+- **Refuted ideas:** none. Discarding \(E_w\) was the hole, not a counterexample.
+- **Literature:** Lemma X1; Paper B Lemmas 3.3, 3.7, 3.10.
+- **Open:** length-7 passenger inventory; length-8 \(E'\).
+- **Decision:** PROMOTE the remainder estimate. Dossier `docs/problems/juggler_length7_remainder.md`. Theorem X stays CONJECTURE. No Paper B edit, no \(K_3\).
+
+```text
+What was learned
+- E_w is A {n^{9/8}}^2, not a nested-floor W-family
+- the growing n^{9/32} is the engine amplitude
+  (subcritical: 9/32 < 1)
+- Fresnel beats the naive |A|/u Fourier bound
+  that would have cost P^{33/32}
+- OOOEO is not this hole
+- Theorem X still needs the passenger rerun
+Strongest theorem
+- |sum e(k E_X)| ≪ P^{27/32+ε}
+  (J-length7-remainder-engine)
+Strongest refutation
+- none; discarding E_w is the named hole
+Reusable machinery
+- x1_remainder_reduction_scan (seal only)
+Branch status
+- PROMOTE (remainder only)
+Why
+- the extra phase is an existing engine class
+  with a displayed estimate inside P^{23/24};
+  the count was out of scope
+Best next question
+- the length-7 passenger rerun: do the
+  sixth-letter X-modes and the new
+  n^{9/8}-frequencies sit in Lemma 5.2 /
+  Theorem T's existing budgets?
+```
+
+## Juggler hug-flow depth-2 conditional mixing (image is \(3\sqrt X\)-separated)
+
+- **Date:** 2026-09-01
+- **Objective:** Phase-0 only: does a depth-\(1\) admissible block keep interval structure after the first-parity filter, so that interval Erdős–Turán could mix the second floor-power? Not \(C_L\ne\emptyset\), not “apply depth-1 to \(y=\lfloor x^{3/2}\rfloor\)”.
+- **Hypotheses:** \(V(I)\) might contain consecutive \(y\)-blocks above \(\tfrac23 Y^{1/3}=X^{1/2}\). Falsifier: image gaps \(\ge\) that window, or \(\mathcal A_1\) pieces \(\le X^{1/4}\).
+- **Major results:**
+  - **Image gap (EXACT — HUMAN PROOF, `J-hug-flow-image-gap`):** for odd \(x\ge 3\), \(\lfloor(x+2)^{3/2}\rfloor-\lfloor x^{3/2}\rfloor\ge 3\lfloor\sqrt x\rfloor\), because \((x+2)^3-(x^{3/2}+3\sqrt x)^2=3x+8>0\). The gap exceeds the whole second-stage working window; ratio \(\to 9/2\).
+  - **Census (COMPUTATIONALLY VERIFIED, `IMAGE_FRAGMENTED`):** every \(W(X)\)-window at \(2^{12}\)–\(2^{28}\) has min gap \(>\) second-stage window (ratios \(4.50\)). At \(2^{28}\), gap \(49152\) vs window \(10922\); \(\mathcal A_1\) runs sit at or below the \(X^{1/4}\) remainder. The span \(\asymp X^{5/6}\) is the trap, not an interval of \(y\).
+- **Refuted ideas:** “apply the depth-1 theorem to \(y=\lfloor x^{3/2}\rfloor\)”; “the image span is a consecutive interval for Paper B”.
+- **Literature:** `J-hug-flow-window-depth-one`; Paper B Thm 4.1 (ambient intervals only).
+- **Open:** none from this branch. Sparse-set depth-2 is not opened. `juggler_hug_flow_window` stays ACTIVE only as a possible sparse statement.
+- **Decision:** CLOSE — dossier `docs/problems/juggler_hug_flow_depth_two.md`. Construction stays PARK. No `J-hug-flow-window-depth-two`. No Lean, no Paper edit, no \(C_L\).
+
+```text
+What was learned
+- consecutive odd x increment y by at least 3 floor(sqrt(x))
+- that gap is 9/2 of the second-stage working window
+- V(I) is a 3√X-separated packing, not an interval
+- A_1 runs in x-space are at or below the X^{1/4} remainder
+- interval ET does not iterate; the span X^{5/6} is the trap
+Strongest theorem
+- J-hug-flow-image-gap (EXACT - HUMAN PROOF)
+Strongest refutation
+- interval-ET depth-2 / apply depth-1 to the image
+Reusable machinery
+- hug_flow_depth_two.py: exact W(X)-window image geometry
+Branch status
+- CLOSE
+Why
+- the falsifier fired exactly as named: the depth-1
+  cylinder fragments below the second-stage window
+Best next question
+- none from this branch; construction stays PARK
+```
+
+## Rate-free line: stop nearby reformulations (consolidation)
+
+- **Date:** 2026-09-01
+- **Objective:** Record the standing stop after
+  `juggler_rate_free_floor_hardy` (CLOSE). Do not generate
+  another packaging of \(\lfloor n^{3/2}\rfloor^{9/4}\).
+- **Hypotheses:** none new. The remaining problem is already
+  named.
+- **Major results:** none. Placement only.
+  The laboratory-closed chain is
+  `juggler_v94_rate_free`, `juggler_v94_hardy_lift`,
+  `juggler_nil_pet_reentry`, `juggler_rate_free_floor_hardy`.
+  The live target stays
+  `juggler_tower_rate_free_equidistribution` (ACTIVE), now
+  boxed as an external theorem: rate-free equidistribution of
+  \(f(\lfloor h(n)\rfloor)\) for nonlinear Hardy \(f,h\), or a
+  route to the node-wise E-share
+  \(\beta>\beta_*\approx 0.36907\) that does not pass through
+  that composition. The \(\beta\)-fallback of
+  `J-rate-free-density-one` is not a different route.
+- **Refuted ideas:** none new. Nearby reformulations are
+  recorded as closed, not re-tested.
+- **Literature:** unchanged.
+- **Open:** the boxed external pair above.
+- **Decision:** no new branch. Dossier, branch ledger,
+  conjecture notes, and `AGENTS.md` termination paragraph
+  carry the stop.
+
+```text
+What was learned
+- the composition door is already CLOSE
+- finite Weyl of β is the same species
+- further literature names or Taylor/PET/keep-v
+  packagings are nearby reformulations
+- a different route to 0.36907 must not identify
+  the next letter through {x^{3/2}} / {v^{9/4}}
+- the rated K3 line stays PARKED (BB/GG/JJ)
+Strongest theorem
+- none new
+Strongest refutation
+- none new
+Reusable machinery
+- none
+Branch status
+- CLOSE (consolidation; no new dossier)
+Why
+- surviving laboratory statements on this door
+  are KNOWN or UNBUILT_DOOR; the remaining
+  theorem is external mathematics
+Best next question
+- prove rate-free equidistribution of
+  f(floor(h(n))) for nonlinear Hardy f,h,
+  or find a route to β>β* that does not
+  pass through that composition
+```
+

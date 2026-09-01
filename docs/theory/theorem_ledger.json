@@ -3795,9 +3795,31 @@
   "related_conjectures": []
  },
  {
+  "id": "J-w-family-thirty-three-thirty-seconds",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Theorem R at alpha = 33/32 (Phase 28): if c is smooth on (P, 2P] with c^{(r)} ~ k P^{33/32-r} for r = 0,...,4, derivative signs following the monomial pattern (e.g. c = (3k/4) n^{33/32}), and 1 <= k <= P^{1/24}, then K_c(P) << P^{1-1/96+eps} uniformly in k. Every Theorem 5.3 constraint was rerun: M1 deletion costs P^{13/96}; Lemma 3.7 holds at |B| <= P^{11/96}; Lemma 5.2 applies a fortiori (c, c', c'' all smaller than the printed 9/8 sizes); the offset composite is (9369/8192) k|j| n^{-7/32} at ratio 3.711; the zero-offset interpolant coefficient is 1701/1024 with sub-unit B <= 1.2 P^{-11/96}; the middle-band triple (5/4, 41/32, 3/2) uses E^dagger = E union {41/32, 57/32} with c_6(5/4, 41/32) = 1/55. The Corollary R' family remains CONJECTURE (row J-w-family-below-nine-eighths). Not a bound for alpha > 9/8 (row J-scale-invariant-R-extension remains REFUTED). Not a length-7 count and not a Paper B edit.",
+  "source": "docs/research/juggler_two_step_parity_lemma.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_two_step_parity.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-w-family-below-nine-eighths",
   "tag": "CONJECTURE",
-  "statement": "Conjecture (formerly Corollary R'; withdrawn from Paper B in Phase 26): Theorem R's bound K_c(P) << P^{1-1/96+eps} holds for every monomial family c^{(r)} ~ k P^{alpha-r} with alpha in a fixed finite subset of (0, 9/8] excluding {1/4, 3/4}, uniformly for k <= P^{1/24}. The Phase-24 argument was proof-by-monotonicity ('every constraint of the proof is monotone in alpha') without rerunning the standing estimates, the window drifts, or the two dozen dominance margins at any specific alpha != 9/8; after the Phase-25/26 rewrites of Step 5 the claim must be re-derived from scratch at each target alpha (the intended consumer was alpha = 33/32 in the length-7 splits, also withdrawn). Plausible but unproved. Not a bound for alpha > 9/8 (row J-scale-invariant-R-extension remains REFUTED).",
+  "statement": "Conjecture (formerly Corollary R'; withdrawn from Paper B in Phase 26): Theorem R's bound K_c(P) << P^{1-1/96+eps} holds for every monomial family c^{(r)} ~ k P^{alpha-r} with alpha in a fixed finite subset of (0, 9/8] excluding {1/4, 3/4}, uniformly for k <= P^{1/24}. The Phase-24 argument was proof-by-monotonicity without rerunning standing estimates at any alpha != 9/8. The single intended consumer alpha = 33/32 is now the separate exact row J-w-family-thirty-three-thirty-seconds (Phase 28); every other target alpha still needs its own exponent set and its own c_6. Not a bound for alpha > 9/8 (row J-scale-invariant-R-extension remains REFUTED).",
+  "source": "docs/research/juggler_two_step_parity_lemma.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_two_step_parity.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-length7-remainder-engine",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Lemma X4 (Phase 29): on the OO prefix, the Lemma X1 remainder splits as E_X = E_p + E_w with E_p ≍ p^{-1/2} decaying and E_w = (45/32) v^{1/8} θ_w^2 + O(n^{-27/32}). The reduction v^{1/2} = n^{9/8} - (3/4) n^{-3/8} θ_2 + O(n^{-9/8}) makes k E_X an engine A {n^{9/8}}^2 with A ≍ k n^{9/32} (coefficient < n, argument smooth of exponent 9/8, (n^{9/8})'' ≍ n^{-7/8} < 1). Fresnel bounds |hat F(u)| ≪ |A|^{-1/2} + |u|^{-1} for F(x) = e(A {x}^2), and Lemma 3.3 on e(u n^{9/8}) gives |sum e(k E_X)| ≪ P^{27/32+eps} uniformly for 1 ≤ |k| ≤ P^{1/24}. Discarding E_w costs k P^{1+9/32} and is forbidden; the piece is not a Lemma 5.2 (D3) decoration. The OOOEO remainder of Lemma X2 already decays. Does not close Theorem X (passenger inventory remains). Not a Paper B edit and not a density 57/64 claim.",
   "source": "docs/research/juggler_two_step_parity_lemma.md",
   "lean": "",
   "tests": [
@@ -3808,7 +3830,7 @@
  {
   "id": "J-depth7-engine-contracting",
   "tag": "CONJECTURE",
-  "statement": "Conjecture (formerly Theorem X; withdrawn from Paper B in Phase 26): each of the eight words OOEOO** and OOOEO** has cardinality N/128 + O(N^{1-1/96+eps}). The Phase-24 draft proof has a real hole: the rearrangement p^{3/2} = -(5/4) v^{9/8} + (9/4) w v^{5/8} - (3/2) w^{3/4} theta_p + E has 0 <= E <= (3/8) p^{-1/2} + (45/32) v^{1/8}, and the (45/32) v^{1/8} term is a second-order Taylor remainder that GROWS like n^{9/32}; discarding it (as the draft did, in decaying-remainder style) costs ~ k P^{1+9/32}, worse than trivial. A repair must retain k E as a subcritical extra phase and estimate it, and must also replace the withdrawn Corollary R' (alpha = 33/32 family) and rerun the passenger dominances. Not a termination claim.",
+  "statement": "Conjecture (formerly Theorem X; withdrawn from Paper B in Phase 26): each of the eight words OOEOO** and OOOEO** has cardinality N/128 + O(N^{1-1/96+eps}). The growing-remainder hole is closed (row J-length7-remainder-engine, Phase 29): k E_X is an engine A {n^{9/8}}^2 with A ≍ k n^{9/32}, not a discardable decaying remainder. The remaining hole is the passenger inventory (sixth-letter X-modes and the new n^{9/8}-frequencies against Lemma 5.2 / Theorem T). The alpha = 33/32 W-family is row J-w-family-thirty-three-thirty-seconds. The contraction 3^4 < 2^7 is unconditional. Not a termination claim.",
   "source": "docs/research/juggler_two_step_parity_lemma.md",
   "lean": "",
   "tests": [

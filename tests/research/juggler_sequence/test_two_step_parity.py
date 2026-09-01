@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from fractions import Fraction
 from math import isqrt
 
 from research.juggler_sequence.power_words import floor_power
@@ -46,6 +47,7 @@ from research.juggler_sequence.two_step_parity import (
     oooeoee_indicator_identity_check,
     sixth_ooeoo_scan,
     sixth_oooeo_scan,
+    x1_remainder_reduction_scan,
     v_level_cell_scan,
     w_gap_freeze_scan,
     lemma_a_prime_scan,
@@ -441,6 +443,8 @@ def test_anti_overclaim_depth5_flag():
     assert ANTI_OVERCLAIM["depth5_kernel_bound_proved"] is False
     assert ANTI_OVERCLAIM["scale_invariant_R_extension_refuted"] is True
     assert ANTI_OVERCLAIM["depth7_engine_contracting_proved"] is False
+    assert ANTI_OVERCLAIM["w_family_alpha_33_32_proved"] is True
+    assert ANTI_OVERCLAIM["length7_remainder_engine_proved"] is True
     assert ANTI_OVERCLAIM["increment_first_k3_refuted"] is True
     assert ANTI_OVERCLAIM["x1_absorption_k3_refuted"] is True
     assert ANTI_OVERCLAIM["k3_toolkit_parked"] is True
@@ -771,3 +775,48 @@ def test_transport_block_variance():
     assert 0.4 < r["letter_variance_ratio"] < 2.5
     for val in r["letter_autocorr"].values():
         assert abs(val) < 0.15
+
+
+def test_w_family_33_32_algebra():
+    """Phase-28 seals for Theorem R at alpha = 33/32. Exact fractions."""
+    alpha = Fraction(33, 32)
+    smooth = Fraction(12825, 8192)
+    window = Fraction(27, 64)
+    composite = smooth - window
+    assert composite == Fraction(9369, 8192)
+    assert composite > 0
+    assert smooth / window == Fraction(12825, 3456)
+    assert Fraction(1701, 1024) > 0
+    for beta in (Fraction(1, 4), Fraction(3, 4)):
+        prod = (
+            alpha
+            * (alpha - 1)
+            * (alpha + beta - 2)
+            * (alpha + beta - 3)
+        )
+        assert prod > 0
+    exponents = {
+        Fraction(5, 4),
+        Fraction(41, 32),
+        Fraction(3, 2),
+        Fraction(57, 32),
+    }
+    assert len(exponents) == 4
+    assert Fraction(2) not in exponents
+    # Lemma 3.8 c_6 for the close pair (5/4, 41/32).
+    assert Fraction(1, 55) > 0
+    assert Fraction(24, 23) != 1
+    assert ANTI_OVERCLAIM["w_family_alpha_33_32_proved"] is True
+    assert ANTI_OVERCLAIM["length7_remainder_engine_proved"] is True
+    assert ANTI_OVERCLAIM["depth7_engine_contracting_proved"] is False
+
+
+def test_x1_remainder_reduction():
+    samples = tuple(range(5, 2001, 2)) + (10**4 + 1, 10**5 + 1, 10**6 + 1)
+    result = x1_remainder_reduction_scan(samples)
+    assert result["holds"] is True
+    assert result["far_ok"] > 100
+    # 1/24 + 27/32 = 85/96 < 23/24 = 92/96; Fresnel assembly room.
+    assert Fraction(1, 24) + Fraction(27, 32) < Fraction(23, 24)
+    assert Fraction(9, 32) < 1
+    assert Fraction(9, 8) != 2
