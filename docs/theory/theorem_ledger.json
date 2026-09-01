@@ -5818,6 +5818,19 @@
     ]
   },
   {
+    "id": "J-cyclemin-hug-charge-max",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "Hug charge maximality and the §5.2 defect-to-charge consequence of Paper A, Lean end to end (Theorem 5.4 analytic half, previously human). The per-state charge stateCharge ν W = 1/(e^{Wν}·W·ν) — the paper's g(u) = 1/(n'^{2^u}·2^u·log n') written through the rational weight W = 3^a/2^k — is antitone in the weight (stateCharge_antitone, WalkChargeMax.lean); since the hug word carries the pointwise-least admissible odd count (hugOdds_le_of_admissible), the exact hug word maximises the total walk charge over ALL admissible exponent walks (hug_charge_maximal), strengthening the paper's fixed-(L,o) statement. Chained with the transport inequality: on a CycleMin cycle with n ≥ 400 and positive reduced log-base ν = log n − D, the cyclic defect sum obeys Σ_k 1/(x_k log x_k) ≤ Σ_k g(w_k) ≤ Σ_k g(hugWeight k) (cycleMin_defect_le_charge, cycleMin_defect_le_hug_charge), exponentiating cycleMin_transport via exp monotonicity only — no charge integral. Of Section 5's chain only the rotation average (Prop 5.5), Denjoy–Koksma (Thm 5.7), the strict within-(L,o) uniqueness of the maximiser, and the final kill evaluations remain human/verified computation. Not a cycle obstruction and not a halt theorem.",
+    "source": "docs/theory/juggler_finite_dynamics_note.md",
+    "lean": "Problems/Juggler/WalkChargeMax.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_walk_charge.py"
+    ],
+    "related_conjectures": [
+      "juggler_walk_window_envelope"
+    ]
+  },
+  {
     "id": "J-cyclemin-walk-ostrowski-numeration",
     "tag": "EXACT — LEAN VERIFIED",
     "statement": "General Ostrowski numeration and the structural digit cap (Paper A Theorem 5.8, digit-cap step, previously human). For any denominator sequence q with 0 < q 0 and q monotone satisfying the convergent recurrence bound q(j+1) ≤ a(j+1)·q(j) + q(j−1), the greedy digits from any L < q(n+1) obey the remainder invariant (ostroRem_lt), the digit cap b_j ≤ a_{j+1} (ostroDigit_le), exact reconstruction L = Σ b_j q_j when q 0 = 1 (ostro_sum_eq), and the digit-sum cap Σ b_j ≤ Σ a_j (ostro_digitSum_le) — problem-independent, reusable for any deeper certified quotient list. Instantiated at the certified θ denominators closed at q₁₃ = 301994: every L < 301994 has greedy digit sum at most 47 = a₁+⋯+a₁₃, structurally, with exact decomposition (theta_digitSum_le, theta_sum_eq); the function form agrees with the fold form greedyDigitSum everywhere below the window endpoint (greedy_eq_ostro_below_window, native_decide over all 301994 lengths), giving the fold corollary greedyDigitSum_le. The scan cap 37 on [50508, 301994) stays the sharper bound; the Denjoy–Koksma comparison stays analytic (KNOWN). Not a cycle obstruction and not a halt theorem.",
@@ -5856,6 +5869,20 @@
     "related_conjectures": [
       "juggler_inhomogeneous_ww_beats_finance",
       "juggler_walk_fan_growth_measure"
+    ]
+  },
+  {
+    "id": "J-above-anchor-hug-domination",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "AboveAnchor walk nonnegativity and hug domination: the Section 5 discrete walk layer ported from cycles to open trajectories. If AboveAnchor(n,w) with n >= 2, then every prefix length k <= |w| satisfies 2^k <= 3^{oddCount(w.take k)} (aboveAnchor_prefix_pow_le, AboveAnchorWalk.lean): a never-descending orbit segment keeps the exponent walk u_k >= 0, exactly the CycleMin hypothesis of cycleMin_prefix_pow_le with no cycle, by composing the defect-free upper envelope power_bound_contracts with the anchor hypothesis. Composed with hug minimality (hugOdds_least), every above-anchor prefix dominates the exact hug word in odd count: hugOdds k <= oddCount(w.take k) (aboveAnchor_prefix_odds_ge_hug; full-word form aboveAnchor_odds_ge_hug). Hence a hypothetical descent-free flight carries odd density at least log 2 / log 3 in every prefix, and the hug adversary prices open descent-free flight, not only hypothetical cycles. This constrains hypothetical non-terminating orbit segments only: not a halt theorem, not a descent-certificate existence claim, and not a cycle obstruction.",
+    "source": "docs/problems/juggler_above_anchor_walk.md",
+    "lean": "Problems/Juggler/AboveAnchorWalk.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_above_anchor_walk.py"
+    ],
+    "related_conjectures": [
+      "juggler_asymptotic_descent",
+      "juggler_descent_time_log"
     ]
   }
 ]

@@ -18782,4 +18782,18 @@ Best next question
   the dangerous-position partial quotients of log 2/log 3
 ```
 
+## Juggler hug charge maximality in Lean
+
+- **Date:** 2026-09-01
+- **Objective:** The transport pass ended on one question: is the analytic half of Theorem 5.4 — strict monotonicity of the charge \(g(u)\) and the exchange conclusion — formalizable with the elementary toolkit, or does it need the real charge integral?
+- **Hypotheses:** at walk points the charge is \(g=1/(e^{W\nu}W\nu)\) with rational weight \(W=2^u=3^a/2^k\) and \(\nu=\ln n'\), so antitonicity should be bare \(\exp\) monotonicity — confirmed; the module compiled clean on the first attempt
+- **Major results:**
+  - **Theorem 5.4's analytic half is Lean, strengthened** (`WalkChargeMax.lean`, `stateCharge_antitone` + `hug_charge_maximal`): the charge is antitone in the weight, and composed with `hugOdds_le_of_admissible` the exact hug word maximises the total walk charge over **all** admissible exponent walks, not just a fixed \((L,o)\) class. No charge integral; the strict within-\((L,o)\) uniqueness of the maximiser is the only piece left human
+  - **The §5.2 consequence is Lean end to end** (`cycleMin_defect_le_charge`, `cycleMin_defect_le_hug_charge`): exponentiating `cycleMin_transport`, on a CycleMin cycle at \(n\ge 400\) with positive reduced log-base \(\nu=\ln n-D\) the cyclic defect sum obeys \(\sum_k 1/(x_k\ln x_k)\le\sum_k g(w_k)\le\sum_k g(\mathrm{hugWeight}\,k)\). The full structural half of the walk-charge envelope — transport, defect-to-charge, hug maximality — is now inside the Lean trust boundary
+  - **Boundary kept honest:** the rotation average (Prop 5.5), Denjoy–Koksma (Thm 5.7), and the kill evaluations (Thms 5.2/5.9) remain human/verified computation; the Lean finance inequality is the division-free form, so a fully formal kill criterion would additionally need the defect-sum finance lower bound (Lemma 4.3 route) — noted, not opened. New row `J-cyclemin-hug-charge-max` (**EXACT — LEAN VERIFIED**); module in both barrels; Paper A §1.2 roles, §5.2/§5.3 notes, Appendix A, formalization map, AGENTS.md updated; full `lake build` clean, no `sorry`
+- **Refuted ideas:** none — the falsifier (a hidden dependence on the Laplace integral) did not fire
+- **Literature:** none new — the mathematics is Paper A's own §5.2–5.3
+- **Open:** remaining §5 Lean ladder — Denjoy–Koksma on `AddCircle` (Thm 5.7) and the rotation average (Prop 5.5); the defect-sum finance lower bound as the missing half of a formal kill criterion
+- **Decision:** PROMOTE (formalization landed); no new mathematical branch opened
+
 

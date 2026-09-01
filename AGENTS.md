@@ -49,11 +49,13 @@ for external review.
  the \(99\)-length survivor lattice on \((25781,16266),(1054,665)\)
  (`RunSurvivorLattice.lean`) stay in §4. Discrete word layer,
  quotient arithmetic, general Ostrowski numeration (window digit
- cap \(s(L)\le 47\) structural), and the transport inequality of
- Thm 5.3 are Lean (`WalkChargeWords.lean`, `OstrowskiSandwich.lean`,
- `OstrowskiNumeration.lean`, `WalkTransport.lean`); of the §5
- envelope chain only Denjoy–Koksma and the charge maximisation
- remain analytic prose. The walk program is terminal: the
+ cap \(s(L)\le 47\) structural), the transport inequality of
+ Thm 5.3, and the defect-to-hug-charge chain (§5.2 + Thm 5.4
+ analytic half) are Lean (`WalkChargeWords.lean`,
+ `OstrowskiSandwich.lean`, `OstrowskiNumeration.lean`,
+ `WalkTransport.lean`, `WalkChargeMax.lean`); of the §5 envelope
+ chain only the rotation average, Denjoy–Koksma, and the kill
+ evaluations remain analytic prose / verified computation. The walk program is terminal: the
  fan-minimum reduction (`juggler_walk_fan_minimum_law`, CONJECTURE)
  ties further asymptotic progress to unbounded partial quotients of
  \(\log 2/\log 3\) — classical OPEN. Killing the

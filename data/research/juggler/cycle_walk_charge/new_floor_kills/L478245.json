@@ -8,7 +8,7 @@
  "walk_rhs_certified": 8.158376627326281e-06,
  "kill_margin": 0.43338271577498205,
  "certified_excludes": false,
- "elapsed_s": 7.939551000017673,
+ "elapsed_s": 8.432345399982296,
  "device": "NVIDIA GeForce RTX 5090",
- "implementation": "tmp_gpu_walk.gpu_walk_budget (CuPy fp64 raw kernel)"
+ "implementation": "research.juggler_sequence.cycle_walk_charge_gpu.gpu_walk_budget (CuPy fp64 raw kernel)"
 }

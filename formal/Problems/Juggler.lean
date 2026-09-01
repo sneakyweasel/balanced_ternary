@@ -70,6 +70,8 @@ import Problems.Juggler.WalkChargeWords
 import Problems.Juggler.OstrowskiSandwich
 import Problems.Juggler.OstrowskiNumeration
 import Problems.Juggler.WalkTransport
+import Problems.Juggler.WalkChargeMax
+import Problems.Juggler.AboveAnchorWalk
 
 /-!
 # Juggler laboratory barrel

@@ -1,0 +1,17 @@
+{
+  "id": "juggler_descent_time_log",
+  "title": "Logarithmic descent time: D(n) = O(log n)",
+  "statement": "Let D(n) = min { k >= 1 : J^k(n) < n } be the first-descent time. Then sup_{n >= 2} D(n) / log n < infinity. Quantitative form of juggler_asymptotic_descent; implies it with an explicit certificate-length bound K(n) = c log n.",
+  "mathematical_domain": "Juggler open-trajectory dynamics / descent certificates",
+  "origin": "docs/problems/juggler_above_anchor_walk.md",
+  "status": "ACTIVE",
+  "first_seen": "2026-09-01",
+  "tested_range": "record table of the [2, 2000000] census in data/research/juggler/above_anchor_walk/summary.json: D/ln n at successive record holders stays in a bounded band (about 12-16) rather than growing; the sqrt(n log n) envelope scale is far above every record",
+  "counterexamples": [],
+  "proof_reference": "",
+  "lean_reference": "",
+  "literature": [],
+  "notes": "The walk heuristic predicts descent within O(sqrt(n log n)) steps if floor defects at near-minima were bounded below; the observed records are drastically smaller and track c log n, consistent with parity behaving quasi-randomly (each prefix has a fixed chance of going exponent-negative). A proof at any rate f(n) = o(n) would already give eventual descent. Not a claim.",
+  "not_a_halt_theorem": true,
+  "no_cycle_all_lengths": false
+}

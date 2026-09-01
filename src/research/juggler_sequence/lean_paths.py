@@ -39,6 +39,7 @@ PAPER_MODULES: tuple[str, ...] = (
     "OstrowskiSandwich",
     "OstrowskiNumeration",
     "WalkTransport",
+    "WalkChargeMax",
 )
 
 LAYERS: dict[str, Path] = {
@@ -114,6 +115,8 @@ LAYERS: dict[str, Path] = {
     "OstrowskiSandwich": JUGGLER_DIR / "OstrowskiSandwich.lean",
     "OstrowskiNumeration": JUGGLER_DIR / "OstrowskiNumeration.lean",
     "WalkTransport": JUGGLER_DIR / "WalkTransport.lean",
+    "WalkChargeMax": JUGGLER_DIR / "WalkChargeMax.lean",
+    "AboveAnchorWalk": JUGGLER_DIR / "AboveAnchorWalk.lean",
 }
 
 DYNAMICS = LAYERS["Dynamics"]
@@ -210,6 +213,8 @@ ESCAPE = LAYERS["Escape"]
 CYCLE_FINANCE = LAYERS["CycleFinance"]
 RUN_SURVIVOR_LATTICE = LAYERS["RunSurvivorLattice"]
 CYCLE_HEIGHT_FINANCE = LAYERS["CycleHeightFinance"]
+WALK_CHARGE_WORDS = LAYERS["WalkChargeWords"]
+ABOVE_ANCHOR_WALK = LAYERS["AboveAnchorWalk"]
 
 DELETED_ENGINE = (
     ENGINE_DIR / "FloorPower.lean",

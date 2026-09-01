@@ -1,0 +1,558 @@
+{
+  "experiment": "juggler_above_anchor_walk",
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "halt_theorem": false,
+    "eventual_descent_theorem": false,
+    "descent_time_bound_theorem": false,
+    "density_beyond_13_16_claimed": false,
+    "k3_reopened": false,
+    "paper_a_modified": false,
+    "n0_raised": false
+  },
+  "census": {
+    "n_max": 2000000,
+    "histogram": {
+      "1": 1000000,
+      "2": 499959,
+      "4": 125103,
+      "5": 125205,
+      "7": 46843,
+      "8": 54579,
+      "10": 23293,
+      "12": 14548,
+      "13": 20843,
+      "15": 10470,
+      "16": 14630,
+      "18": 7289,
+      "20": 5028,
+      "21": 7865,
+      "23": 4157,
+      "24": 6118,
+      "26": 3173,
+      "27": 4646,
+      "29": 2519,
+      "31": 1828,
+      "32": 2726,
+      "34": 1530,
+      "35": 2282,
+      "37": 1280,
+      "39": 997,
+      "40": 1461,
+      "42": 887,
+      "43": 1355,
+      "45": 703,
+      "46": 1089,
+      "48": 579,
+      "50": 415,
+      "51": 699,
+      "53": 399,
+      "54": 634,
+      "56": 360,
+      "58": 262,
+      "59": 441,
+      "61": 255,
+      "62": 399,
+      "64": 208,
+      "65": 340,
+      "67": 193,
+      "69": 123,
+      "70": 214,
+      "72": 168,
+      "73": 203,
+      "75": 112,
+      "77": 85,
+      "78": 115,
+      "80": 79,
+      "81": 129,
+      "83": 65,
+      "85": 49,
+      "86": 100,
+      "88": 51,
+      "89": 91,
+      "91": 54,
+      "92": 69,
+      "94": 45,
+      "96": 40,
+      "97": 66,
+      "99": 36,
+      "100": 48,
+      "102": 22,
+      "104": 20,
+      "105": 44,
+      "107": 28,
+      "108": 38,
+      "110": 13,
+      "111": 19,
+      "113": 25,
+      "115": 11,
+      "116": 21,
+      "118": 15,
+      "119": 25,
+      "121": 11,
+      "123": 9,
+      "124": 12,
+      "126": 7,
+      "127": 11,
+      "129": 10,
+      "130": 11,
+      "132": 7,
+      "134": 5,
+      "135": 11,
+      "137": 2,
+      "138": 10,
+      "140": 5,
+      "142": 4,
+      "143": 3,
+      "145": 5,
+      "146": 3,
+      "148": 1,
+      "149": 3,
+      "151": 3,
+      "153": 4,
+      "154": 5,
+      "156": 3,
+      "157": 2,
+      "159": 4,
+      "161": 2,
+      "162": 4,
+      "164": 1,
+      "165": 1,
+      "169": 1,
+      "170": 1,
+      "172": 2,
+      "173": 1,
+      "175": 1,
+      "178": 2,
+      "180": 1,
+      "183": 2,
+      "184": 1,
+      "188": 2,
+      "189": 1,
+      "195": 1,
+      "199": 1,
+      "203": 1,
+      "227": 1,
+      "253": 1,
+      "257": 1
+    },
+    "max_descent_time": 257,
+    "records": [
+      {
+        "n": 3,
+        "descent_time": 5,
+        "peak_bits": 6,
+        "gap_descent": true,
+        "d_over_ln_n": 4.551196133134186,
+        "d_over_sqrt_n_ln_n": 2.754147216209943
+      },
+      {
+        "n": 37,
+        "descent_time": 15,
+        "peak_bits": 45,
+        "gap_descent": true,
+        "d_over_ln_n": 4.154068401132861,
+        "d_over_sqrt_n_ln_n": 1.29772176688343
+      },
+      {
+        "n": 163,
+        "descent_time": 24,
+        "peak_bits": 84,
+        "gap_descent": true,
+        "d_over_ln_n": 4.711656255974,
+        "d_over_sqrt_n_ln_n": 0.8329110387223954
+      },
+      {
+        "n": 173,
+        "descent_time": 26,
+        "peak_bits": 272,
+        "gap_descent": true,
+        "d_over_ln_n": 5.045319001113863,
+        "d_over_sqrt_n_ln_n": 0.8707789816305183
+      },
+      {
+        "n": 193,
+        "descent_time": 70,
+        "peak_bits": 900,
+        "gap_descent": true,
+        "d_over_ln_n": 13.301181997674524,
+        "d_over_sqrt_n_ln_n": 2.1964204744790936
+      },
+      {
+        "n": 3889,
+        "descent_time": 77,
+        "peak_bits": 3350,
+        "gap_descent": true,
+        "d_over_ln_n": 9.315371790078812,
+        "d_over_sqrt_n_ln_n": 0.4294637257734635
+      },
+      {
+        "n": 4065,
+        "descent_time": 81,
+        "peak_bits": 1281,
+        "gap_descent": true,
+        "d_over_ln_n": 9.747094166886406,
+        "d_over_sqrt_n_ln_n": 0.44070686470122566
+      },
+      {
+        "n": 4229,
+        "descent_time": 86,
+        "peak_bits": 376,
+        "gap_descent": true,
+        "d_over_ln_n": 10.299745545269358,
+        "d_over_sqrt_n_ln_n": 0.45766071089073834
+      },
+      {
+        "n": 4649,
+        "descent_time": 104,
+        "peak_bits": 4168,
+        "gap_descent": true,
+        "d_over_ln_n": 12.31584346971016,
+        "d_over_sqrt_n_ln_n": 0.524890819414706
+      },
+      {
+        "n": 7847,
+        "descent_time": 115,
+        "peak_bits": 12433,
+        "gap_descent": true,
+        "d_over_ln_n": 12.823534182225755,
+        "d_over_sqrt_n_ln_n": 0.43351183742101196
+      },
+      {
+        "n": 13325,
+        "descent_time": 154,
+        "peak_bits": 4223,
+        "gap_descent": true,
+        "d_over_ln_n": 16.214968792177554,
+        "d_over_sqrt_n_ln_n": 0.43289723325374807
+      },
+      {
+        "n": 28719,
+        "descent_time": 156,
+        "peak_bits": 12480,
+        "gap_descent": true,
+        "d_over_ln_n": 15.196807122091958,
+        "d_over_sqrt_n_ln_n": 0.2873120349127437
+      },
+      {
+        "n": 34175,
+        "descent_time": 183,
+        "peak_bits": 19297,
+        "gap_descent": true,
+        "d_over_ln_n": 17.529995539170734,
+        "d_over_sqrt_n_ln_n": 0.3063812516428698
+      },
+      {
+        "n": 78901,
+        "descent_time": 253,
+        "peak_bits": 1234916,
+        "gap_descent": true,
+        "d_over_ln_n": 22.437135529641033,
+        "d_over_sqrt_n_ln_n": 0.2682271360093826
+      },
+      {
+        "n": 1122603,
+        "descent_time": 257,
+        "peak_bits": 696722,
+        "gap_descent": true,
+        "d_over_ln_n": 18.447852722802025,
+        "d_over_sqrt_n_ln_n": 0.06498698275715253
+      }
+    ],
+    "dyadic_max": {
+      "1": 5,
+      "2": 4,
+      "3": 5,
+      "4": 5,
+      "5": 15,
+      "6": 13,
+      "7": 70,
+      "8": 46,
+      "9": 62,
+      "10": 51,
+      "11": 81,
+      "12": 115,
+      "13": 154,
+      "14": 156,
+      "15": 183,
+      "16": 253,
+      "17": 199,
+      "18": 203,
+      "19": 188,
+      "20": 257
+    },
+    "gap_descents": 1999993,
+    "defect_descents": 0,
+    "defect_examples": [],
+    "unresolved": [
+      48443,
+      275485,
+      412027,
+      463157,
+      1245741,
+      1267909
+    ]
+  },
+  "profiles": [
+    {
+      "n": 365,
+      "steps": 15,
+      "descent": {
+        "descent_time": 15,
+        "odds": 9,
+        "gap_descent": true,
+        "landing_bits": 6
+      },
+      "max_u": 1.6797,
+      "max_rho": 0.000954,
+      "max_rho_k": 14,
+      "near_min_visits": [
+        {
+          "k": 3,
+          "u": 0.169925,
+          "delta": 0.000126,
+          "sigma": 0.737487,
+          "rho": 0.000172
+        }
+      ],
+      "near_min_count": 1,
+      "min_hug_gap": 0,
+      "hug_dominated": true
+    },
+    {
+      "n": 501,
+      "steps": 23,
+      "descent": {
+        "descent_time": 23,
+        "odds": 14,
+        "gap_descent": true,
+        "landing_bits": 6
+      },
+      "max_u": 2.0947,
+      "max_rho": 0.003024,
+      "max_rho_k": 11,
+      "near_min_visits": [
+        {
+          "k": 3,
+          "u": 0.169925,
+          "delta": 0.000667,
+          "sigma": 0.777076,
+          "rho": 0.000858
+        },
+        {
+          "k": 11,
+          "u": 0.094738,
+          "delta": 0.001276,
+          "sigma": 0.421928,
+          "rho": 0.003024
+        },
+        {
+          "k": 22,
+          "u": 0.189475,
+          "delta": 0.002361,
+          "sigma": 0.872492,
+          "rho": 0.002706
+        }
+      ],
+      "near_min_count": 3,
+      "min_hug_gap": 0,
+      "hug_dominated": true
+    },
+    {
+      "n": 1517,
+      "steps": 16,
+      "descent": {
+        "descent_time": 16,
+        "odds": 10,
+        "gap_descent": true,
+        "landing_bits": 10
+      },
+      "max_u": 1.8496,
+      "max_rho": 0.000742,
+      "max_rho_k": 11,
+      "near_min_visits": [
+        {
+          "k": 3,
+          "u": 0.169925,
+          "delta": 0.000194,
+          "sigma": 0.915561,
+          "rho": 0.000212
+        },
+        {
+          "k": 11,
+          "u": 0.094738,
+          "delta": 0.000369,
+          "sigma": 0.497121,
+          "rho": 0.000742
+        }
+      ],
+      "near_min_count": 2,
+      "min_hug_gap": 0,
+      "hug_dominated": true
+    },
+    {
+      "n": 1999,
+      "steps": 26,
+      "descent": {
+        "descent_time": 26,
+        "odds": 16,
+        "gap_descent": true,
+        "landing_bits": 8
+      },
+      "max_u": 2.5098,
+      "max_rho": 0.001798,
+      "max_rho_k": 19,
+      "near_min_visits": [
+        {
+          "k": 3,
+          "u": 0.169925,
+          "delta": 1.8e-05,
+          "sigma": 0.95005,
+          "rho": 1.9e-05
+        },
+        {
+          "k": 19,
+          "u": 0.01955,
+          "delta": 0.000186,
+          "sigma": 0.103694,
+          "rho": 0.001798
+        }
+      ],
+      "near_min_count": 2,
+      "min_hug_gap": 0,
+      "hug_dominated": true
+    },
+    {
+      "n": 6187,
+      "steps": 13,
+      "descent": {
+        "descent_time": 13,
+        "odds": 8,
+        "gap_descent": true,
+        "landing_bits": 11
+      },
+      "max_u": 2.0947,
+      "max_rho": 8.1e-05,
+      "max_rho_k": 11,
+      "near_min_visits": [
+        {
+          "k": 3,
+          "u": 0.169925,
+          "delta": 1.8e-05,
+          "sigma": 1.091276,
+          "rho": 1.6e-05
+        },
+        {
+          "k": 11,
+          "u": 0.094738,
+          "delta": 4.8e-05,
+          "sigma": 0.592529,
+          "rho": 8.1e-05
+        }
+      ],
+      "near_min_count": 2,
+      "min_hug_gap": 0,
+      "hug_dominated": true
+    },
+    {
+      "n": 34175,
+      "steps": 183,
+      "descent": {
+        "descent_time": 183,
+        "odds": 115,
+        "gap_descent": true,
+        "landing_bits": 10
+      },
+      "max_u": 10.3233,
+      "max_rho": 1e-06,
+      "max_rho_k": 182,
+      "near_min_visits": [],
+      "near_min_count": 0,
+      "min_hug_gap": 0,
+      "hug_dominated": true
+    },
+    {
+      "n": 78901,
+      "steps": 253,
+      "descent": {
+        "descent_time": 253,
+        "odds": 159,
+        "gap_descent": true,
+        "landing_bits": 9
+      },
+      "max_u": 16.212,
+      "max_rho": 0.000111,
+      "max_rho_k": 252,
+      "near_min_visits": [
+        {
+          "k": 252,
+          "u": 0.009038,
+          "delta": 8e-06,
+          "sigma": 0.070859,
+          "rho": 0.000111
+        }
+      ],
+      "near_min_count": 1,
+      "min_hug_gap": 0,
+      "hug_dominated": true
+    },
+    {
+      "n": 1122603,
+      "steps": 257,
+      "descent": {
+        "descent_time": 257,
+        "odds": 162,
+        "gap_descent": true,
+        "landing_bits": 18
+      },
+      "max_u": 15.0812,
+      "max_rho": 0.0,
+      "max_rho_k": 244,
+      "near_min_visits": [
+        {
+          "k": 3,
+          "u": 0.169925,
+          "delta": 0.0,
+          "sigma": 1.741395,
+          "rho": 0.0
+        },
+        {
+          "k": 244,
+          "u": 0.084225,
+          "delta": 0.0,
+          "sigma": 0.837516,
+          "rho": 0.0
+        },
+        {
+          "k": 255,
+          "u": 0.178963,
+          "delta": 0.0,
+          "sigma": 1.839882,
+          "rho": 0.0
+        }
+      ],
+      "near_min_count": 3,
+      "min_hug_gap": 0,
+      "hug_dominated": true
+    }
+  ],
+  "lean": {
+    "AboveAnchorWalk.aboveAnchor_prefix_pow_le": true,
+    "AboveAnchorWalk.aboveAnchor_prefix_odds_ge_hug": true,
+    "AboveAnchorWalk.aboveAnchor_odds_ge_hug": true,
+    "MinimumRelative.AboveAnchor": true,
+    "WalkChargeWords.hugOdds_least": true
+  },
+  "notes": {
+    "gap_descent": "first descent has 3^{a_D} < 2^D: the walk itself went negative; Lean power_bound_contracts certifies the drop",
+    "defect_descent": "first descent has 3^{a_D} >= 2^D: floors alone pushed below the anchor while the walk stayed nonnegative",
+    "rho": "fraction of the walk slack (w_k - 1) ln n consumed by accumulated floor defect while above the anchor"
+  },
+  "classification": "ABOVE_ANCHOR_WALK_INCOMPLETE"
+}

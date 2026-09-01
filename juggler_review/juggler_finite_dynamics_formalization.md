@@ -615,9 +615,8 @@ envelope `cycleMin_prefix_pow_le` (CycleFinance) with
 the survivor-lattice generators of Proposition 4.9 lie on the hug
 diagonal \(o=o_{\min}(L)\) — \((1054,665)\), \((25781,16266)\),
 \((50508,31867)\) (`hugOdds_1054`, `hugOdds_lattice_base`,
-`hugOdds_seed`, list form `hugOdds_convergent_denoms`). The real
-charge and its maximisation (the analytic half of Theorem 5.4) and
-the Laplace integral (Proposition 5.5) are human proofs.
+`hugOdds_seed`, list form `hugOdds_convergent_denoms`). The
+Laplace integral (Proposition 5.5) is a human proof.
 
 `WalkTransport.lean` proves the transport inequality of Theorem 5.3
 end to end in log form. The walk weight \(w_k=2^{u_k}=3^{a_k}/2^k\)
@@ -635,10 +634,27 @@ from the floor cells and \(-\ln(1-t)\le 1.05t\) on \(t\le 1/21\)
 priced at \(x_j\ge n\) (`cycleMin_iterate_ge`) against
 \(w_{j+1}\ge\tfrac32\), even injections at \(x_j\ge n^2\)
 (`cycleMin_even_ge_sq`) against \(w_{j+1}\ge 1\)
-(`one_le_walkWeight`, from `cycleMin_prefix_pow_le`). The
-walk-charge consequence — the DP over nonnegative closed walks at
-the reduced base and its feed into the \(6/5\) unroll — stays a
-human reduction.
+(`one_le_walkWeight`, from `cycleMin_prefix_pow_le`).
+
+`WalkChargeMax.lean` closes the chain from transport to the hug
+charge (the §5.2 consequence and the analytic half of Theorem 5.4).
+The per-state charge is written through the rational weight,
+\(\mathrm{stateCharge}\ \nu\ W=1/(e^{W\nu}W\nu)\) — the paper's
+\(g(u)=1/(n'^{2^u}2^u\ln n')\) with \(W=2^u\), \(\nu=\ln n'\) —
+and is antitone in the weight by elementary \(\exp\) monotonicity
+(`stateCharge_antitone`; no charge integral). Composed with
+`hugOdds_le_of_admissible`, the exact hug word maximises the total
+charge over *all* admissible exponent walks (`hug_charge_maximal`),
+a strengthening of the fixed-\((L,o)\) paper statement. Composed
+with `cycleMin_transport`: on a CycleMin cycle at \(n\ge 400\) with
+positive reduced log-base \(\nu=\ln n-D\), the cyclic defect sum
+satisfies \(\sum_k 1/(x_k\ln x_k)\le\sum_k g(w_k)\le\sum_k
+g(\mathrm{hugWeight}\ k)\) (`cycleMin_defect_le_charge`,
+`cycleMin_defect_le_hug_charge`). What remains human in the §5
+chain: the rotation average (Proposition 5.5), Denjoy–Koksma
+(Theorem 5.7), the strict within-\((L,o)\) uniqueness of the
+maximiser, and the final kill evaluations of Theorems 5.2/5.9
+and Corollary 5.10 (verified computation).
 
 `OstrowskiSandwich.lean` certifies the quotient arithmetic of
 Theorem 5.7: the big-integer sandwich
@@ -671,8 +687,9 @@ form with the fold form `greedyDigitSum` below the window endpoint
 (`greedy_eq_ostro_below_window`, corollary `greedyDigitSum_le`).
 Denjoy–Koksma and the cylinder-interval bridge from the endpoints
 to \(\theta\) itself are classical and stay prose; the
-Denjoy–Koksma comparison and the kill table (Theorem 5.9) are human
-proof plus certified computation, not Lean.
+Denjoy–Koksma comparison and the kill tables (Theorem 5.9,
+Corollary 5.10) are human proof plus certified computation, not
+Lean.
 
 ## 9. Exact floor reductions for the discrepancy paper
 

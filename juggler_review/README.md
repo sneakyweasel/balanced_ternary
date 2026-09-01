@@ -15,7 +15,9 @@ is not the laboratory. No termination theorem is claimed.
    \(L\ge 50508\) at the laboratory floor \(26254995\); the
    Section 5 walk-charge envelope (transport, hug adversary,
    Denjoy–Koksma over certified Ostrowski blocks, window
-   theorem) raises the bound to \(L\ge 176251\) at that floor.
+   theorem) raises the bound to \(L\ge 176251\) at that floor,
+   and to \(L\ge 478245\) at the second certified floor
+   \(162849448\) (Corollary 5.10).
    Every nontrivial cycle has at least four even letters, hence
    period at least eleven. Finance-survivor lengths through
    \(10^5\) are supporting material.

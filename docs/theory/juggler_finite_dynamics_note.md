@@ -44,7 +44,9 @@ walk-charge envelope — transport of the floor losses to a
 reduced base, identification of the extremal exponent walk as a
 rotation word, and a Denjoy--Koksma bound over certified
 Ostrowski blocks — then extends the exclusion at the laboratory
-floor: any nontrivial cycle has period at least \(176251\). We
+floor: any nontrivial cycle has period at least \(176251\); a
+second certified floor, \(N_0=162849448\), raises the bound to
+\(478245\). We
 also prove that every nontrivial cycle contains at least four
 even steps, and hence has period at least eleven; that bound
 uses no descent floor. The core arguments are formalized in
@@ -99,7 +101,9 @@ The laboratory instance is \(N_0=26254995\), certified by the
 same exact first-passage method (Proposition 5.1); the same
 table then gives \(L\ge 50508\) (Theorem 5.2), and the
 walk-charge envelope of Section 5 amplifies it to
-\(L\ge 176251\) (Theorem 5.9). The architecture is
+\(L\ge 176251\) (Theorem 5.9); the second certified floor
+\(N_0=162849448\) raises it to \(L\ge 478245\)
+(Corollary 5.10). The architecture is
 \[
 \text{envelope}
 \to
@@ -145,8 +149,9 @@ secondary. Section 5 certifies the laboratory floor
 exponent-walk charge, identifies its extremal word as a
 rotation word, and proves a census-free envelope for every
 length in the window \([50508,301994)\); the resulting kill
-table gives the period bound \(176251\). Section 6 records
-limitations.
+table gives the period bound \(176251\), and a second certified
+floor raises it to \(478245\) (Corollary 5.10). Section 6
+records limitations.
 
 Throughout, \(\mathbb N=\{1,2,3,\ldots\}\). Write \(J^k\) for the
 \(k\)-fold iterate. A nonempty realized word \(w\) with
@@ -195,7 +200,10 @@ Denjoy--Koksma bound over certified Ostrowski blocks
 window \([50508,301994)\) (Theorem 5.8). At the laboratory
 floor the resulting kill table leaves a single finance survivor
 below \(2\cdot 10^5\): any nontrivial cycle has period at least
-\(176251\) (Theorem 5.9).
+\(176251\) (Theorem 5.9). At the second certified floor
+\(N_0=162849448\) the same envelope leaves only the
+semiconvergent fan member \(478245\): any nontrivial cycle has
+period at least \(478245\) (Corollary 5.10).
 
 These statements are not interchangeable. Theorem 4.4 is
 the conceptual sharp inequality (constant \(1\)). Corollary 4.5
@@ -252,7 +260,9 @@ The layers of the argument are as follows.
 9. *New theorem:* the reduced-base transport and the uniform
    window envelope of Section 5 (Theorems 5.3 and 5.8).
 10. *New consequence:* period at least \(176251\) at the
-    laboratory floor \(26254995\) (Theorem 5.9).
+    laboratory floor \(26254995\) (Theorem 5.9), and \(478245\)
+    at the second certified floor \(162849448\)
+    (Corollary 5.10).
 
 Financing as an idea, logarithmic step inequalities, the
 continued-fraction phenomenon, the Denjoy--Koksma inequality,
@@ -273,7 +283,8 @@ region unless the period is at least \(25781\). Coupling the
 states through the closed exponent walk and bounding the
 extremal rotation word by Denjoy--Koksma over certified
 Ostrowski blocks raises that period bound to \(176251\) at the
-laboratory floor, census-free on an explicit window of lengths.
+laboratory floor, census-free on an explicit window of lengths,
+and to \(478245\) at the second certified floor.
 
 ### 1.2 Verification
 
@@ -298,9 +309,11 @@ regeneration commands are Appendix B.
 
 **Roles.** Independently proved: the finance inequality
 (Theorem 4.4). Computational input: every \(2\le n\le 10^6\)
-reaches \(1\) (this proposition), and every
+reaches \(1\) (this proposition), every
 \(2\le n\le 26254995\) reaches \(1\) (Proposition 5.1, the
-laboratory instance). Independently recomputed: the exact
+laboratory instance), and every \(2\le n\le 162849448\) reaches
+\(1\) (Corollary 5.10, the second laboratory instance).
+Independently recomputed: the exact
 first-passage runs of Appendix B. Not proved: global
 termination.
 
@@ -308,13 +321,18 @@ Theorem 4.6 applies Corollary 4.5 to this input and certifies
 the table with the conservative coefficient \(6/5\). Theorem 4.7
 is a human proof; Theorem 4.8 reuses the gap table under that
 packing. Proposition 4.9 is integer arithmetic in Lean. In
-Section 5, Theorems 5.4 and 5.7 and Lemma 5.6 are human proofs
-(Denjoy--Koksma is used as a known tool); the transport
-inequality of Theorem 5.3 (`cycleMin_transport`) and the
+Section 5, Theorem 5.7 is a human proof (Denjoy--Koksma is used
+as a known tool) and so is the rotation identification in
+Lemma 5.6, whose word identity itself is Lean
+(`budgetedWord_eq_hugWord`); the transport
+inequality of Theorem 5.3 (`cycleMin_transport`), the
+defect-to-hug-charge consequence of §5.2
+(`cycleMin_defect_le_charge`, `cycleMin_defect_le_hug_charge`),
+the charge-maximisation half of Theorem 5.4
+(`hug_charge_maximal`; strict uniqueness stays human), and the
 digit-cap step and digit scan of Theorem 5.8 (`ostroDigit_le`,
-`theta_digitSum_le`, `window_digit_scan`) are Lean-verified,
-while the walk-charge reduction that follows Theorem 5.3 stays
-human; Theorems 5.2 and 5.9 are independently certified
+`theta_digitSum_le`, `window_digit_scan`) are Lean-verified;
+Theorems 5.2 and 5.9 are independently certified
 computations at the laboratory floor, with the same trust
 boundary as Theorem 4.6 (exact integer arithmetic plus guarded
 float comparisons). This is not a claim that the paper as a
@@ -1536,9 +1554,10 @@ as a rotation word, and a Denjoy--Koksma bound over certified
 Ostrowski blocks produces an envelope valid for *every* length
 in an explicit window — no per-length census and no dynamic
 program is needed on that window. The kill table at the
-laboratory floor then yields the period bound \(176251\).
-Throughout, survivors are finance-survivors in the sense of
-Section 1; nothing here is a halt theorem.
+laboratory floor then yields the period bound \(176251\), and
+the second certified floor raises it to \(478245\)
+(Corollary 5.10). Throughout, survivors are finance-survivors
+in the sense of Section 1; nothing here is a halt theorem.
 
 ### 5.1 The laboratory floor
 
@@ -1615,8 +1634,7 @@ per-step floor losses (`log_floorPower_odd_ge`,
 full induction (`cycleMin_transport`, `WalkTransport.lean`) are
 elementary real arithmetic over the formalized cycle envelopes
 `cycleMin_iterate_ge`, `cycleMin_even_ge_sq`, and
-`cycleMin_prefix_pow_le`. The walk-charge consequence below
-stays a human reduction.
+`cycleMin_prefix_pow_le`.
 
 Consequently the cyclic defect sum \(\sum_i 1/(x_i\ln x_i)\) is
 bounded above by the maximum of the walk charge
@@ -1627,6 +1645,16 @@ parameter remains; the walk value feeds the \(6/5\) unroll of
 Theorem 4.4 exactly as the parity charge did. At the laboratory
 floor and window lengths, \(D\le 4.6\cdot 10^{-3}\), so
 \(\ln n'\ge 17.07\).
+
+This consequence is itself Lean end to end
+(`WalkChargeMax.lean`): writing the charge through the rational
+weight, \(g=1/(e^{W\nu}W\nu)\) with \(W=2^u=3^a/2^k\) and
+\(\nu=\ln n'\), exponentiating the transport inequality gives
+\(\sum_k 1/(x_k\ln x_k)\le\sum_k g(w_k)\)
+(`cycleMin_defect_le_charge`), and the charge of the realized
+word is dominated by the hug charge of the same length
+(`cycleMin_defect_le_hug_charge`, using Theorem 5.4 below), all
+under the recorded hypothesis \(\nu>0\).
 
 ### 5.3 The adversary is the hug word
 
@@ -1650,6 +1678,15 @@ exhausted, \(u=\text{surplus}+e_{\mathrm{left}}
 Prefix-minimality plus strict monotonicity of \(g\) gives
 unique maximality. The prefix-minimality core is Lean:
 `hugOdds_le_of_admissible`. \(\square\)
+
+The analytic half is also Lean, in a strengthened form
+(`WalkChargeMax.lean`): the charge is antitone in the rational
+weight (`stateCharge_antitone`, elementary \(\exp\)
+monotonicity — no charge integral), so the exact hug word
+maximises the total charge over *all* admissible exponent
+walks, not just a fixed \((L,o)\) class
+(`hug_charge_maximal`). Only the strict within-\((L,o)\)
+uniqueness of the maximiser remains a human argument.
 
 The statement is about the \(u\ge 0\) relaxation, not about
 realized cycle words. Word-order (Christoffel) prefix-dominance
@@ -1823,12 +1860,39 @@ the walk charge gives margin \(0.196\) — correctly no kill
 mechanism did not change between the two floors; the target
 did.
 
+**Corollary 5.10 (verified computation; second laboratory
+floor).**
+Every integer \(2\le n\le 162849448\) reaches \(1\)
+(first-passage certificate exactly as in Proposition 5.1: the
+extension segment walks \(68297226\) odd starts over \(547\)
+contiguous chunk records with exact integer square roots and no
+failures of any kind; the maximum first passage is \(433\)
+steps at seed \(78641579\), and the largest intermediate has
+\(463362780\) bits at seed \(92502777\); hashes in Appendix B).
+At \(N_0=162849448\) the parity table excludes the previous
+survivor cluster \(\{50508,101016,151524\}\) outright and
+leaves \(25\) survivors through \(L=6\cdot 10^5\); the walk
+charge of Theorem 5.3 kills the \(15\) below \(478245\)
+(margins \(1.198\) at \(176251\) and \(352502\), up to
+\(8.44\)); lengths \(L\le 176250\) stay excluded because both
+exclusions are monotone in the floor. The combined contiguous
+excluded prefix is \(478244\): any nontrivial Juggler cycle has
+period at least \(478245\).
+
+The sole survivor is the semiconvergent fan member
+\(478245=176251+301994\): required improvement over parity
+\(19.46\), direct walk margin \(0.4334\) — the obstruction is
+the Diophantine quality of \(|3^o-2^L|\) along the fan, not the
+envelope. The kill table recomputes on commodity hardware in
+minutes (Appendix B).
+
 Beyond \(q_{13}=301994\) the window theorem needs deeper
 certified quotients of \(\theta\), and killing the remaining
-near-convergent survivors (starting with \(L=176251\)) is a
-Diophantine question about \(|3^o-2^L|\); neither is attempted
-here. The survivors are finance-survivors, not candidate
-cycles, and nothing in this section is a halt theorem.
+near-convergent survivors (starting with the fan member
+\(L=478245\)) is a Diophantine question about \(|3^o-2^L|\);
+neither is attempted here. The survivors are
+finance-survivors, not candidate cycles, and nothing in this
+section is a halt theorem.
 
 ## 6. Limitations and future directions
 
@@ -1933,13 +1997,14 @@ formally verified.
 | Proposition 4.9 | `run_survivor_unimodular`, `run_survivor_seed_F2`, `run_survivor_seed_F3`, `three_pow_step_gt_two_pow_step`, `runSurvivors_length` |
 | Proposition 5.1 | laboratory floor; certified computation, not Lean |
 | Theorem 5.2 | raised cutoff; verified computation, not Lean |
-| Theorem 5.3 | transport inequality `cycleMin_transport`, per-step losses `log_floorPower_even_ge`, `log_floorPower_odd_ge` (`WalkTransport.lean`); walk-charge reduction human |
-| Theorem 5.4 | combinatorial core `hugOdds_le_of_admissible`; cycle-word domination `cycleMin_prefix_odds_ge_hug`, `cycleMin_odds_ge_hug`; charge maximisation is a human proof |
+| Theorem 5.3 | transport inequality `cycleMin_transport`, per-step losses `log_floorPower_even_ge`, `log_floorPower_odd_ge` (`WalkTransport.lean`); §5.2 consequence `cycleMin_defect_le_charge`, `cycleMin_defect_le_hug_charge` (`WalkChargeMax.lean`) |
+| Theorem 5.4 | combinatorial core `hugOdds_le_of_admissible`; cycle-word domination `cycleMin_prefix_odds_ge_hug`, `cycleMin_odds_ge_hug`; charge maximisation `stateCharge_antitone`, `hug_charge_maximal` (`WalkChargeMax.lean`); strict within-\((L,o)\) uniqueness human |
 | Proposition 5.5 | rotation average; human proof, not Lean |
 | Lemma 5.6 | `budgetedWord_eq_hugWord`, `hugOdds_pow_ge`, `hugOdds_pow_lt`, `hugOdds_pow_gt`, `hugOdds_least` |
 | Theorem 5.7 | Denjoy--Koksma (known), not Lean; quotient arithmetic `theta_sandwich_upper`, `theta_sandwich_lower`, `lower_lt_walkTheta`, `walkTheta_lt_upper`, `cf_lower_prefix`, `cf_upper_prefix`, `theta_convergent_denominators` |
 | Theorem 5.8 | digit cap Lean: general numeration `ostroDigit_le`, `ostro_sum_eq`, `ostro_digitSum_le`, instance `theta_digitSum_le`, `greedyDigitSum_le`; scan `window_digit_scan`, `window_digit_cap`, `window_digit_max`; Denjoy--Koksma comparison human |
 | Theorem 5.9 | kill table; verified computation, not Lean |
+| Corollary 5.10 | second floor and kill table; verified computation, not Lean |
 | short certificates (Section 6) | `even_finiteProgress`, `odd_even_finiteProgress` |
 | no certificate \(\Rightarrow\) odd-to-odd | `no_finiteProgress_implies_odd_odd` |
 | induction to \(1\) | `reachesOne_of_all_finiteProgress` |
@@ -2019,6 +2084,24 @@ The walk-charge kill table of Theorem 5.9 is
 `data/research/juggler/cycle_walk_charge/survey.json`; the
 SHA-256 of the walk-alive list is
 `225d76ad12802a690934d01e2d37b3418865441a6825a015dd883c989d8942ec`.
+The second-floor certificate of Corollary 5.10 is
+`data/research/juggler/cycle_finance/floor_verify/N162849448/certificate.json`;
+the SHA-256 of its chunk records is
+`35d9755ce52a225a161b009d0f3674b24a5d0add16035f09ea83cf3880414ae4`.
+Its parity survivor scan is
+`data/research/juggler/cycle_walk_charge/new_floor_parity_leftovers.json`,
+and the \(15\) kill records under
+`data/research/juggler/cycle_walk_charge/new_floor_kills/` have
+SHA-256
+`148180cbbfba93985b7a1be455fee16db97816f1534b1feca5a4740d475aeda0`
+(concatenated in length order); the direct non-kill record for
+the survivor \(478245\) (margin \(0.4334\)) is stored alongside.
+The dynamic program of Theorem 5.3 also has a GPU port
+(`research.juggler_sequence.cycle_walk_charge_gpu`, CuPy,
+IEEE double precision) that reproduces the stored CPU kill
+records to relative error below \(10^{-13}\) at roughly
+\(450\times\) speed; the entire kill table of this note
+recomputes in minutes on one consumer GPU.
 The probes are
 `research.juggler_sequence.cycle_walk_charge` (transport and
 kill table), `cycle_walk_ostrowski` (certified quotient

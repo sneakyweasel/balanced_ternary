@@ -26,6 +26,7 @@ import Problems.Juggler.WalkChargeWords
 import Problems.Juggler.OstrowskiSandwich
 import Problems.Juggler.OstrowskiNumeration
 import Problems.Juggler.WalkTransport
+import Problems.Juggler.WalkChargeMax
 
 /-!
 # Juggler paper barrel (Paper A)
@@ -109,12 +110,15 @@ The note's Lean-tagged theorems are listed in its Appendix A:
 * 5.3 (transport inequality, log form) `cycleMin_transport`, with
       per-step floor losses `log_floorPower_even_ge`,
       `log_floorPower_odd_ge` and the weight recursion
-      (`WalkTransport.lean`); the walk-charge DP consequence stays
-      a human reduction
+      (`WalkTransport.lean`); §5.2 consequence
+      `cycleMin_defect_le_charge`, `cycleMin_defect_le_hug_charge`
+      (`WalkChargeMax.lean`)
 * 5.4 (combinatorial core) `hugOdds_le_of_admissible`,
       cycle-word domination `cycleMin_prefix_odds_ge_hug`,
-      `cycleMin_odds_ge_hug` (`WalkChargeWords.lean`); the analytic
-      half (charge maximisation) is a human proof
+      `cycleMin_odds_ge_hug` (`WalkChargeWords.lean`); analytic
+      half (charge maximisation) `stateCharge_antitone`,
+      `hug_charge_maximal` (`WalkChargeMax.lean`); the strict
+      within-`(L,o)` uniqueness of the maximiser stays human
 * 5.6 `budgetedWord_eq_hugWord`, `hugOdds_pow_ge`, `hugOdds_pow_lt`,
       `hugOdds_pow_gt`, `hugOdds_least` (`WalkChargeWords.lean`)
 * 5.5 (certified quotient arithmetic) `theta_sandwich_upper`,
