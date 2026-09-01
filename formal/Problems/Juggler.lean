@@ -66,6 +66,8 @@ import Problems.Juggler.Escape
 import Problems.Juggler.CycleFinance
 import Problems.Juggler.RunSurvivorLattice
 import Problems.Juggler.CycleHeightFinance
+import Problems.Juggler.WalkChargeWords
+import Problems.Juggler.OstrowskiSandwich
 
 /-!
 # Juggler laboratory barrel

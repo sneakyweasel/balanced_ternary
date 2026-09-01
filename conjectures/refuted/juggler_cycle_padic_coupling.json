@@ -13,8 +13,8 @@
   "first_seen": "2026-09-01",
   "lean_reference": "global_defect_identity",
   "literature": [
-    "chim-2025-two-p-adic-logarithms",
-    "wu-wang-2014-irrationality-log3",
+    "chim-2025-p-adic-two-logarithms",
+    "wu-wang-2014-irrationality-measure-log3",
     "rhin-1987-pade-irrationality",
     "simons-de-weger-2005-collatz-m-cycles",
     "laurent-mignotte-nesterenko-1995-two-logarithms"

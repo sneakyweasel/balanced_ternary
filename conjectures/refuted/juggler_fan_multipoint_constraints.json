@@ -1,0 +1,32 @@
+{
+  "id": "juggler_fan_multipoint_constraints",
+  "title": "A Juggler CycleMin cycle forces two incompatible fan-quality logarithmic approximations",
+  "statement": "A CycleMin cycle whose length L is a survivor-fan member forces two or more distinct fan-quality (length, odd-count) relations simultaneously — neighboring excursions, successive minima, or related subwords — so that the classical exponent-shift separation of powers of 2 and 3 kills the fan without requiring bounded partial quotients of log 2 / log 3.",
+  "mathematical_domain": "Juggler cycle finance / Diophantine approximation of log 2 / log 3",
+  "origin": "docs/problems/juggler_cycle_fan_multipoint.md",
+  "status": "REFUTED",
+  "first_seen": "2026-09-01",
+  "tested_range": "hug circuit census at L = 19, 84, 1054, 25781, 50508, 176251; exponent-neighbor ratios on 9 leftover-quality competition rows; fan-neighbor theta ratios on certified fans A (56 members) and B (5 members); leftover-sum search on 88 quality lengths",
+  "counterexamples": [
+    "hug circuits are only (1,1) and (2,1) on every leftover seed through 176251 (5415 OE + 13226 OOE at L=50508)",
+    "at L=50508, theta(L+1)/theta(L) = 4.59e4 and theta(L-1)/theta(L) = 6.88e4, but the cycle does not constrain the neighbor",
+    "fan A pair 176251, 478245 has theta-ratio 0.982 and both Dirichlet-good: Q-step neighbors are not exponent-neighbors",
+    "two-good split 1054+50508=51562 is a lattice identity; hug still only OE/OOE; 25781+25781 is archived equal-valleys",
+    "parent step Q=301994 has theta ~ 2/3 (wrong-side convergent), not a cheap returning circuit"
+  ],
+  "proof_reference": "docs/problems/juggler_cycle_fan_multipoint.md",
+  "lean_reference": "",
+  "literature": [
+    "wu-wang-2014-irrationality-measure-log3",
+    "salikhov-2007-irrationality-measure-ln3",
+    "tao-2011-hilbert-seventh-powers-2-3",
+    "chim-2025-p-adic-two-logarithms",
+    "mathoverflow-2012-powers-2-3",
+    "rhin-1987-pade-irrationality",
+    "laurent-mignotte-nesterenko-1995-two-logarithms",
+    "simons-de-weger-2005-collatz-m-cycles"
+  ],
+  "notes": "Phase 0 only. The literature is stored and the neighbor-relation distinction is the reusable output. Baker-type gap floors stay REFUTED as leftover killers (juggler_baker_kills_near_convergents). Sibling Attack B is CLOSE (juggler_cycle_padic_coupling); sibling Attack C is PROMOTE (juggler_cycle_walk_fan_growth). Not a halt theorem.",
+  "not_a_halt_theorem": true,
+  "no_cycle_all_lengths": false
+}

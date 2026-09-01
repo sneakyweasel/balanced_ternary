@@ -1,6 +1,6 @@
 # Juggler reviewer bundle (two manuscripts)
 
-Author: Philippe Cochin. Date: 31 August 2026.
+Author: Philippe Cochin. Date: 1 September 2026.
 Status: Paper A is a submission candidate; Paper B is a working draft.
 
 This folder is a snapshot of the files to send for external review. It
@@ -11,10 +11,14 @@ is not the laboratory. No termination theorem is claimed.
 1. [juggler_finite_dynamics_note.pdf](juggler_finite_dynamics_note.pdf)
    — **Paper A**: *Cycle financing and a period lower bound for
    the Juggler map*. Finance inequality plus the verified
-   descent floor give \(L\ge 25781\). Every nontrivial cycle
-   has at least four even letters, hence period at least eleven.
-   Finance-survivor lengths through \(10^5\) are supporting
-   material.
+   descent floor give \(L\ge 25781\) at \(10^6\) and
+   \(L\ge 50508\) at the laboratory floor \(26254995\); the
+   Section 5 walk-charge envelope (transport, hug adversary,
+   Denjoy–Koksma over certified Ostrowski blocks, window
+   theorem) raises the bound to \(L\ge 176251\) at that floor.
+   Every nontrivial cycle has at least four even letters, hence
+   period at least eleven. Finance-survivor lengths through
+   \(10^5\) are supporting material.
 2. [juggler_parity_discrepancy_note.pdf](juggler_parity_discrepancy_note.pdf)
    — **Paper B**: parity equidistribution of nested floor powers, the
    kernel theorem, depth-4 completeness over odd starts, and the

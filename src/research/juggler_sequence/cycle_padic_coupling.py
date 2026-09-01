@@ -17,6 +17,7 @@ Dossier: docs/problems/juggler_cycle_padic_coupling.md.
 from __future__ import annotations
 
 import json
+from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.cycle_error_transport import letter_transport
@@ -35,8 +36,6 @@ from research.juggler_sequence.lean_paths import (
     juggler_text,
 )
 from research.juggler_sequence.power_words import floor_power
-
-from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "cycle_padic_coupling"

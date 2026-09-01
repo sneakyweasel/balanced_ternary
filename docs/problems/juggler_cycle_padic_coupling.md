@@ -83,13 +83,14 @@ No cycle of any length — not claimed.
 ## Current literature
 
 - Chim two \(p\)-adic logarithms —
-  **known** (`chim-2025-two-p-adic-logarithms`). The bound is
+  **known** (`chim-2025-p-adic-two-logarithms`). The bound is
   on \(v_p(\alpha_1^{b_1}-\alpha_2^{b_2})\) when the powers are
   comparable. It does not apply to \(2^L\) versus \(3^o\) at
   \(p=2,3\).
 - Wu–Wang linear-independence measure of \(1,\log 2,\log 3\) —
-  **known** (`wu-wang-2014-irrationality-log3`). An archimedean
-  two-logarithm refinement; not a \(p\)-adic coupling.
+  **known** (`wu-wang-2014-irrationality-measure-log3`). An
+  archimedean two-logarithm refinement; not a \(p\)-adic
+  coupling. Attack C packages it as fan-width growth.
 - Rhin / Laurent–Mignotte–Nesterenko / Simons–de Weger —
   **known**; the archimedean transfer is already
   **CLOSE** / **REFUTED**
@@ -229,10 +230,11 @@ Classification **PADIC_COUPLING_CLOSED**.
 
 None from 2-adic / 3-adic coupling of a single
 \((L,o)\) quantity. Do not reopen modular closure, Baker, or
-defect congruence. Fan-growth (Attack C) is now recorded in
-[juggler_cycle_walk_fan_growth.md](juggler_cycle_walk_fan_growth.md).
-Multi-point Diophantine constraints (Attack A) remain a
-separate question.
+defect congruence. The other two literature attacks are
+separate branches: multi-point constraints
+([juggler_cycle_fan_multipoint.md](juggler_cycle_fan_multipoint.md))
+and fan-growth
+([juggler_cycle_walk_fan_growth.md](juggler_cycle_walk_fan_growth.md)).
 
 ## Decision
 

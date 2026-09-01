@@ -242,7 +242,8 @@ shape) do not change the conclusion; do not import them as a
 new branch. The fan obstruction remains. The promising
 successor named by the literature search — two or more
 simultaneous fan-quality logarithmic relations on one cycle —
-is a different attack and is not opened here.
+is Attack A, now CLOSE
+([juggler_cycle_fan_multipoint.md](juggler_cycle_fan_multipoint.md)).
 
 ## Decision
 
@@ -254,9 +255,9 @@ the same theorem is explicitly too coarse to prevent
 characterization Attack C promised. It is not a Baker revival
 and it does not reopen finance.
 
-Best next question: does a genuine Juggler cycle force two or
-more distinct fan-quality approximations simultaneously
-(literature attack A)?
+Best next question: none from this width theorem. Literature
+attack A is now CLOSE
+([juggler_cycle_fan_multipoint.md](juggler_cycle_fan_multipoint.md)).
 
 ## Publication assessment
 

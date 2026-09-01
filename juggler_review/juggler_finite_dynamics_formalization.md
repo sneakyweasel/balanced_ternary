@@ -585,6 +585,45 @@ from the forced lift, the complete necklace, and the entry cell
 to a contradiction on leftover lengths. There is no such Lean
 theorem.
 
+## 8.7 Walk-charge words and Ostrowski arithmetic (Paper A Section 5)
+
+Sources: `formal/Problems/Juggler/WalkChargeWords.lean`,
+`formal/Problems/Juggler/OstrowskiSandwich.lean` (both in the paper
+barrel since the 1 September 2026 consolidation).
+
+`WalkChargeWords.lean` certifies the discrete side of Paper A
+Lemma 5.6 and the combinatorial core of Theorem 5.4. The exact hug
+rule (even at position \(k\) with \(a\) odd letters used iff
+\(2^{k+1}\le 3^a\)) keeps the odd count in the unit window
+\(2^k\le 3^{\mathrm{hugOdds}(k)}<3\cdot 2^k\)
+(`hugOdds_pow_ge`, `hugOdds_pow_lt`), is minimal among admissible
+budgets (`hugOdds_least`, the integer form of
+\(o_{\min}(k)=\lceil k\log 2/\log 3\rceil\)), is prefix-minimal among
+admissible exponent walks (`hugOdds_le_of_admissible`), and the
+budgeted hug word at \((L,\mathrm{hugOdds}(L))\) equals the exact
+rotation prefix (`budgetedWord_eq_hugWord`). Sanity instances
+\(\mathrm{hugOdds}(84)=53\), \(\mathrm{hugOdds}(1054)=665\),
+\(\mathrm{hugOdds}(50508)=31867\) match the finance table. The real
+charge and its maximisation (the analytic half of Theorem 5.4), the
+transport lemma (Theorem 5.3), and the Laplace integral
+(Proposition 5.5) are human proofs.
+
+`OstrowskiSandwich.lean` certifies the quotient arithmetic of
+Theorem 5.7: the big-integer sandwich
+\(3^{10781274}<2^{17087915}\), \(2^{16785921}<3^{10590737}\)
+(`theta_sandwich_upper`, `theta_sandwich_lower`), the real bounds
+\(6195184/16785921<\log(3/2)/\log 3<6306641/17087915\)
+(`lower_lt_walkTheta`, `walkTheta_lt_upper`), the shared
+continued-fraction prefix \([2,1,2,2,3,1,5,2,23,2,2,1]\) of both
+rational endpoints (`cf_lower_prefix`, `cf_upper_prefix`,
+`cf_lower_continues`, `cf_upper_continues`), and the convergent
+denominator list \(1,\ldots,176251\)
+(`theta_convergent_denominators`). Denjoy–Koksma and the
+cylinder-interval bridge from the endpoints to \(\theta\) itself are
+classical and stay prose; the window digit caps (Theorem 5.8), the
+scan, and the kill table (Theorem 5.9) are human proof plus certified
+computation, not Lean.
+
 ## 9. Exact floor reductions for the discrepancy paper
 
 Source: `formal/Problems/Juggler/GapCells.lean`.

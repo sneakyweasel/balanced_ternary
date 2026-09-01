@@ -17,5 +17,5 @@
   ],
   "project_relationship": "independent",
   "status": "published-source",
-  "notes": "Journal of Number Theory 266 (2025) 295-349 (available online 21 August 2024). Explicit lower bounds for |alpha1^{b1} - alpha2^{b2}|_p with log B dependence, improving the (log B)^2 shape of Bugeaud-Laurent 1996; p-adic analogue of Gouillon. Relevant only to a possible later archimedean-plus-2-adic/3-adic coupling (Attack B), which is not opened here. Distinct from the closed modular residue-census programme: the opportunity would be simultaneous huge valuation and huge archimedean closeness, not a forbidden residue class."
+  "notes": "Journal of Number Theory 266 (2025) 295-349 (available online 21 August 2024). Explicit lower bounds for |alpha1^{b1} - alpha2^{b2}|_p with log B dependence, improving the (log B)^2 shape of Bugeaud-Laurent 1996; p-adic analogue of Gouillon. Attack B opened and CLOSED this coupling: at p=2,3 the Juggler pair 2^L and 3^o have unequal valuation, so |2^L-3^o|_p=1 and the bound is vacuous. Distinct from the closed modular residue-census programme. docs/problems/juggler_cycle_padic_coupling.md."
 }

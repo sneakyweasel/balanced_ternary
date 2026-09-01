@@ -108,8 +108,8 @@ def test_anti_overclaim_and_dossier_headings():
     assert "CLOSE" in decision
     assert "PROMOTE" not in decision
     assert "not claimed" in dossier
-    assert "chim-2025-two-p-adic-logarithms" in dossier
-    assert "wu-wang-2014-irrationality-log3" in dossier
+    assert "chim-2025-p-adic-two-logarithms" in dossier
+    assert "wu-wang-2014-irrationality-measure-log3" in dossier
     assert "PadicCoupling.lean" in dossier
     record = json.loads(CONJECTURE.read_text(encoding="utf-8"))
     assert record["id"] == "juggler_cycle_padic_coupling"
@@ -126,8 +126,8 @@ def test_anti_overclaim_and_dossier_headings():
 
 
 def test_literature_and_conjecture_registry():
-    get_reference("chim-2025-two-p-adic-logarithms")
-    get_reference("wu-wang-2014-irrationality-log3")
+    get_reference("chim-2025-p-adic-two-logarithms")
+    get_reference("wu-wang-2014-irrationality-measure-log3")
     get_reference("rhin-1987-pade-irrationality")
     conj = get_conjecture("juggler_cycle_padic_coupling")
     assert conj["status"] == "REFUTED"

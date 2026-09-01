@@ -35,6 +35,8 @@ PAPER_MODULES: tuple[str, ...] = (
     "NearTightScale",
     "CycleFinance",
     "RunSurvivorLattice",
+    "WalkChargeWords",
+    "OstrowskiSandwich",
 )
 
 LAYERS: dict[str, Path] = {
@@ -106,6 +108,8 @@ LAYERS: dict[str, Path] = {
     "CycleFinance": JUGGLER_DIR / "CycleFinance.lean",
     "RunSurvivorLattice": JUGGLER_DIR / "RunSurvivorLattice.lean",
     "CycleHeightFinance": JUGGLER_DIR / "CycleHeightFinance.lean",
+    "WalkChargeWords": JUGGLER_DIR / "WalkChargeWords.lean",
+    "OstrowskiSandwich": JUGGLER_DIR / "OstrowskiSandwich.lean",
 }
 
 DYNAMICS = LAYERS["Dynamics"]

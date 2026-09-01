@@ -18468,6 +18468,99 @@ Best next question
   the exact map's fibres remain parity plus interval
 ```
 
+## Juggler consolidation: Paper A raised to the laboratory floor
+
+- **Date:** 2026-09-01
+- **Objective:** Consolidation pass (no new branch): absorb the walk-charge program into Paper A, land the deferred Lean for its discrete layer, and record the half-finished \(162849448\) floor extension honestly
+- **Hypotheses:** none — editorial and formalization work on decided branches
+- **Major results:**
+  - **Paper A raised and extended.** [juggler_finite_dynamics_note.md](theory/juggler_finite_dynamics_note.md) now prints the laboratory instance: Proposition 5.1 (certified floor \(N_0=26254995\)), Theorem 5.2 (parity cutoff \(50507\), first survivor \(50508\), \(19\) leftovers through \(2\cdot 10^5\)), and a new Section 5 absorbing the walk-charge chain — transport (Thm 5.3), hug adversary (Thm 5.4), rotation average (Prop 5.5), word identity (Lem 5.6), DK/Ostrowski block envelope (Thm 5.7), uniform window envelope on \([50508,301994)\) (Thm 5.8), and the kill table with the period bound \(\ge 176251\) (Thm 5.9). The \(10^6\) base instance and the survivor lattice stay in Section 4; old Section 5 (limitations) is now Section 6. Abstract, contributions (new Contribution 4), related-work layers, verification roles, Appendix A, and Appendix B (laboratory artifacts and hashes) updated. PDF rebuilt (`pandoc -f markdown+tex_math_single_backslash --pdf-engine=xelatex`) and hash-synced to `juggler_review/`; reviewer README and formalization map updated (new §8.7)
+  - **Lean landed for the discrete walk layer.** `WalkChargeWords.lean`: unit-window invariant `hugOdds_pow_ge` / `hugOdds_pow_lt`, minimality `hugOdds_least`, prefix-minimality `hugOdds_le_of_admissible` (combinatorial core of Thm 5.4), and the word identity `budgetedWord_eq_hugWord` (Lem 5.6, discrete side); sanity instances \(84\to 53\), \(1054\to 665\), \(50508\to 31867\). `OstrowskiSandwich.lean`: big-int sandwich \(3^{10781274}<2^{17087915}\), \(2^{16785921}<3^{10590737}\) by `native_decide`, real bounds on \(\theta=\log(3/2)/\log 3\) via `Real.log`, shared CF prefix \([2,1,2,2,3,1,5,2,23,2,2,1]\) of both rational endpoints, and the convergent denominators through \(176251\). Both in the paper barrel; `lake build Problems.JugglerPaper` clean, no `sorry`. New ledger rows `J-cyclemin-walk-word-identity`, `J-cyclemin-walk-ostrowski-arithmetic` (**EXACT — LEAN VERIFIED**); the analytic rows keep their tags. Deferred (not short): transport recursion, Laplace integral, Denjoy–Koksma, digit caps
+  - **Floor \(162849448\) extension PARKED partial.** \(10\) leftover DP kills landed under `cycle_walk_charge/new_floor_kills/` (including \(176251\) at margin \(1.198\) and \(303048\) at \(8.44\)); \(L=478245\) (required \(19.5\)) and the floor certificate itself (verification stopped near \(99.94\%\)) are unfinished. No period claim from that floor; the certified bound stays \(176251\) at \(26254995\). Dossier, branch ledger, and AGENTS.md wording fixed (was "in flight"); reopening point recorded
+  - Stale prose fixed: walk-charge dossier status and Publication assessment (transport is **EXACT — HUMAN PROOF**, not "CONJECTURE until exact"); walk-window and walk-Ostrowski dossier Formalization sections; walk-charge note endpoint ("no Lean" superseded)
+- **Refuted ideas:** none — no hypothesis tested
+- **Literature:** Denjoy–Koksma and Ostrowski numeration (KNOWN, prose); cylinder-interval CF bridge (KNOWN, prose)
+- **Open:** unchanged — deeper certified quotients beyond \(q_{13}=301994\); the near-convergent survivors starting at \(176251\); the fan-minimum CF frontier (`juggler_walk_fan_minimum_law`, CONJECTURE)
+- **Decision:** consolidation recorded; walk-charge program stays PROMOTE (terminal at the fan-minimum reduction), floor extension PARK
+
+```text
+What was learned
+- the walk-charge program is now a paper section, not a
+  laboratory extract: Paper A prints the certified period
+  bound 176251 at the laboratory floor
+- the discrete half of the envelope chain (word identity,
+  hug prefix-minimality, quotient arithmetic) is short in
+  Lean; the analytic half (transport, Laplace, DK, digit
+  caps) is not, and stays human by the no-long-proof rule
+- native_decide handles the 5-million-digit sandwich powers
+  without difficulty
+Strongest theorem
+- budgetedWord_eq_hugWord + hugOdds_least (Lean): the exact
+  hug rule forces exactly o_min odds at every prefix, so the
+  budgeted word is the rotation prefix
+Strongest refutation
+- none (consolidation)
+Reusable machinery
+- WalkChargeWords.lean, OstrowskiSandwich.lean; the
+  markdown-to-PDF pipeline recorded explicitly
+Branch status
+- PROMOTE (walk charge, unchanged); PARK (floor extension)
+Why
+- the theorem survived, so the infrastructure (paper text,
+  Lean packaging, reviewer bundle) follows; the unfinished
+  floor campaign is recorded as partial data, not a claim
+Best next question
+- unchanged from the fan-minimum terminal: unboundedness of
+  the dangerous-position partial quotients of log 2/log 3
+```
+
+## Juggler fan multi-point Diophantine constraints (Attack A)
+
+- **Date:** 2026-09-01
+- **Objective:** Test whether a CycleMin cycle of fan-member length forces two or more distinct fan-quality logarithmic approximations, so that classical \(2^p\)–\(3^q\) neighbor-separation can kill the fan without bounding partial quotients
+- **Hypotheses:** (1) exponent-neighbors \(L\) vs \(L\pm 1\) cannot both be exceptionally good; (2) a genuine cycle requires several such pairs (neighboring excursions, successive minima, or related subwords); (3) that is a new constraint, not one-dimensional finance
+- **Major results:** Classification **FAN_MULTIPOINT_CLOSED**. Hug circuits are only \(\mathtt{OE}/\mathtt{OOE}\) on leftover seeds through \(L=176251\). Exponent-neighbors on leftover-quality rows are separated (min ratio \(4.59\cdot 10^4\) at \(50508\)), but the cycle does not constrain \(\theta(L\pm 1)\). Fan-neighbors (Q-steps) can both be Dirichlet-good (fan A first pair ratio \(0.982\)) — the existing \(R_{\min}\) obstruction. \(88\) leftover sums, five two-good, all lattice identities (e.g. \(1054+50508=51562\)), not second returns. Literature stored: Wu–Wang 2014, Salikhov 2007, Tao 2011, Chim 2025, MO 116840. Conjecture `juggler_fan_multipoint_constraints` REFUTED. Artifact `cycle_fan_multipoint/summary.json`
+- **Refuted ideas:** one cycle forces two incompatible fan-quality \((L,o)\) pairs; Q-step fan neighbors are the same relation as exponent-shift neighbors; a better Baker / Wu–Wang constant kills the lattice
+- **Literature:** `wu-wang-2014-irrationality-measure-log3`, `salikhov-2007-irrationality-measure-ln3`, `tao-2011-hilbert-seventh-powers-2-3`, `chim-2025-p-adic-two-logarithms`, `mathoverflow-2012-powers-2-3`; Rhin / LMN / SdW already on the REFUTED Baker branch
+- **Open:** none; Attack B is now CLOSE and Attack C is PROMOTE
+- **Decision:** CLOSE
+
+```text
+What was learned
+- the 2^p vs 3^q literature gives a real exponent-shift
+  separation and a polynomial gap floor, but neither
+  removes the fan obstruction
+- a CycleMin cycle forces one global (L, o) pair; the
+  cheapest walk's returns are only the short Beatty
+  letters OE/OOE
+- fan-neighbors (step Q) can both be Dirichlet-good;
+  that is the named R_min ~ exp(4/(a+2)) obstruction,
+  not a second Diophantine constraint
+- arithmetic two-good splits exist as lattice identities
+  and are not forced as integer returns
+Strongest theorem
+- none new (exponent-neighbor separation is KNOWN;
+  hug type set is a walk-excursion instance)
+Strongest refutation
+- hug circuits only (1,1) and (2,1) through L=176251;
+  theta(L+1)/theta(L) = 4.59e4 at 50508 is unused by
+  the cycle
+Reusable machinery
+- literature records for Wu-Wang, Salikhov, Tao, Chim,
+  MO 116840; cycle_fan_multipoint.py (neighbor-relation
+  census)
+Branch status
+- CLOSE
+Why
+- the slogan that one cycle needs two incompatible
+  fan-quality approximations is false; importing a
+  stronger Baker constant was already refused by the
+  literature search and is not reopened
+Best next question
+- none from multi-point constraints; Attack B is CLOSE
+  and Attack C is the quantitative fan-width bound
+```
+
 ## Juggler archimedean / p-adic coupling
 
 - **Date:** 2026-09-01
