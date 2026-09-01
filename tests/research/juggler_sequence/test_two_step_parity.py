@@ -850,6 +850,7 @@ def test_w_family_33_32_algebra():
     assert ANTI_OVERCLAIM["length7_passenger_theorem_t_refuted"] is True
     assert ANTI_OVERCLAIM["length7_vdc3_chirps_proved"] is True
     assert ANTI_OVERCLAIM["length7_x3_qr3_carry_refuted"] is True
+    assert ANTI_OVERCLAIM["length7_integer_w_engine_line_refuted"] is True
     assert ANTI_OVERCLAIM["depth7_engine_contracting_proved"] is False
 
 
@@ -918,4 +919,21 @@ def test_length7_x3_qr3_carry():
     # Ignoring the accumulated carry on an X3-run costs phase P^{73/32}.
     assert Fraction(27, 32) + Fraction(9, 16) + Fraction(7, 8) > 1
     assert ANTI_OVERCLAIM["length7_x3_qr3_carry_refuted"] is True
+    assert ANTI_OVERCLAIM["length7_integer_w_engine_line_refuted"] is True
+    assert ANTI_OVERCLAIM["depth7_engine_contracting_proved"] is False
+
+
+def test_length7_integer_w_engine_line():
+    """Phase-38 seals: integer-w coefficient ξ ~ n^{45/32} > n."""
+    # Naive X1 coefficient 9/4 v^{5/8} ~ n^{45/32} exceeds n.
+    assert Fraction(45, 32) > 1
+    # Derivative ξ' ~ n^{13/32} >> 1; X3-run drift ξ' P^{7/8} = P^{41/32}.
+    assert Fraction(13, 32) > 0
+    assert Fraction(13, 32) + Fraction(7, 8) > 1
+    # Dual sawtooth e(w {ξ}): coefficient w ~ n^{9/8} > n.
+    assert Fraction(9, 8) > 1
+    # Smooth interpolant ξ U ~ n^{81/32} is the first-letter chirp:
+    # Lemma 3.3 costs P^{81/64} > P (already Lemma X5 / Phase 34).
+    assert Fraction(81, 64) > 1
+    assert ANTI_OVERCLAIM["length7_integer_w_engine_line_refuted"] is True
     assert ANTI_OVERCLAIM["depth7_engine_contracting_proved"] is False

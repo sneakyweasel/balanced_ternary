@@ -76,6 +76,10 @@ for external review.
  remaining near-convergents (first \(478245\)) is Diophantine; the
  direct Baker/SdW transfer is **REFUTED** (`juggler_cycle_gap_baker`),
  the Paper A × Paper B merge is CLOSE (`juggler_cycle_paper_merge`),
+ the DK-arch free-kill of \(478245\) is **REFUTED**
+ (`juggler_walk_arch_kills_blocker`: any valid tightening of
+ \(2s(L)\) sits above the already-computed hug DP, which loses
+ at margin \(0.433\)),
  and further \(N_0\) campaigns are PARK (the next useful floor is
  \(3.48\cdot 10^8\)).
 - **Flights:** the descent-free (open-orbit) program is descriptively
@@ -96,9 +100,10 @@ for external review.
   Mechanical lift, prefix realization, and formal-versus-realized
   do not say hug prefixes cannot be realized. Exclusion of
   divergent orbits is not claimed.
-- **Termination:** laboratory certified descent density \(7/8\)
-  (length-5 repair, `J-five-step-descent-density`); Paper B prints
-  \(13/16\) only. Densities \(57/64\) and \(29/32\) remain
+- **Termination:** certified descent density \(7/8\)
+  (length-5 repair, `J-five-step-descent-density`, Paper B
+  Corollary 6.4). The four-step class remains \(13/16\)
+  (Corollary 4.9). Densities \(57/64\) and \(29/32\) remain
   **CONJECTURE** (Phase-26 holes: length-7 chirps miss
   Stage 2, `J-length7-passenger-theorem-t` **REFUTED** as a
   method; isolated \(e(un^{27/16})\) and \(e(Cn^{3/2})\)
@@ -106,6 +111,8 @@ for external review.
   `J-length7-vdc3-chirps`, but the inventory object is
   \(e(uw^{3/2})\) and the reduction is not a decoration;
   X3 plus Q/R3 is **REFUTED** (`J-length7-x3-qr3-carry`);
+  the integer-\(w\) block at \(\xi\asymp n^{45/32}\) is
+  the Phase-5 wall (`J-length7-integer-w-block`);
   \(E'\); the growing remainder is now an engine,
   `J-length7-remainder-engine`. Corollary R′ is still a
   family-CONJECTURE, but the instance \(\alpha=33/32\) is

@@ -21267,4 +21267,128 @@ Best next question
   Phase-5 wall?
 ```
 
+## Paper B engine harvest: integer-w block is the Phase-5 wall (Phase 38)
+
+- **Date:** 2026-09-02
+- **Objective:** Decide whether \(e(\xi w)\) with \(\xi\asymp n^{45/32}\) independently sits below the engine line on X3-runs, or is the Phase-5 wall.
+- **Hypotheses:** Linear \(e(\xi w)\) is a different species from \(e(uw^{3/2})\); X3 makes \(\xi J\) a smooth chirp.
+- **Major results:**
+  - \(\xi=\tfrac{9k}4 v^{5/8}\) is the naive \(\theta_w\) coefficient Lemma X1 eliminated. Already \(\xi>n\) at \(k=1\), \(\xi'\asymp n^{13/32}\gg 1\).
+  - \(e(\xi w)=e(\xi U)e(-\xi\theta_U)\): sawtooth coefficient \(P^{45/32}>n\). Dual \(e(w\{\xi\})\) has coefficient \(w\asymp n^{9/8}>n\).
+  - On an X3-run \(\xi\) drifts by \(P^{41/32}\gg 1\); “\(e(\xi J)\) a smooth chirp” fails before the carry.
+  - Smooth \(e(\xi U)\) is the first-letter chirp already in Lemma X5, not the integer block.
+  - **Proposition X-int (`J-length7-integer-w-block`):** engine-line slogan **REFUTED**. Theorem X stays **CONJECTURE**.
+- **Refuted ideas:** “the integer-\(w\) block sits below the engine line on X3-runs.”
+- **Literature:** Lemma X1 remark; Theorem Q engine line; Phase 37 at the same exponent \(45/32\).
+- **Open:** length-8 \(E'\). Do not reopen \(e(uw^{3/2})\) or rewrite \(45/32\).
+- **Decision:** PARK Theorem X. Dossier `docs/problems/juggler_length7_integer_w.md`. Existing-toolkit route for the OOEOO sixth letter is closed. No Lemma 3.11, no Paper B, no \(K_3\).
+
+```text
+What was learned
+- ξ ≍ n^{45/32} is the naive θ_w coefficient
+  Lemma X1 removed
+- independently of e(u w^{3/2}): ξ > n and ξ' ≫ 1
+- X3 does not freeze the frequency (drift P^{41/32})
+- the dual writing e(w {ξ}) is the same wall
+- e(ξ U) is Lemma X5, not a new species
+Strongest theorem
+- none new (this phase is a method kill)
+Strongest refutation
+- integer-w sits below the engine line on X3-runs
+  (J-length7-integer-w-block)
+Reusable machinery
+- none new (exponent seals)
+Branch status
+- PARK (Theorem X); integer-w method CLOSE
+Why
+- the block reinstates the coefficient X1 was
+  written to kill; same Phase-5 wall
+Best next question
+- the length-8 E' hole (a different door)
+```
+
+## Juggler DK-arch free-kill of the blocker
+
+- **Date:** 2026-09-02
+- **Objective:** Decide whether a human arch bound \(e=O(\max_j a_{j+1})\) on the DK excess pulls \(n^*(478245)\) below the certified floor \(162849448\)
+- **Hypotheses:** tightening \(2s(L)/L\) to \(O(\max a)/L\) lowers every break-even and is the only modest-proof route to a free period-bound move
+- **Major results:** Classification **WALK_ARCH_PAYOFF_DEAD**. Hug is the unique maximizer, so the certified DP *is* \(C_L\); at \(L=478245\) / floor \(162849448\) the DP margin is \(0.4334<1\) and the DK margin is \(0.4333\). Digit sum \(s=2\), so \(2s/L=4/478245\) against \(C_*=0.04372\) (relative \(1.91\cdot 10^{-4}\)). The illegal cap \(C_L\le C_*\) drops \(n^*\) from \(3.483\cdot 10^8\) to \(3.482\cdot 10^8\). Kill requires excess \(\kappa\le LC_*(m_0-1)=-11848\); an arch bound supplies \(O(55)\), wrong sign and \(>200\times\) too small. The same sign holds on fan A \(k=2,28\) and seed \(16785921\). Conjecture `juggler_walk_arch_kills_blocker` **REFUTED**; ledger row `J-cyclemin-walk-arch-kills-blocker`. The height observation `juggler_walk_excess_arch` is not refuted.
+- **Refuted ideas:** “a human arch bound kills \(478245\) at the certified floor with zero new compute”
+- **Literature:** DK/Ostrowski and window envelopes; hug exchange; walk competition; walk sharpness (PARK); Hecke/Ostrowski/Schoissengeier unused
+- **Open:** the \(O(\max_j a_{j+1})\) height stays the parked sharpness observation, with no cycle consequence. The cycle frontier stays the fan-minimum CF reduction
+- **Decision:** CLOSE
+
+```text
+What was learned
+- any valid DK tightening sits above the hug DP, which
+  already loses at the blocker (margin 0.4334)
+- 2s/L is a 1.91e-4 perturbation of C_* at L=478245
+  (s=2); cap-zero drops n* by 1.81e-4 relatively
+- kill needs excess -11848, not O(max a)=O(55)
+- survivors are digit-sparse; even s=29 at the mid-fan
+  has 2s/L = 1.54e-4 C_*
+- the O(max a) height is not refuted and has no cycle
+  payoff
+Strongest theorem
+- envelope dominance: no valid DK tightening beats the
+  hug DP (EXACT — HUMAN PROOF)
+Strongest refutation
+- arch bound kills 478245 at the certified floor
+  (J-cyclemin-walk-arch-kills-blocker)
+Reusable machinery
+- cycle_walk_arch.py (cap-zero break-evens and the
+  required-excess identity)
+Branch status
+- CLOSE
+Why
+- the free-kill slogan is false by dominance plus
+  survivor sparsity; attempting the arch-height proof
+  would be machinery gravity
+Best next question
+- the cycle frontier remains the fan-minimum CF
+  reduction — do not reopen the arch height as a
+  period-bound method
+```
+
+## Paper B harvest import: certified density 7/8 (Phase 39)
+
+- **Date:** 2026-09-02
+- **Objective:** Import the repaired length-5 harvest into Paper B as printed claims. Do not import length 7/8.
+- **Hypotheses:** The Phase-27 slot classification (Stage-2 \(X\)-modes, not (D1) decorations; \(\lambda_2\) Lemma 3.10-invariant) is a stranger-checkable proof against the Phase-26 kernel.
+- **Major results:**
+  - Paper B Lemma 6.2, Theorem 6.3, Corollary 6.4. Certified density \(7/8\). Four-step class remains Corollary 4.9 at \(13/16\).
+  - \(OOOE*\) rides Theorem 6.1 at \(N^{1-1/96+\varepsilon}\); \(OOEO*\) is a Theorem 4.8 argument at \(N^{43/48+\varepsilon}\) with displayed \(\lambda_2=-81/1024\).
+  - Length 7/8 and the densities \(57/64\), \(29/32\) stay withdrawn.
+  - Reviewer packet, figure, ledger rows `J-depth5-contracting` and `J-five-step-descent-density` updated to the import.
+- **Refuted ideas:** none. The Phase-26 passenger-as-decoration slogan remains the withdrawn hole, not a false count.
+- **Literature:** Paper B Lemma 5.2, Theorems 4.8 and 6.1, Lemmas 3.6, 3.7, 3.10; lemma Part XII.
+- **Open:** one independent human check of Theorem 6.3 (and of the repaired Section 5). Length 7/8 remain CONJECTURE.
+- **Decision:** PROMOTE the import. Dossier `docs/problems/juggler_engine_harvest.md` publication status `PAPER_CANDIDATE`. No length-7/8, no \(K_3\), no R′.
+
+```text
+What was learned
+- the length-5 holes were missing reruns, not false
+  statements; the paper can print 7/8
+- X-modes sit in Lemma 5.2 Stage 2 at T = P^{1/4}
+- OOEO* is a Theorem 4.8 sibling, not a kernel
+  decoration
+- 57/64 and 29/32 stay out (passenger slogan REFUTED)
+- Corollary 4.9 remains the four-step ceiling
+Strongest theorem
+- Paper B Corollary 6.4: certified ≤5-step descent
+  density 7/8
+Strongest refutation
+- none new
+Reusable machinery
+- none (writeup import)
+Branch status
+- PROMOTE (import)
+Why
+- both named length-5 holes close against the
+  printed kernel; the referee freeze was editorial
+Best next question
+- one independent human check of Theorem 6.3
+```
+
+
 

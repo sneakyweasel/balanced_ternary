@@ -34,7 +34,8 @@ Dossiers, in program order:
 [walk envelope](../problems/juggler_cycle_walk_envelope.md),
 [walk Ostrowski](../problems/juggler_cycle_walk_ostrowski.md),
 [walk window](../problems/juggler_cycle_walk_window.md),
-[walk sharpness](../problems/juggler_cycle_walk_sharpness.md).
+[walk sharpness](../problems/juggler_cycle_walk_sharpness.md),
+[walk arch](../problems/juggler_cycle_walk_arch.md).
 
 ## 1. Transport — **EXACT — HUMAN PROOF**
 
@@ -143,13 +144,16 @@ stays **REFUTED**.
 The accumulation is a quadratic arch along the
 partial-quotient-23 tower that closes at a full quotient cycle.
 Alternating-sum, additive-digit, and endpoint-coboundary laws
-all fail; a human arch bound is the recorded (PARKed) reopening
-point.
+all fail; a human arch bound was the recorded (PARKed)
+reopening point. Its period-bound reading is **REFUTED**
+([walk arch](../problems/juggler_cycle_walk_arch.md)): the hug
+DP already is \(C_L\) and loses at \(L=478245\).
 
 **Open.** Beyond \(q_{13}=301994\) the window theorem needs
 deeper certified quotients; killing the remaining
 near-convergent survivors is the Diophantine frontier
-(Baker/SdW transfer stays **REFUTED**).
+(Baker/SdW transfer stays **REFUTED**; the DK-arch free-kill
+stays **REFUTED**).
 
 ## Endpoint
 

@@ -34,14 +34,17 @@ The sequences arise as the itineraries of the Juggler map
 (\(n\) odd), whose finite exact theory is developed in a companion
 manuscript [22]. As a corollary, the class of starts carrying a
 uniform power-envelope descent certificate of length at most four has
-natural density \(13/16\), and an unconditional counting argument
-shows that parity equidistribution at *all* depths would give density
-one to the set of starts with some finite descent certificate. Neither
-is a density of starts that reach \(1\), and no statement about the
+natural density \(13/16\), and the two length-five contractors
+\(OOOEE\) and \(OOEOE\) raise the certified class to density
+\(7/8\). An unconditional counting argument shows that parity
+equidistribution at *all* depths would give density one to the set of
+starts with some finite descent certificate. None of these is a
+density of starts that reach \(1\), and no statement about the
 Juggler conjecture itself is claimed. The remaining obstacle is the
 level-3 kernel, where the weight scale \(n^{27/16}\) exceeds \(n\); we
 state it as an open problem and record precisely what blocks every
-method of this paper.
+method of this paper. Length-seven and length-eight contractors are
+not claimed.
 
 ## 1. Introduction
 
@@ -106,7 +109,13 @@ Two ideas carry the paper.
 
 With the kernel theorem, depth-4 parity equidistribution over odd
 starts is complete (Theorem 6.1): the eight \(O\)-rooted length-4
-words each receive their expected share with a power saving.
+words each receive their expected share with a power saving. The same
+engine, with one extra passenger layer, counts the two length-five
+contractors \(OOOEE\) and \(OOEOE\) (Theorem 6.3), so the certified
+descent class has density \(7/8\) (Corollary 6.4). The leftover
+eighth is the expanding length-five tree
+\(OOEOO\cup OOOEO\cup OOOO*\); the first two of those words are
+counted and do not contract, and \(OOOO*\) is the level-3 kernel.
 
 The chains are not chosen at random: they are the itineraries of the
 Juggler map
@@ -125,27 +134,32 @@ finite-word calculus of \(J\) — the power envelope
 small-cycle census — is a companion manuscript [22]; here we use
 only the contraction criterion (Proposition 3.1), whose short
 induction is written out below. The dynamical payoff
-of the counting theorems is one *certified-descent density*: the set
-of starts guaranteed to drop below their starting value within four
-steps has natural density \(13/16\) (Corollary 4.9), and
-equidistribution at all depths would give the set of starts with
-*some* finite descent certificate density one (Proposition 7.1). We
-state plainly what these corollaries are not: they are not densities
-of starts that reach \(1\), and they do not touch the Juggler
-conjecture, whose analogue of Terras's almost-all theorem for Collatz
-[4, 5, 6] remains open; see Lagarias [3] for the Collatz survey.
+of the counting theorems is a pair of *certified-descent densities*:
+the set of starts guaranteed to drop below their starting value
+within four steps has natural density \(13/16\) (Corollary 4.9), and
+the two length-five contractors raise that class to density \(7/8\)
+(Corollary 6.4). Equidistribution at all depths would give the set of
+starts with *some* finite descent certificate density one
+(Proposition 7.1). We state plainly what these corollaries are not:
+they are not densities of starts that reach \(1\), and they do not
+touch the Juggler conjecture, whose analogue of Terras's almost-all
+theorem for Collatz [4, 5, 6] remains open; see Lagarias [3] for the
+Collatz survey.
 
-Section 7 states the frontier precisely. One nesting deeper, the same
-kernel reappears with weight scale \(n^{27/16}>n\) (Conjecture 7.3),
-and every method of this paper stops below that scale. What survives
-is a clean model problem — the amplitude-product sums
-\(\sum e(A(t)\{B(t)\})\) with \(1\ll A'\ll A\) — for which a direct
-\(L^2\) computation in the shift of the fractional argument gives
-square-root cancellation, up to a \(\sqrt{\log}\) factor, for almost
-every shift (Proposition 7.4). That average says nothing about the
-single deterministic shift; the deterministic instance
-(Conjecture 7.5) is open, and we record in three sentences why the
-obvious shortcuts fail.
+Section 7 states the frontier precisely. The leftover eighth after
+Corollary 6.4 is the expanding length-five tree; the uncounted piece
+of that tree is the \(OOOO*\) split, one nesting deeper than
+Theorem 5.3, where the same kernel reappears with weight scale
+\(n^{27/16}>n\) (Conjecture 7.3). Every method of this paper stops
+below that scale. What survives is a clean model problem — the
+amplitude-product sums \(\sum e(A(t)\{B(t)\})\) with
+\(1\ll A'\ll A\) — for which a direct \(L^2\) computation in the
+shift of the fractional argument gives square-root cancellation, up
+to a \(\sqrt{\log}\) factor, for almost every shift
+(Proposition 7.4). That average says nothing about the single
+deterministic shift; the deterministic instance (Conjecture 7.5) is
+open, and we record in three sentences why the obvious shortcuts
+fail. No length-seven or length-eight density is claimed.
 
 ### 1.1 Verification and evidence conventions
 
@@ -291,13 +305,13 @@ does not depend on an unpublished text.
 
 A word \(w\) with \(3^{\#O(w)}<2^{|w|}\) is *contracting*; realizing a
 contracting word is a *descent certificate* of length \(|w|\).
-Contracting words used below: \(E\), \(OE\), and \(OOEE\). (Longer
-contracting words exist — \(OOOEE\) and \(OOEOE\) are the shortest
-beyond these — but this paper makes no counting claims about them.)
-Every even start realizes \(E\), and every odd start with
-even image realizes \(OE\); those two certificates cover all starts
-except the odd-to-odd class, which is where the counting problem
-lives.
+Contracting words used below: \(E\), \(OE\), \(OOEE\), and the two
+length-five words \(OOOEE\) and \(OOEOE\). Every even start realizes
+\(E\), and every odd start with even image realizes \(OE\); those two
+certificates cover all starts except the odd-to-odd class, which is
+where the counting problem lives. Longer contracting words exist
+(length seven and eight); this paper makes no counting claims about
+them.
 
 **Lemma 3.2 (parity bridge).**
 \(\lfloor x\rfloor\) is odd if and only if \(\{x/2\}\ge\tfrac12\).
@@ -1154,9 +1168,10 @@ letters at positions \(\le2\) are exactly \(E\), \(OE\), and \(OOEE\).
 Completing depth 4 requires the \(OOO*\) split — a second
 growing layer, where the fourth-letter phase coefficient
 \(W\asymp kn^{9/8}\) crosses integers within single steps and no
-drift-1 interval exists. Sections 5 and 6 close that split. (The
-\(OOO*\) words are non-contracting at depth 4, so the certified
-density remains \(13/16\).)
+drift-1 interval exists. Sections 5 and 6 close that split. The
+\(OOO*\) words are non-contracting at depth 4, so the four-step
+certified density remains \(13/16\); the next increment is the two
+length-five contractors of Theorem 6.3.
 
 ## 5. The kernel theorem
 
@@ -2261,7 +2276,7 @@ depth-2 strength \(P^{23/24}\) of the exact level-2 waves
 (Lemma 5.2(ii)); any improvement of the wave bound improves
 \(\delta\) proportionally.
 
-## 6. Application: depth four complete
+## 6. Application: depth four complete, and the length-five contractors
 
 **Theorem 6.1 (the OOO\* splits; depth four complete over odd starts).**
 For \(w\in\{OOOE,OOOO\}\),
@@ -2497,16 +2512,257 @@ the mode weights (\(O(\log^3P)\)), the majorant costs
 (\(\le4P^{1-1/96}\) per layer, three layers), and dyadic blocks
 gives the theorem. \(\square\)
 
-The certified-descent density stays \(13/16\) at four steps —
-\(OOO*\) is non-contracting at depth 4 (\(3^3>2^4\)). Deeper
-contracting words exist (\(OOOEE\) and \(OOEOE\) at length five are
-the next two), and the kernel theorem is plausibly the engine for
-counting them; but each such count requires a passenger inventory
-strictly larger than Step D's — including sawtooth coefficients at
-new scales and, at length seven, Taylor remainders that *grow* like
+The four-step certified-descent density stays \(13/16\):
+\(OOO*\) is non-contracting at depth 4 (\(3^3>2^4\)). The next two
+contracting words are \(OOOEE\) and \(OOEOE\) at length five
+(\(3^3<2^5\)). Neither is a third growing layer of kernel type.
+The fifth letter after \(OOOE\) is a decaying nest plus one slow
+sawtooth of coefficient \(n^{3/16}<n\), carried as a Stage-2
+passenger of Lemma 5.2 on the Theorem 6.1 inventory. The fifth
+letter after \(OOEO\) is a Theorem 4.8 argument at coefficient
+\(n^{9/16}<n\). Both close, and the certified class moves to
+\(7/8\). Length-seven contractors exist and require a strictly
+larger inventory — including Taylor remainders that *grow* like
 \(n^{9/32}\) and must be retained as subcritical phases rather than
-discarded — and we do not carry this out here. This paper claims no
-certified density beyond \(13/16\).
+discarded — and we do not carry them out here.
+
+**Lemma 6.2 (fifth-letter identities).**
+Let \(n\ge5\) be odd, and write \(z=\lfloor v^{3/2}\rfloor\),
+\(w=\lfloor v^{1/2}\rfloor\), \(U=v^{1/2}\), and
+\(\theta_w=\{U\}\).
+
+(i) *(\(OOOE*\) smoothing.)*
+\[
+z^{1/2}
+=n^{27/16}-\tfrac98 n^{3/16}\,\theta+D_5,
+\qquad
+\lvert D_5\rvert
+\le\tfrac34\,m^{-3/8}+\tfrac12\,v^{-3/4}+\tfrac9{128}\,n^{-7/16}.
+\]
+
+(ii) *(\(OOEO*\) linearization.)*
+\[
+w^{3/2}
+=n^{27/16}-\tfrac98 n^{3/16}\,\theta
+-\tfrac32\,v^{1/4}\,\theta_w+D_5',
+\]
+with
+\(\lvert D_5'\rvert
+\le\tfrac34\,m^{-3/8}+\tfrac38(U-1)^{-1/2}\).
+
+*Proof.* (i) Three applications of the Lemma 4.3(i) pattern.
+With \(f(t)=(v^{3/2}-t)^{1/2}\) on \([0,\theta_z]\),
+\(\theta_z=\{v^{3/2}\}\):
+\(z^{1/2}=v^{3/4}-\tfrac12\theta_z v^{-3/4}-E_z\) and
+\(0\le E_z\le\tfrac18(v^{3/2}-1)^{-3/2}\).
+With \(f(t)=(m^{3/2}-t)^{3/4}\) on \([0,\theta_2]\):
+\(v^{3/4}=m^{9/8}-\tfrac34\theta_2 m^{-3/8}-E_2\) and
+\(0\le E_2\le\tfrac3{32}(Y-1)^{-5/4}\).
+With \(f(t)=(X-t)^{9/8}\) on \([0,\theta]\):
+\(m^{9/8}=n^{27/16}-\tfrac98\theta n^{3/16}
++\tfrac9{128}\theta^2(X-\xi)^{-7/8}\)
+for some \(\xi\in(0,\theta)\). The \(\theta_z\) and \(\theta_2\)
+amplitudes decay (\(v^{-3/4}\asymp n^{-27/32}\),
+\(m^{-3/8}\asymp n^{-9/16}\)), and the displayed bound on
+\(\lvert D_5\rvert\) absorbs the three remainders for \(n\ge5\).
+
+(ii) Lemma 4.3(i) at base \(U\), using
+\(U\,v^{1/4}=v^{3/4}\) exactly:
+\(w^{3/2}=v^{3/4}-\tfrac32 v^{1/4}\theta_w+E\) with
+\(0\le E\le\tfrac38(U-1)^{-1/2}\). The chain
+\(v^{3/4}\to n^{27/16}\) is the second and third steps of (i).
+\(\square\)
+
+The remaining sawtooth of (i) has coefficient
+\(\asymp kn^{3/16}<n\) and derivative \(\asymp kn^{-13/16}\ll1\),
+so drift-1 intervals of length \(\asymp P^{13/16}/k\) exist. Part
+(ii) leaves two engine sawtooths, of coefficients \(n^{3/16}\) on
+\(\theta\) and \(n^{9/16}\) on \(\theta_w\); both grow slower than
+\(n\).
+
+**Theorem 6.3 (the length-five splits).**
+\[
+\#\mathrm{OOOEE}(N),\;\#\mathrm{OOOEO}(N)
+=\tfrac N{32}+O\bigl(N^{1-1/96+\varepsilon}\bigr),
+\qquad
+\#\mathrm{OOEOE}(N),\;\#\mathrm{OOEOO}(N)
+=\tfrac N{32}+O\bigl(N^{43/48+\varepsilon}\bigr).
+\]
+
+*Proof.* \(OOOE*\). By Lemma 3.6 the class indicators are the
+\(OOOE\) indicator of Theorem 6.1 times
+\(\tfrac12\bigl(1\pm\psi(z^{1/2})\bigr)\). Vaaler-expand the fifth
+wave at truncation \(J_5=2P^{1/96}\) (majorant
+\(4P/J_5=2P^{1-1/96}\) per block). Lemma 6.2(i) replaces
+\(\tfrac l2 z^{1/2}\) by
+\(\tfrac l2 n^{27/16}-\tfrac{9l}{16}n^{3/16}\theta\). The
+remainder costs
+\(\lvert l\rvert\cdot P\cdot P^{-7/16}\ll P^{1/96+9/16}=P^{55/96}\),
+inside \(P^{1-1/96}\). Write
+\(C=\tfrac{9l}{16}n^{3/16}\), so
+\(\lvert C\rvert\le2P^{19/96}\) on \(\lvert l\rvert\le2P^{1/96}\).
+Lemma 3.7 with \(T=R_0=P^{1/4}\) satisfies
+\(T\ge8(1+\lvert C\rvert)\):
+\(8\lvert C\rvert/T\le16P^{-5/96}\to0\), hence for
+\(P\ge P_0\). The produced modes are \(e(uX)\) with
+\(\lvert u\rvert\le P^{1/4}\). Those are first-letter monomials:
+the \(r\)-modes of Lemma 5.2 Stage 2 (families
+\(e(r\nu^{3/2})\) with truncation \(R_0=P^{1/4}\)), not (D1)
+\(Y\)-wave decorations. The printed cap
+\(\lvert q'\rvert\le4P^{1/24}\) is the kernel's own \(Y\)-wave
+range after differencing, and is not a slot for \(X\)-modes;
+shrinking \(J_5\) cannot fit \(\lvert l\rvert P^{3/16}\) into that
+cap.
+
+Write \(I_{\mathrm{tot}}\) for the combined first-letter index:
+Theorem 6.1's own \(\lvert i\rvert\le2P^{1/96}\) plus the
+fifth-letter \(\lvert u\rvert\le P^{1/4}\). Then
+\(\lvert I_{\mathrm{tot}}\rvert\le2P^{1/4}\) for \(P\ge P_0\).
+Theorem 6.1 Steps D–E apply at this range.
+
+- *Step D, \(i\)-passenger.*
+  \(\Delta\Delta(\tfrac i2 X)\) has second derivative
+  \(\le2.3\,\lvert i\rvert h_1h_2P^{-5/2}\). At
+  \(\lvert i\rvert\le2P^{1/4}\) and \(h_1h_2\le P^{1/16}\) this is
+  \(O(P^{-35/16})\), inside class (D3)
+  (\(\lvert\varphi''\rvert\le3kh_1h_2P^{-5/8}\)) by
+  \(P^{-35/16}/P^{-9/16}=P^{-13/8}\). The fifth-letter chirp
+  \(\tfrac l2 n^{27/16}\), after the same double difference, is
+  likewise (D3):
+  \(h_1h_2\cdot l\cdot P^{27/16-4}=O(P^{1/16+1/96-37/16})\).
+- *Step D, \(j\)-passenger and \(q_d\).* The fifth letter does not
+  enlarge \(j\) or the \(Y\)-wave frequencies. The bound
+  \(\lvert q_d\rvert\le3P^{1/24}+P^{1/96}\le4P^{1/24}\) is
+  unchanged.
+- *Step E, composites.* An \(X\)-mode is smooth. It does not enter
+  the kernel \(\theta\)-coefficient \(B\). The offset composite
+  \(405/512\) (ratio \(7:4\)) and the zero-offset curvature
+  \(8.27\,kh_1h_2\nu^{-5/8}\) are therefore the values of
+  Theorem 6.1. The (D3) curvature of the new modes is dominated
+  at the same Stage-E ratios already displayed
+  (\(\le P^{-1/4}\) against \(\lambda_a'\ge0.72P^{-1/8}\)).
+- *Lemma 5.2 Stage 2.* Modes with \(\lvert u\rvert\le P^{1/4}\)
+  are a subset of the Stage-2 family already bounded by
+  \(3R_0^{1/2}P^{3/4}\log P=3P^{7/8}\log P\). Collision-band
+  mass stays \(O(\log P)\).
+- *Flat cost of Lemma 3.7.* Per point
+  \(8(1+\lvert C\rvert)/T=O(P^{19/96-1/4})=O(P^{-5/96})\); over
+  a block \(O(P^{1-5/96})\), inside Theorem 6.1's
+  \(P^{1-1/96}\) budget.
+
+Theorem 6.1 therefore applies to every fifth-letter decorated
+\(OOOE*\) mode sum, uniformly in \(\lvert l\rvert\le2P^{1/96}\).
+Hence
+\(\#\mathrm{OOOEE}(N),\;\#\mathrm{OOOEO}(N)
+=N/32+O(N^{1-1/96+\varepsilon})\).
+
+\(OOEO*\). By Lemma 3.6,
+\[
+[\mathrm{OOEO}\ast]
+=\tfrac1{16}\bigl(1-\psi(X)\bigr)\bigl(1+\psi(Y)\bigr)
+\bigl(1-\psi(U)\bigr)\bigl(1\pm\psi(w^{3/2})\bigr).
+\]
+Vaaler-expand the four waves. The \(k=0\) cases are Theorem 4.8.
+For \(k\ne0\), Lemma 6.2(ii) writes the fifth-letter phase as
+\(\tfrac k2 n^{27/16}-C\theta-B\theta_w\) with
+\(B=\tfrac{3k}4 v^{1/4}\asymp kn^{9/16}\) and
+\(C=\tfrac{9k}{16}n^{3/16}\), up to the decaying \(D_5'\) of cost
+\(\ll P^{55/96}\) as above. This is the argument of Theorem 4.8
+one even-branch layer later: a single growing sawtooth of
+amplitude \(\asymp kn^{9/16}\) riding \(\theta_w=\{v^{1/2}\}\),
+together with a slower \(\theta\)-sawtooth.
+
+*Drift-1 intervals.* \(B'\asymp kn^{-7/16}\), so \(B\) drifts by
+at most \(1\) on intervals \(I\) of length
+\(L_B=P^{7/16}/k\); there are \(\asymp kP^{9/16}\) of them. On
+\(I\), expand \(e(-B\{U\})=\sum_ra_r(B)e(rU)\) as in Theorem 4.8
+(Fourier in \(U\), Vaaler truncation \(\lvert r+B\rvert\le T_w\)
+with \(T_w=P^{1/4}\)); the coefficients satisfy
+\(\lvert a_r(B)\rvert\le\min(1,\lvert r+B\rvert^{-1})\) with
+window mass \(O(\log T_w)\), and their \(n\)-dependence through
+\(B(n)\) has total variation \(O(1)\) per interval, removed by
+one partial summation per mode. The window is legal for the
+sign check below:
+\(T_w=P^{1/4}\ll kP^{9/16}\) for every \(k\ge1\); the majorant
+is \(P/T_w=P^{3/4}\).
+
+At frequency \(\ell=-B+t\), \(\lvert t\rvert\le T_w\), the
+combined phase is
+\(-\tfrac{3k}4 v^{3/4}+t\,v^{1/2}\) plus the original
+\(\tfrac k2 n^{27/16}-C\theta\). Linearizing \(v^{3/4}\) and
+\(v^{1/2}\) by Lemma 6.2, the \(\theta\)-coefficients from the
+two expansions cancel at the window centre up to a residual
+\(C_{\mathrm{net}}=\tfrac{9k}{32}n^{3/16}\): the contribution
+of \(-\tfrac{3k}4 v^{3/4}\) is
+\(\tfrac{27k}{32}n^{3/16}\), and
+\(\tfrac{27k}{32}-\tfrac{9k}{16}=\tfrac{9k}{32}\). One slow
+\(\theta\)-sawtooth remains. Expand
+\(e(-C_{\mathrm{net}}\theta)\) on the same intervals
+(\(C_{\mathrm{net}}\) drifts by \(P^{-3/8}\ll1\) on each \(I\);
+window \(T_\theta=P^{1/8}\ll kP^{3/16}\); majorant \(P^{7/8}\)).
+The window-centre \(X\)-mode of this last expansion has
+curvature \(\tfrac{27k}{128}n^{-5/16}\). The leading
+\(n^{27/16}\) coefficient of the combined phase is
+\(\tfrac k2-\tfrac{3k}4=-\tfrac k4\), of curvature
+\(-\tfrac{297k}{1024}n^{-5/16}\). Hence
+\[
+\lambda_2
+=\Bigl(-\tfrac{297k}{1024}+\tfrac{27k}{128}
++O\bigl(T_w n^{-9/16}\bigr)
++O\bigl(J_5 n^{-3/16}\bigr)\Bigr)n^{-5/16},
+\]
+with leading combination
+\(-\tfrac{297}{1024}+\tfrac{216}{1024}=-\tfrac{81}{1024}\ne0\).
+The \(t\)-error is
+\(O(P^{1/4-9/16})=O(P^{-5/16})\) and the \(J_5\)-error, at the
+truncation \(J_5=P^{5/48}\) used below, is
+\(O(P^{5/48-3/16})=O(P^{-1/12})\). Both are smaller than the
+leading coefficient for \(P\ge P_0\), so \(\lambda_2\) is
+single-signed and \(\lambda_2\asymp kn^{-5/16}\). By
+Lemma 3.10(a) the curvature ratios and signs are invariant
+under \(n=2r+1\); Lemma 3.10(b) says the \(n\)-variable
+van der Corput display dominates the reindexed bound.
+
+Lemma 3.3 on each \(I\):
+\(L_B\lambda_2^{1/2}+\lambda_2^{-1/2}
+\ll k^{-1/2}P^{9/32}+k^{-1/2}P^{5/32}\).
+Times \(\asymp kP^{9/16}\) intervals:
+\(S_k\ll k^{1/2}P^{27/32+\varepsilon}\). Balance
+\(J_5^{1/2}P^{27/32}=P/J_5\) at \(J_5=P^{5/48}\) gives
+\(P^{43/48}\). Dyadic blocks sum to
+\(N^{43/48+\varepsilon}\). \(\square\)
+
+**Corollary 6.4 (certified-descent density \(7/8\)).**
+The five uniform certificate classes
+\[
+E,\qquad OE,\qquad OOEE,\qquad OOOEE,\qquad OOEOE
+\]
+are disjoint, and the last two have cardinality
+\(N/32+O(N^{43/48+\varepsilon})\) each. Hence the class of
+starts with a certified descent within five steps has
+cardinality
+\[
+\tfrac N2+\tfrac N4+\tfrac N{16}+\tfrac N{32}+\tfrac N{32}
++O(N^{43/48+\varepsilon})
+=\tfrac{7N}8+O(N^{43/48+\varepsilon}).
+\]
+No other depth-\(\le5\) word class is used. In particular this
+is not a census of every \(O\)-rooted word of length five (the
+classes \(OOOO*\) remain open, and \(OOEOO\), \(OOOEO\) are
+counted by Theorem 6.3 but do not contract).
+
+*Proof.* The first three counts are Corollary 4.9. The new
+cylinders are Theorem 6.3. Every \(OOOEE\) or \(OOEOE\) start
+descends within five steps by Proposition 3.1: \(3^3<2^5\).
+The five classes are disjoint because they are distinct
+prefixes. \(\square\)
+
+This is the first increment past the one-growing-layer ceiling
+of Corollary 4.9. The leftover eighth is the expanding
+length-five tree \(OOEOO\cup OOOEO\cup OOOO*\). Of those,
+\(OOEOO\) and \(OOOEO\) are now counted and still do not
+contract; \(OOOO*\) is uncounted and supercritical. This paper
+claims no certified density beyond \(7/8\).
 
 ## 7. The Terras-style reduction and the frontier
 
@@ -2549,8 +2805,11 @@ follows by letting \(d\to\infty\) slowly with \(N\) (any
 
 Sections 4–6 prove the hypothesis at every depth \(d\le4\), so the
 conclusion of Proposition 7.1 is unconditional for those depths.
-The first open case is depth 5: the \(OOOO*\) split. It has an exact
-shape, one nesting deeper than Theorem 5.3. Write
+Corollary 6.4 raises the certified-descent density to \(7/8\)
+without counting every depth-5 word: the leftover eighth is the
+expanding length-five tree, and the uncounted piece of that tree is
+the \(OOOO*\) split. It has an exact shape, one nesting deeper than
+Theorem 5.3. Write
 \(Z=v^{3/2}\), \(z=\lfloor Z\rfloor\), \(\theta_3=Z-z\); after four
 odd letters the fifth is the parity of \(\lfloor z^{3/2}\rfloor\).
 
@@ -2696,11 +2955,13 @@ The open question, stated once:
 > It is open whether almost every odd-to-odd start has a finite
 > descent certificate. By Proposition 7.1 that would follow from
 > all-depth parity equidistribution, which is now a theorem through
-> depth four; the first open case is the \(OOOO*\) kernel of
-> Conjecture 7.3, whose deterministic model instance is
-> Conjecture 7.5.
+> depth four, and the certified class through length five has
+> density \(7/8\). The first open counting case is the \(OOOO*\)
+> kernel of Conjecture 7.3, whose deterministic model instance is
+> Conjecture 7.5. No length-seven or length-eight density is
+> claimed.
 
-![The theorem flow of the paper. The exact finite-word calculus of the companion manuscript feeds the contraction certificates; the discrepancy calculus with the kernel theorem counts every O-rooted itinerary class through depth four (certified-descent density 13/16), leaving the level-3 kernel — and with it almost-all descent — open.](figures/juggler_frontier.png){width=100%}
+![The theorem flow of the paper. The exact finite-word calculus of the companion manuscript feeds the contraction certificates; the discrepancy calculus with the kernel theorem counts every O-rooted itinerary class through depth four and the two length-five contractors (certified-descent density 7/8), leaving the level-3 kernel — and with it almost-all descent — open.](figures/juggler_frontier.png){width=100%}
 
 ## 8. Software note
 
@@ -2710,7 +2971,7 @@ It is not required to read or check any proof above. It contains Lean
 formalizations of the exact floor identities cited in Section 1.1 and
 of the companion manuscript's finite-word theorems, scaled-integer
 validations of the linearization identities of Lemmas 4.3, 4.6, 5.1,
-and 7.2, and exact-phase numerical probes of the sums \(K_c\),
+6.2, and 7.2, and exact-phase numerical probes of the sums \(K_c\),
 \(K_3\), and the differenced sums of Lemma 5.2 and Theorem 5.3, all
 of which exhibit cancellation at square-root scale — stronger than
 the theorems claim and stronger than they need. The same companion

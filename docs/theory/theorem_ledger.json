@@ -3753,7 +3753,7 @@
  {
   "id": "J-depth5-contracting",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "Theorem T, Phase-27 repair: #OOOEE(N), #OOOEO(N) = N/32 + O(N^{1-1/96+eps}) and #OOEOE(N), #OOEOO(N) = N/32 + O(N^{43/48+eps}). The fifth-letter X-modes of the OOOE* sawtooth C θ, C ≍ l n^{3/16}, are Lemma 5.2 Stage-2 r-modes e(u X) with |u| ≤ P^{1/4} after Lemma 3.7 at T = R_0 = P^{1/4} and J_5 = 2 P^{1/96} (T ≥ 8(1+|C|) since |C| = O(P^{19/96})); they are not Lemma 5.2(ii) decorations and do not enlarge |q'|. Theorem 6.1 Steps D–E apply: the i-passenger stays (D3), B is unchanged, both sign-critical composites survive. The OOEO* curvature λ_2 = (-81/1024) k n^{-5/16} + lower terms keeps sign under Lemma 3.10(a). Withdrawn from Paper B in Phase 26; restored in the laboratory record (lemma Part XII). Not a termination claim.",
+  "statement": "Theorem T, Phase-27 repair, imported as Paper B Theorem 6.3: #OOOEE(N), #OOOEO(N) = N/32 + O(N^{1-1/96+eps}) and #OOEOE(N), #OOEOO(N) = N/32 + O(N^{43/48+eps}). The fifth-letter X-modes of the OOOE* sawtooth C θ, C ≍ l n^{3/16}, are Lemma 5.2 Stage-2 r-modes e(u X) with |u| ≤ P^{1/4} after Lemma 3.7 at T = R_0 = P^{1/4} and J_5 = 2 P^{1/96} (T ≥ 8(1+|C|) since |C| = O(P^{19/96})); they are not Lemma 5.2(ii) decorations and do not enlarge |q'|. Theorem 6.1 Steps D–E apply: the i-passenger stays (D3), B is unchanged, both sign-critical composites survive. The OOEO* curvature λ_2 = (-81/1024) k n^{-5/16} + lower terms keeps sign under Lemma 3.10(a). Withdrawn from Paper B in Phase 26; restored in the laboratory record (lemma Part XII) and imported 2 September 2026. Not a termination claim.",
   "source": "docs/research/juggler_two_step_parity_lemma.md",
   "lean": "",
   "tests": [
@@ -3764,7 +3764,7 @@
  {
   "id": "J-five-step-descent-density",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "Corollary U, Phase-27 repair: the class of starts carrying a uniform power-envelope descent certificate of length at most five — evens, OE, OOEE, OOOEE, OOEOE — has natural density 7/8. The new cylinders are row J-depth5-contracting; the contraction 3^3 < 2^5 is row J-power-envelope-contraction. Paper B remains frozen at 13/16 (row J-four-step-descent-density, Corollary 4.9). Not a density of starts that reach 1.",
+  "statement": "Corollary U, Phase-27 repair, imported as Paper B Corollary 6.4: the class of starts carrying a uniform power-envelope descent certificate of length at most five — evens, OE, OOEE, OOOEE, OOEOE — has natural density 7/8. The new cylinders are row J-depth5-contracting / Theorem 6.3; the contraction 3^3 < 2^5 is row J-power-envelope-contraction. The four-step class remains Corollary 4.9 at 13/16 (row J-four-step-descent-density). Not a density of starts that reach 1.",
   "source": "docs/research/juggler_two_step_parity_lemma.md",
   "lean": "",
   "tests": [
@@ -3861,9 +3861,20 @@
   "related_conjectures": []
  },
  {
+  "id": "J-length7-integer-w-block",
+  "tag": "REFUTED",
+  "statement": "Method claim (Phase-13 slogan, Phase 38): the integer-w block e(ξ w) with ξ = (9k/4) v^{5/8} ≍ k n^{45/32} sits below the engine line on Lemma X3 runs (e(ξ J) a smooth chirp, κ_w a Q/R3 indicator). False. This ξ is the naive θ_w coefficient Lemma X1 eliminated. Independently of e(u w^{3/2}): (i) e(ξ w) = e(ξ U) e(-ξ θ_U) has sawtooth coefficient ξ ≍ P^{45/32} > n and ξ' ≍ P^{13/32} >> 1 (Lemma 3.7 needs T ≍ P^{45/32} > P); (ii) the dual e(w {ξ}) has coefficient w ≍ n^{9/8} > n; (iii) on an X3-run ξ drifts by P^{41/32} >> 1, so the frequency is not frozen, and discarding the accumulated carry costs P^{73/32}. The smooth interpolant e(ξ U) is the first-letter chirp already in row J-length7-vdc3-chirps. The length-7 counts are not refuted. Not a termination claim.",
+  "source": "docs/research/juggler_two_step_parity_lemma.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_two_step_parity.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-depth7-engine-contracting",
   "tag": "CONJECTURE",
-  "statement": "Conjecture (formerly Theorem X; withdrawn from Paper B in Phase 26): each of the eight words OOEOO** and OOOEO** has cardinality N/128 + O(N^{1-1/96+eps}). The growing-remainder hole is closed (row J-length7-remainder-engine). The alpha = 33/32 W-family is row J-w-family-thirty-three-thirty-seconds. Isolated monomials e(u n^{27/16}) and e(C n^{3/2}) close by one A-process plus Lemma 3.3 (row J-length7-vdc3-chirps). The inventory object e(u w^{3/2}) is not closed: the X3 plus Q/R3 carry slogan is REFUTED (row J-length7-x3-qr3-carry), and the passenger slogan remains REFUTED (row J-length7-passenger-theorem-t). The integer-w block, seventh letter, and assembly are unrerun. The contraction 3^4 < 2^7 is unconditional. Not a termination claim.",
+  "statement": "Conjecture (formerly Theorem X; withdrawn from Paper B in Phase 26): each of the eight words OOEOO** and OOOEO** has cardinality N/128 + O(N^{1-1/96+eps}). The growing-remainder hole is closed (row J-length7-remainder-engine). The alpha = 33/32 W-family is row J-w-family-thirty-three-thirty-seconds. Isolated monomials e(u n^{27/16}) and e(C n^{3/2}) close by one A-process plus Lemma 3.3 (row J-length7-vdc3-chirps). The inventory is not closed: e(u w^{3/2}) is blocked by row J-length7-x3-qr3-carry, the integer-w block e(ξ w) at ξ ≍ n^{45/32} is the Phase-5 wall (row J-length7-integer-w-block), and the passenger slogan remains REFUTED (row J-length7-passenger-theorem-t). The seventh letter and assembly are unrerun. The contraction 3^4 < 2^7 is unconditional. Not a termination claim.",
   "source": "docs/research/juggler_two_step_parity_lemma.md",
   "lean": "",
   "tests": [
@@ -3874,7 +3885,7 @@
  {
   "id": "J-seven-step-descent-density",
   "tag": "CONJECTURE",
-  "statement": "Conjecture (formerly Corollary Y; withdrawn from Paper B in Phase 26): the class of starts carrying a uniform power-envelope descent certificate of length at most seven has natural density 57/64. Depends on row J-depth7-engine-contracting, still CONJECTURE (isolated chirps are row J-length7-vdc3-chirps; the inventory object e(u w^{3/2}) is blocked by row J-length7-x3-qr3-carry; passenger slogan REFUTED as row J-length7-passenger-theorem-t). The contraction step (3^4 < 2^7) is unconditional. The laboratory certified density is 7/8 (row J-five-step-descent-density); Paper B prints 13/16. Not a density of starts that reach 1.",
+  "statement": "Conjecture (formerly Corollary Y; withdrawn from Paper B in Phase 26): the class of starts carrying a uniform power-envelope descent certificate of length at most seven has natural density 57/64. Depends on row J-depth7-engine-contracting, still CONJECTURE (isolated chirps are row J-length7-vdc3-chirps; e(u w^{3/2}) is blocked by row J-length7-x3-qr3-carry; the integer-w block is row J-length7-integer-w-block; passenger slogan REFUTED as row J-length7-passenger-theorem-t). The contraction step (3^4 < 2^7) is unconditional. The laboratory and Paper B certified density is 7/8 (row J-five-step-descent-density, Corollary 6.4). Not a density of starts that reach 1.",
   "source": "docs/research/juggler_two_step_parity_lemma.md",
   "lean": "",
   "tests": [
@@ -4043,7 +4054,7 @@
  {
   "id": "J-eight-step-descent-density",
   "tag": "CONJECTURE",
-  "statement": "Conjecture (formerly Corollary AB; withdrawn from Paper B in Phase 26): the class of starts carrying a uniform power-envelope descent certificate of length at most eight has natural density 29/32. Depends on rows J-depth7-engine-contracting and J-depth8-engine-quartet, both retagged CONJECTURE in Phase 26; the contraction steps are unconditional. The laboratory certified density is 7/8 (row J-five-step-descent-density); Paper B prints 13/16. Not a density of starts that reach 1.",
+  "statement": "Conjecture (formerly Corollary AB; withdrawn from Paper B in Phase 26): the class of starts carrying a uniform power-envelope descent certificate of length at most eight has natural density 29/32. Depends on rows J-depth7-engine-contracting and J-depth8-engine-quartet, both retagged CONJECTURE in Phase 26; the contraction steps are unconditional. The laboratory and Paper B certified density is 7/8 (row J-five-step-descent-density, Corollary 6.4). Not a density of starts that reach 1.",
   "source": "docs/research/juggler_two_step_parity_lemma.md",
   "lean": "",
   "tests": [
@@ -6202,6 +6213,20 @@
   ],
   "related_conjectures": [
    "juggler_hug_flow_window"
+  ]
+ },
+ {
+  "id": "J-cyclemin-walk-arch-kills-blocker",
+  "tag": "REFUTED",
+  "statement": "A human arch bound e(L) = O(max_j a_{j+1}) on the hug Birkhoff excess tightens the DK cap 2 s(L)/L enough to pull n*(478245) below the certified floor 162849448. False. Hug is the unique maximizer and the certified DP already computes C_L: at L=478245 / floor 162849448 the DP margin is 0.4334 < 1, so no valid upper bound on C_L can kill. Digit sum s=2, so 2s/L = 4/478245 against C_* = 0.04372 (relative 1.91e-4); the illegal cap C_L <= C_* drops n* from 3.483e8 to 3.482e8. Kill requires excess kappa <= L C_*(m_0 - 1) = -11848; an arch bound supplies O(max a) = O(55), wrong sign and more than 200x too small. The same sign holds on fan A k=2, k=28 and seed 16785921. The O(max a) height observation itself is not refuted. Envelope currency stays 2 s(L). Not a halt theorem and not a Paper A edit.",
+  "source": "docs/problems/juggler_cycle_walk_arch.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_walk_arch.py"
+  ],
+  "related_conjectures": [
+   "juggler_walk_arch_kills_blocker",
+   "juggler_walk_excess_arch"
   ]
  }
 ]

@@ -4,13 +4,15 @@ Status: **PROMOTE** (length 5, the \(\alpha=33/32\)
 \(W\)-family instance, the length-7 remainder engine, and
 the isolated length-7 chirps). Theorem X is **PARK**
 (passenger slogan **REFUTED**; X3 plus Q/R3 carry
-**REFUTED**; isolated chirps are not the inventory).
+**REFUTED**; integer-\(w\) block **REFUTED**; isolated
+chirps are not the inventory).
 Density \(57/64\), length 8, and the Corollary R′
-*family* stay **CONJECTURE**. Paper B stays frozen at
-\(13/16\).
+*family* stay **CONJECTURE**. Paper B prints the length-5
+harvest as Theorem 6.3 / Corollary 6.4 (density \(7/8\)).
 
 Repair of the Phase-26 withdrawn length-5 passenger holes. Not a
-new contractor family, not a \(K_3\) attack, and not a Paper B edit.
+new contractor family, not a \(K_3\) attack. The length-5
+repair is now a Paper B claim.
 
 ## Problem
 
@@ -99,6 +101,8 @@ It is not required. The 2-adic / BT bridge stays closed.
   Phase 35) — **EXACT — HUMAN PROOF**
 - Length-7 X3 plus Q/R3 carry
   (`J-length7-x3-qr3-carry`, Phase 37) — **REFUTED**
+- Length-7 integer-\(w\) block
+  (`J-length7-integer-w-block`, Phase 38) — **REFUTED**
 - Length-7 passenger inventory / Theorem X, length-8 \(E'\),
   Corollary R′ family — **CONJECTURE**
 - \(K_3\) bound — **PARK** (BB/GG/JJ)
@@ -122,8 +126,9 @@ None new. Remaining harvest rows stay as they are:
 `J-w-family-thirty-three-thirty-seconds`),
 `J-depth7-engine-contracting` (isolated chirps are
 `J-length7-vdc3-chirps`; X3 plus Q/R3 is
-`J-length7-x3-qr3-carry`, **REFUTED**; passenger slogan
-is `J-length7-passenger-theorem-t`, **REFUTED**;
+`J-length7-x3-qr3-carry`, **REFUTED**; integer-\(w\)
+is `J-length7-integer-w-block`, **REFUTED**; passenger
+slogan is `J-length7-passenger-theorem-t`, **REFUTED**;
 remainder is `J-length7-remainder-engine`),
 `J-seven-step-descent-density`, `J-depth8-engine-quartet`,
 `J-eight-step-descent-density`.
@@ -151,7 +156,7 @@ gravity.
 - **Corollary U (repaired, EXACT — HUMAN PROOF,
   `J-five-step-descent-density`).**
   Laboratory certified \(\le 5\)-step descent density \(7/8\).
-  Paper B remains \(13/16\).
+  Imported as Paper B Corollary 6.4.
 - **Theorem R at \(\alpha=33/32\) (EXACT — HUMAN PROOF,
   `J-w-family-thirty-three-thirty-seconds`, Phase 28).**
   Child dossier
@@ -182,14 +187,18 @@ gravity.
   Child dossier
   [juggler_length7_x3_carry.md](juggler_length7_x3_carry.md).
   X3 plus Q/R3 does not close \(e(uw^{3/2})\).
+- **Proposition X-int (REFUTED,
+  `J-length7-integer-w-block`, Phase 38).**
+  Child dossier
+  [juggler_length7_integer_w.md](juggler_length7_integer_w.md).
+  The integer-\(w\) block is the Phase-5 wall.
 
 ## Open questions
 
-The Phase-13 integer-\(w\) block \(e(\xi w)\) at
-\(\xi\asymp n^{45/32}\). Length 8 stays behind \(E'\).
-See the child
-[juggler_length7_x3_carry.md](juggler_length7_x3_carry.md).
-Do not open another rewriting of \(e(uw^{3/2})\).
+The length-8 \(E'\) hole. See the child
+[juggler_length7_integer_w.md](juggler_length7_integer_w.md).
+Do not reopen \(e(uw^{3/2})\) and do not rewrite
+\(45/32\).
 
 ## Decision
 
@@ -203,6 +212,6 @@ Theorem R’s dominance chain rerun at one specific
 
 ## Publication assessment
 
-Status: `THEOREM` (laboratory). Not a Paper B edit: the referee
-froze the printed claim set at \(13/16\). Import is a later
-editorial decide.
+Status: `PAPER_CANDIDATE`. Imported into Paper B as Theorem 6.3 /
+Corollary 6.4 on 2 September 2026. Length 7/8 remain
+`CONJECTURE` and are not paper claims.

@@ -1,0 +1,201 @@
+{
+  "model": "payoff of replacing the DK cap 2 s(L)/L by 0 or by O(max a)/L on the dangerous competition rows; dominance of the certified hug DP over any valid envelope tightening",
+  "floor": 162849448,
+  "focus_lengths": [
+    50508,
+    176251,
+    478245,
+    780239,
+    8632083,
+    16785921
+  ],
+  "fan_A_quotient": 55,
+  "rows": [
+    {
+      "length": 50508,
+      "odd_count": 31867,
+      "theta": 7.264907458078721e-06,
+      "digit_sum": 1,
+      "blocks": [
+        [
+          50508,
+          1
+        ]
+      ],
+      "tag": "seed",
+      "C_star": 0.04371953821963857,
+      "dk_cap": 3.959768749505029e-05,
+      "cap_over_c_star": 0.0009057206253213176,
+      "margin_2s": 8.43343666274526,
+      "margin_cap_zero": 8.441075000273049,
+      "n_star_2s": 23719979.411536876,
+      "n_star_cap_zero": 23702485.21626168,
+      "n_star_relative_drop": 0.0007375299519309933,
+      "n_star_cap_zero_above_floor": false,
+      "required_excess": 16431.280887819506,
+      "required_excess_over_L": 0.3253203628696346,
+      "optimistic_arch_cap": 0.001088936406113883
+    },
+    {
+      "length": 176251,
+      "odd_count": 111202,
+      "theta": 3.600206691677816e-06,
+      "digit_sum": 1,
+      "blocks": [
+        [
+          176251,
+          1
+        ]
+      ],
+      "tag": "seed",
+      "C_star": 0.04372016909198749,
+      "dk_cap": 1.1347453347782423e-05,
+      "cap_over_c_star": 0.0002595473344100595,
+      "margin_2s": 1.1980305175852088,
+      "margin_cap_zero": 1.1983414632125902,
+      "n_star_2s": 138223768.17326653,
+      "n_star_cap_zero": 138191493.35369402,
+      "n_star_relative_drop": 0.000233496886961229,
+      "n_star_cap_zero_above_floor": false,
+      "required_excess": 1528.364478590483,
+      "required_excess_over_L": 0.008671522309606657,
+      "optimistic_arch_cap": 0.0003120549670640167
+    },
+    {
+      "length": 478245,
+      "odd_count": 301739,
+      "theta": 3.535699419065802e-06,
+      "digit_sum": 2,
+      "blocks": [
+        [
+          301994,
+          1
+        ],
+        [
+          176251,
+          1
+        ]
+      ],
+      "tag": "fanA_k1",
+      "C_star": 0.043721684317889,
+      "dk_cap": 8.363913893506466e-06,
+      "cap_over_c_star": 0.0001912989863952775,
+      "margin_2s": 0.43329420454346756,
+      "margin_cap_zero": 0.43337709328560775,
+      "n_star_2s": 348306663.42522544,
+      "n_star_cap_zero": 348243761.52020335,
+      "n_star_relative_drop": 0.00018059345865942215,
+      "n_star_cap_zero_above_floor": true,
+      "required_excess": -11847.901912947722,
+      "required_excess_over_L": -0.024773707854651324,
+      "optimistic_arch_cap": 0.0001150038160357139
+    },
+    {
+      "length": 780239,
+      "odd_count": 492276,
+      "theta": 3.471192142292585e-06,
+      "digit_sum": 3,
+      "blocks": [
+        [
+          301994,
+          2
+        ],
+        [
+          176251,
+          1
+        ]
+      ],
+      "tag": "fanA_k2",
+      "C_star": 0.04372319964920581,
+      "dk_cap": 7.68995141232366e-06,
+      "cap_over_c_star": 0.00017587805727898827,
+      "margin_2s": 0.26053854751855815,
+      "margin_cap_zero": 0.26058437053214195,
+      "n_star_2s": 553565216.1044462,
+      "n_star_cap_zero": 553471136.6312553,
+      "n_star_relative_drop": 0.00016995192337582288,
+      "n_star_cap_zero_above_floor": true,
+      "required_excess": -25224.828187462386,
+      "required_excess_over_L": -0.03232961719096634,
+      "optimistic_arch_cap": 7.049122127963355e-05
+    },
+    {
+      "length": 8632083,
+      "odd_count": 5446238,
+      "theta": 1.7940014856057362e-06,
+      "digit_sum": 29,
+      "blocks": [
+        [
+          301994,
+          28
+        ],
+        [
+          176251,
+          1
+        ]
+      ],
+      "tag": "fanA_k28",
+      "C_star": 0.04376263530041406,
+      "dk_cap": 6.719119823106427e-06,
+      "cap_over_c_star": 0.00015353553955291293,
+      "margin_2s": 0.011923439720083648,
+      "margin_cap_zero": 0.011925270391834398,
+      "n_star_2s": 9215990002.308037,
+      "n_star_cap_zero": 9214429980.828945,
+      "n_star_relative_drop": 0.00016927334759488184,
+      "n_star_cap_zero_above_floor": true,
+      "required_excess": -373257.7778679277,
+      "required_excess_over_L": -0.043240754041397385,
+      "optimistic_arch_cap": 6.3715791426009225e-06
+    },
+    {
+      "length": 16785921,
+      "odd_count": 10590737,
+      "theta": 5.230051862325312e-08,
+      "digit_sum": 1,
+      "blocks": [
+        [
+          16785921,
+          1
+        ]
+      ],
+      "tag": "seed",
+      "C_star": 0.043803663348443767,
+      "dk_cap": 1.1914746888180875e-07,
+      "cap_over_c_star": 2.7200343481327062e-06,
+      "margin_2s": 0.0001750007185969198,
+      "margin_cap_zero": 0.00017500119460488533,
+      "n_star_2s": 453894347125.13135,
+      "n_star_cap_zero": 453892752433.41223,
+      "n_star_relative_drop": 3.5133544385750636e-06,
+      "n_star_cap_zero_above_floor": true,
+      "required_excess": -735156.1567535141,
+      "required_excess_over_L": -0.043795997655029714,
+      "optimistic_arch_cap": 3.2765553942497408e-06
+    }
+  ],
+  "blocker_dp": {
+    "floor": 162849448,
+    "theta": 3.535699419065802e-06,
+    "walk_rhs_certified": 8.158376627326281e-06,
+    "dp_margin": 0.43338271577498205,
+    "dk_margin_2s": 0.43329420454346756,
+    "dk_margin_cap_zero": 0.43337709328560775,
+    "dp_excludes": false,
+    "dp_vs_dk_rel": 0.00020423341377657472
+  },
+  "classification": {
+    "label": "WALK_ARCH_PAYOFF_DEAD",
+    "decision": "CLOSE",
+    "reason": "any valid tightening of 2s sits above the already-computed hug DP, which loses at L=478245 / floor 162849448 with margin 0.4334; the most optimistic cap C_L <= C_* still has n* = 3.482e+08 above the certified floor, and the kill would need excess -11847.9 (negative, four orders past O(max a))"
+  },
+  "no_new_kills": true,
+  "envelope_unchanged": true,
+  "no_arch_proof_attempt": true,
+  "not_a_halt_theorem": true,
+  "no_cycle_all_lengths": false,
+  "not_a_uniform_ratio_theorem": true,
+  "no_new_period_bound": true,
+  "no_floor_raise": true,
+  "git_commit": "6ff71ceef383aec2c0d1b753e17bba8f6f7e4642"
+}

@@ -13,6 +13,6 @@
   "literature": [
     "kuipers-niederreiter-1974"
   ],
-  "notes": "Three structural laws FAILED on the same census and are recorded as negative knowledge: alternating digit sum (Pearson r = 0.21), additive digit law (least-squares r^2 = -0.39), endpoint coboundary e(L) = g(u_L) (max bin range 4.63 vs global range 5.25 - no collapse). The excess is a phase-history functional. No bound beyond the window is claimed, the certified envelope currency stays 2 s(L), and no new kills follow (the uniform window margin is already 5.48). Not a halt theorem.",
+  "notes": "Three structural laws FAILED on the same census and are recorded as negative knowledge: alternating digit sum (Pearson r = 0.21), additive digit law (least-squares r^2 = -0.39), endpoint coboundary e(L) = g(u_L) (max bin range 4.63 vs global range 5.25 - no collapse). The excess is a phase-history functional. No bound beyond the window is claimed, the certified envelope currency stays 2 s(L), and no new kills follow (the uniform window margin is already 5.48). The period-bound reading — that O(max_j a_{j+1}) pulls n*(478245) below the certified floor — is REFUTED (juggler_walk_arch_kills_blocker); the height statement itself is not refuted. Not a halt theorem.",
   "not_a_halt_theorem": true
 }

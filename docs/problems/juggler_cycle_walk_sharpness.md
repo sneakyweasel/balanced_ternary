@@ -158,11 +158,13 @@ Classification **WALK_SHARPNESS_BOUNDED**.
 
 ## Open questions
 
-Does the quadratic-arch bound per Ostrowski tower (per-block
-excess affine in the drifting phase; arches closing at full
-quotient cycles) admit a human proof, giving
-\(e=O(\max_ja_{j+1})\) and replacing \(2s(L)\)? Do not raise
-\(N_0\) and do not claim a uniform \(B/\theta\) gap.
+The quadratic-arch height \(e=O(\max_ja_{j+1})\) remains an
+open human-proof question with no cycle consequence. Its
+period-bound reading — pulling \(n^*(478245)\) below the
+certified floor — is **REFUTED** by the child
+([juggler_cycle_walk_arch.md](juggler_cycle_walk_arch.md)).
+Do not raise \(N_0\) and do not claim a uniform \(B/\theta\)
+gap.
 
 ## Decision
 
@@ -173,13 +175,13 @@ with the accumulation confined to the single large-quotient
 tower whose arch closes. But no single-parameter law survived
 testing, the arch bound has no human proof within Phase-0 scope,
 and there is no consequence at the current floor — the uniform
-envelope margin is already \(5.48\) via \(2s\). The reopening
-point is the arch route (Schoissengeier-type phase-affine block
-sums), recorded above.
+envelope margin is already \(5.48\) via \(2s\). The recorded
+reopening point (a human arch bound as a free period-bound
+move) is now the child CLOSE
+([juggler_cycle_walk_arch.md](juggler_cycle_walk_arch.md)).
 
-Best next question: does the quadratic-arch bound per Ostrowski
-tower admit a human proof, giving \(e=O(\max_ja_{j+1})\) in
-place of \(2s(L)\)?
+Best next question: none as a cycle attack; the \(O(\max_j
+a_{j+1})\) height stays PARKED with no period-bound payoff.
 
 ## Publication assessment
 

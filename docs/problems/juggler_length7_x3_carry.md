@@ -130,11 +130,11 @@ None added.
 
 ## Open questions
 
-Does the Phase-13 integer-\(w\) block \(e(\xi w)\)
-with \(\xi\asymp n^{45/32}\) independently sit below
-the engine line on X3-runs, or is it the same
-Phase-5 wall? Length 8 stays behind \(E'\). Do not
-open another rewriting of \(e(uw^{3/2})\).
+Answered in Phase 38
+([juggler_length7_integer_w.md](juggler_length7_integer_w.md)):
+the integer-\(w\) block is the same Phase-5 wall.
+Length 8 stays behind \(E'\). Do not reopen
+\(e(uw^{3/2})\) and do not rewrite \(45/32\).
 
 ## Decision
 

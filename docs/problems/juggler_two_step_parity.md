@@ -120,7 +120,9 @@ It is not required. The 2-adic / BT bridge stays closed.
   `length7_vdc3_chirps_proved` is `True`); the X3 plus
   Q/R3 carry slogan is **REFUTED** (Phase 37,
   `length7_x3_qr3_carry_refuted` is `True`); the
-  inventory object \(e(uw^{3/2})\) remains the hole
+  integer-\(w\) block is the Phase-5 wall (Phase 38,
+  `length7_integer_w_engine_line_refuted` is `True`);
+  the inventory object \(e(uw^{3/2})\) remains the hole
 
 - Increment-first \(K_3\) attack — **REFUTED** in Phase 14
   (`increment_first_k3_refuted` is `True`); bound not proved
@@ -1234,6 +1236,27 @@ form has coefficient \(P^{45/32}>n\) (lemma Part XXI,
 `length7_x3_qr3_carry_refuted` is `True`. Isolated
 Lemma X5 stands. Theorem X stays `CONJECTURE`. Paper B
 is not edited. No Lemma 3.11.
+
+## Phase 38: the integer-\(w\) block is the Phase-5 wall
+
+Child dossier
+[juggler_length7_integer_w.md](juggler_length7_integer_w.md).
+\(\xi\asymp n^{45/32}\) is the naive \(\theta_w\)
+coefficient Lemma X1 eliminated. Independently of
+\(e(uw^{3/2})\) it sits above the engine line
+(\(\xi>n\), \(\xi'\gg 1\); X3-run drift \(P^{41/32}\)).
+Flag `length7_integer_w_engine_line_refuted` is `True`
+(lemma Part XXII, `J-length7-integer-w-block`). Isolated
+Lemma X5 stands. Theorem X stays `CONJECTURE`. Paper B
+is not edited. No Lemma 3.11.
+
+## Phase 39: Paper B harvest import (density \(7/8\))
+
+Paper B now prints the repaired length-5 harvest:
+Lemma 6.2, Theorem 6.3, Corollary 6.4 (density \(7/8\)).
+Corollary 4.9 remains the four-step class \(13/16\).
+Length 7/8 and the densities \(57/64\), \(29/32\) stay
+withdrawn. Reviewer bundle and PDFs synced.
 
 ## Phase 36: Paper B writeup repair (frozen 13/16)
 

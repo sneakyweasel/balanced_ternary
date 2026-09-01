@@ -1,0 +1,24 @@
+{
+  "id": "juggler_walk_arch_kills_blocker",
+  "title": "A human arch bound e = O(max a) kills 478245 at the certified floor",
+  "statement": "A human bound e(L) = O(max_j a_{j+1}) on the hug Birkhoff excess tightens the DK cap 2 s(L)/L enough to pull the break-even floor n*(478245) below the certified descent floor 162849448, excluding L=478245 as a cycle length with no new floor compute.",
+  "mathematical_domain": "Juggler cycle finance / discrepancy of irrational rotations",
+  "origin": "docs/problems/juggler_cycle_walk_arch.md",
+  "status": "REFUTED",
+  "first_seen": "2026-09-02",
+  "tested_range": "focus rows 50508, 176251, 478245, 780239, 8632083, 16785921 from the walk-competition artifact; certified hug DP at L=478245 / floor 162849448; cap-zero break-evens and required-excess identity kappa = L C_*(m_0 - 1)",
+  "counterexamples": [
+    "hug is the unique maximizer and the certified DP already computes C_L; at L=478245 / floor 162849448 the DP margin is 0.4334 < 1, so no valid upper bound on C_L can kill",
+    "s(478245)=2, so 2s/L = 4/478245 = 8.36e-6 against C_* = 0.04372 (relative 1.91e-4); cap-zero drops n* from 3.483e8 to 3.482e8",
+    "kill at the certified floor requires excess kappa <= -11848; an arch bound supplies O(max a) = O(55), wrong sign and more than 200x too small",
+    "the same sign and a larger |kappa| hold on fan A k=2, k=28 and on seed 16785921; even s=29 at L=8632083 has 2s/L = 1.54e-4 C_*"
+  ],
+  "proof_reference": "docs/problems/juggler_cycle_walk_arch.md",
+  "lean_reference": "",
+  "literature": [
+    "kuipers-niederreiter-1974"
+  ],
+  "notes": "Child of the walk-sharpness PARK. The O(max_j a_{j+1}) height statement itself stays COMPUTATIONALLY_SUPPORTED as a window observation (juggler_walk_excess_arch) and is not refuted; only the period-bound reading is false. Envelope currency stays 2 s(L). Not a halt theorem, not a floor raise, not a Paper A edit, no arch-height proof attempted.",
+  "not_a_halt_theorem": true,
+  "no_cycle_all_lengths": false
+}

@@ -13,7 +13,10 @@
 > \(E'\)), **Corollary R'** (proof-by-monotonicity, never rerun at
 > any specific \(\alpha\)), and **Corollaries U/Y/AB** (densities
 > \(7/8\), \(57/64\), \(29/32\), which inherit the holes). The
-> certified density of Paper B is \(13/16\). Also repaired in
+> certified density of Paper B was \(13/16\) until the
+> 2 September 2026 import of the repaired Theorem T /
+> Corollary U as Theorem 6.3 / Corollary 6.4 (density
+> \(7/8\)). Length 7/8 remain withdrawn. Also repaired in
 > Paper B: Step 5b of Theorem R (the per-cell summation of
 > inverse-power van der Corput terms was invalid; replaced by global
 > sublevel splitting with a trivial transition bound), the
@@ -30,7 +33,8 @@
 > \(w^{3/2}\to n^{27/16}\) reduction is not a decoration,
 > so Theorem X stays a route. Phase 37 refutes the
 > X3-run plus Q/R3-carry slogan for \(e(uw^{3/2})\)
-> (Part XXI).
+> (Part XXI). Phase 38 refutes the integer-\(w\)
+> engine-line slogan (Part XXII).
 
 > **Phase-25 correction (29 August 2026).** The Part-VI mixed-piece
 > bound recorded below (frozen-coefficient model \(e(sX)\),
@@ -67,6 +71,7 @@ Ledger rows: `J-nested-parity-discrepancy`,
 `J-length7-passenger-theorem-t`,
 `J-length7-vdc3-chirps`,
 `J-length7-x3-qr3-carry`,
+`J-length7-integer-w-block`,
 `J-depth7-engine-contracting`,
 `J-seven-step-descent-density`,
 `J-increment-linearization`,
@@ -3489,7 +3494,7 @@ OOEOE — has natural density \(7/8\). Densities
 \(\tfrac12+\tfrac14+\tfrac1{16}+\tfrac1{32}+\tfrac1{32}=\tfrac78\).
 The cylinders are Theorem T. The contraction \(3^3<2^5\) is
 `J-power-envelope-contraction`. Not a density of starts that reach
-\(1\). Paper B remains frozen at \(13/16\).
+\(1\). Imported into Paper B as Corollary 6.4.
 
 ### Phase-27 decision
 
@@ -4212,4 +4217,89 @@ inventory is closed. The single next question is whether
 the Phase-13 integer-\(w\) block \(e(\xi w)\) with
 \(\xi\asymp n^{45/32}\) independently sits below the
 engine line on X3-runs, or is the same Phase-5 wall.
+
+## Part XXII: the integer-\(w\) block is the Phase-5 wall (Phase 38)
+
+Scope: the Phase-13 integer block \(e(\xi w)\) with
+\(\xi\asymp n^{45/32}\), independently of
+\(e(uw^{3/2})\). Not Theorem X. Not another rewriting of
+\(\theta_p\). Not length 8. Not a Paper B edit. Not
+\(K_3\). Isolated Lemma X5 stands.
+
+Lemma X1 writes
+\[
+p^{3/2}
+=-\tfrac54 v^{9/8}+\tfrac94 w\,v^{5/8}
+-\tfrac32 w^{3/4}\theta_p+E_X.
+\]
+The integer coefficient is
+\(\xi=\tfrac{9k}4 v^{5/8}\asymp kn^{45/32}\), already
+\(>n\) at \(k=1\). Lemma X1’s own remark is that the
+*naive* \(\theta_w\) coefficient
+\(\tfrac94 v^{5/8}\asymp n^{45/32}>n\) is gone after
+the rearrangement. Splitting \(e(\xi w)\) off from
+\(-\tfrac54 kv^{9/8}\) reinstates that coefficient.
+
+### Three independent readings, one wall
+
+All comparisons at \(1\le\lvert k\rvert\le P^{1/24}\).
+
+**Sawtooth \(e(-\xi\{U\})\).** Write \(w=\lfloor U\rfloor
+=U-\theta_U\). Then
+\(e(\xi w)=e(\xi U)\,e(-\xi\theta_U)\). The sawtooth
+has coefficient \(\xi\asymp P^{45/32}>n\) and
+derivative \(\xi'\asymp P^{13/32}\gg 1\). Lemma 3.7
+needs \(T\ge 8(1+\lvert\xi\rvert)\asymp P^{45/32}>P\).
+This is Theorem Q’s engine line (the Phase-5 wall), at
+the same exponent Phase 37 recorded for
+\(B=\tfrac{3u}2 U^{1/2}\).
+
+**Dual sawtooth \(e(w\{\xi\})\).** Since \(w\in\mathbb Z\),
+\(e(\xi w)=e(w\{\xi\})\). The coefficient is now
+\(w\asymp n^{9/8}>n\), with \(w'\asymp n^{1/8}\gg 1\).
+Same wall, dual variables.
+
+**X3-run plus Q/R3.** On a run of length
+\(\asymp P^{7/8}\), \(\xi\) itself drifts by
+\(\xi'P^{7/8}\asymp P^{41/32}\gg 1\): the frequency is
+not frozen. The slogan “\(e(\xi J)\) a smooth chirp”
+fails before the carry. The carry \(\kappa_w\) is still
+the Phase-37 mechanical word of mean run \(O(1)\).
+Discarding \(K\asymp P^{7/8}\) costs phase
+\(\xi K\asymp P^{73/32}\).
+
+The smooth interpolant \(e(\xi U)\) is
+\(e\bigl(k v^{9/8}\bigr)\), of size \(n^{81/32}\). That
+is the first-letter chirp already estimated as an
+isolated monomial by Lemma X5, and already worse than
+trivial for Lemma 3.3 (\(P^{81/64}\)). It is not a new
+species and it is not the integer block.
+
+### Proposition X-int (no engine-line integer-\(w\)) — REFUTED method
+
+The claim that \(e(\xi w)\) with \(\xi\asymp n^{45/32}\)
+sits below the engine line on Lemma X3 runs is
+**REFUTED**. It is the naive \(\theta_w\) coefficient
+Lemma X1 eliminated, independently of \(e(uw^{3/2})\).
+The counts are not refuted.
+
+The OOOEO sibling \(e(\eta s)\) with
+\(\eta\asymp n^{27/32}<n\) is *not* this hole: after a
+Theorem Q expansion it produces the same
+\(n^{27/16}\)-chirps at \(\lvert u\rvert\asymp P^{27/32}\)
+already treated in Parts XIX–XXI. It is not an escape
+and is not opened here.
+
+### Phase-38 decision
+
+**PARK** Theorem X. Ledger row
+`J-length7-integer-w-block` tagged `REFUTED`. Flag
+`length7_integer_w_engine_line_refuted` flipped `True`.
+`J-depth7-engine-contracting` stays `CONJECTURE`. No
+density \(57/64\). No Lemma 3.11. No Paper B. No
+\(K_3\). Do not reopen \(e(uw^{3/2})\) and do not
+rewrite the \(45/32\) coefficient. The existing-toolkit
+route for the OOEOO sixth letter is closed. The single
+next question is the length-8 \(E'\) hole, a different
+door.
 
