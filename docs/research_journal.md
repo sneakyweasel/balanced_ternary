@@ -18427,4 +18427,45 @@ Best next question
   log 2/log 3
 ```
 
+## Juggler exact mechanical-lift obstruction
+
+- **Date:** 2026-09-01
+- **Objective:** Test whether the greedy mechanical exponent walk induces a scale-stable transported law on the exact within-cell coordinate \(\xi=\rho/(2T+1)\) whose cyclic closure fails for a reason that is not finance, \(\Delta_w\), one-step cells, IET charge, or DK/Ostrowski
+- **Hypotheses:** (1) the exact map is a skew product \((u,\xi)\mapsto(u',\Xi_\sigma(u,\xi))\); (2) primitive cheap excursions \(\mathtt{OOE},\mathtt{OE}\) induce a well-defined \(\Phi_{\mathcal E}\) with contraction or drift; (3) better \(o/L\) shrinks the admissible \(\xi\)-set
+- **Major results:** Classification **MECHANICAL_LIFT_CLOSED**. IET hug equals `hug_word` at \(L=19,84,1054\) and stays walk-feasible through fan B \(L=16785921\) (only \(\mathtt{OOE}/\mathtt{OE}\)). On \(1223\) \(\mathtt{OOE}\) and \(2529\) \(\mathtt{OE}\) realizers, \(\mathrm{corr}(\xi_{\mathrm{in}},\xi_{\mathrm{out}})\in\{0.019,0.021\}\), within-bin variance ratio \(0.995\), no scale-stable \(\Phi\) (composition skipped). Even-cell \(\xi\) is inert; odd cells through \(m=200\) have at most one integer. Hug(\(19\)) contains \(\mathtt{OOEOE}\); \(365\to 763<2609\). Inverse death is `empty_ooe`. Max integer follow depth \(13\), zero complete lifts (not a theorem). Hypothesis 3 fails (depths \(13,13,10\) as the slope gap falls by four orders). Conjecture `juggler_mechanical_lift_obstruction` REFUTED. Artifact `cycle_mechanical_lift/summary.json`
+- **Refuted ideas:** scale-stable \(\xi\)-cocycle; excursion interval contraction as a new law; better mechanical approximation \(\Rightarrow\) smaller admissible \(\xi\)-set; exact lift obstruction not reducible to archived cells / cyclic-valley scale
+- **Literature:** walk-finance terminal reduction (laboratory); `odd_cell_unique` / `cell_same_next_state` (EXACT — LEAN VERIFIED); cyclic-valley two-type cheap cap; inverse-width empty OOE
+- **Open:** none on this coordinate
+- **Decision:** CLOSE
+
+```text
+What was learned
+- relaxed hug/IET feasibility is not exact integer liftability
+- ξ does not transport: T is constant on each floor cell, so
+  ξ_out is a function of the image integer, not of (u, ξ_in)
+- hug concatenations are SCALE_HUG (9/8 < 4/3), already
+  cyclic_valley; inverse death is the archived empty OOE cell
+- better o/L does not shrink follow depth or empty for a new
+  reason; Φ-composition was correctly skipped
+Strongest theorem
+- none new (the positive identities are archived
+  reparameterizations)
+Strongest refutation
+- no scale-stable Ξ_σ(u,ξ); corr ≈ 0.02 on both cheap blocks;
+  1000001 and 1000003 share an OE landing
+Reusable machinery
+- cycle_mechanical_lift.py (exact (ρ,width) ξ, IET hug stream,
+  tagged three-class comparison)
+Branch status
+- CLOSE
+Why
+- every exact constraint in the census is INERT_EVEN,
+  UNIQUE_ODD, UNCORRELATED, SCALE_HUG, or LOCAL_CELL; the
+  promotion criterion required a multi-seam ξ law that is
+  none of those, and numerical absence of lifts is not enough
+Best next question
+- none in laboratory scope on the cell-position coordinate:
+  the exact map's fibres remain parity plus interval
+```
+
 

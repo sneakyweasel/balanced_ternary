@@ -22,6 +22,8 @@ import Problems.Juggler.ExpansionSlack
 import Problems.Juggler.NearTightScale
 import Problems.Juggler.CycleFinance
 import Problems.Juggler.RunSurvivorLattice
+import Problems.Juggler.WalkChargeWords
+import Problems.Juggler.OstrowskiSandwich
 
 /-!
 # Juggler paper barrel (Paper A)
@@ -102,11 +104,22 @@ The note's Lean-tagged theorems are listed in its Appendix A:
 * 4.9 `run_survivor_unimodular`, `run_survivor_seed_F2`,
       `run_survivor_seed_F3`, `three_pow_step_gt_two_pow_step`,
       `runSurvivors_length`
-* short certificates (Section 5):
+* 5.4 (combinatorial core) `hugOdds_le_of_admissible`
+      (`WalkChargeWords.lean`); the analytic half (charge
+      maximisation) is a human proof
+* 5.6 `budgetedWord_eq_hugWord`, `hugOdds_pow_ge`, `hugOdds_pow_lt`,
+      `hugOdds_least` (`WalkChargeWords.lean`)
+* 5.5 (certified quotient arithmetic) `theta_sandwich_upper`,
+      `theta_sandwich_lower`, `lower_lt_walkTheta`,
+      `walkTheta_lt_upper`, `cf_lower_prefix`, `cf_upper_prefix`,
+      `theta_convergent_denominators` (`OstrowskiSandwich.lean`);
+      Denjoy--Koksma itself and the cylinder-interval bridge stay
+      human/KNOWN
+* short certificates (Section 6):
       `even_finiteProgress`, `odd_even_finiteProgress`
 * no certificate implies odd-to-odd:
       `no_finiteProgress_implies_odd_odd`
-* §5  `four_block_pe_1999` (certified four-block expanding chain)
+* §6  `four_block_pe_1999` (certified four-block expanding chain)
 
 Laboratory leftover names (not printed in the note):
 `reachesOne_of_lt_two_hundred_sixty_one`,

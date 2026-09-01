@@ -1,0 +1,28 @@
+{
+  "id": "juggler_mechanical_lift_obstruction",
+  "title": "Optimal mechanical exponent word has no exact CycleMin lift by a transported cell-position law",
+  "statement": "For survivor-quality hug / IET words, the exact Juggler map induces a scale-stable skew product (u, ξ) ↦ (u', Ξ_σ(u, ξ)) on the within-cell coordinate ξ = ρ/(2T+1) whose cheap-excursion maps Φ_OOE and Φ_OE admit no periodic lift, so |o/L − 1/log2 3| < ε0 implies no exact CycleMin lift. The obstruction is not (L,o), 3^o/2^L, Δ_w, finance, one-step cells considered independently, IET charge, or Ostrowski/DK discrepancy.",
+  "status": "REFUTED",
+  "counterexamples": [
+    "1223 OOE and 2529 OE realizers: corr(ξ_in, ξ_out) = 0.019 and 0.021, within-bin variance ratio 0.995, bucket ξ_out range ≈ 1; no scale-stable Φ",
+    "OE starts 1000001 and 1000003 have ξ_in in {0.00037, 0.00337} and the same landing 31622: ξ_out is a function of the image, not of ξ_in",
+    "even cell q=10: eleven even occupants, one image, ξ ranges over [0, 0.95] (INERT_EVEN / cell_same_next_state)",
+    "odd cells m<=200 have at most one integer (UNIQUE_ODD / odd_cell_unique)",
+    "hug(19) contains OOEOE; 365 --OOE--> 763 < 2609 = oe_start_min(365) (SCALE_HUG / cyclic_valley)",
+    "hug(19) inverse at y=101 dies at empty_ooe, k=5 (LOCAL_CELL / inverse_width)",
+    "slope gaps at L=19,84,1054 improve by four orders while max follow depth stays 13,13,10"
+  ],
+  "first_seen": "2026-09-01",
+  "lean_reference": "odd_cell_unique",
+  "literature": [
+    "simons-de-weger-2005-collatz-m-cycles",
+    "fernandez-ibanez-2026"
+  ],
+  "mathematical_domain": "Juggler CycleMin exact cell-position lift of the mechanical word",
+  "notes": "Phase 0 only. The walk-finance programme is not reopened. Numerical absence of complete hug(19) followers is recorded and is not a theorem. No floor raise, no Paper A edit, no ledger row, no Lean. Not a halt theorem.",
+  "origin": "docs/problems/juggler_cycle_mechanical_lift.md",
+  "proof_reference": "docs/problems/juggler_cycle_mechanical_lift.md",
+  "tested_range": "IET=hug at L=19,84,1054; ξ-pairs on OOE/OE in [13,8001) and [10^6+1,10^6+2001); follow depths of hug(19), hug(84) on those windows; inverse_walk of hug(19) and hug(84)[:18] at y in {11,101,1001,1000001}; controls 365,1517,1000057,1016445; streamed hug histograms through fan B L=16785921",
+  "not_a_halt_theorem": true,
+  "no_cycle_all_lengths": false
+}

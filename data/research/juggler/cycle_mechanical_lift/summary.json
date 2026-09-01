@@ -1,0 +1,793 @@
+{
+  "model": "exact \u03be = \u03c1/(2T+1) on hug/IET words; three classes actual integer lifts / cell-feasible inverse hulls / relaxed exponent walk; no walk DP, no floor raise",
+  "iet_identity": {
+    "L19": {
+      "length": 19,
+      "odd_count": 12,
+      "match": true,
+      "hug_excursions": {
+        "OOE": 5,
+        "OE": 2
+      },
+      "contains_ooeoe": true
+    },
+    "L84": {
+      "length": 84,
+      "odd_count": 53,
+      "match": true,
+      "hug_excursions": {
+        "OOE": 22,
+        "OE": 9
+      },
+      "contains_ooeoe": true
+    },
+    "L1054": {
+      "length": 1054,
+      "odd_count": 665,
+      "match": true,
+      "hug_excursions": {
+        "OOE": 276,
+        "OE": 113
+      },
+      "contains_ooeoe": true
+    },
+    "all_match": true
+  },
+  "cocycle": {
+    "OOE": {
+      "block": "OOE",
+      "n_pairs": 1223,
+      "n_small": 1003,
+      "n_floor": 220,
+      "corr": 0.019033306486854504,
+      "within_bin_var_ratio": 0.995934216762888,
+      "max_bucket_xi_out_range": 0.9966777408637874,
+      "scale_mean_gap": 0.03289551885431319,
+      "functional": false,
+      "uncorrelated": true,
+      "scale_stable_phi": false,
+      "sample": [
+        {
+          "n": 33,
+          "landing": 50,
+          "xi_in": 0.5699208443271768,
+          "xi_out": 0.06666666666666667
+        },
+        {
+          "n": 35,
+          "landing": 54,
+          "xi_in": 0.06265060240963856,
+          "xi_out": 0.3333333333333333
+        },
+        {
+          "n": 1000057,
+          "landing": 5623773,
+          "xi_in": 0.2183634255995661,
+          "xi_out": 0.8638865195604318
+        },
+        {
+          "n": 1000065,
+          "landing": 5623824,
+          "xi_in": 0.5843578362344304,
+          "xi_out": 0.46025722116803713
+        }
+      ]
+    },
+    "OE": {
+      "block": "OE",
+      "n_pairs": 2529,
+      "n_small": 2005,
+      "n_floor": 524,
+      "corr": 0.021335273750940714,
+      "within_bin_var_ratio": 0.9949533842333205,
+      "max_bucket_xi_out_range": 0.9951155115511551,
+      "scale_mean_gap": 0.24556106344393763,
+      "functional": false,
+      "uncorrelated": true,
+      "scale_stable_phi": false,
+      "sample": [
+        {
+          "n": 13,
+          "landing": 6,
+          "xi_in": 0.8709677419354839,
+          "xi_out": 0.4
+        },
+        {
+          "n": 15,
+          "landing": 7,
+          "xi_in": 0.09401709401709402,
+          "xi_out": 0.5135135135135135
+        },
+        {
+          "n": 1000001,
+          "landing": 31622,
+          "xi_in": 0.00037499993731259407,
+          "xi_out": 0.8253521126760563
+        },
+        {
+          "n": 1000003,
+          "landing": 31622,
+          "xi_in": 0.003374998310820102,
+          "xi_out": 0.8253521126760563
+        }
+      ]
+    }
+  },
+  "inert_even": {
+    "inert": true,
+    "tag": "INERT_EVEN",
+    "witnesses": [
+      {
+        "q": 10,
+        "n_even": 11,
+        "unique_images": [
+          10
+        ],
+        "xi_min": 0.0,
+        "xi_max": 0.9523809523809523,
+        "inert": true
+      },
+      {
+        "q": 20,
+        "n_even": 21,
+        "unique_images": [
+          20
+        ],
+        "xi_min": 0.0,
+        "xi_max": 0.975609756097561,
+        "inert": true
+      },
+      {
+        "q": 100,
+        "n_even": 101,
+        "unique_images": [
+          100
+        ],
+        "xi_min": 0.0,
+        "xi_max": 0.9950248756218906,
+        "inert": true
+      }
+    ]
+  },
+  "unique_odd": {
+    "m_max": 200,
+    "max_occupants": 1,
+    "n_empty": 166,
+    "n_one": 35,
+    "unique": true,
+    "tag": "UNIQUE_ODD"
+  },
+  "scale_hug": {
+    "length": 19,
+    "word_prefix": "OOEOOEOOEOEOOEOOEOE",
+    "contains_ooeoe": true,
+    "excursions": {
+      "OOE": 5,
+      "OE": 2
+    },
+    "landings": [
+      {
+        "n": 365,
+        "ooe_landing": 763,
+        "oe_start_min": 2609,
+        "below_oe_start": true
+      },
+      {
+        "n": 1517,
+        "ooe_landing": 3789,
+        "oe_start_min": 17431,
+        "below_oe_start": true
+      },
+      {
+        "n": 1000057,
+        "ooe_landing": 5623773,
+        "oe_start_min": 100007601,
+        "below_oe_start": true
+      }
+    ],
+    "tag": "SCALE_HUG",
+    "fires": true
+  },
+  "control_traces": [
+    {
+      "n": 365,
+      "follow": 10,
+      "xi0": 0.31519323151932316,
+      "xi_last": 0.6347199962980046,
+      "u_last": 1.0947375050480934,
+      "states": [
+        365,
+        6973,
+        582276,
+        763,
+        21075,
+        3059506,
+        1749,
+        73145
+      ],
+      "xis": [
+        0.31519323151932316,
+        0.8150260228602735,
+        0.07007203667321546,
+        0.9328841545870797,
+        0.4629568526819603,
+        0.14432695055730208,
+        0.011784730434544845,
+        0.321417518081876
+      ]
+    },
+    {
+      "n": 1517,
+      "follow": 13,
+      "xi0": 0.15391255045654179,
+      "xi_last": 0.7383918518704307,
+      "u_last": 1.2646625064904058,
+      "states": [
+        1517,
+        59085,
+        14362030,
+        3789,
+        233231,
+        112636568,
+        10613,
+        1093345
+      ],
+      "xis": [
+        0.15391255045654179,
+        0.9997968253862154,
+        0.7268768966882174,
+        0.3402370606028774,
+        0.6119094750298611,
+        0.037640740566259955,
+        0.05824874204905951,
+        0.13724907457317356
+      ]
+    },
+    {
+      "n": 1000057,
+      "follow": 7,
+      "xi0": 0.2183634255995661,
+      "xi_last": 0.578529889569785,
+      "u_last": 0.9248125036057809,
+      "states": [
+        1000057,
+        1000085501,
+        31626832356906,
+        5623773,
+        13336493987,
+        1540148191553904,
+        39244721,
+        245850937598
+      ],
+      "xis": [
+        0.2183634255995661,
+        0.8176655115189015,
+        0.8536418651995853,
+        0.8638865195604318,
+        0.9946426186831502,
+        0.8305073970266295,
+        0.3314476026590397,
+        0.578529889569785
+      ]
+    },
+    {
+      "n": 1016445,
+      "follow": 3,
+      "xi0": 0.9999736921105765,
+      "xi_last": 0.23125130561938584,
+      "u_last": 0.16992500144231237,
+      "states": [
+        1016445,
+        1024768637,
+        32804901498604,
+        5727556
+      ],
+      "xis": [
+        0.9999736921105765,
+        0.8471625544189095,
+        0.32871504628544473,
+        0.23125130561938584
+      ]
+    }
+  ],
+  "three_classes": {
+    "actual_lifts": {
+      "L19": {
+        "length": 19,
+        "windows": [
+          {
+            "window": "mid",
+            "lo": 13,
+            "hi": 4001,
+            "n_odds": 1994,
+            "max_depth": 13,
+            "mean_depth": 2.0005015045135406,
+            "n_complete": 0
+          },
+          {
+            "window": "floor",
+            "lo": 1000001,
+            "hi": 1002001,
+            "n_odds": 1000,
+            "max_depth": 8,
+            "mean_depth": 1.882,
+            "n_complete": 0
+          }
+        ],
+        "max_depth": 13,
+        "n_complete": 0
+      },
+      "L84": {
+        "length": 84,
+        "windows": [
+          {
+            "window": "mid",
+            "lo": 13,
+            "hi": 4001,
+            "n_odds": 1994,
+            "max_depth": 13,
+            "mean_depth": 2.0005015045135406,
+            "n_complete": 0
+          },
+          {
+            "window": "floor",
+            "lo": 1000001,
+            "hi": 1002001,
+            "n_odds": 1000,
+            "max_depth": 8,
+            "mean_depth": 1.882,
+            "n_complete": 0
+          }
+        ],
+        "max_depth": 13,
+        "n_complete": 0
+      },
+      "n_complete": 0,
+      "max_depth": 13
+    },
+    "cell_feasible": {
+      "L19": {
+        "length": 19,
+        "rows": [
+          {
+            "y": 11,
+            "survived": false,
+            "death_k": 5,
+            "death_tag": "empty_ooe",
+            "hulled": false
+          },
+          {
+            "y": 101,
+            "survived": false,
+            "death_k": 5,
+            "death_tag": "empty_ooe",
+            "hulled": false
+          },
+          {
+            "y": 1001,
+            "survived": false,
+            "death_k": 5,
+            "death_tag": "empty_ooe",
+            "hulled": false
+          },
+          {
+            "y": 1000001,
+            "survived": false,
+            "death_k": 19,
+            "death_tag": null,
+            "hulled": true
+          }
+        ],
+        "all_dead": true,
+        "local_cell": true,
+        "tags": [
+          "empty_ooe"
+        ]
+      },
+      "L84_prefix18": {
+        "length": 18,
+        "rows": [
+          {
+            "y": 11,
+            "survived": false,
+            "death_k": 3,
+            "death_tag": "empty_oe",
+            "hulled": false
+          },
+          {
+            "y": 101,
+            "survived": false,
+            "death_k": 1,
+            "death_tag": "empty_odd_cell",
+            "hulled": false
+          },
+          {
+            "y": 1001,
+            "survived": false,
+            "death_k": 1,
+            "death_tag": "empty_odd_cell",
+            "hulled": false
+          },
+          {
+            "y": 1000001,
+            "survived": false,
+            "death_k": 1,
+            "death_tag": "empty_odd_cell",
+            "hulled": false
+          }
+        ],
+        "all_dead": true,
+        "local_cell": true,
+        "tags": [
+          "empty_odd_cell",
+          "empty_oe"
+        ]
+      },
+      "local_cell": true,
+      "all_dead": true
+    },
+    "relaxed_walk": {
+      "feasible": true,
+      "reason": "IET hug keeps u in [0, 1+\u03b1) by construction",
+      "fans": [
+        {
+          "tag": "L19",
+          "length": 19,
+          "walk_feasible": true,
+          "n_ooe": 5,
+          "n_oe": 2,
+          "n_other": 0
+        },
+        {
+          "tag": "L84",
+          "length": 84,
+          "walk_feasible": true,
+          "n_ooe": 22,
+          "n_oe": 9,
+          "n_other": 0
+        },
+        {
+          "tag": "L1054",
+          "length": 1054,
+          "walk_feasible": true,
+          "n_ooe": 276,
+          "n_oe": 113,
+          "n_other": 0
+        },
+        {
+          "tag": "L50508",
+          "length": 50508,
+          "walk_feasible": true,
+          "n_ooe": 13226,
+          "n_oe": 5415,
+          "n_other": 0
+        },
+        {
+          "tag": "fanA_k0",
+          "length": 176251,
+          "walk_feasible": true,
+          "n_ooe": 46153,
+          "n_oe": 18896,
+          "n_other": 0
+        },
+        {
+          "tag": "fanA_k1",
+          "length": 478245,
+          "walk_feasible": true,
+          "n_ooe": 125233,
+          "n_oe": 51273,
+          "n_other": 0
+        },
+        {
+          "tag": "fanB_k0",
+          "length": 16785921,
+          "walk_feasible": true,
+          "n_ooe": 4395553,
+          "n_oe": 1799631,
+          "n_other": 0
+        }
+      ]
+    }
+  },
+  "hypothesis3": {
+    "rows": [
+      {
+        "length": 19,
+        "prefix_only": false,
+        "used_length": 19,
+        "odd_count": 12,
+        "abs_slope_gap": 0.0006491937969635986,
+        "max_follow": 13,
+        "n_complete": 0,
+        "follow": [
+          {
+            "window": "mid",
+            "lo": 13,
+            "hi": 4001,
+            "n_odds": 1994,
+            "max_depth": 13,
+            "mean_depth": 2.0005015045135406,
+            "n_complete": 0
+          },
+          {
+            "window": "floor",
+            "lo": 1000001,
+            "hi": 1002001,
+            "n_odds": 1000,
+            "max_depth": 8,
+            "mean_depth": 1.882,
+            "n_complete": 0
+          }
+        ],
+        "inverse_all_dead": true,
+        "inverse_local_cell": true,
+        "inverse_tags": [
+          "empty_ooe"
+        ],
+        "inverse_death_k": [
+          5,
+          5,
+          5,
+          19
+        ]
+      },
+      {
+        "length": 84,
+        "prefix_only": false,
+        "used_length": 84,
+        "odd_count": 53,
+        "abs_slope_gap": 2.262738092351224e-05,
+        "max_follow": 13,
+        "n_complete": 0,
+        "follow": [
+          {
+            "window": "mid",
+            "lo": 13,
+            "hi": 4001,
+            "n_odds": 1994,
+            "max_depth": 13,
+            "mean_depth": 2.0005015045135406,
+            "n_complete": 0
+          },
+          {
+            "window": "floor",
+            "lo": 1000001,
+            "hi": 1002001,
+            "n_odds": 1000,
+            "max_depth": 8,
+            "mean_depth": 1.882,
+            "n_complete": 0
+          }
+        ],
+        "inverse_all_dead": true,
+        "inverse_local_cell": true,
+        "inverse_tags": [
+          "empty_odd_cell",
+          "empty_oe"
+        ],
+        "inverse_death_k": [
+          3,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "length": 1054,
+        "prefix_only": false,
+        "used_length": 1054,
+        "odd_count": 665,
+        "abs_slope_gap": 3.7699889876563475e-08,
+        "max_follow": 10,
+        "n_complete": 0,
+        "follow": [
+          {
+            "window": "tiny",
+            "lo": 13,
+            "hi": 401,
+            "n_odds": 194,
+            "max_depth": 10,
+            "mean_depth": 2.0103092783505154,
+            "n_complete": 0
+          },
+          {
+            "window": "floor",
+            "lo": 1000001,
+            "hi": 1002001,
+            "n_odds": 1000,
+            "max_depth": 8,
+            "mean_depth": 1.882,
+            "n_complete": 0
+          }
+        ],
+        "inverse_all_dead": true,
+        "inverse_local_cell": true,
+        "inverse_tags": [
+          "empty_odd_cell",
+          "empty_oe"
+        ],
+        "inverse_death_k": [
+          3,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "length": 50508,
+        "prefix_only": true,
+        "used_length": 64,
+        "odd_count": 41,
+        "abs_slope_gap": 0.009695246428542581,
+        "max_follow": 10,
+        "n_complete": 0,
+        "follow": [
+          {
+            "window": "tiny",
+            "lo": 13,
+            "hi": 401,
+            "n_odds": 194,
+            "max_depth": 10,
+            "mean_depth": 2.0103092783505154,
+            "n_complete": 0
+          },
+          {
+            "window": "floor",
+            "lo": 1000001,
+            "hi": 1002001,
+            "n_odds": 1000,
+            "max_depth": 8,
+            "mean_depth": 1.882,
+            "n_complete": 0
+          }
+        ],
+        "inverse_all_dead": true,
+        "inverse_local_cell": true,
+        "inverse_tags": [
+          "empty_odd_cell",
+          "empty_oe"
+        ],
+        "inverse_death_k": [
+          3,
+          1,
+          1,
+          1
+        ]
+      }
+    ],
+    "follow_depths": [
+      13,
+      13,
+      10,
+      10
+    ],
+    "slope_gaps": [
+      0.0006491937969635986,
+      2.262738092351224e-05,
+      3.7699889876563475e-08,
+      0.009695246428542581
+    ],
+    "better_approx_shrinks_xi_set": false
+  },
+  "fans": [
+    {
+      "tag": "L19",
+      "length": 19,
+      "odd_count": 12,
+      "n_ooe": 5,
+      "n_oe": 2,
+      "n_other": 0,
+      "u_min": 0.0,
+      "u_max": 1.5097750043269371,
+      "u_terminal": 0.01955000865387424,
+      "walk_feasible": true,
+      "has_word": false
+    },
+    {
+      "tag": "L84",
+      "length": 84,
+      "odd_count": 53,
+      "n_ooe": 22,
+      "n_oe": 9,
+      "n_other": 0,
+      "u_min": 0.0,
+      "u_max": 1.5684250302885598,
+      "u_terminal": 0.003012538221277783,
+      "walk_feasible": true,
+      "has_word": false
+    },
+    {
+      "tag": "L1054",
+      "length": 1054,
+      "odd_count": 665,
+      "n_ooe": 276,
+      "n_oe": 113,
+      "n_other": 0,
+      "u_min": 0.0,
+      "u_max": 1.5834877213949488,
+      "u_terminal": 6.297956886269773e-05,
+      "walk_feasible": true,
+      "has_word": false
+    },
+    {
+      "tag": "L50508",
+      "length": 50508,
+      "odd_count": 31867,
+      "n_ooe": 13226,
+      "n_oe": 5415,
+      "n_other": 0,
+      "u_min": 0.0,
+      "u_max": 1.5849362514787908,
+      "u_terminal": 1.048108413170823e-05,
+      "walk_feasible": true,
+      "has_word": false
+    },
+    {
+      "tag": "fanA_k0",
+      "length": 176251,
+      "odd_count": 111202,
+      "n_ooe": 46153,
+      "n_oe": 18896,
+      "n_other": 0,
+      "u_min": 0.0,
+      "u_max": 1.5849572136470542,
+      "u_terminal": 5.194010029629936e-06,
+      "walk_feasible": true,
+      "has_word": false
+    },
+    {
+      "tag": "fanA_k1",
+      "length": 478245,
+      "odd_count": 301739,
+      "n_ooe": 125233,
+      "n_oe": 51273,
+      "n_other": 0,
+      "u_min": 0.0,
+      "u_max": 1.5849624076570838,
+      "u_terminal": 5.10094595718158e-06,
+      "walk_feasible": true,
+      "has_word": false
+    },
+    {
+      "tag": "fanB_k0",
+      "length": 16785921,
+      "odd_count": 10590737,
+      "n_ooe": 4395553,
+      "n_oe": 1799631,
+      "n_other": 0,
+      "u_min": 0.0,
+      "u_max": 1.5849624076570838,
+      "u_terminal": 7.548604497031874e-08,
+      "walk_feasible": true,
+      "has_word": false
+    }
+  ],
+  "distinction": {
+    "relaxed_mechanical_feasibility": true,
+    "exact_integer_liftability": false
+  },
+  "not_a_halt_theorem": true,
+  "no_cycle_all_lengths": false,
+  "no_new_period_bound": true,
+  "no_floor_raise": true,
+  "no_paper_a_edit": true,
+  "git_commit": "b891a0b76b3f597a1d2fe9e0ea0bb1cf37c11ae6",
+  "classification": {
+    "label": "MECHANICAL_LIFT_CLOSED",
+    "decision": "CLOSE",
+    "reason": "\u03be is not a transported coordinate of the mechanical walk: even-cell position is inert, odd cells have at most one integer, (\u03be_in, \u03be_out) on OOE/OE is uncorrelated and not scale-stable, hug concatenations are SCALE_HUG (OE after OOE below n^{4/3}), and inverse death is the archived empty OOE cell. Relaxed hug/IET feasibility survives; exact integer liftability does not add a new cyclic-\u03be obstruction.",
+    "tags": [
+      "INERT_EVEN",
+      "UNIQUE_ODD",
+      "UNCORRELATED",
+      "SCALE_HUG",
+      "LOCAL_CELL"
+    ],
+    "transport_new": false,
+    "scale_stable_phi": false,
+    "uncorrelated": true,
+    "hypothesis3_shrinks": false,
+    "n_complete_integer_lifts": 0,
+    "composition_skipped": true
+  }
+}
