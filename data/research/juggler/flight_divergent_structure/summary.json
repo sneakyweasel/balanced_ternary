@@ -1,0 +1,101 @@
+{
+  "experiment": "juggler_flight_divergent_structure",
+  "anti_overclaim": {
+    "halt_theorem": false,
+    "divergence_excluded": false,
+    "odd_tower_excluded": false,
+    "divergent_orbit_exists": false,
+    "excursion_envelope_reopened": false,
+    "upper_growth_rate_claimed": false
+  },
+  "window_census": {
+    "n_max": 2000,
+    "segments": 21341,
+    "max_segment": 69,
+    "hug_violations": 0,
+    "envelope_violations": 0
+  },
+  "high_flyer_rates": [
+    {
+      "n": 48443,
+      "steps": 157,
+      "peak_bits": 3230450,
+      "peak_time": 60,
+      "u_at_peak": 17.663163,
+      "loglog_bound": 17.663163,
+      "bound_ok": true,
+      "slack": 0.0
+    },
+    {
+      "n": 275485,
+      "steps": 225,
+      "peak_bits": 6342922,
+      "peak_time": 148,
+      "u_at_peak": 18.421063,
+      "loglog_bound": 18.421063,
+      "bound_ok": true,
+      "slack": 0.0
+    },
+    {
+      "n": 412027,
+      "steps": 163,
+      "peak_bits": 2389394,
+      "peak_time": 113,
+      "u_at_peak": 16.966925,
+      "loglog_bound": 16.966925,
+      "bound_ok": true,
+      "slack": 0.0
+    },
+    {
+      "n": 463157,
+      "steps": 103,
+      "peak_bits": 2438809,
+      "peak_time": 48,
+      "u_at_peak": 16.983463,
+      "loglog_bound": 16.983463,
+      "bound_ok": true,
+      "slack": 0.0
+    },
+    {
+      "n": 1122603,
+      "steps": 268,
+      "peak_bits": 696722,
+      "peak_time": 145,
+      "u_at_peak": 15.081213,
+      "loglog_bound": 15.081213,
+      "bound_ok": true,
+      "slack": 0.0
+    },
+    {
+      "n": 1245741,
+      "steps": 178,
+      "peak_bits": 3458491,
+      "peak_time": 111,
+      "u_at_peak": 17.381963,
+      "loglog_bound": 17.381963,
+      "bound_ok": true,
+      "slack": 0.0
+    },
+    {
+      "n": 1267909,
+      "steps": 151,
+      "peak_bits": 6485496,
+      "peak_time": 99,
+      "u_at_peak": 18.287225,
+      "loglog_bound": 18.287225,
+      "bound_ok": true,
+      "slack": 0.0
+    }
+  ],
+  "lean": {
+    "WalkTransport.follows_log_le_walkWeight": true,
+    "Envelope.power_bound_word": true,
+    "AboveAnchorWalk.aboveAnchor_prefix_odds_ge_hug": true,
+    "CycleCore.aboveAnchor_prefix_pow_le": true
+  },
+  "notes": {
+    "theorem": "divergent descent-free flights have all states distinct, x_k -> inf pointwise, max_{j<=k} x_j >= n + k, u_k >= log2(log x_k / log n) -> inf, running-max walk >= log2(log(n+k)/log n), and hug domination from every tail-minimum record (infinitely many, cofinal)",
+    "mirrors": "the probe verifies the finite-word content: hug domination and the envelope inequality at EVERY anchor of every realized orbit, not only at the start"
+  },
+  "classification": "DIVERGENT_STRUCTURE_MIRRORS_CONFIRMED"
+}

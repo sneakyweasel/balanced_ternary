@@ -19261,3 +19261,57 @@ Best next question
   all-depth equidistribution?
 ```
 
+## Divergent flight structure: pointwise laws from the proved layers (consolidation; not a numbered milestone)
+
+- **Date:** 2026-09-01
+- **Objective:** The anchor-period branch's best next question: do the proved layers say anything about divergent (non-eventually-periodic) descent-free flights, or is that frontier fully behind all-depth equidistribution?
+- **Hypotheses:** injectivity of non-periodic orbits plus the Lean envelope force pointwise laws (states, walk, rates, word recurrence); falsifier: everything reduces to the recorded sup-form walk-divergence (REPARAMETERIZATION).
+- **Major results:**
+  - **Divergent flight structure theorem (EXACT - HUMAN PROOF, components Lean, `J-flight-divergent-structure`):** a divergent descent-free flight from anchor \(n\) has (1) all states distinct and \(x_k\to\infty\) *pointwise* (a repeat forces periodicity; distinct integers \(\ge n\) leave every bounded set), with \(x_0=n\) the global minimum; (2) linear peak growth \(\max_{j\le k}x_j\ge n+k\); (3) pointwise walk divergence with a log-log rate \(u_k\ge\log_2(\log x_k/\log n)\to\infty\) (anchor-free envelope, Lean), hence \(\sup_{j\le k}u_j\ge\log_2(\log(n+k)/\log n)\) - strengthening walk-divergence from \(\sup\) to pointwise; (4) hug-excess divergence \(a_k-\mathrm{hugOdds}(k)\to\infty\); (5) *recurrent hug domination*: tail minima are attained and strictly increase, giving infinitely many cofinal record indices from which the tail is itself a descent-free flight, so hug domination (Lean) restarts from every record - a translation-recurrent density constraint on the word.
+  - **Sharpness:** the log-log rate is attained with equality at realized peaks - probe slack \(0.0\) on all seven canonical high-flyers (peaks \(3.2\cdot 10^6\) to \(6.5\cdot 10^6\) bits); no faster pointwise rate follows from these layers (a flight may hug from each record arbitrarily long, so slow state growth is not excluded here).
+  - **Answer to the standing question:** the proved layers *describe* divergent flights with rates; only their *exclusion* is behind all-depth equidistribution. The cleanest named fragment of that frontier is the eventually-all-odd subcase (infinite odd towers) - open, strictly weaker than full all-depth equidistribution, beyond Paper B's depth \(\le 4\).
+  - **Probe (all-anchor mirrors):** hug domination and the envelope inequality verified at *every* anchor of every orbit \(n\le 2000\) - \(21341\) anchored segments (max length \(69\)), zero violations; classification `DIVERGENT_STRUCTURE_MIRRORS_CONFIRMED`.
+- **Refuted ideas:** none (the falsifier did not fire: points 1-3 and 5 are not restatements of the sup-form theorem).
+- **Literature:** none new.
+- **Open:** infinite odd towers (named above); any Diophantine consequence of recurrent hug domination for the word of a divergent flight (no route visible). The PARKed re-anchored excursion envelope (quantitative valley composition) was not reopened - point 5 is qualitative recurrence.
+- **Decision:** PROMOTE - dossier `docs/problems/juggler_flight_divergent_structure.md`, ledger row `J-flight-divergent-structure`. With this the flight program's descriptive arc is complete (envelope, dichotomy, anchor-period ladder, divergent structure); the frontier returns to the two named programs and neither is auto-opened.
+
+```text
+What was learned
+- non-periodic orbits are injective, so divergent flights
+  diverge pointwise, not just in limsup, and the anchor is
+  the global minimum
+- inverting the Lean envelope turns pointwise state divergence
+  into pointwise walk divergence with a log-log rate that is
+  exactly attained at realized peaks
+- tail minima of a divergent flight are internal anchors:
+  hug domination restarts from infinitely many cofinal
+  records - the word is recurrently hug-dominated
+- the proved layers describe divergent flights; only their
+  exclusion is behind all-depth equidistribution, with the
+  infinite odd tower as the cleanest named open fragment
+Strongest theorem
+- divergent flight structure (J-flight-divergent-structure):
+  distinct states, x_k -> inf, peaks >= n + k,
+  u_k >= log2(log x_k / log n), recurrent hug domination
+Strongest refutation
+- none
+Reusable machinery
+- flight_divergent_structure probe: all-anchor hug/envelope
+  census (segments until first dip below each state) - the
+  finite mirror of internal-anchor arguments
+Branch status
+- PROMOTE
+Why
+- the promotion criterion (a pointwise structure theorem with
+  a new rate and a new recurrence law) is met; the flight
+  program's descriptive arc closes cleanly before machinery
+  gravity, and both remaining frontiers already have names
+Best next question
+- can the eventually-all-odd subcase (infinite odd towers,
+  parity of iterated floor(x^{3/2}) at all depths for a
+  single pattern) be attacked as a standalone fragment of
+  the all-depth frontier, or does it already embed the full
+  equidistribution difficulty?
+```
+
