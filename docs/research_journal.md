@@ -17870,4 +17870,43 @@ Best next question
   with eta <= 4.2e-4, closing L=50508 at the certified floor?
 ```
 
+## Juggler walk charge certified: period at least 176251
+
+- **Date:** 2026-09-01
+- **Objective:** Close the only gap in the Phase-0 walk charge — the numerical transport bound — and run the certified survey over the 19 parity leftovers at floor \(26254995\)
+- **Major results:** (i) **Transport lemma, EXACT — HUMAN PROOF** (`J-cyclemin-walk-transport`): on a CycleMin cycle with minimum \(n\ge 400\), the floor-loss recursion \(E'\le\frac32E+1.05x^{-3/2}\) (odd), \(E'\le\frac12E+1.05x^{-1/2}\) (even) with exact amplification \(w_k/w_{j+1}\), odd injections at \(x\ge n\) and even injections at \(x\ge n^2\) (`cycleMin_even_ge_sq`), gives \(E_k\le w_kD\) with \(D=1.05e/n+0.7o/n^{3/2}\), i.e. \(x_k\ge(ne^{-D})^{w_k}\). The whole transport collapses to running the exact DP at the reduced base \(n'=ne^{-D}\) — no free parameter. (ii) **Certified kill table** (`J-cyclemin-walk-charge-instance`, COMPUTATIONALLY VERIFIED): all 19 parity leftovers through \(2\cdot10^5\) DP-priced at the certified floor; 18 killed (margins \(1.1204\) at \(50508\), \(1.1195\) at \(101016\), \(1.1187\) at \(151524\), up to \(7.69\)), sole survivor the F1 seed \(L=176251\) (margin \(0.159\), required \(48\)). Combined parity + walk prefix **176250**: any nontrivial Juggler cycle has period \(\ge 176251\) — a \(3.49\times\) extension of `J-cycle-period-fifty-thousand` with zero new floor verification. `survey.json`, SHA-256 of walk-alive `225d76ad…8942ec`. Conjecture record moved to `conjectures/proved/`
+- **Refuted ideas:** none; the F1 seed survives exactly as the required-improvement table predicts
+- **Literature:** `J-residual-floor-twenty-six-million`; Paper A Theorems 4.4/4.6 (the 6/5 unroll and trust boundary); the Section 5 program
+- **Open:** the new-floor extension (parity scan shows every leftover through \(6\cdot10^5\) needs \(\le 7.04\) except \(L=478245\) at \(19.5\); floor campaign to \(162849448\) and 14 leftover DPs running)
+- **Decision:** PROMOTE (branch stays open only for the new-floor extension records)
+
+```text
+What was learned
+- the transport lemma is provable in reduced-base form: all floor
+  losses fit inside a single deficit D = 1.05e/n + 0.7o/n^(3/2),
+  and the DP at base n·e^(-D) is a certified upper bound
+- the walk charge kills every multiple-of-50508 near-tie trivially
+  (required 1.00000x) and every leftover below the next F1 seed
+- the F1 convergent seeds (25781, 176251, ...) are the only real
+  walls: they recur at required improvements 48 -> 7.04 -> 19.5
+  as the floor climbs a convergent
+- a certified 3.49x period-bound jump cost zero new floor compute
+Strongest theorem
+- J-cyclemin-walk-transport + instance: period >= 176251 at the
+  laboratory floor (COMPUTATIONALLY VERIFIED on a proved lemma)
+Strongest refutation
+- none this phase
+Reusable machinery
+- deficit_D / certified_report / survivor_survey in
+  cycle_walk_charge.py; survey.json schema with alive-list hash
+Branch status
+- PROMOTE
+Why
+- the certification criterion was met exactly as stated in Phase 0;
+  the period bound is recorded on the proved lemma, not the band
+Best next question
+- does the certified walk charge kill every leftover between 176251
+  and 478245 at the floor 162849448, making the period bound 478244?
+```
+
 

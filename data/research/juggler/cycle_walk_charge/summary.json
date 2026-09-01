@@ -1,5 +1,5 @@
 {
-  "model": "coupled exponent-walk charge; states priced at n^max(2^u - eta, 1); u >= 0 from the defect-free upper envelope; eta is an uncertified sensitivity band",
+  "model": "coupled exponent-walk charge; states priced at n^max(2^u - eta, 1); u >= 0 from the defect-free upper envelope; the certified form prices at the reduced base n' = n e^{-D} via the transport lemma (deficit_D)",
   "target": {
     "length": 50508,
     "odd_count": 31867,
@@ -18,7 +18,7 @@
         "theta": 7.264907458078721e-06,
         "kill_margin": 1.1213000863465796,
         "walk_excludes": true,
-        "elapsed_s": 72.2858586999937
+        "elapsed_s": 72.6902601000038
       },
       {
         "eta": 4.200440603556577e-05,
@@ -27,7 +27,7 @@
         "theta": 7.264907458078721e-06,
         "kill_margin": 1.1204514405986217,
         "walk_excludes": true,
-        "elapsed_s": 51.405015200027265
+        "elapsed_s": 66.26175929995952
       },
       {
         "eta": 0.0004200440603556577,
@@ -36,7 +36,7 @@
         "theta": 7.264907458078721e-06,
         "kill_margin": 1.1128723986145959,
         "walk_excludes": true,
-        "elapsed_s": 42.63742099999217
+        "elapsed_s": 55.61780020000879
       },
       {
         "eta": 0.004200440603556577,
@@ -45,9 +45,21 @@
         "theta": 7.264907458078721e-06,
         "kill_margin": 1.0424930518274578,
         "walk_excludes": true,
-        "elapsed_s": 49.17913489998318
+        "elapsed_s": 56.911537900043186
       }
     ]
+  },
+  "certified_target": {
+    "length": 50508,
+    "odd_count": 31867,
+    "theta": 7.264907458078721e-06,
+    "floor": 26254995,
+    "const": 1.2,
+    "deficit_D": 0.0007456639279931664,
+    "walk_rhs_certified": 6.4843755345389e-06,
+    "kill_margin": 1.1203711782857628,
+    "certified_excludes": true,
+    "elapsed_s": 58.960725800017826
   },
   "calibration": {
     "length": 25781,
@@ -67,7 +79,7 @@
         "theta": 2.5459198127264017e-05,
         "kill_margin": 0.19608800261045523,
         "walk_excludes": false,
-        "elapsed_s": 10.044233400025405
+        "elapsed_s": 12.424784699978773
       },
       {
         "eta": 0.0006979833949771558,
@@ -76,7 +88,7 @@
         "theta": 2.5459198127264017e-05,
         "kill_margin": 0.19408973169960123,
         "walk_excludes": false,
-        "elapsed_s": 9.959903400042094
+        "elapsed_s": 12.25241100002313
       },
       {
         "eta": 0.006979833949771558,
@@ -85,7 +97,7 @@
         "theta": 2.5459198127264017e-05,
         "kill_margin": 0.17783200032991048,
         "walk_excludes": false,
-        "elapsed_s": 9.95280329999514
+        "elapsed_s": 12.236260500038043
       },
       {
         "eta": 0.06979833949771558,
@@ -94,7 +106,7 @@
         "theta": 2.5459198127264017e-05,
         "kill_margin": 0.09816700790378043,
         "walk_excludes": false,
-        "elapsed_s": 10.16253199998755
+        "elapsed_s": 12.381682499952149
       }
     ]
   },
@@ -104,5 +116,5 @@
   },
   "not_a_halt_theorem": true,
   "no_cycle_all_lengths": false,
-  "git_commit": "fb987dde15d326789d54ea3d53b3c0e0568a60c8"
+  "git_commit": "707a2008173f2f81d29445eb7581fa3fc13739bd"
 }

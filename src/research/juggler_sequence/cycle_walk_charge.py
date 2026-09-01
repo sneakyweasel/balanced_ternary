@@ -29,6 +29,7 @@ from research.juggler_sequence.cycle_finance import (
     git_commit,
     o_min_and_theta,
     parity_rhs_upper,
+    sha256_int_list,
 )
 
 DATA_DIR = (
@@ -48,6 +49,24 @@ SURVEY_L_MAX = 200_000
 U_TOL = 1e-9
 
 
+def deficit_D(length: int, odd_count: int, n: int) -> float:
+    """Certified reduced-base deficit: x_k >= (n e^{-D})^{w_k}.
+
+    Transport lemma (EXACT — HUMAN PROOF): with ln x_k >= w_k ln n - E_k,
+    the floor losses give E' <= (3/2)E + 1.05 x^{-3/2} (odd) and
+    E' <= E/2 + 1.05 x^{-1/2} (even), using -ln(1-t) <= 1.05 t on
+    t <= 0.05 (n >= 400 suffices). Unrolling, the amplification from
+    injection j to state k is exactly w_k / w_{j+1}. Odd injections:
+    x_j >= n, w_{j+1} >= 3/2, so <= 0.7 n^{-3/2} each. Even
+    injections: x_j >= n^2 (cycleMin_even_ge_sq) and w_{j+1} >= 1,
+    so <= 1.05 / n each. Hence E_k <= w_k D with
+    D = 1.05 e / n + 0.7 o / n^{3/2}.
+    """
+
+    even_count = length - odd_count
+    return 1.05 * even_count / n + 0.7 * odd_count / n**1.5
+
+
 def transport_bound(length: int, odd_count: int, n: int) -> float:
     """Crude worst-case eta for the lower-envelope defect transport.
 
@@ -65,10 +84,20 @@ def transport_bound(length: int, odd_count: int, n: int) -> float:
     return deficit / math.log(n)
 
 
-def charge_row(u: np.ndarray, n: int, eta: float) -> np.ndarray:
-    """f(u) = 1 / (x ln x) at the walk price x = n^max(2^u - eta, 1)."""
+def charge_row(
+    u: np.ndarray,
+    n: int,
+    eta: float,
+    *,
+    log_n: float | None = None,
+) -> np.ndarray:
+    """f(u) = 1 / (x ln x) at the walk price x = base^max(2^u - eta, 1).
 
-    log_n = math.log(n)
+    log_n overrides ln(n) for the certified reduced base n' = n e^{-D}.
+    """
+
+    if log_n is None:
+        log_n = math.log(n)
     # Large u overflows w to inf and the charge to exactly 0 — correct.
     with np.errstate(under="ignore", over="ignore"):
         w = np.maximum(np.exp2(u) - eta, 1.0)
@@ -81,6 +110,7 @@ def walk_budget(
     n: int,
     *,
     eta: float = 0.0,
+    log_n: float | None = None,
 ) -> dict[str, Any]:
     """Exact max of Sum_k f(u_k) over nonneg exponent walks.
 
@@ -94,7 +124,7 @@ def walk_budget(
     started = time.perf_counter()
     neg = -math.inf
     values = np.full(odd_count + 1, neg)
-    values[0] = charge_row(np.zeros(1), n, eta)[0]
+    values[0] = charge_row(np.zeros(1), n, eta, log_n=log_n)[0]
     a_axis = np.arange(odd_count + 1, dtype=np.float64)
     for k in range(1, length + 1):
         stay = values
@@ -110,7 +140,9 @@ def walk_budget(
         values = np.where(feasible, values, neg)
         if k < length:
             values = values + np.where(
-                feasible, charge_row(np.maximum(u, 0.0), n, eta), 0.0
+                feasible,
+                charge_row(np.maximum(u, 0.0), n, eta, log_n=log_n),
+                0.0,
             )
     best = float(values[odd_count])
     return {
@@ -199,17 +231,54 @@ def kill_report(
     }
 
 
+def certified_report(
+    length: int,
+    n0: int,
+    *,
+    const: float = EPS_CONST,
+) -> dict[str, Any]:
+    """Certified walk exclusion at the reduced base n' = n e^{-D}.
+
+    Survival of a CycleMin cycle with word (o, e) and minimum
+    n >= n0 + 1 requires theta <= const * Sum 1/(x_i ln x_i)
+    (Theorem 4.4 unroll, implemented 6/5 architecture), and the
+    transport lemma prices x_i >= (n')^{w_i}, so the DP maximum at
+    base n' is an upper bound on the sum. Same trust boundary as
+    the parity table: exact inequality plus a float comparison with
+    the standard outward guards.
+    """
+
+    odd_count, theta = o_min_and_theta(length)
+    n = n0 + 1
+    deficit = deficit_D(length, odd_count, n)
+    log_n_prime = math.log(n) - deficit
+    budget = walk_budget(length, odd_count, n, log_n=log_n_prime)
+    rhs = const * budget["walk_sum"] * (1.0 + PARITY_REL_GUARD)
+    return {
+        "length": length,
+        "odd_count": odd_count,
+        "theta": theta,
+        "floor": n0,
+        "const": const,
+        "deficit_D": deficit,
+        "walk_rhs_certified": rhs,
+        "kill_margin": theta / rhs if rhs > 0 else math.inf,
+        "certified_excludes": theta * (1.0 - PARITY_REL_GUARD) > rhs,
+        "elapsed_s": budget["elapsed_s"],
+    }
+
+
 def survivor_survey(
     n0: int = CERTIFIED_FLOOR,
     *,
     l_max: int = SURVEY_L_MAX,
     const: float = EPS_CONST,
 ) -> dict[str, Any]:
-    """Walk-charge kill table over the parity survivors at the floor.
+    """Certified walk-charge kill table over the parity survivors.
 
-    Each survivor is tested at its own transport bound eta. The
-    resulting cutoff is hypothetical (the transport lemma is not yet
-    certified); recorded as numbers, not as a theorem.
+    Every length <= l_max is either parity-excluded at the floor or
+    tested with the certified reduced-base walk charge. The combined
+    contiguous cutoff extends the period bound.
     """
 
     from research.juggler_sequence.cycle_finance import parity_excludes
@@ -219,38 +288,28 @@ def survivor_survey(
     for length, odd_count, theta in iter_o_min(l_max):
         if parity_excludes(length, odd_count, theta, n0, const=const):
             continue
-        n = n0 + 1
-        eta = transport_bound(length, odd_count, n)
-        budget = walk_budget(length, odd_count, n, eta=eta)
-        rhs = const * budget["walk_sum"] * (1.0 + PARITY_REL_GUARD)
-        row = {
-            "length": length,
-            "odd_count": odd_count,
-            "theta": theta,
-            "eta": eta,
-            "walk_rhs": rhs,
-            "kill_margin": theta / rhs if rhs > 0 else math.inf,
-            "walk_excludes": theta * (1.0 - PARITY_REL_GUARD) > rhs,
-            "elapsed_s": budget["elapsed_s"],
-        }
-        rows.append(row)
+        report = certified_report(length, n0, const=const)
+        rows.append(report)
         print(
-            f"survey L={length} margin={row['kill_margin']:.3f} "
-            f"excludes={row['walk_excludes']} ({row['elapsed_s']:.0f}s)",
+            f"survey L={length} margin={report['kill_margin']:.3f} "
+            f"excludes={report['certified_excludes']} "
+            f"({report['elapsed_s']:.0f}s)",
             flush=True,
         )
-    killed = [row["length"] for row in rows if row["walk_excludes"]]
-    alive = [row["length"] for row in rows if not row["walk_excludes"]]
+    killed = [r["length"] for r in rows if r["certified_excludes"]]
+    alive = [r["length"] for r in rows if not r["certified_excludes"]]
+    first_alive = alive[0] if alive else None
     return {
         "floor": n0,
         "l_max": l_max,
         "const": const,
-        "parity_survivors": [row["length"] for row in rows],
+        "parity_survivors": [r["length"] for r in rows],
         "walk_killed": killed,
         "walk_alive": alive,
-        "hypothetical_first_survivor": alive[0] if alive else None,
-        "hypothetical_prefix": (alive[0] - 1) if alive else l_max,
-        "certified": False,
+        "combined_first_survivor": first_alive,
+        "combined_prefix": (first_alive - 1) if first_alive else l_max,
+        "certified": True,
+        "sha256_alive": sha256_int_list(alive),
         "rows": rows,
         "git_commit": git_commit(),
     }
@@ -258,6 +317,7 @@ def survivor_survey(
 
 def probe_payload() -> dict[str, Any]:
     target = kill_report(TARGET_LENGTH, CERTIFIED_FLOOR)
+    certified = certified_report(TARGET_LENGTH, CERTIFIED_FLOOR)
     calibration = kill_report(
         CALIBRATION_LENGTH, PUBLISHED_FLOOR
     )
@@ -265,9 +325,11 @@ def probe_payload() -> dict[str, Any]:
         "model": (
             "coupled exponent-walk charge; states priced at "
             "n^max(2^u - eta, 1); u >= 0 from the defect-free upper "
-            "envelope; eta is an uncertified sensitivity band"
+            "envelope; the certified form prices at the reduced base "
+            "n' = n e^{-D} via the transport lemma (deficit_D)"
         ),
         "target": target,
+        "certified_target": certified,
         "calibration": calibration,
         "classification": classify(target),
         "not_a_halt_theorem": True,
@@ -330,16 +392,10 @@ def main() -> None:
 
     if "--survey" in sys.argv:
         survey = write_survey()
-        for row in survey["rows"]:
-            print(
-                f"L={row['length']:<7} margin={row['kill_margin']:.3f} "
-                f"excludes={row['walk_excludes']} "
-                f"({row['elapsed_s']:.0f}s)",
-                flush=True,
-            )
         print(f"walk killed {len(survey['walk_killed'])} of "
-              f"{len(survey['rows'])}; hypothetical first survivor "
-              f"{survey['hypothetical_first_survivor']}")
+              f"{len(survey['rows'])}; combined first survivor "
+              f"{survey['combined_first_survivor']}; "
+              f"combined prefix {survey['combined_prefix']}")
         return
     payload = write_artifacts()
     target = payload["target"]
@@ -353,6 +409,13 @@ def main() -> None:
             f"margin = {row['kill_margin']:.3f} "
             f"excludes = {row['walk_excludes']}"
         )
+    cert = payload["certified_target"]
+    print(
+        f"certified: D={cert['deficit_D']:.4e} "
+        f"walk RHS = {cert['walk_rhs_certified']:.6e} "
+        f"margin = {cert['kill_margin']:.3f} "
+        f"excludes = {cert['certified_excludes']}"
+    )
     print(payload["classification"]["label"])
 
 

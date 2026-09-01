@@ -1,6 +1,8 @@
 # Juggler coupled exponent-walk charge
 
-Status: **ACTIVE** (Phase 0 GREEN; certification pending)
+Status: **ACTIVE** (transport lemma proved; certified survey
+complete — period bound 176251 at floor 26254995; new-floor
+extension running)
 
 Refinement of the Paper A Section 5 state-distribution program
 ([juggler_cycle_finance.md](juggler_cycle_finance.md)), answering
@@ -26,16 +28,41 @@ certified floor — killing \(L=50508\) without a
 
 ## Exact statement
 
-**Walk pricing (EXACT — HUMAN PROOF, modulo the transport lemma).**
-At step \(k\) with \(a\) odd letters used, \(u=(1+\mu)a-k\) with
-\(\mu=\log_2(3/2)\); the DP over \((k,a)\) is exact on the lattice
-(no grid rounding). Charging \(x_k\ge n^{\max(2^{u_k}-\eta,\,1)}\)
-requires the lower-envelope defect transport \(\eta\): the
-log-deficit obeys \(E'\le\tfrac32E+2x^{-3/2}\) (odd),
-\(E'\le\tfrac12E+2x^{-1/2}\) (even), amplification from injection
-\(j\) to state \(k\) is exactly \(w_k/w_j\), even states have
-\(w\ge2\), so \(\eta\le 1.01\,(e/n+2o/n^{3/2})/\ln n\). This bound
-is numerical (OBSERVATION), not yet a certified lemma.
+**Walk pricing.** At step \(k\) with \(a\) odd letters used,
+\(u=(1+\mu)a-k\) with \(\mu=\log_2(3/2)\); the DP over \((k,a)\) is
+exact on the lattice (no grid rounding).
+
+**Transport lemma (EXACT — HUMAN PROOF, reduced-base form).**
+On a CycleMin cycle with minimum \(n\ge 400\), write
+\(\ln x_k\ge w_k\ln n-E_k\). The floor losses give
+\(E'\le\tfrac32E+1.05\,x^{-3/2}\) (odd) and
+\(E'\le\tfrac12E+1.05\,x^{-1/2}\) (even), using
+\(-\ln(1-t)\le 1.05\,t\) on \(t\le 0.05\). Unrolling, the
+amplification from injection \(j\) to state \(k\) is exactly
+\(w_k/w_{j+1}\); odd injections have \(x_j\ge n\),
+\(w_{j+1}\ge\tfrac32\) (\(\le 0.7\,n^{-3/2}\) each), even
+injections have \(x_j\ge n^2\) (`cycleMin_even_ge_sq`) and
+\(w_{j+1}\ge 1\) (\(\le 1.05/n\) each). Hence \(E_k\le w_k D\) with
+
+\[
+D \;=\; \frac{1.05\,e}{n}+\frac{0.7\,o}{n^{3/2}},
+\qquad
+x_k \;\ge\; \bigl(n\,e^{-D}\bigr)^{w_k}.
+\]
+
+The entire transport collapses to running the same exact DP at the
+reduced base \(n'=n e^{-D}\): no free parameter remains.
+
+**Certified kill at the target (COMPUTATIONALLY VERIFIED).**
+At \(L=50508\), \(o=31867\), floor \(N_0=26254995\):
+\(D=7.4566\cdot 10^{-4}\), certified walk RHS
+\(6.4844\cdot 10^{-6}<\theta=7.2649\cdot 10^{-6}\), kill margin
+\(\mathbf{1.1204}\). Survival would require
+\(\theta\le\tfrac65\sum_i 1/(x_i\ln x_i)\) (Theorem 4.4 unroll,
+implemented \(6/5\) architecture); the DP maximum at base \(n'\)
+upper-bounds the sum over all CycleMin words with \((o,e)\). Same
+trust boundary as Theorem 4.6: exact human inequality plus a float
+comparison with the standard outward guards.
 
 **Kill at the target (COMPUTATIONALLY VERIFIED numbers; theorem
 pending the transport lemma).** At \(L=50508\), \(o=31867\),
@@ -131,8 +158,9 @@ It is not required.
   \(L=14\))
 - Upper envelope \(x_k\le n^{2^{u_k}}\), hence \(u_k\ge 0\) —
   **EXACT — HUMAN PROOF** (defect-free floors)
-- Transport bound \(\eta^*\) — **OBSERVATION** (numerical, the
-  certification target)
+- Transport lemma \(x_k\ge(ne^{-D})^{w_k}\),
+  \(D=1.05e/n+0.7o/n^{3/2}\) — **EXACT — HUMAN PROOF**
+  (`deficit_D`; supersedes the earlier numerical \(\eta^*\) band)
 - Even-state constraint \(u\ge 1\) before a down-step — automatic
   (\(u\ge 0\) after the unit down-step), consistent with
   `cycleMin_even_ge_sq`
@@ -147,9 +175,11 @@ It is not required.
 
 ## Conjectures
 
-`juggler_cycle_walk_charge` (active): the coupled exponent-walk
-charge with a certified transport lemma excludes \(L=50508\) as a
-CycleMin length at the certified floor \(26254995\).
+`juggler_cycle_walk_charge`: the coupled exponent-walk charge
+excludes \(L=50508\) as a CycleMin length at the certified floor
+\(26254995\) — **resolved positively** by the transport lemma plus
+the certified DP comparison (margin \(1.1204\)); record moved to
+`conjectures/proved/`.
 
 ## Counterexamples
 
@@ -160,19 +190,24 @@ conclusion.
 
 ## Formalization
 
-None yet. The certification path: (i) upper envelope \(u\ge 0\)
-(defect-free floors, trivial); (ii) lower-envelope transport lemma
-(the \(E\)-recursion with amplification \(w_k/w_j\)); (iii) the DP
-value as a maximum over the relaxation (any binary word with
-\(o\) odds, \(e\) evens, \(u\ge 0\)); (iv) the existing \(6/5\)
-unroll interface. No `sorry`. Not started.
+The human-proof layer is complete: (i) upper envelope \(u\ge 0\)
+(defect-free floors); (ii) transport lemma \(E_k\le w_k D\)
+(the \(E\)-recursion with amplification \(w_k/w_{j+1}\), even
+states \(\ge n^2\) by `cycleMin_even_ge_sq`); (iii) the DP value
+as a maximum over the relaxation (any binary word with \(o\) odds,
+\(e\) evens, \(u\ge 0\)); (iv) the existing \(6/5\) unroll
+interface. Lean packaging of (i)–(ii) is optional future work;
+the DP table stays computational, as in Theorem 4.6. No `sorry`.
 
 ## Results
 
 Classification **WALK_CHARGE_GREEN**.
 
-- Target \(L=50508\) at floor \(26254995\): walk RHS
-  \(6.479\cdot 10^{-6}<\theta=7.265\cdot 10^{-6}\); margins
+- **Certified kill** at \(L=50508\), floor \(26254995\): reduced
+  base \(D=7.4566\cdot 10^{-4}\), walk RHS
+  \(6.4844\cdot 10^{-6}<\theta=7.2649\cdot 10^{-6}\), margin
+  \(1.1204\) — **COMPUTATIONALLY VERIFIED** on the proved lemma
+- Sensitivity (superseded by the lemma): margins
   \(1.121/1.120/1.113/1.042\) at
   \(\eta\in\{0,\eta^*,10\eta^*,100\eta^*\}\),
   \(\eta^*=4.2\cdot 10^{-5}\)
@@ -182,23 +217,41 @@ Classification **WALK_CHARGE_GREEN**.
 - Calibration \(1.2984\cdot 10^{-4}\) vs archived \(1.30\cdot 10^{-4}\)
 - DP is exact on the lattice and matches brute force on all tested
   tiny lengths
+- **Certified survey (COMPUTATIONALLY VERIFIED,
+  `J-cyclemin-walk-charge-instance`).** All 19 parity leftovers
+  through \(2\cdot 10^5\) DP-priced at the certified floor
+  \(26254995\): 18 killed (margins 1.1204 at 50508; 1.1195 at
+  101016; 1.1187 at 151524; up to 7.69 at the parity-marginal
+  lengths), sole walk survivor \(L=176251\) (margin 0.159,
+  required 48). Combined parity + walk contiguous prefix
+  **176250**: any nontrivial cycle has period \(\ge 176251\) —
+  a \(3.49\times\) extension of `J-cycle-period-fifty-thousand`
+  with no new floor verification. `survey.json`, SHA-256 of the
+  walk-alive list `225d76ad…8942ec`.
 
 ## Open questions
 
-- Certify the transport lemma (the only gap between GREEN and a
-  laboratory theorem at \(L=50508\))
-- The survey's hypothetical cutoff over the 19 leftovers
-  (`survey.json`): which lengths beyond the \(50508\) cluster die
+- The new-floor extension: at \(N_0=162849448\) parity alone
+  re-derives 176250 and the certified walk kills \(176251\)
+  (margin 1.198, `new_floor_kills/L176251.json`); the parity
+  leftovers through \(6\cdot 10^5\) all require improvement
+  \(\le 7.04\) except \(L=478245\) (requires 19.5). Floor
+  verification and the 14 remaining leftover DPs are running;
+  if they land, the period bound becomes 478245's predecessor
 - Whether the walk charge plus run-pack composition tightens the
   thin \(1.12\) margin
+- Lean packaging of the envelope and transport lemma (optional)
 
 ## Decision
 
-**PROMOTE.** The Phase-0 promotion criterion is met: the walk
-optimum excludes the target across the full principled
-\(\eta\)-band. The next phase is certification (transport lemma +
-outward-rounded comparison), not another probe. Do not claim the
-period bound \(>50507\) until certified.
+**PROMOTE.** The Phase-0 promotion criterion is met, the transport
+lemma is proved in reduced-base form, and the certified comparison
+kills \(L=50508\) at the laboratory floor with margin \(1.1204\).
+The certified survey fixed the combined contiguous cutoff at
+\(176250\): period \(\ge 176251\)
+(`J-cyclemin-walk-charge-instance`). Ledger rows
+`J-cyclemin-walk-transport` (the lemma) and
+`J-cyclemin-walk-charge-instance` (the kill table) are in.
 
 ## Publication assessment
 

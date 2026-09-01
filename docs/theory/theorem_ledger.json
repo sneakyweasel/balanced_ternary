@@ -5573,5 +5573,31 @@
       "tests/research/juggler_sequence/test_cycle_entry_corridor.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "J-cyclemin-walk-transport",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "Coupled exponent-walk charge with reduced-base transport. On a CycleMin cycle with minimum n ≥ 400, word length L and o odd letters, set u_k = (1+μ)a_k − k with μ = log_2(3/2). The defect-free floors give the upper envelope x_k ≤ n^(2^{u_k}) and CycleMin forces u_k ≥ 0 at every step. For the lower side, writing ln x_k ≥ w_k ln n − E_k with w_k = 2^{u_k}, the floor-loss recursion E' ≤ (3/2)E + 1.05 x^{-3/2} (odd), E' ≤ (1/2)E + 1.05 x^{-1/2} (even) with amplification exactly w_k/w_{j+1} from injection j to state k, odd injections at x_j ≥ n and even injections at x_j ≥ n^2 (cycleMin_even_ge_sq), yields E_k ≤ w_k·D with D = 1.05e/n + 0.7o/n^{3/2}. Hence x_k ≥ (n e^{-D})^{w_k}: the cyclic sum Σ 1/(x_i ln x_i) is bounded above by the exact (step, odd-count)-lattice DP maximum over all nonnegative closed exponent walks evaluated at the reduced base n' = n e^{-D}. No free parameter remains; the DP value feeds the 6/5 unroll of Theorem 4.4 exactly as in the parity table. Not a halt theorem and not a cycle obstruction by itself.",
+    "source": "docs/problems/juggler_cycle_walk_charge.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_walk_charge.py"
+    ],
+    "related_conjectures": [
+      "juggler_cycle_walk_charge"
+    ]
+  },
+  {
+    "id": "J-cyclemin-walk-charge-instance",
+    "tag": "COMPUTATIONALLY VERIFIED",
+    "statement": "At the certified descent floor N_0 = 26254995 (J-residual-floor-twenty-six-million) the reduced-base walk charge of J-cyclemin-walk-transport excludes 18 of the 19 parity leftovers through L = 2·10^5. Kill margins run from 1.1204 at the F2 seed L = 50508 (required improvement over parity 6.87, walk supplies 7.70; reduced-base deficit D = 7.4566e-4) and 1.1187–1.1195 at its multiples 101016 and 151524, up to 7.69 at the parity-marginal lengths. The sole walk survivor is the F1 seed L = 176251 (margin 0.159; required 48, parity ceiling n_max^par = 1.044e9). Combined parity + walk contiguous prefix 176250: any nontrivial Juggler cycle has period at least 176251 at this floor. SHA-256 of the walk-alive list is 225d76ad12802a690934d01e2d37b3418865441a6825a015dd883c989d8942ec (data/research/juggler/cycle_walk_charge/survey.json). Extends the cutoff of J-cycle-period-fifty-thousand at the same floor by a factor 3.49 with no new floor verification. Calibration at (25781, 10^6) reproduces the archived necklace value and correctly does not kill (margin 0.196). Same trust boundary as Theorem 4.6: exact human inequalities plus guarded float comparisons. Not a halt theorem and not a no-cycle-of-any-length theorem.",
+    "source": "docs/problems/juggler_cycle_walk_charge.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_walk_charge.py"
+    ],
+    "related_conjectures": [
+      "juggler_cycle_walk_charge"
+    ]
   }
 ]

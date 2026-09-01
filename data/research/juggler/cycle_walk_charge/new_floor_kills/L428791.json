@@ -1,0 +1,12 @@
+{
+ "length": 428791,
+ "odd_count": 270537,
+ "theta": 3.992408542315991e-05,
+ "floor": 162849448,
+ "const": 1.2,
+ "deficit_D": 0.0010204611740510991,
+ "walk_rhs_certified": 7.3137748315916974e-06,
+ "kill_margin": 5.458752332750068,
+ "certified_excludes": true,
+ "elapsed_s": 11316.208696899994
+}

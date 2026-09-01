@@ -11,13 +11,14 @@ from research.juggler_sequence.cycle_walk_charge import (
     STEP,
     brute_force_budget,
     classify,
+    deficit_D,
     transport_bound,
     walk_budget,
 )
 
 ARTIFACT = Path("data/research/juggler/cycle_walk_charge/summary.json")
 DOSSIER = Path("docs/problems/juggler_cycle_walk_charge.md")
-CONJECTURE = Path("conjectures/active/juggler_cycle_walk_charge.json")
+CONJECTURE = Path("conjectures/proved/juggler_cycle_walk_charge.json")
 
 
 def test_lattice_constants():
@@ -35,6 +36,25 @@ def test_dp_matches_brute_force_on_tiny_lengths():
 def test_transport_bound_is_small_at_the_certified_floor():
     eta = transport_bound(50_508, 31_867, 26_254_996)
     assert 0 < eta < 1e-4
+
+
+def test_deficit_reduced_base_is_fourth_digit():
+    deficit = deficit_D(50_508, 31_867, 26_254_996)
+    assert 0 < deficit < 1e-3
+    # e/n dominates; the odd contribution is ~2e-4 relative.
+    assert math.isclose(
+        deficit, 1.05 * 18_641 / 26_254_996, rel_tol=1e-3
+    )
+
+
+def test_committed_certified_target_kills_50508():
+    payload = json.loads(ARTIFACT.read_text(encoding="utf-8"))
+    cert = payload["certified_target"]
+    assert cert["length"] == 50_508
+    assert cert["floor"] == 26_254_995
+    assert cert["certified_excludes"] is True
+    assert cert["kill_margin"] > 1.1
+    assert cert["deficit_D"] < 1e-3
 
 
 def test_committed_target_is_green_with_margin():
@@ -68,6 +88,7 @@ def test_dossier_and_conjecture_record_are_consistent():
     assert "PROMOTE" in dossier
     assert "not claimed" in dossier
     record = json.loads(CONJECTURE.read_text(encoding="utf-8"))
-    assert record["status"] == "active"
-    assert record["tag"] == "CONJECTURE"
+    assert record["status"] == "proved"
+    assert record["tag"] == "COMPUTATIONALLY VERIFIED"
+    assert record["evidence"]["kill_margin"] > 1.1
     assert record["not_a_halt_theorem"] is True
