@@ -1,0 +1,434 @@
+{
+  "model": "fan-minimum balance law: along L_k = q + kQ the required improvement R_k = (theta_k/theta_{k+1})(L_{k+1}/L_k) is minimized at k* = (A-B)/2 with ln R_min = 4/(A+B), A = eps/eta ~ the dangerous-position partial quotient, B = q/Q; hence R_min -> 1 along a subsequence iff those quotients are unbounded (OPEN)",
+  "fans": [
+    {
+      "tag": "fanA",
+      "base": 176251,
+      "step": 301994,
+      "closing": 16785921,
+      "n_members": 56,
+      "eps_base": 3.277055253771246e-06,
+      "eta": 5.8717259434591425e-08,
+      "A": 55.81076646504166,
+      "B": 0.5836241779638006,
+      "k_star": 27.61357114353893,
+      "ln_R_min_pred": 0.07092904018276003,
+      "R_min_pred": 1.073505047443613,
+      "R_min_exact": 1.073514265621114,
+      "argmin_survivor_exact": 8632083,
+      "argmin_k": 28,
+      "R_min_measured": 1.0735299073192621,
+      "argmin_survivor_measured": 8632083,
+      "pred_error_exact": 9.218177501102431e-06,
+      "pred_error_measured": 2.4859875649152485e-05,
+      "within_second_order_exact": true,
+      "within_second_order_measured": true,
+      "argmin_matches": true,
+      "transitions": [
+        {
+          "k_from": 0,
+          "survivor": 478245,
+          "R_exact": 2.762936858675295
+        },
+        {
+          "k_from": 1,
+          "survivor": 780239,
+          "R_exact": 1.6617814759471212
+        },
+        {
+          "k_from": 2,
+          "survivor": 1082233,
+          "R_exact": 1.4133177891089936
+        },
+        {
+          "k_from": 3,
+          "survivor": 1384227,
+          "R_exact": 1.3037340165372568
+        },
+        {
+          "k_from": 4,
+          "survivor": 1686221,
+          "R_exact": 1.2421425772835335
+        },
+        {
+          "k_from": 5,
+          "survivor": 1988215,
+          "R_exact": 1.2027666400300483
+        },
+        {
+          "k_from": 6,
+          "survivor": 2290209,
+          "R_exact": 1.1754911619559594
+        },
+        {
+          "k_from": 7,
+          "survivor": 2592203,
+          "R_exact": 1.155536886037669
+        },
+        {
+          "k_from": 8,
+          "survivor": 2894197,
+          "R_exact": 1.1403522766683156
+        },
+        {
+          "k_from": 9,
+          "survivor": 3196191,
+          "R_exact": 1.1284513212473548
+        },
+        {
+          "k_from": 10,
+          "survivor": 3498185,
+          "R_exact": 1.1189102045613357
+        },
+        {
+          "k_from": 11,
+          "survivor": 3800179,
+          "R_exact": 1.1111246992100254
+        },
+        {
+          "k_from": 12,
+          "survivor": 4102173,
+          "R_exact": 1.104683242416724
+        },
+        {
+          "k_from": 13,
+          "survivor": 4404167,
+          "R_exact": 1.0992960841659614
+        },
+        {
+          "k_from": 14,
+          "survivor": 4706161,
+          "R_exact": 1.0947535942937088
+        },
+        {
+          "k_from": 15,
+          "survivor": 5008155,
+          "R_exact": 1.0909006321251837
+        },
+        {
+          "k_from": 16,
+          "survivor": 5310149,
+          "R_exact": 1.0876202002967554
+        },
+        {
+          "k_from": 17,
+          "survivor": 5612143,
+          "R_exact": 1.0848226886791563
+        },
+        {
+          "k_from": 18,
+          "survivor": 5914137,
+          "R_exact": 1.0824386049688284
+        },
+        {
+          "k_from": 19,
+          "survivor": 6216131,
+          "R_exact": 1.0804135482474053
+        },
+        {
+          "k_from": 20,
+          "survivor": 6518125,
+          "R_exact": 1.0787046657479704
+        },
+        {
+          "k_from": 21,
+          "survivor": 6820119,
+          "R_exact": 1.0772781153544673
+        },
+        {
+          "k_from": 22,
+          "survivor": 7122113,
+          "R_exact": 1.0761072263299714
+        },
+        {
+          "k_from": 23,
+          "survivor": 7424107,
+          "R_exact": 1.0751711560997868
+        },
+        {
+          "k_from": 24,
+          "survivor": 7726101,
+          "R_exact": 1.074453907970039
+        },
+        {
+          "k_from": 25,
+          "survivor": 8028095,
+          "R_exact": 1.0739436184946154
+        },
+        {
+          "k_from": 26,
+          "survivor": 8330089,
+          "R_exact": 1.0736320526710064
+        },
+        {
+          "k_from": 27,
+          "survivor": 8632083,
+          "R_exact": 1.073514265621114
+        },
+        {
+          "k_from": 28,
+          "survivor": 8934077,
+          "R_exact": 1.0735884042663573
+        },
+        {
+          "k_from": 29,
+          "survivor": 9236071,
+          "R_exact": 1.0738556339466825
+        },
+        {
+          "k_from": 30,
+          "survivor": 9538065,
+          "R_exact": 1.0743201845074053
+        },
+        {
+          "k_from": 31,
+          "survivor": 9840059,
+          "R_exact": 1.0749895192872068
+        },
+        {
+          "k_from": 32,
+          "survivor": 10142053,
+          "R_exact": 1.0758746397659937
+        },
+        {
+          "k_from": 33,
+          "survivor": 10444047,
+          "R_exact": 1.0769905495285723
+        },
+        {
+          "k_from": 34,
+          "survivor": 10746041,
+          "R_exact": 1.0783569151142043
+        },
+        {
+          "k_from": 35,
+          "survivor": 11048035,
+          "R_exact": 1.0799989802767547
+        },
+        {
+          "k_from": 36,
+          "survivor": 11350029,
+          "R_exact": 1.0819488172233527
+        },
+        {
+          "k_from": 37,
+          "survivor": 11652023,
+          "R_exact": 1.0842470383483396
+        },
+        {
+          "k_from": 38,
+          "survivor": 11954017,
+          "R_exact": 1.0869451527192184
+        },
+        {
+          "k_from": 39,
+          "survivor": 12256011,
+          "R_exact": 1.090108846412562
+        },
+        {
+          "k_from": 40,
+          "survivor": 12558005,
+          "R_exact": 1.093822617889699
+        },
+        {
+          "k_from": 41,
+          "survivor": 12859999,
+          "R_exact": 1.0981964504963473
+        },
+        {
+          "k_from": 42,
+          "survivor": 13161993,
+          "R_exact": 1.1033756310704599
+        },
+        {
+          "k_from": 43,
+          "survivor": 13463987,
+          "R_exact": 1.109555575633482
+        },
+        {
+          "k_from": 44,
+          "survivor": 13765981,
+          "R_exact": 1.1170049009847973
+        },
+        {
+          "k_from": 45,
+          "survivor": 14067975,
+          "R_exact": 1.126102622686496
+        },
+        {
+          "k_from": 46,
+          "survivor": 14369969,
+          "R_exact": 1.137400699860318
+        },
+        {
+          "k_from": 47,
+          "survivor": 14671963,
+          "R_exact": 1.1517346400019095
+        },
+        {
+          "k_from": 48,
+          "survivor": 14973957,
+          "R_exact": 1.1704315566811083
+        },
+        {
+          "k_from": 49,
+          "survivor": 15275951,
+          "R_exact": 1.1957330753280366
+        },
+        {
+          "k_from": 50,
+          "survivor": 15577945,
+          "R_exact": 1.231745703552113
+        },
+        {
+          "k_from": 51,
+          "survivor": 15879939,
+          "R_exact": 1.2868875633867942
+        },
+        {
+          "k_from": 52,
+          "survivor": 16181933,
+          "R_exact": 1.3815580579446998
+        },
+        {
+          "k_from": 53,
+          "survivor": 16483927,
+          "R_exact": 1.5812211123797733
+        },
+        {
+          "k_from": 54,
+          "survivor": 16785921,
+          "R_exact": 2.274317840256293
+        }
+      ]
+    },
+    {
+      "tag": "fanB",
+      "base": 16785921,
+      "step": 17087915,
+      "closing": 85137581,
+      "n_members": 5,
+      "eps_base": 4.760598486872128e-08,
+      "eta": 1.1111274565870089e-08,
+      "A": 4.284475609571386,
+      "B": 0.982327042240086,
+      "k_star": 1.65107428366565,
+      "ln_R_min_pred": 0.7594740612929999,
+      "R_min_pred": 2.1371519139502833,
+      "R_min_exact": 2.163014727753016,
+      "argmin_survivor_exact": 50961751,
+      "argmin_k": 2,
+      "R_min_measured": 2.1630283636339813,
+      "argmin_survivor_measured": 50961751,
+      "pred_error_exact": 0.02586281380273281,
+      "pred_error_measured": 0.025876449683698066,
+      "within_second_order_exact": true,
+      "within_second_order_measured": true,
+      "argmin_matches": true,
+      "transitions": [
+        {
+          "k_from": 0,
+          "survivor": 33873836,
+          "R_exact": 2.6323936797013046
+        },
+        {
+          "k_from": 1,
+          "survivor": 50961751,
+          "R_exact": 2.163014727753016
+        },
+        {
+          "k_from": 2,
+          "survivor": 68049666,
+          "R_exact": 2.3748835538637265
+        },
+        {
+          "k_from": 3,
+          "survivor": 85137581,
+          "R_exact": 5.64905930218162
+        }
+      ]
+    }
+  ],
+  "future_fans": [
+    {
+      "quotient_index": 14,
+      "quotient": 55,
+      "certified": true,
+      "R_min_lower": 1.0726963570904307,
+      "R_min_upper": 1.075437195862052
+    },
+    {
+      "quotient_index": 16,
+      "quotient": 4,
+      "certified": true,
+      "R_min_lower": 1.9477340410546757,
+      "R_min_upper": 2.718281828459045
+    },
+    {
+      "quotient_index": 18,
+      "quotient": 1,
+      "certified": false,
+      "R_min_lower": 3.7936678946831774,
+      "R_min_upper": 54.598150033144236
+    },
+    {
+      "quotient_index": 20,
+      "quotient": 15,
+      "certified": false,
+      "R_min_lower": 1.2652808554396466,
+      "R_min_upper": 1.3056051720649522
+    },
+    {
+      "quotient_index": 22,
+      "quotient": 9,
+      "certified": false,
+      "R_min_lower": 1.438551009577678,
+      "R_min_upper": 1.5596234976067807
+    },
+    {
+      "quotient_index": 24,
+      "quotient": 5,
+      "certified": false,
+      "R_min_lower": 1.770794952435155,
+      "R_min_upper": 2.225540928492468
+    }
+  ],
+  "quotients_certified": [
+    0,
+    2,
+    1,
+    2,
+    2,
+    3,
+    1,
+    5,
+    2,
+    23,
+    2,
+    2,
+    1,
+    1,
+    55,
+    1,
+    4
+  ],
+  "quotients_observed_uncertified": [
+    3,
+    1,
+    1,
+    15,
+    1,
+    9,
+    2,
+    5
+  ],
+  "reduction": "R_min(fan j) -> 1 along a subsequence iff the partial quotients of log 2/log 3 at the dangerous positions are unbounded; boundedness of the CF quotients of log 2/log 3 is a classical OPEN problem (expected unbounded by Gauss-Kuzmin genericity; 23 and 55 already occur)",
+  "classification": {
+    "label": "WALK_FAN_MINIMUM_GREEN",
+    "reason": "the balance formula ln R_min = 4/(A+B) matches the exact and measured fan minima within second order and predicts the minimizing survivor on both fans; the fan minimum is a one-line function of the CF quotient at the dangerous position, so sharpness along a subsequence is equivalent to unbounded dangerous-position quotients of log 2/log 3 \u2014 a classical open question outside laboratory reach"
+  },
+  "not_a_halt_theorem": true,
+  "no_cycle_all_lengths": false,
+  "no_new_period_bound": true,
+  "git_commit": "702240b8a3a2f2cf2b36d6207a079067704a3c5c"
+}

@@ -5724,5 +5724,19 @@
       "juggler_walk_finance_competition",
       "juggler_walk_dk_envelope"
     ]
+  },
+  {
+    "id": "J-cyclemin-walk-fan-minimum",
+    "tag": "COMPUTATIONALLY VERIFIED",
+    "statement": "Fan-minimum balance-law instances (arithmetic only, from the certified competition artifact): along a dangerous fan L_k = q + kQ the break-even schedule's required improvement R_k = (θ_k/θ_{k+1})(L_{k+1}/L_k) obeys ln R_k ≈ 1/(A−k) + 1/(B+k) with A = ε/η exactly computed from big-int thetas (ε = −ln(1−θ)/ln 3) and B = q/Q; the minimum sits at the balance point k* = (A−B)/2 with ln R_min ≈ 4/(A+B). Fan A (q = 176251, Q = 301994, quotient 55): A = 55.811, B = 0.5836, k* = 27.61, predicted R_min 1.0735 vs schedule-measured 1.07353 (error 4e−4), minimizer 8632083 = 176251 + 28·301994 predicted and observed — the competition schedule's minimum 1.0735 equals exp(4/56.39), the certified quotient 55 in disguise. Fan B (q = 16785921, Q = 17087915, quotient 4): predicted 2.137 vs measured 2.163 (inside the declared second-order band (4/(A+B))²), minimizer 50961751 predicted and observed. Consequence (CONJECTURE-level asymptotic, recorded in juggler_walk_fan_minimum_law): exp(4/(a+2)) ≤ R_min ≲ exp(4/a) for the fan closed by quotient a, so the schedule's required-improvement infimum over fans is 1 iff the dangerous-position partial quotients of log 2/log 3 are unbounded — a classical OPEN problem. No floor verification; no new period bound; not a halt theorem.",
+    "source": "docs/problems/juggler_cycle_walk_fan_minimum.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_walk_fan_minimum.py"
+    ],
+    "related_conjectures": [
+      "juggler_walk_fan_minimum_law",
+      "juggler_walk_finance_competition"
+    ]
   }
 ]

@@ -18292,6 +18292,40 @@ Best next question
   2 s(L)?
 ```
 
+## Juggler walk-charge program consolidation
+
+- **Date:** 2026-09-01
+- **Objective:** Consolidation entry (no new branch, no new milestone): assemble the walk-charge program — transport, hug identification, word identity, DK/Ostrowski envelope, uniform window theorem, sharpness context — into one laboratory extract
+- **Hypotheses:** none (post-theorem consolidation; infrastructure after the theorems survived)
+- **Major results:** New note [docs/theory/juggler_walk_charge_note.md](theory/juggler_walk_charge_note.md) with the full human chain: transport to the reduced base (\(\ln n'\ge 17.07\)); hug as unique prefix-min maximizer and \(C_*\) Laplace integral; budgeted hug \(=\) exact IET prefix for every \(L\); \(|C_L-C_*|\le 2s(L)/L\) over certified Ostrowski blocks; \(C_L<1/(\ln 3\,\ln n')\) for every \(L\in[50508,301994)\), census-free and DP-free; 18 kills with \(L=176251\) surviving; refuted Koksma constant \(1\) and refuted uniform \(B/\theta\) recorded in place; sharpness census as context. Guard test `test_walk_charge_note.py`
+- **Refuted ideas:** none new (consolidation)
+- **Literature:** the nine walk dossiers and five ledger rows named in the note
+- **Open:** unchanged — deeper certified quotients beyond \(q_{13}\); the Diophantine near-convergent survivors
+- **Decision:** consolidation recorded; no branch opened
+
+```text
+What was learned
+- the seven walk branches close into a five-row human chain
+  with two censuses and one DP retired
+- every claim in the note carries its ledger row and dossier
+Strongest theorem
+- the window theorem: C_L < 1/(ln 3 ln n') for every
+  L in [50508, 301994) at the certified floor
+Strongest refutation
+- none new (consolidation)
+Reusable machinery
+- docs/theory/juggler_walk_charge_note.md (reading path)
+Branch status
+- consolidation (no branch)
+Why
+- methodology: notes and packaging come after theorems
+  survive; the DK and window rows are stable and PROMOTEd
+Best next question
+- the Diophantine frontier: which near-convergent survivors
+  can the finance side price next, at which break-even
+  floors? (being explored in the competition branch)
+```
+
 ## Juggler walk-charge vs finance: the asymptotic competition
 
 - **Date:** 2026-09-01
@@ -18343,6 +18377,54 @@ Best next question
 - is the mid-fan minimum of the required improvement
   bounded away from 1 uniformly over fans, or does a
   subsequence of fans drive it to 1?
+```
+
+## Juggler fan-minimum law and the CF reduction
+
+- **Date:** 2026-09-01
+- **Objective:** Answer the competition branch's question: is the mid-fan minimum of the required improvement bounded away from \(1\) uniformly over dangerous fans?
+- **Hypotheses:** the fan minimum is a closed-form function of the continued fraction of \(\log 2/\log 3\) via a balance between the \(\theta\)-shrink and \(L\)-growth costs
+- **Major results:** Classification **WALK_FAN_MINIMUM_GREEN**. Balance law: with \(\varepsilon_k=\varepsilon-k\eta\) exact, \(\ln R_k\approx 1/(A-k)+1/(B+k)\), \(A=\varepsilon/\eta\) (within \(1\) of the dangerous-position partial quotient), \(B=q/Q\); minimum at \(k^*=(A-B)/2\) with \(\ln R_{\min}=4/(A+B)\). Fan A (\(a_{14}=55\)): predicted \(1.0735\) vs measured \(1.07353\), minimizer \(8632083\) matched — the competition's mystery constant is \(e^{4/56.39}\), nothing but the quotient \(55\). Fan B (\(a_{16}=4\)): predicted \(2.137\) vs measured \(2.163\) (second-order band), minimizer \(50961751\) matched. Reduction: \(e^{4/(a+2)}\le R_{\min}\lesssim e^{4/a}\), so fan sharpness along a subsequence \(\iff\) unbounded dangerous-position quotients of \(\log 2/\log 3\) — a classical OPEN problem. Future fans from observed (uncertified) quotients: \(a_{20}=15\Rightarrow R_{\min}\approx 1.29\). Conjecture `juggler_walk_fan_minimum_law` ACTIVE; ledger row `J-cyclemin-walk-fan-minimum`. Artifact `cycle_walk_fan_minimum/summary.json`
+- **Refuted ideas:** none (the Baker route to effective quotient bounds stays refuted and is not reopened)
+- **Literature:** Gauss–Kuzmin statistics (KNOWN); boundedness of CF quotients of \(\log 2/\log 3\) (OPEN); walk-finance competition (laboratory)
+- **Open:** none actionable — the successor question is the open Diophantine problem itself
+- **Decision:** PROMOTE
+
+```text
+What was learned
+- the schedule's per-level slack has a closed form: the
+  required-improvement minimum of the fan closed by
+  quotient a is exp(4/(A+B)), A within 1 of a, B = q/Q
+- the measured 1.0735 at mid-fan A is exp(4/56.39): the
+  certified quotient 55 in disguise; the minimizer
+  8632083 = 176251 + 28*301994 is the balance point
+- fan sharpness along a subsequence is equivalent to
+  unbounded dangerous-position partial quotients of
+  log 2/log 3 — a classical open problem; no finite
+  computation decides it and effective routes are refuted
+- the walk-finance competition program is complete: its
+  asymptotic frontier is now a named open problem
+Strongest theorem
+- none new (instances COMPUTATIONALLY VERIFIED; the law
+  and the equivalence are CONJECTURE)
+Strongest refutation
+- none this phase
+Reusable machinery
+- cycle_walk_fan_minimum.py (exact fan transitions from
+  the competition artifact, balance predictions,
+  future-fan table)
+Branch status
+- PROMOTE
+Why
+- both certified fans confirm the law and its minimizers
+  exactly; the reduction gives the program an honest
+  terminal point — further progress requires new
+  mathematics on the continued fraction of log 2/log 3,
+  so no successor branch is opened
+Best next question
+- none in laboratory scope: the frontier is the open
+  unboundedness question for the partial quotients of
+  log 2/log 3
 ```
 
 
