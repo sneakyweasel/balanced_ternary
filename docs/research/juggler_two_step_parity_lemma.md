@@ -23,8 +23,12 @@
 > **routes**, not proofs. Phase 28 reruns Theorem R at the single
 > exponent \(\alpha=33/32\) (Part XIII); the Corollary R′ *family*
 > stays withdrawn. Phase 29 classifies the length-7 remainder as
-> an engine (Part XIV); Theorem X stays a route. Phase 30
-> refutes the Theorem-T passenger slogan (Part XV).
+> an engine (Part XIV); Theorem X stays a route. Phase 34
+> refutes the Theorem-T passenger slogan (Part XIX). Phase 35
+> closes the isolated chirps \(e(un^{27/16})\) and
+> \(e(Cn^{3/2})\) (Part XX, Lemma X5); the
+> \(w^{3/2}\to n^{27/16}\) reduction is not a decoration,
+> so Theorem X stays a route.
 
 > **Phase-25 correction (29 August 2026).** The Part-VI mixed-piece
 > bound recorded below (frozen-coefficient model \(e(sX)\),
@@ -57,6 +61,9 @@ Ledger rows: `J-nested-parity-discrepancy`,
 `J-level3-inner-linearization`,
 `J-scale-invariant-R-extension`,
 `J-w-family-below-nine-eighths`,
+`J-length7-remainder-engine`,
+`J-length7-passenger-theorem-t`,
+`J-length7-vdc3-chirps`,
 `J-depth7-engine-contracting`,
 `J-seven-step-descent-density`,
 `J-increment-linearization`,
@@ -3869,7 +3876,7 @@ passenger rerun: do the sixth-letter \(X\)-modes and the
 new \(n^{9/8}\)-frequencies sit in Lemma 5.2 / Theorem T’s
 existing budgets?
 
-## Part XV: length-7 passengers miss Stage 2 (Phase 30)
+## Part XIX: length-7 passengers miss Stage 2 (Phase 34)
 
 Scope: rerun the Phase-13 slogan “Theorem T applies as a
 passenger theorem” against the Phase-26/27 slots (Lemma 5.2
@@ -3945,7 +3952,7 @@ Theorem T’s budget”, “Theorem T therefore applies”) are
 the same wrong-slot slogan Phase 27 discarded at length 5,
 at larger exponents. The counts are not refuted.
 
-### Phase-30 decision
+### Phase-34 decision
 
 **PARK** Theorem X. Ledger row
 `J-length7-passenger-theorem-t` tagged `REFUTED`. Flag
@@ -3956,4 +3963,164 @@ No \(K_3\). The single next question is whether a
 third-derivative van der Corput on the two chirps
 \(e(un^{27/16})\) and \(e(Cn^{3/2})\) closes them inside
 \(P^{23/24}\) without a new decoration class.
+
+## Part XX: isolated length-7 chirps by one A-process (Phase 35)
+
+Scope: the two isolated monomials named in Phase 34, plus a
+decoration check. Not Theorem X. Not a new decoration class
+(no Lemma 3.11). Not length 8. Not a Paper B edit. Not
+\(K_3\). Not the Phase-1 third-derivative test on
+\(\theta\)-frozen short cells, and not the Phase-9 per-run
+third-derivative on mixed frozen-floor \(\times\) \(X\)-mode
+pieces (those summed to the trivial bound).
+
+The tool is the Paper B \(A\)-process already displayed after
+Lemma 3.3, followed by Lemma 3.3 itself. No third-derivative
+black box is imported.
+
+### The derived third-derivative bound
+
+Let \(f\) be \(C^3\) on a dyadic block of odd integers of
+length \(\asymp P\), with \(f'''\) of constant sign and
+\(\lambda\le\lvert f'''\rvert\le\alpha\lambda\) for an
+absolute \(\alpha\). The Paper B \(A\)-process at even
+shifts \(2h\), \(1\le H\le P\), produces inner phases
+\(g(n)=f(n+2h)-f(n)\) with
+\(\lvert g''\rvert\asymp h\lambda\). Lemma 3.3 then gives
+\[
+\lvert S\rvert^2
+\ll\frac{P^2}H+P^2(H\lambda)^{1/2}+P(H\lambda)^{-1/2}.
+\]
+Balancing the first two terms at \(H=\lambda^{-1/3}\)
+(admissible on both ranges below) yields
+\[
+\lvert S\rvert
+\ll P\lambda^{1/6}+P^{1/2}\lambda^{-1/6}.
+\]
+The second term is the square-root of the third; it is
+strictly smaller than the first on both chirps.
+
+### The two isolated sums
+
+All comparisons are at \(1\le\lvert k\rvert\le P^{1/24}\),
+sums over odd \(n\sim P\).
+
+**Lemma X5 (isolated sixth-letter chirps) — EXACT — HUMAN PROOF.**
+
+(i) If \(\lvert u\rvert\le P^{85/96}\), then
+\[
+\Bigl\lvert\sum e\bigl(u n^{27/16}\bigr)\Bigr\rvert
+\ll P^{535/576}.
+\]
+At the natural size \(\lvert u\rvert\asymp P^{27/32}\) the
+same argument gives \(P^{177/192}\).
+
+(ii) If \(\lvert C\rvert\le P^{103/96}\), then
+\[
+\Bigl\lvert\sum e\bigl(C n^{3/2}\bigr)\Bigr\rvert
+\ll P^{535/576}.
+\]
+At the natural size \(C\asymp P^{33/32}\) the bound is
+again \(P^{177/192}\).
+
+Both are strictly inside \(P^{23/24}=P^{184/192}=P^{552/576}\).
+
+*Proof of (i).* Write \(f(n)=u n^{27/16}\). Then
+\(f'''(n)=u\cdot\tfrac{27}{16}\cdot\tfrac{11}{16}\cdot\bigl(-\tfrac{5}{16}\bigr)n^{-21/16}\)
+is single-signed, and on \((P,2P]\) the ratio
+\(\sup\lvert f'''\rvert/\inf\lvert f'''\rvert=2^{21/16}\)
+is absolute. Thus \(\lambda\asymp\lvert u\rvert P^{-21/16}\).
+The window \(H=\lvert u\rvert^{-1/3}P^{7/16}\) satisfies
+\(1\le H\le P\) throughout \(\lvert u\rvert\le P^{85/96}\)
+(since \(85/96<21/16\)). The main term is
+\[
+P\lambda^{1/6}
+=\lvert u\rvert^{1/6}P^{25/32}.
+\]
+At \(\lvert u\rvert=P^{27/32}\) this is \(P^{177/192}\); at
+\(\lvert u\rvert=P^{85/96}\) it is \(P^{535/576}\). The
+inverse term is \(P^{111/192}\) and \(P^{329/576}\)
+respectively. Lemma 3.10 does not change the display: the
+\(A\)-process is already the odd-\(n\), even-shift form.
+
+*Proof of (ii).* Now \(f(n)=C n^{3/2}\) and
+\(f'''(n)=-\tfrac38 C n^{-3/2}\), ratio \(2^{3/2}\) on the
+block. Thus \(\lambda\asymp\lvert C\rvert P^{-3/2}\) and
+\(H=\lvert C\rvert^{-1/3}P^{1/2}\), admissible up to
+\(\lvert C\rvert\le P^{103/96}<P^{3/2}\). The main term is
+\(\lvert C\rvert^{1/6}P^{3/4}\), the same two exponents as
+in (i). \(\square\)
+
+The two natural sizes are the same leading phase
+\(n^{81/32}\): \(u n^{27/16}\) at \(\lvert u\rvert\asymp
+n^{27/32}\), and \(C n^{3/2}\) at \(C\asymp n^{33/32}\).
+
+### The reduction is not a decoration
+
+On the OO prefix,
+\[
+w^{3/2}
+=v^{3/4}+O(v^{1/4}),
+\qquad
+v=n^{9/4}-\tfrac32 n^{3/4}\theta_2+O(n^{-3/4}),
+\]
+so
+\[
+v^{3/4}
+=n^{27/16}-\tfrac98 n^{3/16}\theta_2+O(n^{-21/16}).
+\]
+The leftover amplitude after writing
+\(e(u w^{3/2})=e(u n^{27/16})e(\psi)\) is
+\(\lvert u\rvert n^{3/16}\). At \(\lvert u\rvert\asymp
+P^{27/32}\) this is \(P^{33/32}>n\); at the uniform end
+\(P^{85/96}\) it is \(P^{103/96}>n\). The spawned
+coefficient has derivative
+\(\lvert u\rvert n^{-13/16}\asymp P^{1/32}\to\infty\).
+This is the Phase-5 wall (coefficient \(>n\), derivative
+\(\gg 1\)). It is not (D1) (\(\lvert q'\rvert\le P^{1/16}\))
+and not (D3) (\(\lvert\varphi''\rvert\le 3kh_1h_2 P^{-5/8}\)).
+A hypothesis \(\lvert\varphi'''\rvert\ll\lvert f'''\rvert\)
+would be a new decoration class; it is not written.
+
+The first-letter chirp \(e(C n^{3/2})\) is already smooth
+in \(n\). Its companions in the Lemma A/M expansion of
+\(v^{9/8}\) (the \(\alpha=33/32\) \(W\)-family, the
+\(O(n^{9/32})\) engine, the integer-\(w\) block, the
+seventh letter) are separate species, not decorations of
+this chirp. Keeping them in the same exponential would
+again require a new class.
+
+### Affine \(w^{3/2}\) on X3-runs is not this theorem
+
+Lemma X3 freezes \(\lfloor\Delta U\rfloor\) on runs of
+length \(\asymp P^{7/8}\). On each such run,
+\(w=w_0+Jt+\kappa_w\) with \(J\) frozen and
+\(\kappa_w\in\{0,1\}\). The isolated affine phase
+\(u(w_0+Jt)^{3/2}\) has the same third-derivative size as
+\(u n^{27/16}\). One \(A\)-process per run (the window
+\(H=P^{5/32}\) at \(k=1\) is \(\ll P^{7/8}\)) plus a
+triangle over \(\ll P^{1/8}\) runs recovers the same
+exponents \(P^{177/192}\) and \(P^{535/576}\). The
+\(0\)-\(1\) carry is not (D1) or (D3): a carry jumps the
+phase by \(\lvert u\rvert w^{1/2}\asymp P^{45/32}\). That
+object is the existing Theorem Q / R3 pattern at the
+\(w\)-level, not a decoration of Lemma X5, and is not
+estimated here. Isolated \(\sum e(u n^{27/16})\) is
+therefore not the \(\theta_p\) inventory sum
+\(\sum e(u w^{3/2})\).
+
+### Phase-35 decision
+
+**PROMOTE** the isolated chirp bounds. Ledger row
+`J-length7-vdc3-chirps` tagged `EXACT — HUMAN PROOF`.
+Flag `length7_vdc3_chirps_proved` flipped `True`.
+`J-depth7-engine-contracting` stays `CONJECTURE`: the
+actual \(\theta_p\) sum is \(e(u w^{3/2})\), the reduction
+is not an existing decoration, and the integer-\(w\)
+block, seventh letter, and assembly are unrerun. No
+density \(57/64\). No Lemma 3.11. No Paper B. No \(K_3\).
+The single next question is whether \(e(u w^{3/2})\) on
+Lemma X3 runs, with the \(0\)-\(1\) carry treated by the
+Theorem Q / R3 pattern, closes inside \(P^{23/24}\)
+without a new decoration class.
 

@@ -114,9 +114,11 @@ It is not required. The 2-adic / BT bridge stays closed.
   \(W\)-family instance is **EXACT — HUMAN PROOF** (Phase 28);
   the remainder \(kE_X\) is an engine (Phase 29,
   `length7_remainder_engine_proved` is `True`); the
-  Theorem-T passenger slogan is **REFUTED** (Phase 30,
+  Theorem-T passenger slogan is **REFUTED** (Phase 34,
   `length7_passenger_theorem_t_refuted` is `True`); the
-  sixth-letter chirps remain the hole
+  isolated chirps close (Phase 35,
+  `length7_vdc3_chirps_proved` is `True`); the inventory
+  object \(e(uw^{3/2})\) remains the hole
 
 - Increment-first \(K_3\) attack — **REFUTED** in Phase 14
   (`increment_first_k3_refuted` is `True`); bound not proved
@@ -1191,3 +1193,30 @@ trivial bound costs \(P\): the geometric reading of the
 Phase-32 \(V\le c_7S/2\) line, not a new threshold.
 `J-kernel-cancellation` not retagged. Paper B is not
 edited. Do not open a finer grid.
+
+## Phase 34: length-7 passengers miss Stage 2
+
+Child dossier
+[juggler_length7_passenger.md](juggler_length7_passenger.md).
+The Phase-13 slogan “Theorem T applies as a passenger”
+is **REFUTED** (lemma Part XIX). \(\theta_p\) is an
+\(n^{27/16}\)-chirp at \(\lvert u\rvert\asymp P^{27/32}\);
+remainder modes are \(n^{9/8}\) at \(\lvert u\rvert\asymp
+P^{31/96}\); the first-letter chirp has
+\(C\asymp kn^{33/32}\). None sit in Stage 2 / (D1) / (D3).
+Lemma 3.3 costs \(P^{81/64}>P\). Flag
+`length7_passenger_theorem_t_refuted` is `True`. Theorem X
+stays `CONJECTURE`. Paper B is not edited. No vdC-III
+campaign.
+
+## Phase 35: isolated length-7 chirps by one A-process
+
+Child dossier
+[juggler_length7_vdc3.md](juggler_length7_vdc3.md).
+One Paper B \(A\)-process plus Lemma 3.3 closes
+\(\sum e(un^{27/16})\) and \(\sum e(Cn^{3/2})\) inside
+\(P^{23/24}\) (lemma Part XX, `J-length7-vdc3-chirps`).
+The reduction \(w^{3/2}=n^{27/16}+O(n^{3/16}\theta_2)\)
+is not a (D1)/(D3) decoration. Flag
+`length7_vdc3_chirps_proved` is `True`. Theorem X stays
+`CONJECTURE`. Paper B is not edited. No Lemma 3.11.

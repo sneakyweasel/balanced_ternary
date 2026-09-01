@@ -188,12 +188,18 @@ ANTI_OVERCLAIM = {
     # decaying remainder, not a (D3) decoration). Theorem X
     # still needs the passenger rerun.
     "length7_remainder_engine_proved": True,
-    # Phase 30: "Theorem T applies as a passenger" is the wrong
+    # Phase 34: "Theorem T applies as a passenger" is the wrong
     # slot. Sixth-letter θ_p modes are n^{27/16}-chirps at
     # |u| ≍ P^{27/32}; remainder modes are n^{9/8} at
     # |u| ≍ P^{31/96}. Neither is Stage 2. Theorem X stays
     # CONJECTURE.
     "length7_passenger_theorem_t_refuted": True,
+    # Phase 35: isolated e(u n^{27/16}) and e(C n^{3/2}) close
+    # by one A-process + Lemma 3.3 inside P^{23/24}. The
+    # w^{3/2} = n^{27/16} + O(n^{3/16} θ_2) reduction is not
+    # a (D1)/(D3) decoration (spawned amplitude can exceed n).
+    # Theorem X stays CONJECTURE.
+    "length7_vdc3_chirps_proved": True,
 }
 
 
@@ -3389,7 +3395,8 @@ def write_docs(row: dict[str, Any], path: Path = DOC_PATH) -> None:
         "`juggler_two_step_parity_lemma.md`). Laboratory certified",
         "descent density 7/8 (Phase 27 length-5 repair). Paper B",
         "prints 13/16. W-family instance alpha = 33/32 is EXACT",
-        "(Phase 28); length-7 remainder is an engine (Phase 29).",
+        "(Phase 28); length-7 remainder is an engine (Phase 29);",
+        "Theorem-T passenger slogan REFUTED (Phase 34).",
         "Length-7/8 harvest rows stay CONJECTURE",
         "(Phase 26). OOOO* kernel isolated (Lemma V1); the",
         "scale-invariant copy of Theorem R, the increment-first",
@@ -3441,7 +3448,8 @@ def write_docs(row: dict[str, Any], path: Path = DOC_PATH) -> None:
         "descent density is 7/8 (J-five-step-descent-density,",
         "Phase 27). Paper B prints 13/16. The W-family instance",
         "alpha = 33/32 is EXACT (Phase 28); the length-7",
-        "remainder is an engine (Phase 29). Length-7/8 densities",
+        "remainder is an engine (Phase 29); the Theorem-T",
+        "passenger slogan is REFUTED (Phase 34). Length-7/8 densities",
         "57/64 and 29/32 stay CONJECTURE (Phase 26 holes). ",
         "the OOOO* kernel K3 is isolated",
         "and the scale-invariant copy of Theorem R, the",

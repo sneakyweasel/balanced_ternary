@@ -4,7 +4,7 @@ Status: **PARK**. Theorem X and density \(57/64\) stay
 **CONJECTURE**. The slogan that Theorem T applies as a
 passenger is **REFUTED**. Paper B stays frozen at \(13/16\).
 
-Phase-30 desk classification of the length-7 sixth-letter
+Phase-34 desk classification of the length-7 sixth-letter
 modes against the Phase-26/27 slots. Child of
 [juggler_engine_harvest.md](juggler_engine_harvest.md). Not
 a \(K_3\) attack and not a Paper B edit.
@@ -111,10 +111,11 @@ None added.
 
 ## Open questions
 
-Does a third-derivative van der Corput on
-\(e(un^{27/16})\) and \(e(Cn^{3/2})\) close those chirps
-inside \(P^{23/24}\) without a new decoration class?
-Length 8 stays behind \(E'\).
+Answered in Phase 35
+([juggler_length7_vdc3.md](juggler_length7_vdc3.md)):
+the isolated monomials close; the reduction is not a
+decoration. Remaining: \(e(uw^{3/2})\) on X3-runs plus
+the Q/R3 carry. Length 8 stays behind \(E'\).
 
 ## Decision
 

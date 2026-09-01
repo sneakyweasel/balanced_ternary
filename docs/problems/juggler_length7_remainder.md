@@ -124,7 +124,7 @@ exponent would be machinery gravity.
 
 The passenger slogan is the child
 [juggler_length7_passenger.md](juggler_length7_passenger.md)
-(Phase 30, **REFUTED** as a method). Length 8 stays behind
+(Phase 34, **REFUTED** as a method). Length 8 stays behind
 \(E'\).
 
 ## Decision

@@ -445,6 +445,8 @@ def test_anti_overclaim_depth5_flag():
     assert ANTI_OVERCLAIM["depth7_engine_contracting_proved"] is False
     assert ANTI_OVERCLAIM["w_family_alpha_33_32_proved"] is True
     assert ANTI_OVERCLAIM["length7_remainder_engine_proved"] is True
+    assert ANTI_OVERCLAIM["length7_passenger_theorem_t_refuted"] is True
+    assert ANTI_OVERCLAIM["length7_vdc3_chirps_proved"] is True
     assert ANTI_OVERCLAIM["increment_first_k3_refuted"] is True
     assert ANTI_OVERCLAIM["x1_absorption_k3_refuted"] is True
     assert ANTI_OVERCLAIM["k3_toolkit_parked"] is True
@@ -842,6 +844,8 @@ def test_w_family_33_32_algebra():
     assert Fraction(24, 23) != 1
     assert ANTI_OVERCLAIM["w_family_alpha_33_32_proved"] is True
     assert ANTI_OVERCLAIM["length7_remainder_engine_proved"] is True
+    assert ANTI_OVERCLAIM["length7_passenger_theorem_t_refuted"] is True
+    assert ANTI_OVERCLAIM["length7_vdc3_chirps_proved"] is True
     assert ANTI_OVERCLAIM["depth7_engine_contracting_proved"] is False
 
 
@@ -854,3 +858,39 @@ def test_x1_remainder_reduction():
     assert Fraction(1, 24) + Fraction(27, 32) < Fraction(23, 24)
     assert Fraction(9, 32) < 1
     assert Fraction(9, 8) != 2
+
+
+def test_length7_passenger_slots():
+    """Phase-34 seals: sixth-letter ranges miss Stage 2 / (D3)."""
+    quarter = Fraction(1, 4)
+    assert Fraction(27, 32) > quarter
+    assert Fraction(31, 96) > quarter
+    assert Fraction(9, 32) > quarter
+    assert Fraction(27, 16) != Fraction(3, 2)
+    assert Fraction(9, 8) != Fraction(3, 2)
+    assert Fraction(27, 16) != Fraction(9, 4)
+    # Lemma 3.3 on the θ_p chirp is worse than trivial.
+    assert Fraction(81, 64) > 1
+    # (D3) miss: -53/96 > -60/96.
+    assert Fraction(-53, 96) > Fraction(-5, 8)
+    assert ANTI_OVERCLAIM["length7_passenger_theorem_t_refuted"] is True
+    assert ANTI_OVERCLAIM["length7_vdc3_chirps_proved"] is True
+    assert ANTI_OVERCLAIM["depth7_engine_contracting_proved"] is False
+
+
+def test_length7_vdc3_chirps():
+    """Phase-35 seals: A-process + Lemma 3.3 inside P^{23/24}."""
+    # Natural sizes: N λ^{1/6} = P^{177/192} < P^{23/24} = P^{184/192}.
+    assert Fraction(177, 192) < Fraction(23, 24)
+    # Uniform in k ≤ P^{1/24}: P^{535/576} < P^{23/24} = P^{552/576}.
+    assert Fraction(535, 576) < Fraction(23, 24)
+    # Differencing window stays inside the block.
+    assert Fraction(85, 96) < Fraction(21, 16)
+    assert Fraction(103, 96) < Fraction(3, 2)
+    # Spawned sawtooth from w^{3/2} = n^{27/16} − (9/8) n^{3/16} θ_2.
+    assert Fraction(27, 32) + Fraction(3, 16) > 1
+    assert Fraction(85, 96) + Fraction(3, 16) > 1
+    # Not the Phase-9 mixed-piece per-run collapse (that summed to P).
+    assert Fraction(177, 192) < 1
+    assert ANTI_OVERCLAIM["length7_vdc3_chirps_proved"] is True
+    assert ANTI_OVERCLAIM["depth7_engine_contracting_proved"] is False

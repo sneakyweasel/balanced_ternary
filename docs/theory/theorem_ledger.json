@@ -3830,7 +3830,18 @@
  {
   "id": "J-length7-passenger-theorem-t",
   "tag": "REFUTED",
-  "statement": "Method claim (Phase-13 slogan, Phase 30): the length-7 sixth letter is a tame passenger of Theorem T / Lemma 5.2 Stage 2, so the repaired length-5 budgets close Theorem X. False. (i) The θ_p sawtooth has coefficient B ≍ k n^{27/32} ≥ P^{27/32} > P^{1/4} already at k = 1; Lemma 3.7 needs T ≍ P^{27/32}, and the modes are e(u w^{3/2}) = e(u n^{27/16} + lower), not Stage-2 e(r n^{3/2}). Lemma 3.3 at curvature u n^{-5/16} costs P^{81/64} > P. (ii) The Phase-29 remainder frequencies e(u n^{9/8}) have |u| ≤ P^{31/96} > P^{1/4} and 9/8 ≠ 3/2; they miss (D3) by P^{7/96} at h_1 h_2 = 1. (iii) The first-letter chirp e(C n^{3/2}) has C ≍ k n^{33/32} > P^{1/4}, and Lemma 3.3 costs P^{81/64} > P. The α = 33/32 W-family piece sits and does not save the slogan. The length-7 counts are not refuted. Not a termination claim.",
+  "statement": "Method claim (Phase-13 slogan, Phase 34): the length-7 sixth letter is a tame passenger of Theorem T / Lemma 5.2 Stage 2, so the repaired length-5 budgets close Theorem X. False. (i) The θ_p sawtooth has coefficient B ≍ k n^{27/32} ≥ P^{27/32} > P^{1/4} already at k = 1; Lemma 3.7 needs T ≍ P^{27/32}, and the modes are e(u w^{3/2}) = e(u n^{27/16} + lower), not Stage-2 e(r n^{3/2}). Lemma 3.3 at curvature u n^{-5/16} costs P^{81/64} > P. (ii) The Phase-29 remainder frequencies e(u n^{9/8}) have |u| ≤ P^{31/96} > P^{1/4} and 9/8 ≠ 3/2; they miss (D3) by P^{7/96} at h_1 h_2 = 1. (iii) The first-letter chirp e(C n^{3/2}) has C ≍ k n^{33/32} > P^{1/4}, and Lemma 3.3 costs P^{81/64} > P. The α = 33/32 W-family piece sits and does not save the slogan. The length-7 counts are not refuted. Not a termination claim.",
+  "source": "docs/research/juggler_two_step_parity_lemma.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_two_step_parity.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-length7-vdc3-chirps",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Lemma X5 (Phase 35): on odd n ~ P and 1 ≤ |k| ≤ P^{1/24}, the isolated monomials satisfy |sum e(u n^{27/16})| ≪ P^{535/576} for |u| ≤ P^{85/96} and |sum e(C n^{3/2})| ≪ P^{535/576} for |C| ≤ P^{103/96}. At the natural sizes |u| ≍ P^{27/32} and C ≍ P^{33/32} both are ≪ P^{177/192}. Both lie strictly inside P^{23/24}. The proof is one Paper B A-process plus Lemma 3.3 (no new decoration class, no Lemma 3.11). The reduction w^{3/2} = n^{27/16} - (9/8) n^{3/16} θ_2 + O(n^{-21/16}) is not a (D1)/(D3) decoration: the spawned amplitude is |u| n^{3/16}, which exceeds n already at |u| ≍ P^{27/32}. Isolated e(u n^{27/16}) is therefore not the θ_p inventory sum e(u w^{3/2}). Not a Theorem X retag, not a density 57/64 claim, and not a Paper B edit.",
   "source": "docs/research/juggler_two_step_parity_lemma.md",
   "lean": "",
   "tests": [
@@ -3841,7 +3852,7 @@
  {
   "id": "J-depth7-engine-contracting",
   "tag": "CONJECTURE",
-  "statement": "Conjecture (formerly Theorem X; withdrawn from Paper B in Phase 26): each of the eight words OOEOO** and OOOEO** has cardinality N/128 + O(N^{1-1/96+eps}). The growing-remainder hole is closed (row J-length7-remainder-engine). The alpha = 33/32 W-family is row J-w-family-thirty-three-thirty-seconds. The remaining hole is the sixth-letter chirps: θ_p produces n^{27/16}-modes at |u| ≍ P^{27/32} and the first-letter content is e(C n^{3/2}) with C ≍ k n^{33/32}; neither sits in Lemma 5.2 Stage 2 / Theorem T (row J-length7-passenger-theorem-t, REFUTED). Lemma 3.3 is worse than trivial on both (P^{81/64}). The contraction 3^4 < 2^7 is unconditional. Not a termination claim.",
+  "statement": "Conjecture (formerly Theorem X; withdrawn from Paper B in Phase 26): each of the eight words OOEOO** and OOOEO** has cardinality N/128 + O(N^{1-1/96+eps}). The growing-remainder hole is closed (row J-length7-remainder-engine). The alpha = 33/32 W-family is row J-w-family-thirty-three-thirty-seconds. The isolated monomials e(u n^{27/16}) and e(C n^{3/2}) close by one A-process plus Lemma 3.3 (row J-length7-vdc3-chirps). The remaining hole is that those isolated sums are not the inventory: θ_p is e(u w^{3/2}), the reduction to n^{27/16} is not a (D1)/(D3) decoration (spawned amplitude can exceed n), and the integer-w block, seventh letter, and assembly are unrerun. The passenger slogan remains REFUTED (row J-length7-passenger-theorem-t). The contraction 3^4 < 2^7 is unconditional. Not a termination claim.",
   "source": "docs/research/juggler_two_step_parity_lemma.md",
   "lean": "",
   "tests": [
@@ -3852,7 +3863,7 @@
  {
   "id": "J-seven-step-descent-density",
   "tag": "CONJECTURE",
-  "statement": "Conjecture (formerly Corollary Y; withdrawn from Paper B in Phase 26): the class of starts carrying a uniform power-envelope descent certificate of length at most seven has natural density 57/64. Depends on row J-depth7-engine-contracting, still CONJECTURE (sixth-letter chirps miss Stage 2; row J-length7-passenger-theorem-t). The contraction step (3^4 < 2^7) is unconditional. The laboratory certified density is 7/8 (row J-five-step-descent-density); Paper B prints 13/16. Not a density of starts that reach 1.",
+  "statement": "Conjecture (formerly Corollary Y; withdrawn from Paper B in Phase 26): the class of starts carrying a uniform power-envelope descent certificate of length at most seven has natural density 57/64. Depends on row J-depth7-engine-contracting, still CONJECTURE (isolated chirps are row J-length7-vdc3-chirps; the inventory object e(u w^{3/2}) and the assembly remain open; passenger slogan REFUTED as row J-length7-passenger-theorem-t). The contraction step (3^4 < 2^7) is unconditional. The laboratory certified density is 7/8 (row J-five-step-descent-density); Paper B prints 13/16. Not a density of starts that reach 1.",
   "source": "docs/research/juggler_two_step_parity_lemma.md",
   "lean": "",
   "tests": [

@@ -21075,3 +21075,92 @@ Best next question
 - none from this laboratory; the boxed pair is external
 ```
 
+## Paper B engine harvest: length-7 passengers miss Stage 2 (Phase 34)
+
+- **Date:** 2026-09-02
+- **Objective:** Rerun the Phase-13 slogan “Theorem T applies as a passenger theorem” against the Phase-26/27 slots.
+- **Hypotheses:** After the \(33/32\) \(W\)-family and the remainder engine, the leftover sixth-letter modes are the same Stage-2 \(X\)-class Phase 27 absorbed at length 5.
+- **Major results:**
+  - \(\theta_p\) has coefficient \(B\asymp kn^{27/32}>P^{1/4}\) already at \(k=1\), argument \(n^{27/16}\), not \(X\). Lemma 3.3 costs \(P^{81/64}>P\).
+  - Remainder frequencies \(e(un^{9/8})\) have \(\lvert u\rvert\le P^{31/96}>P^{1/4}\) and miss (D3) by \(P^{7/96}\). Isolated Lemma X4 stands; the passenger citation fails.
+  - First-letter chirp \(C\asymp kn^{33/32}\) is the same mismatch. The \(33/32\) \(W\)-family piece sits and does not save the slogan.
+  - **Proposition X-pass (`J-length7-passenger-theorem-t`):** the Theorem-T passenger claim is **REFUTED**. Counts not refuted.
+- **Refuted ideas:** “sixth-letter \(X\)-modes smaller than Theorem T’s budget.”
+- **Literature:** Part XII; Lemma 5.2; Lemmas X1, X4.
+- **Open:** third-derivative van der Corput on \(e(un^{27/16})\) and \(e(Cn^{3/2})\); length-8 \(E'\).
+- **Decision:** PARK Theorem X. Dossier `docs/problems/juggler_length7_passenger.md`. No vdC-III campaign, no Paper B, no \(K_3\).
+
+```text
+What was learned
+- θ_p is an n^{27/16}-chirp at |u| ≍ P^{27/32},
+  not a Stage-2 X-mode
+- remainder n^{9/8}-modes exceed R_0 and miss (D3)
+- the first-letter chirp C ≍ k n^{33/32} makes
+  Lemma 3.3 worse than trivial
+- this is the length-5 wrong-slot slogan at
+  larger exponents
+- the W-family piece sitting does not close X
+Strongest theorem
+- none new (classification only)
+Strongest refutation
+- Theorem T applies as a length-7 passenger
+  (J-length7-passenger-theorem-t)
+Reusable machinery
+- none new (exponent seals in the existing test)
+Branch status
+- PARK (Theorem X); passenger method CLOSE
+Why
+- the existing-budget route is closed; a vdC-III
+  repair is a new question, not this Phase-0
+Best next question
+- does a third-derivative van der Corput on
+  e(u n^{27/16}) and e(C n^{3/2}) close those
+  chirps inside P^{23/24} without a new
+  decoration class?
+```
+
+## Paper B engine harvest: isolated length-7 chirps (Phase 35)
+
+- **Date:** 2026-09-02
+- **Objective:** Close \(\sum e(un^{27/16})\) and \(\sum e(Cn^{3/2})\) inside \(P^{23/24}\) without a new decoration class.
+- **Hypotheses:** Lemma 3.3 dies because \(\lvert f''\rvert\) is large; one further \(A\)-process may still give a \(1/6\)-saving on the isolated monomials.
+- **Major results:**
+  - One Paper B \(A\)-process plus Lemma 3.3 gives \(\lvert S\rvert\ll P\lambda^{1/6}+P^{1/2}\lambda^{-1/6}\).
+  - At the Phase-34 ranges both isolated sums are \(\ll P^{535/576}<P^{23/24}\); at the natural sizes both are \(\ll P^{177/192}\).
+  - The reduction \(w^{3/2}=n^{27/16}-\tfrac98 n^{3/16}\theta_2+O(n^{-21/16})\) spawns amplitude \(\lvert u\rvert n^{3/16}>n\). Not (D1), not (D3). Isolated \(e(un^{27/16})\) is not the \(\theta_p\) inventory sum.
+  - **Lemma X5 (`J-length7-vdc3-chirps`):** isolated chirps **EXACT — HUMAN PROOF**. Theorem X stays **CONJECTURE**.
+- **Refuted ideas:** “\(w^{3/2}=n^{27/16}+O(n^{3/16}\theta_2)\) is a (D1)/(D3) decoration of the isolated chirp.”
+- **Literature:** Paper B Lemma 3.3 and the displayed \(A\)-process; Phase 34 ranges; distinguished from the Phase-1 short-cell and Phase-9 mixed-piece third-derivative failures.
+- **Open:** \(e(uw^{3/2})\) on Lemma X3 runs plus the Q/R3 carry; length-8 \(E'\).
+- **Decision:** PROMOTE the isolated bounds. Dossier `docs/problems/juggler_length7_vdc3.md`. No Theorem X retag, no Lemma 3.11, no Paper B, no \(K_3\).
+
+```text
+What was learned
+- one A-process plus Lemma 3.3 closes both isolated
+  monomials inside P^{23/24}
+- the natural-size exponent is P^{177/192}; the
+  k ≤ P^{1/24} uniform exponent is P^{535/576}
+- the w^{3/2} → n^{27/16} reduction spawns a
+  supercritical sawtooth (amplitude > n)
+- isolated e(u n^{27/16}) is not the θ_p inventory
+- this is not the Phase-9 mixed-piece per-run collapse
+Strongest theorem
+- Lemma X5: isolated ∑ e(u n^{27/16}) and
+  ∑ e(C n^{3/2}) ≪ P^{535/576}
+Strongest refutation
+- the reduction is a (D1)/(D3) decoration
+Reusable machinery
+- none new (existing A-process; exponent seals)
+Branch status
+- PROMOTE (isolated chirps); Theorem X stays PARK
+Why
+- the named isolated sums close by existing tools;
+  leftover phases need a new class or a different
+  object (e(u w^{3/2}) on X3-runs)
+Best next question
+- does e(u w^{3/2}) on Lemma X3 runs, with the
+  0-1 carry treated by the Theorem Q / R3 pattern,
+  close inside P^{23/24} without a new decoration
+  class?
+```
+

@@ -101,7 +101,11 @@ for external review.
   \(13/16\) only. Densities \(57/64\) and \(29/32\) remain
   **CONJECTURE** (Phase-26 holes: length-7 chirps miss
   Stage 2, `J-length7-passenger-theorem-t` **REFUTED** as a
-  method; \(E'\); the growing remainder is now an engine,
+  method; isolated \(e(un^{27/16})\) and \(e(Cn^{3/2})\)
+  close by one \(A\)-process plus Lemma 3.3,
+  `J-length7-vdc3-chirps`, but the inventory object is
+  \(e(uw^{3/2})\) and the reduction is not a decoration;
+  \(E'\); the growing remainder is now an engine,
   `J-length7-remainder-engine`. Corollary R′ is still a
   family-CONJECTURE, but the instance \(\alpha=33/32\) is
   **EXACT — HUMAN PROOF**,

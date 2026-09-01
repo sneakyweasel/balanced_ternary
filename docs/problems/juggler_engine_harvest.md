@@ -1,10 +1,12 @@
 # Juggler Paper B engine harvest (length-5 repair)
 
 Status: **PROMOTE** (length 5, the \(\alpha=33/32\)
-\(W\)-family instance, and the length-7 remainder engine).
-Theorem X is **PARK** (passenger slogan **REFUTED**). Density
-\(57/64\), length 8, and the Corollary R′ *family* stay
-**CONJECTURE**. Paper B stays frozen at \(13/16\).
+\(W\)-family instance, the length-7 remainder engine, and
+the isolated length-7 chirps). Theorem X is **PARK**
+(passenger slogan **REFUTED**; isolated chirps are not the
+inventory). Density \(57/64\), length 8, and the
+Corollary R′ *family* stay **CONJECTURE**. Paper B stays
+frozen at \(13/16\).
 
 Repair of the Phase-26 withdrawn length-5 passenger holes. Not a
 new contractor family, not a \(K_3\) attack, and not a Paper B edit.
@@ -91,7 +93,9 @@ It is not required. The 2-adic / BT bridge stays closed.
 - Length-7 remainder engine (`J-length7-remainder-engine`,
   Phase 29) — **EXACT — HUMAN PROOF**
 - Length-7 “Theorem T as passenger”
-  (`J-length7-passenger-theorem-t`, Phase 30) — **REFUTED**
+  (`J-length7-passenger-theorem-t`, Phase 34) — **REFUTED**
+- Isolated length-7 chirps (`J-length7-vdc3-chirps`,
+  Phase 35) — **EXACT — HUMAN PROOF**
 - Length-7 passenger inventory / Theorem X, length-8 \(E'\),
   Corollary R′ family — **CONJECTURE**
 - \(K_3\) bound — **PARK** (BB/GG/JJ)
@@ -112,9 +116,11 @@ None new. Remaining harvest rows stay as they are:
 `J-w-family-below-nine-eighths` (family; the point
 \(\alpha=33/32\) is the separate exact row
 `J-w-family-thirty-three-thirty-seconds`),
-`J-depth7-engine-contracting` (passenger inventory; the
-remainder is the separate exact row
-`J-length7-remainder-engine`),
+`J-depth7-engine-contracting` (isolated chirps are
+`J-length7-vdc3-chirps`; the inventory object is
+\(e(uw^{3/2})\); passenger slogan is
+`J-length7-passenger-theorem-t`, **REFUTED**; remainder
+is `J-length7-remainder-engine`),
 `J-seven-step-descent-density`, `J-depth8-engine-quartet`,
 `J-eight-step-descent-density`.
 
@@ -155,17 +161,25 @@ gravity.
   \(kE_X\) is an engine \(A\{n^{9/8}\}^2\), not a discarded
   remainder. Theorem X stays `CONJECTURE`.
 - **Proposition X-pass (REFUTED,
-  `J-length7-passenger-theorem-t`, Phase 30).**
+  `J-length7-passenger-theorem-t`, Phase 34).**
   Child dossier
   [juggler_length7_passenger.md](juggler_length7_passenger.md).
   The sixth letter is not a Stage-2 / Theorem T passenger.
+- **Lemma X5 (EXACT — HUMAN PROOF,
+  `J-length7-vdc3-chirps`, Phase 35).**
+  Child dossier
+  [juggler_length7_vdc3.md](juggler_length7_vdc3.md).
+  Isolated \(e(un^{27/16})\) and \(e(Cn^{3/2})\) are
+  \(\ll P^{535/576}\) by one \(A\)-process plus Lemma 3.3.
+  The reduction to \(n^{27/16}\) is not a decoration.
+  Theorem X stays `CONJECTURE`.
 
 ## Open questions
 
-A third-derivative van der Corput on the two length-7
-chirps \(e(un^{27/16})\) and \(e(Cn^{3/2})\). Length 8 stays
-behind \(E'\). See the child
-[juggler_length7_passenger.md](juggler_length7_passenger.md).
+The actual \(\theta_p\) sum \(e(uw^{3/2})\) on Lemma X3
+runs, with the \(0\)-\(1\) carry treated by the Theorem Q
+/ R3 pattern. Length 8 stays behind \(E'\). See the child
+[juggler_length7_vdc3.md](juggler_length7_vdc3.md).
 
 ## Decision
 
