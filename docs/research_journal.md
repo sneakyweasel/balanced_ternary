@@ -18245,4 +18245,104 @@ Best next question
   excess stay O(1)/L uniformly on the window?
 ```
 
+## Juggler DK sharpness and the excess arches
+
+- **Date:** 2026-09-01
+- **Objective:** Decide whether the DK price \(2s(L)\) is sharp for the hug excess \(e(L)=\sum_{k<L}F(\{k\alpha\})-LC_*\), or the excess stays \(O(1)\) on the window
+- **Hypotheses:** the Ostrowski sawtooth heuristic \(e\approx\kappa\sum_j(-1)^jb_j\) would make DK order-sharp at digit-rich lengths; alternatively a coboundary collapse \(e(L)=g(u_L)\) would prove boundedness
+- **Major results:** Classification **WALK_SHARPNESS_BOUNDED**. Float census of all \(301993\) lengths at the representative base (\(\ln n'=17.0826\)): \(e(L)\in(-0.28,4.97]\) — one-sided and window-bounded; DK never tight (\(|e|/2s\le 0.476\) overall, \(\le 0.355\) on the window). The running max saturates after the level-9 tower (\(1.87\) at \(1054\), \(4.72\) at \(24727\), \(4.97\) at \(301993\)). Mechanism: along \(L=m\cdot 1054\) the excess is a quadratic arch peaking \(2.99\) at \(m=12\) and closing to \(-0.04\) at \(m=24\approx q_{10}/q_9\) — the classical phase-affine sawtooth picture; the \(50508\)-tower is flat. Three structural laws fail: alternating digit sum (\(r=0.21\)), additive digit law (\(r^2=-0.39\)), endpoint coboundary (no collapse, bin range \(4.63\) vs global \(5.25\)). Fixed-base excesses match the 19 DK-branch rows to \(6\cdot10^{-4}\). Conjecture `juggler_walk_excess_arch` COMPUTATIONALLY_SUPPORTED; ledger row `J-cyclemin-walk-excess-sharpness` (OBSERVATION). Artifact `cycle_walk_sharpness/summary.json`
+- **Refuted ideas:** as fitted models (not registered conjectures): alternating-sum law, additive-digit law, endpoint-coboundary collapse
+- **Literature:** sawtooth Birkhoff sums over rotations (Hecke/Ostrowski/Schoissengeier, KNOWN); DK/Ostrowski and window envelopes (laboratory)
+- **Open:** does the quadratic-arch bound per Ostrowski tower admit a human proof, giving \(e=O(\max_ja_{j+1})\) in place of \(2s(L)\)?
+- **Decision:** PARK
+
+```text
+What was learned
+- the excess is one-sided (never below -0.28) and window-
+  bounded by 4.97; DK is never tight (ratio <= 0.476,
+  <= 0.355 in the envelope regime) — 2s has >= 2.8x slack
+- the accumulation lives in the single large-quotient tower
+  (a_10 = 23): a quadratic arch that closes at a full
+  quotient cycle; higher towers are flat
+- no single-parameter law survives: not the alternating
+  digit sum, not an additive digit law, not an endpoint
+  coboundary — the excess is a phase-history functional
+- base drift is second order: fixed-base excesses match the
+  per-row DK excesses to 6e-4
+- no consequence at the current floor: the uniform envelope
+  margin is already 5.48 via 2s
+Strongest theorem
+- none new (measurement phase)
+Strongest refutation
+- the coboundary rescue: e(L) does not collapse on u_L
+Reusable machinery
+- cycle_walk_sharpness.py (vectorized excess census, tower
+  diagnostics, digit/alt/collapse fits)
+Branch status
+- PARK
+Why
+- the sharpness question is answered on the window (DK
+  loose, excess arch-bounded) but no human proof of the
+  arch height fits Phase-0 scope and the envelope already
+  has margin; the arch route is the recorded reopening
+  point
+Best next question
+- does the quadratic-arch bound per Ostrowski tower admit
+  a human proof, giving e = O(max_j a_{j+1}) in place of
+  2 s(L)?
+```
+
+## Juggler walk-charge vs finance: the asymptotic competition
+
+- **Date:** 2026-09-01
+- **Objective:** Chart the floor-scaled competition between the finance gap \(\theta(L)\) and the DK walk envelope \(\tfrac65 B_{\rm DK}\) along the survivor lattice: break-even floors \(n^*(L)\), the scaling law, and the sharpness dichotomy
+- **Hypotheses:** \(n^*(\ln n^*)^2\theta/L\to 6/(5\ln3)\), so the machinery's future is the Diophantine law \(n^*(q_j)\asymp q_jq_{j+1}\) — computable with exact big-int arithmetic and no floor verification
+- **Major results:** Classification **WALK_COMPETITION_GREEN**. Deep sandwich \(171928773/272500658<x<53715833/85137581\) certified by two big-int comparisons (width \(4.31\cdot10^{-17}\)); \(\theta_{\rm rot}\) quotients \([0;2,1,2,2,3,1,5,2,23,2,2,1,1,55,1,4]\), denominators certified through \(85137581\). Dangerous seeds \(50508,176251,16785921,85137581\) plus the fans \(176251+k\cdot301994\) (\(k\le54\); \(k=1\) is \(478245\)) and \(16785921+k\cdot17087915\) (\(k\le3\)): 78 rows with exact big-int \(\theta\) and per-row \(o\)-minimality certificates. Cross-checks exact: stored 19-row DK margins to \(2.3\cdot10^{-16}\), DK margin \(1.1980\) at \(176251\)/floor \(162849448\) just below the DP \(1.1983\). Break-even floors \(2.37\cdot10^7\to1.38\cdot10^8\to3.48\cdot10^8\to4.54\cdot10^{11}\to2.64\cdot10^{13}\); law ratio \([0.8956,0.9409]\) matching \(J(n^*)=1-2/\ln n^*\); \(n^*(\ln n^*)^2/(q_jq_{j+1})\in\{1.077,0.912,1.140\}\). Self-consistent schedule: 61 levels, all rows killed by \(2.64\cdot10^{13}\), required improvement \(6.30\to2.31\to\min\mathbf{1.0735}\) (mid-fan) with kill-contiguity throughout. Conjecture `juggler_walk_finance_competition` ACTIVE. Artifact `cycle_walk_competition/summary.json`
+- **Refuted ideas:** none new (uniform \(B/\theta\) stays false and is not reasserted; Baker transfer stays refuted — \(\theta\) is exact)
+- **Literature:** DK/Ostrowski envelope and window word identity (laboratory, EXACT — HUMAN PROOF); continued fractions of \(\log2/\log3\) (KNOWN)
+- **Open:** is the mid-fan minimum of the required improvement bounded away from \(1\) uniformly over fans, or does a subsequence of fans drive it to \(1\)?
+- **Decision:** PROMOTE
+
+```text
+What was learned
+- the break-even floor law is exact: n*(ln n*)^2 theta/L =
+  (6/(5 ln 3)) J(n*) on all 74 interior rows — the DK
+  constant is asymptotically sharp, no hidden slack remains
+- break-even floors diverge like q_j q_{j+1} along the
+  dangerous convergents: floor campaigns buy single fan
+  members at quadratic-plus cost
+- the self-consistent schedule kills every priced row at a
+  finite computable floor, but per-level slack dips to
+  1.0735 at mid-fan: no uniform separation, no permanent
+  crossing of the two asymptotic scales
+- finance (endpoint resonance) and walk charge (path cost)
+  are complementary measurements of one near-resonance;
+  the whole future of the machinery is one Diophantine law
+- 478245 = 176251 + 301994 is fan A at k = 1: its walk
+  break-even floor is 3.48e8, just above the in-flight
+  162849448
+Strongest theorem
+- none new (the certifications and cross-checks are
+  COMPUTATIONALLY VERIFIED; the limit law is OBSERVATION)
+Strongest refutation
+- none new this phase
+Reusable machinery
+- cycle_walk_competition.py (deep x-sandwich, exact theta
+  with fan increments and o-certificates, break-even
+  solver, schedule walker, scaling report)
+Branch status
+- PROMOTE
+Why
+- the dichotomy is answered in the certified range: the
+  machinery is asymptotically sharp in its constant and can
+  only chase the lattice floor by floor; killing the whole
+  lattice needs an ingredient that grows with approximation
+  quality, and the fan-minimum question locates exactly
+  where that ingredient must act
+Best next question
+- is the mid-fan minimum of the required improvement
+  bounded away from 1 uniformly over fans, or does a
+  subsequence of fans drive it to 1?
+```
+
 

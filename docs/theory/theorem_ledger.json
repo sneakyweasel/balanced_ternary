@@ -5696,5 +5696,33 @@
       "juggler_walk_dk_envelope",
       "juggler_walk_crude_envelope"
     ]
+  },
+  {
+    "id": "J-cyclemin-walk-excess-sharpness",
+    "tag": "OBSERVATION",
+    "statement": "Sharpness census for the DK envelope at the representative reduced base (ln n' = 17.0826): the Birkhoff excess e(L) = Σ_{k<L} F({kα}) − L C_* of the exact hug/IET orbit satisfies e(L) ∈ (−0.28, 4.97] for every 1 ≤ L < 301994, and the DK price 2 s(L) is never tight (|e|/2s ≤ 0.476 overall, ≤ 0.355 on [50508, 301994), attained at L = 125743). The running maximum saturates after the level-9 tower (1.87 at 1054, 4.72 at 24727, 4.97 at 301993); along L = m·1054 the excess is a quadratic arch peaking at 2.99 (m = 12) and closing to −0.04 at m = 24 ≈ q_10/q_9, the classical phase-affine sawtooth picture; the 50508-tower is flat (≤ 0.33). Three structural laws fail: alternating digit sum (r = 0.21), additive digit law (r² = −0.39), endpoint coboundary (no collapse: bin range 4.63 vs global 5.25). Fixed-base excesses match the 19 per-row DK-branch excesses to 6e−4. Float census; no bound beyond the window; the certified envelope currency stays 2 s(L); no new kills; period bound unchanged. Not a halt theorem.",
+    "source": "docs/problems/juggler_cycle_walk_sharpness.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_walk_sharpness.py"
+    ],
+    "related_conjectures": [
+      "juggler_walk_excess_arch",
+      "juggler_walk_dk_envelope"
+    ]
+  },
+  {
+    "id": "J-cyclemin-walk-competition-law",
+    "tag": "COMPUTATIONALLY VERIFIED",
+    "statement": "Walk-finance competition instance (arithmetic only, no floor verification): x = log 2/log 3 lies strictly between 171928773/272500658 and 53715833/85137581 (two big-int comparisons, interval width 4.31e−17), certifying the θ = log(3/2)/log 3 partial quotients [0;2,1,2,2,3,1,5,2,23,2,2,1,1,55,1,4] and convergent denominators through 85137581. On the dangerous seeds 50508, 176251, 16785921, 85137581 and the semiconvergent fans 176251 + k·301994 (k ≤ 54; k = 1 is 478245) and 16785921 + k·17087915 (k ≤ 3) — 78 rows with exact big-int θ and per-row o-minimality certificates 3^(o−1) ≤ 2^L < 3^o — the smallest floor n*(L) at which the DK envelope kills L satisfies n*(ln n*)² θ(L)/L = (6/(5 ln 3))·r with r ∈ [0.8956, 0.9409], monotone along the seeds and matching the J-correction 1 − 2/ln n*; on the seeds with certified next denominator, n*(ln n*)²/(q_j q_{j+1}) ∈ {1.077, 0.912, 1.140}. Break-even floors: 2.37e7 (50508), 1.38e8 (176251), 3.48e8 (478245), 4.54e11 (16785921), 2.64e13 (85137581); DK margin 1.1980 at 176251/floor 162849448, below the certified DP margin 1.1983 and still a kill. The self-consistent schedule n_{j+1} = n*(first survivor at n_j) anchored at 26254995 and 162849448 terminates in 61 levels with every priced row killed, kill-contiguity over the rows at each level, and required improvement 6.30 → 2.31 → min 1.0735 (mid-fan) → seed jumps. Floors beyond 162849448 are hypothetical; no new period bound; not a halt theorem.",
+    "source": "docs/problems/juggler_cycle_walk_competition.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_walk_competition.py"
+    ],
+    "related_conjectures": [
+      "juggler_walk_finance_competition",
+      "juggler_walk_dk_envelope"
+    ]
   }
 ]

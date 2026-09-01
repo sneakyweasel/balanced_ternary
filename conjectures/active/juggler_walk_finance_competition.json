@@ -1,0 +1,20 @@
+{
+  "id": "juggler_walk_finance_competition",
+  "title": "Walk-charge vs finance competition: break-even floors follow n*(ln n*)^2 theta/L -> 6/(5 ln 3) and diverge like q_j q_{j+1}",
+  "statement": "Along the dangerous (negative-side) convergent denominators q_j of theta_rot = log(3/2)/log 3 and their semiconvergent fans, the smallest floor n*(L) at which the DK/IET envelope kills L satisfies n*(ln n*)^2 theta(L)/L -> 6/(5 ln 3) with the J-correction 1 - 2/ln n* + O(1/(ln n*)^2), hence n*(q_j)(ln n*)^2 = Theta(q_j q_{j+1}). The per-level required improvement of the self-consistent schedule n_{j+1} = n*(first survivor at n_j) is bounded below by 1 but by no uniform 1 + delta: the competition between the finance gap theta(L) and the walk charge (6/5)B_DK is asymptotically sharp, every fixed length dies at a finite computable floor, and no fixed floor kills the whole survivor lattice.",
+  "mathematical_domain": "Juggler cycle finance / Diophantine approximation of log 2 / log 3",
+  "origin": "docs/problems/juggler_cycle_walk_competition.md",
+  "status": "ACTIVE",
+  "first_seen": "2026-09-01",
+  "tested_range": "x = log 2/log 3 certified between 171928773/272500658 and 53715833/85137581 (two big-int comparisons, width 4.31e-17); theta_rot denominators certified through 85137581; 78 rows priced exactly (seeds 50508, 176251, 16785921, 85137581; fans 176251 + k*301994 k<=54 and 16785921 + k*17087915 k<=3; 1054-offsets); law ratio in [0.8956, 0.9409] on all 74 interior rows, monotone along seeds; n*(ln n*)^2/(q_j q_{j+1}) in {1.077, 0.912, 1.140}; schedule: 61 levels, final floor 2.64e13, all rows killed, min required improvement 1.0735",
+  "counterexamples": [],
+  "proof_reference": "docs/problems/juggler_cycle_walk_competition.md",
+  "lean_reference": "",
+  "literature": [
+    "fernandez-ibanez-2026",
+    "kuipers-niederreiter-1974"
+  ],
+  "notes": "Arithmetic only: floors beyond the in-flight 162849448 are hypothetical schedule points; no new period bound is claimed. Cross-checks: exact theta reproduces all stored values, DK margins reproduce the certified 19-row survey to 2.3e-16, and the DK margin 1.1980 at 176251/floor 162849448 sits just below the certified DP margin 1.1983. Not a reopen of the REFUTED uniform B/theta claim (fixed floor) or the REFUTED Baker transfer (theta is computed exactly, never lower-bounded). Not a halt theorem.",
+  "not_a_halt_theorem": true,
+  "no_cycle_all_lengths": false
+}

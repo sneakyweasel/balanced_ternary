@@ -77,7 +77,10 @@ LAW_CONST = 6.0 / (5.0 * LN3)  # n* (ln n*)^2 theta / L -> 6/(5 ln 3)
 
 Q_LIMIT_DEEP = 100_000_000
 MAX_SCHEDULE_LEVELS = 80
-BREAK_EVEN_LO, BREAK_EVEN_HI = math.log(400.0), 80.0
+BREAK_EVEN_HI = 80.0
+# Transport-lemma domain: keep D = 1.05 e/n + 0.7 o/n^{3/2} small by
+# solving only above n = 30 L (D <= 0.035 + o(1) there).
+DOMAIN_FACTOR = 30.0
 
 CLASS_GREEN = "WALK_COMPETITION_GREEN"
 CLASS_PARK = "WALK_COMPETITION_PARK"
@@ -269,8 +272,10 @@ def break_even_floor(
             length, odd_count, digit_sum, theta, math.exp(log_floor)
         )["margin"]
 
-    lo, hi = BREAK_EVEN_LO, BREAK_EVEN_HI
-    if margin_at(lo) >= 1.0:
+    lo = math.log(max(400.0, DOMAIN_FACTOR * length))
+    hi = BREAK_EVEN_HI
+    domain_floor = margin_at(lo) >= 1.0
+    if domain_floor:
         hi = lo
     elif margin_at(hi) < 1.0:
         raise RuntimeError(f"break-even floor above e^{hi} at L={length}")
@@ -285,10 +290,15 @@ def break_even_floor(
     while dk_price(length, odd_count, digit_sum, theta, n_star)["margin"] < 1.0:
         n_star *= 1.0 + 1e-12
     ln_n = math.log(n_star)
-    law_ratio = n_star * ln_n * ln_n * theta / (length * LAW_CONST)
+    law_ratio = (
+        None
+        if domain_floor
+        else n_star * ln_n * ln_n * theta / (length * LAW_CONST)
+    )
     return {
         "n_star": n_star,
         "ln_n_star": ln_n,
+        "n_star_is_domain_floor": domain_floor,
         "margin_at_n_star": dk_price(
             length, odd_count, digit_sum, theta, n_star
         )["margin"],
@@ -301,7 +311,7 @@ def build_row(
     odd_count: int,
     theta: float,
     denominators: list[int],
-    floors: tuple[float, ...] = (FLOOR_ZERO, FLOOR_ONE),
+    floors: tuple[float, ...] = (FLOOR_ZERO + 1, FLOOR_ONE + 1),
     tag: str = "",
 ) -> dict[str, Any]:
     digits = greedy_digits(length, denominators)
@@ -358,15 +368,17 @@ def collect_rows(denominators: list[int]) -> list[dict[str, Any]]:
     # Fan A: 176251 + k * 301994, k = 1..54 (k = 1 is 478245; k = 55
     # is the next convergent 16785921, already a seed).
     base = theta_exact(176_251)
-    step = theta_exact(301_994)  # positive side: theta near ln 3, harmless
+    step = theta_exact(301_994)  # positive side: theta near 2/3, harmless
     rows.append(
         build_row(
             301_994, step["odd_count"], step["theta"], denominators,
             tag="positive_convergent",
         )
     )
+    # Positive-side convergent: o_min(301994) = p13 + 1, but along the
+    # fan the odd count advances by exactly p13 = 190537 per block.
     for fan in fan_thetas(
-        176_251, base["odd_count"], 301_994, step["odd_count"], 54
+        176_251, base["odd_count"], 301_994, step["odd_count"] - 1, 54
     ):
         rows.append(
             build_row(
@@ -422,7 +434,7 @@ def cross_checks(denominators: list[int]) -> dict[str, Any]:
     t176 = theta_exact(176_251)
     s176 = greedy_digits(176_251, denominators)["digit_sum"]
     dk_at_floor1 = dk_price(
-        176_251, t176["odd_count"], s176, t176["theta"], FLOOR_ONE
+        176_251, t176["odd_count"], s176, t176["theta"], FLOOR_ONE + 1
     )
     return {
         "n_rows": len(checks),
@@ -448,8 +460,8 @@ def schedule_walk(rows: list[dict[str, Any]]) -> dict[str, Any]:
     """
 
     levels: list[dict[str, Any]] = []
-    floor_n = float(FLOOR_ZERO)
-    anchored = [float(FLOOR_ZERO), float(FLOOR_ONE)]
+    anchored = [float(FLOOR_ZERO + 1), float(FLOOR_ONE + 1)]
+    floor_n = anchored[0]
     for level in range(MAX_SCHEDULE_LEVELS):
         margins = [
             (
@@ -468,7 +480,9 @@ def schedule_walk(rows: list[dict[str, Any]]) -> dict[str, Any]:
         killed = [(length, m) for length, m in margins if m >= 1.0]
         first_survivor = min(survivors)[0] if survivors else None
         contiguous = first_survivor is None or all(
-            length > first_survivor or m >= 1.0 for length, m in margins
+            m >= 1.0
+            for length, m in margins
+            if length < first_survivor
         )
         entry = {
             "level": level,
@@ -496,7 +510,7 @@ def schedule_walk(rows: list[dict[str, Any]]) -> dict[str, Any]:
         if level + 1 < len(anchored):
             floor_n = anchored[level + 1]
         else:
-            floor_n = dict(margins)[first_survivor] and next(
+            floor_n = next(
                 r for r in rows if r["length"] == first_survivor
             )["n_star"]
     growth = [
@@ -545,10 +559,13 @@ def scaling_report(
                 row["n_star"] * row["ln_n_star"] ** 2 / (q * q_next)
             )
         seed_rows.append(entry)
-    law_ratios = [r["law_ratio"] for r in rows]
+    law_ratios = [
+        r["law_ratio"] for r in rows if r["law_ratio"] is not None
+    ]
     fan_a = [r for r in rows if r["tag"].startswith("fanA")]
     return {
         "law_constant": LAW_CONST,
+        "n_interior_solves": len(law_ratios),
         "law_ratio_min": min(law_ratios),
         "law_ratio_max": max(law_ratios),
         "law_ratio_in_band": all(0.5 < x < 1.0 for x in law_ratios),

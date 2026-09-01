@@ -1,0 +1,18 @@
+{
+  "id": "juggler_walk_excess_arch",
+  "title": "Hug excess is window-bounded with quadratic tower arches",
+  "statement": "At the representative reduced base (ln n' = 17.0826), the Birkhoff excess e(L) = sum_{k<L} F({k alpha}) - L C_* of the exact hug/IET orbit satisfies e(L) in (-0.28, 4.97] for every 1 <= L < 301994, and the DK price is never tight: |e|/(2 s(L)) <= 0.476 overall and <= 0.355 on [50508, 301994). Mechanism: along the level-9 tower L = m * 1054 the excess follows a quadratic arch (peak 2.99 at m = 12, closing to -0.04 at m = 24, roughly q_10/q_9), the classical phase-affine sawtooth picture; higher towers are flat (50508-tower <= 0.33). Conjectured consequence: per-tower arches bound e by O(max_j a_{j+1}) rather than Theta(s), i.e. the DK constant 2 s(L) is generically loose by a factor of order s / max a.",
+  "mathematical_domain": "Juggler cycle finance / discrepancy of irrational rotations",
+  "origin": "docs/problems/juggler_cycle_walk_sharpness.md",
+  "status": "COMPUTATIONALLY_SUPPORTED",
+  "first_seen": "2026-09-01",
+  "tested_range": "single-pass float census of all 301993 lengths at the fixed base; max |e| = 4.97 at L = 238541 (s = 17); running max saturates (1.87 at 1054, 4.72 at 24727, 4.97 at 301993); towers at 1054 and 50508 traced; fixed-base excesses match the 19 per-row DK-branch excesses to 6e-4",
+  "counterexamples": [],
+  "proof_reference": "",
+  "lean_reference": "",
+  "literature": [
+    "kuipers-niederreiter-1974"
+  ],
+  "notes": "Three structural laws FAILED on the same census and are recorded as negative knowledge: alternating digit sum (Pearson r = 0.21), additive digit law (least-squares r^2 = -0.39), endpoint coboundary e(L) = g(u_L) (max bin range 4.63 vs global range 5.25 - no collapse). The excess is a phase-history functional. No bound beyond the window is claimed, the certified envelope currency stays 2 s(L), and no new kills follow (the uniform window margin is already 5.48). Not a halt theorem.",
+  "not_a_halt_theorem": true
+}
