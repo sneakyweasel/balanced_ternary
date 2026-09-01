@@ -5780,5 +5780,19 @@
       "juggler_walk_fan_growth_measure",
       "juggler_walk_fan_minimum_law"
     ]
+  },
+  {
+    "id": "J-cyclemin-inhomogeneous-log",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "On a CycleMin word the exact identities produce only the homogeneous form Λ = o log 3 − L log 2. The global-defect return gives log R = G log n with G = 3^o−2^L, not an integer, and the block-exponent sum is identically Λ. For every integer p ≠ 0, |p+Λ| ≥ 1−|Λ|. On the leftover seeds 19, 84, 569, 1054, 25781, 50508, 176251 this gap is in [0.986, 1), so every unscaled inhomogeneous Wu–Wang form is order 1 while |Λ| is the finance gap. Choosing k = round(1/Λ) after the fact makes |kΛ−1| smaller than |Λ| (any small Λ permits this) and stays at least 2.52·10^{10} above the diagnostic Wu–Wang floor H^{−4.1163051}. The slogan that the integer 1 in Wu–Wang is a third coefficient two-log finance cannot see is REFUTED (juggler_inhomogeneous_ww_beats_finance). Not a leftover killer and not a halt theorem.",
+    "source": "docs/problems/juggler_cycle_inhomogeneous_log.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_inhomogeneous_log.py"
+    ],
+    "related_conjectures": [
+      "juggler_inhomogeneous_ww_beats_finance",
+      "juggler_walk_fan_growth_measure"
+    ]
   }
 ]

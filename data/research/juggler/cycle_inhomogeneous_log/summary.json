@@ -1,0 +1,552 @@
+{
+  "model": "Does any exact CycleMin identity produce a Wu-Wang form |p + b log 2 + c log 3| with p != 0 that is forced smaller than homogeneous Lambda = o log 3 - L log 2? The integer 1 in Wu-Wang is not a floor remainder; on a return, log R = G log n is absorbed into Delta_w / image_eq_start_defectRatio",
+  "identities": {
+    "global_defect": "n^{3^o} = T_w(n)^{2^L} + Delta_w(n)",
+    "cycle_return": "Delta_w(n) = n^{2^L}(n^G - 1), G = 3^o-2^L",
+    "log_remainder": "log R = G log n, not an integer",
+    "exponent_budget": "sum_i (a_i log 3 - (a_i+r_i) log 2) = Lambda",
+    "integer_gap": "|p + Lambda| >= 1 - |Lambda| for p != 0"
+  },
+  "seeds": [
+    {
+      "length": 19,
+      "odd_count": 12,
+      "theta": 0.01345963145485576,
+      "lambda": 0.013551033378355417,
+      "min_inhomogeneous": 0.9864489666216446,
+      "one_minus_abs_lambda": 0.9864489666216446,
+      "obeys_integer_gap": true,
+      "homogeneous_smallest": true,
+      "shifts": [
+        {
+          "p": -5,
+          "abs_form": 4.986448966621644,
+          "is_homogeneous": false
+        },
+        {
+          "p": -4,
+          "abs_form": 3.9864489666216447,
+          "is_homogeneous": false
+        },
+        {
+          "p": -3,
+          "abs_form": 2.9864489666216447,
+          "is_homogeneous": false
+        },
+        {
+          "p": -2,
+          "abs_form": 1.9864489666216445,
+          "is_homogeneous": false
+        },
+        {
+          "p": -1,
+          "abs_form": 0.9864489666216446,
+          "is_homogeneous": false
+        },
+        {
+          "p": 0,
+          "abs_form": 0.013551033378355417,
+          "is_homogeneous": true
+        },
+        {
+          "p": 1,
+          "abs_form": 1.0135510333783555,
+          "is_homogeneous": false
+        },
+        {
+          "p": 2,
+          "abs_form": 2.0135510333783553,
+          "is_homogeneous": false
+        },
+        {
+          "p": 3,
+          "abs_form": 3.0135510333783553,
+          "is_homogeneous": false
+        },
+        {
+          "p": 4,
+          "abs_form": 4.013551033378356,
+          "is_homogeneous": false
+        },
+        {
+          "p": 5,
+          "abs_form": 5.013551033378356,
+          "is_homogeneous": false
+        }
+      ],
+      "clearing": {
+        "k": 74,
+        "form": 0.0027764699983008345,
+        "H": 1406,
+        "ww_floor_diagnostic": 1.1013667719311691e-13,
+        "form_over_ww": 25209313273.837833,
+        "smaller_than_lambda": true
+      }
+    },
+    {
+      "length": 84,
+      "odd_count": 53,
+      "theta": 0.002085953742688774,
+      "lambda": 0.002088132374407653,
+      "min_inhomogeneous": 0.9979118676255924,
+      "one_minus_abs_lambda": 0.9979118676255924,
+      "obeys_integer_gap": true,
+      "homogeneous_smallest": true,
+      "shifts": [
+        {
+          "p": -5,
+          "abs_form": 4.997911867625592,
+          "is_homogeneous": false
+        },
+        {
+          "p": -4,
+          "abs_form": 3.9979118676255925,
+          "is_homogeneous": false
+        },
+        {
+          "p": -3,
+          "abs_form": 2.9979118676255925,
+          "is_homogeneous": false
+        },
+        {
+          "p": -2,
+          "abs_form": 1.9979118676255923,
+          "is_homogeneous": false
+        },
+        {
+          "p": -1,
+          "abs_form": 0.9979118676255924,
+          "is_homogeneous": false
+        },
+        {
+          "p": 0,
+          "abs_form": 0.002088132374407653,
+          "is_homogeneous": true
+        },
+        {
+          "p": 1,
+          "abs_form": 1.0020881323744077,
+          "is_homogeneous": false
+        },
+        {
+          "p": 2,
+          "abs_form": 2.0020881323744075,
+          "is_homogeneous": false
+        },
+        {
+          "p": 3,
+          "abs_form": 3.0020881323744075,
+          "is_homogeneous": false
+        },
+        {
+          "p": 4,
+          "abs_form": 4.002088132374408,
+          "is_homogeneous": false
+        },
+        {
+          "p": 5,
+          "abs_form": 5.002088132374408,
+          "is_homogeneous": false
+        }
+      ],
+      "clearing": {
+        "k": 479,
+        "form": 0.00021540734126568317,
+        "H": 40236,
+        "ww_floor_diagnostic": 1.1117333076862295e-19,
+        "form_over_ww": 1937581070715556.5,
+        "smaller_than_lambda": true
+      }
+    },
+    {
+      "length": 569,
+      "odd_count": 359,
+      "theta": 0.001065325380074111,
+      "lambda": 0.0010658932424981525,
+      "min_inhomogeneous": 0.9989341067575018,
+      "one_minus_abs_lambda": 0.9989341067575018,
+      "obeys_integer_gap": true,
+      "homogeneous_smallest": true,
+      "shifts": [
+        {
+          "p": -5,
+          "abs_form": 4.998934106757502,
+          "is_homogeneous": false
+        },
+        {
+          "p": -4,
+          "abs_form": 3.9989341067575017,
+          "is_homogeneous": false
+        },
+        {
+          "p": -3,
+          "abs_form": 2.9989341067575017,
+          "is_homogeneous": false
+        },
+        {
+          "p": -2,
+          "abs_form": 1.998934106757502,
+          "is_homogeneous": false
+        },
+        {
+          "p": -1,
+          "abs_form": 0.9989341067575018,
+          "is_homogeneous": false
+        },
+        {
+          "p": 0,
+          "abs_form": 0.0010658932424981525,
+          "is_homogeneous": true
+        },
+        {
+          "p": 1,
+          "abs_form": 1.001065893242498,
+          "is_homogeneous": false
+        },
+        {
+          "p": 2,
+          "abs_form": 2.0010658932424983,
+          "is_homogeneous": false
+        },
+        {
+          "p": 3,
+          "abs_form": 3.0010658932424983,
+          "is_homogeneous": false
+        },
+        {
+          "p": 4,
+          "abs_form": 4.001065893242498,
+          "is_homogeneous": false
+        },
+        {
+          "p": 5,
+          "abs_form": 5.001065893242498,
+          "is_homogeneous": false
+        }
+      ],
+      "clearing": {
+        "k": 938,
+        "form": 0.00019213853673294423,
+        "H": 533722,
+        "ww_floor_diagnostic": 2.6584201794469666e-24,
+        "form_over_ww": 7.227545826593709e+19,
+        "smaller_than_lambda": true
+      }
+    },
+    {
+      "length": 1054,
+      "odd_count": 665,
+      "theta": 4.365315776183142e-05,
+      "lambda": 4.365411058865207e-05,
+      "min_inhomogeneous": 0.9999563458894114,
+      "one_minus_abs_lambda": 0.9999563458894114,
+      "obeys_integer_gap": true,
+      "homogeneous_smallest": true,
+      "shifts": [
+        {
+          "p": -5,
+          "abs_form": 4.999956345889411,
+          "is_homogeneous": false
+        },
+        {
+          "p": -4,
+          "abs_form": 3.9999563458894114,
+          "is_homogeneous": false
+        },
+        {
+          "p": -3,
+          "abs_form": 2.9999563458894114,
+          "is_homogeneous": false
+        },
+        {
+          "p": -2,
+          "abs_form": 1.9999563458894114,
+          "is_homogeneous": false
+        },
+        {
+          "p": -1,
+          "abs_form": 0.9999563458894114,
+          "is_homogeneous": false
+        },
+        {
+          "p": 0,
+          "abs_form": 4.365411058865207e-05,
+          "is_homogeneous": true
+        },
+        {
+          "p": 1,
+          "abs_form": 1.0000436541105886,
+          "is_homogeneous": false
+        },
+        {
+          "p": 2,
+          "abs_form": 2.0000436541105886,
+          "is_homogeneous": false
+        },
+        {
+          "p": 3,
+          "abs_form": 3.0000436541105886,
+          "is_homogeneous": false
+        },
+        {
+          "p": 4,
+          "abs_form": 4.000043654110589,
+          "is_homogeneous": false
+        },
+        {
+          "p": 5,
+          "abs_form": 5.000043654110589,
+          "is_homogeneous": false
+        }
+      ],
+      "clearing": {
+        "k": 22907,
+        "form": 1.528874574696637e-05,
+        "H": 24143978,
+        "ww_floor_diagnostic": 4.074800720895556e-31,
+        "form_over_ww": 3.75202293171437e+25,
+        "smaller_than_lambda": true
+      }
+    },
+    {
+      "length": 25781,
+      "odd_count": 16266,
+      "theta": 2.5459198127264017e-05,
+      "lambda": 2.5459522218149398e-05,
+      "min_inhomogeneous": 0.9999745404777819,
+      "one_minus_abs_lambda": 0.9999745404777819,
+      "obeys_integer_gap": true,
+      "homogeneous_smallest": true,
+      "shifts": [
+        {
+          "p": -5,
+          "abs_form": 4.999974540477782,
+          "is_homogeneous": false
+        },
+        {
+          "p": -4,
+          "abs_form": 3.999974540477782,
+          "is_homogeneous": false
+        },
+        {
+          "p": -3,
+          "abs_form": 2.999974540477782,
+          "is_homogeneous": false
+        },
+        {
+          "p": -2,
+          "abs_form": 1.9999745404777818,
+          "is_homogeneous": false
+        },
+        {
+          "p": -1,
+          "abs_form": 0.9999745404777819,
+          "is_homogeneous": false
+        },
+        {
+          "p": 0,
+          "abs_form": 2.5459522218149398e-05,
+          "is_homogeneous": true
+        },
+        {
+          "p": 1,
+          "abs_form": 1.0000254595222182,
+          "is_homogeneous": false
+        },
+        {
+          "p": 2,
+          "abs_form": 2.000025459522218,
+          "is_homogeneous": false
+        },
+        {
+          "p": 3,
+          "abs_form": 3.000025459522218,
+          "is_homogeneous": false
+        },
+        {
+          "p": 4,
+          "abs_form": 4.000025459522218,
+          "is_homogeneous": false
+        },
+        {
+          "p": 5,
+          "abs_form": 5.000025459522218,
+          "is_homogeneous": false
+        }
+      ],
+      "clearing": {
+        "k": 39278,
+        "form": 8.863155279703605e-07,
+        "H": 1012626118,
+        "ww_floor_diagnostic": 8.52754147497539e-38,
+        "form_over_ww": 1.0393564552823454e+31,
+        "smaller_than_lambda": true
+      }
+    },
+    {
+      "length": 50508,
+      "odd_count": 31867,
+      "theta": 7.264907458078721e-06,
+      "lambda": 7.26493384764672e-06,
+      "min_inhomogeneous": 0.9999927350661524,
+      "one_minus_abs_lambda": 0.9999927350661524,
+      "obeys_integer_gap": true,
+      "homogeneous_smallest": true,
+      "shifts": [
+        {
+          "p": -5,
+          "abs_form": 4.999992735066153,
+          "is_homogeneous": false
+        },
+        {
+          "p": -4,
+          "abs_form": 3.999992735066152,
+          "is_homogeneous": false
+        },
+        {
+          "p": -3,
+          "abs_form": 2.999992735066152,
+          "is_homogeneous": false
+        },
+        {
+          "p": -2,
+          "abs_form": 1.9999927350661524,
+          "is_homogeneous": false
+        },
+        {
+          "p": -1,
+          "abs_form": 0.9999927350661524,
+          "is_homogeneous": false
+        },
+        {
+          "p": 0,
+          "abs_form": 7.26493384764672e-06,
+          "is_homogeneous": true
+        },
+        {
+          "p": 1,
+          "abs_form": 1.0000072649338476,
+          "is_homogeneous": false
+        },
+        {
+          "p": 2,
+          "abs_form": 2.000007264933848,
+          "is_homogeneous": false
+        },
+        {
+          "p": 3,
+          "abs_form": 3.000007264933848,
+          "is_homogeneous": false
+        },
+        {
+          "p": 4,
+          "abs_form": 4.000007264933847,
+          "is_homogeneous": false
+        },
+        {
+          "p": 5,
+          "abs_form": 5.000007264933847,
+          "is_homogeneous": false
+        }
+      ],
+      "clearing": {
+        "k": 137648,
+        "form": 3.6142608756950523e-06,
+        "H": 6952325184,
+        "ww_floor_diagnostic": 3.067536702849208e-41,
+        "form_over_ww": 1.1782290566688355e+35,
+        "smaller_than_lambda": true
+      }
+    },
+    {
+      "length": 176251,
+      "odd_count": 111202,
+      "theta": 3.600206691677816e-06,
+      "lambda": 3.600213172437482e-06,
+      "min_inhomogeneous": 0.9999963997868275,
+      "one_minus_abs_lambda": 0.9999963997868275,
+      "obeys_integer_gap": true,
+      "homogeneous_smallest": true,
+      "shifts": [
+        {
+          "p": -5,
+          "abs_form": 4.999996399786828,
+          "is_homogeneous": false
+        },
+        {
+          "p": -4,
+          "abs_form": 3.9999963997868275,
+          "is_homogeneous": false
+        },
+        {
+          "p": -3,
+          "abs_form": 2.9999963997868275,
+          "is_homogeneous": false
+        },
+        {
+          "p": -2,
+          "abs_form": 1.9999963997868275,
+          "is_homogeneous": false
+        },
+        {
+          "p": -1,
+          "abs_form": 0.9999963997868275,
+          "is_homogeneous": false
+        },
+        {
+          "p": 0,
+          "abs_form": 3.600213172437482e-06,
+          "is_homogeneous": true
+        },
+        {
+          "p": 1,
+          "abs_form": 1.0000036002131725,
+          "is_homogeneous": false
+        },
+        {
+          "p": 2,
+          "abs_form": 2.0000036002131725,
+          "is_homogeneous": false
+        },
+        {
+          "p": 3,
+          "abs_form": 3.0000036002131725,
+          "is_homogeneous": false
+        },
+        {
+          "p": 4,
+          "abs_form": 4.000003600213172,
+          "is_homogeneous": false
+        },
+        {
+          "p": 5,
+          "abs_form": 5.000003600213172,
+          "is_homogeneous": false
+        }
+      ],
+      "clearing": {
+        "k": 277761,
+        "form": 1.1890105925393968e-06,
+        "H": 48955654011,
+        "ww_floor_diagnostic": 9.942829280439728e-45,
+        "form_over_ww": 1.1958473378181265e+38,
+        "smaller_than_lambda": true
+      }
+    }
+  ],
+  "classification": {
+    "label": "INHOMOGENEOUS_LOG_CLOSED",
+    "reason": "every exact CycleMin identity produces the homogeneous form Lambda = o log 3 - L log 2 (p = 0); for every nonzero integer p, |p + Lambda| >= 1 - |Lambda|, which is order 1 on leftovers, so the unscaled inhomogeneous Wu-Wang cases are farther from zero than two-log finance; choosing k ~ 1/Lambda after the fact makes |k Lambda - 1| smaller than Lambda, but that is the same approximation and stays many orders above the diagnostic Wu-Wang floor (Baker-dominance, not a new squeeze)",
+    "decision": "CLOSE",
+    "integer_gap_holds": true,
+    "homogeneous_always_smallest": true,
+    "clearing_above_ww_floor": true
+  },
+  "not_a_halt_theorem": true,
+  "no_cycle_all_lengths": false,
+  "no_new_period_bound": true,
+  "no_baker_reopen": true,
+  "no_floor_raise": true,
+  "no_paper_a_edit": true,
+  "git_commit": "e9f756b92ee121f0014fd8d9760a31dbdfd789f6"
+}

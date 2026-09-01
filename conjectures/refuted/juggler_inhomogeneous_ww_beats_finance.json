@@ -1,0 +1,25 @@
+{
+  "id": "juggler_inhomogeneous_ww_beats_finance",
+  "title": "Inhomogeneous Wu–Wang produces a third coefficient that two-log Juggler finance cannot see",
+  "statement": "An exact CycleMin identity produces a Wu–Wang form |p + b log 2 + c log 3| with a nonzero integer p that is forced smaller than the homogeneous Lambda = o log 3 - L log 2, so the linear-independence measure for 1, log 2, log 3 squeezes a leftover that the two-log finance reduction leaves standing.",
+  "mathematical_domain": "Juggler cycle finance / linear forms in 1, log 2, log 3",
+  "origin": "docs/problems/juggler_cycle_inhomogeneous_log.md",
+  "status": "REFUTED",
+  "first_seen": "2026-09-01",
+  "tested_range": "unscaled p in [-5,5] and k-clearing on leftover seeds 19, 84, 569, 1054, 25781, 50508, 176251",
+  "counterexamples": [
+    "global_defect_identity / image_eq_start_defectRatio give log R = G log n, not an integer; the exponent-budget sum is exactly Lambda (p = 0)",
+    "on all seven seeds, min_{p≠0} |p+Lambda| = 1-Lambda (equality at p = -1), so every unscaled inhomogeneous form is order 1",
+    "at L=19, clearing k=74 gives |k Lambda-1|=2.776e-3 against a diagnostic Wu-Wang floor ~1.1e-13 (ratio 2.52e10); at L=176251 the ratio is 1.20e38. Choosing k after the fact is the same Lambda, not a forced second form"
+  ],
+  "proof_reference": "docs/problems/juggler_cycle_inhomogeneous_log.md",
+  "lean_reference": "",
+  "literature": [
+    "wu-wang-2014-irrationality-measure-log3",
+    "bondareva-luchin-salikhov-2018-log3-irrationality",
+    "rhin-1987-pade-irrationality"
+  ],
+  "notes": "The integer 1 in Wu–Wang is the real number 1, not a floor remainder. Attack C already used the p=0 corollary as a fan-width cap. Baker leftover-killer stays REFUTED. Not a halt theorem.",
+  "not_a_halt_theorem": true,
+  "no_cycle_all_lengths": false
+}

@@ -18652,4 +18652,46 @@ Best next question
   simultaneously (literature attack A)?
 ```
 
+## Juggler inhomogeneous Wu–Wang form
+
+- **Date:** 2026-09-01
+- **Objective:** Test whether Wu–Wang’s integer coefficient of \(1\) is a third CycleMin coefficient that two-log finance cannot see
+- **Hypotheses:** floor/cell geometry produces \(|p+b\log 2+c\log 3|\) with \(p\neq 0\) forced smaller than \(\Lambda=o\log 3-L\log 2\)
+- **Major results:** Classification **INHOMOGENEOUS_LOG_CLOSED**. Exact identities are homogeneous: `image_eq_start_defectRatio` gives \(\log R=G\log n\); the exponent-budget sum is \(\Lambda\). Integer gap \(\lvert p+\Lambda\rvert\ge 1-\lvert\Lambda\rvert\) holds with equality at \(p=-1\) on seeds \(19,84,569,1054,25781,50508,176251\) (values in \([0.986,1)\)). Clearing \(k=\mathrm{round}(1/\Lambda)\) is smaller than \(\lvert\Lambda\rvert\) after the fact and stays \(2.52\cdot 10^{10}\)–\(1.20\cdot 10^{38}\) above the diagnostic Wu–Wang floor. Conjecture `juggler_inhomogeneous_ww_beats_finance` REFUTED. Ledger row `J-cyclemin-inhomogeneous-log`. Artifact `cycle_inhomogeneous_log/summary.json`
+- **Refuted ideas:** the integer \(1\) in Wu–Wang is a floor remainder; an inhomogeneous form squeezes leftovers that two-log finance leaves standing
+- **Literature:** `wu-wang-2014-irrationality-measure-log3`; global defect / exponent budget (laboratory); Baker leftover-killer stays REFUTED
+- **Open:** none from the third coefficient; the literature programme is complete
+- **Decision:** CLOSE
+
+```text
+What was learned
+- Wu-Wang's 1 is the real number 1, not Delta_w and not
+  log n; every exact cycle identity is the homogeneous
+  Lambda already priced by finance
+- unscaled |p+Lambda| is at least 1-|Lambda| and is
+  order 1 on every leftover
+- choosing k ~ 1/Lambda after the fact is the same
+  approximation and is Baker-dominance again
+- Attacks A/B/inhomogeneous are CLOSE; C is a width
+  bound only; the fan obstruction remains
+Strongest theorem
+- |p+Lambda| >= 1-|Lambda| for every integer p ≠ 0
+  (EXACT — HUMAN PROOF)
+Strongest refutation
+- seven leftover seeds: min unscaled form is |Lambda|;
+  next is 1-Lambda; clearing/WW ratios 2.52e10 to 1.20e38
+Reusable machinery
+- cycle_inhomogeneous_log.py (integer shifts and
+  k-clearing on leftover thetas)
+Branch status
+- CLOSE
+Why
+- the third-coefficient slogan is false; the Diophantine
+  literature search is now fully decided
+Best next question
+- none from this literature programme: the frontier is
+  the open unboundedness of the dangerous partial
+  quotients of log 2/log 3
+```
+
 

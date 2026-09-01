@@ -239,11 +239,11 @@ Classification **WALK_FAN_GROWTH_GREEN**.
 None on this attack. Sharper published exponents (BLS
 \(3.116201\), or any future improvement of the same polynomial
 shape) do not change the conclusion; do not import them as a
-new branch. The fan obstruction remains. The promising
-successor named by the literature search — two or more
-simultaneous fan-quality logarithmic relations on one cycle —
-is Attack A, now CLOSE
+new branch. The fan obstruction remains. Attack A is CLOSE
 ([juggler_cycle_fan_multipoint.md](juggler_cycle_fan_multipoint.md)).
+The inhomogeneous reading of Wu–Wang (nonzero integer \(p\))
+is CLOSE
+([juggler_cycle_inhomogeneous_log.md](juggler_cycle_inhomogeneous_log.md)).
 
 ## Decision
 
@@ -255,9 +255,9 @@ the same theorem is explicitly too coarse to prevent
 characterization Attack C promised. It is not a Baker revival
 and it does not reopen finance.
 
-Best next question: none from this width theorem. Literature
-attack A is now CLOSE
-([juggler_cycle_fan_multipoint.md](juggler_cycle_fan_multipoint.md)).
+Best next question: none from this width theorem. The
+literature programme is complete: A CLOSE, B CLOSE,
+inhomogeneous CLOSE, C a width bound only.
 
 ## Publication assessment
 
