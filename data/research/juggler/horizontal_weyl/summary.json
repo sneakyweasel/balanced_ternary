@@ -1,0 +1,116 @@
+{
+  "experiment": "juggler_horizontal_weyl",
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "equidistribution_claimed": false,
+    "k3_bound_claimed": false,
+    "toolkit_reopened": false,
+    "paper_b_modified": false,
+    "theorem_r_cited_at_alpha_zero": false,
+    "density_one_claimed": false
+  },
+  "unwind": {
+    "samples_used": 244,
+    "worst_ratio_34": 0.09375000000000003,
+    "worst_ratio_32": 0.3750000000000001,
+    "worst_ratio_94_hi": 1.4062500000000002,
+    "worst_ratio_94_lo": 1.4062499984001877,
+    "worst_n": {
+      "34": 100000001,
+      "32": 100000001,
+      "94": 100000001
+    },
+    "bound_34": 0.09375,
+    "bound_32": 0.375,
+    "bound_94": 1.40625,
+    "failed": [],
+    "holds": true
+  },
+  "lemma_g": {
+    "holds": true,
+    "count": 250
+  },
+  "first_difference": {
+    "pairs": 240,
+    "mvt_holds": true,
+    "mvt_ok": 240,
+    "carry_holds": true,
+    "carry_ok": 240,
+    "carry_ones": 60,
+    "mean_c_over_n15": 2.249999998909622,
+    "mean_cprime_over_n78": 4.218745039370553,
+    "c_leading": 2.25,
+    "cprime_leading": 4.21875,
+    "min_c": 400115117894.9019,
+    "min_cprime": 750212.1887512207,
+    "c_below_engine": true,
+    "c_exponent": 1.875,
+    "cprime_exponent": 0.875,
+    "engine_line": 2.25,
+    "cprime_gg": true,
+    "leading_c_close": true,
+    "leading_cprime_close": true
+  },
+  "species": {
+    "engine_line": 2.25,
+    "axes": [
+      {
+        "axis": "v^{3/4}",
+        "unwind_A_exponent": -0.375,
+        "unwind_Aprime_exponent": -1.375,
+        "species": "decaying",
+        "ledger_match": "classical van der Corput on e(k n^{9/8}); Proposition L style",
+        "theorem_r_citable": false,
+        "reduction_lemma": true
+      },
+      {
+        "axis": "v^{3/2}",
+        "unwind_A_exponent": 0.75,
+        "unwind_Aprime_exponent": -0.25,
+        "species": "tame_amplitude_product",
+        "ledger_match": "Theorem C substrate (J-nested-parity-discrepancy); Theorem R at alpha=0 not citable (J-w-family-below-nine-eighths is CONJECTURE)",
+        "theorem_r_citable": false,
+        "reduction_lemma": true
+      },
+      {
+        "axis": "v^{9/4}_unwind",
+        "unwind_A_exponent": 1.875,
+        "unwind_Aprime_exponent": 0.875,
+        "species": "HH",
+        "ledger_match": "J-nested-floor-without-W-family (REFUTED): do not replace nested floors by smooth powers",
+        "theorem_r_citable": false,
+        "reduction_lemma": false
+      },
+      {
+        "axis": "v^{9/4}_weyl1",
+        "unwind_A_exponent": 1.875,
+        "unwind_Aprime_exponent": 0.875,
+        "species": "GG",
+        "ledger_match": "spawned carry amp 15/8 < 9/4 (BB does not fire) but C' ~ n^{7/8} >> 1 (J-intra-block-harmonic-obstruction species: no drift-1 window)",
+        "theorem_r_citable": false,
+        "reduction_lemma": false,
+        "c_below_engine": true,
+        "cprime_gg": true
+      }
+    ],
+    "mixed_harmonics": "k_3 != 0 dominated by the 9/4 axis",
+    "shortcut_dead": true,
+    "rate_free_target_unharmed": true
+  },
+  "notes": {
+    "identities": "v^{3/4}=n^{9/8}-(3/4)n^{-3/8}theta+R, v^{3/2}=n^{9/4}-(3/2)n^{3/4}theta+R, v^{9/4}=n^{27/8}-(9/4)n^{15/8}theta+R, with the recorded Lagrange remainders",
+    "shortcut": "the Theorem-R shortcut for the horizontal half is closed: one Weyl step on v^{9/4} lands in GG species (C'>>1); unwinding v^{9/4} is HH and is forbidden by J-nested-floor-without-W-family",
+    "target": "conjectures/active/juggler_tower_rate_free_equidistribution.json"
+  },
+  "decision": {
+    "classification": "HORIZONTAL_WEYL_GREEN",
+    "shortcut_dead": true,
+    "falsifier_b": false
+  }
+}

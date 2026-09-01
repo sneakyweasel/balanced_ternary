@@ -1,0 +1,135 @@
+{
+  "experiment": "juggler_nil_horizontal_weyl",
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "equidistribution_claimed": false,
+    "k3_bound_claimed": false,
+    "toolkit_reopened": false,
+    "paper_b_modified": false,
+    "horizontal_half_already_a_theorem": false
+  },
+  "identities": {
+    "n27_coefficient": "1",
+    "n27_is_one": true,
+    "theta_n15_coefficient": "-9/4",
+    "theta_n15_is_minus_nine_fourths": true,
+    "n98_coefficient": "1",
+    "n98_is_one": true,
+    "theta_n_minus_38_coefficient": "-3/4",
+    "theta_n_minus_38_is_minus_three_fourths": true,
+    "holds": true
+  },
+  "integer_harmonic": {
+    "holds": true,
+    "checked": 251,
+    "k2_values": [
+      -2,
+      -1,
+      1,
+      2
+    ]
+  },
+  "lemma_g": {
+    "holds": true,
+    "count": 251
+  },
+  "defects": {
+    "used": 241,
+    "skipped_tiny_theta": 10,
+    "digits": 40,
+    "ratio_94_min": 0.9824842219074,
+    "ratio_94_max": 0.999999999999981,
+    "ratio_94_near_one": true,
+    "abs_defect_94_min": 8.211992790064292,
+    "abs_defect_94_max": 1.616792420178671e+17,
+    "nine_fourths_not_remainder": true,
+    "ratio_34_min": 1.0000000000000038,
+    "ratio_34_max": 1.0035531811502525,
+    "ratio_34_near_one": true,
+    "abs_defect_34_max": 0.25058138461115836,
+    "three_fourths_decays": true,
+    "holds": true
+  },
+  "drift": {
+    "alpha": "15/8",
+    "alpha_float": 1.875,
+    "engine_line": "9/4",
+    "w_family_cap": "9/8",
+    "below_engine": true,
+    "above_w_family_cap": true,
+    "layer": "first",
+    "leading_amplitude": "9/4",
+    "drift_exponent": "7/8",
+    "per_step_prefactor": "135/16",
+    "window_prefactor": "32/135",
+    "window_shorter_than_one_step": true,
+    "named_bound": null,
+    "gg_reenters_n_reduction": true,
+    "bb_applies": false
+  },
+  "catalog": {
+    "axis_34": {
+      "harmonic": "(±1, 0, 0)",
+      "phase": "(3/2) v^{3/4}",
+      "after_lemma_g": "n^{9/8} - (3/4) n^{-3/8} theta + decaying",
+      "class": "EXACT_COROLLARY",
+      "named_rows": [
+        "J-second-order-linearization"
+      ],
+      "already_a_theorem": true,
+      "note": "decaying theta-correction; remainder is classical Weyl of n^{9/8}"
+    },
+    "axis_32": {
+      "harmonic": "(0, ±1, 0)",
+      "phase": "v^{3/2}",
+      "after_integer_harmonic": "e(k2 {m^{3/2}})",
+      "class": "THEOREM_C_SUBSTRATE",
+      "named_rows": [
+        "J-nested-parity-discrepancy",
+        "J-horizontal-axis-species"
+      ],
+      "already_a_theorem": false,
+      "note": "integer-harmonic cancellation is exact; Theorem R at alpha = 0 is not citable (J-w-family-below-nine-eighths is CONJECTURE); sibling row J-horizontal-axis-species"
+    },
+    "axis_94": {
+      "harmonic": "(0, 0, ±1)",
+      "phase": "(1/2) v^{9/4}",
+      "after_lemma_g": "n^{27/8} - (9/4) n^{15/8} theta + (45/32) n^{3/8} theta^2 + R4",
+      "class": "W_FAMILY_FIRST_LAYER",
+      "alpha": "15/8",
+      "named_rows": [],
+      "already_a_theorem": false,
+      "gg_reenters_n_reduction": true,
+      "bb_applies": false,
+      "note": "first-layer W-family at 15/8; not Theorem R, not J-w-family-below-nine-eighths; J-nested-floor-without-W-family forbids the smooth-model comparison; GG drift on n-reduction"
+    },
+    "mixed": {
+      "inherits_94_leftover": true,
+      "when": "k3 != 0",
+      "already_a_theorem": false
+    },
+    "horizontal_half_already_a_theorem": false
+  },
+  "notes": {
+    "claim_tested": "existing depth-2 machinery already proves the fixed-harmonic Weyl sums of the horizontal triple",
+    "claim_holds": false,
+    "already_in_ledger": [
+      "J-horizontal-leftover-exponents",
+      "J-horizontal-axis-species",
+      "J-horizontal-theorem-r-shortcut"
+    ],
+    "heisenberg_untouched": true,
+    "k3_untouched": true
+  },
+  "decision": {
+    "classification": "NIL_HORIZONTAL_WEYL_SPLIT",
+    "branch": "CLOSE",
+    "already_a_theorem": false
+  }
+}

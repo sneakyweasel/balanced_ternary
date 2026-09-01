@@ -19298,6 +19298,55 @@ Best next question
   already a theorem?
 ```
 
+## Horizontal Weyl leftovers: not a Theorem R corollary (Phase 0; answers the nil-lift branch's best next question)
+
+- **Date:** 2026-09-01
+- **Objective:** Decide whether the fixed-harmonic sums \(S_k=\sum e(k\cdot(A,B,C))\) on the nil-lift horizontal torus already have power savings from Theorem R — i.e. whether the horizontal half of the nil-route is a theorem.
+- **Hypotheses:** fixed harmonics plus Hardy monomials of \(m=\lfloor n^{3/2}\rfloor\) are the same species Theorem R cancelled at depth 2. Falsifiers: leftover \(\alpha\ge 9/4\) (BB); identical resonance; the bound is already implicit in R (REPARAMETERIZATION).
+- **Major results:**
+  - **Leftover lemma (EXACT — HUMAN PROOF, `J-horizontal-leftover-exponents`):** first-level Taylor \(m^\beta=X^\beta-\beta X^{\beta-1}\theta+R_\beta\) at \(\beta\in\{3/4,3/2,9/4\}\) produces leftover \(W\)-family exponents \(\alpha\in\{-3/8,3/4,15/8\}\), all strictly below the \(9/4\) engine line. Combined leftover is \(15/8\) if \(k_3\neq0\), \(3/4\) if only \(k_2\) is present, decaying if only \(k_1\). No identical resonance (three distinct \(m\)-exponents). First-level \(b\)-runs exist (\(X''\asymp n^{-1/2}<1\)).
+  - **Non-citation:** \(S_k\) is a first-level monomial sum in \(m\). Theorem R bounds the *second-level* kernel \(e(c\{m^{3/2}\})\) at \(c\sim n^{9/8}\). Transfer by monotonicity is the withdrawn Corollary R'; \(\alpha=3/4\) is an excluded special value even of that withdrawn claim; \(\alpha=15/8\) sits above \(9/8\).
+  - **BB does not fire** on this route (leftover stays below \(9/4\)). The missing piece is a write-up, not an obstruction.
+  - **Probe (`horizontal_weyl.py`, `HORIZONTAL_WEYL_GREEN`):** Taylor constants attained on the dyadic window (worst ratios \(0.09375\), \(0.375\), \(1.40625\)); typed Weyl still square-root scale (A-only \(0.80\sqrt N\), B-present \(2.11\sqrt N\), C-present \(1.87\sqrt N\)).
+- **Refuted ideas:** the novelty hypothesis that \(S_k\) is already Theorem R (different kernel, different level). No leftover-\(\alpha\) counterexample.
+- **Decision:** PARK — dossier `docs/problems/juggler_horizontal_weyl.md`, ledger row `J-horizontal-leftover-exponents`. The power-saving write-up is Paper-B-scale and is not opened. Paper B frozen; toolkit PARK untouched.
+
+```text
+What was learned
+- the horizontal phases linearize to first-level W-families
+  at leftover alpha in {-3/8, 3/4, 15/8}, all below 9/4
+- S_k is not a Theorem R corollary: R is second-level with
+  growing c ~ n^{9/8}; citing it repeats Corollary R'
+- alpha = 3/4 (the B-term) is the excluded special value;
+  alpha = 15/8 (the C-term) sits in the unproved gap
+  (9/8, 9/4)
+- BB does not block the horizontal route; the missing piece
+  is a write-up, not a wall
+- typed Weyl stays at square-root scale, consistent with a
+  bound existing, not a substitute for one
+Strongest theorem
+- J-horizontal-leftover-exponents (EXACT - HUMAN PROOF):
+  first-level leftover alphas sit below the engine line
+Strongest refutation
+- "already a theorem of R" is false (different kernel)
+Reusable machinery
+- horizontal_weyl probe: first-level Taylor witnesses,
+  leftover table, typed Weyl split
+Branch status
+- PARK
+Why
+- the promotion criterion (a complete power-saving argument)
+  did not fire; claiming the bound by monotonicity is the
+  recorded illegitimate move; the leftover lemma is the
+  surviving exact statement
+Best next question
+- does the Hardy-field bracket calculus absorb the
+  Heisenberg vertical (3/2) m^{3/4} floor(m^{3/2}) mod 1
+  as a Riemann-integrable nil-observable, or does the
+  discontinuous fiber add the fourth ergodic layer the
+  algebraic lift did not produce?
+```
+
 ## Paper A: referee report v10 response — retitle and the six required revisions (consolidation; not a numbered milestone)
 
 - **Date:** 2026-09-01
