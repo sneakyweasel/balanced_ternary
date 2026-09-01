@@ -1,0 +1,718 @@
+{
+  "model": "Denjoy-Koksma per Ostrowski block: Var(F) <= 2 on the circle of length 1+alpha, blocks are certified convergent denominators of theta = log(3/2)/log 3, so |C_L - C_*| <= 2 s(L)/L for the exact hug/IET prefix",
+  "var_bound": 2.0,
+  "x_certification": {
+    "x_lo": [
+      10781274,
+      17087915
+    ],
+    "x_hi": [
+      10590737,
+      16785921
+    ],
+    "lower_ok": true,
+    "upper_ok": true,
+    "certified": true,
+    "interval_width": 3.4863079808686065e-15
+  },
+  "theta_cf": {
+    "partial_quotients": [
+      0,
+      2,
+      1,
+      2,
+      2,
+      3,
+      1,
+      5,
+      2,
+      23,
+      2,
+      2,
+      1,
+      1
+    ],
+    "denominators": [
+      1,
+      2,
+      3,
+      8,
+      19,
+      65,
+      84,
+      485,
+      1054,
+      24727,
+      50508,
+      125743,
+      176251
+    ],
+    "reached": 176251
+  },
+  "survey": {
+    "floor": 26254995,
+    "n": 26254996,
+    "n_rows": 19,
+    "all_greedy_exact": true,
+    "all_word_match": true,
+    "all_odds_match": true,
+    "all_within_dk": true,
+    "all_cap_below_gap": true,
+    "all_dk_below_bound": true,
+    "max_digit_sum": 6,
+    "max_excess_times_L": 1.8681256396866128,
+    "n_dk_kills": 18,
+    "margin_dk_50508": 1.1196005876734438,
+    "margin_dk_176251": 0.15876280447810742,
+    "uniform_ratio_false": true
+  },
+  "rows": [
+    {
+      "length": 50508,
+      "odd_count": 31867,
+      "log_n": 17.08262118877416,
+      "digit_sum": 1,
+      "blocks": [
+        [
+          50508,
+          1
+        ]
+      ],
+      "greedy_exact": true,
+      "word_matches_budgeted_hug": true,
+      "exact_odds_match": true,
+      "C_hug": 0.047947875543866106,
+      "C_star": 0.04794127907520153,
+      "C_bound": 0.05328451743840113,
+      "excess": 6.596468664576971e-06,
+      "excess_times_L": 0.33317443931045365,
+      "dk_cap": 3.959768749505029e-05,
+      "dk_cap_times_L": 2.0,
+      "within_dk": true,
+      "gap_lower": 0.005142869557685027,
+      "cap_below_gap": true,
+      "C_dk": 0.04798087676269658,
+      "dk_below_bound": true,
+      "theta": 7.264907458078721e-06,
+      "margin_dk": 1.1196005876734438
+    },
+    {
+      "length": 51562,
+      "odd_count": 32532,
+      "log_n": 17.08260562827483,
+      "digit_sum": 2,
+      "blocks": [
+        [
+          50508,
+          1
+        ],
+        [
+          1054,
+          1
+        ]
+      ],
+      "greedy_exact": true,
+      "word_matches_budgeted_hug": true,
+      "exact_odds_match": true,
+      "C_hug": 0.047956975448478975,
+      "C_star": 0.04794131854920594,
+      "C_bound": 0.05328456597512415,
+      "excess": 1.565689927303382e-05,
+      "excess_times_L": 0.8073010403161698,
+      "dk_cap": 7.757650983282262e-05,
+      "dk_cap_times_L": 4.0,
+      "within_dk": true,
+      "gap_lower": 0.005142877928980498,
+      "cap_below_gap": true,
+      "C_dk": 0.048018895059038766,
+      "dk_below_bound": true,
+      "theta": 5.0917748083758745e-05,
+      "margin_dk": 7.680358641019492
+    },
+    {
+      "length": 76289,
+      "odd_count": 48133,
+      "log_n": 17.082240576560498,
+      "digit_sum": 3,
+      "blocks": [
+        [
+          50508,
+          1
+        ],
+        [
+          24727,
+          1
+        ],
+        [
+          1054,
+          1
+        ]
+      ],
+      "greedy_exact": true,
+      "word_matches_budgeted_hug": true,
+      "exact_odds_match": true,
+      "C_hug": 0.04794703032392855,
+      "C_star": 0.04794224463417005,
+      "C_bound": 0.05328570467950368,
+      "excess": 4.785689758500522e-06,
+      "excess_times_L": 0.3650954859862463,
+      "dk_cap": 7.864829791975252e-05,
+      "dk_cap_times_L": 6.0,
+      "within_dk": true,
+      "gap_lower": 0.005143074326644743,
+      "cap_below_gap": true,
+      "C_dk": 0.048020892932089804,
+      "dk_below_bound": true,
+      "theta": 3.2723920626624385e-05,
+      "margin_dk": 3.3347216219431917
+    },
+    {
+      "length": 77343,
+      "odd_count": 48798,
+      "log_n": 17.08222501606117,
+      "digit_sum": 4,
+      "blocks": [
+        [
+          50508,
+          1
+        ],
+        [
+          24727,
+          1
+        ],
+        [
+          1054,
+          2
+        ]
+      ],
+      "greedy_exact": true,
+      "word_matches_budgeted_hug": true,
+      "exact_odds_match": true,
+      "C_hug": 0.04795281620475901,
+      "C_star": 0.04794228410977139,
+      "C_bound": 0.05328575321838963,
+      "excess": 1.0532094987622531e-05,
+      "excess_times_L": 0.8145838226276895,
+      "dk_cap": 0.00010343534644376349,
+      "dk_cap_times_L": 8.0,
+      "within_dk": true,
+      "gap_lower": 0.0051430826984330815,
+      "cap_below_gap": true,
+      "C_dk": 0.04804571945621515,
+      "dk_below_bound": true,
+      "theta": 7.63756498859861e-05,
+      "margin_dk": 7.672880934453731
+    },
+    {
+      "length": 101016,
+      "odd_count": 63734,
+      "log_n": 17.081875524846165,
+      "digit_sum": 2,
+      "blocks": [
+        [
+          50508,
+          2
+        ]
+      ],
+      "greedy_exact": true,
+      "word_matches_budgeted_hug": true,
+      "exact_odds_match": true,
+      "C_hug": 0.04794646059337748,
+      "C_star": 0.04794317075506784,
+      "C_bound": 0.05328684343255303,
+      "excess": 3.289838309640525e-06,
+      "excess_times_L": 0.33232630668664725,
+      "dk_cap": 3.959768749505029e-05,
+      "dk_cap_times_L": 4.0,
+      "within_dk": true,
+      "gap_lower": 0.0051432707353994325,
+      "cap_below_gap": true,
+      "C_dk": 0.04798276844256289,
+      "dk_below_bound": true,
+      "theta": 1.4529762137277067e-05,
+      "margin_dk": 1.118669050447145
+    },
+    {
+      "length": 102070,
+      "odd_count": 64399,
+      "log_n": 17.081859964346837,
+      "digit_sum": 3,
+      "blocks": [
+        [
+          50508,
+          2
+        ],
+        [
+          1054,
+          1
+        ]
+      ],
+      "greedy_exact": true,
+      "word_matches_budgeted_hug": true,
+      "exact_odds_match": true,
+      "C_hug": 0.04795104231896801,
+      "C_star": 0.04794321023220093,
+      "C_bound": 0.05328689197351363,
+      "excess": 7.832086767078916e-06,
+      "excess_times_L": 0.799421096315745,
+      "dk_cap": 5.878318800822965e-05,
+      "dk_cap_times_L": 6.0,
+      "within_dk": true,
+      "gap_lower": 0.005143279107660525,
+      "cap_below_gap": true,
+      "C_dk": 0.04800199342020916,
+      "dk_below_bound": true,
+      "theta": 5.8182285629109665e-05,
+      "margin_dk": 4.4314394960737005
+    },
+    {
+      "length": 103124,
+      "odd_count": 65064,
+      "log_n": 17.08184440384751,
+      "digit_sum": 4,
+      "blocks": [
+        [
+          50508,
+          2
+        ],
+        [
+          1054,
+          2
+        ]
+      ],
+      "greedy_exact": true,
+      "word_matches_budgeted_hug": true,
+      "exact_odds_match": true,
+      "C_hug": 0.0479551216549455,
+      "C_star": 0.04794324970939932,
+      "C_bound": 0.05328694051456266,
+      "excess": 1.1871945546179652e-05,
+      "excess_times_L": 1.2242825125042305,
+      "dk_cap": 7.757650983282262e-05,
+      "dk_cap_times_L": 8.0,
+      "within_dk": true,
+      "gap_lower": 0.005143287479941769,
+      "cap_below_gap": true,
+      "C_dk": 0.04802082621923214,
+      "dk_below_bound": true,
+      "theta": 0.00010183290355044757,
+      "margin_dk": 7.673668416958371
+    },
+    {
+      "length": 126797,
+      "odd_count": 80000,
+      "log_n": 17.081494912632504,
+      "digit_sum": 2,
+      "blocks": [
+        [
+          125743,
+          1
+        ],
+        [
+          1054,
+          1
+        ]
+      ],
+      "greedy_exact": true,
+      "word_matches_budgeted_hug": true,
+      "exact_odds_match": true,
+      "C_hug": 0.04794566457332928,
+      "C_star": 0.047944136390566376,
+      "C_bound": 0.053288030777310716,
+      "excess": 1.5281827629026745e-06,
+      "excess_times_L": 0.1937689897877704,
+      "dk_cap": 3.154648769292649e-05,
+      "dk_cap_times_L": 4.0,
+      "within_dk": true,
+      "gap_lower": 0.005143475527979268,
+      "cap_below_gap": true,
+      "C_dk": 0.047975682878259304,
+      "dk_below_bound": true,
+      "theta": 3.998859034844809e-05,
+      "margin_dk": 2.452164292867911
+    },
+    {
+      "length": 127851,
+      "odd_count": 80665,
+      "log_n": 17.081479352133176,
+      "digit_sum": 3,
+      "blocks": [
+        [
+          125743,
+          1
+        ],
+        [
+          1054,
+          2
+        ]
+      ],
+      "greedy_exact": true,
+      "word_matches_budgeted_hug": true,
+      "exact_odds_match": true,
+      "C_hug": 0.04794915219924221,
+      "C_star": 0.047944175869296585,
+      "C_bound": 0.05328807932043453,
+      "excess": 4.976329945623192e-06,
+      "excess_times_L": 0.6362287598778708,
+      "dk_cap": 4.692962902128259e-05,
+      "dk_cap_times_L": 6.0,
+      "within_dk": true,
+      "gap_lower": 0.005143483900733303,
+      "cap_below_gap": true,
+      "C_dk": 0.047991105498317865,
+      "dk_below_bound": true,
+      "theta": 8.364000248203635e-05,
+      "margin_dk": 5.08493742361629
+    },
+    {
+      "length": 128905,
+      "odd_count": 81330,
+      "log_n": 17.081463791633844,
+      "digit_sum": 4,
+      "blocks": [
+        [
+          125743,
+          1
+        ],
+        [
+          1054,
+          3
+        ]
+      ],
+      "greedy_exact": true,
+      "word_matches_budgeted_hug": true,
+      "exact_odds_match": true,
+      "C_hug": 0.04795225595624267,
+      "C_star": 0.04794421534809211,
+      "C_bound": 0.0532881278636468,
+      "excess": 8.040608150558515e-06,
+      "excess_times_L": 1.0364745936477453,
+      "dk_cap": 6.20612078662581e-05,
+      "dk_cap_times_L": 8.0,
+      "within_dk": true,
+      "gap_lower": 0.005143492273507491,
+      "cap_below_gap": true,
+      "C_dk": 0.04800627655595837,
+      "dk_below_bound": true,
+      "theta": 0.00012728950909364421,
+      "margin_dk": 7.672804477857347
+    },
+    {
+      "length": 151524,
+      "odd_count": 95601,
+      "log_n": 17.08112986091817,
+      "digit_sum": 3,
+      "blocks": [
+        [
+          125743,
+          1
+        ],
+        [
+          24727,
+          1
+        ],
+        [
+          1054,
+          1
+        ]
+      ],
+      "greedy_exact": true,
+      "word_matches_budgeted_hug": true,
+      "exact_odds_match": true,
+      "C_hug": 0.04794504608239266,
+      "C_star": 0.047945062584869816,
+      "C_bound": 0.05328916962978401,
+      "excess": -1.6502477155622142e-08,
+      "excess_times_L": -0.0025005213485284894,
+      "dk_cap": 3.959768749505029e-05,
+      "dk_cap_times_L": 6.0,
+      "within_dk": true,
+      "gap_lower": 0.005143671959390132,
+      "cap_below_gap": true,
+      "C_dk": 0.047984660272364865,
+      "dk_below_bound": true,
+      "theta": 2.179456403797847e-05,
+      "margin_dk": 1.1177382844041392
+    },
+    {
+      "length": 152578,
+      "odd_count": 96266,
+      "log_n": 17.081114300418843,
+      "digit_sum": 4,
+      "blocks": [
+        [
+          125743,
+          1
+        ],
+        [
+          24727,
+          1
+        ],
+        [
+          1054,
+          2
+        ]
+      ],
+      "greedy_exact": true,
+      "word_matches_budgeted_hug": true,
+      "exact_odds_match": true,
+      "C_hug": 0.047948100946917836,
+      "C_star": 0.04794510206513195,
+      "C_bound": 0.053289218174982736,
+      "excess": 2.9988817858844774e-06,
+      "excess_times_L": 0.4575633851266818,
+      "dk_cap": 5.243219861316835e-05,
+      "dk_cap_times_L": 8.0,
+      "within_dk": true,
+      "gap_lower": 0.0051436803326169915,
+      "cap_below_gap": true,
+      "C_dk": 0.04799753426374512,
+      "dk_below_bound": true,
+      "theta": 6.54467703982676e-05,
+      "margin_dk": 3.3323147304348306
+    },
+    {
+      "length": 153632,
+      "odd_count": 96931,
+      "log_n": 17.081098739919515,
+      "digit_sum": 5,
+      "blocks": [
+        [
+          125743,
+          1
+        ],
+        [
+          24727,
+          1
+        ],
+        [
+          1054,
+          3
+        ]
+      ],
+      "greedy_exact": true,
+      "word_matches_budgeted_hug": true,
+      "exact_odds_match": true,
+      "C_hug": 0.04795083957372029,
+      "C_star": 0.04794514154545939,
+      "C_bound": 0.053289266720269915,
+      "excess": 5.698028260898991e-06,
+      "excess_times_L": 0.8753994777784337,
+      "dk_cap": 6.509060612372423e-05,
+      "dk_cap_times_L": 10.0,
+      "within_dk": true,
+      "gap_lower": 0.005143688705864006,
+      "cap_below_gap": true,
+      "C_dk": 0.048010232151583114,
+      "dk_below_bound": true,
+      "theta": 0.00010909707120190581,
+      "margin_dk": 5.5151723123515595
+    },
+    {
+      "length": 154686,
+      "odd_count": 97596,
+      "log_n": 17.081083179420183,
+      "digit_sum": 6,
+      "blocks": [
+        [
+          125743,
+          1
+        ],
+        [
+          24727,
+          1
+        ],
+        [
+          1054,
+          4
+        ]
+      ],
+      "greedy_exact": true,
+      "word_matches_budgeted_hug": true,
+      "exact_odds_match": true,
+      "C_hug": 0.04795326864245475,
+      "C_star": 0.04794518102585213,
+      "C_bound": 0.05328931526564555,
+      "excess": 8.087616602620029e-06,
+      "excess_times_L": 1.2510410617928818,
+      "dk_cap": 7.757650983282262e-05,
+      "dk_cap_times_L": 12.0,
+      "within_dk": true,
+      "gap_lower": 0.0051436970791311765,
+      "cap_below_gap": true,
+      "C_dk": 0.048022757535684954,
+      "dk_below_bound": true,
+      "theta": 0.0001527454665320767,
+      "margin_dk": 7.666983994515491
+    },
+    {
+      "length": 176251,
+      "odd_count": 111202,
+      "log_n": 17.080764809203842,
+      "digit_sum": 1,
+      "blocks": [
+        [
+          176251,
+          1
+        ]
+      ],
+      "greedy_exact": true,
+      "word_matches_budgeted_hug": true,
+      "exact_odds_match": true,
+      "C_hug": 0.04794718453752011,
+      "C_star": 0.04794598881511334,
+      "C_bound": 0.05329030853093661,
+      "excess": 1.1957224067687955e-06,
+      "excess_times_L": 0.210747269915407,
+      "dk_cap": 1.1347453347782423e-05,
+      "dk_cap_times_L": 2.0,
+      "within_dk": true,
+      "gap_lower": 0.005143868401893932,
+      "cap_below_gap": true,
+      "C_dk": 0.047957336268461125,
+      "dk_below_bound": true,
+      "theta": 3.600206691677816e-06,
+      "margin_dk": 0.15876280447810742
+    },
+    {
+      "length": 177305,
+      "odd_count": 111867,
+      "log_n": 17.08074924870451,
+      "digit_sum": 2,
+      "blocks": [
+        [
+          176251,
+          1
+        ],
+        [
+          1054,
+          1
+        ]
+      ],
+      "greedy_exact": true,
+      "word_matches_budgeted_hug": true,
+      "exact_odds_match": true,
+      "C_hug": 0.04794991099111377,
+      "C_star": 0.0479460282969075,
+      "C_bound": 0.05329035707821039,
+      "excess": 3.882694206272519e-06,
+      "excess_times_L": 0.688421096243149,
+      "dk_cap": 2.2559995488000903e-05,
+      "dk_cap_times_L": 4.0,
+      "within_dk": true,
+      "gap_lower": 0.005143876775593654,
+      "cap_below_gap": true,
+      "C_dk": 0.0479685882923955,
+      "dk_below_bound": true,
+      "theta": 4.7253207293118546e-05,
+      "margin_dk": 2.0708764400016575
+    },
+    {
+      "length": 178359,
+      "odd_count": 112532,
+      "log_n": 17.080733688205182,
+      "digit_sum": 3,
+      "blocks": [
+        [
+          176251,
+          1
+        ],
+        [
+          1054,
+          2
+        ]
+      ],
+      "greedy_exact": true,
+      "word_matches_budgeted_hug": true,
+      "exact_odds_match": true,
+      "C_hug": 0.04795236885259784,
+      "C_star": 0.04794606777876693,
+      "C_bound": 0.05329040562557262,
+      "excess": 6.301073830913828e-06,
+      "excess_times_L": 1.1238532274079596,
+      "dk_cap": 3.364001816560981e-05,
+      "dk_cap_times_L": 6.0,
+      "within_dk": true,
+      "gap_lower": 0.005143885149313529,
+      "cap_below_gap": true,
+      "C_dk": 0.04797970779693254,
+      "dk_below_bound": true,
+      "theta": 9.090430230323725e-05,
+      "margin_dk": 3.9593643931514775
+    },
+    {
+      "length": 179413,
+      "odd_count": 113197,
+      "log_n": 17.080718127705854,
+      "digit_sum": 4,
+      "blocks": [
+        [
+          176251,
+          1
+        ],
+        [
+          1054,
+          3
+        ]
+      ],
+      "greedy_exact": true,
+      "word_matches_budgeted_hug": true,
+      "exact_odds_match": true,
+      "C_hug": 0.04795456304136929,
+      "C_star": 0.047946107260691685,
+      "C_bound": 0.053290454173023305,
+      "excess": 8.455780677603386e-06,
+      "excess_times_L": 1.5170769787108562,
+      "dk_cap": 4.45898569222966e-05,
+      "dk_cap_times_L": 8.0,
+      "within_dk": true,
+      "gap_lower": 0.0051438935230535615,
+      "cap_below_gap": true,
+      "C_dk": 0.04799069711761398,
+      "dk_below_bound": true,
+      "theta": 0.00013455349180521898,
+      "margin_dk": 5.8246591347239995
+    },
+    {
+      "length": 180467,
+      "odd_count": 113862,
+      "log_n": 17.080702567206522,
+      "digit_sum": 5,
+      "blocks": [
+        [
+          176251,
+          1
+        ],
+        [
+          1054,
+          4
+        ]
+      ],
+      "greedy_exact": true,
+      "word_matches_budgeted_hug": true,
+      "exact_odds_match": true,
+      "C_hug": 0.0479564983617572,
+      "C_star": 0.047946146742681765,
+      "C_bound": 0.05329050272056245,
+      "excess": 1.035161907543547e-05,
+      "excess_times_L": 1.8681256396866128,
+      "dk_cap": 5.541179273773044e-05,
+      "dk_cap_times_L": 10.0,
+      "within_dk": true,
+      "gap_lower": 0.005143901896813752,
+      "cap_below_gap": true,
+      "C_dk": 0.04800155853541949,
+      "dk_below_bound": true,
+      "theta": 0.00017820077588224525,
+      "margin_dk": 7.667182644523748
+    }
+  ],
+  "classification": {
+    "label": "WALK_OSTROWSKI_GREEN",
+    "reason": "q_j certified by integer sandwich; every leftover is an exact greedy sum of convergent denominators with digit sum <= 6; the exact IET prefix equals the budgeted hug word; excess stays under 2s/L and 2s/L stays under the J-gap, so C_L < 1/(ln 3 ln n') with no occupancy census; the DK envelope alone kills the same 18 lengths and 176251 still survives"
+  },
+  "not_a_halt_theorem": true,
+  "no_cycle_all_lengths": false,
+  "not_a_uniform_ratio_theorem": true,
+  "git_commit": "1cf04629bd38388aae7a2ea8df40bd6cf51dabe6"
+}

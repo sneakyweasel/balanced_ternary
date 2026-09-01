@@ -18151,4 +18151,52 @@ Best next question
   h<=4, so the crude envelope is census-free?
 ```
 
+## Juggler Denjoy–Koksma / Ostrowski envelope
+
+- **Date:** 2026-09-01
+- **Objective:** Replace the 19-row occupancy cap with the census-free human envelope \(|C_L-C_*(n')|\le 2\,s(L)/L\), \(s(L)\) the Ostrowski digit sum of \(L\) over convergent denominators of \(\theta=\log(3/2)/\log 3\)
+- **Hypotheses:** Denjoy–Koksma per convergent block with \(\mathrm{Var}(F)\le 2\) gives constant \(2s(L)\), not the REFUTED constant \(1\); leftover digit sums are small and \(2s/L\) sits far below the \(J\)-gap
+- **Major results:** Classification **WALK_OSTROWSKI_GREEN**. \(\mathrm{Var}(F)<2\) and the Ostrowski block split are one-line human proofs; DK per block is KNOWN; so \(|C_L-C_*|\le 2s(L)/L\) for the exact IET prefix is **EXACT — HUMAN PROOF**. The \(q_j\) list \(1,2,3,8,19,65,84,485,1054,24727,50508,125743,176251\) is certified by an interval CF on the big-int sandwich \(2^{17087915}>3^{10781274}\), \(2^{16785921}<3^{10590737}\). On all 19 leftovers: greedy digits exact with \(s\in[1,6]\); the budgeted hug equals the exact IET prefix letter for letter (E iff \(3^a\ge 2^{k+1}\), decided by the certified sandwich) with exactly \(o_{\min}\) odds; excess\(\cdot L\le 1.868\le 2s\); \(2s/L\le 1.03\cdot 10^{-4}<\) \(J\)-gap \(0.0051\). DK margins: \(1.1196\) at \(50508\), 18 kills, \(176251\) survives (\(0.1588\)). The six Koksma \(+1/L\) failures are exactly the rows with excess\(\cdot L>1\), all inside \(2s\). Conjecture `juggler_walk_dk_envelope` EXACT — HUMAN PROOF; ledger row `J-cyclemin-walk-dk-envelope`. Artifact `cycle_walk_ostrowski/summary.json`
+- **Refuted ideas:** none new (Koksma constant \(1\) stays refuted; the correct constant is \(2s(L)\))
+- **Literature:** Denjoy–Koksma (Herman; Kuipers–Niederreiter, KNOWN); Ostrowski representation (KNOWN); crude envelope PROMOTE; walk Koksma CLOSE
+- **Open:** is \(s(L)\) uniformly bounded on the survivor-lattice lengths, so the DK envelope prices every future leftover census-free?
+- **Decision:** PROMOTE
+
+```text
+What was learned
+- Var(F) < 2 on the wrapped circle, so Denjoy-Koksma per
+  convergent block costs 2 per block, and any Ostrowski
+  decomposition of L gives |C_L - C_*| <= 2 s(L)/L
+- the q_j list up to 176251 is certified by two big-int
+  power comparisons plus an interval continued fraction
+- the budgeted hug word IS the exact IET prefix on all 19
+  leftovers (integer-exact letters, o_min odds), so the
+  theorem prices the leftover charge directly
+- leftover digit sums are 1..6; excess*L <= 1.868 <= 2s;
+  2s/L is 50x below the J-gap; 18 DP-free census-free
+  kills; 176251 survives; period bound unchanged
+- the refuted Koksma constant 1 is explained: the six
+  failures are exactly the rows with excess*L > 1
+Strongest theorem
+- |C_L - C_*(n')| <= 2 s(L)/L for the exact hug/IET prefix
+  (DK per Ostrowski block, Var(F) <= 2)
+Strongest refutation
+- none new this phase
+Reusable machinery
+- cycle_walk_ostrowski.py (integer x-sandwich, interval CF,
+  greedy Ostrowski digits, exact hug-word generator)
+Branch status
+- PROMOTE
+Why
+- the crude envelope's open question is answered: the
+  occupancy census and the walk DP are both retired for the
+  18 kills by a human inequality whose only computational
+  content is exact integer arithmetic plus the guarded
+  float comparison shared with Theorem 4.6
+Best next question
+- is s(L) uniformly bounded on the survivor-lattice
+  lengths, so the DK envelope prices every future leftover
+  census-free?
+```
+
 

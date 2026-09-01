@@ -13,6 +13,6 @@
   "literature": [
     "fernandez-ibanez-2026"
   ],
-  "notes": "The implication h≤4 ⇒ C_L < 1/(ln 3 ln n) is a human inequality (Riemann + J). The cap h≤4 is computationally verified on the leftovers (max overshoot 3.35). Together the 18 walk-charge kills become DP-free at this floor (margin 1.008 at 50508) and L=176251 still survives (margin 0.143). Period bound unchanged. Hitting ≤1 is refuted (juggler_walk_hitting_one). Koksma +1/L stays refuted. Uniform B/theta<1 stays false. Not a halt theorem. Not a theorem for every L≥50508.",
+  "notes": "The implication h≤4 ⇒ C_L < 1/(ln 3 ln n) is a human inequality (Riemann + J). The cap h≤4 is computationally verified on the leftovers (max overshoot 3.35). Together the 18 walk-charge kills become DP-free at this floor (margin 1.008 at 50508) and L=176251 still survives (margin 0.143). Period bound unchanged. Hitting ≤1 is refuted (juggler_walk_hitting_one). Koksma +1/L stays refuted. Uniform B/theta<1 stays false. Not a halt theorem. Not a theorem for every L≥50508. Superseded upward by juggler_walk_dk_envelope (Denjoy-Koksma per Ostrowski block, census-free constant 2 s(L)), which retires both the occupancy census and the walk DP for the same 18 kills.",
   "not_a_halt_theorem": true
 }

@@ -1,0 +1,19 @@
+{
+  "id": "juggler_walk_dk_envelope",
+  "title": "Denjoy-Koksma / Ostrowski census-free envelope for the hug charge",
+  "statement": "For the exact hug/IET prefix of length L at reduced base n', |C_L - C_*(n')| <= 2 s(L)/L, where s(L) = sum b_j is any decomposition L = sum b_j q_j into convergent denominators q_j of theta = log(3/2)/log 3. Proof: F(u) = n^(1-2^u)/2^u is decreasing on the circle R/(1+alpha)Z with F(0) = 1, so Var(F) including the wrap jump is < 2; Denjoy-Koksma bounds each length-q_j block sum within Var(F) of q_j C_*; summing the s(L) blocks gives the envelope. Whenever 2 s(L)/L is below the J-gap 1/(ln 3 ln n') - C_* >= 2/(ln 3 (ln n')^2) - 6/(ln 3 (ln n')^3), the leftover charge satisfies C_L < 1/(ln 3 ln n') with no occupancy census and no walk DP.",
+  "mathematical_domain": "Juggler cycle finance / discrepancy of irrational rotations",
+  "origin": "docs/problems/juggler_cycle_walk_ostrowski.md",
+  "status": "EXACT — HUMAN PROOF",
+  "first_seen": "2026-09-01",
+  "tested_range": "q_j certified up to 176251 by interval CF on big-int bounds 2^17087915 > 3^10781274 and 2^16785921 < 3^10590737; all 19 leftovers at floor 26254995: greedy digit sums s in [1,6], budgeted hug equals the exact IET prefix letter for letter, excess*L <= 1.868 <= 2s, 2s/L <= 1.03e-4 < J-gap 0.0051; DK margins 1.1196 at 50508, 18 kills, 176251 survives at 0.1588",
+  "counterexamples": [],
+  "proof_reference": "docs/problems/juggler_cycle_walk_ostrowski.md",
+  "lean_reference": "",
+  "literature": [
+    "herman-1979",
+    "kuipers-niederreiter-1974"
+  ],
+  "notes": "Denjoy-Koksma at each convergent denominator is KNOWN; the laboratory content is the Var < 2 bound, the block split, the exact integer certification of the q_j list, and the word identity hug = exact IET prefix (E at step k iff 3^a >= 2^(k+1), decided by the certified rational sandwich). Explains the REFUTED Koksma constant 1: the six +1/L failures are exactly the rows with excess*L > 1, all covered by 2s with s >= 4. Replaces the 19-row occupancy census h <= 4 of juggler_walk_crude_envelope. Uniform B/theta < 1 at a fixed floor stays false; L = 176251 still survives; period bound unchanged. Not a halt theorem.",
+  "not_a_halt_theorem": true
+}

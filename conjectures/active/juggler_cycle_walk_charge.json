@@ -1,0 +1,19 @@
+{
+  "id": "juggler_cycle_walk_charge",
+  "title": "Coupled exponent-walk charge kills L = 50508 at the certified floor",
+  "statement": "The coupled exponent-walk charge excludes L = 50508 as a CycleMin length at the certified descent floor N0 = 26254995. Transport lemma (EXACT — HUMAN PROOF): on a CycleMin cycle with minimum n >= 400, x_k >= (n e^{-D})^{w_k} with D = 1.05 e / n + 0.7 o / n^{3/2}, from the log-deficit recursion E' <= (3/2)E + 1.05 x^{-3/2} (odd), E' <= E/2 + 1.05 x^{-1/2} (even), amplification exactly w_k / w_{j+1}, odd states >= n with w_{j+1} >= 3/2, even states >= n^2 (cycleMin_even_ge_sq) with w_{j+1} >= 1. Certified comparison: theta(50508) = 7.2649e-6 > (6/5) * WalkDP(50508, 31867; n') = 6.4844e-6 at n' = n e^{-D}, D = 7.4566e-4 — kill margin 1.1204. The DP over (step, odds-used) is exact on the lattice, brute-force-verified, and maximizes over a relaxation of all CycleMin words with (o, e) and u >= 0 (u >= 0 from the defect-free upper envelope). Same trust boundary as Paper A Theorem 4.6.",
+  "mathematical_domain": "Juggler cycle finance / exponent-walk optimal control",
+  "origin": "docs/problems/juggler_cycle_walk_charge.md",
+  "status": "COMPUTATIONALLY_SUPPORTED",
+  "first_seen": "2026-09-01",
+  "tested_range": "certified target L = 50508, o = 31867 at floor 26254995 (kill margin 1.1204, deficit D = 7.4566e-4, improvement over parity 7.7 vs required 6.87); calibration L = 25781 at floor 10^6 reproduces the archived necklace value 1.2984e-4 (does not kill); DP matches brute force through L = 14",
+  "counterexamples": [],
+  "proof_reference": "docs/problems/juggler_cycle_walk_charge.md",
+  "lean_reference": "",
+  "literature": [
+    "fernandez-ibanez-2026"
+  ],
+  "notes": "The transport lemma is EXACT — HUMAN PROOF; the 50508 kill is COMPUTATIONALLY VERIFIED (exact lattice DP plus a guarded float comparison, the Theorem 4.6 trust boundary). Consequence: L = 50508 is not a Juggler cycle length at the certified floor; the combined parity + walk contiguous cutoff is fixed by the certified survey (data/research/juggler/cycle_walk_charge/survey.json, summary.json). Successors: the hug-word identification (juggler_walk_greedy_prefix), the DK/Ostrowski census-free envelope (juggler_walk_dk_envelope). Not a halt theorem.",
+  "not_a_halt_theorem": true,
+  "no_cycle_all_lengths": false
+}

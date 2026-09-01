@@ -18,7 +18,7 @@ from research.juggler_sequence.cycle_walk_charge import (
 
 ARTIFACT = Path("data/research/juggler/cycle_walk_charge/summary.json")
 DOSSIER = Path("docs/problems/juggler_cycle_walk_charge.md")
-CONJECTURE = Path("conjectures/proved/juggler_cycle_walk_charge.json")
+CONJECTURE = Path("conjectures/active/juggler_cycle_walk_charge.json")
 
 
 def test_lattice_constants():
@@ -88,7 +88,7 @@ def test_dossier_and_conjecture_record_are_consistent():
     assert "PROMOTE" in dossier
     assert "not claimed" in dossier
     record = json.loads(CONJECTURE.read_text(encoding="utf-8"))
-    assert record["status"] == "proved"
-    assert record["tag"] == "COMPUTATIONALLY VERIFIED"
-    assert record["evidence"]["kill_margin"] > 1.1
+    assert record["status"] == "COMPUTATIONALLY_SUPPORTED"
+    assert "COMPUTATIONALLY VERIFIED" in record["notes"]
+    assert "kill margin 1.1204" in record["statement"]
     assert record["not_a_halt_theorem"] is True

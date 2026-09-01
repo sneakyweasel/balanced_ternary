@@ -5666,5 +5666,20 @@
       "juggler_walk_crude_envelope",
       "juggler_walk_hitting_one"
     ]
+  },
+  {
+    "id": "J-cyclemin-walk-dk-envelope",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "Census-free envelope: for the exact hug/IET prefix of length L at reduced base n', |C_L − C_*(n')| ≤ 2 s(L)/L, where s(L) = Σ b_j for any decomposition L = Σ b_j q_j into convergent denominators q_j of θ = log(3/2)/log 3. Proof: F(u) = n^(1−2^u)/2^u decreases on R/(1+α)Z with F(0) = 1, so Var(F) with the wrap jump is < 2; Denjoy–Koksma (KNOWN) bounds each length-q_j block within Var(F) of q_j C_*; sum the s(L) blocks. Instance (exact integers + guarded floats): q list 1,2,3,8,19,65,84,485,1054,24727,50508,125743,176251 certified by interval CF on 2^17087915 > 3^10781274 and 2^16785921 < 3^10590737; on all 19 leftovers the budgeted hug equals the exact IET prefix (E at step k iff 3^a ≥ 2^(k+1)), greedy digit sums s ∈ [1,6], excess·L ≤ 1.868 ≤ 2s, and 2s/L ≤ 1.03e−4 < J-gap 0.0051, so C_L < 1/(ln 3 ln n') with no occupancy census and no walk DP; margins 1.1196 at L = 50508, 18 kills, L = 176251 survives (0.1588). Explains the refuted Koksma constant 1 (correct constant 2 s(L)). Period bound unchanged. Not a halt theorem.",
+    "source": "docs/problems/juggler_cycle_walk_ostrowski.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_walk_ostrowski.py"
+    ],
+    "related_conjectures": [
+      "juggler_walk_dk_envelope",
+      "juggler_walk_koksma_one_over_L",
+      "juggler_walk_crude_envelope"
+    ]
   }
 ]

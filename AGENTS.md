@@ -126,6 +126,8 @@ python tools/render_theorem_ledger.py --check
 $env:PATH = "$env:USERPROFILE\.elan\bin;$env:PATH"
 cd formal; lake build                               # no sorry / admit
 ```
-
+## Remarks
+If you're Fable don't spend ages fixing tests - focus on the math.
+You have access to a 5090 GPU with CUDA, so don't be afraid to use it.
 Persistent policy lives in [.cursor/rules/](.cursor/rules/). Streamlit work uses
 [.agents/skills/developing-with-streamlit/SKILL.md](.agents/skills/developing-with-streamlit/SKILL.md).
