@@ -1,5 +1,6 @@
 import Mathlib.Data.Nat.Basic
 import Mathlib.Tactic
+import Problems.Juggler.CycleFinance
 
 namespace Problems.Juggler
 
@@ -24,7 +25,11 @@ identity) and the combinatorial core of Theorem 5.4 (hug exchange):
 * the budgeted hug word at `(L, hugOdds L)` equals the exact
   `L`-prefix (`budgetedWord_eq_hugWord`): the budget never binds;
 * the hug word is prefix-minimal among admissible exponent walks
-  (`hugOdds_le_of_admissible`).
+  (`hugOdds_le_of_admissible`);
+* every minimum-based cycle word dominates the hug word prefixwise
+  (`cycleMin_prefix_odds_ge_hug`, via `cycleMin_prefix_pow_le`);
+* the survivor-lattice generators of `RunSurvivorLattice.lean` are
+  hug pairs (`hugOdds_lattice_base`, `hugOdds_1054`, `hugOdds_seed`).
 
 It does not define the real charge, does not prove that the hug word
 maximises it (the analytic half of Theorem 5.4), and is not a cycle
@@ -120,6 +125,18 @@ theorem hugOdds_least {k a : ℕ} (h : 2 ^ k ≤ 3 ^ a) : hugOdds k ≤ a := by
   rw [pow_succ] at h1
   omega
 
+/-- Strict lower window for positive prefix lengths: powers of two
+and three never meet, so `2^k < 3^(hugOdds k)`. Hence `hugOdds k` is
+exactly the finance table's `o_min(k) = min {o : 3^o > 2^k}`:
+it satisfies the strict inequality, and `hugOdds_least` gives
+minimality among all such budgets. -/
+theorem hugOdds_pow_gt {k : ℕ} (hk : 1 ≤ k) : 2 ^ k < 3 ^ hugOdds k := by
+  refine Nat.lt_of_le_of_ne (hugOdds_pow_ge k) fun heq => ?_
+  have h2 : (2 : ℕ) ∣ 2 ^ k := dvd_pow_self 2 (by omega : k ≠ 0)
+  rw [heq] at h2
+  have := Nat.Prime.dvd_of_dvd_pow Nat.prime_two h2
+  omega
+
 /-- Combinatorial core of the hug exchange (Paper A Theorem 5.4):
 the exact hug word is prefix-minimal among admissible exponent
 walks. Admissibility of an odd-count profile `a` at prefix `k` is
@@ -127,6 +144,25 @@ walks. Admissibility of an odd-count profile `a` at prefix `k` is
 theorem hugOdds_le_of_admissible (a : ℕ → ℕ) (k : ℕ)
     (ha : 2 ^ k ≤ 3 ^ a k) : hugOdds k ≤ a k :=
   hugOdds_least ha
+
+/-- **Cycle words dominate the hug word** (corollary of
+`cycleMin_prefix_pow_le` and `hugOdds_least`): on a minimum-based
+cycle word, every prefix carries at least as many odd letters as the
+exact hug word of the same length. This is the cycle-native form of
+the hug adversary — the rotation word is the pointwise cheapest
+odd-count profile any hypothetical cycle can present. -/
+theorem cycleMin_prefix_odds_ge_hug {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n w) :
+    ∀ k, k ≤ w.length → hugOdds k ≤ oddCount (w.take k) :=
+  fun k hk => hugOdds_least (cycleMin_prefix_pow_le hn h k hk)
+
+/-- Full-word instance: a minimum-based cycle word of length `L` has
+at least `hugOdds L` odd letters. -/
+theorem cycleMin_odds_ge_hug {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n w) :
+    hugOdds w.length ≤ oddCount w := by
+  have h1 := cycleMin_prefix_odds_ge_hug hn h w.length le_rfl
+  simpa using h1
 
 /-- One step adds at most one odd letter. -/
 theorem hugOdds_succ_le (k : ℕ) : hugOdds (k + 1) ≤ hugOdds k + 1 := by
@@ -250,5 +286,21 @@ theorem hugOdds_1054 : hugOdds 1054 = 665 := by native_decide
 /-- Sanity instance: the window seed `L = 50508` has exact odd
 budget `31867`, matching the finance table. -/
 theorem hugOdds_seed : hugOdds 50508 = 31867 := by native_decide
+
+/-- Lattice bridge: the survivor-lattice base point `(Lstar, Ostar) =
+(25781, 16266)` of `RunSurvivorLattice.lean` is a hug pair — its odd
+count is the exact hug count at its length. Together with
+`hugOdds_1054` (the step generator `(1054, 665)`) and `hugOdds_seed`
+(the seed `(50508, 31867) = 2·(25781, 16266) − (1054, 665)`), all
+survivor-lattice generators lie on the hug diagonal
+`o = hugOdds L`. -/
+theorem hugOdds_lattice_base : hugOdds 25781 = 16266 := by native_decide
+
+/-- The hug counts along the certified convergent denominators of
+`θ` (`theta_convergent_denominators` in `OstrowskiSandwich.lean`):
+these are the finance table's `o_min` values at each block length. -/
+theorem hugOdds_convergent_denoms :
+    [1, 2, 3, 8, 19, 65, 84, 485, 1054].map hugOdds =
+      [1, 2, 2, 6, 12, 42, 53, 307, 665] := by native_decide
 
 end Problems.Juggler

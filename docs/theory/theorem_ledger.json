@@ -5754,9 +5754,22 @@
     ]
   },
   {
+    "id": "J-cyclemin-hug-prefix-bound",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "Cycle words dominate the hug word (Paper A Section 5.3 remark). On any minimum-based cycle word w at minimum n ≥ 2, every length-k prefix carries at least hugOdds k = o_min(k) odd letters (cycleMin_prefix_odds_ge_hug; full word cycleMin_odds_ge_hug), by composing the formalized cycle prefix envelope 2^k ≤ 3^(oddCount (w.take k)) (cycleMin_prefix_pow_le, CycleFinance) with hug minimality (hugOdds_least). Strict window 2^k < 3^(hugOdds k) for k ≥ 1 (hugOdds_pow_gt, powers of 2 and 3 never meet) identifies hugOdds with the finance table's strict o_min. The survivor-lattice generators of Proposition 4.9 lie on the hug diagonal o = hugOdds L: (1054, 665), (25781, 16266), (50508, 31867) (hugOdds_1054, hugOdds_lattice_base, hugOdds_seed), and the hug counts along the certified convergent denominators are Lean-listed (hugOdds_convergent_denoms). This bounds odd counts from below only; it is not a charge bound, not a cycle obstruction, and not a halt theorem.",
+    "source": "docs/theory/juggler_finite_dynamics_note.md",
+    "lean": "Problems/Juggler/WalkChargeWords.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_walk_window.py"
+    ],
+    "related_conjectures": [
+      "juggler_walk_hug_exchange"
+    ]
+  },
+  {
     "id": "J-cyclemin-walk-ostrowski-arithmetic",
     "tag": "EXACT — LEAN VERIFIED",
-    "statement": "Certified quotient arithmetic behind the Denjoy–Koksma block envelope (Paper A Theorem 5.7) and the window digit caps (Theorem 5.8). Lean proves: the big-integer sandwich 3^10781274 < 2^17087915 and 2^16785921 < 3^10590737 (theta_sandwich_upper/lower, native_decide); the real bounds 6195184/16785921 < log(3/2)/log 3 < 6306641/17087915 (lower_lt_walkTheta, walkTheta_lt_upper, via Real.log monotonicity); both rational endpoints open with the continued-fraction quotients [2,1,2,2,3,1,5,2,23,2,2,1] and continue past them (cf_lower_prefix, cf_upper_prefix, cf_lower_continues, cf_upper_continues); and the standard convergent recurrence on those quotients yields the block-denominator list 1,2,3,8,19,65,84,485,1054,24727,50508,125743,176251 (theta_convergent_denominators). The cylinder-interval bridge from the shared endpoint prefix to the continued fraction of θ itself, and Denjoy–Koksma, are classical (KNOWN) and stay prose in Paper A; the analytic envelope row J-cyclemin-walk-dk-envelope keeps its tag. Not a cycle obstruction and not a halt theorem.",
+    "statement": "Certified quotient arithmetic behind the Denjoy–Koksma block envelope (Paper A Theorem 5.7) and the window digit caps (Theorem 5.8). Lean proves: the big-integer sandwich 3^10781274 < 2^17087915 and 2^16785921 < 3^10590737 (theta_sandwich_upper/lower, native_decide); the real bounds 6195184/16785921 < log(3/2)/log 3 < 6306641/17087915 (lower_lt_walkTheta, walkTheta_lt_upper, via Real.log monotonicity); both rational endpoints open with the continued-fraction quotients [2,1,2,2,3,1,5,2,23,2,2,1] and continue past them (cf_lower_prefix, cf_upper_prefix, cf_lower_continues, cf_upper_continues); and the standard convergent recurrence on those quotients yields the block-denominator list 1,2,3,8,19,65,84,485,1054,24727,50508,125743,176251 (theta_convergent_denominators); and the greedy Ostrowski digit scan of Theorem 5.8 — for every window length 50508 ≤ L < 301994 the greedy digits over the certified denominators reconstruct L and sum to at most 37 (window_digit_scan, pointwise window_digit_cap), attained at L = 275632 (window_digit_max), replacing the previously computational scan of J-cyclemin-walk-window-envelope. The cylinder-interval bridge from the shared endpoint prefix to the continued fraction of θ itself, and Denjoy–Koksma, are classical (KNOWN) and stay prose in Paper A; the analytic envelope row J-cyclemin-walk-dk-envelope keeps its tag. Not a cycle obstruction and not a halt theorem.",
     "source": "docs/theory/juggler_finite_dynamics_note.md",
     "lean": "Problems/Juggler/OstrowskiSandwich.lean",
     "tests": [

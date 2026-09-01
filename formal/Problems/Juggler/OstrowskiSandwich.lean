@@ -26,7 +26,12 @@ This file certifies that arithmetic:
 * the standard convergent recurrence on those quotients produces the
   denominator list
   `1, 2, 3, 8, 19, 65, 84, 485, 1054, 24727, 50508, 125743, 176251`
-  (`theta_convergent_denominators`).
+  (`theta_convergent_denominators`);
+* the greedy Ostrowski digit scan of Paper A Theorem 5.8: every
+  window length `50508 ≤ L < 301994` decomposes into certified
+  blocks with digit sum at most `37` (`window_digit_scan`,
+  `window_digit_cap`), attained at `L = 275632`
+  (`window_digit_max`).
 
 The bridge from the shared endpoint prefix to the continued fraction
 of `θ` itself is the classical cylinder-interval fact (KNOWN); it is
@@ -125,5 +130,55 @@ theorem theta_convergent_denominators :
 /-- The window endpoint `q₁₃ = 301994 = 1·176251 + 125743`, the next
 denominator after the certified list. -/
 theorem theta_window_endpoint : 176251 + 125743 = 301994 := by norm_num
+
+/-!
+## The window digit scan (Paper A Theorem 5.8, arithmetic core)
+
+Theorem 5.8 controls the Denjoy–Koksma budget on the window
+`50508 ≤ L < 301994` by the greedy Ostrowski digit sum `s(L)` over
+the certified denominators. The scan below certifies both the
+decomposition identity `L = Σ bⱼ qⱼ` and the exact cap
+`s(L) ≤ 37` for every length in the window, replacing the
+previously computational scan. The Denjoy–Koksma comparison that
+turns `s(L)` into a charge bound stays analytic (KNOWN, prose).
+-/
+
+/-- The certified denominators, largest block first, ending in `1`
+so the greedy remainder is always exhausted. -/
+def thetaDenomsDesc : List ℕ :=
+  [176251, 125743, 50508, 24727, 1054, 485, 84, 65, 19, 8, 3, 2, 1]
+
+/-- Greedy Ostrowski digits of `L`: peel the largest certified
+denominator repeatedly, most significant digit first. -/
+def greedyDigits (L : ℕ) : List ℕ :=
+  (thetaDenomsDesc.foldl
+    (fun (st : ℕ × List ℕ) q => (st.1 % q, st.2 ++ [st.1 / q]))
+    (L, [])).2
+
+/-- The greedy digit sum `s(L) = Σ bⱼ`. -/
+def greedyDigitSum (L : ℕ) : ℕ := (greedyDigits L).sum
+
+/-- Reconstruction `Σ bⱼ qⱼ` of the greedy decomposition. -/
+def greedyReconstruct (L : ℕ) : ℕ :=
+  (((greedyDigits L).zip thetaDenomsDesc).map fun p => p.1 * p.2).sum
+
+/-- **Window digit scan**: for every `L` in the window
+`[50508, 301994)`, the greedy digits reconstruct `L` and their sum
+is at most `37`. -/
+theorem window_digit_scan :
+    ((List.range' 50508 251486).all fun L =>
+      decide (greedyReconstruct L = L ∧ greedyDigitSum L ≤ 37)) = true := by
+  native_decide
+
+/-- The cap `37` is attained, at `L = 275632`. -/
+theorem window_digit_max : greedyDigitSum 275632 = 37 := by native_decide
+
+/-- Pointwise form of the scan: any window length decomposes
+greedily into certified blocks with digit sum at most `37`. -/
+theorem window_digit_cap {L : ℕ} (h1 : 50508 ≤ L) (h2 : L < 301994) :
+    greedyReconstruct L = L ∧ greedyDigitSum L ≤ 37 := by
+  have hall := List.all_eq_true.mp window_digit_scan L
+    (List.mem_range'_1.mpr ⟨h1, by omega⟩)
+  exact of_decide_eq_true hall
 
 end Problems.Juggler

@@ -310,11 +310,11 @@ is a human proof; Theorem 4.8 reuses the gap table under that
 packing. Proposition 4.9 is integer arithmetic in Lean. In
 Section 5, Theorems 5.3, 5.4, and 5.7, Lemma 5.6, and the
 digit-cap step of Theorem 5.8 are human proofs (Denjoy--Koksma
-is used as a known tool); Theorems 5.2 and 5.9 and the scan
-sharpening of Theorem 5.8 are independently certified
-computations at the laboratory floor, with the same trust
-boundary as Theorem 4.6 (exact integer arithmetic plus guarded
-float comparisons). This is not a claim that the paper as a
+is used as a known tool); the digit scan of Theorem 5.8 is
+Lean-verified (`window_digit_scan`); Theorems 5.2 and 5.9 are
+independently certified computations at the laboratory floor,
+with the same trust boundary as Theorem 4.6 (exact integer
+arithmetic plus guarded float comparisons). This is not a claim that the paper as a
 whole is formally verified.
 
 ```text
@@ -1644,6 +1644,19 @@ is *false* for this family — the greedy word \(OOEO\) beats
 \(OOOE\) at \((L,o)=(4,3)\) — so the exchange argument above,
 not a dominance order, is the correct mechanism.
 
+Realized words do, however, dominate the hug word at the level
+of odd counts: on any minimum-based cycle word, every length-\(k\)
+prefix carries at least \(o_{\min}(k)\) odd letters. This is
+Lean end to end (`cycleMin_prefix_odds_ge_hug`,
+`cycleMin_odds_ge_hug`), composing the formalized cycle prefix
+envelope \(2^k\le 3^{a_k}\) (`cycleMin_prefix_pow_le`) with the
+hug minimality `hugOdds_least`. It is exactly the sense in which
+the hug word is the cheapest adversary any hypothetical cycle
+can present. The survivor-lattice generators of Proposition 4.9
+lie on this hug diagonal: \((1054,665)\), \((25781,16266)\), and
+the seed \((50508,31867)\) all satisfy \(o=o_{\min}(L)\) (Lean:
+`hugOdds_1054`, `hugOdds_lattice_base`, `hugOdds_seed`).
+
 **Proposition 5.5 (rotation average).**
 The infinite hug walk is the rotation by \(\alpha=\log_2(3/2)\)
 on \(\mathbb R/(1+\alpha)\mathbb Z\). Unique ergodicity gives
@@ -1744,11 +1757,14 @@ the last gap from \(\int_0^{2\ln n}e^{-s}(1+s/\ln n)^{-2}ds
 \le 1-2/\ln n+6/(\ln n)^2\). Conclude by Lemma 5.6 and
 Theorem 5.7. \(\square\)
 
-*Scan sharpening (verified computation).* An exact scan of all
-\(251486\) window lengths gives max digit sum \(s=37\) (at
-\(L=275632\)) and a uniform envelope margin of at least
-\(5.48\). The window theorem is census-free; the scan only
-sharpens the constants.
+*Scan sharpening (Lean).* An exact scan of all \(251486\)
+window lengths gives max digit sum \(s=37\) (at \(L=275632\))
+and a uniform envelope margin of at least \(5.48\). The digit
+scan is Lean-verified: for every \(L\in[50508,301994)\) the
+greedy digits over the certified denominators reconstruct \(L\)
+and sum to at most \(37\) (`window_digit_scan`,
+`window_digit_cap`, `window_digit_max`). The window theorem is
+census-free; the scan only sharpens the constants.
 
 ### 5.7 Kill table and the period bound
 
@@ -1898,11 +1914,11 @@ formally verified.
 | Proposition 5.1 | laboratory floor; certified computation, not Lean |
 | Theorem 5.2 | raised cutoff; verified computation, not Lean |
 | Theorem 5.3 | transport; human proof, not Lean |
-| Theorem 5.4 | combinatorial core `hugOdds_le_of_admissible`; charge maximisation is a human proof |
+| Theorem 5.4 | combinatorial core `hugOdds_le_of_admissible`; cycle-word domination `cycleMin_prefix_odds_ge_hug`, `cycleMin_odds_ge_hug`; charge maximisation is a human proof |
 | Proposition 5.5 | rotation average; human proof, not Lean |
-| Lemma 5.6 | `budgetedWord_eq_hugWord`, `hugOdds_pow_ge`, `hugOdds_pow_lt`, `hugOdds_least` |
+| Lemma 5.6 | `budgetedWord_eq_hugWord`, `hugOdds_pow_ge`, `hugOdds_pow_lt`, `hugOdds_pow_gt`, `hugOdds_least` |
 | Theorem 5.7 | Denjoy--Koksma (known), not Lean; quotient arithmetic `theta_sandwich_upper`, `theta_sandwich_lower`, `lower_lt_walkTheta`, `walkTheta_lt_upper`, `cf_lower_prefix`, `cf_upper_prefix`, `theta_convergent_denominators` |
-| Theorem 5.8 | window envelope; human proof + certified scan, not Lean |
+| Theorem 5.8 | digit-cap step human; digit scan Lean `window_digit_scan`, `window_digit_cap`, `window_digit_max`; Denjoy--Koksma comparison human |
 | Theorem 5.9 | kill table; verified computation, not Lean |
 | short certificates (Section 6) | `even_finiteProgress`, `odd_even_finiteProgress` |
 | no certificate \(\Rightarrow\) odd-to-odd | `no_finiteProgress_implies_odd_odd` |

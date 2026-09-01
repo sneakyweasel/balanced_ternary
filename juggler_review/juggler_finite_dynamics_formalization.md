@@ -603,7 +603,19 @@ admissible exponent walks (`hugOdds_le_of_admissible`), and the
 budgeted hug word at \((L,\mathrm{hugOdds}(L))\) equals the exact
 rotation prefix (`budgetedWord_eq_hugWord`). Sanity instances
 \(\mathrm{hugOdds}(84)=53\), \(\mathrm{hugOdds}(1054)=665\),
-\(\mathrm{hugOdds}(50508)=31867\) match the finance table. The real
+\(\mathrm{hugOdds}(50508)=31867\) match the finance table.
+
+Two corollaries are Lean end to end. Cycle-word domination
+(`cycleMin_prefix_odds_ge_hug`, `cycleMin_odds_ge_hug`): every
+prefix of a minimum-based cycle word carries at least
+\(\mathrm{hugOdds}(k)\) odd letters, by composing the cycle prefix
+envelope `cycleMin_prefix_pow_le` (CycleFinance) with
+`hugOdds_least`; the strict window `hugOdds_pow_gt` identifies
+\(\mathrm{hugOdds}\) with the strict \(o_{\min}\). Lattice bridge:
+the survivor-lattice generators of Proposition 4.9 lie on the hug
+diagonal \(o=o_{\min}(L)\) — \((1054,665)\), \((25781,16266)\),
+\((50508,31867)\) (`hugOdds_1054`, `hugOdds_lattice_base`,
+`hugOdds_seed`, list form `hugOdds_convergent_denoms`). The real
 charge and its maximisation (the analytic half of Theorem 5.4), the
 transport lemma (Theorem 5.3), and the Laplace integral
 (Proposition 5.5) are human proofs.
@@ -618,11 +630,16 @@ continued-fraction prefix \([2,1,2,2,3,1,5,2,23,2,2,1]\) of both
 rational endpoints (`cf_lower_prefix`, `cf_upper_prefix`,
 `cf_lower_continues`, `cf_upper_continues`), and the convergent
 denominator list \(1,\ldots,176251\)
-(`theta_convergent_denominators`). Denjoy–Koksma and the
-cylinder-interval bridge from the endpoints to \(\theta\) itself are
-classical and stay prose; the window digit caps (Theorem 5.8), the
-scan, and the kill table (Theorem 5.9) are human proof plus certified
-computation, not Lean.
+(`theta_convergent_denominators`). The digit scan of Theorem 5.8 is
+also Lean: for every window length \(50508\le L<301994\) the greedy
+Ostrowski digits over the certified denominators reconstruct \(L\)
+and sum to at most \(37\) (`window_digit_scan`, pointwise
+`window_digit_cap`), attained at \(L=275632\) (`window_digit_max`).
+Denjoy–Koksma and the cylinder-interval bridge from the endpoints
+to \(\theta\) itself are classical and stay prose; the structural
+digit cap \(b_j\le a_{j+1}\), the Denjoy–Koksma comparison, and the
+kill table (Theorem 5.9) are human proof plus certified computation,
+not Lean.
 
 ## 9. Exact floor reductions for the discrepancy paper
 

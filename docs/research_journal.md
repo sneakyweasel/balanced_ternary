@@ -18694,4 +18694,19 @@ Best next question
   quotients of log 2/log 3
 ```
 
+## Juggler Lean deep pass: appearing corollaries land
+
+- **Date:** 2026-09-01
+- **Objective:** Review the Lean tree after the consolidation — merge/reorganize opportunities, appearing corollaries, candidate new theories. No new branch
+- **Hypotheses:** none — formalization review on decided mathematics
+- **Major results:**
+  - **Cycle words dominate the hug word (new, Lean end to end).** The existing cycle prefix envelope `cycleMin_prefix_pow_le` (CycleFinance, \(2^k\le 3^{a_k}\) on every CycleMin prefix) composes with hug minimality `hugOdds_least` into `cycleMin_prefix_odds_ge_hug` / `cycleMin_odds_ge_hug`: every prefix of a minimum-based cycle word carries at least \(o_{\min}(k)\) odd letters. The hug adversary of Paper A Thm 5.4 is now a *cycle-native* Lean statement, not only a \(u\ge 0\)-relaxation one. Strict window `hugOdds_pow_gt` (powers of \(2\) and \(3\) never meet) identifies `hugOdds` with the strict finance \(o_{\min}\). New ledger row `J-cyclemin-hug-prefix-bound` (**EXACT — LEAN VERIFIED**)
+  - **Survivor lattice sits on the hug diagonal.** `hugOdds_lattice_base` (\(25781\to 16266\)) joins `hugOdds_1054` and `hugOdds_seed`: all three `RunSurvivorLattice` generators satisfy \(o=\mathrm{hugOdds}(L)\); hug counts along the certified convergent denominators are Lean-listed (`hugOdds_convergent_denoms`). The lattice and walk-charge modules now certify each other's constants
+  - **Theorem 5.8 digit scan upgraded to Lean.** `OstrowskiSandwich.lean` gains greedy Ostrowski digits over the certified denominators and the window scan: for all \(251486\) lengths \(50508\le L<301994\), the digits reconstruct \(L\) and \(s(L)\le 37\) (`window_digit_scan`, pointwise `window_digit_cap`), attained at \(L=275632\) (`window_digit_max`); \(24\)s `native_decide`. The previously computational scan sharpening is now Lean; the DK comparison and structural cap \(b_j\le a_{j+1}\) stay human (KNOWN). Ledger row `J-cyclemin-walk-ostrowski-arithmetic` extended
+  - **Merge/reorganize verdicts (reviewed, mostly no).** Custom `cfQuotients` stays over Mathlib's `GenContFract` (decidable, five lines, no dependency weight); `Problems.Ostrowski.NP` shares only the name Ostrowski (Γ_NP place-value numeration) — no merge; `hugWord : List Bool` versus `List Branch` needs no bridge because the appearing corollary lives at count level; `three_pow_step_gt_two_pow_step` in the published `RunSurvivorLattice` is untouched (now independently derivable from `hugOdds_1054` + `hugOdds_pow_gt`). Paper A §5.3/§5.8, Appendix A, and the reviewer formalization map §8.7 updated; PDF rebuilt
+- **Refuted ideas:** none — no hypothesis tested
+- **Literature:** Mathlib has irrational-rotation ergodicity (`ergodic_add_left`) but no unique ergodicity, no Denjoy–Koksma, no Sturmian/mechanical words — the analytic walk layer has no Mathlib shortcut today
+- **Open:** candidate Lean theories, in rising cost order: (1) general Ostrowski numeration (greedy digits from any quotient list + structural cap \(b_j\le a_{j+1}\)) would make the Thm 5.8 digit cap window-independent; (2) mechanical/Sturmian words of slope \(\log 2/\log 3\) (balancedness of `hugWord`); (3) transport recursion (Thm 5.3, real-log bookkeeping over CycleFinance); (4) Denjoy–Koksma on `AddCircle` (research-grade, would make Thm 5.7 Lean-native). None opened
+- **Decision:** consolidation addendum recorded; no new branch, no tag inflation — analytic rows keep their tags
+
 
