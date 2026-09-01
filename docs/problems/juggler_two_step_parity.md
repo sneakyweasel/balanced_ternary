@@ -135,6 +135,10 @@ It is not required. The 2-adic / BT bridge stays closed.
   [juggler_two_step_parity.json](../research/juggler_two_step_parity.json)
 - Tests: `tests/research/juggler_sequence/test_two_step_parity.py`
   (pinned exact counts at \(N=10^5\))
+- Sign-critical domain gate: `sign_critical_domain_scan` samples
+  the written composites of (E6)/Step 5a, Theorem 6.1, and
+  Lemma 5.2 Stage 4/6 over \((n,h_1,h_2,k,j)\) in (C1)–(C3).
+  `kernel_margin_scan` remains the one-point algebraic check.
 
 One CPU pass, 26 seconds at \(N=10^7\). No GPU, no Lean change, no
 Research Engine modification.
@@ -581,6 +585,17 @@ starts (product density \(12.5\%\)) and every OOEE start satisfied
 \(T^4(n)<n\). The depth-2 envelope is on the same \(N^{1/3}\) scale
 as the proven depth-1 case. Labels: **COMPUTATIONALLY VERIFIED**
 counts, **OBSERVATION** exponents.
+
+Sign-critical composites on (C1)–(C3) (**OBSERVATION** gate,
+1 Sep 2026): no offset or zero-offset composite loses sign on
+\(P\in\{10^4,\dots,10^{12}\}\). Worst ratios: (E6) \(3.931\) at
+\(P=10^4\) (printed \(4.375\)); Theorem 6.1 offset \(1.572\)
+(printed \(1.75\)); zero-offset \(0.9993\) against \(8.27\);
+Stage 4 agreement \(0.9984\), all samples inside
+\([0.30,1.35]\,uhP^{-3/4}\). Stage 6 (D2) printed bound exceeds
+\(1\) at \(P=10^4\) only (ratio \(2.30\)); first clean \(P\) on
+the grid is \(10^5\). Not a large-\(P\) hole; Paper B already
+takes \(P\ge P_0\) ineffective. No ledger row.
 
 ## Open questions
 
@@ -1044,6 +1059,14 @@ Müllner–Spiegelhofer added. Ledger rows `J-depth5-contracting`,
 debt is the referee's item 6: one independent human check of
 Section 5.
 
+**CLOSE** (sign-critical domain gate, 1 Sep 2026): the four
+written composites keep sign on the standing domain for
+\(P\ge 10^5\). The only failure is Lemma 5.2 Stage 6 (D2)
+at \(P=10^4\) (printed bound ratio \(2.30\)), already
+covered by the paper's ineffective \(P_0\). No constant
+repair. No new ledger row. Items 1/3/4 of the hypothesis
+census are not opened.
+
 ## Publication assessment
 
 Status: `THEOREM` for the frozen claim set, **consolidated into the
@@ -1115,3 +1138,20 @@ Part XIV, `J-length7-remainder-engine`). Flag
 `length7_remainder_engine_proved` is `True`. Theorem X
 stays `CONJECTURE` (passenger inventory). Paper B is not
 edited.
+
+## Phase 30: decoration-and-mode budget census
+
+Child dossier
+[juggler_decoration_budget.md](juggler_decoration_budget.md).
+Phase-0 inventory of the frozen Theorem 5.3 Step 3 /
+Theorem 6.1 Step A pieces at the paper's \((H_1,H_2,k)\).
+Four \(P_0\) overflows (\(|t|\le 3J_2\), two-layer
+\(|q_d|\le 2J_2\), Y-passenger \(3P^{1/24}+P^{1/96}\),
+fixed term count \(9>8\)); all die
+(\(3P^{-1/48}\to 0\); named threshold \(P\ge 3^{48}\)).
+No Theorem-T witness: \(\max|j|=2\) on sampled orbits;
+\(7:4\) composite single-signed. **PARK** as
+effectiveness. `J-kernel-cancellation` not retagged.
+Paper B is not edited. Do not open a \(P_0\)-effectiveness
+campaign. Remaining debt: one independent human check of
+Section 5.

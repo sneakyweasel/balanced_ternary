@@ -116,9 +116,17 @@ for external review.
   (`juggler_tower_rate_free_equidistribution`, ACTIVE), or
   discover a completely different route to the node-wise
   E-share \(\beta>\beta_*=1-\log 2/\log 3\approx 0.36907\).
-  Do not reopen the composition door, the \(\beta\)-fallback
-  as a weaker species, PET, Theorem R, \(\lambda=0\), or
-  further literature-name audits. Not claimed.
+  The m-variable PS inversion is recorded and closed
+  (`juggler_ps_inversion_barrier`): the fixed harmonic
+  reduces exactly to sub-density two-monomial sums
+  \(\sum e(cm^{9/4}-jm^{2/3})=o(M^{2/3})\), needing an
+  exponent pair with \((5/4)p+q<2/3\) versus the known hull
+  minimum \(95/112\); main-term saving \(N^{13/16}\) and the
+  bias-mass relaxation of Lemma B are recorded there. Do not
+  re-run it. Do not reopen the composition door, the
+  \(\beta\)-fallback as a weaker species, PET, Theorem R,
+  \(\lambda=0\), or further literature-name audits. Not
+  claimed.
 - **Local attacks are closed.** Fibres are parity + interval only
   (`even_cell_iff`, `odd_cell_unique`, `cell_same_next_state`): no finite
   local configuration around a hypothetical cycle is contradictory. Seam,

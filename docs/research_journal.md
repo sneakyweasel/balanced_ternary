@@ -20579,3 +20579,194 @@ Best next question
   pass through that composition
 ```
 
+## PS-inversion of the fixed harmonic: the sub-density barrier (Phase 0; CLOSE)
+
+- **Date:** 2026-09-01
+- **Objective:** Attack the boxed external pair directly. Half 1: does the m-variable Piatetski–Shapiro indicator inversion (a computation with the exact indicator, not the closed abstract subsequence transfer) prove \(S_c(N)=\sum_{n\le N}e(c\lfloor n^{3/2}\rfloor^{9/4})=o(N)\) for fixed \(c\neq 0\)? Half 2: does any node-mass relaxation of Lemma B change the species of what termination needs?
+- **Hypotheses:** the audit dismissed PS machinery as "rated / small-amplitude" in the n-picture without running the inversion; in the m-picture the brackets disappear and classical two-monomial sums might close the door. Separately, "every node" in Lemma B may weaken to "all but vanishing mass", opening an L² route. Falsifiers: the m-picture needs cancellation below the PS density \(M^{2/3}\) and the exponent-pair functional \((5/4)p+q\) sits above \(2/3\) on the known hull; the L² route re-concentrates on the \(k=1\) harmonic (Proposition CC).
+- **Major results:**
+  - **Inversion identity (EXACT — HUMAN PROOF, no new ledger row):** \(S_c(N)=\sum_{m\le v(N)}r(m)e(cm^{9/4})\) with \(r(m)=\lceil(m+1)^{2/3}\rceil-\lceil m^{2/3}\rceil\in\{0,1\}\) — the floor leaves the phase and enters the summation set; no bracket remains. Probe seal exact (gap \(0.0\) at \(N=10^4\)).
+  - **Main-term saving (EXACT — HUMAN PROOF, classical vdC \(k=3\)):** \(|\sum w(m)e(cm^{9/4})|\ll_c M^{13/24}=N^{13/16}\). The smooth part is never the obstruction; the whole door is the \(\psi\)-fluctuation correlation.
+  - **Sub-density barrier (KNOWN; the stop):** after Vaaler at \(J=M^{2/5}\) (errors \(\le M^{3/5}\), all below density), the door is \(T_j=\sum_{m\le M}e(cm^{9/4}-jm^{2/3})\ll M^{2/3}/\log^2M\) — cancellation **below** the PS density. Exponent pairs give \(M^{(5/4)p+q}\); needed \((5/4)p+q<2/3\); vdC tests give \(7/8\); the known hull bottoms at \(95/112\approx0.848\) (Bourgain \((13/84,55/84)\), new registry row `bourgain-2017-exponent-pair`); EPC \((0,1/2)\) gives \(1/2\) and would prove the axis with power savings. The gap is roughly half the distance to the conjecture.
+  - **No \(j\)-average:** the \(1/j\) Vaaler weight re-concentrates at \(j=1\); the difference-factor gain \(jM^{-1/3}\) trades exactly against it; large sieve over \(j\) ignores the \(m^{9/4}\) oscillation. Proposition CC's "\(k=1\) carries weight one", now in the \(j\)-aisle.
+  - **Vanishing-bias-mass relaxation (EXACT — HUMAN PROOF, no new ledger row):** Lemma B survives with "every node" weakened to "biased-node \(\mu\)-mass \(\varepsilon_k\) with \(\frac1d\sum\varepsilon_k\to0\)" (Markov on the biased-node count + restricted generating-function domination + Chernoff at \((\gamma-\delta)/(1-\delta)\)). But the variance route to \(\varepsilon_d\to0\) squares the same kernels with weight \(\asymp1\) at \(k=1\): the species does not change.
+  - **Probe (`ps_inversion_barrier.py`, `PS_INVERSION_BARRIER_GREEN`):** \(|S_{1/2}(N)|/\sqrt N=1.067\) (all), \(0.804\) (odd) at \(N=2^{21}\); \(|W|/M^{13/24}=0.0013\) and \(|T_{1,2,5}|/\sqrt M=2.03/2.17/0.32\) at \(M=2^{23}\) (\(|T_j|/M^{2/3}\le0.153\)). Everything sits at square-root (EPC) scale: the statement looks true; only the proof is missing.
+- **Refuted ideas:** my own opening hope "the m-picture makes it classical vdC" — killed by the density-barrier computation. Short-interval, \(\times3/2\)-rigidity, and subshift routes to \(\beta\) die on arrival (depth-2 cell width \(<1\); singly-generated semigroup; densities invisible).
+- **Literature:** `bourgain-2017-exponent-pair` added.
+- **Open:** external only — can Bombieri–Iwaniec resonance analysis give any exponent pair with \((5/4)p+q<2/3\) for \(T_j\)?
+- **Decision:** CLOSE — dossier `docs/problems/juggler_ps_inversion_barrier.md`. No new ledger row, no Lean, no paper edits. The conjecture stays ACTIVE with a classical name for its difficulty.
+
+```text
+What was learned
+- the m-variable PS inversion removes every bracket:
+  the fixed harmonic equals a {0,1}-weighted smooth
+  sum, exactly
+- the smooth main term has unconditional power
+  savings N^{13/16}; the door is entirely the
+  psi-fluctuation correlation
+- after Vaaler that correlation is clean two-monomial
+  sums needing SUB-DENSITY cancellation o(M^{2/3});
+  vdC gives 7/8, the known exponent-pair hull bottoms
+  at 95/112, EPC would give 1/2 with power savings
+- the 1/j weight re-concentrates at j = 1: no family
+  average (CC again)
+- Lemma B's "every node" weakens to "all but
+  vanishing mass of biased nodes", but the variance
+  route collapses to the same k = 1 harmonic
+- empirically all sums sit at square-root scale:
+  true-looking statement, proof at the exponent-pair
+  frontier
+Strongest theorem
+- the exact inversion identity with main-term saving
+  O_c(N^{13/16})
+Strongest refutation
+- "the m-picture makes it classical vdC" (the
+  density barrier)
+Reusable machinery
+- ps_inversion_barrier.py (exact bigint fractional
+  parts of m^{9/4}, PS indicator, T_j scans); the
+  bias-mass relaxation of Lemma B
+Branch status
+- CLOSE
+Why
+- the stop criterion fired: the barrier lands beyond
+  the known exponent-pair hull ((5/4)p+q < 2/3 needed
+  vs 95/112 known) and the relaxation re-concentrates
+  on the same harmonic
+Best next question
+- external: can Bombieri-Iwaniec resonance analysis
+  give any exponent pair with (5/4)p + q < 2/3 for
+  T_j = sum e(c m^{9/4} - j m^{2/3})?
+```
+
+
+## Paper B sign-critical composites on (C1)–(C3)
+
+- **Date:** 2026-09-01
+- **Objective:** Phase-0 only: do the written sign-critical
+  composites of Paper B keep sign over
+  \((n,h_1,h_2,k,j)\) in (C1)–(C3), and what is the worst
+  ratio / first \(P\) of sign loss?
+  `kernel_margin_scan` only checks two predicted formulas
+  at one \(n\).
+- **Hypotheses:** the interpolants stay single-signed on
+  the standing range for large \(P\). Falsifier: a
+  standing-range sample at large \(P\) where a composite
+  changes sign, or a Stage-6 ratio \(\ge 1\) against
+  \(0.30\,uhP^{-3/4}\).
+- **Major results:** **OBSERVATION.** Full grid
+  \(P\in\{10^4,10^5,10^6,10^8,10^{10},10^{12}\}\), 54
+  \((P,n,h_1,h_2,k)\) cells. No offset or zero-offset
+  sign loss.
+  - (E6)/Step 5a: worst \(|\mathrm{smooth}/\mathrm{window}|=3.931\)
+    at \(P=10^4\), \(n=10001\), \((h_1,h_2,k,j)=(1,3,1,-1)\);
+    min sign-margin \(0.985\); ratio \(\to 4.375\).
+  - Theorem 6.1 offset: worst \(1.572\) at the same cell
+    (printed \(7:4=1.75\)); min sign-margin \(0.866\).
+  - Theorem 6.1 zero-offset: worst \(0.9993\) against
+    \(8.27\,kh_1h_2\nu^{-5/8}\); always positive.
+  - Lemma 5.2 Stage 4: worst agreement \(0.9984\); all
+    162 samples inside \([0.30,1.35]\,uhP^{-3/4}\).
+  - Lemma 5.2 Stage 6: (D2) printed bound ratio \(2.30\)
+    at \(P=10^4\) only; first clean \(P\) on the grid is
+    \(10^5\) (ratio \(0.949\)); at \(P=10^{12}\) the
+    worst class is \(0.0066\).
+- **Refuted ideas:** none. Small-\(P\) Stage-6 failure
+  is the paper's ineffective \(P_0\), not a large-\(P\)
+  hole.
+- **Literature:** Paper B standing estimates (E6),
+  Theorem 5.3 Step 5a, Theorem 6.1 Step E, Lemma 5.2
+  Stages 4 and 6.
+- **Open:** items 1/3/4 of the hypothesis census are
+  not opened.
+- **Decision:** CLOSE as an OBSERVATION gate on the
+  existing two-step-parity writeup. No Paper B edit,
+  no ledger row, no new dossier.
+
+```text
+What was learned
+- kernel_margin_scan's 4.375 is tautological; the actual
+  (cF)''/window ratio at P=10^4 is 3.931 and rises to 4.375
+- no offset composite loses sign on (C1)–(C3) through 10^12
+- Theorem 6.1 zero-offset tracks 8.27 to four digits
+- Stage 4 stays inside [0.30, 1.35] uh P^{-3/4}
+- Stage 6 (D2) exceeds 1 only at P=10^4 (first clean P=10^5)
+Strongest theorem
+- none new (existing Theorems 5.3 / 6.1)
+Strongest refutation
+- none. First Stage-6 failure is P=10^4, already excluded
+  by the paper's ineffective P0
+Reusable machinery
+- sign_critical_domain_scan
+Branch status
+- CLOSE (OBSERVATION gate; parent branch stays PROMOTE)
+Why
+- the printed composites keep sign on the actual domain
+  once P is past the paper's P0; no constant repair
+Best next question
+- decoration-and-mode budget census (item 1): do the
+  pieces of Theorem 5.3 Step 3 / Theorem 6.1 Step A
+  sit in the printed Lemma 5.2 and mode-range budgets?
+```
+
+## Juggler decoration-and-mode budget census (Phase 0)
+
+- **Date:** 2026-09-01
+- **Objective:** At the paper's \((H_1,H_2,k)\), do the actual
+  Theorem 5.3 Step 3 and Theorem 6.1 Step A pieces sit inside
+  the printed Lemma 5.2 / Theorem 6.1 budgets? Same check that
+  killed Theorem T, now run on the frozen kernel / depth-4
+  inventory.
+- **Hypotheses:** a passenger or product of Fourier layers
+  might overflow \(|q|>P^{1/16}\) or \(|j|>3\) with a ratio
+  that does not die as \(P\to\infty\); or the decorated
+  \(\theta\)-coefficient might kill the \(7:4\) composite.
+- **Major results:**
+  - Combinatorial inventory at \(P=10^6,10^8,10^{10}\): 33
+    `none`, 12 `p0`, 0 `structural`. The four \(P_0\) sources
+    (per \(P\)) are \(|t|\le 3J_2\) (ratios \(2.25\), \(2.04\),
+    \(1.86\)), \(|q_d|\le 2J_2\), the Y-passenger
+    \(3P^{1/24}+P^{1/96}\), and a fixed term count \(9>8\).
+    All die: \(3P^{-1/48}\to 0\). Named threshold for the
+    printed line \(|t|\le 3J_2\le P^{1/16}\): \(P\ge 3^{48}\).
+  - Orbit \(j=\Delta\Delta m\): \(\max|j|=2\) at \(10^6\),
+    \(1\) at \(10^8\) and \(10^{10}\), on \(152000\) odds
+    each. No \(|j|>3\).
+  - Offset composite: algebra \(945:540=7:4\), factor
+    exactly \(5/2\); interpolant factor \(2.537\to 2.501\),
+    single-signed.
+- **Refuted ideas:** none of Theorem-T type. Finite-\(P\)
+  overflow of \(|t|\le P^{1/16}\) is the paper's own
+  ineffective \(P_0\).
+- **Literature:** Paper B Lemma 5.2, Theorem 5.3 Step 3,
+  Theorem 6.1 Steps A–E.
+- **Open:** the independent human check of Section 5.
+  No \(P_0\)-effectiveness campaign.
+- **Decision:** PARK — dossier
+  `docs/problems/juggler_decoration_budget.md`. Do not retag
+  `J-kernel-cancellation`. Paper B frozen.
+
+```text
+What was learned
+- 3 J2 > P^{1/16} at 10^6–10^{10}, ratio 3 P^{-1/48}→0
+- the printed |t| line is effective only at P >= 3^{48}
+- |j|<=2 on every sampled orbit at the paper's (H1, H2)
+- term count 9>8 is a fixed constant, not a growing family
+- passengers multiply the window-centre θ-term by 2.5;
+  the 7:4 composite stays single-signed
+- Lemma 5.2(i) uh and the i-passenger (D3) hold at these P
+Strongest theorem
+- none new; kernel / depth-4 tags unchanged
+Strongest refutation
+- none of Theorem-T type
+Reusable machinery
+- decoration_budget.py: combinatorial inventory + orbit j
+Branch status
+- PARK
+Why
+- every overflow dies as P→∞; |j|<=3 and 7:4 survive;
+  this is the paper's ineffective P0, not a new hole
+Best next question
+- one independent human check of Paper B Section 5
+```
+

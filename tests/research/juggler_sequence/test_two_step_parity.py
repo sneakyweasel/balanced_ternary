@@ -764,6 +764,40 @@ def test_kernel_margin_scan():
     assert 1.41 < r["m2"]["sum_over_kj"] < 1.43
 
 
+def test_sign_critical_domain_scan():
+    # Phase-0 domain gate: actual interpolants on (C1)–(C3), not the
+    # tautological m2 ratio 4.375 at one n. Fast grid P in {10^6,10^8}.
+    from research.juggler_sequence.two_step_parity import (
+        sign_critical_domain_scan,
+    )
+
+    r = sign_critical_domain_scan(fast=True)
+    assert r["n_samples"] > 0
+    for name in (
+        "e6_step5a",
+        "thm61_offset",
+        "thm61_zero_offset",
+        "lemma52_stage4",
+        "lemma52_stage6",
+    ):
+        rec = r["pieces"][name]
+        assert rec["first_sign_loss_P"] is None
+        assert rec["worst_ratio"] is not None
+        assert rec["n_loss"] == 0
+    e6 = r["pieces"]["e6_step5a"]
+    assert e6["worst_ratio"] != 4.375
+    assert 3.5 < e6["worst_ratio"] < 4.375
+    t61 = r["pieces"]["thm61_offset"]
+    assert 1.5 < t61["worst_ratio"] < 1.75
+    z = r["pieces"]["thm61_zero_offset"]
+    assert 0.99 < z["worst_ratio"] < 1.01
+    s4 = r["pieces"]["lemma52_stage4"]
+    assert 0.99 < s4["worst_ratio"] < 1.01
+    assert s4["n_band_fail"] == 0
+    s6 = r["pieces"]["lemma52_stage6"]
+    assert s6["worst_ratio"] < 1.0
+
+
 def test_transport_block_variance():
     # Phase-17 falsifier (b): level-3 defects are block-random — mode and
     # fifth-letter block variances at the random-phase scale, autocorr at

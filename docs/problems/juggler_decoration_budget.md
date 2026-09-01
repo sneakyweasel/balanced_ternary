@@ -135,7 +135,31 @@ machinery gravity.
 
 ## Results
 
-Filled after the Phase-0 run; see Decision.
+- **Combinatorial inventory (COMPUTATIONALLY VERIFIED).**
+  At \(P\in\{10^6,10^8,10^{10}\}\) the printed Step-3 / Step-A
+  pieces give 15 rows each: 11 `none`, 4 `p0`, 0 `structural`.
+  The four \(P_0\) rows are `product_t` (\(|t|\le 3J_2\),
+  ratios \(2.25\), \(2.04\), \(1.86\)), `product_qd`
+  (\(|q_d|\le 2J_2\)), `thm61_j_passenger_qd`
+  (\(|q_d|\le 3P^{1/24}+P^{1/96}\)), and `term_count_rho`
+  (fixed \(9>8\)). Lemma 5.2(i) \(uh_1\le P^{1/2}\) and
+  \(h\le P^{1/8}\), single-layer \(|q|\le J_2\), the
+  \(i\)-passenger (D3), and \(|i|,|j|,|k|\le 2P^{1/96}\) all
+  hold. Named threshold for the printed line
+  \(|t|\le 3J_2\le P^{1/16}\): \(P\ge 3^{48}\).
+- **Orbit \(j\) (COMPUTATIONALLY VERIFIED).** At paper
+  integer shifts, \(152000\) odd \(n\) per \(P\):
+  \(\max|j|=2\) at \(10^6\) (live \(\{-1,0,1,2\}\)),
+  \(\max|j|=1\) at \(10^8\) and \(10^{10}\). No
+  \(|j|>3\). At most four live \(\boldsymbol\kappa\)-branches
+  in the carry subsample (cap eight).
+- **Offset composite (EXACT algebra + COMPUTATIONALLY
+  VERIFIED interpolant).**
+  \(945/512:540/512=7:4\), composite \(405/512>0\);
+  window-centre factor exactly \(5/2\). Interpolant
+  \(\theta\)-coefficients track the predictions
+  (kernel ratio \(0.985\to 1.000\), factor
+  \(2.537\to 2.501\)). Single-signed at every \(P\).
 
 ## Open questions
 

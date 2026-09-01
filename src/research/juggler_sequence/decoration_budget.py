@@ -335,12 +335,14 @@ def decorated_margin_scan(p: float, k: int = 1, j: int = 1) -> dict[str, Any]:
         )
 
     c = (3.0 * k / 4.0) * (n ** 1.125)
-    eps = 1e-8
-    phi_k = lambda th: c * f_branch(x - th)
-    b_k = (phi_k(eps) - phi_k(0.0)) / eps
+    # d/dm F via rationalized first differences: the raw four-sqrt
+    # combination cancels 15 digits at P = 10^10.
+    s_off = (x + beta1 + beta2 + j) ** 0.5 + (x + beta1) ** 0.5
+    s_base = (x + beta2) ** 0.5 + x ** 0.5
+    f_prime = 1.5 * ((beta2 + j) / s_off - beta2 / s_base)
+    b_k = -c * f_prime
     b_k_pred = (9.0 / 16.0) * k * j * (n ** 0.375)
-    phi_4 = lambda th: (9.0 * k / 8.0) * j * (x - th) ** 1.25
-    b_4 = (phi_4(eps) - phi_4(0.0)) / eps
+    b_4 = -(9.0 * k / 8.0) * j * 1.25 * (x ** 0.25)
     b_4_pred = (45.0 / 32.0) * k * j * (n ** 0.375)
 
     # Smooth-part second derivatives at the monomial models.
@@ -482,20 +484,20 @@ def orbit_j_census(
 
 
 def i_passenger_curvature_fd(p: float) -> dict[str, Any]:
-    """Five-point stencil of X = n^{3/2} versus the printed (D3) cap."""
+    """Analytic X'''' = (9/16) n^{-5/2} versus the printed (D3) cap.
+
+    A fourth-difference stencil of n^{3/2} is below float64 at these P.
+    """
     n = 1.5 * p
-    h = 1.0
-    xs = [((n + k * h) ** 1.5) for k in (-2, -1, 0, 1, 2)]
-    # fourth derivative: (x_{-2} - 4 x_{-1} + 6 x_0 - 4 x_1 + x_2) / h^4
-    x4 = (xs[0] - 4 * xs[1] + 6 * xs[2] - 4 * xs[3] + xs[4]) / (h**4)
+    x4 = (9.0 / 16.0) * (n ** -2.5)
     s = paper_scales(p)
     i_max = s["cap_ijk"]
     h1, h2, k = s["H1"], s["H2"], s["k_kernel"]
-    i_curv = 2.0 * i_max * h1 * h2 * abs(x4)
+    # Paper: |ΔΔ(i X / 2)''| <= 2.3 i h1 h2 P^{-5/2}.
+    i_curv = 2.3 * i_max * h1 * h2 * abs(x4)
     d3_cap = 3.0 * k * h1 * h2 * (p ** (-5.0 / 8.0))
     return {
-        "X4_fd": x4,
-        "X4_pred": (9.0 / 16.0) * (n ** -2.5),
+        "X4": x4,
         "i_curvature": i_curv,
         "d3_cap": d3_cap,
         "ratio": i_curv / d3_cap if d3_cap else None,
@@ -577,7 +579,11 @@ def write_json(payload: dict[str, Any], path: Path = JSON_PATH) -> None:
 
 
 def main() -> None:
-    payload = run_census()
+    payload = run_census(
+        orbit_window=100_000,
+        orbit_samples=100_000,
+        orbit_boundary=2_000,
+    )
     write_json(payload)
     verdict = payload["verdict"]
     print("decision", verdict["decision"])

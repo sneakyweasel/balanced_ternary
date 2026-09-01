@@ -2660,6 +2660,357 @@ def kernel_margin_scan(p_block: int, h3: int = 1, k: int = 1) -> dict[str, Any]:
     return out
 
 
+# Paper B printed coefficients for the sign-critical composites.
+_E6_SMOOTH = 945.0 / 512.0
+_E6_WINDOW = 27.0 / 64.0
+_THM61_WINDOW = 540.0 / 512.0
+_THM61_ZERO = 8.27
+_STAGE4_LO = 0.30
+_STAGE4_HI = 1.35
+_DECORATED_B_FACTOR = 2.5  # (45/32) / (9/16)
+
+
+def _odd_near(x: float) -> int:
+    v = int(round(x))
+    if v % 2 == 0:
+        v += 1
+    return max(v, 3)
+
+
+def _in_standing(p: int, h1: int, h2: int, k: int) -> bool:
+    """Standing range (C1)–(C3) of Paper B Section 5."""
+    if h1 < 1 or h2 < 1 or k < 1:
+        return False
+    if k * h1 * h2 > p ** 0.125 * (1.0 + 1e-12):
+        return False
+    if h1 * h2 > p ** 0.5 / 3.0 * (1.0 + 1e-12):
+        return False
+    if k > p ** (1.0 / 24.0) * (1.0 + 1e-12):
+        return False
+    return True
+
+
+def _standing_corners(p: int, *, fast: bool) -> list[tuple[int, int, int]]:
+    weyl1 = max(1, int(p ** (1.0 / 48.0)))
+    weyl2 = max(1, int(p ** (1.0 / 24.0)))
+    k_max = max(1, int(p ** (1.0 / 24.0)))
+    h_c1 = max(1, int(p ** 0.125))
+    raw = [(1, 1, 1), (weyl1, weyl2, 1)]
+    if not fast:
+        raw.extend([(1, 1, k_max), (1, h_c1, 1)])
+    seen: set[tuple[int, int, int]] = set()
+    out: list[tuple[int, int, int]] = []
+    for trip in raw:
+        if trip not in seen and _in_standing(p, *trip):
+            seen.add(trip)
+            out.append(trip)
+    return out
+
+
+def _sample_ns(p: int) -> tuple[int, ...]:
+    return (p + 1, _odd_near(1.5 * p), 2 * p - 1)
+
+
+def _frozen_gaps(n: int, h1: int, h2: int) -> tuple[float, float]:
+    m0 = isqrt(n**3)
+    return (
+        float(isqrt((n + 2 * h1) ** 3) - m0),
+        float(isqrt((n + 2 * h2) ** 3) - m0),
+    )
+
+
+def _branch_f_derivs(m: float, b1: float, b2: float, j: int) -> tuple[float, float, float]:
+    """Lemma 5.1(iii) mean-value forms; midpoints keep the relative O((β+|j|)/m)."""
+    xi1 = 0.5 * (b1 + b2 + j)
+    xi2 = 0.5 * (b1 + b2)
+    t = m + xi1
+    u = m + xi2
+    st = sqrt(t)
+    su = sqrt(u)
+    f = 1.5 * j * st + 0.75 * b1 * b2 / su
+    fp = 0.75 * j / st - 0.375 * b1 * b2 / (u * su)
+    fpp = -0.375 * j / (t * st) + 0.5625 * b1 * b2 / (u * u * su)
+    return f, fp, fpp
+
+
+def _weight_c(n: float, k: int) -> tuple[float, float, float]:
+    """c = (3k/4) n^{9/8} and its first two n-derivatives."""
+    c = 0.75 * k * n ** 1.125
+    cp = (27.0 / 32.0) * k * n ** 0.125
+    cpp = (27.0 / 256.0) * k * n ** -0.875
+    return c, cp, cpp
+
+
+def _cg_second(n: float, k: int, b1: float, b2: float, j: int) -> tuple[float, float, float]:
+    """((c F_j) ∘ X)'' and the kernel window term -B X'' with B = c F'(X)."""
+    x = n ** 1.5
+    xp = 1.5 * n ** 0.5
+    xpp = 0.75 * n ** -0.5
+    f, fp, fpp = _branch_f_derivs(x, b1, b2, j)
+    c, cp, cpp = _weight_c(n, k)
+    gp = fp * xp
+    gpp = fpp * xp * xp + fp * xpp
+    smooth = cpp * f + 2.0 * cp * gp + c * gpp
+    window = -c * fp * xpp
+    return smooth, window, smooth + window
+
+
+def _w3_second(n: float, n_int: int, h: int) -> tuple[float, float]:
+    """Second n-derivative of (X+β)^{3/2}-X^{3/2} with β the frozen level-1 gap."""
+    x = n ** 1.5
+    xp = 1.5 * n ** 0.5
+    xpp = 0.75 * n ** -0.5
+    beta = float(isqrt((n_int + 2 * h) ** 3) - isqrt(n_int ** 3))
+    sx = sqrt(x)
+    sxb = sqrt(x + beta)
+    w3p = 1.5 * beta / (sxb + sx)
+    w3pp = 0.75 * (-beta) / (sxb * sx * (sxb + sx))
+    return w3pp * xp * xp + w3p * xpp, beta
+
+
+def _thm61_zero_curvature(n: float, h1: int, h2: int, k: int) -> float:
+    """Second n-derivative of Δ_{2h1} Δ_{2h2} [(k/2) n^{27/8}].
+
+    Written as the double integral of φ^{(4)} over the shift rectangle.
+    A four-point average of t^{-5/8} keeps the (1+O(h P^{-1/2})) content
+    without cancelling n^{11/8} terms (naive mixed differences die by P=10^8).
+    """
+    d1, d2 = 2.0 * h1, 2.0 * h2
+    lead = 0.5 * k * (27.0 / 8.0) * (19.0 / 8.0) * (11.0 / 8.0) * (3.0 / 8.0)
+    acc = 0.0
+    for sa, ta in ((0.25, 0.25), (0.25, 0.75), (0.75, 0.25), (0.75, 0.75)):
+        acc += (n + sa * d1 + ta * d2) ** -0.625
+    return lead * d1 * d2 * (acc / 4.0)
+
+
+def _empty_piece() -> dict[str, Any]:
+    return {
+        "worst_ratio": None,
+        "worst_ratio_witness": None,
+        "min_sign_margin": None,
+        "min_sign_margin_witness": None,
+        "first_sign_loss_P": None,
+        "first_sign_loss_witness": None,
+        "n_ok": 0,
+        "n_loss": 0,
+    }
+
+
+def _record_piece(
+    piece: dict[str, Any],
+    *,
+    p: int,
+    ratio: float | None,
+    sign_margin: float,
+    worse_is_larger: bool,
+    witness: dict[str, Any],
+) -> None:
+    if sign_margin <= 0.0:
+        piece["n_loss"] += 1
+        if piece["first_sign_loss_P"] is None:
+            piece["first_sign_loss_P"] = p
+            piece["first_sign_loss_witness"] = dict(witness)
+    else:
+        piece["n_ok"] += 1
+    if piece["min_sign_margin"] is None or sign_margin < piece["min_sign_margin"]:
+        piece["min_sign_margin"] = sign_margin
+        piece["min_sign_margin_witness"] = dict(witness)
+    if ratio is None:
+        return
+    current = piece["worst_ratio"]
+    worse = current is None or (
+        ratio > current if worse_is_larger else ratio < current
+    )
+    if worse:
+        piece["worst_ratio"] = ratio
+        piece["worst_ratio_witness"] = dict(witness)
+
+
+def sign_critical_domain_scan(
+    p_grid: tuple[int, ...] | None = None,
+    *,
+    fast: bool = False,
+) -> dict[str, Any]:
+    """Domain scan of the four written Paper B sign-critical composites.
+
+    Evaluates the actual Lemma 5.1(iii) interpolants on (n,h1,h2,k,j)
+    in the standing range (C1)–(C3). Does not plug predicted coefficients
+    into themselves. kernel_margin_scan remains the one-point algebraic
+    gate.
+
+    Pieces:
+      e6_step5a          (cF)'' vs B X'' at j ≠ 0; predicted 945/512 − 27/64
+      thm61_offset       same (cF)'' vs 2.5× kernel B; predicted 405/512
+      thm61_zero_offset  mixed fourth derivative of (k/2) n^{27/8} vs 8.27
+      lemma52_stage4     W3'' against −9/32 β n^{-5/4} and [0.30, 1.35] uh P^{-3/4}
+      lemma52_stage6     (D1) actual / (D2)(D3) printed vs 0.30 uh P^{-3/4}
+    """
+    if p_grid is None:
+        p_grid = (10**6, 10**8) if fast else (
+            10**4, 10**5, 10**6, 10**8, 10**10, 10**12,
+        )
+    pieces = {
+        "e6_step5a": _empty_piece(),
+        "thm61_offset": _empty_piece(),
+        "thm61_zero_offset": _empty_piece(),
+        "lemma52_stage4": _empty_piece(),
+        "lemma52_stage6": _empty_piece(),
+    }
+    pieces["lemma52_stage4"]["n_band_fail"] = 0
+    pieces["lemma52_stage6"]["by_class"] = {
+        "D1": None, "D2": None, "D3": None,
+    }
+    n_samples = 0
+    js_offset = (-1, 1) if fast else (-3, -2, -1, 1, 2, 3)
+
+    for p in p_grid:
+        ns = _sample_ns(p)
+        corners = _standing_corners(p, fast=fast)
+        p_m34 = p ** -0.75
+        q_max = p ** (1.0 / 16.0)
+        h_stage = [1]
+        h_big = max(1, int(p ** 0.125))
+        if h_big not in h_stage:
+            h_stage.append(h_big)
+        uh_vals = [1, max(1, int(p ** 0.5))]
+        hp_pairs: list[tuple[int, int]] = []
+        for h in h_stage:
+            for uh in uh_vals:
+                u = uh // h
+                if u >= 1:
+                    hp_pairs.append((h, u))
+        if not hp_pairs:
+            hp_pairs = [(1, 1)]
+        hprimes = [1]
+        if not fast:
+            hp2 = max(1, int(2 * p ** (1.0 / 24.0)))
+            if hp2 not in hprimes:
+                hprimes.append(hp2)
+
+        for n in ns:
+            for h1, h2, k in corners:
+                b1, b2 = _frozen_gaps(n, h1, h2)
+                nf = float(n)
+                n_samples += 1
+
+                for j in js_offset:
+                    smooth, window, composite = _cg_second(nf, k, b1, b2, j)
+                    pred_lead = ( _E6_SMOOTH - _E6_WINDOW ) * k * j * nf ** -0.125
+                    ratio = abs(smooth / window) if window != 0.0 else None
+                    sign_margin = composite / pred_lead if pred_lead != 0.0 else composite
+                    wit = {
+                        "P": p, "n": n, "h1": h1, "h2": h2, "k": k, "j": j,
+                        "smooth": smooth, "window": window, "composite": composite,
+                    }
+                    _record_piece(
+                        pieces["e6_step5a"],
+                        p=p, ratio=ratio, sign_margin=sign_margin,
+                        worse_is_larger=False, witness=wit,
+                    )
+                    window61 = _DECORATED_B_FACTOR * window
+                    composite61 = smooth + window61
+                    pred61 = ( _E6_SMOOTH - _THM61_WINDOW ) * k * j * nf ** -0.125
+                    ratio61 = abs(smooth / window61) if window61 != 0.0 else None
+                    margin61 = composite61 / pred61 if pred61 != 0.0 else composite61
+                    wit61 = {
+                        "P": p, "n": n, "h1": h1, "h2": h2, "k": k, "j": j,
+                        "smooth": smooth, "window": window61, "composite": composite61,
+                    }
+                    _record_piece(
+                        pieces["thm61_offset"],
+                        p=p, ratio=ratio61, sign_margin=margin61,
+                        worse_is_larger=False, witness=wit61,
+                    )
+
+                measured0 = _thm61_zero_curvature(nf, h1, h2, k)
+                predicted0 = _THM61_ZERO * k * h1 * h2 * nf ** -0.625
+                ratio0 = measured0 / predicted0 if predicted0 != 0.0 else None
+                interval_scale = k * h1 * h2 * p ** -0.625
+                sign_margin0 = measured0 / predicted0 if predicted0 != 0.0 else measured0
+                wit0 = {
+                    "P": p, "n": n, "h1": h1, "h2": h2, "k": k, "j": 0,
+                    "measured": measured0, "predicted": predicted0,
+                    "over_P_scale": (
+                        measured0 / interval_scale if interval_scale != 0.0 else None
+                    ),
+                }
+                _record_piece(
+                    pieces["thm61_zero_offset"],
+                    p=p, ratio=ratio0, sign_margin=sign_margin0,
+                    worse_is_larger=False, witness=wit0,
+                )
+
+                for h, u in hp_pairs:
+                    g2, beta = _w3_second(nf, n, h)
+                    pred4 = -(9.0 / 32.0) * beta * nf ** -1.25
+                    ratio4 = g2 / pred4 if pred4 != 0.0 else None
+                    band = abs(g2) / (h * p_m34) if h * p_m34 != 0.0 else None
+                    sign_margin4 = ratio4 if ratio4 is not None else -1.0
+                    in_band = (
+                        band is not None and _STAGE4_LO <= band <= _STAGE4_HI
+                    )
+                    wit4 = {
+                        "P": p, "n": n, "h": h, "u": u, "beta": beta,
+                        "g2": g2, "predicted": pred4, "band": band,
+                        "in_band": in_band,
+                    }
+                    _record_piece(
+                        pieces["lemma52_stage4"],
+                        p=p, ratio=ratio4, sign_margin=sign_margin4,
+                        worse_is_larger=False, witness=wit4,
+                    )
+                    if not in_band:
+                        pieces["lemma52_stage4"]["n_band_fail"] += 1
+
+                    main = _STAGE4_LO * u * h * p_m34
+                    for hprime in hprimes:
+                        for jp in ((1,) if fast else (1, 3)):
+                            _b1, _b2 = _frozen_gaps(n, h, hprime)
+                            _f, fp, fpp = _branch_f_derivs(nf ** 1.5, _b1, _b2, jp)
+                            xp = 1.5 * nf ** 0.5
+                            xpp = 0.75 * nf ** -0.5
+                            gpp = fpp * xp * xp + fp * xpp
+                            d1_curv = abs(q_max * gpp)
+                            d1_ratio = d1_curv / main if main != 0.0 else None
+                            d2_curv = (
+                                7.0 * k * h * abs(jp) * p ** -1.125
+                                + 28.0 * k * h * h1 * h2 * p ** -1.625
+                            )
+                            d2_ratio = d2_curv / main if main != 0.0 else None
+                            d3_curv = 2.0 * h * 3.0 * k * h1 * h2 * p ** -1.625
+                            d3_ratio = d3_curv / main if main != 0.0 else None
+                            for cls, rr in (
+                                ("D1", d1_ratio), ("D2", d2_ratio), ("D3", d3_ratio),
+                            ):
+                                if rr is None:
+                                    continue
+                                prev = pieces["lemma52_stage6"]["by_class"][cls]
+                                if prev is None or rr > prev:
+                                    pieces["lemma52_stage6"]["by_class"][cls] = rr
+                            worst6 = max(
+                                r for r in (d1_ratio, d2_ratio, d3_ratio) if r is not None
+                            )
+                            wit6 = {
+                                "P": p, "n": n, "h1": h1, "h2": h2, "k": k,
+                                "h": h, "u": u, "hprime": hprime, "j": jp,
+                                "D1": d1_ratio, "D2": d2_ratio, "D3": d3_ratio,
+                            }
+                            # Stage 6 "sign loss" is a domination failure.
+                            _record_piece(
+                                pieces["lemma52_stage6"],
+                                p=p, ratio=worst6,
+                                sign_margin=1.0 - worst6,
+                                worse_is_larger=True, witness=wit6,
+                            )
+
+    return {
+        "n_samples": n_samples,
+        "p_grid": list(p_grid),
+        "fast": fast,
+        "pieces": pieces,
+    }
+
+
 def _kernel_phase_scaled(n: int, coeff_num: int, coeff_den: int) -> float:
     """{c(n) theta_2(n)} with c = (num/den) n^{9/8}, exact scaled ints."""
     s = 10**12

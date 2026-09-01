@@ -1,0 +1,21 @@
+{
+  "id": "bourgain-2017-exponent-pair",
+  "title": "Decoupling, exponential sums and the Riemann zeta function",
+  "authors": ["Jean Bourgain"],
+  "year": 2017,
+  "identifiers": {
+    "doi": "10.1090/jams/860"
+  },
+  "url": {
+    "publisher": "https://doi.org/10.1090/jams/860"
+  },
+  "problem_area": "exponential-sums",
+  "relevant_concepts": [
+    "exponent pair (13/84, 55/84)",
+    "decoupling for the parabola applied to van der Corput theory",
+    "sub-Weyl exponent for zeta"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source",
+  "notes": "J. Amer. Math. Soc. 30 (2017), 205-224. Establishes the exponent pair (13/84, 55/84), the current record region of the exponent-pair hull relevant here. For the PS-inversion fluctuation sums T_j = sum_{m<=M} e(c m^{9/4} - j m^{2/3}) of docs/problems/juggler_ps_inversion_barrier.md, an exponent pair (p, q) gives the block bound M^{(5/4)p+q}; this pair yields 95/112 ~ 0.848, far above the sub-density target (5/4)p + q < 2/3 that the rate-free floor-Hardy axis requires. The exponent-pair conjecture point (0, 1/2) would clear the barrier and prove the axis with power savings."
+}
