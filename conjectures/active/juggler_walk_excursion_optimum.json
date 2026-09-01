@@ -1,0 +1,18 @@
+{
+  "id": "juggler_walk_excursion_optimum",
+  "title": "Walk-charge maximizers are semi-convergent near-returns of log2(3/2)",
+  "statement": "Every maximizer of the coupled exponent-walk charge over nonnegative closed walks with a prescribed (o, e) is a concatenation of primitive near-returns to the band [0, 1) whose type vectors (a, r) are semi-convergents of alpha = log2(3/2). At leftover (L, o_min(L)) the maximizer is the ceiling Christoffel word of slope o/L.",
+  "mathematical_domain": "Juggler cycle finance / exponent-walk optimal control",
+  "origin": "docs/problems/juggler_cycle_walk_excursion.md",
+  "status": "ACTIVE",
+  "first_seen": "2026-09-01",
+  "tested_range": "all feasible (L, o) with L <= 24; leftover maximizers at L = 19, 84, 1054; B/L table from the committed 19-row walk-charge survey at floor 26254995",
+  "counterexamples": [],
+  "proof_reference": "",
+  "lean_reference": "",
+  "literature": [
+    "fernandez-ibanez-2026"
+  ],
+  "notes": "Phase 0 is computationally verified: 123/123 small maximizers and the three leftover words split into types (2,1) and (1,1) only, and the leftover words equal the Christoffel words already in cycle_christoffel. This is a statement about the u >= 0 charge relaxation, not about realized cycle words. The one-parameter leftover-cell slogan stays refuted (juggler_christoffel_one_parameter). The dream uniform ratio B/theta < 1 at a fixed floor is false (survey row L=176251, margin 0.159) and is the same shape as juggler_baker_kills_near_convergents. Not a halt theorem.",
+  "not_a_halt_theorem": true
+}

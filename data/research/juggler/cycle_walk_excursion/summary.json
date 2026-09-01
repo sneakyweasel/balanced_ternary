@@ -1,0 +1,314 @@
+{
+  "model": "walk-DP maximizer reconstructed by predecessor traceback; primitive blocks are first returns to the band [0, 1); types tested against semi-convergents of log2(3/2)",
+  "named_types_present": true,
+  "lattice_generators_present": true,
+  "semi_convergent_count": 41,
+  "named_types": [
+    [
+      2,
+      1
+    ],
+    [
+      5,
+      3
+    ],
+    [
+      12,
+      7
+    ],
+    [
+      29,
+      17
+    ],
+    [
+      41,
+      24
+    ],
+    [
+      53,
+      31
+    ]
+  ],
+  "census": {
+    "l_max": 24,
+    "n_feasible": 123,
+    "n_all_cf": 123,
+    "n_non_cf": 0,
+    "non_cf_witnesses": []
+  },
+  "cf_lengths": [
+    {
+      "length": 19,
+      "odd_count": 12,
+      "feasible": true,
+      "walk_sum": 0.0003527702168841441,
+      "word_prefix": "OOEOOEOOEOEOOEOOEOE",
+      "word_suffix": "OOEOOEOOEOEOOEOOEOE",
+      "equals_christoffel": true,
+      "n_blocks": 7,
+      "n_closed": 7,
+      "type_histogram": {
+        "1,1": 2,
+        "2,1": 5
+      },
+      "all_closed_cf": true,
+      "non_cf_types": [],
+      "max_leftover_u": 0.5097750043269371,
+      "mean_leftover_u": 0.26186964811128083,
+      "open_tail": null
+    },
+    {
+      "length": 84,
+      "odd_count": 53,
+      "feasible": true,
+      "walk_sum": 0.0013331232371889112,
+      "word_prefix": "OOEOOEOOEOEOOEOOEOEOOEOOEOOEOEOOEOOEOEOOEOOEOOEOEOOEOOEOEOOEOOEOOEOEOOEOOEOEOOEO",
+      "word_suffix": "OOEOEOOEOOEOEOOEOOEOOEOEOOEOOEOEOOEOOEOE",
+      "equals_christoffel": true,
+      "n_blocks": 31,
+      "n_closed": 31,
+      "type_histogram": {
+        "1,1": 9,
+        "2,1": 22
+      },
+      "all_closed_cf": true,
+      "non_cf_types": [],
+      "max_leftover_u": 0.5684250302885598,
+      "mean_leftover_u": 0.2846012297534771,
+      "open_tail": null
+    },
+    {
+      "length": 1054,
+      "odd_count": 665,
+      "feasible": true,
+      "walk_sum": 0.016004827844587434,
+      "word_prefix": "OOEOOEOOEOEOOEOOEOEOOEOOEOOEOEOOEOOEOEOOEOOEOOEOEOOEOOEOEOOEOOEOOEOEOOEOOEOEOOEO",
+      "word_suffix": "OOEOEOOEOOEOEOOEOOEOOEOEOOEOOEOEOOEOOEOE",
+      "equals_christoffel": true,
+      "n_blocks": 389,
+      "n_closed": 389,
+      "type_histogram": {
+        "1,1": 113,
+        "2,1": 276
+      },
+      "all_closed_cf": true,
+      "non_cf_types": [],
+      "max_leftover_u": 0.5834877213949488,
+      "mean_leftover_u": 0.29176094127463387,
+      "open_tail": null
+    }
+  ],
+  "charge_density": {
+    "floor": 26254995,
+    "n": 26254996,
+    "n_rows": 19,
+    "B_over_L_min": 1.0698594823352282e-10,
+    "B_over_L_max": 1.0722273048323003e-10,
+    "B_over_L_median": 1.0712688863017303e-10,
+    "relative_spread": 0.0022102970853997007,
+    "C_min": 0.04798573638642162,
+    "C_max": 0.04809193884387551,
+    "C_median": 0.048048951498607134,
+    "uniform_ratio_false": true
+  },
+  "density_rows": [
+    {
+      "length": 50508,
+      "odd_count": 31867,
+      "theta": 7.264907458078721e-06,
+      "kill_margin": 1.1203711782857628,
+      "B": 5.40364627337877e-06,
+      "B_over_L": 1.0698594823352282e-10,
+      "C": 0.04798573638642162,
+      "theta_over_L": 1.4383676760273068e-10
+    },
+    {
+      "length": 51562,
+      "odd_count": 32532,
+      "theta": 5.0917748083758745e-05,
+      "kill_margin": 7.6902751297678655,
+      "B": 5.517547289015519e-06,
+      "B_over_L": 1.0700801537984406e-10,
+      "C": 0.04799563402516443,
+      "theta_over_L": 9.875052962212239e-10
+    },
+    {
+      "length": 76289,
+      "odd_count": 48133,
+      "theta": 3.2723920626624385e-05,
+      "kill_margin": 3.3398587749495956,
+      "B": 8.1649960868965e-06,
+      "B_over_L": 1.070271741259749e-10,
+      "C": 0.04800422717741021,
+      "theta_over_L": 4.2894677642418153e-10
+    },
+    {
+      "length": 77343,
+      "odd_count": 48798,
+      "theta": 7.63756498859861e-05,
+      "kill_margin": 7.687746288157922,
+      "B": 8.278937995050887e-06,
+      "B_over_L": 1.0704185246306565e-10,
+      "C": 0.048010810759888625,
+      "theta_over_L": 9.874927257280698e-10
+    },
+    {
+      "length": 101016,
+      "odd_count": 63734,
+      "theta": 1.4529762137277067e-05,
+      "kill_margin": 1.1195161716781683,
+      "B": 1.0815507099052603e-05,
+      "B_over_L": 1.0706726755219572e-10,
+      "C": 0.04802221003042246,
+      "theta_over_L": 1.4383624512232783e-10
+    },
+    {
+      "length": 102070,
+      "odd_count": 64399,
+      "theta": 5.8182285629109665e-05,
+      "kill_margin": 4.436148188558216,
+      "B": 1.092958032845402e-05,
+      "B_over_L": 1.0707926254976017e-10,
+      "C": 0.04802759007145203,
+      "theta_over_L": 5.700233724807452e-10
+    },
+    {
+      "length": 103124,
+      "odd_count": 65064,
+      "theta": 0.00010183290355044757,
+      "kill_margin": 7.684182310057502,
+      "B": 1.1043563185997667e-05,
+      "B_over_L": 1.0709013601099325e-10,
+      "C": 0.04803246707682472,
+      "theta_over_L": 9.874801554482717e-10
+    },
+    {
+      "length": 126797,
+      "odd_count": 80000,
+      "theta": 3.998859034844809e-05,
+      "kill_margin": 2.4536995684637244,
+      "B": 1.3581053559019788e-05,
+      "B_over_L": 1.0710863473914831e-10,
+      "C": 0.048040764195347196,
+      "theta_over_L": 3.1537489332119916e-10
+    },
+    {
+      "length": 127851,
+      "odd_count": 80665,
+      "theta": 8.364000248203635e-05,
+      "kill_margin": 5.089386509296322,
+      "B": 1.3695167751820171e-05,
+      "B_over_L": 1.0711819032952555e-10,
+      "C": 0.048045050104370116,
+      "theta_over_L": 6.541990479701867e-10
+    },
+    {
+      "length": 128905,
+      "odd_count": 81330,
+      "theta": 0.00012728950909364421,
+      "kill_margin": 7.681448273017352,
+      "B": 1.3809191578872455e-05,
+      "B_over_L": 1.0712688863017303e-10,
+      "C": 0.048048951498607134,
+      "theta_over_L": 9.874675853818255e-10
+    },
+    {
+      "length": 151524,
+      "odd_count": 95601,
+      "theta": 2.179456403797847e-05,
+      "kill_margin": 1.11866180615836,
+      "B": 1.623559200838773e-05,
+      "B_over_L": 1.071486497742122e-10,
+      "C": 0.048058711888065486,
+      "theta_over_L": 1.4383572264445548e-10
+    },
+    {
+      "length": 152578,
+      "odd_count": 96266,
+      "theta": 6.54467703982676e-05,
+      "kill_margin": 3.335750265014053,
+      "B": 1.6349837651027187e-05,
+      "B_over_L": 1.0715724187646442e-10,
+      "C": 0.048062565649802304,
+      "theta_over_L": 4.289397580140492e-10
+    },
+    {
+      "length": 153632,
+      "odd_count": 96931,
+      "theta": 0.00010909707120190581,
+      "kill_margin": 5.522003481221865,
+      "B": 1.6463992864154653e-05,
+      "B_over_L": 1.0716512747444968e-10,
+      "C": 0.0480661025276112,
+      "theta_over_L": 7.101194490855148e-10
+    },
+    {
+      "length": 154686,
+      "odd_count": 97596,
+      "theta": 0.0001527454665320767,
+      "kill_margin": 7.678094190369543,
+      "B": 1.657805771764261e-05,
+      "B_over_L": 1.0717232146181689e-10,
+      "C": 0.04806932920164708,
+      "theta_over_L": 9.874550155287273e-10
+    },
+    {
+      "length": 176251,
+      "odd_count": 111202,
+      "theta": 3.600206691677816e-06,
+      "kill_margin": 0.1587964188953959,
+      "B": 1.8893198353805325e-05,
+      "B_over_L": 1.0719484345510281e-10,
+      "C": 0.048079430850046324,
+      "theta_over_L": 2.042658873809406e-11
+    },
+    {
+      "length": 177305,
+      "odd_count": 111867,
+      "theta": 4.7253207293118546e-05,
+      "kill_margin": 2.071683081232796,
+      "B": 1.9007575560956604e-05,
+      "B_over_L": 1.072027047232543e-10,
+      "C": 0.04808295681534746,
+      "theta_over_L": 2.6650803583158145e-10
+    },
+    {
+      "length": 178359,
+      "odd_count": 112532,
+      "theta": 9.090430230323725e-05,
+      "kill_margin": 3.9616217337173962,
+      "B": 1.9121862274786284e-05,
+      "B_over_L": 1.0720996571401659e-10,
+      "C": 0.04808621354199593,
+      "theta_over_L": 5.096703968021644e-10
+    },
+    {
+      "length": 179413,
+      "odd_count": 113197,
+      "theta": 0.00013455349180521898,
+      "kill_margin": 5.829048052926544,
+      "B": 1.9236058565216218e-05,
+      "B_over_L": 1.0721663739648865e-10,
+      "C": 0.048089205949892896,
+      "theta_over_L": 7.499651184987653e-10
+    },
+    {
+      "length": 180467,
+      "odd_count": 113862,
+      "theta": 0.00017820077588224525,
+      "kill_margin": 7.674386768329014,
+      "B": 1.9350164502117074e-05,
+      "B_over_L": 1.0722273048323003e-10,
+      "C": 0.04809193884387551,
+      "theta_over_L": 9.874424458889727e-10
+    }
+  ],
+  "classification": {
+    "label": "WALK_EXCURSION_GREEN",
+    "reason": "every reconstructed maximizer through L=24 and at CF lengths 19, 84, 1054 splits into semi-convergents of alpha, and the committed survey has constant B/L; the leftover maximizers are the Christoffel words of slope o/L"
+  },
+  "not_a_halt_theorem": true,
+  "no_cycle_all_lengths": false,
+  "not_a_uniform_ratio_theorem": true,
+  "git_commit": "0d107dce297767e3e1b2cb58bcc8069aa91a87bc"
+}

@@ -5599,5 +5599,32 @@
     "related_conjectures": [
       "juggler_cycle_walk_charge"
     ]
+  },
+  {
+    "id": "J-cyclemin-walk-hug-exchange",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "Among nonnegative exponent walks with a prescribed (L, o) (u_k = (1+μ)a_k − k ≥ 0, μ = log_2(3/2)), the hug word that takes E iff u ≥ 1 and an even remains is the unique prefix-minimal path. First disagreement with any other admissible word is hug-E versus other-O, because hug takes O only when E is illegal and the two words share the same prefix state; the odd-count gap δ_k = a_k(other) − a_k(hug) is a path in {−1,0,+1} that cannot go negative, since δ = 0 restores the same state. Feasible pairs ( (1+μ)o ≥ L ) never strand: o_left = 0 implies u = surplus + e_left ≥ e_left. The charge g(u) = 1/(n^{2^u} 2^u ln n) is strictly decreasing, so hug uniquely maximises the walk sum. This is a statement about the u ≥ 0 relaxation, not about realized cycle words. Not a halt theorem.",
+    "source": "docs/problems/juggler_cycle_walk_exchange.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_walk_exchange.py"
+    ],
+    "related_conjectures": [
+      "juggler_walk_hug_exchange",
+      "juggler_walk_greedy_prefix"
+    ]
+  },
+  {
+    "id": "J-cyclemin-walk-cstar",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "The infinite hug walk is rotation by α = log_2(3/2) on the circle R/(1+α)Z. Unique ergodicity gives charge-per-letter C_*(n) = (1/ln 3) ∫_1^3 n^{1-t} t^{-2} dt = 1/(ln 3 ln n) ∫_0^{2 ln n} e^{-s}/(1+s/ln n)^2 ds, and the integrand is at most e^{-s}, so C_*(n) < 1/(ln 3 ln n). This is the infinite-word average, not a finite-L inequality: leftover hug C exceeds C_* by up to 1.57e-5 on the certified 19-row survey, so C_hug ≤ C_* is false. Uniform B/θ < 1 at a fixed floor stays false. Not a halt theorem and not a certified replacement for the walk-charge DP.",
+    "source": "docs/problems/juggler_cycle_walk_exchange.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_walk_exchange.py"
+    ],
+    "related_conjectures": [
+      "juggler_walk_hug_exchange"
+    ]
   }
 ]

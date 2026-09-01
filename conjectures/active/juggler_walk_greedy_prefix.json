@@ -1,0 +1,18 @@
+{
+  "id": "juggler_walk_greedy_prefix",
+  "title": "Greedy E-when-legal prefix-minimizes the exponent walk among admissible words",
+  "statement": "Among all nonnegative exponent walks with a prescribed (L, o), the hug word that takes E at the first legal time (u >= 1 and an even remaining) satisfies a_k(hug) = min a_k among admissible walks for every k (equivalently u_k(hug) = min u_k), and therefore attains the walk-charge maximum. At the certified reduced base its charge equals the certified survey DP, and leftover charge-per-letter equals the mechanical average of that hugging walk.",
+  "mathematical_domain": "Juggler cycle finance / exponent-walk optimal control",
+  "origin": "docs/problems/juggler_cycle_walk_greedy.md",
+  "status": "ACTIVE",
+  "first_seen": "2026-09-01",
+  "tested_range": "all feasible (L, o) with L <= 24; leftover maximizers at L = 19, 84, 1054; streamed hug charge vs committed 19-row walk-charge survey at floor 26254995; leftover C vs mechanical prefix 10^5",
+  "counterexamples": [],
+  "proof_reference": "",
+  "lean_reference": "",
+  "literature": [
+    "fernandez-ibanez-2026"
+  ],
+  "notes": "Prefix-min is now the exchange lemma of juggler_walk_hug_exchange (EXACT — HUMAN PROOF). Phase 0 of this record remains the computational identification: hug equals the prefix-min a_k path on 123/123 feasible pairs through L=24 and at leftover 19,84,1054; streamed hug B matches certified survey B on all 19 leftovers (max relative error 8.15e-11), including the 1054-family offsets where Christoffel lost; leftover C agrees with mechanical C_*=0.047947 to relative 2.12e-4. Finite leftover C equals C_*(n) only up to an O(1/L) excess (C_hug <= C_* is false). The leftover-cell slogan stays refuted. Uniform B/theta<1 at a fixed floor stays false. Not a halt theorem.",
+  "not_a_halt_theorem": true
+}

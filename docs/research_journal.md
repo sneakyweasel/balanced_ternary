@@ -17909,4 +17909,167 @@ Best next question
   and 478245 at the floor 162849448, making the period bound 478244?
 ```
 
+## Juggler walk-excursion structure
+
+- **Date:** 2026-09-01
+- **Objective:** Decide whether the walk-DP maximizer is a concatenation of near-return blocks whose types are semi-convergents of \(\alpha=\log_2(3/2)\), and whether that explains the survey's constant charge-per-letter. Not a floor raise and not a uniform \(B/\theta\) theorem
+- **Hypotheses:** maximizing charge means keeping \(u\) low, so the optimizer hugs the band \([0,1)\) along continued-fraction returns of \(\alpha\); the bunched types \(O^{12}E^7,\ldots\) are legal but not maximal
+- **Major results:** Classification **WALK_EXCURSION_GREEN**. Traceback DP (certified `walk_budget` untouched) reconstructs a maximizer; primitive blocks are first descents into \([0,1)\). All \(123\) feasible maximizers with \(L\le 24\) are CF concatenations of types \((2,1)\) and \((1,1)\) only. Leftover maximizers at \(L=19,84,1054\) equal the ceiling Christoffel words of slope \(o/L\). Committed survey \(B/L\) relative spread \(2.21\cdot 10^{-3}\), \(C_{\mathrm{median}}=0.04805\). The dream uniform ratio \(B\le(1-\varepsilon)\frac56\theta\) at a fixed floor is already false: \(L=176251\) has margin \(0.159\) at the same \(N_0\) that kills \(50508\) with margin \(1.120\) — the Baker dominance shape, not a new gap bound. Artifacts `cycle_walk_excursion/summary.json`
+- **Refuted ideas:** uniform \(B/\theta<1\) over the infinite survivor lattice at a fixed certified floor (survey row \(176251\)); bunched long CF types as charge maximizers
+- **Literature:** walk charge (`juggler_cycle_walk_charge`); Christoffel leftover-cell **REFUTED** (`juggler_christoffel_one_parameter`); Baker transfer **REFUTED** (`juggler_baker_kills_near_convergents`); two-type cheap cap (`juggler_cycle_cyclic_valley`)
+- **Open:** a human proof that the mechanical word attains the DP and \(B\le C_* L/(n'\ln n')\)
+- **Decision:** PROMOTE the structure; do not promote a uniform-ratio theorem; do not raise \(N_0\) from this branch
+
+```text
+What was learned
+- the walk-DP maximizer hugs the floor: only types (2,1)=OOE and
+  (1,1)=OE, the two smallest semi-convergents of log2(3/2)
+- on leftover (L, o_min) that word is exactly the Christoffel word
+  of slope o/L (checked at 19, 84, 1054)
+- bunched O^12 E^7 is a legal near-return and a named type, but it
+  is not the charge maximizer
+- survey B/L is constant to three digits (C ~ 0.048); B/theta is
+  not, so the uniform-ratio dream dies at any fixed floor
+- this is the relaxation adversary, not a realized-cycle-word claim;
+  the closed leftover-cell slogan stays closed
+Strongest theorem
+- none; the identification is COMPUTATIONALLY VERIFIED
+Strongest refutation
+- B <= (1-eps)(5/6) theta uniformly in leftover L at fixed N0:
+  L=176251, margin 0.159, same B/L as 50508
+Reusable machinery
+- cycle_walk_excursion.py (traceback, near-return split,
+  alpha semi-convergents, survey B/L table)
+Branch status
+- PROMOTE
+Why
+- Phase-0 promotion criterion is met: maximizers are the CF
+  hugging family and C is that density; the next question is a
+  human density bound, not another DP or floor
+Best next question
+- does the mechanical word of slope o/L maximise the walk charge
+  with an explicit C_* such that B <= C_* L / (n' ln n')?
+```
+
+## Juggler mechanical extremizer
+
+- **Date:** 2026-09-01
+- **Objective:** Decide whether ceiling Christoffel prefix-minimizes \(u_k\) among admissible \(u\ge 0\) walks of a given \((L,o)\), and whether leftover \(B/L\) is the mechanical average of slope \(1/(1+\log_2(3/2))\) at the certified floor
+- **Hypotheses:** an exchange lemma (take \(E\) at the first legal time) makes Christoffel pointwise lowest; the survey \(C\approx 0.04805\) is then \(C_*(n')\)
+- **Major results:** Classification **WALK_MECHANICAL_CLOSED**. Prefix dominance fails: \((4,3)\) greedy `OOEO` has \(a_3=2<3=\) Christoffel `OOOE`. Only \(29/123\) feasible pairs with \(L\le 24\) match (monochrome plus \((3,2),(6,4),(9,6),(11,7),(19,12)\)); leftover \(19,84,1054\) still match. Certified survey \(B\) equals Christoffel \(B\) on seeds \(50508,101016,151524,176251\) and exceeds it by up to \(1.50\cdot 10^{-3}\) on \(1054\)-family offsets. Mechanical prefix \(10^5\) has \(C_*=0.047947\), matching seed \(C\); the irrational walk reaches \(u=1+\alpha\), not a \([0,1)\) confinement. Uniform \(B/\theta<1\) at the fixed floor stays false (\(B/\theta=5.25\) at \(176251\)). Conjecture `juggler_walk_christoffel_prefix` moved to `conjectures/refuted/`. Artifact `cycle_walk_mechanical/summary.json`
+- **Refuted ideas:** ceiling Christoffel is the pointwise \(u\)-minimizer / charge maximizer for every admissible \((L,o)\); uniform \(B/\theta<1\) at fixed \(N_0\) (already)
+- **Literature:** walk excursion; walk charge; `juggler_christoffel_one_parameter` REFUTED; `juggler_baker_kills_near_convergents` REFUTED
+- **Open:** a greedy-exchange lemma, not a Christoffel one
+- **Decision:** CLOSE
+
+```text
+What was learned
+- ceiling Christoffel is not prefix-minimal off the critical slope:
+  greedy OOEO undercuts OOOE at (4,3)
+- greedy = Christoffel exactly on short convergents and leftover
+  seeds; the certified DP matches Christoffel B only there
+- family offsets have a 0.03--0.15% charge surplus over Christoffel;
+  the true adversary is greedy E-when-legal
+- the survey C plateau is the mechanical average C_*=0.047947 at
+  this floor, on the seeds
+- B/theta at fixed N0 still blows up on good convergents
+Strongest theorem
+- none
+Strongest refutation
+- juggler_walk_christoffel_prefix: (4,3) and survey offsets
+Reusable machinery
+- cycle_walk_mechanical.py (prefix-min DP, greedy word,
+  streamed Christoffel charge, mechanical prefix average)
+Branch status
+- CLOSE
+Why
+- the Phase-0 falsifier fired: an admissible word beats Christoffel
+  both pointwise and in certified survey B; the surviving greedy
+  identification is a different question
+Best next question
+- does greedy E-at-first-legal-time prefix-minimize u_k among all
+  admissible walks, and is that enough for an explicit C_*(n')?
+```
+
+## Juggler greedy hug-word maximizer
+
+- **Date:** 2026-09-01
+- **Objective:** Decide whether greedy \(E\)-when-legal prefix-minimizes \(a_k\) among admissible \(u\ge 0\) walks of a given \((L,o)\), and whether that word's charge equals the certified survey \(B\) (and the mechanical \(C_*\)) at floor \(26254995\)
+- **Hypotheses:** \(g\) decreasing plus a pointwise min-\(u\) path identifies the DP maximizer as an \(O(L)\) hug word; leftover \(C\) is then the ergodic average of that walk, including family offsets
+- **Major results:** Classification **WALK_GREEDY_GREEN**. Hug equals the prefix-min path on \(123/123\) feasible pairs with \(L\le 24\) and at leftover \(19,84,1054\); the streamed \(O(L)\) hug equals the \(O(Lo)\) table-greedy word on the same set. Streamed hug \(B\) matches certified survey \(B\) on all 19 leftovers (max relative error \(8.15\cdot 10^{-11}\)), including every \(1054\)-family offset. Leftover \(C\in[0.047946,0.047957]\) vs mechanical \(C_*=0.047947\) (relative spread \(2.12\cdot 10^{-4}\)). Uniform \(B/\theta<1\) at the fixed floor stays false (\(B/\theta=5.25\) at \(176251\)). Conjecture `juggler_walk_greedy_prefix` opened in `conjectures/active/`. Artifact `cycle_walk_greedy/summary.json`
+- **Refuted ideas:** none new; Christoffel prefix-dominance and uniform \(B/\theta<1\) at fixed \(N_0\) remain refuted
+- **Literature:** walk mechanical CLOSE; walk excursion; walk charge; `juggler_walk_christoffel_prefix` REFUTED; `juggler_christoffel_one_parameter` REFUTED; `juggler_baker_kills_near_convergents` REFUTED
+- **Open:** a human exchange lemma for the hug word, and an explicit bound or integral for \(C_*(n')\)
+- **Decision:** PROMOTE
+
+```text
+What was learned
+- hug E-when-legal stays on the prefix-min a_k path: 123/123
+  feasible pairs through L=24, and leftover 19,84,1054
+- the completable table is redundant on feasible pairs; the
+  stream is O(L) and usable at survey lengths
+- hug B equals certified survey B on all 19 leftovers
+  (max rel 8.15e-11), including the offsets where Christoffel lost
+- leftover C is the mechanical average C_*=0.047947 of that
+  same hugging policy, on seeds and offsets
+- B/theta at fixed N0 still blows up on good convergents
+Strongest theorem
+- none (identification is COMPUTATIONALLY VERIFIED)
+Strongest refutation
+- none new; Christoffel prefix-dominance stays refuted
+Reusable machinery
+- cycle_walk_greedy.py (streamed hug word and hug charge)
+Branch status
+- PROMOTE
+Why
+- Phase-0 promotion criterion fired: prefix-min on the census
+  and hug B = survey B on every leftover; C_* is that walk's
+  average, not 19 independent DPs
+Best next question
+- a human exchange lemma for the hug word, together with an
+  explicit bound or integral for C_*(n')?
+```
+
+## Juggler hug-word exchange and explicit C_*
+
+- **Date:** 2026-09-01
+- **Objective:** Prove that hug \(E\)-when-legal is the unique prefix-min admissible walk, and identify leftover \(C\) with an explicit integral \(C_*(n)\)
+- **Hypotheses:** a \(\delta\)-invariant (first disagreement is hug-\(E\) vs other-\(O\)) gives prefix-min for every feasible \((L,o)\); the infinite hug walk is rotation by \(\alpha\) on a circle of length \(1+\alpha\), so \(C_*\) is the Laplace integral \((1/\ln 3)\int_1^3 n^{1-t}t^{-2}\,dt\)
+- **Major results:** Classification **WALK_EXCHANGE_GREEN**. Exchange holds on all \(507\) admissible words through \(L\le 12\) (\(35/35\) pairs); no-strand is the surplus identity \(u=\mathrm{surplus}+e_{\mathrm{left}}\). \(C_*=0.047941\) at the \(50508\) reduced base matches mechanical / IET prefixes \(0.047947\) (relative \(1.16\cdot 10^{-4}\)). Elementary bound \(C_*<1/(\ln 3\,\ln n)=0.053285\). Leftover \(C\le C_*\) is **false** (excess up to \(1.57\cdot 10^{-5}\)). The simple bound still sits above all 19 leftover \(C\) and would kill the same 18 lengths (margin \(1.008\) at \(50508\), \(0.143\) at \(176251\)). Conjecture `juggler_walk_hug_exchange` recorded as **EXACT — HUMAN PROOF**. Artifact `cycle_walk_exchange/summary.json`
+- **Refuted ideas:** \(C_{\mathrm{hug}}\le C_*\); uniform \(B/\theta<1\) at fixed \(N_0\) (already)
+- **Literature:** walk greedy PROMOTE; walk mechanical CLOSE; walk charge; unique ergodicity of irrational rotation (KNOWN); `juggler_walk_christoffel_prefix` REFUTED; `juggler_christoffel_one_parameter` REFUTED; `juggler_baker_kills_near_convergents` REFUTED
+- **Open:** a Koksma envelope \(C_L\le C_*+1/L\) or \(C_L\le 1/(\ln 3\,\ln n')\) that would make the 18 kills DP-free
+- **Decision:** PROMOTE
+
+```text
+What was learned
+- hug is the unique prefix-min admissible walk: first split is
+  E vs O, and the odd-count gap cannot go negative
+- no-strand is the surplus identity, so the completable table
+  is not an extra hypothesis
+- the survey plateau C≈0.048 is the Laplace integral of
+  Lebesgue measure on the circle of length 1+α
+- C_* < 1/(ln 3 ln n); leftover C exceeds C_* by O(1/L) and
+  is not bounded by C_*
+- the simple bound would recover the same 18 kills and still
+  miss 176251; that is not a certified table
+Strongest theorem
+- hug uniquely maximises walk charge; C_*(n) =
+  (1/ln 3) ∫_1^3 n^{1-t} t^{-2} dt < 1/(ln 3 ln n)
+Strongest refutation
+- C_hug <= C_* fails (excess 1.57e-5 at L=180467)
+Reusable machinery
+- cycle_walk_exchange.py (δ-census, C_* quadrature, envelopes)
+Branch status
+- PROMOTE
+Why
+- the exchange lemma is a human δ-invariant, not a finite
+  census; C_* is a closed Laplace integral, not a plateau of
+  19 DPs; the finite envelope is a different question
+Best next question
+- does Koksma give C_L <= C_*(n') + 1/L (or
+  C_L <= 1/(ln 3 ln n')) for leftover hug words, making the
+  18 kills DP-free?
+```
+
 

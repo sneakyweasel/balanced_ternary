@@ -1,0 +1,277 @@
+{
+  "model": "hug word: E iff u>=1 and evens remain; compared to the prefix-min a_k DP and to certified survey B at n e^{-D}",
+  "certified_base": {
+    "length": 50508,
+    "odd_count": 31867,
+    "n": 26254996,
+    "deficit_D": 0.0007456639279931664,
+    "log_n": 17.08262118877416
+  },
+  "census": {
+    "l_max": 24,
+    "n_feasible": 123,
+    "n_prefix_min": 123,
+    "n_table_match": 123,
+    "prefix_failures": [],
+    "table_failures": []
+  },
+  "cf_lengths": [
+    {
+      "length": 19,
+      "odd_count": 12,
+      "hug_is_prefix_min": true,
+      "hug_equals_table_greedy": true
+    },
+    {
+      "length": 84,
+      "odd_count": 53,
+      "hug_is_prefix_min": true,
+      "hug_equals_table_greedy": true
+    },
+    {
+      "length": 1054,
+      "odd_count": 665,
+      "hug_is_prefix_min": true,
+      "hug_equals_table_greedy": true
+    }
+  ],
+  "survey_compare": {
+    "floor": 26254995,
+    "n": 26254996,
+    "n_rows": 19,
+    "max_relative_mismatch": 8.150707698712074e-11,
+    "all_match": true,
+    "uniform_ratio_false": true
+  },
+  "survey_rows": [
+    {
+      "length": 50508,
+      "odd_count": 31867,
+      "theta": 7.264907458078721e-06,
+      "survey_B": 5.40364627337877e-06,
+      "hug_B": 5.40364627325587e-06,
+      "relative_mismatch": 2.27439471912391e-11,
+      "C": 0.047947875543866106,
+      "B_over_theta": 0.7438011157660251,
+      "kill_margin": 1.1203711783112447
+    },
+    {
+      "length": 51562,
+      "odd_count": 32532,
+      "theta": 5.0917748083758745e-05,
+      "survey_B": 5.517547289015519e-06,
+      "hug_B": 5.517547288887299e-06,
+      "relative_mismatch": 2.3238669776121664e-11,
+      "C": 0.047956975448478975,
+      "B_over_theta": 0.10836196604396245,
+      "kill_margin": 7.690275129946578
+    },
+    {
+      "length": 76289,
+      "odd_count": 48133,
+      "theta": 3.2723920626624385e-05,
+      "survey_B": 8.1649960868965e-06,
+      "hug_B": 8.16499608661547e-06,
+      "relative_mismatch": 3.441891242996852e-11,
+      "C": 0.04794703032392855,
+      "B_over_theta": 0.24951154783001087,
+      "kill_margin": 3.33985877506455
+    },
+    {
+      "length": 77343,
+      "odd_count": 48798,
+      "theta": 7.63756498859861e-05,
+      "survey_B": 8.278937995050887e-06,
+      "hug_B": 8.278937994762292e-06,
+      "relative_mismatch": 3.485885384060463e-11,
+      "C": 0.04795281620475901,
+      "B_over_theta": 0.10839761111193327,
+      "kill_margin": 7.687746288425908
+    },
+    {
+      "length": 101016,
+      "odd_count": 63734,
+      "theta": 1.4529762137277067e-05,
+      "survey_B": 1.0815507099052603e-05,
+      "hug_B": 1.0815507098558754e-05,
+      "relative_mismatch": 4.566119765320324e-11,
+      "C": 0.04794646059337748,
+      "B_over_theta": 0.7443691779930006,
+      "kill_margin": 1.1195161717292865
+    },
+    {
+      "length": 102070,
+      "odd_count": 64399,
+      "theta": 5.8182285629109665e-05,
+      "survey_B": 1.092958032845402e-05,
+      "hug_B": 1.0929580327949646e-05,
+      "relative_mismatch": 4.614763088926297e-11,
+      "C": 0.04795104231896801,
+      "B_over_theta": 0.18785065264746795,
+      "kill_margin": 4.4361481887629335
+    },
+    {
+      "length": 103124,
+      "odd_count": 65064,
+      "theta": 0.00010183290355044757,
+      "survey_B": 1.1043563185997667e-05,
+      "hug_B": 1.104356318548278e-05,
+      "relative_mismatch": 4.6623322838972965e-11,
+      "C": 0.0479551216549455,
+      "B_over_theta": 0.108447886689314,
+      "kill_margin": 7.684182310415764
+    },
+    {
+      "length": 126797,
+      "odd_count": 80000,
+      "theta": 3.998859034844809e-05,
+      "survey_B": 1.3581053559019788e-05,
+      "hug_B": 1.3581053558242017e-05,
+      "relative_mismatch": 5.7268831153439015e-11,
+      "C": 0.04794566457332928,
+      "B_over_theta": 0.3396232135191803,
+      "kill_margin": 2.453699568604245
+    },
+    {
+      "length": 127851,
+      "odd_count": 80665,
+      "theta": 8.364000248203635e-05,
+      "survey_B": 1.3695167751820171e-05,
+      "hug_B": 1.3695167751029178e-05,
+      "relative_mismatch": 5.775710541105479e-11,
+      "C": 0.04794915219924221,
+      "B_over_theta": 0.16373944697061119,
+      "kill_margin": 5.0893865095902715
+    },
+    {
+      "length": 128905,
+      "odd_count": 81330,
+      "theta": 0.00012728950909364421,
+      "survey_B": 1.3809191578872455e-05,
+      "hug_B": 1.380919157806832e-05,
+      "relative_mismatch": 5.823192516959871e-11,
+      "C": 0.04795225595624267,
+      "B_over_theta": 0.10848648625008984,
+      "kill_margin": 7.681448273464658
+    },
+    {
+      "length": 151524,
+      "odd_count": 95601,
+      "theta": 2.179456403797847e-05,
+      "survey_B": 1.623559200838773e-05,
+      "hug_B": 1.623559200727576e-05,
+      "relative_mismatch": 6.84895205497914e-11,
+      "C": 0.04794504608239266,
+      "B_over_theta": 0.744937681661545,
+      "kill_margin": 1.1186618062349767
+    },
+    {
+      "length": 152578,
+      "odd_count": 96266,
+      "theta": 6.54467703982676e-05,
+      "survey_B": 1.6349837651027187e-05,
+      "hug_B": 1.6349837649900017e-05,
+      "relative_mismatch": 6.894077384083416e-11,
+      "C": 0.047948100946917836,
+      "B_over_theta": 0.24981886119674446,
+      "kill_margin": 3.3357502652440227
+    },
+    {
+      "length": 153632,
+      "odd_count": 96931,
+      "theta": 0.00010909707120190581,
+      "survey_B": 1.6463992864154653e-05,
+      "hug_B": 1.6463992863011358e-05,
+      "relative_mismatch": 6.944212065998464e-11,
+      "C": 0.04795083957372029,
+      "B_over_theta": 0.15091141019305154,
+      "kill_margin": 5.522003481605326
+    },
+    {
+      "length": 154686,
+      "odd_count": 97596,
+      "theta": 0.0001527454665320767,
+      "survey_B": 1.657805771764261e-05,
+      "hug_B": 1.6578057716483963e-05,
+      "relative_mismatch": 6.989034686015976e-11,
+      "C": 0.04795326864245475,
+      "B_over_theta": 0.10853387725914965,
+      "kill_margin": 7.678094190906169
+    },
+    {
+      "length": 176251,
+      "odd_count": 111202,
+      "theta": 3.600206691677816e-06,
+      "survey_B": 1.8893198353805325e-05,
+      "hug_B": 1.8893198352302445e-05,
+      "relative_mismatch": 7.95461078518365e-11,
+      "C": 0.04794718453752011,
+      "B_over_theta": 5.2478093538284005,
+      "kill_margin": 0.15879641890802754
+    },
+    {
+      "length": 177305,
+      "odd_count": 111867,
+      "theta": 4.7253207293118546e-05,
+      "survey_B": 1.9007575560956604e-05,
+      "hug_B": 1.9007575559434984e-05,
+      "relative_mismatch": 8.00533527257704e-11,
+      "C": 0.04794991099111377,
+      "B_over_theta": 0.40224942703948574,
+      "kill_margin": 2.0716830813986418
+    },
+    {
+      "length": 178359,
+      "odd_count": 112532,
+      "theta": 9.090430230323725e-05,
+      "survey_B": 1.9121862274786284e-05,
+      "hug_B": 1.912186227324599e-05,
+      "relative_mismatch": 8.055136696404646e-11,
+      "C": 0.04795236885259784,
+      "B_over_theta": 0.210351565203807,
+      "kill_margin": 3.9616217340365103
+    },
+    {
+      "length": 179413,
+      "odd_count": 113197,
+      "theta": 0.00013455349180521898,
+      "survey_B": 1.9236058565216218e-05,
+      "hug_B": 1.9236058563657806e-05,
+      "relative_mismatch": 8.101513460548216e-11,
+      "C": 0.04795456304136929,
+      "B_over_theta": 0.14296216549700635,
+      "kill_margin": 5.829048053398786
+    },
+    {
+      "length": 180467,
+      "odd_count": 113862,
+      "theta": 0.00017820077588224525,
+      "survey_B": 1.9350164502117074e-05,
+      "hug_B": 1.9350164500539898e-05,
+      "relative_mismatch": 8.150707698712074e-11,
+      "C": 0.0479564983617572,
+      "B_over_theta": 0.10858630892452709,
+      "kill_margin": 7.67438676895453
+    }
+  ],
+  "mechanical": {
+    "prefix": 100000,
+    "rho": 0.6309297535714575,
+    "B": 1.0698359206718093e-05,
+    "C": 0.04794681958225883,
+    "mean_u": 0.7924757827793297,
+    "min_u": 0.0,
+    "max_u": 1.5849467325606383,
+    "band_fraction": 0.63093,
+    "odd_fraction": 0.63093
+  },
+  "classification": {
+    "label": "WALK_GREEDY_GREEN",
+    "reason": "hug E-when-legal stays on the prefix-min a_k path for every feasible pair through L=24 and at 19,84,1054; its charge equals the certified survey DP; leftover C agrees with the mechanical average",
+    "c_relative_spread_vs_mechanical": 0.00021181522171076137
+  },
+  "not_a_halt_theorem": true,
+  "no_cycle_all_lengths": false,
+  "not_a_uniform_ratio_theorem": true,
+  "git_commit": "0d107dce297767e3e1b2cb58bcc8069aa91a87bc"
+}

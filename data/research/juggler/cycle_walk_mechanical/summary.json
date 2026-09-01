@@ -1,0 +1,849 @@
+{
+  "model": "ceiling Christoffel / greedy-E prefix-min among u>=0 walks; mechanical limit is the ceiling-Beatty stream of slope 1/(1+log2(3/2)); charge at the reduced base n e^{-D}",
+  "certified_base": {
+    "length": 50508,
+    "odd_count": 31867,
+    "n": 26254996,
+    "deficit_D": 0.0007456639279931664,
+    "log_n": 17.08262118877416
+  },
+  "census": {
+    "l_max": 24,
+    "n_feasible": 123,
+    "n_prefix_min": 29,
+    "n_greedy_match": 29,
+    "prefix_ok_pairs": [
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        5,
+        5
+      ],
+      [
+        6,
+        4
+      ],
+      [
+        6,
+        6
+      ],
+      [
+        7,
+        7
+      ],
+      [
+        8,
+        8
+      ],
+      [
+        9,
+        6
+      ],
+      [
+        9,
+        9
+      ],
+      [
+        10,
+        10
+      ],
+      [
+        11,
+        7
+      ],
+      [
+        11,
+        11
+      ],
+      [
+        12,
+        12
+      ],
+      [
+        13,
+        13
+      ],
+      [
+        14,
+        14
+      ],
+      [
+        15,
+        15
+      ],
+      [
+        16,
+        16
+      ],
+      [
+        17,
+        17
+      ],
+      [
+        18,
+        18
+      ],
+      [
+        19,
+        12
+      ],
+      [
+        19,
+        19
+      ],
+      [
+        20,
+        20
+      ],
+      [
+        21,
+        21
+      ],
+      [
+        22,
+        22
+      ],
+      [
+        23,
+        23
+      ],
+      [
+        24,
+        24
+      ]
+    ],
+    "counterexample_4_3": {
+      "christoffel": "OOOE",
+      "greedy": "OOEO",
+      "prefix_min": {
+        "length": 4,
+        "odd_count": 3,
+        "holds": false,
+        "n_mismatches": 1,
+        "mismatches": [
+          {
+            "k": 3,
+            "min_a": 2,
+            "christoffel_a": 3
+          }
+        ]
+      }
+    },
+    "dominance_failures": [
+      {
+        "length": 4,
+        "odd_count": 3,
+        "prefix_min": false,
+        "greedy_equals_christoffel": false,
+        "mismatches": [
+          {
+            "k": 3,
+            "min_a": 2,
+            "christoffel_a": 3
+          }
+        ]
+      },
+      {
+        "length": 5,
+        "odd_count": 4,
+        "prefix_min": false,
+        "greedy_equals_christoffel": false,
+        "mismatches": [
+          {
+            "k": 3,
+            "min_a": 2,
+            "christoffel_a": 3
+          },
+          {
+            "k": 4,
+            "min_a": 3,
+            "christoffel_a": 4
+          }
+        ]
+      },
+      {
+        "length": 6,
+        "odd_count": 5,
+        "prefix_min": false,
+        "greedy_equals_christoffel": false,
+        "mismatches": [
+          {
+            "k": 3,
+            "min_a": 2,
+            "christoffel_a": 3
+          },
+          {
+            "k": 4,
+            "min_a": 3,
+            "christoffel_a": 4
+          },
+          {
+            "k": 5,
+            "min_a": 4,
+            "christoffel_a": 5
+          }
+        ]
+      },
+      {
+        "length": 7,
+        "odd_count": 5,
+        "prefix_min": false,
+        "greedy_equals_christoffel": false,
+        "mismatches": [
+          {
+            "k": 3,
+            "min_a": 2,
+            "christoffel_a": 3
+          },
+          {
+            "k": 6,
+            "min_a": 4,
+            "christoffel_a": 5
+          }
+        ]
+      },
+      {
+        "length": 7,
+        "odd_count": 6,
+        "prefix_min": false,
+        "greedy_equals_christoffel": false,
+        "mismatches": [
+          {
+            "k": 3,
+            "min_a": 2,
+            "christoffel_a": 3
+          },
+          {
+            "k": 4,
+            "min_a": 3,
+            "christoffel_a": 4
+          },
+          {
+            "k": 5,
+            "min_a": 4,
+            "christoffel_a": 5
+          },
+          {
+            "k": 6,
+            "min_a": 5,
+            "christoffel_a": 6
+          }
+        ]
+      },
+      {
+        "length": 8,
+        "odd_count": 6,
+        "prefix_min": false,
+        "greedy_equals_christoffel": false,
+        "mismatches": [
+          {
+            "k": 3,
+            "min_a": 2,
+            "christoffel_a": 3
+          },
+          {
+            "k": 6,
+            "min_a": 4,
+            "christoffel_a": 5
+          },
+          {
+            "k": 7,
+            "min_a": 5,
+            "christoffel_a": 6
+          }
+        ]
+      },
+      {
+        "length": 8,
+        "odd_count": 7,
+        "prefix_min": false,
+        "greedy_equals_christoffel": false,
+        "mismatches": [
+          {
+            "k": 3,
+            "min_a": 2,
+            "christoffel_a": 3
+          },
+          {
+            "k": 4,
+            "min_a": 3,
+            "christoffel_a": 4
+          },
+          {
+            "k": 5,
+            "min_a": 4,
+            "christoffel_a": 5
+          },
+          {
+            "k": 6,
+            "min_a": 5,
+            "christoffel_a": 6
+          },
+          {
+            "k": 7,
+            "min_a": 6,
+            "christoffel_a": 7
+          }
+        ]
+      },
+      {
+        "length": 9,
+        "odd_count": 7,
+        "prefix_min": false,
+        "greedy_equals_christoffel": false,
+        "mismatches": [
+          {
+            "k": 3,
+            "min_a": 2,
+            "christoffel_a": 3
+          },
+          {
+            "k": 4,
+            "min_a": 3,
+            "christoffel_a": 4
+          },
+          {
+            "k": 6,
+            "min_a": 4,
+            "christoffel_a": 5
+          },
+          {
+            "k": 7,
+            "min_a": 5,
+            "christoffel_a": 6
+          },
+          {
+            "k": 8,
+            "min_a": 6,
+            "christoffel_a": 7
+          }
+        ]
+      },
+      {
+        "length": 9,
+        "odd_count": 8,
+        "prefix_min": false,
+        "greedy_equals_christoffel": false,
+        "mismatches": [
+          {
+            "k": 3,
+            "min_a": 2,
+            "christoffel_a": 3
+          },
+          {
+            "k": 4,
+            "min_a": 3,
+            "christoffel_a": 4
+          },
+          {
+            "k": 5,
+            "min_a": 4,
+            "christoffel_a": 5
+          },
+          {
+            "k": 6,
+            "min_a": 5,
+            "christoffel_a": 6
+          },
+          {
+            "k": 7,
+            "min_a": 6,
+            "christoffel_a": 7
+          },
+          {
+            "k": 8,
+            "min_a": 7,
+            "christoffel_a": 8
+          }
+        ]
+      },
+      {
+        "length": 10,
+        "odd_count": 7,
+        "prefix_min": false,
+        "greedy_equals_christoffel": false,
+        "mismatches": [
+          {
+            "k": 3,
+            "min_a": 2,
+            "christoffel_a": 3
+          },
+          {
+            "k": 6,
+            "min_a": 4,
+            "christoffel_a": 5
+          },
+          {
+            "k": 9,
+            "min_a": 6,
+            "christoffel_a": 7
+          }
+        ]
+      },
+      {
+        "length": 10,
+        "odd_count": 8,
+        "prefix_min": false,
+        "greedy_equals_christoffel": false,
+        "mismatches": [
+          {
+            "k": 3,
+            "min_a": 2,
+            "christoffel_a": 3
+          },
+          {
+            "k": 4,
+            "min_a": 3,
+            "christoffel_a": 4
+          },
+          {
+            "k": 6,
+            "min_a": 4,
+            "christoffel_a": 5
+          },
+          {
+            "k": 7,
+            "min_a": 5,
+            "christoffel_a": 6
+          },
+          {
+            "k": 8,
+            "min_a": 6,
+            "christoffel_a": 7
+          },
+          {
+            "k": 9,
+            "min_a": 7,
+            "christoffel_a": 8
+          }
+        ]
+      },
+      {
+        "length": 10,
+        "odd_count": 9,
+        "prefix_min": false,
+        "greedy_equals_christoffel": false,
+        "mismatches": [
+          {
+            "k": 3,
+            "min_a": 2,
+            "christoffel_a": 3
+          },
+          {
+            "k": 4,
+            "min_a": 3,
+            "christoffel_a": 4
+          },
+          {
+            "k": 5,
+            "min_a": 4,
+            "christoffel_a": 5
+          },
+          {
+            "k": 6,
+            "min_a": 5,
+            "christoffel_a": 6
+          },
+          {
+            "k": 7,
+            "min_a": 6,
+            "christoffel_a": 7
+          },
+          {
+            "k": 8,
+            "min_a": 7,
+            "christoffel_a": 8
+          },
+          {
+            "k": 9,
+            "min_a": 8,
+            "christoffel_a": 9
+          }
+        ]
+      }
+    ],
+    "greedy_failures": [
+      {
+        "length": 4,
+        "odd_count": 3,
+        "prefix_min": false,
+        "greedy_equals_christoffel": false,
+        "greedy_prefix": "OOEO",
+        "christoffel_prefix": "OOOE"
+      },
+      {
+        "length": 5,
+        "odd_count": 4,
+        "prefix_min": false,
+        "greedy_equals_christoffel": false,
+        "greedy_prefix": "OOEOO",
+        "christoffel_prefix": "OOOOE"
+      },
+      {
+        "length": 6,
+        "odd_count": 5,
+        "prefix_min": false,
+        "greedy_equals_christoffel": false,
+        "greedy_prefix": "OOEOOO",
+        "christoffel_prefix": "OOOOOE"
+      },
+      {
+        "length": 7,
+        "odd_count": 5,
+        "prefix_min": false,
+        "greedy_equals_christoffel": false,
+        "greedy_prefix": "OOEOOEO",
+        "christoffel_prefix": "OOOEOOE"
+      },
+      {
+        "length": 7,
+        "odd_count": 6,
+        "prefix_min": false,
+        "greedy_equals_christoffel": false,
+        "greedy_prefix": "OOEOOOO",
+        "christoffel_prefix": "OOOOOOE"
+      },
+      {
+        "length": 8,
+        "odd_count": 6,
+        "prefix_min": false,
+        "greedy_equals_christoffel": false,
+        "greedy_prefix": "OOEOOEOO",
+        "christoffel_prefix": "OOOEOOOE"
+      },
+      {
+        "length": 8,
+        "odd_count": 7,
+        "prefix_min": false,
+        "greedy_equals_christoffel": false,
+        "greedy_prefix": "OOEOOOOO",
+        "christoffel_prefix": "OOOOOOOE"
+      },
+      {
+        "length": 9,
+        "odd_count": 7,
+        "prefix_min": false,
+        "greedy_equals_christoffel": false,
+        "greedy_prefix": "OOEOOEOOO",
+        "christoffel_prefix": "OOOOEOOOE"
+      },
+      {
+        "length": 9,
+        "odd_count": 8,
+        "prefix_min": false,
+        "greedy_equals_christoffel": false,
+        "greedy_prefix": "OOEOOOOOO",
+        "christoffel_prefix": "OOOOOOOOE"
+      },
+      {
+        "length": 10,
+        "odd_count": 7,
+        "prefix_min": false,
+        "greedy_equals_christoffel": false,
+        "greedy_prefix": "OOEOOEOOEO",
+        "christoffel_prefix": "OOOEOOEOOE"
+      },
+      {
+        "length": 10,
+        "odd_count": 8,
+        "prefix_min": false,
+        "greedy_equals_christoffel": false,
+        "greedy_prefix": "OOEOOEOOOO",
+        "christoffel_prefix": "OOOOEOOOOE"
+      },
+      {
+        "length": 10,
+        "odd_count": 9,
+        "prefix_min": false,
+        "greedy_equals_christoffel": false,
+        "greedy_prefix": "OOEOOOOOOO",
+        "christoffel_prefix": "OOOOOOOOOE"
+      }
+    ]
+  },
+  "cf_lengths": [
+    {
+      "length": 19,
+      "odd_count": 12,
+      "prefix_min": true,
+      "greedy_equals_christoffel": true,
+      "n_mismatches": 0
+    },
+    {
+      "length": 84,
+      "odd_count": 53,
+      "prefix_min": true,
+      "greedy_equals_christoffel": true,
+      "n_mismatches": 0
+    },
+    {
+      "length": 1054,
+      "odd_count": 665,
+      "prefix_min": true,
+      "greedy_equals_christoffel": true,
+      "n_mismatches": 0
+    }
+  ],
+  "survey_compare": {
+    "floor": 26254995,
+    "n": 26254996,
+    "n_rows": 19,
+    "max_relative_mismatch": 0.0015006172023980936,
+    "all_match": false,
+    "uniform_ratio_false": true
+  },
+  "survey_rows": [
+    {
+      "length": 50508,
+      "odd_count": 31867,
+      "theta": 7.264907458078721e-06,
+      "survey_B": 5.40364627337877e-06,
+      "christoffel_B": 5.40364627337877e-06,
+      "relative_mismatch": 0.0,
+      "C": 0.047947875544956636,
+      "B_over_theta": 0.7438011157829421,
+      "kill_margin": 1.1203711782857628
+    },
+    {
+      "length": 51562,
+      "odd_count": 32532,
+      "theta": 5.0917748083758745e-05,
+      "survey_B": 5.517547289015519e-06,
+      "christoffel_B": 5.515316248427051e-06,
+      "relative_mismatch": 0.0004043536868111336,
+      "C": 0.04793758386976209,
+      "B_over_theta": 0.10831814948599963,
+      "kill_margin": 7.693385978752436
+    },
+    {
+      "length": 76289,
+      "odd_count": 48133,
+      "theta": 3.2723920626624385e-05,
+      "survey_B": 8.1649960868965e-06,
+      "christoffel_B": 8.16276418401295e-06,
+      "relative_mismatch": 0.00027335014736035325,
+      "C": 0.047933923997773846,
+      "B_over_theta": 0.249443343820229,
+      "kill_margin": 3.3407719754613856
+    },
+    {
+      "length": 77343,
+      "odd_count": 48798,
+      "theta": 7.63756498859861e-05,
+      "survey_B": 8.278937995050887e-06,
+      "christoffel_B": 8.274475143046731e-06,
+      "relative_mismatch": 0.0005390609286871659,
+      "C": 0.04792696671679319,
+      "B_over_theta": 0.10833917819879638,
+      "kill_margin": 7.691892686973124
+    },
+    {
+      "length": 101016,
+      "odd_count": 63734,
+      "theta": 1.4529762137277067e-05,
+      "survey_B": 1.0815507099052603e-05,
+      "christoffel_B": 1.0815507099052601e-05,
+      "relative_mismatch": 1.566330528003624e-16,
+      "C": 0.047946460595566766,
+      "B_over_theta": 0.7443691780269893,
+      "kill_margin": 1.1195161716781683
+    },
+    {
+      "length": 102070,
+      "odd_count": 64399,
+      "theta": 5.8182285629109665e-05,
+      "survey_B": 1.092958032845402e-05,
+      "christoffel_B": 1.092288324254103e-05,
+      "relative_mismatch": 0.0006127486794304738,
+      "C": 0.04792166038332123,
+      "B_over_theta": 0.1877355474167916,
+      "kill_margin": 4.438868099124121
+    },
+    {
+      "length": 103124,
+      "odd_count": 65064,
+      "theta": 0.00010183290355044757,
+      "survey_B": 1.1043563185997667e-05,
+      "christoffel_B": 1.1034635205618019e-05,
+      "relative_mismatch": 0.0008084329513293361,
+      "C": 0.04791635315664866,
+      "B_over_theta": 0.10836021384926445,
+      "kill_margin": 7.690399482407968
+    },
+    {
+      "length": 126797,
+      "odd_count": 80000,
+      "theta": 3.998859034844809e-05,
+      "survey_B": 1.3581053559019788e-05,
+      "christoffel_B": 1.3576586521882879e-05,
+      "relative_mismatch": 0.00032891683384475123,
+      "C": 0.04792989443988612,
+      "B_over_theta": 0.33951150574653277,
+      "kill_margin": 2.4545068971009685
+    },
+    {
+      "length": 127851,
+      "odd_count": 80665,
+      "theta": 8.364000248203635e-05,
+      "survey_B": 1.3695167751820171e-05,
+      "christoffel_B": 1.3684003939981535e-05,
+      "relative_mismatch": 0.0008151643003535087,
+      "C": 0.04791006576490432,
+      "B_over_theta": 0.1636059724283305,
+      "kill_margin": 5.093538580109301
+    },
+    {
+      "length": 128905,
+      "odd_count": 81330,
+      "theta": 0.00012728950909364421,
+      "survey_B": 1.3809191578872455e-05,
+      "christoffel_B": 1.3795796927166325e-05,
+      "relative_mismatch": 0.0009699808732195406,
+      "C": 0.04790574318792702,
+      "B_over_theta": 0.10838125643973572,
+      "kill_margin": 7.688906365127502
+    },
+    {
+      "length": 151524,
+      "odd_count": 95601,
+      "theta": 2.179456403797847e-05,
+      "survey_B": 1.623559200838773e-05,
+      "christoffel_B": 1.623559200838773e-05,
+      "relative_mismatch": 0.0,
+      "C": 0.04794504608567639,
+      "B_over_theta": 0.7449376817125654,
+      "kill_margin": 1.11866180615836
+    },
+    {
+      "length": 152578,
+      "odd_count": 96266,
+      "theta": 6.54467703982676e-05,
+      "survey_B": 1.6349837651027187e-05,
+      "christoffel_B": 1.6340901591794816e-05,
+      "relative_mismatch": 0.0005465533923396402,
+      "C": 0.04792189475299282,
+      "B_over_theta": 0.24968232186790024,
+      "kill_margin": 3.337574427639666
+    },
+    {
+      "length": 153632,
+      "odd_count": 96931,
+      "theta": 0.00010909707120190581,
+      "survey_B": 1.6463992864154653e-05,
+      "christoffel_B": 1.644612676757269e-05,
+      "relative_mismatch": 0.001085161827351112,
+      "C": 0.04789880515635164,
+      "B_over_theta": 0.15074764690186654,
+      "kill_margin": 5.528002258254034
+    },
+    {
+      "length": 154686,
+      "odd_count": 97596,
+      "theta": 0.0001527454665320767,
+      "survey_B": 1.657805771764261e-05,
+      "christoffel_B": 1.655796079894012e-05,
+      "relative_mismatch": 0.00121226014800879,
+      "C": 0.04789513680926015,
+      "B_over_theta": 0.10840230597261577,
+      "kill_margin": 7.687413335197075
+    },
+    {
+      "length": 176251,
+      "odd_count": 111202,
+      "theta": 3.600206691677816e-06,
+      "survey_B": 1.8893198353805325e-05,
+      "christoffel_B": 1.8893198353805325e-05,
+      "relative_mismatch": 0.0,
+      "C": 0.04794718454133411,
+      "B_over_theta": 5.2478093542458435,
+      "kill_margin": 0.1587964188953959
+    },
+    {
+      "length": 177305,
+      "odd_count": 111867,
+      "theta": 4.7253207293118546e-05,
+      "survey_B": 1.9007575560956604e-05,
+      "christoffel_B": 1.899863457745425e-05,
+      "relative_mismatch": 0.00047039052790719187,
+      "C": 0.04792735581100631,
+      "B_over_theta": 0.4020602127513365,
+      "kill_margin": 2.072658039942376
+    },
+    {
+      "length": 178359,
+      "odd_count": 112532,
+      "theta": 9.090430230323725e-05,
+      "survey_B": 1.9121862274786284e-05,
+      "christoffel_B": 1.910398559803493e-05,
+      "relative_mismatch": 0.0009348815766194437,
+      "C": 0.04790753907026131,
+      "B_over_theta": 0.21015491141781314,
+      "kill_margin": 3.965328846601322
+    },
+    {
+      "length": 179413,
+      "odd_count": 113197,
+      "theta": 0.00013455349180521898,
+      "survey_B": 1.9236058565216218e-05,
+      "christoffel_B": 1.920925221676246e-05,
+      "relative_mismatch": 0.0013935468309619976,
+      "C": 0.047887736115892456,
+      "B_over_theta": 0.1427629410358965,
+      "kill_margin": 5.837182440017578
+    },
+    {
+      "length": 180467,
+      "odd_count": 113862,
+      "theta": 0.00017820077588224525,
+      "survey_B": 1.9350164502117074e-05,
+      "christoffel_B": 1.9321127312395964e-05,
+      "relative_mismatch": 0.0015006172023980936,
+      "C": 0.0478845340192517,
+      "B_over_theta": 0.1084233624502473,
+      "kill_margin": 7.685920392686542
+    }
+  ],
+  "mechanical": {
+    "prefix": 100000,
+    "rho": 0.6309297535714575,
+    "B": 1.0698359206718093e-05,
+    "C": 0.04794681958225883,
+    "mean_u": 0.7924757827793297,
+    "min_u": 0.0,
+    "max_u": 1.5849467325606383,
+    "band_fraction": 0.63093,
+    "odd_fraction": 0.63093
+  },
+  "classification": {
+    "label": "WALK_MECHANICAL_CLOSED",
+    "reason": "greedy hugging undercuts ceiling Christoffel off the critical slope: prefix-min fails at (4,3) (OOEO vs OOOE), and survey B exceeds Christoffel charge by up to 1.5006e-03 on family offsets; exact match only on seed multiples [50508, 151524, 176251]",
+    "c_relative_spread_vs_mechanical": 0.0012990551521415807,
+    "exact_survey_lengths": [
+      50508,
+      151524,
+      176251
+    ]
+  },
+  "not_a_halt_theorem": true,
+  "no_cycle_all_lengths": false,
+  "not_a_uniform_ratio_theorem": true,
+  "git_commit": "0d107dce297767e3e1b2cb58bcc8069aa91a87bc"
+}
