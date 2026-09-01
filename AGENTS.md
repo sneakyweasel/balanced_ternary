@@ -56,14 +56,17 @@ for external review.
  `theta_block_permutations`), general Ostrowski numeration
  (window digit cap \(s(L)\le 47\) structural), the transport
  inequality of Thm 5.3, the defect-to-hug-charge chain
- (§5.2 + Thm 5.4 analytic half), the Thm 4.6 certified identity
+ (§5.2 + Thm 5.4 analytic half), the Prop 5.5 Laplace bound
+ (`rotationAverage_gap`, quadratic-majorant FTC, no quadrature),
+ the Thm 4.6 certified identity
  (`cycleMin_defect_finance`), and the Thm 5.9 kill template
  (`cycleMin_hug_kill_criterion`) are Lean (`WalkChargeWords.lean`,
  `OstrowskiSandwich.lean`, `OstrowskiNumeration.lean`,
- `WalkTransport.lean`, `WalkChargeMax.lean`,
+ `RotationAverage.lean`, `WalkTransport.lean`, `WalkChargeMax.lean`,
  `DefectFinance.lean`); of the §5 envelope chain only the
- rotation average, DK's variation-versus-integral inequality
- (PARK: Mathlib-scale, no new lab consequence), and the
+ ergodic identification of \(C_*\), DK's
+ variation-versus-integral inequality
+ (both classical, PARK), and the
  per-length kill evaluations remain analytic prose / verified
  computation. The walk program is terminal: the
  fan-minimum reduction (`juggler_walk_fan_minimum_law`, CONJECTURE)

@@ -705,6 +705,24 @@ block-permutation fact that multiplication by \(p\) permutes
 \(\mathbb{Z}/q\) (`residue_mul_bijective`,
 `theta_block_permutations`).
 
+`RotationAverage.lean` proves the quantitative half of
+Proposition 5.5: for every \(\nu>0\) the rotation average
+\(C_*(\nu)=(1/\ln 3)\int_1^3 e^{\nu(1-t)}t^{-2}\,dt\) satisfies
+\(C_*(\nu)<1/(\ln 3\,\nu)\) and the sharper Laplace bound
+\(C_*(\nu)\le(1-2/\nu+6/\nu^2)/(\ln 3\,\nu)\), with the gap form
+\((2/\nu-6/\nu^2)/(\ln 3\,\nu)\le 1/(\ln 3\,\nu)-C_*(\nu)\)
+consumed by Theorem 5.8 (`rotation_average_lt`,
+`rotation_average_le`, `rotationAverage_lt`, `rotationAverage_le`,
+`rotationAverage_gap`). There is no quadrature: the quadratic
+majorant \(t^{-2}\le 1-2(t-1)+3(t-1)^2\) on \([1,3]\)
+(`inv_sq_le_quad`; the product with \(t^2\) is
+\(1+4(t-1)^3+3(t-1)^4\ge 1\)) reduces the bound to an exact
+fundamental-theorem-of-calculus evaluation with explicit
+antiderivative (`quadPrim`, `hasDerivAt_quadPrim`), whose boundary
+term \(-e^{-2\nu}(9/\nu+10/\nu^2+6/\nu^3)\) drops with the right
+sign. The ergodic identification of \(C_*\) as the infinite-hug-word
+average (unique ergodicity of the rotation) stays prose (KNOWN).
+
 `OstrowskiNumeration.lean` proves the digit-cap step of Theorem 5.8
 in general form: for any denominator sequence \(q\) with \(q_0>0\),
 \(q\) monotone, and the convergent recurrence bound

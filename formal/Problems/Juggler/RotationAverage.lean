@@ -99,9 +99,17 @@ theorem integral_quad_exp_le {ν : ℝ} (hν : 0 < ν) :
   have hval : quadPrim ν 1 = ((2 - 6 / ν) / ν - 1) / ν := by
     norm_num [quadPrim]
   have hend : quadPrim ν 3 ≤ 0 := by
-    unfold quadPrim
     have h0 : (0 : ℝ) ≤ 9 / ν + 10 / ν ^ 2 + 6 / ν ^ 3 := by positivity
-    nlinarith [mul_nonneg (Real.exp_pos (-ν * ((3 : ℝ) - 1))).le h0]
+    have hqeq : ((2 - 6 / ν) / ν - 1) / ν +
+        (2 - 6 / ν) / ν * ((3 : ℝ) - 1) +
+        -(3 / ν) * (((3 : ℝ) - 1) * ((3 : ℝ) - 1)) =
+        -(9 / ν + 10 / ν ^ 2 + 6 / ν ^ 3) := by
+      field_simp
+      ring
+    unfold quadPrim
+    rw [hqeq]
+    exact mul_nonpos_iff.mpr
+      (Or.inl ⟨(Real.exp_pos _).le, neg_nonpos_of_nonneg h0⟩)
   have hc : -(((2 - 6 / ν) / ν - 1) / ν) =
       (1 - 2 / ν + 6 / ν ^ 2) / ν := by
     field_simp

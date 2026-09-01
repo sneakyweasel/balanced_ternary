@@ -25,6 +25,7 @@ import Problems.Juggler.RunSurvivorLattice
 import Problems.Juggler.WalkChargeWords
 import Problems.Juggler.OstrowskiSandwich
 import Problems.Juggler.OstrowskiNumeration
+import Problems.Juggler.RotationAverage
 import Problems.Juggler.WalkTransport
 import Problems.Juggler.WalkChargeMax
 import Problems.Juggler.DefectFinance
@@ -130,6 +131,11 @@ The note's Lean-tagged theorems are listed in its Appendix A:
       (`DefectFinance.lean`): finance vs hug charge as one Lean
       implication; the per-length numeric kill evaluations stay
       verified computation
+* Prop 5.5 (Laplace bound) `rotation_average_le`,
+      `rotation_average_lt`, normalised `rotationAverage_le`,
+      `rotationAverage_lt`, gap form `rotationAverage_gap`
+      (`RotationAverage.lean`); the ergodic identification of
+      `C*` stays human/KNOWN
 * 5.6 `budgetedWord_eq_hugWord`, `hugOdds_pow_ge`, `hugOdds_pow_lt`,
       `hugOdds_pow_gt`, `hugOdds_least` (`WalkChargeWords.lean`)
 * 5.5 (certified quotient arithmetic) `theta_sandwich_upper`,

@@ -18825,6 +18825,20 @@ Best next question
 - **Open:** full DK on `AddCircle` (BV + circle integration) is PARKED as a Mathlib-scale project with no new mathematical consequence for the lab; the rotation average (Prop 5.5, Laplace integral) likewise stays prose
 - **Decision:** PROMOTE the hypothesis certificates (trust-boundary consolidation); PARK Lean-DK itself; no new mathematical branch opened
 
+## Juggler rotation average Laplace bound in Lean
+
+- **Date:** 2026-09-01
+- **Objective:** the DK pass left the rotation average (Prop 5.5) as the last laboratory-specific analytic step of §5; the question was whether the Laplace bound \(C_*(\nu)\le(1-2/\nu+6/\nu^2)/(\ln 3\,\nu)\) reduces to a certified finite quadrature. It reduces further — to *no* quadrature
+- **Hypotheses:** the quadratic majorant \(t^{-2}\le 1-2(t-1)+3(t-1)^2\) on \([1,3]\) (product with \(t^2\) is \(1+4(t-1)^3+3(t-1)^4\)) makes the bound an exact antiderivative evaluation — confirmed
+- **Major results:**
+  - **Prop 5.5 quantitative half is Lean** (`RotationAverage.lean`, new module): for all \(\nu>0\), \(C_*(\nu)<1/(\ln 3\,\nu)\) (`rotation_average_lt`) and \(C_*(\nu)\le(1-2/\nu+6/\nu^2)/(\ln 3\,\nu)\) (`rotation_average_le`, normalised `rotationAverage_le`), plus the gap form \((2/\nu-6/\nu^2)/(\ln 3\,\nu)\le 1/(\ln 3\,\nu)-C_*(\nu)\) (`rotationAverage_gap`) that the Theorem 5.8 window computation consumes
+  - **Mechanism:** majorant `inv_sq_le_quad` + explicit antiderivative `quadPrim` with \(q'-\nu q=1-2u+3u^2\) (FTC via `intervalIntegral.integral_eq_sub_of_hasDerivAt`); the \(t=3\) boundary term \(-e^{-2\nu}(9/\nu+10/\nu^2+6/\nu^3)\) drops with the right sign — scale-free in \(\nu\), no numeric window hypotheses
+  - **Boundary kept honest:** the ergodic identification of \(C_*\) (unique ergodicity) stays prose (KNOWN); of the §5 envelope chain only DK's variation-versus-integral inequality (PARK) and the per-length kill evaluations now remain outside Lean; ledger row `J-cyclemin-rotation-average` added, Paper A (Prop 5.5, Thm 5.8 proof, §1.2 roles, Appendix A), formalization map, barrels, `lean_paths.py`, AGENTS.md updated
+- **Refuted ideas:** none — the falsifier (integration plumbing ballooning into improper/BV machinery) did not fire; Lean lesson recorded: `convert` on `HasDerivAt` descends into instance args, use `rw` on the derivative equality + `exact` (defeq absorbs instance paths), and build squares as `(u-1)*(u-1)` to dodge `Pi.pow` normalization
+- **Literature:** none new
+- **Open:** none new; the window envelope's remaining analytic trust is exactly {DK variation inequality (classical), ergodic identification (classical)} plus verified numerics
+- **Decision:** PROMOTE (formalization landed into Paper A's trust boundary); no new mathematical branch opened
+
 ## Juggler above-anchor walk envelope (asymptotic descent, Phase-0)
 
 - **Date:** 2026-09-01
@@ -18972,4 +18986,52 @@ Best next question
   juggler_descent_time_log
 ```
 
+
+
+## Juggler flight envelope (fly exponent = peak walk weight)
+
+- **Date:** 2026-09-01
+- **Objective:** Package a Juggler fly-height theory: does the peak walk weight \(W=\max_k 3^{a_k}/2^k\) of the parity word predict the realized trajectory peak \(H(n)\), and does the Paper A Theorem 5.3 transport port from `CycleMin` to open `AboveAnchor` prefixes?
+- **Hypotheses:** the transport induction goes through verbatim off-cycle (confirmed - both injection cells were already anchor-form); large fly excess \(E_H\) on some flight would refute the idle-defect picture (did not fire)
+- **Major results:**
+  - **Flight envelope (EXACT - LEAN VERIFIED, `J-flight-envelope-transport`):** on `AboveAnchor n w` with \(n\ge 400\), \(w_k(\log n-\Delta)\le\log x_k\le w_k\log n\) with \(\Delta=1.05e/n+0.7o/(n\sqrt n)\) (`aboveAnchor_transport`, `aboveAnchor_flight_envelope`, `FlightEnvelope.lean`); the upper side is anchor-free (`follows_log_le_walkWeight`, log form of `power_bound_word`) - every realized peak obeys \(\log H\le w_P\log n\). The fly exponent \(\Phi=\log H/\log n\) of an ascent prefix is its peak walk weight up to \(O(w_P\Delta/\log n)\)
+  - **Razor sharp at height (COMPUTATIONALLY VERIFIED, float diagnostics):** atlas on odd \(n\le 2\cdot10^4\) plus the seven high-flyers (probe `flight_envelope.py`, artifact `data/research/juggler/flight_envelope/summary.json`, classification `FLIGHT_ENVELOPE_SHARP`): zero violations of either side; worst transport-applicable relative fly excess \(1.61\cdot10^{-4}\); the floors shave at most \(0.014\) **bits** off multi-million-bit ideal peaks (\(275485\): \(6342922\) bits, \(E_H=-3\cdot10^{-6}\) bits, \(\Phi=350988.1\)) - the parity word determines the peak to sub-bit precision
+  - **Peak placement (OBSERVATION):** all seven high-flyers peak on the ascent prefix, but \(1964/9999\) odd starts (\(19.6\%\)) peak *after* first descent (smallest \(n=19\)); those peaks are priced only by the anchor-free upper side - re-anchoring at valleys is the recorded reopening key
+- **Refuted ideas:** none (the predicted falsifier - a floor-suppressed flight family - did not appear through \(2\cdot10^4\))
+- **Literature:** none new
+- **Open:** does the excursion-decomposed (re-anchored) envelope compose across valleys into a whole-trajectory height law?
+- **Decision:** PROMOTE (theorem) / PARK (atlas expansion) - dossier `docs/problems/juggler_flight_envelope.md`
+
+```text
+What was learned
+- Theorem 5.3 transport holds verbatim on open descent-free
+  prefixes: both injection lemmas were already anchor-form,
+  so the port is mechanical and the flight envelope
+  w_k(log n - D) <= log x_k <= w_k log n is Lean-verified
+- the upper side needs no anchor: every realized peak, on or
+  off the ascent prefix, obeys log H <= w_P log n
+- the envelope is essentially exact at height: floors shave
+  <= 0.014 bits off 6.5M-bit peaks; Phi = w_P to 1e-9
+- 19.6% of odd starts peak after first descent - the
+  single-anchor lower side cannot price those peaks
+Strongest theorem
+- aboveAnchor_flight_envelope (FlightEnvelope.lean): the
+  two-sided fly-height sandwich on descent-free prefixes
+Strongest refutation
+- none (falsifier did not fire)
+Reusable machinery
+- FlightEnvelope.lean (transport off-cycle); flight atlas
+  probe with exact D/P/F1/peak census and envelope residuals
+Branch status
+- PROMOTE (Lean flight envelope) / PARK (atlas program)
+Why
+- the audit answered the target: the fly exponent is the peak
+  walk weight, the fly excess is idle exactly like the walk
+  defects, and any conversion to descent/divergence reduces
+  to the parked per-visit defect lower bounds - record and
+  stop
+Best next question
+- does the re-anchored excursion envelope compose across
+  valleys into a whole-trajectory height law?
+```
 

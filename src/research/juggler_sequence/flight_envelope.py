@@ -148,6 +148,7 @@ def flight(n: int, step_cap: int = STEP_CAP, bit_cap: int = BIT_CAP) -> dict[str
     peak = n
     peak_bits = n.bit_length()
     peak_time = 0
+    odds_at_peak = 0
     f1: int | None = None
     resolved = True
     while x != 1 and k < step_cap:
@@ -165,6 +166,7 @@ def flight(n: int, step_cap: int = STEP_CAP, bit_cap: int = BIT_CAP) -> dict[str
             peak = x
             peak_bits = bits
             peak_time = k
+            odds_at_peak = odds
         if descent_time is None:
             # still on the descent-free prefix (deficit priced at the anchor)
             if stepped_odd:
@@ -194,6 +196,10 @@ def flight(n: int, step_cap: int = STEP_CAP, bit_cap: int = BIT_CAP) -> dict[str
     # (peak always lies on the prefix when a descent was observed)
     log2_h = _log2_big(peak)
     phi = log2_h / log2_n if log2_n > 0 else float("nan")
+    # global upper envelope (no anchor needed): log2 H <= w_P^global log2 n
+    u_global = odds_at_peak * LOG2_3 - peak_time
+    predicted_global = math.exp(u_global * LN2) * log2_n
+    e_global = log2_h - predicted_global
     row: dict[str, Any] = {
         "n": n,
         "resolved": resolved,
@@ -207,6 +213,9 @@ def flight(n: int, step_cap: int = STEP_CAP, bit_cap: int = BIT_CAP) -> dict[str
         "u_max": round(u_max, 8),
         "u_argmax": u_argmax,
         "peak_in_prefix": descent_time == -1 or peak_time < descent_time,
+        "u_at_peak_global": round(u_global, 8),
+        "fly_excess_bits_global": round(e_global, 6),
+        "upper_ok_global": e_global <= FLOAT_TOL * max(1.0, predicted_global),
     }
     if descent_time != -1 and peak_time < descent_time:
         # replay the prefix to step peak_time for w_P and Delta_P
@@ -250,11 +259,14 @@ def atlas(n_max: int, step_cap: int = STEP_CAP) -> dict[str, Any]:
     rows_top_phi: list[dict[str, Any]] = []
     peak_outside_prefix: list[dict[str, Any]] = []
     unresolved: list[int] = []
-    worst_rel = 0.0
-    worst_rel_n = 0
+    worst_rel_all = 0.0
+    worst_rel_all_n = 0
+    worst_rel_applicable = 0.0
+    worst_rel_applicable_n = 0
     lower_violations: list[int] = []
     upper_violations: list[int] = []
     count = 0
+    outside_count = 0
     suppressed: list[int] = []
     max_phi = 0.0
     max_phi_n = 0
@@ -264,7 +276,10 @@ def atlas(n_max: int, step_cap: int = STEP_CAP) -> dict[str, Any]:
         if not row["resolved"]:
             unresolved.append(n)
             continue
+        if not row["upper_ok_global"]:
+            upper_violations.append(n)
         if not row["peak_in_prefix"]:
+            outside_count += 1
             if len(peak_outside_prefix) < 32:
                 peak_outside_prefix.append(
                     {
@@ -272,6 +287,8 @@ def atlas(n_max: int, step_cap: int = STEP_CAP) -> dict[str, Any]:
                         "descent_time": row["descent_time"],
                         "peak_time": row["peak_time"],
                         "phi": row["phi"],
+                        "u_at_peak_global": row["u_at_peak_global"],
+                        "fly_excess_bits_global": row["fly_excess_bits_global"],
                     }
                 )
             continue
@@ -279,15 +296,19 @@ def atlas(n_max: int, step_cap: int = STEP_CAP) -> dict[str, Any]:
             max_phi = row["phi"]
             max_phi_n = n
         rel = abs(row.get("fly_excess_rel", 0.0))
-        if rel > worst_rel:
-            worst_rel = rel
-            worst_rel_n = n
-        if rel > SUPPRESSION_FRACTION and len(suppressed) < 32:
-            suppressed.append(n)
+        if rel > worst_rel_all:
+            worst_rel_all = rel
+            worst_rel_all_n = n
+        if row.get("transport_applicable"):
+            if rel > worst_rel_applicable:
+                worst_rel_applicable = rel
+                worst_rel_applicable_n = n
+            if rel > SUPPRESSION_FRACTION and len(suppressed) < 32:
+                suppressed.append(n)
+            if not row.get("lower_ok", True):
+                lower_violations.append(n)
         if not row.get("upper_ok", True):
             upper_violations.append(n)
-        if row.get("transport_applicable") and not row.get("lower_ok", True):
-            lower_violations.append(n)
         rows_top_phi.append(row)
         rows_top_phi.sort(key=lambda r: -r["phi"])
         del rows_top_phi[24:]
@@ -298,13 +319,15 @@ def atlas(n_max: int, step_cap: int = STEP_CAP) -> dict[str, Any]:
         "top_phi": rows_top_phi,
         "max_phi": max_phi,
         "max_phi_n": max_phi_n,
-        "worst_fly_excess_rel": worst_rel,
-        "worst_fly_excess_n": worst_rel_n,
+        "worst_fly_excess_rel_all": worst_rel_all,
+        "worst_fly_excess_all_n": worst_rel_all_n,
+        "worst_fly_excess_rel": worst_rel_applicable,
+        "worst_fly_excess_n": worst_rel_applicable_n,
         "suppressed_examples": suppressed,
         "upper_violations": upper_violations,
         "lower_violations": lower_violations,
         "peak_outside_prefix": peak_outside_prefix,
-        "peak_outside_prefix_seen": len(peak_outside_prefix),
+        "peak_outside_prefix_seen": outside_count,
     }
 
 

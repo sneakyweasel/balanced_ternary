@@ -330,7 +330,10 @@ as a known tool; its per-block hypotheses — convergent quality
 `theta_convergent_quality`, `theta_block_permutations`) and so
 is the rotation identification in
 Lemma 5.6, whose word identity itself is Lean
-(`budgetedWord_eq_hugWord`); the transport
+(`budgetedWord_eq_hugWord`); the Laplace bound of
+Proposition 5.5 is Lean (`rotation_average_le`,
+`rotationAverage_gap`; the ergodic identification stays
+human); the transport
 inequality of Theorem 5.3 (`cycleMin_transport`), the
 defect-to-hug-charge consequence of §5.2
 (`cycleMin_defect_le_charge`, `cycleMin_defect_le_hug_charge`),
@@ -1739,6 +1742,18 @@ C_*(n')=\frac1{\ln 3}\int_1^3 n'^{\,1-t}\,t^{-2}\,dt
 e^{-s}(1+s/\ln n')^{-2}\,ds\), and the integrand is at most
 \(e^{-s}\). \(\square\)
 
+The display and its quantitative sharpening are Lean
+(`RotationAverage.lean`): the quadratic majorant
+\(t^{-2}\le 1-2(t-1)+3(t-1)^2\) on \([1,3]\) — the product with
+\(t^2\) is \(1+4(t-1)^3+3(t-1)^4\) — turns the Laplace bound into
+an exact antiderivative evaluation, giving
+\(C_*(n')\le\bigl(1-\tfrac2\nu+\tfrac6{\nu^2}\bigr)/(\ln 3\,\nu)\)
+at \(\nu=\ln n'\) with no quadrature
+(`rotation_average_lt`, `rotationAverage_le`,
+gap form `rotationAverage_gap`). Only the ergodic
+*identification* of \(C_*\) as the infinite-word average —
+unique ergodicity of the rotation — remains classical prose.
+
 This is the infinite-word average, not a finite-\(L\)
 inequality: on the certified survey the finite leftover charge
 exceeds \(C_*\) by up to \(1.57\cdot 10^{-5}\), so
@@ -1840,7 +1855,9 @@ keeps \(\ln n'\ge 17.07\), hence
 <0.00514\le\frac1{\ln 3\,\ln n'}-C_*(n'),
 \]
 the last gap from \(\int_0^{2\ln n}e^{-s}(1+s/\ln n)^{-2}ds
-\le 1-2/\ln n+6/(\ln n)^2\). Conclude by Lemma 5.6 and
+\le 1-2/\ln n+6/(\ln n)^2\), which is Lean
+(`rotation_average_le`, gap form `rotationAverage_gap`,
+`RotationAverage.lean`). Conclude by Lemma 5.6 and
 Theorem 5.7. \(\square\)
 
 *Scan sharpening (Lean).* An exact scan of all \(251486\)
@@ -2041,7 +2058,7 @@ formally verified.
 | Theorem 5.2 | raised cutoff; verified computation, not Lean |
 | Theorem 5.3 | transport inequality `cycleMin_transport`, per-step losses `log_floorPower_even_ge`, `log_floorPower_odd_ge` (`WalkTransport.lean`); §5.2 consequence `cycleMin_defect_le_charge`, `cycleMin_defect_le_hug_charge` (`WalkChargeMax.lean`) |
 | Theorem 5.4 | combinatorial core `hugOdds_le_of_admissible`; cycle-word domination `cycleMin_prefix_odds_ge_hug`, `cycleMin_odds_ge_hug`; charge maximisation `stateCharge_antitone`, `hug_charge_maximal` (`WalkChargeMax.lean`); strict within-\((L,o)\) uniqueness human |
-| Proposition 5.5 | rotation average; human proof, not Lean |
+| Proposition 5.5 | ergodic identification human; Laplace bound Lean: `inv_sq_le_quad`, `rotation_average_le`, `rotation_average_lt`, `rotationAverage_le`, `rotationAverage_lt`, `rotationAverage_gap` (`RotationAverage.lean`) |
 | Lemma 5.6 | `budgetedWord_eq_hugWord`, `hugOdds_pow_ge`, `hugOdds_pow_lt`, `hugOdds_pow_gt`, `hugOdds_least` |
 | Theorem 5.7 | Denjoy--Koksma's variation inequality (known), not Lean; quotient arithmetic `theta_sandwich_upper`, `theta_sandwich_lower`, `lower_lt_walkTheta`, `walkTheta_lt_upper`, `cf_lower_prefix`, `cf_upper_prefix`, `theta_convergent_denominators`; DK hypotheses `theta_convergent_numerators`, `theta_convergents_unimodular`, `theta_convergents_coprime`, `theta_convergent_quality` (\(|\theta-p/q|<1/q^2\)), `theta_block_permutations` |
 | Theorem 5.8 | digit cap Lean: general numeration `ostroDigit_le`, `ostro_sum_eq`, `ostro_digitSum_le`, instance `theta_digitSum_le`, `greedyDigitSum_le`; scan `window_digit_scan`, `window_digit_cap`, `window_digit_max`; Denjoy--Koksma comparison human |
