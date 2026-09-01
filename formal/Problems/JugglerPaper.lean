@@ -24,6 +24,7 @@ import Problems.Juggler.CycleFinance
 import Problems.Juggler.RunSurvivorLattice
 import Problems.Juggler.WalkChargeWords
 import Problems.Juggler.OstrowskiSandwich
+import Problems.Juggler.OstrowskiNumeration
 
 /-!
 # Juggler paper barrel (Paper A)
@@ -104,17 +105,25 @@ The note's Lean-tagged theorems are listed in its Appendix A:
 * 4.9 `run_survivor_unimodular`, `run_survivor_seed_F2`,
       `run_survivor_seed_F3`, `three_pow_step_gt_two_pow_step`,
       `runSurvivors_length`
-* 5.4 (combinatorial core) `hugOdds_le_of_admissible`
-      (`WalkChargeWords.lean`); the analytic half (charge
-      maximisation) is a human proof
+* 5.4 (combinatorial core) `hugOdds_le_of_admissible`,
+      cycle-word domination `cycleMin_prefix_odds_ge_hug`,
+      `cycleMin_odds_ge_hug` (`WalkChargeWords.lean`); the analytic
+      half (charge maximisation) is a human proof
 * 5.6 `budgetedWord_eq_hugWord`, `hugOdds_pow_ge`, `hugOdds_pow_lt`,
-      `hugOdds_least` (`WalkChargeWords.lean`)
+      `hugOdds_pow_gt`, `hugOdds_least` (`WalkChargeWords.lean`)
 * 5.5 (certified quotient arithmetic) `theta_sandwich_upper`,
       `theta_sandwich_lower`, `lower_lt_walkTheta`,
       `walkTheta_lt_upper`, `cf_lower_prefix`, `cf_upper_prefix`,
       `theta_convergent_denominators` (`OstrowskiSandwich.lean`);
       Denjoy--Koksma itself and the cylinder-interval bridge stay
       human/KNOWN
+* 5.8 (digit cap) general Ostrowski numeration `ostroDigit_le`,
+      `ostro_sum_eq`, `ostro_digitSum_le`, θ instance
+      `theta_digitSum_le`, `greedyDigitSum_le`
+      (`OstrowskiNumeration.lean`); window scan `window_digit_scan`,
+      `window_digit_cap`, `window_digit_max`
+      (`OstrowskiSandwich.lean`); the Denjoy--Koksma comparison
+      stays human/KNOWN
 * short certificates (Section 6):
       `even_finiteProgress`, `odd_even_finiteProgress`
 * no certificate implies odd-to-odd:

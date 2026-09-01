@@ -31,28 +31,33 @@ for external review.
 
 ## Juggler state of the problem
 
-- **Cycles:** no nontrivial cycle of period \(<176251\) at the
- laboratory certified descent floor \(N_0=26254995\)
- (`J-residual-floor-twenty-six-million`,
- `J-cycle-period-fifty-thousand`, `J-cyclemin-walk-charge-instance`).
- Since the 1 Sep 2026 consolidation Paper A prints that floor: parity
- cutoff \(50507\) (§5.1), then the walk-charge envelope — transport,
- hug adversary, word identity, Denjoy–Koksma over certified Ostrowski
- blocks, window theorem on \([50508,301994)\) — gives period
- \(\ge 176251\) (§5.2–5.7); the \(10^6\) base instance and the
- \(99\)-length survivor lattice on \((25781,16266),(1054,665)\)
+- **Cycles:** no nontrivial cycle of period \(<478245\) at the
+ laboratory certified descent floor \(N_0=162849448\)
+ (`J-residual-floor-one-hundred-sixty-two-million`,
+ `J-cycle-period-four-hundred-seventy-eight-thousand`): the floor
+ certificate is complete (547 chunks, zero failures, peak
+ \(463362780\) bits) and the walk charge kills all \(15\) parity
+ leftovers below the blocker \(478245=176251+301994\) (\(k=1\)
+ semiconvergent fan, required \(19.46\), DK break-even
+ \(3.48\cdot 10^8\) — Diophantine, not computational).
+ Since the 1 Sep 2026 consolidation Paper A prints the
+ \(26254995\) floor: parity cutoff \(50507\) (§5.1), then the
+ walk-charge envelope — transport, hug adversary, word identity,
+ Denjoy–Koksma over certified Ostrowski blocks, window theorem on
+ \([50508,301994)\) — gives period \(\ge 176251\) (§5.2–5.7,
+ `J-cyclemin-walk-charge-instance`); the \(10^6\) base instance and
+ the \(99\)-length survivor lattice on \((25781,16266),(1054,665)\)
  (`RunSurvivorLattice.lean`) stay in §4. Discrete word layer and
  quotient arithmetic are Lean (`WalkChargeWords.lean`,
  `OstrowskiSandwich.lean`). The walk program is terminal: the
  fan-minimum reduction (`juggler_walk_fan_minimum_law`, CONJECTURE)
  ties further asymptotic progress to unbounded partial quotients of
- \(\log 2/\log 3\) — classical OPEN. The \(162849448\) floor
- extension is PARKED partial (10 DP kills landed, \(478245\) and the
- floor certificate unfinished — no period claim). Killing the
- remaining near-convergents (first \(176251\)) is Diophantine; the
+ \(\log 2/\log 3\) — classical OPEN. Killing the
+ remaining near-convergents (first \(478245\)) is Diophantine; the
  direct Baker/SdW transfer is **REFUTED** (`juggler_cycle_gap_baker`),
  the Paper A × Paper B merge is CLOSE (`juggler_cycle_paper_merge`),
- and further \(N_0\) campaigns are PARK.
+ and further \(N_0\) campaigns are PARK (the next useful floor is
+ \(3.48\cdot 10^8\)).
 - **Termination:** certified descent density \(29/32\); the pointwise route
   is parked behind the \(K_3\) obstruction ladder BB/GG/JJ. Not claimed.
 - **Local attacks are closed.** Fibres are parity + interval only

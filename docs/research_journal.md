@@ -18709,4 +18709,49 @@ Best next question
 - **Open:** candidate Lean theories, in rising cost order: (1) general Ostrowski numeration (greedy digits from any quotient list + structural cap \(b_j\le a_{j+1}\)) would make the Thm 5.8 digit cap window-independent; (2) mechanical/Sturmian words of slope \(\log 2/\log 3\) (balancedness of `hugWord`); (3) transport recursion (Thm 5.3, real-log bookkeeping over CycleFinance); (4) Denjoy–Koksma on `AddCircle` (research-grade, would make Thm 5.7 Lean-native). None opened
 - **Decision:** consolidation addendum recorded; no new branch, no tag inflation — analytic rows keep their tags
 
+## Juggler floor 162849448 certified: period bound 478245
+
+- **Date:** 2026-09-01
+- **Objective:** Complete the parked \(162849448\) floor extension exactly at its recorded reopening point: finish the floor certificate and the missing leftover DPs, then one decide pass. No new mathematics — the transport lemma, the DP, and the DK competition law are unchanged
+- **Hypotheses:** none new — execution of the recorded plan
+- **Major results:**
+  - **Floor certificate complete (COMPUTATIONALLY VERIFIED, `J-residual-floor-one-hundred-sixty-two-million`):** every \(2\le n\le 162849448\) reaches \(1\) by first-passage descent induction. Extension segment from \(26254996\): \(68297226\) odd starts over \(547\) contiguous chunks, **zero** step-cap/bit-cap/other failures; max first passage \(433\) steps at \(78641579\); largest intermediate \(463362780\) bits at \(92502777\) (exact integer isqrt throughout, no gmpy2 escalation needed). The campaign's hardest orbit is seed \(56261531\) (peak \(351395163\) bits) in chunk \([56254997,56504996]\): a 23-worker attempt died of machine-wide memory exhaustion at \(99.6\%\) after \(7.5\) h, and a parallel 14-DP pool died of the same event; the 4-worker retry finished the chunk in \(\approx 8.5\) h wall. Chunked resume preserved all completed work across three interruptions. Certificate `floor_verify/N162849448/certificate.json`, chunk SHA-256 `35d9755c…414ae4`
+  - **All 15 killable leftovers killed (COMPUTATIONALLY VERIFIED):** parity at the new floor kills the F2 cluster \(\{50508,101016,151524\}\) outright and leaves \(25\) leftovers through \(6\cdot 10^5\) (`new_floor_parity_leftovers.json`); the certified reduced-base walk charge kills all \(15\) below the blocker — margins \(1.198\) (\(176251\), \(352502\)) to \(8.437\) (\(202032\)) — `new_floor_kills/`, SHA-256 of the 15 records `148180cb…5aeda0`. Lengths \(\le 176250\) carry over by monotonicity of both exclusions in the floor
+  - **Period bound (`J-cycle-period-four-hundred-seventy-eight-thousand`):** combined parity + walk contiguous prefix \(478244\) — **no nontrivial Juggler cycle has length \(\le 478244\)**, a \(2.71\times\) extension of the \(176250\) bound and \(18.6\times\) over the published Paper A cutoff \(25780\). First survivor \(L=478245=176251+301994\) (\(k=1\) member of the F1 semiconvergent fan): required improvement \(19.46\), walk supplies \(\approx 7.7\), DK break-even floor \(3.48\cdot 10^8\) (`J-cyclemin-walk-competition-law`) — the blocker is Diophantine, not computational. A direct certified non-kill DP record for \(478245\) is being written to `new_floor_kills/` as negative knowledge; the period claim does not depend on it
+- **Refuted ideas:** none — no hypothesis tested
+- **Literature:** none new
+- **Open:** unchanged — the fan blocker \(478245\) needs floor \(\approx 3.48\cdot 10^8\); the next fan member waits at \(4.54\cdot 10^{11}\); the asymptotic frontier stays `juggler_walk_fan_minimum_law` (unbounded dangerous partial quotients of \(\log 2/\log 3\), classical OPEN)
+- **Decision:** PROMOTE the instance (`J-residual-floor-one-hundred-sixty-two-million`, `J-cycle-period-four-hundred-seventy-eight-thousand`); PARK further \(N_0\) campaigns — the next useful floor is \(3.48\cdot 10^8\) and buys exactly one fan member
+
+```text
+What was learned
+- the parked floor extension completed at its recorded
+  reopening point: certificate plus 15 kills, nothing new
+  had to be invented
+- one seed (56261531, 351M bits) dominated three campaign
+  interruptions; chunked resume made the failures cheap
+- the walk-charge margins at the new floor confirm the
+  competition law's DK prediction (1.1980 predicted,
+  1.1983 measured at 176251)
+- the frontier is now purely Diophantine: every remaining
+  survivor below 6e5 is the k=1 fan member 478245
+Strongest theorem
+- no nontrivial Juggler cycle has length <= 478244 at the
+  certified descent floor 162849448
+Strongest refutation
+- none (execution pass)
+Reusable machinery
+- none new — verify_floor_certified resume and the DP were
+  already platform; new_floor_parity_leftovers.json artifact
+Branch status
+- PROMOTE (instance); PARK (further floors)
+Why
+- the certificate and kill table close the recorded
+  reopening point; the sole survivor's break-even floor
+  3.48e8 prices the next campaign and it is not worth it
+Best next question
+- unchanged from the fan-minimum terminal: unboundedness of
+  the dangerous-position partial quotients of log 2/log 3
+```
+
 

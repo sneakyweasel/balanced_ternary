@@ -308,13 +308,14 @@ Theorem 4.6 applies Corollary 4.5 to this input and certifies
 the table with the conservative coefficient \(6/5\). Theorem 4.7
 is a human proof; Theorem 4.8 reuses the gap table under that
 packing. Proposition 4.9 is integer arithmetic in Lean. In
-Section 5, Theorems 5.3, 5.4, and 5.7, Lemma 5.6, and the
-digit-cap step of Theorem 5.8 are human proofs (Denjoy--Koksma
-is used as a known tool); the digit scan of Theorem 5.8 is
-Lean-verified (`window_digit_scan`); Theorems 5.2 and 5.9 are
-independently certified computations at the laboratory floor,
-with the same trust boundary as Theorem 4.6 (exact integer
-arithmetic plus guarded float comparisons). This is not a claim that the paper as a
+Section 5, Theorems 5.3, 5.4, and 5.7 and Lemma 5.6 are human
+proofs (Denjoy--Koksma is used as a known tool); the digit-cap
+step and the digit scan of Theorem 5.8 are Lean-verified
+(`ostroDigit_le`, `theta_digitSum_le`, `window_digit_scan`);
+Theorems 5.2 and 5.9 are independently certified computations
+at the laboratory floor, with the same trust boundary as
+Theorem 4.6 (exact integer arithmetic plus guarded float
+comparisons). This is not a claim that the paper as a
 whole is formally verified.
 
 ```text
@@ -1747,7 +1748,14 @@ C_L\ \le\ C_*(n')+\frac{2\,s(L)}{L}\ <\ \frac1{\ln 3\,\ln n'}.
 *Proof.* Greedy Ostrowski digits obey \(b_j\le a_{j+1}\), so
 with the certified quotients
 \(\theta=[0;2,1,2,2,3,1,5,2,23,2,2,1,\ldots]\) the digit sum on
-the window satisfies \(s(L)\le 47\). The transport deficit
+the window satisfies \(s(L)\le 47\). This step is Lean: the
+digit cap, exact reconstruction \(L=\sum_j b_jq_j\), and the
+digit-sum bound hold for *any* denominator sequence satisfying
+the convergent recurrence (`ostroDigit_le`, `ostro_sum_eq`,
+`ostro_digitSum_le`, `OstrowskiNumeration.lean`), and the
+certified \(\theta\) instance gives \(s(L)\le 47\) for every
+\(L<301994\) structurally (`theta_digitSum_le`,
+`greedyDigitSum_le`). The transport deficit
 keeps \(\ln n'\ge 17.07\), hence
 \[
 \frac{2\,s(L)}{L}\le\frac{94}{50508}=1.87\cdot 10^{-3}
@@ -1918,7 +1926,7 @@ formally verified.
 | Proposition 5.5 | rotation average; human proof, not Lean |
 | Lemma 5.6 | `budgetedWord_eq_hugWord`, `hugOdds_pow_ge`, `hugOdds_pow_lt`, `hugOdds_pow_gt`, `hugOdds_least` |
 | Theorem 5.7 | Denjoy--Koksma (known), not Lean; quotient arithmetic `theta_sandwich_upper`, `theta_sandwich_lower`, `lower_lt_walkTheta`, `walkTheta_lt_upper`, `cf_lower_prefix`, `cf_upper_prefix`, `theta_convergent_denominators` |
-| Theorem 5.8 | digit-cap step human; digit scan Lean `window_digit_scan`, `window_digit_cap`, `window_digit_max`; Denjoy--Koksma comparison human |
+| Theorem 5.8 | digit cap Lean: general numeration `ostroDigit_le`, `ostro_sum_eq`, `ostro_digitSum_le`, θ instance `theta_digitSum_le`, `greedyDigitSum_le`; scan `window_digit_scan`, `window_digit_cap`, `window_digit_max`; Denjoy--Koksma comparison human |
 | Theorem 5.9 | kill table; verified computation, not Lean |
 | short certificates (Section 6) | `even_finiteProgress`, `odd_even_finiteProgress` |
 | no certificate \(\Rightarrow\) odd-to-odd | `no_finiteProgress_implies_odd_odd` |

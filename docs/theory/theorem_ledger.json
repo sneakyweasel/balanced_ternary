@@ -5601,6 +5601,30 @@
     ]
   },
   {
+    "id": "J-residual-floor-one-hundred-sixty-two-million",
+    "tag": "COMPUTATIONALLY VERIFIED",
+    "statement": "Every integer 2 ≤ n ≤ 162849448 reaches 1 under the Juggler map by first-passage descent induction (verify_floor_certified). Extension segment from n_from = 26254996: 68297226 odd starts walked with exact integer isqrt over 547 contiguous chunk records, zero step-cap, bit-cap, or other failures at the 512·10^6-bit cap; maximum first passage 433 steps at seed 78641579; largest intermediate 463362780 bits at seed 92502777; the chunk [56254997, 56504996] contains the campaign's hardest orbit (seed 56261531, peak 351395163 bits). Base segment 2..26254995 is J-residual-floor-twenty-six-million. Certificate data/research/juggler/cycle_finance/floor_verify/N162849448/certificate.json (SHA-256 of chunks 35d9755ce52a225a161b009d0f3674b24a5d0add16035f09ea83cf3880414ae4). The floor exceeds n_max^par(50508) = 162848325, so the parity table kills the F2 cluster {50508, 101016, 151524} outright. This is not a halt theorem and not a no-cycle-of-any-length theorem.",
+    "source": "docs/problems/juggler_descent_floor.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_floor_sensitivity.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-cycle-period-four-hundred-seventy-eight-thousand",
+    "tag": "COMPUTATIONALLY VERIFIED",
+    "statement": "At the certified descent floor N_0 = 162849448 (J-residual-floor-one-hundred-sixty-two-million) the parity 6/5 table plus the reduced-base walk charge of J-cyclemin-walk-transport exclude every cycle length L ≤ 478244: any nontrivial Juggler cycle has period at least 478245. The parity table leaves 25 leftovers through L = 6·10^5 (data/research/juggler/cycle_walk_charge/new_floor_parity_leftovers.json); the 15 below the blocker (176251 through 454572) are all walk-killed with certified margins 1.198 (176251, 352502) up to 8.437 (202032); SHA-256 of the 15 kill records concatenated in length order is 148180cbbfba93985b7a1be455fee16db97816f1534b1feca5a4740d475aeda0 (data/research/juggler/cycle_walk_charge/new_floor_kills/). Lengths L ≤ 176250 are covered because both exclusions are monotone in the floor (J-cyclemin-walk-charge-instance at 26254995; for fixed (L, o) the parity rhs and the reduced-base DP budget strictly decrease as N_0 grows). First survivor L = 478245 = 176251 + 301994, the k = 1 member of the F1 semiconvergent fan: required improvement 19.46 against walk supply ≈ 7.7, DK break-even floor 3.48·10^8 (J-cyclemin-walk-competition-law) — the blocker is Diophantine, not computational. Supersedes the cutoff 176250 of J-cyclemin-walk-charge-instance (factor 2.71). Same trust boundary as Theorem 4.6: exact human inequalities plus guarded float comparisons. Not a halt theorem and not a no-cycle-of-any-length theorem.",
+    "source": "docs/problems/juggler_cycle_walk_charge.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_walk_charge.py"
+    ],
+    "related_conjectures": [
+      "juggler_cycle_walk_charge"
+    ]
+  },
+  {
     "id": "J-cyclemin-walk-hug-exchange",
     "tag": "EXACT — HUMAN PROOF",
     "statement": "Among nonnegative exponent walks with a prescribed (L, o) (u_k = (1+μ)a_k − k ≥ 0, μ = log_2(3/2)), the hug word that takes E iff u ≥ 1 and an even remains is the unique prefix-minimal path. First disagreement with any other admissible word is hug-E versus other-O, because hug takes O only when E is illegal and the two words share the same prefix state; the odd-count gap δ_k = a_k(other) − a_k(hug) is a path in {−1,0,+1} that cannot go negative, since δ = 0 restores the same state. Feasible pairs ( (1+μ)o ≥ L ) never strand: o_left = 0 implies u = surplus + e_left ≥ e_left. The charge g(u) = 1/(n^{2^u} 2^u ln n) is strictly decreasing, so hug uniquely maximises the walk sum. This is a statement about the u ≥ 0 relaxation, not about realized cycle words. Not a halt theorem.",
@@ -5777,6 +5801,19 @@
     ],
     "related_conjectures": [
       "juggler_walk_dk_envelope",
+      "juggler_walk_window_envelope"
+    ]
+  },
+  {
+    "id": "J-cyclemin-walk-ostrowski-numeration",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "General Ostrowski numeration and the structural digit cap (Paper A Theorem 5.8, digit-cap step, previously human). For any denominator sequence q with 0 < q 0 and q monotone satisfying the convergent recurrence bound q(j+1) ≤ a(j+1)·q(j) + q(j−1), the greedy digits from any L < q(n+1) obey the remainder invariant (ostroRem_lt), the digit cap b_j ≤ a_{j+1} (ostroDigit_le), exact reconstruction L = Σ b_j q_j when q 0 = 1 (ostro_sum_eq), and the digit-sum cap Σ b_j ≤ Σ a_j (ostro_digitSum_le) — problem-independent, reusable for any deeper certified quotient list. Instantiated at the certified θ denominators closed at q₁₃ = 301994: every L < 301994 has greedy digit sum at most 47 = a₁+⋯+a₁₃, structurally, with exact decomposition (theta_digitSum_le, theta_sum_eq); the function form agrees with the fold form greedyDigitSum everywhere below the window endpoint (greedy_eq_ostro_below_window, native_decide over all 301994 lengths), giving the fold corollary greedyDigitSum_le. The scan cap 37 on [50508, 301994) stays the sharper bound; the Denjoy–Koksma comparison stays analytic (KNOWN). Not a cycle obstruction and not a halt theorem.",
+    "source": "docs/theory/juggler_finite_dynamics_note.md",
+    "lean": "Problems/Juggler/OstrowskiNumeration.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_walk_window.py"
+    ],
+    "related_conjectures": [
       "juggler_walk_window_envelope"
     ]
   },

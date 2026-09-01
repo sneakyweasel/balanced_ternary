@@ -2,8 +2,9 @@
 
 Status: **PROMOTE** (transport lemma proved; certified survey
 complete — period bound 176251 at floor 26254995; consolidated
-into Paper A Section 5 on 1 September 2026; new-floor extension
-PARKED partial)
+into Paper A Section 5 on 1 September 2026; new-floor instance
+complete — period bound 478245 at certified floor 162849448,
+`J-cycle-period-four-hundred-seventy-eight-thousand`)
 
 Refinement of the Paper A Section 5 state-distribution program
 ([juggler_cycle_finance.md](juggler_cycle_finance.md)), answering
@@ -229,21 +230,34 @@ Classification **WALK_CHARGE_GREEN**.
   a \(3.49\times\) extension of `J-cycle-period-fifty-thousand`
   with no new floor verification. `survey.json`, SHA-256 of the
   walk-alive list `225d76ad…8942ec`.
+- **New-floor instance (1 Sep 2026, completing the parked
+  extension).** The descent floor \(162849448>
+  n_{\max}^{\mathrm{par}}(50508)\) is certified
+  (`J-residual-floor-one-hundred-sixty-two-million`: 547 chunks,
+  zero failures, peak \(463362780\) bits; the interrupted
+  campaigns all stalled on seed \(56261531\), \(351395163\)
+  bits). Parity there kills the F2 cluster and leaves \(25\)
+  leftovers through \(6\cdot 10^5\)
+  (`new_floor_parity_leftovers.json`); the walk kills all \(15\)
+  below the blocker (margins \(1.198\) at \(176251\) and
+  \(352502\) up to \(8.437\) at \(202032\);
+  `new_floor_kills/`, SHA-256 of the 15 kill records
+  `148180cb…5aeda0`). Combined contiguous prefix **478244**: any
+  nontrivial cycle has period \(\ge 478245\)
+  (`J-cycle-period-four-hundred-seventy-eight-thousand`), a
+  \(2.71\times\) extension. Sole survivor
+  \(478245=176251+301994\) (\(k=1\) semiconvergent fan):
+  required improvement \(19.46\), walk supplies \(\approx 7.7\),
+  DK break-even floor \(3.48\cdot 10^8\) — Diophantine, not
+  computational.
 
 ## Open questions
 
-- The new-floor extension is **PARKED partial** (1 Sep 2026
-  consolidation): at \(N_0=162849448\) parity alone re-derives
-  176250 and the certified walk kills \(176251\) (margin 1.198,
-  `new_floor_kills/L176251.json`); \(10\) leftover DP kills are
-  landed under `new_floor_kills/` (176251, 202032, 226759,
-  252540, 277267, 303048, 327775, 353556, 428791, 453518 —
-  \(303048\) at margin \(8.44\)), but \(L=478245\) (requires
-  19.5) and the floor certificate itself are unfinished
-  (verification stopped near \(99.94\%\)). No period claim is
-  made from that floor; the certified bound stays \(176251\) at
-  \(26254995\). Reopening point: finish the floor certificate
-  and the \(478245\) DP, then one decide pass
+- The blocker \(L=478245\) needs floor \(\approx 3.48\cdot 10^8\)
+  (DK break-even, `J-cyclemin-walk-competition-law`) before the
+  walk can kill it; further \(N_0\) campaigns are PARK. The
+  asymptotic frontier stays the fan-minimum reduction
+  (`juggler_walk_fan_minimum_law`)
 - Whether the walk charge plus run-pack composition tightens the
   thin \(1.12\) margin
 - Lean packaging of the transport lemma (optional; the word
@@ -260,9 +274,13 @@ lemma is proved in reduced-base form, and the certified comparison
 kills \(L=50508\) at the laboratory floor with margin \(1.1204\).
 The certified survey fixed the combined contiguous cutoff at
 \(176250\): period \(\ge 176251\)
-(`J-cyclemin-walk-charge-instance`). Ledger rows
-`J-cyclemin-walk-transport` (the lemma) and
-`J-cyclemin-walk-charge-instance` (the kill table) are in.
+(`J-cyclemin-walk-charge-instance`); the completed new-floor
+instance raised it to \(478244\): period \(\ge 478245\)
+(`J-cycle-period-four-hundred-seventy-eight-thousand`). Ledger
+rows `J-cyclemin-walk-transport` (the lemma),
+`J-cyclemin-walk-charge-instance` (the kill table), and
+`J-cycle-period-four-hundred-seventy-eight-thousand` (the
+new-floor instance) are in. Further floors are PARK.
 
 ## Publication assessment
 

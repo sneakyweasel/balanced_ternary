@@ -198,39 +198,55 @@ run, then the post-run decision in the writeup.
   **no nontrivial cycle of length \(\le 50507\)**
   (`J-cycle-period-fifty-thousand`); \(19\) parity leftovers
   through \(2\cdot 10^5\).
+- **Second certified run** — \(N_0=162849448\) complete
+  (`J-residual-floor-one-hundred-sixty-two-million`, 1 Sep
+  2026): extension segment from \(26254996\), \(68297226\) odd
+  starts over \(547\) contiguous chunks, **zero** step-cap,
+  bit-cap, or other failures; max first passage \(433\) at
+  \(78641579\); largest intermediate \(463362780\) bits at
+  \(92502777\); the chunk \([56254997,56504996]\) holds the
+  campaign's hardest orbit (seed \(56261531\), \(351395163\)
+  bits — the two interrupted campaigns both stalled on it; a
+  23-worker attempt died of memory exhaustion at \(99.6\%\), the
+  4-worker retry finished it). Parity at this floor kills the
+  \(50508\)-cluster and leaves \(25\) leftovers through
+  \(6\cdot 10^5\); the walk charge kills the \(15\) below
+  \(478245\), so the combined period bound is **no nontrivial
+  cycle of length \(\le 478244\)**
+  (`J-cycle-period-four-hundred-seventy-eight-thousand`).
 
 ## Open questions
 
 - Whether a stronger length-only charge than parity \(6/5\)
   (the Section 5 state-distribution program) can kill \(50508\)
-  without a \(1.6\cdot 10^8\) floor. That is mathematics, not
-  more verification.
+  without a \(1.6\cdot 10^8\) floor — answered YES by the walk
+  charge at the old floor
+  (`J-cyclemin-walk-charge-instance`); the \(1.63\cdot 10^8\)
+  floor was then certified anyway and its instance is
+  `J-cycle-period-four-hundred-seventy-eight-thousand`.
 - Paper A still prints the \(10^6\) instance. Updating the
   printed Theorem 4.6 is a publication decision, not a new
   inequality.
 
 ## Decision
 
-**PROMOTE** the sensitivity table and the cheaper Theorem 4.6
-instance at \(N_0=26254995\). Then **stop scaling the
-computation**.
+**PROMOTE** the sensitivity table and the Theorem 4.6 instances
+at \(N_0=26254995\) and \(N_0=162849448\). Then **stop scaling
+the computation**.
 
-The first leftover is the only cheap jump. Further decades
-through \(10^8\) buy nothing. The next useful floor is a later
-\(\ln 2/\ln 3\) convergent at \(\approx 1.63\cdot 10^8\).
-Run-packing does not move \(25781\) and only lowers the
-\(50508\) threshold from \(1.63\cdot 10^8\) to \(1.18\cdot 10^8\).
-Finance, not the verifier, is now the limiter.
-
-Best next question: a length-only improvement of the defect
-sum that kills \(L=50508\) at the new floor, without a new
-\(N_0\) campaign.
+The two certified floors were the only cheap jumps. The next
+useful floor is the DK break-even of the fan blocker \(478245\)
+at \(\approx 3.48\cdot 10^8\); beyond it the next fan member
+waits at \(4.54\cdot 10^{11}\) (`J-cyclemin-walk-competition-law`).
+Further \(N_0\) campaigns are **PARK**. Finance and the
+Diophantine fan, not the verifier, are the limiters.
 
 ## Publication assessment
 
 Status: `THEOREM` (computational instance). Laboratory extract
 [juggler_descent_floor_note.md](../theory/juggler_descent_floor_note.md);
 not a second manuscript. The inequality is unchanged
-(`cycleMin_finance`). The new statement is the Theorem 4.6
-instance at \(N_0=26254995\): no period \(\le 50507\). Not a
-totality result.
+(`cycleMin_finance`). The new statements are the Theorem 4.6
+instance at \(N_0=26254995\) (no period \(\le 50507\)) and,
+combined with the walk charge, the \(N_0=162849448\) instance
+(no period \(\le 478244\)). Not a totality result.
