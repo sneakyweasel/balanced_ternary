@@ -1,0 +1,64 @@
+{
+  "experiment": "juggler_v94_hardy_lift",
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "equidistribution_claimed": false,
+    "k3_bound_claimed": false,
+    "toolkit_reopened": false,
+    "paper_b_modified": false,
+    "richter_cited_as_theorem": false,
+    "density_one_claimed": false
+  },
+  "remainder": {
+    "samples_used": 241,
+    "worst_ratio": 0.11718751595118299,
+    "worst_n": 10001,
+    "bound": 0.1171875,
+    "max_abs_r3": 0.004355277427545712,
+    "max_abs_r3_n_ge_1e6": 1.0977546996415732e-18,
+    "max_r3_times_n918": 6.17313527007356e-12,
+    "r3_vanishes": true,
+    "failed": [],
+    "holds": true
+  },
+  "a2": {
+    "a2_exponent": 0.375,
+    "a2prime_exponent": -0.625,
+    "mean_a2prime_times_n58": 0.5304248427844351,
+    "a2_leading": 1.40625,
+    "a2prime_leading": 0.52734375,
+    "min_a2prime": 0.010872408473991513,
+    "pairs_used": 247,
+    "tame": true,
+    "leading_a2prime_close": true
+  },
+  "hardy_pair": {
+    "bins": 8,
+    "samples": 20000,
+    "occupied_cells": 64,
+    "cells": 64,
+    "max_rel_dev": 0.2576,
+    "rel_dev_cap": 0.2479995321693951,
+    "occupied_all": true,
+    "within_ev_cap": false,
+    "fills_torus": true
+  },
+  "notes": {
+    "identity": "{v^{9/4}} = {-(5/4) n^{27/8} + (9/4) n^{15/8} floor(n^{3/2}) + (45/32) n^{3/8} {n^{3/2}}^2 + R3}, |R3| = O(n^{-9/8}); equivalently {(5/32) n^{27/8} - (9/16) n^{15/8} v + (45/32) n^{3/8} v^2 + R3}; the linear term is the Hardy-entry Heisenberg vertical",
+    "species": "nested floor dissolves; published Hardy-nil covers the orbit ((9/4) n^{15/8}, n^{3/2}, 0) Gamma x n^{27/8} as species (not a citation); the remaining passenger is tame (A2' << 1), not HH",
+    "not_claimed": "Richter is not cited as a theorem; equidistribution of {v^{9/4}} is not claimed"
+  },
+  "decision": {
+    "classification": "V94_HARDY_LIFT_GREEN",
+    "nested_floor_dissolved": true,
+    "linear_leftover_lifted": true,
+    "door_unbuilt_only_for_tame_passenger": true,
+    "not_a_published_theorem": true
+  }
+}

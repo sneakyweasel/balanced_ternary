@@ -20,7 +20,11 @@ Closed or parked companions (do not reopen from here):
 (`REPARAMETERIZATION`),
 [odd-tower fragment](../problems/juggler_odd_tower_fragment.md)
 (`CLOSE`),
-[DK pricing](../problems/juggler_flight_dk_pricing.md) (`CLOSE`).
+[DK pricing](../problems/juggler_flight_dk_pricing.md) (`CLOSE`),
+[valley composition](../problems/juggler_flight_valley_composition.md)
+(`CLOSE` on the exclusion reading).
+The terminating-side height-law PARK stays with the
+[flight envelope](../problems/juggler_flight_envelope.md) branch.
 The walk-charge extract
 ([juggler_walk_charge_note.md](juggler_walk_charge_note.md)) is the
 cycle-side parent.
@@ -41,8 +45,8 @@ new off-cycle and not a restatement of Paper A §5:
 | Return quantization | `J-flight-return-quantization` | Shared \(\log_2 3\)-lattice with cycle survivors |
 
 Composition widths, uniqueness packaging, the odd-tower placement,
-and the DK split do not meet the bar: they are recorded in §7 so
-they are not re-derived.
+the DK split, and valley-composition exclusion do not meet the bar:
+they are recorded in §7 so they are not re-derived.
 
 A *descent-free flight* is an infinite orbit \(x_0=n\ge 2\),
 \(x_{k+1}=T(x_k)\), with \(x_k\ge n\) for all \(k\). Write
@@ -216,10 +220,11 @@ near-returns on orbits \(n\le 2000\) land on \(\{19,38\}\).
   range on deficit-summable flights, but that is finitely many
   applications of §6.
 - **Uniqueness trichotomy.** Determinism plus §§3–5; not a new
-  obstruction. State-packing as an exclusion attack is PARK
-  (hug cylinders fill; records strictly increase; later peaks
-  live at larger scales; quantitative valley composition is
-  already PARK).
+  obstruction. State-packing as an exclusion attack is CLOSE
+  ([juggler_flight_valley_composition.md](../problems/juggler_flight_valley_composition.md)):
+  hug cylinders fill; records strictly increase; later peaks
+  live at larger scales; comparable-scale occupancy is the
+  existing pigeonhole or hug-hugging.
 - **Odd towers.** \(\mathcal T_\infty=\{x:F^j(x)\text{ odd for all
   }j\}\), \(F(x)=\lfloor x^{3/2}\rfloor\), is incomparable to
   all-depth equidistribution (density cannot empty a
@@ -231,8 +236,14 @@ near-returns on orbits \(n\le 2000\) land on \(\{19,38\}\).
   Theorems 5.7–5.8, Lean `hug_charge_maximal`); the *kill*
   needs \(\theta=1-2^L/3^o\) from \(x_L=n\). Infinite hugging is
   already dead by §3, not by DK.
-- **Valley composition** of the terminating-side envelope stays
-  PARK with the flight-envelope branch.
+- **Valley composition.** The *exclusion* reading is CLOSE
+  (`juggler_flight_valley_composition`): occupancy of comparable-scale
+  envelope windows is the walk-divergence pigeonhole or
+  hug-hugging; composition across records enlarges the admissible
+  set; terminating-side re-anchor cannot exclude a descent-free
+  flight. The *height-law* reading (re-anchor after first descent
+  for the \(19.6\%\) peak-after-descent class) stays PARK with the
+  flight-envelope branch and is not an exclusion mechanism.
 
 ## Endpoint
 
@@ -247,9 +258,10 @@ transport and hug lemmas are Lean (`WalkTransport.lean`,
 `AboveAnchorWalk.lean`, `Envelope.lean`); the infinite-orbit
 glue (pigeonhole, records, injectivity) stays human.
 
-The program is terminal on the descriptive side. Further
-flight-side progress requires either the cycle Diophantine
-blocker \(L=478245\) or a new pointwise handle on the parity of
-iterated \(\mathrm{isqrt}\) (odd towers). Neither is opened from
-this extract. Not a halt theorem; the unconditional period bound
-stays \(478245\).
+The program is terminal on the descriptive side. The last named
+flight-side reopen (valley-composition exclusion) is CLOSE:
+occupancy is the existing pigeonhole. Further flight-side progress
+requires either the cycle Diophantine blocker \(L=478245\) or a
+new pointwise handle on the parity of iterated \(\mathrm{isqrt}\)
+(odd towers). Neither is opened from this extract. Not a halt
+theorem; the unconditional period bound stays \(478245\).

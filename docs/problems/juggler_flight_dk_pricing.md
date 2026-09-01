@@ -10,8 +10,9 @@ Ostrowski/DK blocks — a flight-side analogue of the walk-charge
 envelope — or does DK pricing intrinsically require the closure
 identity that only cycles provide? Answer: pricing does not need
 closure; the kill does. Not a halt theorem, not a divergent-orbit
-exclusion, not a reopen of the PARKed re-anchored excursion
-envelope, and not a Paper A edit.
+exclusion, not a Paper A edit. The occupancy reading of the
+re-anchored envelope is CLOSE
+([juggler_flight_valley_composition.md](juggler_flight_valley_composition.md)).
 
 ## Problem
 
@@ -94,7 +95,9 @@ claimed.
   split: pricing versus kill
 - Recurrent hug domination — **EXACT — HUMAN PROOF**
   (`J-flight-divergent-structure`, point 5)
-- Re-anchored excursion envelope — **PARK** (untouched)
+- Re-anchored excursion envelope — exclusion reading **CLOSE**
+  (`juggler_flight_valley_composition`); height-law PARK stays
+  with the flight-envelope branch
 - Koksma \(+1/L\) — **REFUTED** (`juggler_walk_koksma_one_over_L`);
   not re-tested
 - Every start reaches 1 — not claimed
@@ -214,7 +217,10 @@ Classification **FLIGHT_DK_NEEDS_CLOSURE_TO_KILL**.
   proved layers; searching for one is a reopen of transport.
   Not opened.
 - Quantitative composition of envelopes across recurrent valleys
-  remains PARK with the flight-envelope branch, untouched.
+  has two readings. The exclusion/occupancy reading is **CLOSE**
+  ([juggler_flight_valley_composition.md](juggler_flight_valley_composition.md)).
+  The terminating-side height-law PARK stays with the
+  flight-envelope branch and is not an exclusion question.
 
 ## Decision
 

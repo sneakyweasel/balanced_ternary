@@ -14,8 +14,9 @@ with a linear peak-growth law, a log-log lower rate for the
 running-max walk, pointwise walk divergence, and recurrent hug
 domination from infinitely many internal anchors. What stays behind
 all-depth equidistribution is *exclusion* of divergent flights, not
-their description. Not a halt theorem, not an exclusion claim, and
-not a reopen of the PARKed re-anchored excursion envelope.
+their description. Not a halt theorem, not an exclusion claim. The
+occupancy reading of the re-anchored envelope is CLOSE
+([juggler_flight_valley_composition.md](juggler_flight_valley_composition.md)).
 
 ## Problem
 
@@ -131,10 +132,14 @@ strictly increase (point 5), so later valleys draw from a fresh
 half-line rather than a shared finite pool; later high-walk peaks
 occupy larger scales by the walk-height law. A genuine sparsity
 contradiction would need envelope windows at comparable scales to
-be over-occupied — quantitative valley composition, already PARK
-with the flight-envelope branch. Uniqueness + recurrent hug + the
-existing envelope is **not** a new attack, and is not claimed as
-one.
+be over-occupied. That occupancy reading is **CLOSE**
+([juggler_flight_valley_composition.md](juggler_flight_valley_composition.md)):
+it is the existing pigeonhole or hug-hugging; composition across
+records enlarges the admissible set; terminating-side re-anchor
+cannot exclude a descent-free flight. Uniqueness + recurrent hug +
+the existing envelope is **not** a new attack, and is not claimed as
+one. The envelope branch's remaining PARK is a height law on
+orbits that leave `AboveAnchor`, not this packing slogan.
 
 **Sharpness.** The log-log rate in 3 is exactly attained at peaks of
 realized ascents (envelope sharpness, `J-flight-envelope-transport`):
@@ -152,9 +157,11 @@ subcase (an infinite odd tower, parity of iterated
 \(\lfloor x^{3/2}\rfloor\) odd forever) is *not* ruled out: the
 census observation "A odd starts not an odd tower" is finite data,
 not a theorem. No upper growth rate beyond the envelope is claimed.
-The quantitative composition of envelopes across valleys stays
-PARKed with the flight-envelope branch (this theorem's point 5 is
-qualitative recurrence, not envelope composition).
+The exclusion reading of quantitative valley composition is CLOSE
+([juggler_flight_valley_composition.md](juggler_flight_valley_composition.md));
+this theorem's point 5 is qualitative recurrence, not envelope
+composition. The terminating-side height-law PARK stays with the
+flight-envelope branch.
 
 ## Current literature
 
@@ -170,7 +177,9 @@ qualitative recurrence, not envelope composition).
 - Anchor-period ladder for the bounded case — conditional,
   `juggler_flight_anchor_period` (PROMOTE)
 - Re-anchored excursion envelope (quantitative valley composition)
-  — **PARK** (flight-envelope branch reopening key; untouched here)
+  — exclusion reading **CLOSE**
+  (`juggler_flight_valley_composition`); height-law PARK stays
+  with the flight-envelope branch (not an exclusion question)
 - Odd-tower non-existence — **OBSERVATION** only
   (`juggler_excursions` census); open as a theorem
 
@@ -314,10 +323,11 @@ Classification **DIVERGENT_STRUCTURE_MIRRORS_CONFIRMED**.
   \(\theta=1-2^L/3^o\) from \(x_L=n\).
 - State packing / admissible-set sparsity (uniqueness + recurrent
   hug + envelope making \([n,\infty)\) too thin for an infinite
-  injective trajectory) is **PARK**: uniqueness is compatible with
-  divergence on a half-line; hug constraints are on words and the
-  cylinders are filled; records strictly increase. See the packing
-  caution above. Not a new branch.
+  injective trajectory) is **CLOSE**:
+  [juggler_flight_valley_composition.md](juggler_flight_valley_composition.md).
+  Occupancy of comparable-scale windows is the existing pigeonhole
+  or hug-hugging; composition across records enlarges the
+  admissible set. See the packing caution above. Not a new branch.
 
 ## Decision
 

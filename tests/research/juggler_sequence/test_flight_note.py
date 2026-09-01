@@ -49,3 +49,5 @@ def test_bar_excludes_reparameterizations() -> None:
     assert "What does not meet the bar" in note
     # Composition is named, not printed as a theorem heading.
     assert "7. What does not meet the bar" in note
+    assert "juggler_flight_valley_composition.md" in note
+    assert "exclusion reading" in note.lower() or "exclusion" in note.lower()

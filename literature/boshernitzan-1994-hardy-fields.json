@@ -1,0 +1,21 @@
+{
+  "id": "boshernitzan-1994-hardy-fields",
+  "title": "Uniform distribution and Hardy fields",
+  "authors": ["Michael D. Boshernitzan"],
+  "year": 1994,
+  "identifiers": {
+    "doi": "10.1007/BF02835955"
+  },
+  "url": {
+    "publisher": "https://doi.org/10.1007/BF02835955"
+  },
+  "problem_area": "ergodic-equidistribution",
+  "relevant_concepts": [
+    "Hardy-field unique ergodicity on the circle",
+    "polynomial-growth sequences log-away from Z[t]",
+    "{f(n)} equidistribution"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source",
+  "notes": "J. Anal. Math. 62 (1994), 225-240. Circle unique ergodicity for {f(n)} when f is Hardy of polynomial growth and stays logarithmically away from integer polynomials. Applies to {n^{27/8}}; does not apply to {floor(n^{3/2})^{9/4}}, which is not a Hardy function of n. The circle case that Frantzikinakis 2009 generalizes to nilmanifolds. Cited by docs/problems/juggler_v94_rate_free.md."
+}

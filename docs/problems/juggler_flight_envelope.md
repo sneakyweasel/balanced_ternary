@@ -199,7 +199,10 @@ No `sorry`; full `lake build` clean. Ledger row
 - Can the lower side be extended past the first descent by
   re-anchoring at each valley (an excursion-decomposed envelope), and
   does the composed statement say anything the per-excursion one does
-  not?
+  not? This is a *height-law* question on orbits that leave
+  `AboveAnchor`. The *exclusion* reading (comparable-scale occupancy
+  as a kill of divergent flights) is **CLOSE**:
+  [juggler_flight_valley_composition.md](juggler_flight_valley_composition.md).
 - Is there any start class with \(E_H\) bounded away from \(0\) — a
   floor-suppressed flight family? (Empirics through \(2\cdot10^4\)
   say no; this is the same defect-lower-bound wall that parks the
@@ -223,7 +226,9 @@ Best next question: does the excursion-decomposed (re-anchored)
 envelope compose across valleys into a whole-trajectory height law,
 or does composition lose exactly the information the single-anchor
 form already loses at the \(19.6\%\) of starts that peak after first
-descent?
+descent? That question is not an exclusion mechanism
+([juggler_flight_valley_composition.md](juggler_flight_valley_composition.md)
+CLOSE) and is not opened from the occupancy distill.
 
 ## Publication assessment
 

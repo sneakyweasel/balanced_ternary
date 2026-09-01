@@ -158,10 +158,13 @@ Classification **HEISENBERG_CUT_GREEN**.
 ## Open questions
 
 - The remaining open of the rate-free route is still
-  equidistribution of the floor-Hardy orbit (Hardy-field
-  unique ergodicity of the monomials of
-  \(\lfloor n^{3/2}\rfloor\), including \(\{v^{9/4}\}\) without
-  unwinding through \(\theta\)). External; not opened.
+  equidistribution of the floor-Hardy orbit. The
+  \(\{v^{9/4}\}\) identification without \(\theta\)-unwind is
+  answered by
+  [juggler_v94_rate_free.md](juggler_v94_rate_free.md): **CLOSE**
+  (published Hardy-nil doors miss; qualitative van der Corput
+  is integer dilation of \(\{v^{5/4}\}\)). External composition
+  lemma; not a laboratory method.
 - Characteristic-factor self-similarity of floor-removal remains
   the named route-falsifier and is also external.
 

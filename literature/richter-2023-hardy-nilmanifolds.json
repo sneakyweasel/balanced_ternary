@@ -1,0 +1,24 @@
+{
+  "id": "richter-2023-hardy-nilmanifolds",
+  "title": "Uniform distribution in nilmanifolds along functions from a Hardy field",
+  "authors": ["Florian K. Richter"],
+  "year": 2023,
+  "identifiers": {
+    "doi": "10.1007/s11854-022-0253-0",
+    "arxiv": "2006.02028"
+  },
+  "url": {
+    "publisher": "https://doi.org/10.1007/s11854-022-0253-0",
+    "arxiv": "https://arxiv.org/abs/2006.02028"
+  },
+  "problem_area": "ergodic-equidistribution",
+  "relevant_concepts": [
+    "Hardy-field nil-orbits of polynomial growth",
+    "Leibman equidistribution criterion extended off polynomials",
+    "a_1^{f_1(n)} ... a_k^{f_k(n)} Gamma",
+    "property (P)"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source",
+  "notes": "J. Anal. Math. 149 (2023), 421-483 (arXiv 2020). Theorem A: the orbit a_1^{f_1(n)} ... a_k^{f_k(n)} Gamma is governed by its horizontal torus when each f_i lies in a Hardy field, has polynomial growth, and satisfies property (P). The smooth model (n^{3/4}, n^{3/2}, n^{9/4}) matches; floor(n^{3/2})^{9/4} does not, because floor is not Hardy. Unwinding floor(h) to h produces the leftover (9/4) n^{15/8} {n^{3/2}}, which is not o(1), so the smooth-model theorem does not transfer. Cited by docs/problems/juggler_v94_rate_free.md."
+}

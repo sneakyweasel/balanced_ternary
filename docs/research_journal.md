@@ -19984,4 +19984,47 @@ Best next question
   rate-free tower equidistribution
 ```
 
+## Flight valley composition: occupancy is the existing pigeonhole (consolidation; not a numbered milestone)
 
+- **Date:** 2026-09-01
+- **Objective:** The uniqueness/packing pass's standing deferral: does the PARKed re-anchored excursion envelope supply a comparable-scale occupancy inequality that excludes an infinite injective `AboveAnchor` trajectory, or is every such inequality already recorded?
+- **Hypotheses:** composed two-sided windows at successive records (or across a peak–valley–peak) stay thin enough, at comparable scales, to beat \(\lvert\mathrm{window}\rvert\). Falsifier: every occupancy inequality is the existing bounded-walk pigeonhole, hug-hugging (already cycle-exclusive), or record-composition reparameterization; the original envelope PARK prices post-descent peaks on orbits that leave `AboveAnchor`.
+- **Major results:**
+  - **Valley-composition split (EXACT — HUMAN PROOF, components Lean, no new ledger row).** Occupancy: if a finite index set \(K\) has its envelope windows inside \(S\), injectivity forces \(\lvert K\rvert\le\lvert S\rvert\). Pointwise divergence already implies every *fixed* bounded \(S\) is occupied only finitely often, so the only possible kill is a finite sojourn longer than \(\lvert S\rvert\).
+  - **Four-way classification.** (1) Bounded-walk sojourn from a record is `J-flight-walk-divergence` re-anchored (`REPARAMETERIZATION`). (2) Equal-\(w\) thin slices are hug-hugging, already cycle-exclusive; long hug after a record is allowed (structure-theorem sharpness); a hug-band sojourn at the frontier would need \(>m^3\sim 4\cdot 10^{25}\) steps. (3) Composition across increasing records *enlarges* \(S\); jump widths are `J-flight-record-composition`. (4) Terminating-side re-anchor after \(x_k<n\) is a different object (the \(19.6\%\) height-law PARK) and cannot exclude a descent-free flight.
+  - **Answer:** the packing reduction to "quantitative valley composition" was a conservative deferral, not a remaining attack. Classification `VALLEY_COMPOSITION_EXCLUSION_CLOSED`. The last named flight-side reopen on the divergent branch is not a theorem and not a PARK. The terminating-side height-law PARK stays with the envelope branch and is not opened.
+- **Refuted ideas:** none new (Koksma \(+1/L\) not re-tested; no packing census; no \(19.6\%\) height-law experiment; hug-cylinder fills not re-censused). The slogan "comparable-scale windows can overfill" died by implication, not by a counterexample orbit.
+- **Literature:** none new.
+- **Open:** none in the flight program. The cycle Diophantine blocker \(L=478245\) and pointwise emptiness of odd towers remain the named frontiers; neither is opened. The envelope height-law PARK is a different question and is not that next question.
+- **Decision:** CLOSE — dossier `docs/problems/juggler_flight_valley_composition.md`. No probe, no ledger row, no Lean.
+
+```text
+What was learned
+- occupancy of envelope windows is |K| <= |S|; pointwise
+  divergence forbids infinite occupation of any fixed bounded S
+- a finite sojourn longer than |S| is the walk-divergence
+  pigeonhole, re-anchored at the record
+- equal-w thin slices are hug-hugging (already cycle-exclusive);
+  long hug after a record is allowed
+- composing windows across increasing records enlarges S;
+  terminating-side re-anchor after x_k < n cannot exclude flights
+Strongest theorem
+- valley-composition split: exclusion occupancy is the existing
+  pigeonhole (packaging of existing Lean/human theorems; no
+  ledger row)
+Strongest refutation
+- none new (the novelty hypothesis died by obstruction, not
+  by a counterexample orbit)
+Reusable machinery
+- none (distill only)
+Branch status
+- CLOSE
+Why
+- the stop criterion fired: the exclusion reading is a
+  reparameterization or a false reopen; the 19.6% height-law
+  PARK is a different object and was not closed from here
+Best next question
+- none in the flight program; the two named frontiers (cycle
+  Diophantine blocker L=478245; pointwise emptiness of
+  infinite odd towers) are not opened from here
+```

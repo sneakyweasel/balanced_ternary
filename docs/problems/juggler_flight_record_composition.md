@@ -59,10 +59,11 @@ by finitely many applications of the existing row.
 **Scope guard.** No claim that divergent flights exist, that record
 deficits are summable on any flight, or that any flight class is
 excluded. The terminating-side composition across valleys (the
-flight-envelope branch's PARKed reopening key) involves defect
-descents and is untouched: the divergent side composes cleanly only
-because records give descent-free tails for free
-(`J-flight-divergent-structure`, point 5).
+flight-envelope branch's remaining height-law PARK) involves defect
+descents and is not an exclusion lemma: the occupancy reading is
+CLOSE (`juggler_flight_valley_composition`). The divergent side
+composes cleanly only because records give descent-free tails for
+free (`J-flight-divergent-structure`, point 5).
 
 ## Current literature
 
@@ -70,8 +71,9 @@ because records give descent-free tails for free
   (`J-flight-return-quantization`), components Lean
 - Recurrent hug domination at records — **EXACT — HUMAN PROOF**
   (`J-flight-divergent-structure`)
-- Re-anchored excursion envelope across valleys — **PARK**
-  (flight-envelope branch; not reopened)
+- Re-anchored excursion envelope across valleys — exclusion
+  reading **CLOSE** (`juggler_flight_valley_composition`);
+  height-law PARK stays with the flight-envelope branch
 
 Project relationship: **extended** (closes the composition question
 raised by the quantization branch).

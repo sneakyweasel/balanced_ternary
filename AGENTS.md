@@ -86,8 +86,10 @@ for external review.
   (conditional, no new floor); divergent flights diverge pointwise with
   recurrent hug domination and record jumps quantized to the
   \(\log_2 3\)-lattice (shortest near-return \(19\)). Do not reopen
-  composition (`REPARAMETERIZATION`), odd-tower placement, or DK-as-kill.
-  Exclusion of divergent orbits is not claimed.
+  composition (`REPARAMETERIZATION`), odd-tower placement, DK-as-kill,
+  or valley-composition exclusion (`CLOSE`: occupancy is the existing
+  pigeonhole). The terminating-side height-law PARK is not an exclusion
+  mechanism. Exclusion of divergent orbits is not claimed.
 - **Termination:** certified descent density \(29/32\); the pointwise route
   is parked behind the \(K_3\) obstruction ladder BB/GG/JJ. Not claimed.
 - **Local attacks are closed.** Fibres are parity + interval only

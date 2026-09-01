@@ -209,7 +209,11 @@ Classification **HORIZONTAL_WEYL_GREEN**.
 - The remaining open step of the rate-free route is unchanged in
   species: ergodic identification of the floor-Hardy nil-orbit.
   Any *rated* proof that unwinds or Weyl-differences the abelian
-  coordinate re-enters GG/HH. That door is not opened here.
+  coordinate re-enters GG/HH. The rate-free identification of
+  \(\{v^{9/4}\}\) without \(n\)-unwinding is answered by
+  [juggler_v94_rate_free.md](juggler_v94_rate_free.md): **CLOSE**
+  (published doors miss; qualitative van der Corput is the same
+  composition).
 - Mixed harmonics with \(k_3=0\) reduce to the two cheap axes;
   they do not move density one.
 

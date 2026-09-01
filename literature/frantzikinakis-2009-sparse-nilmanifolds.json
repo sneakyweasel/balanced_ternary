@@ -1,0 +1,24 @@
+{
+  "id": "frantzikinakis-2009-sparse-nilmanifolds",
+  "title": "Equidistribution of sparse sequences on nilmanifolds",
+  "authors": ["Nikos Frantzikinakis"],
+  "year": 2009,
+  "identifiers": {
+    "doi": "10.1007/s11854-009-0035-y",
+    "arxiv": "0810.4661"
+  },
+  "url": {
+    "publisher": "https://doi.org/10.1007/s11854-009-0035-y",
+    "arxiv": "https://arxiv.org/abs/0810.4661"
+  },
+  "problem_area": "ergodic-equidistribution",
+  "relevant_concepts": [
+    "Hardy-field sequences of polynomial growth",
+    "integer-part removal in the time slot of a fixed nilrotation",
+    "b^{floor(n^c)} x equidistribution",
+    "Boshernitzan circle case"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source",
+  "notes": "Integer-part removal applies to the time index of a fixed nilrotation: if b is an ergodic nilrotation and a is Hardy of polynomial growth, (b^{floor(a(n))} x) equidistributes. That is not a Hardy monomial of a floor, and not the Juggler Mal'cev path g(v) = exp((3/2) v^{3/4} e_12 + v^{3/2} e_23) sampled at v = floor(n^{3/2}). Cited by the v^{9/4} rate-free placement (docs/problems/juggler_v94_rate_free.md): the published floor-removal step does not identify {floor(n^{3/2})^{9/4}}."
+}
