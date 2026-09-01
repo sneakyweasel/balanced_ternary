@@ -1176,3 +1176,16 @@ holds (\(0.11>0.1\)). Introductory example first holds
 at \(1.30\cdot 10^{13}\); \(V/S\le c_7/2\) at
 \(3.92\cdot 10^{24}\). Not a kernel retag and not a
 Paper B edit. Do not open another \(P_0\) census.
+
+## Phase 33: Step 5b sublevel geometry vs Lemma 3.9
+
+Child dossier
+[juggler_step5b_sublevel.md](juggler_step5b_sublevel.md).
+On the printed zero-offset triple, \(\Omega_V\) and the
+Vandermonde transition \(T\) have \(O_E(1)\) interval
+counts and do not track the cell inventory. Cancellation
+fills the dyadic block at every census \(P\), so the
+trivial bound costs \(P\): the geometric reading of the
+Phase-32 \(V\le c_7S/2\) line, not a new threshold.
+`J-kernel-cancellation` not retagged. Paper B is not
+edited. Do not open a finer grid.

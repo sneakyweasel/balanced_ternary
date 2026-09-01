@@ -100,9 +100,10 @@ It is not required. The 2-adic / BT bridge stays closed.
 
 ## Candidate operations / invariants
 
-- Explicit \(c_7\) of the Vandermonde matrix on
+- Explicit \(c_7=1/288\) of the Vandermonde matrix on
   \(\bigl(\tfrac54,\tfrac{11}{8},\tfrac32\bigr)\) —
-  **COMPUTATIONALLY VERIFIED**
+  **COMPUTATIONALLY VERIFIED** (reproduced from the
+  interpolant-\(P_0\) sibling)
 - Sublevel \(\Omega_V\) length and interval count versus
   the proof's \(r=3,4\) length constants —
   **COMPUTATIONALLY VERIFIED**
@@ -143,19 +144,69 @@ in prose is machinery gravity.
 
 ## Results
 
-Filled after the Phase-0 census. See the Decision.
+- **\(c_7=1/288\) (COMPUTATIONALLY VERIFIED; already
+  named by the interpolant-\(P_0\) sibling).**
+  Vandermonde matrix on
+  \(\bigl(-\tfrac34,-\tfrac58,-\tfrac12\bigr)\),
+  \(\lVert M^{-1}\rVert_\infty=288\). Positive octant
+  gives \(1\). The printed “hence \(V\le c_7S/2\)”
+  hides this constant.
+- **Interval counts are \(O_E(1)\)
+  (COMPUTATIONALLY VERIFIED).** At
+  \(P\in\{10^6,10^8,10^{10}\}\) and the six middle-band
+  families, \(\#\Omega_V\le 3\) and \(\#T\le 1\). Counts
+  do not track the cell inventory
+  \(N\le 3.5P^{13/24}\) (\(\#\Omega_V/N\sim 10^{-6}\)).
+  The Phase-25 “one inverse-power term per cell” error
+  is not hiding as one new interval per cell.
+- **Cancellation fills the block (COMPUTATIONALLY
+  VERIFIED).** On the zero-crossing families,
+  \(|\Omega_V|=\Theta(P)\) at every census \(P\)
+  (exactly \(P\) at \(10^6\) and \(10^8\); \(0.82P\) to
+  \(P\) at \(10^{10}\)). Dyadic ratios
+  \(n^{\alpha-\beta}\) move by only \(2^{1/8}\), so a
+  three-term zero keeps \(|f''|\) below the printed \(V\)
+  on almost the whole of \((P,2P]\). The trivial bound
+  therefore costs \(P\), not the printed
+  \(P^{89/96}\). This is the geometric meaning of the
+  sibling’s \(V\le c_7S/2\) line (first \(P_0\)
+  \(3.92\cdot 10^{24}\)), not a new threshold hunt.
+- **Same-sign and wave-dominant edges have empty
+  \(\Omega_V\).** Lemma 3.8-style two-term control
+  without a zero is empty at the paper \(V\). Complement
+  intervals are single-signed. \(|\Lambda-\Phi''|=o(V)\)
+  on every sample (`resid_ok`).
+- **Lemma length holds; printed assembly does not, at
+  these \(P\).** Worst
+  \(|\Omega_V|/(\text{proof }r=3,4\text{ bound})=0.019\).
+  Repaired total on cancellation is \(\Theta(P)\),
+  above \(P^{89/96}\). The old per-cell
+  \(n_{\mathrm{meet}}V^{-1/2}\) is large because many
+  cells meet one long interval, not because the
+  interval count grew.
+- No exponential sum. Paper B not edited.
+  `J-kernel-cancellation` stays **EXACT — HUMAN PROOF**.
 
 ## Open questions
 
 The independent human check of Paper B Section 5 remains.
-Do not open a visualizer or a finer \(P\)-grid.
+Do not open a visualizer, a finer \(P\)-grid, or another
+\(P_0\) census.
 
 ## Decision
 
-**CLOSE** as an OBSERVATION / COMPUTATIONALLY VERIFIED
-laboratory gate (justification filled after the census).
-Paper B frozen. Best next question: one independent
-human check of Section 5.
+**PROMOTE** the geometry table. Interval counts stay
+\(O_E(1)\) and do not track \(N\), so the Phase-25
+per-cell inverse-power error is not still hiding in
+Lemma 3.9. On cancellation, \(\Omega_V\) is the dyadic
+block at every laboratory \(P\) in the census: the
+global trivial bound costs \(P\), which is the already
+named \(V\le c_7S/2\) ineffectivity, not a new hole and
+not a retag of the kernel. Paper B frozen. Do not
+auto-continue.
+
+Best next question: one independent human check of
+Paper B Section 5, not another \(P_0\) census.
 
 ## Publication assessment
 

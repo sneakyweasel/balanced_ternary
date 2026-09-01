@@ -17,5 +17,5 @@
   ],
   "project_relationship": "known",
   "status": "classical-source",
-  "notes": "Proc. London Math. Soc. 90 (2005), 1-41. The strongest classical (pre-decoupling) output of the Bombieri-Iwaniec method: (32/205 + eps, 269/410 + eps) is an exponent pair; zeta exponent improved from 89/570 and 0.156140 to 0.156098. For the sub-density functional of docs/problems/juggler_ps_inversion_barrier.md this pair gives (5/4)(32/205) + 269/410 = 349/410 ~ 0.851, above Bourgain's 95/112 ~ 0.848 and far above the needed 2/3. Cited by docs/problems/juggler_bi_resonance_limit.md for the achieved-value chain 9/56 > 89/570 > 32/205 > 13/84 > 3/20 (ceiling) > 2/27 (needed)."
+  "notes": "Proc. London Math. Soc. 90 (2005), 1-41. The strongest classical (pre-decoupling) output of the Bombieri-Iwaniec method: (32/205 + eps, 269/410 + eps) is an exponent pair; zeta exponent improved from 89/570 and 0.156140 to 0.156098. For the sub-density functional of docs/theory/exponent_pair_two_monomial.md this pair gives (5/4)(32/205) + 269/410 = 349/410 ~ 0.851, above Bourgain's 95/112 ~ 0.848 and far above the needed 2/3. Cited by docs/problems/juggler_bi_resonance_limit.md for the achieved-value chain 9/56 > 89/570 > 32/205 > 13/84 > 3/20 (ceiling) > 2/27 (needed)."
 }

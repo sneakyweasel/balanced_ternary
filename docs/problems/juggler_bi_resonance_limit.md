@@ -201,17 +201,17 @@ Classification **BI_CEILING_ABOVE_SUB_DENSITY**.
   (EPC-scale progress \(p\to0\)); within current and
   conjecturally-perfected resonance analysis it is out of reach.
 - Not claimed: that the sub-density bound is false (empirically the
-  sums sit at square-root scale); no new exponent pair; no new ledger
-  row.
+  sums sit at square-root scale); no new exponent pair.
+  No new ledger row.
 
 ## Open questions
 
-None from this laboratory. The external problem is now stated with
-its full price: prove \(T_j=\sum_{m\le M}e(cm^{9/4}-jm^{2/3})=
-o(M^{2/3})\), which requires exponent-pair progress past the
-Bombieri–Iwaniec ceiling — technology that does not exist today. The
-only remaining laboratory move is exporting the problem note; that is
-a writing task, not a Phase-0.
+None from this laboratory. The remaining external question is the
+boxed pair of
+[exponent_pair_two_monomial.md](../theory/exponent_pair_two_monomial.md):
+prove \(\tfrac54 p+q<\tfrac23\) for an exponent pair applicable to
+\(cm^{9/4}-jm^{2/3}\). That export is a writing task, not a successor
+branch.
 
 ## Decision
 
@@ -221,8 +221,9 @@ with a factor-two margin, and no within-method refinement (resonance
 curves, spacing improvements, decoupling inputs) can change it. The
 rate-free conjecture stays ACTIVE as external mathematics whose
 difficulty is now completely named. Best next question: none from
-this branch; the export note is the only remaining move and is not a
-research phase.
+this branch; the remaining pair is exported at
+[exponent_pair_two_monomial.md](../theory/exponent_pair_two_monomial.md)
+and is not a Juggler construction.
 
 ## Publication assessment
 

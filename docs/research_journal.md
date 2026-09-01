@@ -20895,3 +20895,129 @@ Best next question
   not another P0 census
 ```
 
+## BI resonance ceiling: the sub-density barrier is beyond the method's dream (Phase 0; CLOSE)
+
+- **Date:** 2026-09-02
+- **Objective:** Answer the single open question of the PS-inversion barrier: can the Bombieri–Iwaniec resonance method, run for \(T_j=\sum_{m\le M}e(cm^{9/4}-jm^{2/3})\), produce any exponent pair with \((5/4)p+q<2/3\) — including under optimal resolution of both spacing problems?
+- **Hypotheses:** the regime \(T=M^{9/4}\) (just above the critical \(T=M^2\)) might be BI-favorable, or the method's conjectural limit might dip below the required threshold. Falsifier: the BI output depends only on \((T,M)\) and the spacing counts, and its structural ceiling stays well above the need.
+- **Major results:**
+  - **Criterion is one number (EXACT — HUMAN PROOF, elementary):** BI pairs sit on \(q=p+\tfrac12\) (all four historical outputs); there the functional is \((9/4)p+\tfrac12\), equal to \(2/3\) at exactly \(p=2/27\). The \(B\)-process fixes that line pointwise and the \(A\)-process worsens the functional precisely for \(p<1/6\) (exact root of \(9p^2+\tfrac92p-1\)), which covers every BI pair — no transform escapes. So the question is exactly: can BI produce \(p<2/27\approx0.0741\)?
+  - **Method ceiling (KNOWN; the stop):** in the zeta normalization \(\theta=(p+q)/2-\tfrac14=p\) on the half-line, and the recorded structural limit of the method (Huxley monograph `huxley-1996-area-lattice-points`; Encyclopedia of Mathematics; Huxley's survey) is: even a complete resolution of both the first and second spacing problems cannot get the zeta exponent below \(3/20=0.15\). Hence no BI-producible pair has \(p<3/20\), and \(\frac{3/20}{2/27}=\frac{81}{40}=2.025\): the dream version of the method misses by a factor of two. Dream-ceiling functional \(67/80=0.8375\gg2/3\).
+  - **The slack is already half spent (KNOWN):** Bourgain's \(13/84\) resolves the first spacing problem optimally by decoupling; the entire remaining within-method slack is the second spacing problem, and zeroing it still cannot reach \(2/27\). Achieved chain, exact: \(2/27<3/20<13/84<32/205<89/570<9/56\).
+  - **No regime loophole (KNOWN):** \(\alpha=\log M/\log T=4/9\in(2/5,1/2)\) — squarely inside the middle range (Sargos's variant at \(2/5\), classical BI at \(1/2\)); the \(-jm^{2/3}\) perturbation is lower order in every derivative and inert in the resonance geometry; a native run cannot beat the method's own ceiling.
+- **Refuted ideas:** the phase's novelty hypothesis — neither the \(T=M^{9/4}\) regime nor the conjectural limit helps; BI cannot reach the sub-density barrier even conjecturally-within-method.
+- **Literature:** `huxley-1996-area-lattice-points`, `huxley-2005-zeta-v` added; `bourgain-2017-exponent-pair` reused.
+- **Open:** external only, now with its full price named: \(T_j=o(M^{2/3})\) requires exponent-pair progress past the BI ceiling (EPC-scale \(p\to0\)) — technology that does not exist today.
+- **Decision:** CLOSE — dossier `docs/problems/juggler_bi_resonance_limit.md`. Exact arithmetic sealed in `tests/research/juggler_sequence/test_bi_resonance_limit.py` (fractions only; no probe module, no census, no Lean, no paper edits). No new ledger row.
+
+```text
+What was learned
+- BI-type pairs live on q = p + 1/2; B fixes that
+  line and A worsens the functional exactly when
+  p < 1/6, which covers every BI pair
+- sub-density therefore needs the single number
+  p < 2/27 (equality with 2/3 is exact)
+- the method's structural ceiling — both spacing
+  problems resolved perfectly — is p = 3/20, a
+  factor 81/40 = 2.025 above the need; today's
+  frontier 13/84 is a factor ~2.089
+- Bourgain's decoupling already resolves the first
+  spacing problem optimally: the whole remaining
+  slack is the second spacing problem, and zeroing
+  it cannot help
+- the regime alpha = 4/9 sits squarely mid-range:
+  the ceiling applies with no boundary loophole
+Strongest theorem
+- none new (the p < 2/27 reduction is exact but
+  elementary)
+Strongest refutation
+- the phase's novelty hypothesis: BI, run natively
+  or via pairs, cannot reach the sub-density
+  barrier even with both spacing problems perfect
+Reusable machinery
+- exact functional/transform arithmetic in
+  test_bi_resonance_limit.py; registry rows
+  huxley-1996-area-lattice-points, huxley-2005-zeta-v
+Branch status
+- CLOSE
+Why
+- the stop criterion fired with a published ceiling:
+  2/27 < 3/20, so the answer is NO with a
+  factor-two margin, and no within-method
+  refinement can change it
+Best next question
+- none from this laboratory; the rate-free door's
+  difficulty is fully named (sub-density, a factor
+  81/40 beyond the BI dream ceiling; EPC-scale
+  technology required); the only remaining move is
+  exporting the T_j problem note, a writing task,
+  not a Phase-0
+```
+
+## Paper B kernel: Step 5b sublevel geometry vs Lemma 3.9 (Phase 33)
+
+- **Date:** 2026-09-02
+- **Objective:** On the printed zero-offset three-term
+  model, measure \(\Omega_V=\{|f''|\le V\}\) and the
+  Vandermonde transition \(T\), and compare length and
+  interval count to Lemma 3.9. Last place a per-cell
+  inverse-power sum could hide.
+- **Hypotheses:** A \(P\)-growing interval count, or
+  \(|\Omega_V|\) above the explicit Vandermonde length
+  at large \(P\), is a Phase-26-species hole.
+- **Major results:**
+  - \(c_7=1/288\) reproduced
+    (**COMPUTATIONALLY VERIFIED**; already named by
+    Phase 32).
+  - Interval counts \(O_E(1)\) at
+    \(P=10^6,10^8,10^{10}\): \(\#\Omega_V\le 3\),
+    \(\#T\le 1\). They do not track
+    \(N\le 3.5P^{13/24}\).
+  - Cancellation families have
+    \(|\Omega_V|=\Theta(P)\) (exactly \(P\) at
+    \(10^6\) and \(10^8\); \(0.82P\)–\(P\) at
+    \(10^{10}\)). The trivial bound costs \(P\), not
+    \(P^{89/96}\): geometric reading of the Phase-32
+    \(V\le c_7S/2\) line, not a new threshold.
+  - Same-sign \(\Omega_V\) empty; complement
+    single-signed; \(|\Lambda-\Phi''|=o(V)\). Worst
+    length ratio against the proof bound is \(0.019\).
+- **Refuted ideas:** none of the “one new interval per
+  cell” species. Lemma 3.9 is not retagged.
+- **Literature:** Paper B Lemma 3.9 / Theorem 5.3
+  Step 5b.
+- **Open:** the independent human check of Section 5.
+  No finer grid.
+- **Decision:** PROMOTE the geometry table. Dossier
+  `docs/problems/juggler_step5b_sublevel.md`. No Paper B
+  edit, no kernel retag, no further \(P_0\) census.
+
+```text
+What was learned
+- interval counts stay O_E(1) and do not track N; the
+  Phase-25 per-cell inverse-power error is not hiding
+  as one transition per cell
+- a three-term zero on a dyadic block keeps |f''|
+  below the printed V on almost all of (P,2P]
+- the global trivial bound then costs P, which is the
+  already-named V ≤ c7 S/2 ineffectivity
+- same-sign and wave-dominant edges have empty Ω_V
+- |Λ-Φ''| is o(V) on every sample; c7 = 1/288
+Strongest theorem
+- none new; kernel tag unchanged
+Strongest refutation
+- none of Lemma 3.9; the printed short-transition
+  assembly is ineffective at census P
+Reusable machinery
+- step5b_sublevel.py
+Branch status
+- PROMOTE
+Why
+- the geometry table answers the item-4 question:
+  counts are global, the remaining cost is the known
+  V-threshold, not a new hole
+Best next question
+- one independent human check of Paper B Section 5,
+  not another P0 census
+```
+

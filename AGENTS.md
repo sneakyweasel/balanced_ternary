@@ -110,20 +110,25 @@ for external review.
   nearby reformulations of the floor-Hardy composition are
   closed (`juggler_v94_rate_free`, `juggler_v94_hardy_lift`,
   `juggler_nil_pet_reentry`, `juggler_rate_free_floor_hardy`).
-  The remaining problem is external: prove a rate-free
-  equidistribution theorem for \(f(\lfloor h(n)\rfloor)\) with
-  nonlinear Hardy \(f,h\)
-  (`juggler_tower_rate_free_equidistribution`, ACTIVE), or
-  discover a completely different route to the node-wise
-  E-share \(\beta>\beta_*=1-\log 2/\log 3\approx 0.36907\).
-  The m-variable PS inversion is recorded and closed
+  The remaining problem is external mathematics, exported at
+  [docs/theory/exponent_pair_two_monomial.md](docs/theory/exponent_pair_two_monomial.md):
+  prove \(\tfrac54 p+q<\tfrac23\) for an exponent pair
+  applicable to \(cm^{9/4}-jm^{2/3}\). It is not a Juggler
+  construction and must not be wrapped as one. The conjecture
+  `juggler_tower_rate_free_equidistribution` stays ACTIVE; a
+  completely different route to the node-wise E-share
+  \(\beta>\beta_*=1-\log 2/\log 3\approx 0.36907\) would also
+  suffice. The m-variable PS inversion is recorded and closed
   (`juggler_ps_inversion_barrier`): the fixed harmonic
-  reduces exactly to sub-density two-monomial sums
-  \(\sum e(cm^{9/4}-jm^{2/3})=o(M^{2/3})\), needing an
-  exponent pair with \((5/4)p+q<2/3\) versus the known hull
-  minimum \(95/112\); main-term saving \(N^{13/16}\) and the
+  reduces exactly to those two-monomial sums, needing
+  sub-density \(o(M^{2/3})\) versus the known hull minimum
+  \(95/112\); main-term saving \(N^{13/16}\) and the
   bias-mass relaxation of Lemma B are recorded there. Do not
-  re-run it. Do not reopen the composition door, the
+  re-run it. The Bombieri–Iwaniec follow-up is also closed
+  (`juggler_bi_resonance_limit`): sub-density needs \(p<2/27\)
+  on the BI line, while the method's ceiling under perfect
+  spacing is \(3/20\) — a factor \(81/40\) short even
+  conjecturally-within-method. Do not reopen the composition door, the
   \(\beta\)-fallback as a weaker species, PET, Theorem R,
   \(\lambda=0\), or further literature-name audits. Not
   claimed.

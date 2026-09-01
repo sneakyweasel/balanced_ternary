@@ -305,11 +305,14 @@ Classification **PS_INVERSION_SUB_DENSITY_BARRIER**.
 
 ## Open questions
 
-- External, exactly one: can the Bombieri–Iwaniec resonance method be
-  run for the specific exponent pair problem of
-  \(T_j=\sum e(cm^{9/4}-jm^{2/3})\) to give any \((p,q)\) with
-  \((5/4)p+q<2/3\) — sub-density cancellation on the PS fluctuation?
-  Not opened as a laboratory branch.
+- The BI-only question is answered **NO** by
+  [juggler_bi_resonance_limit.md](juggler_bi_resonance_limit.md)
+  (needed \(p<2/27\); method ceiling \(3/20\); margin \(81/40\)).
+  The remaining external question is the boxed pair of
+  [exponent_pair_two_monomial.md](../theory/exponent_pair_two_monomial.md):
+  prove \(\tfrac54 p+q<\tfrac23\) for an exponent pair applicable to
+  \(cm^{9/4}-jm^{2/3}\). That is classical exponential-sum theory,
+  not a laboratory branch and not a Juggler construction.
 
 ## Decision
 
@@ -321,8 +324,9 @@ conjecture point that would finish it. The \(\beta\)-half's node-mass
 relaxation is recorded but collapses to the same \(k=1\) harmonic.
 `juggler_tower_rate_free_equidistribution` stays ACTIVE as the
 external problem, now with a classical name for its difficulty. Best
-next question: none from this laboratory; the external question is the
-open item above.
+next question: none from this laboratory; the remaining pair is
+exported at
+[exponent_pair_two_monomial.md](../theory/exponent_pair_two_monomial.md).
 
 ## Publication assessment
 
