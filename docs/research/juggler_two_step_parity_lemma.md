@@ -4303,3 +4303,253 @@ route for the OOEOO sixth letter is closed. The single
 next question is the length-8 \(E'\) hole, a different
 door.
 
+## Part XXIII: the length-8 remainder decays — discard is legal (Phase 40)
+
+Scope: \(E\) and \(E'\) on the four length-8 quartet
+parents. Not Theorem AA. Not Theorem X. Not a Paper B
+edit. Not \(K_3\). Not another rewriting of
+\(e(uw^{3/2})\). Isolated Lemma AA1 stands.
+
+Lemma AA1 writes
+\[
+X_7=n^{243/128}-\sum_i B_i(n)\,\theta_i+E,
+\]
+with \(|E|<1\) for \(n\ge 51\). Phase 26 discarded \(E\)
+at that crude size: Vaaler cost \(J_8P=P^{1+13/384}\)
+wipes the eighth-letter saving. Keeping \(e(kE)\) at the
+same crude size needs \(E'\), which was not written.
+The AA1 proof already names one-signed second-order
+envelopes. Phase 40 records the rate and the discard
+cost.
+
+### The six Taylor remainders on \(OOEOOEO\)
+
+Write \(x_1=n\) and follow the letters \(OOEOOEO\). The
+floor identities \(x_{t+1}=Y_t-\theta_t\) are exact; the
+only remainders are the Taylor tails
+\(E_p=\tfrac{p(p-1)}{2}\xi^{p-2}\theta^2\) of the power
+maps that reassemble \(X_7=x_7^{3/2}\). Expanding the
+main monomial level by level:
+
+\[
+\begin{align*}
+E^{(6)}
+&=\tfrac38\xi_7^{-1/2}\theta_6^2
+\ll x_7^{-1/2}\asymp n^{-81/128},\\
+E^{(5)}
+&=\tfrac{3}{32}\xi_6^{-5/4}\theta_5^2
+\ll x_6^{-5/4}\asymp n^{-405/128},\\
+E^{(4)}
+&=\tfrac{9}{128}\xi_5^{-7/8}\theta_4^2
+\ll x_5^{-7/8}\asymp n^{-189/128},\\
+E^{(3)}
+&=\tfrac{297}{512}\xi_4^{-5/16}\theta_3^2
+\ll x_4^{-5/16}\asymp n^{-45/128},\\
+E^{(2)}
+&=\tfrac{135}{2048}\xi_3^{-37/32}\theta_2^2
+\ll x_3^{-37/32}\asymp n^{-333/128},\\
+E^{(1)}
+&=\tfrac{1377}{8192}\xi_2^{-47/64}\theta_1^2
+\ll x_2^{-47/64}\asymp n^{-141/128}.
+\end{align*}
+\]
+
+These are the six envelopes already in
+`eighth_letter_chain_check`. The leading term is
+\(E^{(3)}\), from
+\((x_3^{1/2}-\theta_3)^{27/16}\). Every other tail is
+strictly smaller.
+
+Bilinear cross terms from expanding a coefficient
+\(B_i\) through an earlier floor are of the form
+\((\partial B_i/\partial x_j)\theta_i\theta_j\). The
+largest is
+\(\tfrac{27}{16}\cdot\tfrac{11}{32}x_3^{-21/32}
+\asymp n^{-189/128}\), below the leading tail. There is
+no extra floor remainder to amplify: \(x_{t+1}=Y_t-\theta_t\)
+exactly.
+
+### The other three parents
+
+\(OOEOOOE\) shares the prefix \(OOEOO\) and the main
+monomial \(x_4^{27/16}\). Its last step is a square root
+(\(X_7=x_7^{1/2}\)), whose tail is
+\(\ll n^{-567/128}\). The leading remainder is again
+\(E^{(3)}\asymp n^{-45/128}\).
+
+\(OOOEOEO\) and \(OOOEOOE\) apply the third letter as
+\(O\), so \(x_4=x_3^{3/2}\). Their largest written tails
+are the last-step \(n^{-81/128}\) and the first-step
+\(n^{-141/128}\), both smaller than \(n^{-45/128}\).
+
+Thus on every quartet parent
+\[
+\lvert E\rvert\ll n^{-45/128}.
+\]
+The crude bound \(\lvert E\rvert<1\) for \(n\ge 51\) is
+the corollary \(51^{-45/128}<1\) plus a constant.
+
+### Drift
+
+The leading term is \(C(n)\theta_3^2\) with
+\(C\asymp n^{-45/128}\) and
+\(\theta_3=\{x_3^{1/2}\}\), so
+\(\theta_3'\asymp n^{1/8}\). Hence
+\[
+\lvert E'\rvert\ll n^{-45/128+1/8}=n^{-29/128}<1.
+\]
+Floor jumps change \(E\) by at most the envelope
+\(n^{-45/128}\), which is finer than this scale. The
+other tails give strictly smaller formal derivatives
+(worst sibling: last-step \(n^{-47/128}\)).
+
+### Discard is legal; crude discard stays dead
+
+On the Phase-23 range \(1\le\lvert k\rvert\le J_8=P^{13/384}\),
+\[
+k\lvert E\rvert\ll P^{13/384-45/128}=P^{-61/192}\to 0.
+\]
+So \(e(kE)=1+O(kE)\). The Vaaler cost of replacing
+\(e(kE)\) by \(1\) is
+\[
+\sum_{k\le J_8}\frac1k\cdot k\lvert E\rvert P
+=J_8\lvert E\rvert P\ll P^{131/192}.
+\]
+This sits strictly inside the eighth-letter majorant
+\(P^{243/256}\) and the engine line \(P^{23/24}\). The
+same range has \(k\lvert E'\rvert\to 0\), so even a keep
+reading is a decaying phase — discard is the right
+description.
+
+The crude size \(\lvert E\rvert<1\) still costs
+\(J_8P=P^{1+13/384}\), worse than trivial. The slogan
+“\(\lvert E\rvert<1\) is enough” remains a dead method.
+The hole was the missing rate, not a missing \(E'\)
+class.
+
+Validation: `eighth_remainder_rate_scan` on the
+\(OOEOOEO\) formal chain. Residuals lie inside the
+one-sided envelopes with **no slack** on every odd
+\(n\in[51,299]\) and at \(n=10^4+1\), \(10^6+1\), and
+through a 200-term window at \(10^6\) (max
+\(\lvert E\rvert n^{45/128}=0.57\), max
+\(\lvert\Delta E/2\rvert n^{29/128}=0.03\)); spot checks
+through \(n=3\cdot 10^7+1\) stay inside.
+
+### Lemma AA2 (remainder rate) — EXACT — HUMAN PROOF
+
+On each quartet parent, \(\lvert E\rvert\ll n^{-45/128}\)
+and \(\lvert E'\rvert\ll n^{-29/128}<1\). Discarding
+\(e(kE)-1\) on \(k\le P^{13/384}\) costs
+\(\ll P^{131/192}\). The Phase-26 \(E'\) hole is closed
+as a method hole. The counts are not promoted.
+
+### Phase-40 decision
+
+**PROMOTE** Lemma AA2. Ledger row
+`J-length8-remainder-discard` tagged
+`EXACT — HUMAN PROOF`. Flag
+`length8_remainder_discard_proved` flipped `True`.
+`J-depth8-engine-quartet` stays `CONJECTURE` (inherits
+Theorem X). No density \(29/32\). No Paper B. No
+\(K_3\). Do not reopen \(E'\) and do not reopen the
+length-7 sixth-letter rewrites. The length-8 remainder
+door is closed. Theorem AA is blocked only by Theorem X,
+whose existing-toolkit route is closed.
+
+## Part XXIV: the harvest counting program is terminal (Phase 41)
+
+Scope: whether any attack on the Theorem X leftover
+\(\sum e(u w^{3/2})\) sits outside the killed toolkit, or
+whether the harvest counting program is terminal. Not a
+new estimate. Not a rewriting of \(45/32\). Not Theorem X.
+Not Theorem AA. Not a Paper B edit. Not \(K_3\). Isolated
+Lemmas X4, X5, AA2 stand.
+
+The leftover is one object. Lemma X1 leaves the sawtooth
+\(-\tfrac32 k w^{3/4}\theta_p\) with
+\(\theta_p=\{w^{3/2}\}\) and \(w\asymp n^{9/8}\). After
+Vaaler, the inventory sum is
+\(\sum e(u w^{3/2})\) at
+\(1\le\lvert u\rvert\le P^{85/96}\) (natural size
+\(P^{27/32}\)).
+
+### Finite laboratory vocabulary
+
+Every reading that the harvest has named is listed once.
+
+| Reading | Row / part | Why it is not a door |
+| --- | --- | --- |
+| Stage 2 / Theorem T passenger | `J-length7-passenger-theorem-t` | \(\lvert u\rvert\asymp P^{27/32}>P^{1/4}\); argument \(n^{27/16}\neq X\) |
+| Remainder modes as Stage 2 / (D3) | Part XIX | \(\lvert u\rvert\asymp P^{31/96}>P^{1/4}\); \(9/8\neq 3/2\) |
+| Isolated \(e(un^{27/16})\), \(e(Cn^{3/2})\) | `J-length7-vdc3-chirps` | estimated; not the inventory |
+| Reduction \(w^{3/2}=n^{27/16}+O(n^{3/16}\theta_2)\) as (D1)/(D3) | Part XX | spawned amplitude \(P^{33/32}>n\); Phase-5 wall |
+| Affine \(u(w_0+Jt)^{3/2}\) on X3-runs | Part XX | same third derivative as the isolated chirp; omits the carry |
+| X3 plus Q/R3 carry | `J-length7-x3-qr3-carry` | \(\kappa_w\) has mean run \(O(1)\); \(B\asymp P^{45/32}>n\) |
+| Integer-\(w\) block \(e(\xi w)\) | `J-length7-integer-w-block` | naive \(\theta_w\) coefficient; \(\xi>n\) |
+| Dual \(e(w\{\xi\})\) | Part XXII | coefficient \(w\asymp n^{9/8}>n\) |
+| A different X1 rearrangement | Part XXII | reinstates \(45/32\) |
+| New decoration \(\lvert\varphi'''\rvert\ll\lvert f'''\rvert\) | Part XX | not written; leftover already exceeds \(n\) |
+| \(K_3\) / BB/GG/JJ | toolkit PARK | wrong object (\(OOOO*\)) |
+| Corollary R′ family | family CONJECTURE | \(W\)-family, not \(\theta_p\) |
+| Length-8 eighth wave | `J-length8-remainder-discard` | consumes Theorem X as a passenger |
+
+A nearby reformulation of any row in this table is not a
+new door. In particular: a different carry treatment on
+X3-runs is Phase 37; a different splitting of
+\(e(\xi w)\) is Phase 38; a different decoration name for
+the spawned \(n^{3/16}\theta_2\) term is Phase 35.
+
+### What “outside-toolkit” would have to be
+
+The readings that are *not* already named as killed are
+exactly three slogans:
+
+1. van der Corput III, or an exponent pair, on the
+   *nested* sum \(e(u w^{3/2})\) itself (not the isolated
+   monomials of Lemma X5);
+2. a new Paper B decoration class that permits
+   coefficient \(>n\);
+3. a new linearization of \(p^{3/2}\) that avoids both
+   \(\theta_p\) and the naive \(n^{45/32}\) coefficient.
+
+(1) is a Hardy-of-floor / nested-floor exponential sum.
+The laboratory has already exported that species and
+forbidden wrapping it as a Juggler construction
+(`docs/theory/exponent_pair_two_monomial.md`; the closed
+floor-Hardy reformulations
+`juggler_v94_rate_free`, `juggler_v94_hardy_lift`,
+`juggler_nil_pet_reentry`, `juggler_rate_free_floor_hardy`).
+(2) is Paper B infrastructure for one leftover, and the
+leftover already sits above the engine line. (3) is the
+rewrite Phase 38 forbade.
+
+None of these is a Juggler Phase-0. The executable
+laboratory vocabulary for \(\sum e(u w^{3/2})\) is empty.
+
+### Proposition X-term (no outside-toolkit Juggler door) — REFUTED method
+
+The claim that an outside-toolkit *Juggler* attack on
+\(\sum e(u w^{3/2})\) remains, so that Theorems X and AA
+are not laboratory-terminal, is **REFUTED** as a method
+slogan. The leftover is real. The counts are not
+refuted. The densities \(57/64\) and \(29/32\) stay
+**CONJECTURE**. The laboratory door is empty.
+
+### Phase-41 decision
+
+**CLOSE** the harvest counting program. Ledger row
+`J-harvest-counting-terminal` tagged `REFUTED` (the
+outside-toolkit slogan). Flag
+`harvest_counting_terminal` flipped `True`.
+`J-depth7-engine-contracting` and
+`J-depth8-engine-quartet` stay `CONJECTURE`. No density
+move. No Paper B. No \(K_3\). Do not reopen
+\(e(uw^{3/2})\), do not rewrite \(45/32\), do not reopen
+\(E'\), and do not wrap a nested-floor bound as a
+Juggler branch. The single next question is the
+already-exported exponent-pair leftover, which is not a
+harvest door.
+
+
+

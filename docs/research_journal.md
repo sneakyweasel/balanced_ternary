@@ -21390,5 +21390,164 @@ Best next question
 - one independent human check of Theorem 6.3
 ```
 
+## Paper B engine harvest: length-8 remainder decays (Phase 40)
+
+- **Date:** 2026-09-02
+- **Objective:** Decide whether the AA1 remainder \(E\) on the length-8 quartet has a rate that makes Vaaler discard legal, or whether \(E'\) kills the quartet.
+- **Hypotheses:** The AA1 envelopes decay; crude \(\lvert E\rvert<1\) was the Phase-26 hole, not a missing decoration class.
+- **Major results:**
+  - Leading envelope \(\tfrac{297}{512}x_4^{-5/16}\asymp n^{-45/128}\) on \(OOEOOEO\) and \(OOEOOOE\); the \(OOOEO**\) parents are smaller.
+  - \(\lvert E'\rvert\ll n^{-29/128}<1\). Floor jumps are finer than this scale.
+  - On \(k\le P^{13/384}\), \(k\lvert E\rvert\to 0\); discard costs \(\ll P^{131/192}\), inside \(P^{243/256}\) and \(P^{23/24}\).
+  - Crude \(\lvert E\rvert<1\) discard (cost \(J_8P\)) stays dead.
+  - **Lemma AA2 (`J-length8-remainder-discard`):** remainder rate **EXACT — HUMAN PROOF**. Theorem AA stays **CONJECTURE**.
+- **Refuted ideas:** none new. “\(\lvert E\rvert<1\) is enough” remains the Phase-26 dead method.
+- **Literature:** Lemma AA1 envelopes; Phase-29 remainder-engine sibling (grows, kept); Phase-23 \(J_8=P^{13/384}\).
+- **Open:** Theorem AA is blocked only by Theorem X. Do not reopen \(E'\) or the length-7 sixth-letter rewrites.
+- **Decision:** PROMOTE Lemma AA2. Dossier `docs/problems/juggler_length8_remainder.md`. No density \(29/32\), no Paper B, no \(K_3\).
+
+```text
+What was learned
+- |E| ≪ n^{-45/128} on every quartet parent
+- crude |E|<1 discard (cost J_8 P) stays dead
+- envelope discard costs P^{131/192}
+- |E'| ≪ n^{-29/128} < 1; keep is unnecessary
+- residuals sit in the envelopes with no slack
+Strongest theorem
+- Lemma AA2: discard of e(kE)-1 costs ≪ P^{131/192}
+  (J-length8-remainder-discard)
+Strongest refutation
+- none new
+Reusable machinery
+- eighth_remainder_rate_scan (exponent seals)
+Branch status
+- PROMOTE (remainder rate); PARK Theorem AA
+Why
+- the Phase-26 E' hole was a missing rate, not a
+  new class; AA still inherits Theorem X
+Best next question
+- the harvest counting program is blocked only by
+  Theorem X — outside-toolkit, or terminal?
+```
+
+## Juggler fan successor rigidity
+
+- **Date:** 2026-09-02
+- **Objective:** Decide whether the leftovers in \([478245,780239]\) are an explicit CF/lattice class, so that \(k=2\) is forced without scanning 301995 lengths and is structurally distinct
+- **Hypotheses:** leftover \(\varepsilon\) is an Ostrowski / three-gap classification; the successor of \(478245\) has a forced arithmetic shape incompatible with Juggler constraints
+- **Major results:** Classification **FAN_SUCCESSOR_CLOSED**. Crude leftover \(\varepsilon\) over Dirichlet is \(36.28\) at \(L=478245\) and \(96.57\) at \(L=780239\) (Legendre twice that), so classical best-approximation theorems do not list the leftovers. The leftover-seed cone \(478245+a\cdot 25781+b\cdot 50508+c\cdot 176251+d\cdot 301994\) contains the stored eleven leftovers and 35 extra \(o\)-minimal points; extra \(529807=478245+2\cdot 25781\) still beats the crude leftover cap. Defect product \(\theta(L+M)=\theta(L)+\theta(M)-\theta(L)\theta(M)\) predicts the six multi-generator leftovers to relative \(<10^{-11}\); the fan step carries \(\theta\approx -6.45\cdot 10^{-8}\). \(\theta(780239)/\theta(478245)=0.9818\); DK margins \(1.0053\to 0.6048\). Conjecture `juggler_fan_successor_rigidity` **REFUTED**. No ledger row.
+- **Refuted ideas:** “the leftovers in the block are a CF-forced class, so \(k=2\) is forced without a scan and is a new Juggler shape”
+- **Literature:** flight-anchor scan; fan-minimum CF reduction (not reopened); RunSurvivorLattice; Legendre / Dirichlet
+- **Open:** none from this formulation. Do not iterate \(k=3,\dots,54\). The cycle frontier stays the fan-minimum reduction
+- **Decision:** CLOSE
+
+```text
+What was learned
+- leftover ε misses Dirichlet by 36×–97×; the scan
+  remains the completeness proof
+- the leftover-seed cone contains the 11 leftovers
+  and 35 extras (529807 still beats crude finance)
+- defect product is the r-identity; combinations
+  have θ ~ θ_* + θ_seed
+- k=2 has θ-ratio 0.982 and a worse DK margin
+- not a new Juggler shape and not a block theorem
+Strongest theorem
+- leftover ε versus Dirichlet / Legendre
+  (EXACT — HUMAN PROOF)
+Strongest refutation
+- fan successor rigidity
+  (juggler_fan_successor_rigidity)
+Reusable machinery
+- cycle_walk_fan_successor.py (cone vs stored
+  leftovers; no census)
+Branch status
+- CLOSE
+Why
+- completeness does not reach; k=2 is the same
+  dangerous approximation one step on; further
+  cone work is machinery gravity
+Best next question
+- none from this formulation; the cycle frontier
+  remains the fan-minimum CF reduction
+```
+
+## Paper B engine harvest: counting program is terminal (Phase 41)
+
+- **Date:** 2026-09-02
+- **Objective:** Decide whether any attack on \(\sum e(u w^{3/2})\) sits outside the killed toolkit, or whether the harvest counting program is terminal.
+- **Hypotheses:** A method not already named (not T-passenger, X3/Q/R3, integer-\(w\), isolated-chirp rewrite, decoration) could still reach \(P^{23/24}\).
+- **Major results:**
+  - The leftover is one object: \(\sum e(u w^{3/2})\) at \(\lvert u\rvert\le P^{85/96}\).
+  - Every named laboratory reading is a killed route, a nearby reformulation, an isolated monomial already in Lemma X5, or a nested-floor / new decoration class that is not a Juggler construction (lemma Part XXIV table).
+  - van der Corput III or an exponent pair on the *nested* sum is the same species the laboratory already forbids wrapping.
+  - **Proposition X-term (`J-harvest-counting-terminal`):** outside-toolkit Juggler slogan **REFUTED**. Theorems X and AA stay **CONJECTURE**.
+- **Refuted ideas:** “an outside-toolkit Juggler attack on \(e(uw^{3/2})\) remains, so the counting program is not terminal.”
+- **Literature:** Parts XIX–XXIII; exported exponent-pair leftover; closed floor-Hardy reformulations.
+- **Open:** do not reopen X/AA, \(e(uw^{3/2})\), \(45/32\), or \(E'\). The remaining non-harvest leftover is the already-exported exponent-pair question.
+- **Decision:** CLOSE the harvest counting program. Dossier `docs/problems/juggler_harvest_counting.md`. No density move, no Paper B, no \(K_3\).
+
+```text
+What was learned
+- the leftover is still e(u w^{3/2}), nothing else
+- every named reading is a killed route or not a
+  Juggler construction
+- nearby reformulations are Phases 35/37/38 again
+- a nested-floor bound must not be wrapped
+- densities 57/64 and 29/32 stay CONJECTURE
+Strongest theorem
+- none new (this phase is a method kill)
+Strongest refutation
+- outside-toolkit Juggler attack remains
+  (J-harvest-counting-terminal)
+Reusable machinery
+- none new (exponent seals)
+Branch status
+- CLOSE (harvest counting program)
+Why
+- the executable Juggler vocabulary is empty; the
+  leftover is real and is not a Juggler door
+Best next question
+- the already-exported exponent-pair leftover,
+  which is not a harvest door
+```
+
+## Exponent-pair leftover is not a laboratory door (Phase 42)
+
+- **Date:** 2026-09-02
+- **Objective:** Decide whether the already-exported two-monomial question \(\tfrac54 p+q<\tfrac23\) for \(cm^{9/4}-jm^{2/3}\) is a laboratory door.
+- **Hypotheses:** naming it as Phase 41’s leftover might reopen a Juggler wrap (PS inversion, BI resonance, floor-Hardy composition, or a new `juggler_*` Phase-0).
+- **Major results:**
+  - The question is already the boxed pair of `docs/theory/exponent_pair_two_monomial.md`. That page is marked **external mathematics**, not a laboratory branch, not a Juggler construction, and not a Phase-0.
+  - The laboratory origin branches are already **CLOSE**: `juggler_ps_inversion_barrier` (hull minimum \(95/112>2/3\)) and `juggler_bi_resonance_limit` (need \(p<2/27\), BI ceiling \(3/20\), factor \(81/40\)).
+  - The 2 September 2026 export writing task already forbade wrapping the pair as a successor branch. No new pair, no new dossier, no ledger row, no module.
+- **Refuted ideas:** “the export is a harvest / termination Phase-0.”
+- **Literature:** the export note; the two CLOSE dossiers; registry rows `bourgain-2017-exponent-pair`, `huxley-2005-zeta-v`, `huxley-1996-area-lattice-points`.
+- **Open:** the boxed pair, externally. No laboratory open from this question.
+- **Decision:** CLOSE as a laboratory door (no new branch). The export stands. Do not reopen PS inversion, BI, floor-Hardy reformulations, or Theorems X/AA.
+
+```text
+What was learned
+- the leftover is the already-boxed pair, nothing new
+- it is marked not a Phase-0 and not a Juggler
+  construction
+- both origin branches are already CLOSE
+- wrapping it would be the disguise the export named
+- no new pair, dossier, ledger row, or module
+Strongest theorem
+- none new
+Strongest refutation
+- the export is a laboratory Phase-0
+Reusable machinery
+- none
+Branch status
+- CLOSE (no branch; export stands)
+Why
+- the writing task already answered this question;
+  a successor juggler_* wrap is machinery gravity
+Best next question
+- none from termination or harvest; the cycle
+  frontier stays the fan-minimum CF reduction
+```
+
 
 

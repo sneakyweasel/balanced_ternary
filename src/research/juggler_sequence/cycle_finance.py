@@ -939,6 +939,9 @@ def _format_hms(seconds: float) -> str:
 def _report_floor_progress(payload: dict[str, Any]) -> None:
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     PROGRESS_PATH.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    chunks = ""
+    if "chunks_done" in payload and "chunks_total" in payload:
+        chunks = f"  chunks={payload['chunks_done']}/{payload['chunks_total']}"
     line = (
         f"verify_floor {payload['pct']:5.1f}%  "
         f"n={payload['n']}/{payload['n_top']}  "
@@ -946,6 +949,7 @@ def _report_floor_progress(payload: dict[str, Any]) -> None:
         f"elapsed={payload['elapsed']}  eta={payload['eta']}  "
         f"hardest={payload['hardest_seed']} steps={payload['max_steps']}  "
         f"bits={payload['max_bits']}  fail={payload['failure_count']}"
+        f"{chunks}"
     )
     print(line, file=sys.stderr, flush=True)
 

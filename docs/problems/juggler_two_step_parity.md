@@ -101,8 +101,9 @@ It is not required. The 2-adic / BT bridge stays closed.
   (`depth4_even_branch_proved` is `True`)
 - Depth-5 contracting splits OOOEE/OOEOE — drafted in Phase 10,
   withdrawn in Phase 26, repaired in Phase 27
-  (`depth5_contracting_proved` is `True`); laboratory certified
-  density \(7/8\); Paper B stays at \(13/16\)
+  (`depth5_contracting_proved` is `True`); laboratory and
+  Paper B certified density \(7/8\) (Corollary 6.4); the
+  four-step class remains \(13/16\)
 - OOOO\* kernel isolated — Phase 11 (`depth5_kernel_isolated`
   is `True`); bound not proved
 - Scale-invariant copy of Theorem R — **REFUTED** in Phase 12
@@ -122,7 +123,11 @@ It is not required. The 2-adic / BT bridge stays closed.
   `length7_x3_qr3_carry_refuted` is `True`); the
   integer-\(w\) block is the Phase-5 wall (Phase 38,
   `length7_integer_w_engine_line_refuted` is `True`);
-  the inventory object \(e(uw^{3/2})\) remains the hole
+  the inventory object \(e(uw^{3/2})\) remains the hole;
+  the length-8 remainder decays and discard is legal
+  (Phase 40, `length8_remainder_discard_proved` is `True`);
+  the harvest counting program is laboratory-terminal
+  (Phase 41, `harvest_counting_terminal` is `True`)
 
 - Increment-first \(K_3\) attack — **REFUTED** in Phase 14
   (`increment_first_k3_refuted` is `True`); bound not proved
@@ -133,6 +138,8 @@ It is not required. The 2-adic / BT bridge stays closed.
 - Length-8 engine quartet OOEOOEOE/OOEOOOEE/OOOEOEOE/OOOEOOEE —
   drafted in Phase 23, withdrawn in Phase 26
   (`depth8_engine_quartet_proved` is `False`);
+  the \(E'\) hole is closed as a method hole (Phase 40);
+  the counting door is empty (Phase 41);
   \(29/32\) is **CONJECTURE**
 - Global halt — not claimed
 
@@ -1257,6 +1264,43 @@ Lemma 6.2, Theorem 6.3, Corollary 6.4 (density \(7/8\)).
 Corollary 4.9 remains the four-step class \(13/16\).
 Length 7/8 and the densities \(57/64\), \(29/32\) stay
 withdrawn. Reviewer bundle and PDFs synced.
+
+## Phase 40: length-8 remainder discard
+
+Child dossier
+[juggler_length8_remainder.md](juggler_length8_remainder.md).
+The AA1 remainder satisfies
+\(\lvert E\rvert\ll n^{-45/128}\) and
+\(\lvert E'\rvert\ll n^{-29/128}<1\). Vaaler discard of
+\(e(kE)-1\) costs \(\ll P^{131/192}\) (lemma Part XXIII,
+`J-length8-remainder-discard`). The crude
+\(\lvert E\rvert<1\) discard stays dead. Flag
+`length8_remainder_discard_proved` is `True`. Theorem AA
+stays `CONJECTURE` (inherits X). Paper B is not edited.
+
+## Phase 41: harvest counting program is terminal
+
+Child dossier
+[juggler_harvest_counting.md](juggler_harvest_counting.md).
+Every laboratory reading of \(\sum e(u w^{3/2})\) is a
+killed route, a nearby reformulation, an isolated
+monomial already in Lemma X5, or a nested-floor / new
+decoration class that is not a Juggler construction
+(lemma Part XXIV, `J-harvest-counting-terminal`). Flag
+`harvest_counting_terminal` is `True`. Theorems X and AA
+stay `CONJECTURE`. Paper B is not edited.
+
+## Phase 42: exponent-pair leftover is not a laboratory door
+
+The Phase-41 leftover is the already-boxed pair of
+[exponent_pair_two_monomial.md](../theory/exponent_pair_two_monomial.md).
+That page is external mathematics, not a Phase-0. The
+origin branches
+[juggler_ps_inversion_barrier.md](juggler_ps_inversion_barrier.md)
+and
+[juggler_bi_resonance_limit.md](juggler_bi_resonance_limit.md)
+stay **CLOSE**. No new dossier, ledger row, or module.
+Paper B is not edited.
 
 ## Phase 36: Paper B writeup repair (frozen 13/16)
 

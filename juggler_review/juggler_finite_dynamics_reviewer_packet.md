@@ -2,8 +2,7 @@
 
 Author: Philippe Cochin. Date: 2 September 2026.
 Status: Paper A is a submission candidate; Paper B is a revised
-working draft (writeup repaired and length-5 harvest imported
-2 September 2026; certified density \(7/8\)).
+working draft (2 September 2026; certified density \(7/8\)).
 
 The former single note has been split into two manuscripts:
 
@@ -196,8 +195,8 @@ Proposition 7.4 says nothing about the deterministic shift).
 | Kernel cancellation \(K_c(P)\ll P^{1-1/96+\varepsilon}\) (Theorem 5.3) | **EXACT — HUMAN PROOF** | \(W\)-shaped family at \(\alpha=9/8\), \(k\le P^{1/24}\); Step 5b interpolant two-term majorant \(219P^{-25/24}+0.11P^{-5/6}\) (no collapse to \(0.1\)); \(c_7=1/288\); \(P_0\) named and ineffective |
 | OOO\(*\) splits; depth 4 complete over odd starts (Theorem 6.1) | **EXACT — HUMAN PROOF** | eight O-rooted length-4 classes; Step D \(Y\)-passenger inside \(\lvert q_d\rvert\le 4P^{1/24}\); Step E estimates the decorated phase at \(\lambda_a'\) and \(\lambda_0'\), not by slogan |
 | Length-5 identities (Lemma 6.2) | **EXACT — HUMAN PROOF** | \(OOOE*\) smoothing and \(OOEO*\) linearization; one-signed remainders |
-| Length-5 splits (Theorem 6.3) | **EXACT — HUMAN PROOF** | \(OOOE*\) rides Theorem 6.1 at \(N^{1-1/96+\varepsilon}\); \(OOEO*\) is a Theorem 4.8 argument at \(N^{43/48+\varepsilon}\); \(X\)-modes are Stage-2, not (D1) |
-| Certified-descent density \(7/8\) (Corollary 6.4) | **EXACT — HUMAN PROOF** | five classes \(E\), \(OE\), \(OOEE\), \(OOOEE\), \(OOEOE\); leftover eighth is \(OOEOO\cup OOOEO\cup OOOO*\) |
+| Length-5 splits (Theorem 6.3) | **EXACT — HUMAN PROOF** | \(OOOE*\) rides Theorem 6.1 at \(N^{1-1/96+\varepsilon}\); \(OOEO*\) uses the shifted-window method of Theorem 4.8 at the \(v\)-level, error \(N^{43/48+\varepsilon}\); \(X\)-modes sit in the Lemma 5.2(i) budget, not (D1); \(k=0\) on \(OOEO*\) is Theorem 4.7 |
+| Certified-descent density \(7/8\) (Corollary 6.4) | **EXACT — HUMAN PROOF** | five classes \(E\), \(OE\), \(OOEE\), \(OOOEE\), \(OOEOE\); total error \(O(N^{1-1/96+\varepsilon})\) (the worse fifth-letter exponent); leftover eighth is \(OOEOO\cup OOOEO\cup OOOO*\) |
 | Length-7/8 splits and densities \(57/64\), \(29/32\) (withdrawn) | **CONJECTURE** | not imported; passenger slogan **REFUTED**; inventory and \(E'\) remain |
 | Equidistribution \(\Rightarrow\) density-one descent (Proposition 7.1) | **EXACT — HUMAN PROOF** | \(O\)-rooted hypothesis; conclusion unconditional for \(d\le4\); open beyond |
 | Level-3 kernel reformulation (Lemma 7.2) | **EXACT — HUMAN PROOF** | exact Taylor identity; validated in scaled integers |

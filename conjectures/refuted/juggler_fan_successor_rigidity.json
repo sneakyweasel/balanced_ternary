@@ -1,0 +1,24 @@
+{
+  "id": "juggler_fan_successor_rigidity",
+  "title": "The 478245 to 780239 leftovers are a CF-forced class and k=2 is a new Juggler shape",
+  "statement": "At the leftover epsilon of the flight anchor 3.5e8, every parity leftover L in [478245, 780239] belongs to an explicit Ostrowski / lattice class forced by classical best-approximation theorems (Dirichlet / Legendre / semiconvergents of log 2 / log 3), so the successor of 478245 is forced without scanning 301995 lengths and is structurally distinct from the k=1 blocker.",
+  "mathematical_domain": "Juggler cycle finance / continued fraction of log 2 / log 3",
+  "origin": "docs/problems/juggler_cycle_walk_fan_successor.md",
+  "status": "REFUTED",
+  "first_seen": "2026-09-02",
+  "tested_range": "stored flight-anchor leftovers in [478245, 780239] at n=3.5e8; leftover-seed cone 478245 + a*25781 + b*50508 + c*176251 + d*301994; Dirichlet / Legendre versus crude finance epsilon; six multi-generator defect-product checks",
+  "counterexamples": [
+    "leftover/Dirichlet = 36.28 at L=478245 and 96.57 at L=780239; Legendre is twice as far, so CF classification does not list the leftovers",
+    "the leftover-seed cone has 46 o-minimal points against 11 leftovers; extra 529807 = 478245+2*25781 still beats the crude leftover cap",
+    "theta(780239)/theta(478245) = 0.9818 and the DK margin drops 1.0053 to 0.6048: k=2 is the same dangerous approximation with a worse margin"
+  ],
+  "proof_reference": "docs/problems/juggler_cycle_walk_fan_successor.md",
+  "lean_reference": "",
+  "literature": [
+    "kuipers-niederreiter-1974",
+    "wu-wang-2014-irrationality-measure-log3"
+  ],
+  "notes": "Phase 0 only. The defect product theta(L+M)=theta(L)+theta(M)-theta(L)theta(M) is exact and is not new. The flight-anchor scan remains the completeness proof. Fan-minimum unbounded-PQ question is not reopened. Not a halt theorem, not a floor raise, not a Paper A edit.",
+  "not_a_halt_theorem": true,
+  "no_cycle_all_lengths": false
+}

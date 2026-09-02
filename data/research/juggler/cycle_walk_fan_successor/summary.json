@@ -1,0 +1,706 @@
+{
+  "model": "At the leftover \u03b5 of the flight anchor 3.5e8, is every parity leftover in [478245, 780239] a member of the explicit leftover-seed cone, so that k=2 is forced as the unique DK survivor without scanning 301995 lengths?",
+  "interval": [
+    478245,
+    780239
+  ],
+  "anchor": 350000000,
+  "generators": [
+    {
+      "length": 25781,
+      "odd": 16266,
+      "tag": "vstar",
+      "theta": 2.5459198127264013e-05
+    },
+    {
+      "length": 50508,
+      "odd": 31867,
+      "tag": "F2",
+      "theta": 7.26490745807872e-06
+    },
+    {
+      "length": 176251,
+      "odd": 111202,
+      "tag": "seed_q",
+      "theta": 3.6002066916778158e-06
+    },
+    {
+      "length": 301994,
+      "odd": 190537,
+      "tag": "fan_step",
+      "theta": -6.450750485236453e-08
+    }
+  ],
+  "stored_leftovers": [
+    {
+      "length": 478245,
+      "odd_count": 301739,
+      "theta": 3.535699419065802e-06,
+      "digit_sum": 2,
+      "dk_margin": 1.0053388929316383,
+      "dk_kills": true
+    },
+    {
+      "length": 504026,
+      "odd_count": 318005,
+      "theta": 2.899480753025779e-05,
+      "digit_sum": 4,
+      "dk_margin": 7.821030132979164,
+      "dk_kills": true
+    },
+    {
+      "length": 528753,
+      "odd_count": 333606,
+      "theta": 1.0800581190615443e-05,
+      "digit_sum": 3,
+      "dk_margin": 2.7773108555912907,
+      "dk_kills": true
+    },
+    {
+      "length": 579261,
+      "odd_count": 365473,
+      "theta": 1.8065410183471323e-05,
+      "digit_sum": 4,
+      "dk_margin": 4.239862102483919,
+      "dk_kills": true
+    },
+    {
+      "length": 629769,
+      "odd_count": 397340,
+      "theta": 2.5330186398016867e-05,
+      "digit_sum": 4,
+      "dk_margin": 5.467893587853197,
+      "dk_kills": true
+    },
+    {
+      "length": 654496,
+      "odd_count": 412941,
+      "theta": 7.13589338149491e-06,
+      "digit_sum": 3,
+      "dk_margin": 1.4822711741390928,
+      "dk_kills": true
+    },
+    {
+      "length": 680277,
+      "odd_count": 429207,
+      "theta": 3.259490983463551e-05,
+      "digit_sum": 5,
+      "dk_margin": 6.512979801113535,
+      "dk_kills": true
+    },
+    {
+      "length": 705004,
+      "odd_count": 444808,
+      "theta": 1.4400748997968583e-05,
+      "digit_sum": 4,
+      "dk_margin": 2.776711158831254,
+      "dk_kills": true
+    },
+    {
+      "length": 730785,
+      "odd_count": 461074,
+      "theta": 3.9859580493710676e-05,
+      "digit_sum": 4,
+      "dk_margin": 7.414311409591112,
+      "dk_kills": true
+    },
+    {
+      "length": 755512,
+      "odd_count": 476675,
+      "theta": 2.1665551835938507e-05,
+      "digit_sum": 5,
+      "dk_margin": 3.8977995021964396,
+      "dk_kills": true
+    },
+    {
+      "length": 780239,
+      "odd_count": 492276,
+      "theta": 3.471192142292585e-06,
+      "digit_sum": 3,
+      "dk_margin": 0.6047643301532988,
+      "dk_kills": false
+    }
+  ],
+  "cone_count": 46,
+  "cone_ominimal_count": 46,
+  "cone_ominimal_lengths": [
+    478245,
+    504026,
+    528753,
+    529807,
+    554534,
+    555588,
+    579261,
+    580315,
+    581369,
+    605042,
+    606096,
+    607150,
+    629769,
+    630823,
+    631877,
+    632931,
+    654496,
+    655550,
+    656604,
+    657658,
+    658712,
+    680277,
+    681331,
+    682385,
+    683439,
+    684493,
+    705004,
+    706058,
+    707112,
+    708166,
+    709220,
+    710274,
+    730785,
+    731839,
+    732893,
+    733947,
+    735001,
+    736055,
+    755512,
+    756566,
+    757620,
+    758674,
+    759728,
+    760782,
+    761836,
+    780239
+  ],
+  "extras_ominimal": [
+    {
+      "length": 529807,
+      "coeffs": {
+        "a_vstar": 2,
+        "b_F2": 0,
+        "c_seed": 0,
+        "d_fan": 0
+      },
+      "theta_sum": 5.4453267472887035e-05
+    },
+    {
+      "length": 554534,
+      "coeffs": {
+        "a_vstar": 1,
+        "b_F2": 1,
+        "c_seed": 0,
+        "d_fan": 0
+      },
+      "theta_sum": 3.6259504343605364e-05
+    },
+    {
+      "length": 555588,
+      "coeffs": {
+        "a_vstar": 3,
+        "b_F2": 0,
+        "c_seed": 0,
+        "d_fan": 0
+      },
+      "theta_sum": 7.991107926363927e-05
+    },
+    {
+      "length": 580315,
+      "coeffs": {
+        "a_vstar": 2,
+        "b_F2": 1,
+        "c_seed": 0,
+        "d_fan": 0
+      },
+      "theta_sum": 6.17177793329482e-05
+    },
+    {
+      "length": 581369,
+      "coeffs": {
+        "a_vstar": 4,
+        "b_F2": 0,
+        "c_seed": 0,
+        "d_fan": 0
+      },
+      "theta_sum": 0.00010536824291884628
+    },
+    {
+      "length": 605042,
+      "coeffs": {
+        "a_vstar": 1,
+        "b_F2": 2,
+        "c_seed": 0,
+        "d_fan": 0
+      },
+      "theta_sum": 4.352414837971441e-05
+    },
+    {
+      "length": 606096,
+      "coeffs": {
+        "a_vstar": 3,
+        "b_F2": 1,
+        "c_seed": 0,
+        "d_fan": 0
+      },
+      "theta_sum": 8.717540617508845e-05
+    },
+    {
+      "length": 607150,
+      "coeffs": {
+        "a_vstar": 5,
+        "b_F2": 0,
+        "c_seed": 0,
+        "d_fan": 0
+      },
+      "theta_sum": 0.0001308247584551614
+    },
+    {
+      "length": 630823,
+      "coeffs": {
+        "a_vstar": 2,
+        "b_F2": 2,
+        "c_seed": 0,
+        "d_fan": 0
+      },
+      "theta_sum": 6.89822384171146e-05
+    },
+    {
+      "length": 631877,
+      "coeffs": {
+        "a_vstar": 4,
+        "b_F2": 1,
+        "c_seed": 0,
+        "d_fan": 0
+      },
+      "theta_sum": 0.00011263238488634641
+    },
+    {
+      "length": 632931,
+      "coeffs": {
+        "a_vstar": 6,
+        "b_F2": 0,
+        "c_seed": 0,
+        "d_fan": 0
+      },
+      "theta_sum": 0.0001562806258889049
+    },
+    {
+      "length": 655550,
+      "coeffs": {
+        "a_vstar": 1,
+        "b_F2": 3,
+        "c_seed": 0,
+        "d_fan": 0
+      },
+      "theta_sum": 5.078873963892949e-05
+    },
+    {
+      "length": 656604,
+      "coeffs": {
+        "a_vstar": 3,
+        "b_F2": 2,
+        "c_seed": 0,
+        "d_fan": 0
+      },
+      "theta_sum": 9.443968031186412e-05
+    },
+    {
+      "length": 657658,
+      "coeffs": {
+        "a_vstar": 5,
+        "b_F2": 1,
+        "c_seed": 0,
+        "d_fan": 0
+      },
+      "theta_sum": 0.00013808871548348645
+    },
+    {
+      "length": 658712,
+      "coeffs": {
+        "a_vstar": 7,
+        "b_F2": 0,
+        "c_seed": 0,
+        "d_fan": 0
+      },
+      "theta_sum": 0.00018173584523684116
+    },
+    {
+      "length": 681331,
+      "coeffs": {
+        "a_vstar": 2,
+        "b_F2": 3,
+        "c_seed": 0,
+        "d_fan": 0
+      },
+      "theta_sum": 7.624664472560827e-05
+    },
+    {
+      "length": 682385,
+      "coeffs": {
+        "a_vstar": 4,
+        "b_F2": 2,
+        "c_seed": 0,
+        "d_fan": 0
+      },
+      "theta_sum": 0.00011989647408061632
+    },
+    {
+      "length": 683439,
+      "coeffs": {
+        "a_vstar": 6,
+        "b_F2": 1,
+        "c_seed": 0,
+        "d_fan": 0
+      },
+      "theta_sum": 0.0001635443979827178
+    },
+    {
+      "length": 684493,
+      "coeffs": {
+        "a_vstar": 8,
+        "b_F2": 0,
+        "c_seed": 0,
+        "d_fan": 0
+      },
+      "theta_sum": 0.00020719041651506842
+    },
+    {
+      "length": 706058,
+      "coeffs": {
+        "a_vstar": 1,
+        "b_F2": 4,
+        "c_seed": 0,
+        "d_fan": 0
+      },
+      "theta_sum": 5.805327812147265e-05
+    },
+    {
+      "length": 707112,
+      "coeffs": {
+        "a_vstar": 3,
+        "b_F2": 3,
+        "c_seed": 0,
+        "d_fan": 0
+      },
+      "theta_sum": 0.00010170390167441035
+    },
+    {
+      "length": 708166,
+      "coeffs": {
+        "a_vstar": 5,
+        "b_F2": 2,
+        "c_seed": 0,
+        "d_fan": 0
+      },
+      "theta_sum": 0.0001453526197398025
+    },
+    {
+      "length": 709220,
+      "coeffs": {
+        "a_vstar": 7,
+        "b_F2": 1,
+        "c_seed": 0,
+        "d_fan": 0
+      },
+      "theta_sum": 0.00018899943240080486
+    },
+    {
+      "length": 710274,
+      "coeffs": {
+        "a_vstar": 9,
+        "b_F2": 0,
+        "c_seed": 0,
+        "d_fan": 0
+      },
+      "theta_sum": 0.00023264433974046206
+    },
+    {
+      "length": 731839,
+      "coeffs": {
+        "a_vstar": 2,
+        "b_F2": 4,
+        "c_seed": 0,
+        "d_fan": 0
+      },
+      "theta_sum": 8.351099825887331e-05
+    },
+    {
+      "length": 732893,
+      "coeffs": {
+        "a_vstar": 4,
+        "b_F2": 3,
+        "c_seed": 0,
+        "d_fan": 0
+      },
+      "theta_sum": 0.00012716051050187804
+    },
+    {
+      "length": 733947,
+      "coeffs": {
+        "a_vstar": 6,
+        "b_F2": 2,
+        "c_seed": 0,
+        "d_fan": 0
+      },
+      "theta_sum": 0.000170808117305854
+    },
+    {
+      "length": 735001,
+      "coeffs": {
+        "a_vstar": 8,
+        "b_F2": 1,
+        "c_seed": 0,
+        "d_fan": 0
+      },
+      "theta_sum": 0.00021445381875395686
+    },
+    {
+      "length": 736055,
+      "coeffs": {
+        "a_vstar": 10,
+        "b_F2": 0,
+        "c_seed": 0,
+        "d_fan": 0
+      },
+      "theta_sum": 0.00025809761492934236
+    },
+    {
+      "length": 756566,
+      "coeffs": {
+        "a_vstar": 1,
+        "b_F2": 5,
+        "c_seed": 0,
+        "d_fan": 0
+      },
+      "theta_sum": 6.5317763827899e-05
+    },
+    {
+      "length": 757620,
+      "coeffs": {
+        "a_vstar": 3,
+        "b_F2": 4,
+        "c_seed": 0,
+        "d_fan": 0
+      },
+      "theta_sum": 0.00010896807026306021
+    },
+    {
+      "length": 758674,
+      "coeffs": {
+        "a_vstar": 5,
+        "b_F2": 3,
+        "c_seed": 0,
+        "d_fan": 0
+      },
+      "theta_sum": 0.00015261647122455368
+    },
+    {
+      "length": 759728,
+      "coeffs": {
+        "a_vstar": 7,
+        "b_F2": 2,
+        "c_seed": 0,
+        "d_fan": 0
+      },
+      "theta_sum": 0.0001962629667954241
+    },
+    {
+      "length": 760782,
+      "coeffs": {
+        "a_vstar": 9,
+        "b_F2": 1,
+        "c_seed": 0,
+        "d_fan": 0
+      },
+      "theta_sum": 0.00023990755705893818
+    },
+    {
+      "length": 761836,
+      "coeffs": {
+        "a_vstar": 11,
+        "b_F2": 0,
+        "c_seed": 0,
+        "d_fan": 0
+      },
+      "theta_sum": 0.00028355024209825164
+    }
+  ],
+  "one_step_inversions": [
+    {
+      "generator": "vstar",
+      "sum_length": 504026,
+      "in_stored": true,
+      "theta_generator": 2.5459198127264013e-05,
+      "predicted": 2.8994807530257785e-05,
+      "actual": 2.899480753025779e-05,
+      "relative_error": 1.1685305327450394e-16,
+      "holds": true
+    },
+    {
+      "generator": "F2",
+      "sum_length": 528753,
+      "in_stored": true,
+      "theta_generator": 7.26490745807872e-06,
+      "predicted": 1.0800581190615443e-05,
+      "actual": 1.0800581190615443e-05,
+      "relative_error": 0.0,
+      "holds": true
+    },
+    {
+      "generator": "seed_q",
+      "sum_length": 654496,
+      "in_stored": true,
+      "theta_generator": 3.6002066916778158e-06,
+      "predicted": 7.13589338149491e-06,
+      "actual": 7.13589338149491e-06,
+      "relative_error": 0.0,
+      "holds": true
+    },
+    {
+      "generator": "fan_step",
+      "sum_length": 780239,
+      "in_stored": true,
+      "theta_generator": -6.450750485236453e-08,
+      "predicted": 3.471192142292585e-06,
+      "actual": 3.471192142292585e-06,
+      "relative_error": 0.0,
+      "holds": true
+    }
+  ],
+  "defect_checks": [
+    {
+      "length": 579261,
+      "coeffs": {
+        "vstar": 0,
+        "F2": 2,
+        "seed_q": 0,
+        "fan_step": 0
+      },
+      "predicted": 1.806541018334329e-05,
+      "actual": 1.8065410183471323e-05,
+      "relative_error": 7.087251873877401e-12,
+      "holds": true
+    },
+    {
+      "length": 629769,
+      "coeffs": {
+        "vstar": 0,
+        "F2": 3,
+        "seed_q": 0,
+        "fan_step": 0
+      },
+      "predicted": 2.533018639794271e-05,
+      "actual": 2.5330186398016867e-05,
+      "relative_error": 2.9275757904420814e-12,
+      "holds": true
+    },
+    {
+      "length": 680277,
+      "coeffs": {
+        "vstar": 1,
+        "F2": 0,
+        "seed_q": 1,
+        "fan_step": 0
+      },
+      "predicted": 3.2594909834537944e-05,
+      "actual": 3.259490983463551e-05,
+      "relative_error": 2.9932478258573573e-12,
+      "holds": true
+    },
+    {
+      "length": 705004,
+      "coeffs": {
+        "vstar": 0,
+        "F2": 1,
+        "seed_q": 1,
+        "fan_step": 0
+      },
+      "predicted": 1.4400748997833723e-05,
+      "actual": 1.4400748997968583e-05,
+      "relative_error": 9.36475621394206e-12,
+      "holds": true
+    },
+    {
+      "length": 730785,
+      "coeffs": {
+        "vstar": 1,
+        "F2": 1,
+        "seed_q": 1,
+        "fan_step": 0
+      },
+      "predicted": 3.985958049357308e-05,
+      "actual": 3.9859580493710676e-05,
+      "relative_error": 3.4520887202332168e-12,
+      "holds": true
+    },
+    {
+      "length": 755512,
+      "coeffs": {
+        "vstar": 0,
+        "F2": 2,
+        "seed_q": 1,
+        "fan_step": 0
+      },
+      "predicted": 2.166555183580332e-05,
+      "actual": 2.1665551835938507e-05,
+      "relative_error": 6.239696057847046e-12,
+      "holds": true
+    }
+  ],
+  "completeness": {
+    "floor": 350000000.0,
+    "rows": [
+      {
+        "length": 478245,
+        "leftover_crude": 8.334571043196052e-05,
+        "legendre": 1.1485873230960175e-06,
+        "dirichlet": 2.297174646192035e-06,
+        "crude_over_legendre": 72.56366908813004,
+        "crude_over_dirichlet": 36.28183454406502,
+        "legendre_reaches": false,
+        "dirichlet_reaches": false
+      },
+      {
+        "length": 780239,
+        "leftover_crude": 0.00013597543886861846,
+        "legendre": 7.040229267366216e-07,
+        "dirichlet": 1.4080458534732431e-06,
+        "crude_over_legendre": 193.1406403182201,
+        "crude_over_dirichlet": 96.57032015911005,
+        "legendre_reaches": false,
+        "dirichlet_reaches": false
+      }
+    ],
+    "dirichlet_reaches": false,
+    "legendre_reaches": false
+  },
+  "shape": {
+    "theta_k1": 3.535699419065802e-06,
+    "theta_k2": 3.471192142292585e-06,
+    "theta_ratio": 0.9817554409672469,
+    "margin_k1": 1.0053388929316383,
+    "margin_k2": 0.6047643301532988,
+    "digit_sum_k1": 2,
+    "digit_sum_k2": 3,
+    "k2_worse_margin": true
+  },
+  "classification": {
+    "label": "FAN_SUCCESSOR_CLOSED",
+    "decision": "CLOSE",
+    "reason": "classical CF bounds miss the leftover \u03b5 by more than a factor 30, so the 301995-length scan remains the completeness proof; the stored leftovers sit in the cone but the cone is larger; k=2 has the same theta scale and a worse DK margin than k=1 \u2014 not a new Juggler shape",
+    "completeness_reaches": false,
+    "cone_contains_stored": true,
+    "cone_equals_stored": false,
+    "k2_same_shape": true,
+    "defect_product_holds": true,
+    "extra_ominimal_count": 35,
+    "missing_count": 0
+  },
+  "not_a_halt_theorem": true,
+  "no_cycle_all_lengths": false,
+  "no_new_period_bound": true,
+  "no_baker_reopen": true,
+  "no_floor_raise": true,
+  "no_paper_a_edit": true,
+  "no_fan_minimum_reopen": true,
+  "no_census": true,
+  "git_commit": "5fda0eb1cf251273dd039562fda5281bf41d105e"
+}

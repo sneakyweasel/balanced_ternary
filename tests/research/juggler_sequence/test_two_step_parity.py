@@ -184,6 +184,8 @@ def test_anti_overclaim_flags():
     # E'). Contraction-algebra flag stays True.
     assert ANTI_OVERCLAIM["depth8_engine_quartet_proved"] is False
     assert ANTI_OVERCLAIM["depth8_chains_subcritical"] is True
+    assert ANTI_OVERCLAIM["length8_remainder_discard_proved"] is True
+    assert ANTI_OVERCLAIM["harvest_counting_terminal"] is True
 
 
 def test_smooth_cancellation_constant():
@@ -450,6 +452,8 @@ def test_anti_overclaim_depth5_flag():
     assert ANTI_OVERCLAIM["length7_vdc3_chirps_proved"] is True
     assert ANTI_OVERCLAIM["length7_x3_qr3_carry_refuted"] is True
     assert ANTI_OVERCLAIM["length7_integer_w_engine_line_refuted"] is True
+    assert ANTI_OVERCLAIM["length8_remainder_discard_proved"] is True
+    assert ANTI_OVERCLAIM["harvest_counting_terminal"] is True
     assert ANTI_OVERCLAIM["increment_first_k3_refuted"] is True
     assert ANTI_OVERCLAIM["x1_absorption_k3_refuted"] is True
     assert ANTI_OVERCLAIM["k3_toolkit_parked"] is True
@@ -851,7 +855,10 @@ def test_w_family_33_32_algebra():
     assert ANTI_OVERCLAIM["length7_vdc3_chirps_proved"] is True
     assert ANTI_OVERCLAIM["length7_x3_qr3_carry_refuted"] is True
     assert ANTI_OVERCLAIM["length7_integer_w_engine_line_refuted"] is True
+    assert ANTI_OVERCLAIM["length8_remainder_discard_proved"] is True
+    assert ANTI_OVERCLAIM["harvest_counting_terminal"] is True
     assert ANTI_OVERCLAIM["depth7_engine_contracting_proved"] is False
+    assert ANTI_OVERCLAIM["depth8_engine_quartet_proved"] is False
 
 
 def test_x1_remainder_reduction():
@@ -937,3 +944,51 @@ def test_length7_integer_w_engine_line():
     assert Fraction(81, 64) > 1
     assert ANTI_OVERCLAIM["length7_integer_w_engine_line_refuted"] is True
     assert ANTI_OVERCLAIM["depth7_engine_contracting_proved"] is False
+    assert ANTI_OVERCLAIM["depth8_engine_quartet_proved"] is False
+
+
+def test_length8_remainder_discard():
+    """Phase-40 seals: envelope discard of e(kE)-1 is legal."""
+    from research.juggler_sequence.two_step_parity import (
+        eighth_remainder_rate_scan,
+    )
+
+    # Leading envelope n^{-45/128} beats the Vaaler range P^{13/384}:
+    # k|E| -> 0, discard cost P^{131/192} < P^{243/256} and P^{23/24}.
+    assert Fraction(45, 128) > Fraction(13, 384)
+    assert Fraction(13, 384) - Fraction(45, 128) + 1 == Fraction(131, 192)
+    assert Fraction(131, 192) < Fraction(243, 256)
+    assert Fraction(131, 192) < Fraction(23, 24)
+    # Formal drift E' ≍ n^{-29/128} < 1; k E' -> 0 on the same range.
+    assert Fraction(29, 128) > 0
+    assert Fraction(13, 384) - Fraction(29, 128) < 0
+    samples = tuple(range(51, 300, 2)) + (10**4 + 1, 10**6 + 1)
+    r = eighth_remainder_rate_scan(samples)
+    assert r["holds"] is True
+    assert r["outside_envelope"] == 0
+    assert r["max_size_ratio"] < 1.0
+    assert r["max_drift_ratio"] < 1.0
+    assert ANTI_OVERCLAIM["length8_remainder_discard_proved"] is True
+    assert ANTI_OVERCLAIM["depth8_engine_quartet_proved"] is False
+    assert ANTI_OVERCLAIM["depth7_engine_contracting_proved"] is False
+    assert ANTI_OVERCLAIM["harvest_counting_terminal"] is True
+
+
+def test_harvest_counting_terminal():
+    """Phase-41 seals: leftover exponents stay above the engine line."""
+    # Inventory sum e(u w^{3/2}): natural |u| ~ P^{27/32} exceeds
+    # Stage 2 (P^{1/4}) and Lemma 3.3 costs P^{81/64} > P.
+    assert Fraction(27, 32) > Fraction(1, 4)
+    assert Fraction(81, 64) > 1
+    # Reduction leftover |u| n^{3/16} at |u| ~ P^{27/32} is P^{33/32} > n.
+    assert Fraction(27, 32) + Fraction(3, 16) > 1
+    # Q/R3 / integer-w wall is the same 45/32 coefficient.
+    assert Fraction(45, 32) > 1
+    assert ANTI_OVERCLAIM["harvest_counting_terminal"] is True
+    assert ANTI_OVERCLAIM["length7_passenger_theorem_t_refuted"] is True
+    assert ANTI_OVERCLAIM["length7_x3_qr3_carry_refuted"] is True
+    assert ANTI_OVERCLAIM["length7_integer_w_engine_line_refuted"] is True
+    assert ANTI_OVERCLAIM["length7_vdc3_chirps_proved"] is True
+    assert ANTI_OVERCLAIM["length8_remainder_discard_proved"] is True
+    assert ANTI_OVERCLAIM["depth7_engine_contracting_proved"] is False
+    assert ANTI_OVERCLAIM["depth8_engine_quartet_proved"] is False

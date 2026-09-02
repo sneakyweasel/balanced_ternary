@@ -3872,9 +3872,20 @@
   "related_conjectures": []
  },
  {
+  "id": "J-harvest-counting-terminal",
+  "tag": "REFUTED",
+  "statement": "Method claim (Phase-40 leftover, Phase 41): an outside-toolkit Juggler attack on the Theorem X leftover sum e(u w^{3/2}) (1 ≤ |u| ≤ P^{85/96}) remains, so Theorems X and AA are not laboratory-terminal. False. Every named laboratory reading is (i) a killed route (rows J-length7-passenger-theorem-t, J-length7-x3-qr3-carry, J-length7-integer-w-block), (ii) a nearby reformulation of one of those routes, (iii) an isolated monomial already estimated in row J-length7-vdc3-chirps (not the inventory), or (iv) a nested-floor / new decoration class that is not a Juggler construction (the exported exponent-pair species; a Paper B class permitting coefficient > n; a new X1 rearrangement reinstating 45/32). The harvest counting program is laboratory-terminal. The counts are not refuted. Not a termination claim.",
+  "source": "docs/research/juggler_two_step_parity_lemma.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_two_step_parity.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-depth7-engine-contracting",
   "tag": "CONJECTURE",
-  "statement": "Conjecture (formerly Theorem X; withdrawn from Paper B in Phase 26): each of the eight words OOEOO** and OOOEO** has cardinality N/128 + O(N^{1-1/96+eps}). The growing-remainder hole is closed (row J-length7-remainder-engine). The alpha = 33/32 W-family is row J-w-family-thirty-three-thirty-seconds. Isolated monomials e(u n^{27/16}) and e(C n^{3/2}) close by one A-process plus Lemma 3.3 (row J-length7-vdc3-chirps). The inventory is not closed: e(u w^{3/2}) is blocked by row J-length7-x3-qr3-carry, the integer-w block e(ξ w) at ξ ≍ n^{45/32} is the Phase-5 wall (row J-length7-integer-w-block), and the passenger slogan remains REFUTED (row J-length7-passenger-theorem-t). The seventh letter and assembly are unrerun. The contraction 3^4 < 2^7 is unconditional. Not a termination claim.",
+  "statement": "Conjecture (formerly Theorem X; withdrawn from Paper B in Phase 26): each of the eight words OOEOO** and OOOEO** has cardinality N/128 + O(N^{1-1/96+eps}). The growing-remainder hole is closed (row J-length7-remainder-engine). The alpha = 33/32 W-family is row J-w-family-thirty-three-thirty-seconds. Isolated monomials e(u n^{27/16}) and e(C n^{3/2}) close by one A-process plus Lemma 3.3 (row J-length7-vdc3-chirps). The inventory object e(u w^{3/2}) has no laboratory door: passenger slogan REFUTED (row J-length7-passenger-theorem-t), X3 plus Q/R3 REFUTED (row J-length7-x3-qr3-carry), integer-w block REFUTED (row J-length7-integer-w-block), and the outside-toolkit slogan REFUTED (row J-harvest-counting-terminal). The contraction 3^4 < 2^7 is unconditional. Not a termination claim.",
   "source": "docs/research/juggler_two_step_parity_lemma.md",
   "lean": "",
   "tests": [
@@ -3885,7 +3896,7 @@
  {
   "id": "J-seven-step-descent-density",
   "tag": "CONJECTURE",
-  "statement": "Conjecture (formerly Corollary Y; withdrawn from Paper B in Phase 26): the class of starts carrying a uniform power-envelope descent certificate of length at most seven has natural density 57/64. Depends on row J-depth7-engine-contracting, still CONJECTURE (isolated chirps are row J-length7-vdc3-chirps; e(u w^{3/2}) is blocked by row J-length7-x3-qr3-carry; the integer-w block is row J-length7-integer-w-block; passenger slogan REFUTED as row J-length7-passenger-theorem-t). The contraction step (3^4 < 2^7) is unconditional. The laboratory and Paper B certified density is 7/8 (row J-five-step-descent-density, Corollary 6.4). Not a density of starts that reach 1.",
+  "statement": "Conjecture (formerly Corollary Y; withdrawn from Paper B in Phase 26): the class of starts carrying a uniform power-envelope descent certificate of length at most seven has natural density 57/64. Depends on row J-depth7-engine-contracting, still CONJECTURE. The harvest counting program is laboratory-terminal (row J-harvest-counting-terminal). The contraction step (3^4 < 2^7) is unconditional. The laboratory and Paper B certified density is 7/8 (row J-five-step-descent-density, Corollary 6.4). Not a density of starts that reach 1.",
   "source": "docs/research/juggler_two_step_parity_lemma.md",
   "lean": "",
   "tests": [
@@ -4041,9 +4052,20 @@
   ]
  },
  {
+  "id": "J-length8-remainder-discard",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Lemma AA2 (Phase 40): on each length-8 quartet parent the AA1 remainder E is a sum of one-signed second-order Taylor remainders. The hardest chains OOEOOEO and OOEOOOE have leading envelope (297/512) x4^{-5/16} ≍ n^{-45/128}; the OOOEO** parents are no larger. Hence |E| ≪ n^{-45/128} (and |E|<1 for n≥51 is the crude corollary). Finite-difference drift satisfies |E'| ≪ n^{-29/128}<1. On the Phase-23 Vaaler range k≤P^{13/384} one has k|E|→0, so discarding e(kE)-1 costs ≪ P^{131/192}, strictly inside the eighth-letter majorant P^{243/256} and the engine line P^{23/24}. The crude |E|<1 discard (cost J_8 P) remains dead. Scaled-integer residuals lie inside the envelopes with no slack through n=3·10^7. Theorem AA stays CONJECTURE (inherits the length-7 row). Not a termination claim.",
+  "source": "docs/research/juggler_two_step_parity_lemma.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_two_step_parity.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-depth8-engine-quartet",
   "tag": "CONJECTURE",
-  "statement": "Conjecture (formerly Theorem AA / the withdrawn Theorem 6.4): each of the four contracting length-8 words OOEOOEOE, OOEOOOEE, OOOEOEOE, OOOEOOEE has cardinality N/256 + O(N^{1-1/96+eps}). The Phase-24 draft claims a 7-level Taylor chain X_7 = n^{243/128} - sum_i B_i(n) theta_i + E with |E| < 1 for n >= 51; but if E is discarded the Vaaler cost is J*P, which wipes the eighth-letter saving, and if E is kept the argument needs control of E' (drift), not just |E| < 1 — neither is written, and scaled-integer validation is not a substitute. Also inherits the holes of the length-7 row. Not a termination claim.",
+  "statement": "Conjecture (formerly Theorem AA / the withdrawn Theorem 6.4): each of the four contracting length-8 words OOEOOEOE, OOEOOOEE, OOOEOEOE, OOOEOOEE has cardinality N/256 + O(N^{1-1/96+eps}). The Phase-26 E' hole is closed as a method hole by row J-length8-remainder-discard. The counting theorem still inherits Theorem X; the harvest counting program is laboratory-terminal (row J-harvest-counting-terminal). The contraction 3^5 < 2^8 is unconditional. Not a termination claim.",
   "source": "docs/research/juggler_two_step_parity_lemma.md",
   "lean": "",
   "tests": [
@@ -4054,7 +4076,7 @@
  {
   "id": "J-eight-step-descent-density",
   "tag": "CONJECTURE",
-  "statement": "Conjecture (formerly Corollary AB; withdrawn from Paper B in Phase 26): the class of starts carrying a uniform power-envelope descent certificate of length at most eight has natural density 29/32. Depends on rows J-depth7-engine-contracting and J-depth8-engine-quartet, both retagged CONJECTURE in Phase 26; the contraction steps are unconditional. The laboratory and Paper B certified density is 7/8 (row J-five-step-descent-density, Corollary 6.4). Not a density of starts that reach 1.",
+  "statement": "Conjecture (formerly Corollary AB; withdrawn from Paper B in Phase 26): the class of starts carrying a uniform power-envelope descent certificate of length at most eight has natural density 29/32. Depends on rows J-depth7-engine-contracting and J-depth8-engine-quartet, both still CONJECTURE. The harvest counting program is laboratory-terminal (row J-harvest-counting-terminal). The contraction steps are unconditional. The laboratory and Paper B certified density is 7/8 (row J-five-step-descent-density, Corollary 6.4). Not a density of starts that reach 1.",
   "source": "docs/research/juggler_two_step_parity_lemma.md",
   "lean": "",
   "tests": [

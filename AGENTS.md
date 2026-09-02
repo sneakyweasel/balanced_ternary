@@ -113,8 +113,17 @@ for external review.
   X3 plus Q/R3 is **REFUTED** (`J-length7-x3-qr3-carry`);
   the integer-\(w\) block at \(\xi\asymp n^{45/32}\) is
   the Phase-5 wall (`J-length7-integer-w-block`);
-  \(E'\); the growing remainder is now an engine,
-  `J-length7-remainder-engine`. Corollary R′ is still a
+  the length-8 remainder decays
+  (`J-length8-remainder-discard`: \(\lvert E\rvert\ll
+  n^{-45/128}\), discard \(\ll P^{131/192}\); crude
+  \(\lvert E\rvert<1\) discard stays dead); the growing
+  remainder is now an engine,
+  `J-length7-remainder-engine`; the harvest counting
+  program is laboratory-terminal
+  (`J-harvest-counting-terminal`: every reading of
+  \(e(uw^{3/2})\) is a killed route or not a Juggler
+  construction — do not wrap a nested-floor bound as
+  one). Corollary R′ is still a
   family-CONJECTURE, but the instance \(\alpha=33/32\) is
   **EXACT — HUMAN PROOF**,
   `J-w-family-thirty-three-thirty-seconds`). The rated

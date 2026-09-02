@@ -103,8 +103,15 @@ It is not required. The 2-adic / BT bridge stays closed.
   (`J-length7-x3-qr3-carry`, Phase 37) — **REFUTED**
 - Length-7 integer-\(w\) block
   (`J-length7-integer-w-block`, Phase 38) — **REFUTED**
-- Length-7 passenger inventory / Theorem X, length-8 \(E'\),
-  Corollary R′ family — **CONJECTURE**
+- Length-8 remainder discard
+  (`J-length8-remainder-discard`, Phase 40) —
+  **EXACT — HUMAN PROOF**
+- Harvest counting program
+  (`J-harvest-counting-terminal`, Phase 41) —
+  **REFUTED** as an outside-toolkit Juggler door
+- Length-7 passenger inventory / Theorem X,
+  Theorem AA / density \(29/32\), Corollary R′ family —
+  **CONJECTURE** (laboratory door empty)
 - \(K_3\) bound — **PARK** (BB/GG/JJ)
 
 ## Experiments
@@ -113,9 +120,11 @@ Existing scanners in
 `research.juggler_sequence.two_step_parity`
 (`oooee_indicator_identity_check`, `ooeoe_indicator_identity_check`,
 `oooee_smoothing_scan`, `ooeoe_smoothing_scan`,
-`x1_remainder_reduction_scan`, `w_carry_run_scan`) already pin Lemmas
-T1/T2, the indicator algebra, the Part XIV reduction, and the
-Phase-37 \(\kappa_w\) run lengths. Tests:
+`x1_remainder_reduction_scan`, `w_carry_run_scan`,
+`eighth_remainder_rate_scan`) already pin Lemmas
+T1/T2, the indicator algebra, the Part XIV reduction, the
+Phase-37 \(\kappa_w\) run lengths, and the Phase-40
+remainder rate. Tests:
 `tests/research/juggler_sequence/test_two_step_parity.py`.
 
 ## Conjectures
@@ -130,7 +139,9 @@ None new. Remaining harvest rows stay as they are:
 is `J-length7-integer-w-block`, **REFUTED**; passenger
 slogan is `J-length7-passenger-theorem-t`, **REFUTED**;
 remainder is `J-length7-remainder-engine`),
-`J-seven-step-descent-density`, `J-depth8-engine-quartet`,
+`J-seven-step-descent-density`, `J-depth8-engine-quartet`
+(the \(E'\) hole is `J-length8-remainder-discard`; the
+counting door is `J-harvest-counting-terminal`),
 `J-eight-step-descent-density`.
 
 ## Counterexamples
@@ -192,13 +203,27 @@ gravity.
   Child dossier
   [juggler_length7_integer_w.md](juggler_length7_integer_w.md).
   The integer-\(w\) block is the Phase-5 wall.
+- **Lemma AA2 (EXACT — HUMAN PROOF,
+  `J-length8-remainder-discard`, Phase 40).**
+  Child dossier
+  [juggler_length8_remainder.md](juggler_length8_remainder.md).
+  \(\lvert E\rvert\ll n^{-45/128}\); discard costs
+  \(\ll P^{131/192}\). Theorem AA stays `CONJECTURE`.
+- **Proposition X-term (REFUTED,
+  `J-harvest-counting-terminal`, Phase 41).**
+  Child dossier
+  [juggler_harvest_counting.md](juggler_harvest_counting.md).
+  The harvest counting program is laboratory-terminal.
 
 ## Open questions
 
-The length-8 \(E'\) hole. See the child
-[juggler_length7_integer_w.md](juggler_length7_integer_w.md).
-Do not reopen \(e(uw^{3/2})\) and do not rewrite
-\(45/32\).
+The harvest counting door is closed. See the child
+[juggler_harvest_counting.md](juggler_harvest_counting.md).
+Do not reopen Theorems X/AA, \(e(uw^{3/2})\),
+\(45/32\), or \(E'\). The exponent-pair leftover is
+not a laboratory door (Phase 42); it stays the boxed
+pair of
+[exponent_pair_two_monomial.md](../theory/exponent_pair_two_monomial.md).
 
 ## Decision
 

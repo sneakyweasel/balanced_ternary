@@ -175,10 +175,14 @@ ANTI_OVERCLAIM = {
     "k3_toolkit_parked": True,
     # Phase 23 drafted the length-8 quartet and density 29/32;
     # Phase 26 withdrew the counting theorems (|E|<1 without E').
+    # Phase 40: the envelope rate |E| ≪ n^{-45/128} makes Vaaler
+    # discard legal (Lemma AA2); crude |E|<1 discard stays dead.
     # The contraction algebra (3^a < 2^L) and the subcritical
     # eighth-letter coefficient bound remain unconditional.
+    # Theorem AA stays CONJECTURE (inherits Theorem X).
     "depth8_engine_quartet_proved": False,
     "depth8_chains_subcritical": True,
+    "length8_remainder_discard_proved": True,
     # Phase 28: Theorem R rerun at the single monomial family
     # alpha = 33/32 (intended Corollary R' consumer). The
     # family-for-all-alpha claim stays CONJECTURE.
@@ -211,6 +215,13 @@ ANTI_OVERCLAIM = {
     # line (ξ > n, ξ' ≫ 1). Same Phase-5 wall. Theorem X
     # stays CONJECTURE.
     "length7_integer_w_engine_line_refuted": True,
+    # Phase 41: the harvest counting program is
+    # laboratory-terminal. Every reading of e(u w^{3/2})
+    # is a killed route, a nearby reformulation, an
+    # isolated monomial already in Lemma X5, or a nested
+    # floor / new decoration class that is not a Juggler
+    # construction. Theorems X and AA stay CONJECTURE.
+    "harvest_counting_terminal": True,
 }
 
 
@@ -1393,6 +1404,46 @@ def depth8_chain_scan(samples: tuple[int, ...]) -> dict[str, Any]:
             return {"holds": False, "witness": n, "row": row}
         worst_exp = max(worst_exp, max(row["coefficient_exponents"].values()))
     return {"holds": True, "count": len(samples), "max_exponent": worst_exp}
+
+
+def eighth_remainder_rate_scan(samples: tuple[int, ...]) -> dict[str, Any]:
+    """Phase 40: |E| tracks n^{-45/128}; finite-difference E' tracks n^{-29/128}.
+
+    On the OOEOOEO formal chain the AA1 remainder E is the
+    scaled residual of eighth_letter_chain_check. The leading
+    Taylor envelope is the x4^{-5/16} term ≍ n^{-45/128}.
+    Returns whether every sample lies inside the one-sided
+    envelopes with no slack, the max |E| n^{45/128} ratio,
+    and the max |ΔE/2| n^{29/128} drift ratio.
+    """
+    max_size_ratio = 0.0
+    max_drift_ratio = 0.0
+    outside = 0
+    for n in samples:
+        if n < 51 or n % 2 == 0:
+            raise ValueError("odd n >= 51 required")
+        row = eighth_letter_chain_check(n)
+        e = row["residual_scaled"] / SCALE
+        pos = row["pos_env_scaled"] / SCALE
+        neg = row["neg_env_scaled"] / SCALE
+        if not (-neg <= e <= pos):
+            outside += 1
+        size_ratio = abs(e) * (n ** (45 / 128))
+        e2 = eighth_letter_chain_check(n + 2)["residual_scaled"] / SCALE
+        drift_ratio = abs(e2 - e) / 2.0 * (n ** (29 / 128))
+        max_size_ratio = max(max_size_ratio, size_ratio)
+        max_drift_ratio = max(max_drift_ratio, drift_ratio)
+    return {
+        "holds": (
+            outside == 0
+            and max_size_ratio < 1.0
+            and max_drift_ratio < 1.0
+        ),
+        "count": len(samples),
+        "outside_envelope": outside,
+        "max_size_ratio": round(max_size_ratio, 4),
+        "max_drift_ratio": round(max_drift_ratio, 4),
+    }
 
 
 def depth8_mode_probe(n_max: int, k: int = 1) -> dict[str, Any]:

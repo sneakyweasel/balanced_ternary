@@ -90,7 +90,8 @@ It is not required. The 2-adic / BT bridge stays closed.
 - Isolated \(e(\xi U)\) as Lemma X5 — **EXACT — HUMAN
   PROOF** (not this block)
 - Theorem X / density \(57/64\) — **CONJECTURE**
-- Length-8 \(E'\) — **CONJECTURE** (untouched)
+- Length-8 remainder discard — **EXACT — HUMAN PROOF**
+  (child [juggler_length8_remainder.md](juggler_length8_remainder.md))
 - \(K_3\) bound — **PARK** (BB/GG/JJ)
 
 ## Experiments
@@ -125,7 +126,9 @@ None added.
 
 ## Open questions
 
-The length-8 \(E'\) hole, a different door. Do not
+The length-8 \(E'\) hole is the child
+[juggler_length8_remainder.md](juggler_length8_remainder.md)
+(Phase 40, **PROMOTE** the remainder rate). Do not
 reopen \(e(uw^{3/2})\) and do not rewrite the
 \(45/32\) coefficient. The OOOEO sibling at
 \(n^{27/32}\) Q-expands to the already-killed

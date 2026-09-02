@@ -415,9 +415,12 @@ def verify_floor_certified(
 
     def emit(done: int) -> None:
         elapsed = time.perf_counter() - started
+        chunks_total = len(chunks)
         n_done = min(n_top, walk_from - 1 + done * PROGRESS_CHUNK)
-        rate = n_done / elapsed if elapsed > 0 else 0.0
-        remain = (n_top - n_done) / rate if rate > 0 else 0.0
+        walked = max(0, n_done - walk_from + 1)
+        extension = max(1, n_top - walk_from + 1)
+        rate = walked / elapsed if elapsed > 0 else 0.0
+        remain = (extension - walked) / rate if rate > 0 else 0.0
         max_steps = max((row["max_steps"] for row in records), default=0)
         hardest = 0
         for row in records:
@@ -434,7 +437,8 @@ def verify_floor_certified(
             {
                 "n": n_done,
                 "n_top": n_top,
-                "pct": 100.0 * n_done / n_top if n_top else 100.0,
+                "n_from": n_from,
+                "pct": 100.0 * walked / extension,
                 "rate_n_per_s": rate,
                 "elapsed_s": elapsed,
                 "eta_s": remain,
@@ -446,6 +450,8 @@ def verify_floor_certified(
                 "failure_count": fails,
                 "workers": worker_count,
                 "bit_cap": bit_cap,
+                "chunks_done": done,
+                "chunks_total": chunks_total,
             }
         )
 

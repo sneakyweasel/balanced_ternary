@@ -1,7 +1,9 @@
 # A two-monomial exponent-pair question
 
 Status: **external mathematics**. Not a laboratory branch, not a
-Juggler construction, and not a Phase-0. The objects are a clean
+Juggler construction, and not a Phase-0. Phase 42 (2 September
+2026) reconfirmed that asking this leftover as a harvest /
+termination successor is a wrap, not a door. The objects are a clean
 two-monomial exponential sum and the classical exponent-pair hull.
 
 ## The question
