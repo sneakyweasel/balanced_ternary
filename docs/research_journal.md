@@ -32962,3 +32962,116 @@ Best next question
   sampled and are now proved. Does the trust-boundary table agree, and
   is anything else in that table still carried by sampling?
 ```
+
+## 62 declarations the index could not see, and the four it mis-charged
+
+A question from outside: the Prove2me workspace publishes a declaration-graph
+extractor for Lean projects, and its header carries a pitfall note -- private
+declarations arrive as `_private.…`, and dropping them makes their spans and
+dependencies invisible. Ours is a regex over source text, not a reader of the
+elaborated environment, so the same hazard lands differently. It landed.
+
+`DECL` was anchored straight at the keyword, so a declaration carrying any
+modifier was not merely mis-parsed but absent: 62 of them, 33 theorems, 12
+lemmas and 17 defs, over four forms.
+
+| form | count |
+|---|---|
+| `@[simp] theorem` | 17 |
+| `noncomputable def` | 17 |
+| `private theorem` | 16 |
+| `private lemma` | 12 |
+
+**The cost was not the count.** A declaration's slice runs to the start of the
+next *visible* one, and trust is read off that slice. In
+`Problems/Ostrowski/NP/Reachability.lean` the four `native_decide` scans are
+`private lemma`s at lines 45-63, invisible; the slice for
+`origin_reachable_pred` at line 23 therefore ran to line 94 and swallowed all
+four. The index has been reporting a kernel-checked theorem as compiler-trusted
+and four compiler-trusted lemmas as absent -- a trust claim wrong in both
+directions at once, in the one file where it was wrong at all. Neither paper
+reaches that module, so no manuscript sentence moves; the corpus count goes
+55 to 58.
+
+**And the modifier list has to stay closed.** Allowing arbitrary text before
+the keyword would admit the docstring prose, which in this corpus ends
+sentences with "... is not a halt theorem" thirty-odd times. Two phantoms were
+already through on the old pattern, from prose that *wrapped* onto the keyword:
+`LeftoverFamilies.lean` ends a line with "not a `CycleItinerary`" and begins the
+next with "theorem at a non-minimum start", which read as a declaration named
+`at` -- and `at` then matched the `at` of every `rw ... at h` in the corpus, 512
+phantom dependency edges from one wrapped sentence. Scanning comment-stripped
+text removes both; the stripper is length-preserving so positions still report
+into the original.
+
+**The dependency split is the second half.** The extractor's real idea is
+`typeDeps` against `valueDeps`: what a statement rests on, against what its
+proof reached for. The claim graph has only ever been at module granularity --
+`A imports B` says some theorem there may rest on some theorem here, not which,
+and not whether it is the statement or the proof that needs it. Cutting each
+declaration at its top-level `:=` gives both, at declaration granularity: 6,707
+statement edges against 9,335 proof edges, so two thirds of what the module
+graph reports as a dependency is a proof detail. The cut has to respect bracket
+depth -- an optional binder writes `:=` inside itself -- and matching is by
+identifier, so it over-reports on shadowing and on names shared across
+namespaces, and never invents an edge to a declaration that does not exist.
+
+One measurement the fix invites and does not make. The probe modules test for
+Lean declarations by raw substring, `"theorem <name>" in text`, at 318 sites,
+and 66 of those are *negative* -- 17 distinct names, `juggler_reaches_one`,
+`no_juggler_cycle`, `mixed_word_power_lt` among them -- asserting that a
+theorem is absent. Those are the overclaim guards: they are what stops the
+laboratory from quietly acquiring a halt theorem. Every one of them is
+satisfied by `private theorem juggler_reaches_one`, which is precisely the
+thing they exist to catch. None is wrong today -- no guarded name carries a
+modifier -- but the guard cannot see the difference, and `declares()` now can.
+
+Nine tests. Branch status PARK. Suite green apart from
+`test_research_math_does_not_import_visualization_or_shims`, which fails on the
+clean tree too: `two_adic_bridge.py:1115` uses a backslash inside an f-string
+expression, legal from Python 3.12 and a `SyntaxError` on the 3.11 the README
+sets as the floor.
+
+```text
+What was learned
+- a source-level index that anchors at the declaration keyword is blind to
+  every modifier form, and the blindness is silent
+- the damage is not the missing rows but the slices: an invisible declaration
+  hands its proof body to the visible one above it, and trust is read there
+- `origin_reachable_pred` was reported off the kernel and is not; four private
+  Ostrowski scans rest on `native_decide` and were reported nowhere
+- prose that wraps onto `theorem` at a line start is indistinguishable from a
+  declaration until the comments are stripped; one such sentence produced 512
+  phantom edges
+- the same blindness sits in 66 negative overclaim guards written as raw
+  substring checks; none is wrong today and every one is defeatable by a
+  `private` prefix
+- statement dependencies and proof dependencies differ by a factor of about
+  1.4 across the corpus, which is exactly the distinction the module graph
+  cannot make
+Strongest theorem
+- none; this is an instrument repair
+Strongest refutation
+- the index's own trust report for `Problems.Ostrowski.NP.Reachability`, wrong
+  in both directions since the index existed
+Reusable machinery
+- `MODIFIERS`, a closed prefix list; `_strip_comments`, length-preserving so
+  offsets still address the source; `_split`, the depth-aware statement/proof
+  cut; `type_deps` and `value_deps` on every declaration; `deps <name>` and
+  `deps <name> --reverse`
+Branch status
+- PARK
+Why
+  The tool exists so a claim about the corpus can be checked rather than
+  recalled, and it was answering the one trust question it is most often asked
+  with a false positive and four false negatives. Fixing the pattern is small;
+  what earns the entry is that the failure mode was invisible by construction --
+  nothing downstream could have caught it, because the missing rows never
+  appeared to be missing.
+Best next question
+- 66 negative guards over 17 names assert that a halt-shaped theorem is absent,
+  by a substring a `private` prefix defeats. None is wrong today. Should they
+  move to `declares()`, which now sees modifiers -- and is absence-by-name the
+  right guard at all, given that the same theorem under another name passes
+  every one of them?
+```

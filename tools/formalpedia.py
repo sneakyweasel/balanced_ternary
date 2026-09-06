@@ -3,7 +3,7 @@
 The laboratory already has two halves of an index and no join between them.  The theorem
 ledger carries 597 curated rows -- a natural-language statement, a tag, a test -- but its
 ``lean`` field names a *file*, never a declaration, so no row points at a theorem.  The Lean
-sources carry ~3,900 declarations with no readable statement and no tag.
+sources carry ~4,600 declarations with no readable statement and no tag.
 
 This builds the join, plus the edge the ledger has never had: the module graph, so a change
 can be asked what it breaks before it is made.  That question -- "who depends on this?" -- is
@@ -42,8 +42,21 @@ INDEX = ROOT / "data" / "research" / "formalpedia" / "index.json"
 DAG = ROOT / "data" / "research" / "formalpedia" / "dag.json"
 PROPOSALS = ROOT / "data" / "research" / "formalpedia" / "decl_proposals.json"
 
+MODIFIERS = (
+    r"(?:@\[[^\]]*\]\s+|private\s+|protected\s+|noncomputable\s+"
+    r"|partial\s+|unsafe\s+|scoped\s+|local\s+)*"
+)
+"""What Lean allows between the start of a line and the declaration keyword.
+
+A pattern anchored straight at ``theorem`` misses every declaration carrying one, and misses
+it silently: 62 declarations of this corpus -- 33 theorems, 12 lemmas, 17 defs -- were absent
+from the index until this list existed, and a ``declares()`` guard naming one of them could
+not see it either.  The list is closed on purpose.  Allowing arbitrary text before the keyword
+would admit the thirty-odd docstring sentences that end "... is not a halt theorem".
+"""
+
 DECL = re.compile(
-    r"^(?P<kind>theorem|lemma|def|abbrev|instance|structure)\s+"
+    r"^" + MODIFIERS + r"(?P<kind>theorem|lemma|def|abbrev|instance|structure)\s+"
     r"(?P<name>[A-Za-z_][A-Za-z0-9_'!?.]*)",
     re.MULTILINE,
 )
@@ -95,25 +108,120 @@ def _trust(body: str) -> str:
     return "kernel"
 
 
+BRACKETS = {"(": ")", "[": "]", "{": "}", "\u27e8": "\u27e9", "\u2983": "\u2984"}
+CLOSERS = set(BRACKETS.values())
+
+IDENT = re.compile(r"[A-Za-z_][A-Za-z0-9_'!?]*(?:\.[A-Za-z_][A-Za-z0-9_'!?]*)*")
+
+
+def _strip_comments(text: str) -> str:
+    """Lean source with every ``/- -/`` block (docstrings included) and ``--`` line blanked.
+
+    Length-preserving, so an offset into the result is the same offset into the source: the
+    declaration scan runs over this and reports positions in the original.
+
+    Two things need it.  A declaration's slice runs to the start of the next one, so it carries
+    that neighbour's docstring at its tail, and the house style is to cite theorems by name in
+    prose -- a dependency reader that believed the comments would report a citation as a use.
+    And prose wraps: a sentence ending "... it is not a `CycleItinerary`" puts *theorem* at the
+    start of the next line, where a declaration pattern reads it as one and takes the following
+    word for its name.  ``LeftoverFamilies.lean`` had exactly that, and the phantom it produced
+    was named ``at`` -- which then matched the ``at`` of every ``rw ... at h`` in the corpus.
+
+    Block comments nest in Lean, hence the depth counter rather than a regex.
+    """
+    out: list[str] = []
+    depth, i, n = 0, 0, len(text)
+    while i < n:
+        if text.startswith("/-", i):
+            depth += 1
+            out.append("  ")
+            i += 2
+            continue
+        if depth and text.startswith("-/", i):
+            depth -= 1
+            out.append("  ")
+            i += 2
+            continue
+        if depth:
+            out.append("\n" if text[i] == "\n" else " ")
+            i += 1
+            continue
+        if text.startswith("--", i):
+            j = text.find("\n", i)
+            j = n if j == -1 else j
+            out.append(" " * (j - i))
+            i = j
+            continue
+        out.append(text[i])
+        i += 1
+    return "".join(out)
+
+
+def _split(body: str) -> tuple[str, str]:
+    """A declaration cut into its statement and its proof at the top-level ``:=`` or ``where``.
+
+    The cut must be at bracket depth zero: an optional argument writes ``:=`` inside its own
+    binder, ``(h : P := by simp)``, and a structure instance writes one inside braces.  A
+    pattern-matching definition has no ``:=`` at all and is all statement, which is the honest
+    reading -- its equations are its value.
+    """
+    depth, i, n = 0, 0, len(body)
+    while i < n:
+        c = body[i]
+        if c in BRACKETS:
+            depth += 1
+        elif c in CLOSERS:
+            depth -= 1
+        elif depth <= 0:
+            if body.startswith(":=", i):
+                return body[:i], body[i + 2:]
+            if (
+                body.startswith("where", i)
+                and (i == 0 or not (body[i - 1].isalnum() or body[i - 1] in "_'."))
+                and (i + 5 >= n or not (body[i + 5].isalnum() or body[i + 5] in "_'."))
+            ):
+                return body[:i], body[i + 5:]
+        i += 1
+    return body, ""
+
+
+def _uses(text: str, known: set[str], self_name: str) -> list[str]:
+    """Corpus declarations named in `text`, by identifier match.
+
+    Match is by name alone, so two declarations sharing a name in different namespaces are one
+    node here, and a local binder that shadows a declaration's name reads as a use of it.  Both
+    over-report; neither invents an edge to a declaration that does not exist.  This is a
+    source-level reading, not the elaborator's -- it sees what was written, not what was
+    resolved, so instance arguments and notation expand to nothing.
+    """
+    return sorted({t for t in IDENT.findall(text) if t in known and t != self_name})
+
+
 def declares(text: str, name: str, kind: str = "theorem") -> bool:
     """Does `text` declare exactly `name` -- not merely something starting with it?
 
-    519 of the 4,528 declaration names in this corpus are a proper prefix of another, because
+    535 of the 4,588 declaration names in this corpus are a proper prefix of another, because
     helper lemmas are named by extending their main theorem: `power_bound_compensated_contracts`
     and `power_bound_compensated_contracts_follows`, `power_bound_word` and
     `power_bound_word_strict`.  A guard written as ``f"theorem {name}" in text`` therefore still
     passes after its theorem is deleted, as long as one of those neighbours survives -- which is
     precisely the event such a guard exists to catch.
     """
-    return re.search(rf"(?:^|\n)\s*{kind}\s+{re.escape(name)}(?![A-Za-z0-9_'])", text) is not None
+    return re.search(
+        rf"(?:^|\n)\s*{MODIFIERS}{kind}\s+{re.escape(name)}(?![A-Za-z0-9_'])", text
+    ) is not None
 
 
 def declarations(path: Path) -> list[dict[str, Any]]:
     text = io.open(path, encoding="utf-8").read()
-    hits = list(DECL.finditer(text))
+    code = _strip_comments(text)
+    hits = list(DECL.finditer(code))
     out: list[dict[str, Any]] = []
     for i, m in enumerate(hits):
         end = hits[i + 1].start() if i + 1 < len(hits) else len(text)
+        body = code[m.start(): end]
+        statement, proof = _split(body)
         out.append(
             {
                 "name": m.group("name"),
@@ -122,7 +230,9 @@ def declarations(path: Path) -> list[dict[str, Any]]:
                 "file": str(path.relative_to(ROOT)).replace("\\", "/"),
                 "line": text[: m.start()].count("\n") + 1,
                 "doc": _docstring(text, m.start()),
-                "trust": _trust(text[m.start(): end]),
+                "trust": _trust(body),
+                "_statement": statement,
+                "_proof": proof,
             }
         )
     return out
@@ -153,7 +263,7 @@ def ledger_by_file() -> dict[str, list[dict[str, str]]]:
 
 def build() -> dict[str, Any]:
     paths = sources()
-    known = {module_of(p) for p in paths}
+    known_modules = {module_of(p) for p in paths}
     by_file = ledger_by_file()
     decls: list[dict[str, Any]] = []
     modules: dict[str, dict[str, Any]] = {}
@@ -165,10 +275,14 @@ def build() -> dict[str, Any]:
         decls.extend(found)
         modules[module_of(path)] = {
             "file": rel,
-            "imports": imports(path, known),
+            "imports": imports(path, known_modules),
             "declarations": len(found),
             "ledger": by_file.get(rel, []),
         }
+    known = {d["name"] for d in decls}
+    for d in decls:
+        d["type_deps"] = _uses(d.pop("_statement"), known, d["name"])
+        d["value_deps"] = _uses(d.pop("_proof"), known, d["name"])
     trust: dict[str, int] = defaultdict(int)
     for d in decls:
         trust[d["trust"]] += 1
@@ -181,6 +295,8 @@ def build() -> dict[str, Any]:
             "trust": dict(trust),
             "declarations_with_a_ledger_row": sum(1 for d in decls if d["ledger"]),
             "ledger_rows_naming_a_file": sum(len(v) for v in by_file.values()),
+            "type_edges": sum(len(d["type_deps"]) for d in decls),
+            "value_edges": sum(len(d["value_deps"]) for d in decls),
         },
     }
 
@@ -420,6 +536,10 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--limit", type=int, default=20)
     p = sub.add_parser("show", help="one declaration by exact name")
     p.add_argument("name")
+    p = sub.add_parser("deps", help="what a declaration's statement rests on, and its proof uses")
+    p.add_argument("name")
+    p.add_argument("--reverse", action="store_true",
+                   help="declarations depending on this one instead")
     p = sub.add_parser("impact", help="modules rebuilt by a change to this module or file")
     p.add_argument("target")
     sub.add_parser("dag", help="rebuild the claim graph over ledger-carrying modules")
@@ -435,6 +555,7 @@ def main(argv: list[str] | None = None) -> int:
         print(f"{t['declarations']} declarations in {t['modules']} modules")
         print(f"  trust: {t['trust']}")
         print(f"  declarations under a ledger row: {t['declarations_with_a_ledger_row']}")
+        print(f"  dependencies: {t['type_edges']} in statements, {t['value_edges']} in proofs")
         return 0
 
     if args.cmd == "papers":
@@ -480,6 +601,30 @@ def main(argv: list[str] | None = None) -> int:
             if d["doc"]:
                 print(f"    {d['doc'][:110]}")
         print(f"-- {len(hits)} matching")
+        return 0
+
+    if args.cmd == "deps":
+        here = [d for d in index["declarations"] if d["name"] == args.name]
+        if not here:
+            print(f"no declaration named {args.name}", file=sys.stderr)
+            return 1
+        where = {d["module"] for d in here}
+        if args.reverse:
+            in_statement = sorted(d["name"] for d in index["declarations"]
+                                  if args.name in d["type_deps"])
+            in_proof = sorted(d["name"] for d in index["declarations"]
+                              if args.name in d["value_deps"] and args.name not in d["type_deps"])
+            print(f"{args.name}  ({', '.join(sorted(where))})")
+            print(f"  named by {len(in_statement)} statements: {', '.join(in_statement) or 'none'}")
+            print(f"  used by {len(in_proof)} further proofs: {', '.join(in_proof) or 'none'}")
+            return 0
+        for d in here:
+            only_proof = [n for n in d["value_deps"] if n not in d["type_deps"]]
+            print(f"{d['name']}  [{d['trust']}]  {d['file']}:{d['line']}")
+            print(f"  statement rests on {len(d['type_deps'])}: "
+                  f"{', '.join(d['type_deps']) or 'nothing in this corpus'}")
+            print(f"  proof also uses {len(only_proof)}: "
+                  f"{', '.join(only_proof) or 'nothing in this corpus'}")
         return 0
 
     if args.cmd == "show":

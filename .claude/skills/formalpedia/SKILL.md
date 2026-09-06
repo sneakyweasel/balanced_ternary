@@ -5,7 +5,7 @@ description: Query the Lean theorem index at tools/formalpedia.py before touchin
 
 # formalpedia
 
-`tools/formalpedia.py` indexes every Lean declaration the laboratory defines — 4,570 of them
+`tools/formalpedia.py` indexes every Lean declaration the laboratory defines — 4,631 of them
 across 189 modules — and joins them to the 597-row theorem ledger. It reads the sources
 directly, so it is current the moment you rebuild it and never needs `lake`.
 
@@ -13,6 +13,7 @@ directly, so it is current the moment you rebuild it and never needs `lake`.
 python tools/formalpedia.py build            # rebuild the index (~1s)
 python tools/formalpedia.py search <text>    # match a name or docstring
 python tools/formalpedia.py show <name>      # one declaration, in full
+python tools/formalpedia.py deps <name>      # what its statement rests on vs what its proof uses
 python tools/formalpedia.py impact <target>  # what a change here would rebuild
 ```
 
@@ -79,6 +80,40 @@ $ python tools/formalpedia.py show cycleMin_finance
 The `ledger` ids are inherited from the file, not resolved per declaration — the ledger's
 `lean` field names a file in 321 of 322 rows. Treat them as "this file backs these claims",
 and check the ledger row itself before quoting one as the statement of this theorem.
+
+## `deps` separates what a statement rests on from what its proof used
+
+`impact` answers at module granularity: *file A imports file B*. That is the right scope
+estimate and the wrong resolution for a trust question, because it cannot say whether a
+theorem's **statement** mentions something or only its **proof** reached for it.
+
+```
+$ python tools/formalpedia.py deps cycleMin_finance
+cycleMin_finance  [kernel]  formal/Problems/Juggler/CycleFinance.lean:210
+  statement rests on 2: CycleMin, oddCount
+  proof also uses 3: cycleMin_log_envelope, cycle_iterate_period, ...
+```
+
+The split is the one the elaborated environment calls `typeDeps` and `valueDeps`. It matters
+where the two diverge: changing a declaration a statement names changes what the theorem
+*says*, and a manuscript quoting it may stop being true; changing one only its proof uses
+costs a rebuild and nothing else. Corpus-wide there are 6,707 statement edges against 9,335
+proof edges, so the majority of the graph is the second kind.
+
+`--reverse` asks the question the other way — who names this in a statement, who merely uses
+it in a proof:
+
+```
+$ python tools/formalpedia.py deps fanLambda --reverse
+fanLambda  (Problems.Juggler.FanLaw)
+  named by 5 statements: fanLambda_55_pos, fanLambda_56_neg, fanLambda_affine, ...
+  used by 0 further proofs: none
+```
+
+**Read it as a source-level reading, not the elaborator's.** Matching is by identifier, so two
+declarations sharing a name across namespaces are one node here, and a local binder shadowing
+a declaration's name reads as a use of it. Both over-report. Neither invents an edge to a
+declaration that does not exist, so an empty result is real and a populated one may be wide.
 
 ## Trust levels are claims the papers make
 

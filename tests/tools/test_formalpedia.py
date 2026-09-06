@@ -186,7 +186,7 @@ def test_paper_reachability_is_not_the_same_set_as_the_directory() -> None:
 
 
 def test_declares_requires_the_name_to_end_at_the_match() -> None:
-    """The corpus names helper lemmas by extending their main theorem, so 519 of 4,528 names
+    """The corpus names helper lemmas by extending their main theorem, so 535 of 4,588 names
     are a proper prefix of another. A substring check cannot tell them apart; this one can."""
     text = (
         "theorem power_bound_compensated_contracts_follows (h : True) : True := trivial\n"
@@ -208,3 +208,91 @@ def test_the_prefix_collision_surface_is_real_and_measured() -> None:
     names = {d["name"] for d in fp.build()["declarations"]}
     shadowed = {n for n in names if any(o != n and o.startswith(n) for o in names)}
     assert len(shadowed) > 100, len(shadowed)
+
+
+def test_the_index_sees_declarations_behind_a_modifier() -> None:
+    """Regression: a pattern anchored at ``theorem`` misses ``private theorem`` silently.
+
+    62 declarations were invisible until the modifier list existed, and the four
+    ``native_decide`` lemmas among them were being charged to a kernel-checked neighbour.
+    """
+    index = fp.build()
+    found = {d["name"]: d for d in index["declarations"]}
+    for name in ("odd_all_odd_state", "pow_mono_base", "fanLambda", "carry"):
+        assert name in found, name
+    assert found["fanLambda"]["kind"] == "def"
+    assert found["odd_all_odd_state"]["kind"] == "theorem"
+
+
+def test_native_decide_is_charged_to_the_lemma_that_calls_it() -> None:
+    """The four Ostrowski residue scans are private, so a modifier-blind index attributed all
+    four to ``origin_reachable_pred`` above them -- which uses no such thing."""
+    index = fp.build()
+    trust = {d["name"]: d["trust"] for d in index["declarations"]
+             if d["module"] == "Problems.Ostrowski.NP.Reachability"}
+    assert trust["origin_reachable_pred"] == "kernel"
+    for suffix in ("four", "eight", "sixteen", "twenty"):
+        assert trust[f"combo_residue_ne_zero_{suffix}"] == "compiler", suffix
+
+
+def test_prose_that_wraps_onto_the_word_theorem_is_not_a_declaration() -> None:
+    """``LeftoverFamilies.lean`` ends a docstring line with "not a `CycleItinerary`" and starts
+    the next with "theorem at a non-minimum start". Read as source that declares ``at``, whose
+    name then matched the ``at`` of every ``rw ... at h`` in the corpus: 512 phantom edges."""
+    index = fp.build()
+    names = {d["name"] for d in index["declarations"]}
+    assert "at" not in names
+    assert "needs" not in names
+
+
+def test_the_comment_stripper_preserves_every_offset() -> None:
+    """Positions are reported from the stripped text into the original, so the two must agree
+    character for character."""
+    for path in fp.sources()[:60]:
+        text = path.read_text(encoding="utf-8")
+        assert len(fp._strip_comments(text)) == len(text), path
+
+
+def test_the_statement_proof_cut_ignores_an_assignment_inside_a_binder() -> None:
+    """An optional argument writes ``:=`` inside its own binder; the cut must pass over it."""
+    statement, proof = fp._split("theorem t (h : P := by simp) : Q := by exact foo h")
+    assert statement == "theorem t (h : P := by simp) : Q "
+    assert proof == " by exact foo h"
+    assert fp._split("def f : Nat := 3") == ("def f : Nat ", " 3")
+    assert fp._split("def f : Nat -> Nat | 0 => 1")[1] == "", "no value half to find"
+
+
+def test_a_neighbours_docstring_is_not_a_dependency() -> None:
+    """A declaration's slice runs to the next one's start, so it carries that neighbour's
+    prose -- and the house style cites theorems by name in prose."""
+    slice_ = "theorem a : P := trivial\n\n/-- Follows from `cited_lemma`. -/\n"
+    statement, proof = fp._split(fp._strip_comments(slice_))
+    known = {"cited_lemma", "trivial"}
+    assert fp._uses(proof, known, "a") == ["trivial"]
+    assert "cited_lemma" not in fp._uses(statement + proof, known, "a")
+
+    index = fp.build()
+    finance = next(d for d in index["declarations"] if d["name"] == "cycleMin_finance")
+    assert finance["type_deps"] == ["CycleMin", "oddCount"], finance["type_deps"]
+
+
+def test_dependencies_point_at_declarations_that_exist() -> None:
+    index = fp.build()
+    names = {d["name"] for d in index["declarations"]}
+    for d in index["declarations"]:
+        assert d["name"] not in d["type_deps"] and d["name"] not in d["value_deps"]
+        assert set(d["type_deps"]) <= names
+        assert set(d["value_deps"]) <= names
+    assert index["totals"]["type_edges"] > 1000
+    assert index["totals"]["value_edges"] > index["totals"]["type_edges"]
+
+
+def test_a_statement_dependency_is_not_merely_a_proof_dependency() -> None:
+    """The split is the point: if every proof dependency were also a statement one, the module
+    graph would already say everything this adds."""
+    index = fp.build()
+    proof_only = sum(
+        1 for d in index["declarations"]
+        for n in d["value_deps"] if n not in d["type_deps"]
+    )
+    assert proof_only > index["totals"]["type_edges"] / 4, proof_only
