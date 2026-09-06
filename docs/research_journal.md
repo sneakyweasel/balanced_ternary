@@ -28057,3 +28057,90 @@ Best next question
 - can the modes be collected by summing over r first, with the n-range
   split by the value of round(c(n)), rather than by windowing c?
 ```
+
+## Prospecting the corpus: what a leverage ranking finds, and what it cannot (consolidation, not a finding)
+
+The exercise was to treat the program's own written record as a search
+space and ask which visible object has a consequence large relative to
+its cost — not "what lemma is missing" but "which apparently small
+perturbation would collapse the most remaining proof complexity".
+Fifty-four candidate objects were read out of the manuscripts, the
+ledgers, the conjecture records, the branch decisions, and the Lean
+layer; sixteen were scored; twelve of those failed an admission test
+and were dropped; thirteen survived to a ranking. The note is
+[docs/theory/juggler_leverage_prospecting_note.md](theory/juggler_leverage_prospecting_note.md).
+
+Three of the twelve exclusions are worth recording on their own,
+because they are places where a fresh reading of the corpus mistook a
+settled object for an open one: the closed form for the triple constant
+of Lemma 3.9, the fan-minimum balance law, and the per-thread contagion
+corollary are all already established, the last carrying the ledger row
+`J-clotho-threads-per-thread-contagion`. The rest of the exclusions
+are fences that stand — the derandomization obstruction, the refuted
+localization, the walk-competition cluster, the flight programme.
+
+The ranking's own conclusion is the useful part, and it is negative.
+Every candidate that survived sits below the frontier. None touches the
+free term of Paper C, the derandomization wall of Paper B, the
+classical analytic bricks under Paper A, or the equidistribution
+hypothesis that the density statements rest on. The objects with the
+largest documented reach are exactly the ones whose estimated
+proofability is near zero, so a leverage ratio demotes them. Ranking by
+leverage tells you where the written argument is compressible; it does
+not tell you where the problem is, and it cannot manufacture a route
+past a wall.
+
+One live discrepancy came out of the pass and is the reason for the
+next question. The laboratory map records the gap from 0.4480 to
+0.4927 as a dynamical averaging problem that is not opened, while the
+OEOEE dossier records the first member of the family as reduced with
+its constants written end to end and measured with slack, its own
+status paragraph saying the promotion is bookkeeping after an audit in
+the style of the Paper B ledger. Both can be true of different objects
+— the fence may be about the tail of the family and the dossier about
+its first member — but the corpus does not currently say so anywhere,
+and a reader meets the two statements without a reconciliation.
+
+An abstract by-product entered the platform on the same branch:
+`formal/Problems/Engine/InformationField.lean` now carries the ordering
+mathematics this exercise used — a priority ratio, its division-free
+comparison, and Smith's rule (sorting candidates by ratio minimizes the
+value-weighted waiting cost of a schedule). It is generic and says
+nothing about the Juggler map.
+
+```text
+What was learned
+- fifty-four visible objects, thirteen admissible after adversarial
+  checking against the ledgers; three of the exclusions were objects
+  already proved that a fresh reading took for open
+- every surviving candidate is below the frontier: high documented
+  reach and near-zero estimated proofability are the same objects, and
+  a leverage ratio demotes exactly those
+- the three leading candidates differ by less than the granularity of
+  the score vector; the ranking supports bands, not an order
+- the map's fence on the 0.448 to 0.4927 gap and the OEOEE dossier's
+  "constants pending, promotion is bookkeeping" are not reconciled
+  anywhere in the corpus
+- three otherwise cheap candidates require a manuscript sentence to
+  change, so they are consolidation-turn work, not Phase-0 work
+Strongest theorem
+- none new
+Strongest refutation
+- none; no candidate was falsified, three were found already settled
+Reusable machinery
+- none for the Juggler application; the generic ordering layer
+  (priority ratio, Smith's rule) went to formal/Problems/Engine
+Branch status
+- PARK (no branch opened by this note)
+Why
+  The pass did what it was meant to do and returned an honest negative:
+  the compressible parts of the record are cheap and small, and the
+  parts that would move the problem are unchanged in difficulty. That
+  is worth one note and no branch. The single actionable residue is a
+  documentation discrepancy, which is a reading task rather than a
+  mathematical one.
+Best next question
+- does an audit of the OEOEE constants in the style of the Paper B
+  ledger survive, and if it does, does the map's fence on that gap
+  still describe the same object the dossier closed?
+```

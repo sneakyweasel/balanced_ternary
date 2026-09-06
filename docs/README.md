@@ -130,6 +130,7 @@ record. That is a status line, not a ban on stating a later matching
 - [Walk-charge note](theory/juggler_walk_charge_note.md)
 - [Paper D draft: near-convergents of log 2 / log 3](theory/juggler_near_convergent_diophantine_note.md) (family leftover; not a fourth review object)
 - [Itinerary-structure note](theory/juggler_cycle_itinerary_structure_note.md)
+- [Leverage prospecting note](theory/juggler_leverage_prospecting_note.md) (ranks candidate objects by an estimated leverage ratio; **OBSERVATION** only, proves nothing, opens no branch)
 - [Branch ledger](juggler_branch_ledger.md)
 - [Negative knowledge](negative_knowledge.md)
 - Problem dossier: [juggler_sequence.md](problems/juggler_sequence.md)
