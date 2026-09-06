@@ -281,3 +281,27 @@ def test_the_correction_is_small_because_the_tilt_already_selects_survivors() ->
     row = tower_threshold(20)
     assert row["tilt_odd_share_p_C"] < row["barrier_needs_odd_share"]
     assert row["barrier_needs_odd_share"] - row["tilt_odd_share_p_C"] < 0.04
+
+
+def test_the_manuscript_now_carries_both_tower_readings() -> None:
+    """9.3(b) printed one number for two questions; it now prints both, and the computed
+    values still match what the passage claims."""
+
+    from research.juggler_sequence.collision_large_sieve import tower_threshold
+
+    row = tower_threshold(19)
+    for path in (
+        "docs/theory/juggler_fate_almost_all_note.md",
+        "juggler_review/juggler_fate_almost_all_note.md",
+    ):
+        text = (fp_root() / path).read_text(encoding="utf-8")
+        assert "can breach\n\\(\\mathrm P_\\theta\\) by itself" in text, path
+        assert "no-momentum\nthreshold is \\(\\rho\\cdot0.836=0.835\\)" in text, path
+        assert "every\nmember of \\([O^t]\\) is live at depth \\(t\\)" in text, path
+
+    # the passage truncates rather than rounds: 0.83651 is printed 0.836
+    assert abs(row["threshold_against_P_theta"] - 0.836) < 1e-3
+    assert round(row["threshold_for_the_no_momentum_sum"], 3) == 0.835
+    assert round(row["live_decay_rate_rho"], 4) == 0.9977
+    assert round(row["overpopulation_factor_printed"], 2) == 1.67
+    assert round(row["overpopulation_factor_live"], 2) == 1.67

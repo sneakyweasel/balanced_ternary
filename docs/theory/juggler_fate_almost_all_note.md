@@ -1752,18 +1752,39 @@ reduction.
 
 **(b) The tower cylinders are nearly free.** A cylinder \(w\) of depth
 \(t\) enters \(\mathrm P_\theta\) only through \(\#[w]e^{\theta o(w)}\),
-against a fair total \(Ne^{\theta}a_\theta^{\,t-1}\). If the tower
-\(O^t\) splits with odd share \(\beta\) at every level,
-\(\#[O^t]=N\beta^{t-1}\) and its tilted weight relative to the fair
+against a fair total \(Ne^{\theta}a_\theta^{\,t-1}\) --- the
+unrestricted value, which is what \(\mathrm P_\theta\) bounds the live
+sum by. If the tower \(O^t\) splits with odd share \(\beta\) at every
+level, \(\#[O^t]=N\beta^{t-1}\) and its tilted weight relative to that
 total is \((\beta e^{\theta}/a_\theta)^{t-1}\), which decays
 geometrically iff \(\beta<\tfrac12(1+e^{-\theta})\), i.e. \(0.836\) at
-\(\theta_{19}=0.396\). So a tower biased anywhere below \(0.836\)
-contributes a bounded total to \(\sum_t(s_\theta(t)-\tfrac12)^+\) when
-the rest of the population is fair; \(\mathrm H_q\) needs the same
-tower to split below \(0.6309\), and the conclusion of Theorem 8.3
-itself fails only once \(\beta>2^{-e(C)/C}=0.981\). A single cylinder
-of depth \(t\) matters only if it is over-populated by a factor
-\((2a_\theta e^{-\theta})^{t}=(1.67)^t\) relative to its fair share.
+\(\theta_{19}=0.396\): no tower biased below \(0.836\) can breach
+\(\mathrm P_\theta\) by itself. That count needs no live correction ---
+an all-odd orbit is non-decreasing and starts above \(N_0\), so every
+member of \([O^t]\) is live at depth \(t\).
+
+The threshold for the *no-momentum* form is a shade lower, because
+\(\sum_t(s_\theta(t)-\tfrac12)^+\) weighs the tower against the tilted
+mass of the live population rather than against the unrestricted total,
+and that mass decays. In the walk's own steps --- \(+(\log_2 3-1)\)
+with weight \(e^{\theta}\), \(-1\) with weight \(1\), held above
+\(-L\) --- the tilted drift is \(-0.053\) per letter at
+\(\theta_{19}\), so absorption is certain and the surviving weight
+grows like \(\lambda^t\) with
+\(\lambda=\min_{s\ge0}\bigl(e^{\theta}e^{(\log_2 3-1)s}+e^{-s}\bigr)\)
+against \((1+e^{\theta})^t\). The live mass therefore loses a factor
+\(\rho=\lambda/(1+e^{\theta})=0.9977\) per letter, and the no-momentum
+threshold is \(\rho\cdot0.836=0.835\). It is this close because the
+tilt already sits at odd share \(p_C=0.598\) while the barrier asks for
+\(1/\log_2 3=0.631\): the tilt selects very nearly the words that
+survive.
+
+Under either reading a tower is harmless well above what the
+neighbouring hypotheses need: \(\mathrm H_q\) needs the same tower to
+split below \(0.6309\), and the conclusion of Theorem 8.3 itself fails
+only once \(\beta>2^{-e(C)/C}=0.981\). A single cylinder of depth
+\(t\) matters only if it is over-populated by a factor
+\((2a_\theta e^{-\theta})^{t}\), which is \((1.67)^t\) either way.
 
 **(c) One-sidedness and aggregation.** \(\mathrm M_{\theta,q}\) bounds
 one weighted average per depth from above; under-populated odd

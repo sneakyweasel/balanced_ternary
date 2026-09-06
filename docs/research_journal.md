@@ -33848,3 +33848,58 @@ Best next question
   live one. Does the down-weighting survive the live restriction at the same
   rate tanh(theta/2) = 0.199, or does it inherit a factor of rho as well?
 ```
+
+## 9.3(b) now prints both thresholds
+
+The one-number edit the last entry declined to make, made: Paper C section
+9.3(b) and its `juggler_review` mirror now separate the two questions the single
+printed \(0.836\) was answering.
+
+The passage keeps \(0.836\) where it is correct --- no tower biased below it can
+breach \(\mathrm P_\theta\) by itself, because \(\mathrm P_\theta\) bounds the
+live sum by the unrestricted fair value, so the unrestricted total is the right
+denominator for that question. It adds the observation that \([O^t]\) needs no
+live correction at all, since an all-odd orbit is non-decreasing and starts
+above \(N_0\). And it gives the second threshold with its derivation: the
+no-momentum sum weighs the tower against the tilted mass of the *live*
+population, that mass decays at \(\rho=\lambda/(1+e^{\theta})=0.9977\) per
+letter with \(\lambda\) the barrier minimum, and the threshold is
+\(\rho\cdot0.836=0.835\). The over-population factor stays at \((1.67)^t\),
+which is what both readings round to --- \(1.6730\) and \(1.6691\).
+
+**One thing noticed while pinning the numbers.** The printed \(0.836\) is a
+*truncation* of \(0.83651\), not a rounding; a test asserting
+`round(x, 3) == 0.836` fails, because the value rounds to \(0.837\). Harmless,
+pre-existing, and left alone --- but the test now uses a tolerance and says why,
+so the next reader does not spend the minute I spent on it.
+
+```text
+What was learned
+- the edit is additive: 0.836 keeps its place, correctly, and 0.835 joins it
+  with the barrier derivation that produces it
+- the tower needs no live correction to its own count, only to the
+  denominator it is measured against, and saying so removes the ambiguity at
+  its source
+- the printed 0.836 truncates 0.83651; a rounding assertion on it fails
+Strongest theorem
+- none new; this lands J-tower-threshold-two-readings in the manuscript
+Strongest refutation
+- none
+Reusable machinery
+- a test that reads both thresholds out of both copies of the passage and
+  checks them against tower_threshold
+Branch status
+- PARK
+Why
+  Four statement questions in a row: two defects, one clean, one number that
+  was right about a neighbouring question. The pattern across all four is the
+  same and worth naming --- every one came from a quantifier or a denominator
+  that was wider than the use it was written for, and in three of the four the
+  prose already said the right thing while the formula did not.
+Best next question
+- unchanged from the last entry, since this one only wrote down what that one
+  computed: 9.3(c) labels its Walsh identity as the unstopped moment but draws
+  a conclusion about the live one. Does the tanh(theta/2) = 0.199 per-letter
+  down-weighting of high-order characters survive the live restriction, or
+  inherit a factor of rho as the tower threshold did?
+```
