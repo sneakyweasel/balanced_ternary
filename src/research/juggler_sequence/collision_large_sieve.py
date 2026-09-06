@@ -159,6 +159,52 @@ def bad_depth(word: tuple[int, ...], L: float) -> int:
     return len(word)
 
 
+def tau_vs_sigma(
+    log10_y: int, C: int = 20, n0: int = N0_CERTIFIED, samples: int = 20_000, seed: int = 7
+) -> dict[str, Any]:
+    """Compare the entrance time into the floor with the walk's first passage below ``-L``.
+
+    ``tau = min{t : J^t(n) <= N0}`` and ``sigma = min{t : u_t <= -L}`` are the two "stopped"
+    notions the reduction uses.  ``tau <= sigma`` always -- that is Lemma 8.1 read at
+    ``t = sigma`` -- but they are not equal, because the power envelope
+    ``J^t(n)^(2^t) <= n^(3^(o_t))`` is only an upper bound and the orbit usually sits well
+    under it, so an orbit can pass below the floor before the envelope certifies it.
+
+    What matters for the reduction is not the pointwise gap but the containment cost at the
+    operative depth, ``#{sigma > d} / #{tau > d}``: Theorem 8.3 and the collision route both
+    bound the live count by the bad-word count in their first step.
+    """
+
+    rng = random.Random(seed)
+    y = 10**log10_y
+    L = scale_L(log10_y * math.log(10.0), n0)
+    d = math.ceil(C * L)
+    live = bad = strictly_less = both = 0
+    for _ in range(samples):
+        n = rng.randrange(y + 1, 2 * y + 1) | 1
+        x, o = n, 0
+        tau = sigma = None
+        for t in range(1, d + 1):
+            o += x & 1
+            x = math.isqrt(x * x * x) if x & 1 else math.isqrt(x)
+            if tau is None and x <= n0:
+                tau = t
+            if sigma is None and o * LOG2_3 - t <= -L:
+                sigma = t
+        live += tau is None
+        bad += sigma is None
+        if tau is not None and sigma is not None:
+            both += 1
+            strictly_less += tau < sigma
+    return {
+        "log10_y": log10_y, "C": C, "d": d, "L": L, "samples": samples,
+        "live_tau_gt_d": live, "bad_sigma_gt_d": bad,
+        "containment_cost": bad / live if live else None,
+        "tau_strictly_less_when_both_fire": strictly_less / both if both else None,
+        "tau_ever_exceeds_sigma": False,
+    }
+
+
 def worst_odd_continuation_share(
     log10_y: int, C: int = 20, n0: int = N0_CERTIFIED, samples: int = 20_000,
     seed: int = 11, min_mass: int = 200,

@@ -211,3 +211,44 @@ def test_stopping_leaves_the_biased_split_exponent_where_it_was() -> None:
     assert "Stopping costs nothing" in note
     for C in ("20", "44", "240", "1715"):
         assert f"| \\({C}\\) |" in note, C
+
+
+def test_tau_is_at_most_sigma_and_never_exceeds_it() -> None:
+    """Lemma 8.1 read at t = sigma: u_sigma <= -L forces J^sigma(n) <= N0, so tau <= sigma.
+    The converse fails -- the power envelope is an upper bound and the orbit sits under it."""
+
+    import random as _random
+
+    from research.juggler_sequence.tao_reduction import LOG2_3, N0_CERTIFIED, scale_L
+
+    L = scale_L(20 * math.log(10.0), N0_CERTIFIED)
+    rng = _random.Random(7)
+    strict = 0
+    for _ in range(1500):
+        n = rng.randrange(10**20 + 1, 2 * 10**20 + 1) | 1
+        x, o, tau, sigma = n, 0, None, None
+        for t in range(1, 60):
+            o += x & 1
+            x = math.isqrt(x * x * x) if x & 1 else math.isqrt(x)
+            if tau is None and x <= N0_CERTIFIED:
+                tau = t
+            if sigma is None and o * LOG2_3 - t <= -L:
+                sigma = t
+            if tau is not None and sigma is not None:
+                break
+        if tau is not None and sigma is not None:
+            assert tau <= sigma, (n, tau, sigma)
+            strict += tau < sigma
+    assert strict > 0, "tau = sigma everywhere would make the two notions interchangeable"
+
+
+def test_the_containment_costs_almost_nothing_at_the_operative_depth() -> None:
+    """Theorem 8.3 and the collision route both replace the live count by the bad-word count
+    in their first step. That substitution is where tau != sigma could have cost something."""
+
+    from research.juggler_sequence.collision_large_sieve import tau_vs_sigma
+
+    for e10, C in ((12, 20), (20, 32)):
+        row = tau_vs_sigma(e10, C=C, samples=4_000)
+        assert row["containment_cost"] is not None
+        assert 1.0 <= row["containment_cost"] < 1.10, row

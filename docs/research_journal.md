@@ -33667,3 +33667,89 @@ Best next question
   first passage -- and if it is finer, does anything in Section 9.2 quietly use
   the difference?
 ```
+
+## tau and sigma are ordered, not equal -- and nothing uses the difference
+
+The question the last entry left: the pressure form is stated over live starts,
+which is already a restricted population. Is that restriction the same
+\(\sigma\) the \(\mathrm H_q\) repair stops at, or is \(\tau\) strictly
+finer --- and if it is, does anything in Section 9.2 quietly use the difference?
+
+**They are ordered, and the order is a theorem.** \(\tau\le\sigma\) always:
+Lemma 8.1 read at \(t=\sigma\) says \(u_\sigma\le-L\) forces
+\(J^\sigma(n)\le N_0\). Equivalently \(\{\tau>t\}\subseteq\{\sigma>t\}\)
+--- the live starts are a subfamily of those whose depth-\(t\) word is bad.
+
+**They are not equal.** The power envelope \(J^t(n)^{2^t}\le n^{3^{o_t}}\) is an
+upper bound, and the orbit usually sits well under it because every floor loses,
+so an orbit can pass below \(N_0\) before the envelope certifies it. Measured on
+exact orbits, 4000 odd starts per scale: \(\tau>\sigma\) never occurs, 0 of
+12000; \(\tau=\sigma\) throughout at \(y=10^{12}\) and \(10^{30}\); and
+\(\tau<\sigma\) for \(12.3\%\) of starts at \(y=10^{20}\), with gaps
+\(1,2,4,5,7,8\).
+
+**Nothing uses the difference.** The relation is asserted exactly once in
+Section 9.2 --- "By Lemma 8.1, \(\tau(n)>t\) implies \(u_t(n)>-L(y)\)" ---
+which is the containment and not the equality, and it is the safe direction.
+Theorem 9.2 uses only \(\{\tau>d\}\subseteq\{o_d\ge p_Cd\}\), which factors
+through it; Proposition 9.3 telescopes sums over \(\{\tau>t\}\) and needs no
+relation at all. Section 9.3(b) is the one place that speaks in cylinders, and
+it charges a cylinder \(\#[w]e^{\theta o(w)}\) where the live members alone
+enter \(\mathrm P_\theta\) --- an over-estimate, so its conclusions (a tower
+harmless below \(0.836\), a cylinder mattering only at over-population
+\(1.67^t\)) are conservative. For the tower \(O^t\) it is exact anyway: an
+all-odd orbit grows monotonically from \(n>y>N_0\), so no member has descended
+and live is the whole cylinder.
+
+**And the difference is nearly free where it is used.** Theorem 8.3 and the
+collision route share a first step, replacing the live count by the bad-word
+count. The containment cost \(\#\{\sigma>d\}/\#\{\tau>d\}\) at the operative
+depth is \(1.000\) at \(y=10^{12}\), \(10^{30}\) and \(10^{50}\) for both
+\(C=20\) and \(C=32\), and \(1.037\) and \(1.026\) at \(y=10^{20}\). The
+pointwise gap is real and the aggregate cost is under 4%, because a start with
+\(\tau<\sigma\) still has both fired long before the operative depth; only the
+thin band \(\tau\le d<\sigma\) contributes.
+
+**The structural difference, which is the reason the last entry needed
+\(\sigma\).** \(\sigma\) is \(\mathcal F_t\)-measurable and \(\tau\) is not:
+\(\sigma\) depends on the word alone, \(\tau\) on the magnitudes, so two
+starts in the same cylinder can have different \(\tau\). Only \(\sigma\) can
+serve as a stopping time for the walk's filtration, which is exactly why the
+\(\mathrm H_q\) repair stops there. Had the two been interchangeable the repair
+would have had a choice; they are not, and it does not.
+
+```text
+What was learned
+- tau <= sigma is a theorem, not an observation: Lemma 8.1 read at t = sigma
+- they are not equal -- 12.3% of starts at y = 1e20 have tau < sigma, gaps to 8
+  -- because the power envelope is an upper bound the orbit sits under
+- Section 9.2 asserts the relation once, in the containment direction, and no
+  proof there uses more than that
+- 9.3(b) charges whole cylinders where only live members enter, which
+  over-estimates and so errs safe; for the tower it is exact
+- the containment costs at most 4% at every reachable scale and operative
+  depth, so the shared first step of Theorem 8.3 and the collision route loses
+  essentially nothing
+- sigma is F_t-measurable and tau is not, which is why the H_q repair had to
+  stop at sigma
+Strongest theorem
+- tau <= sigma, with {tau > t} contained in {sigma > t} (J-tau-le-sigma)
+Strongest refutation
+- none; the audit found no place that uses the difference
+Reusable machinery
+- tau_vs_sigma, and two tests: the pointwise order with a witness of
+  strictness, and the containment cost at the operative depth
+Branch status
+- PARK
+Why
+  This is the third statement-hygiene question in a row and the first that
+  came back clean. That is worth recording as plainly as the two defects were:
+  the reduction distinguishes its two stopped notions correctly everywhere it
+  uses them, and the one substitution it makes between them is measured at
+  under 4%.
+Best next question
+- 9.3(b) charges whole cylinders and calls a tower harmless below odd share
+  0.836. That number was computed from the fair total with #[w], not with the
+  live count. Does the threshold move when the live restriction is carried
+  through, and in which direction?
+```

@@ -7083,5 +7083,18 @@
   "related_conjectures": [
    "juggler_loglog_depth_cylinder_bound"
   ]
+ },
+ {
+  "id": "J-tau-le-sigma",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "The two stopped notions of the reduction are ordered but not equal. With tau(n) = min{t ≥ 1 : J^t(n) ≤ N₀} the entrance time into the floor and sigma(n) = min{t ≥ 1 : u_t(n) ≤ −L(y)} the first passage of the exponent walk below −L, always tau ≤ sigma: Lemma 8.1 read at t = sigma says u_sigma ≤ −L forces J^sigma(n) ≤ N₀. Equivalently {tau > t} ⊆ {sigma > t} — the live starts are a subfamily of those whose depth-t word is L-bad — which is the containment Theorem 8.3, Theorem 9.2 and the collision route all use, and the only direction any of them asserts. The converse fails: the power envelope J^t(n)^{2^t} ≤ n^{3^{o_t}} is an upper bound and the orbit usually sits well under it, so an orbit can pass below N₀ before the envelope certifies it. Measured on exact orbits, 4000 odd starts per scale: tau > sigma never occurs (0 of 12000); tau = sigma at y = 10^12 and 10^30; tau < sigma for 12.3% of starts at y = 10^20, with gaps sigma − tau of 1, 2, 4, 5, 7 and 8. The distinction is nevertheless almost free where it is used: the containment cost #{sigma > d}/#{tau > d} at the operative depth is 1.000 at y = 10^12, 10^30 and 10^50 for both C = 20 and C = 32, and 1.037 and 1.026 at y = 10^20 — so replacing the live count by the bad-word count, the shared first step of Theorem 8.3 and of J-collision-bound-half-exponent, loses at most 4% at the scales reachable. Note sigma is F_t-measurable and tau is not: sigma depends on the word alone, tau on the magnitudes, so only sigma can serve as a stopping time for the walk's filtration — which is why the repair of H_q stops at sigma and not at tau.",
+  "source": "docs/research_journal.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_collision_large_sieve.py"
+  ],
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ]
  }
 ]
