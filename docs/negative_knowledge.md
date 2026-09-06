@@ -580,6 +580,32 @@ reparameterization). Direct-attack dossier:
 [juggler_pressure_direct](problems/juggler_pressure_direct.md)
 (`J-pressure-direct-routes`).
 
+**Hypothesis H(C,A) is quantified wrong, in four places.** Killed claim:
+the log-log-depth cylinder bound holds for *every* \(O\)-rooted word of
+length \(d(y)\), as stated in Paper C §8.3, the Tao note §4, the
+ledger row `J-tao-loglog-depth-bound`, and the active conjecture record
+`juggler_loglog_depth_cylinder_bound` (whose `counterexamples` field
+reads "none" while stating the criterion that is violated).
+Kill: \(J(1)=1\) is odd, so a start that reaches 1 carries an all-\(O\)
+tail and the cylinders "short prefix followed by \(O^k\)" absorb a
+constant proportion of all starts. Measured on exact orbits, 20000 odd
+starts per configuration: at \(y=10^{12}\), \(C=20\), \(d=11\) the top
+cylinder holds \(4.07\%\) against a fair share \(9.77\cdot10^{-4}\)
+(ratio \(41.7\)); at \(C=32\), \(d=17\) the ratio is \(2667\); at
+\(y=10^{20}\), \(C=20\), \(d=25\) it is \(4.0\cdot10^{5}\). Every witness
+word has bad-depth \(2\), and the additive slack \(y(\log y)^{-A}\) is
+below \(10^{-14}\) at these scales.
+Kind: `REFUTED` (statement defect, not a mathematical retraction).
+No theorem moves: Theorem 8.3 and Theorem B apply \(H\) only to the
+\(L(y)\)-bad words, and both manuscripts already say so in prose. The
+correction is to move that restriction inside the quantifier in all four
+places; it is referee-facing and is not made from this branch. The
+collision hypotheses `J-collision-bound-half-exponent` are stated over
+\(L\)-bad words and are unaffected. Do not: quote \(H(C,A)\) in the
+universal form; treat the excess as absorbable by \(y(\log y)^{-A}\);
+read this as a refutation of the cylinder route.
+Member: `J-tao-cylinder-hypothesis-quantifier-defect`.
+
 **Kernel localization to \(OOOEE\) / \(OOEOE\) even-block fibers.**
 Killed claim: Paper B Theorem 5.3 localizes to those fibers (fate
 note §7.4: leftovers \(\le P^{7/16}\) against \(YP^{-1/24}=P^{0.677}\)

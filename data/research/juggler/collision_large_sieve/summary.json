@@ -1,5 +1,5 @@
 {
-  "git_commit": "bfd1caac908e50c9be47091c7ed5172603a1d62b",
+  "git_commit": "da26ac7f38fd878b42b4026cc14d22e3f61df9f0",
   "N0": 350000000,
   "price": {
     "true_least_C_unconditional": 20,
@@ -11,6 +11,71 @@
     "required_rate": 0.5519829987726946,
     "required_rate_star3": 0.4608203140294034
   },
+  "graded_family": [
+    {
+      "gamma": 0.0,
+      "least_C_unconditional": 32,
+      "least_C_star3": 28
+    },
+    {
+      "gamma": 0.25,
+      "least_C_unconditional": 27,
+      "least_C_star3": 24
+    },
+    {
+      "gamma": 0.5,
+      "least_C_unconditional": 24,
+      "least_C_star3": 21
+    },
+    {
+      "gamma": 0.75,
+      "least_C_unconditional": 22,
+      "least_C_star3": 19
+    },
+    {
+      "gamma": 1.0,
+      "least_C_unconditional": 20,
+      "least_C_star3": 18
+    }
+  ],
+  "H_quantifier_defect": [
+    {
+      "log10_y": 12,
+      "C": 20,
+      "d": 11,
+      "L": 0.5257840793414886,
+      "samples": 20000,
+      "top_share": 0.0407,
+      "fair_share": 0.0009765625,
+      "overpopulation": 41.6768,
+      "top_word": "OEEEEOEEEOO",
+      "top_word_bad_depth": 2
+    },
+    {
+      "log10_y": 12,
+      "C": 32,
+      "d": 17,
+      "L": 0.5257840793414886,
+      "samples": 20000,
+      "top_share": 0.0407,
+      "fair_share": 1.52587890625e-05,
+      "overpopulation": 2667.3152,
+      "top_word": "OEEEEOEEEOOOOOOOO",
+      "top_word_bad_depth": 2
+    },
+    {
+      "log10_y": 20,
+      "C": 20,
+      "d": 25,
+      "L": 1.2485578843236127,
+      "samples": 20000,
+      "top_share": 0.02405,
+      "fair_share": 5.960464477539063e-08,
+      "overpopulation": 403492.0448,
+      "top_word": "OEEEEEEEOOOOOOOOOOOOOOOOO",
+      "top_word_bad_depth": 2
+    }
+  ],
   "censuses": [
     {
       "log10_y": 12,

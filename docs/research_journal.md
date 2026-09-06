@@ -33330,3 +33330,153 @@ Best next question
   B's machinery counts one orbit at a time. Does the pair count admit a
   treatment the single count does not -- and at what depth does it stop?
 ```
+
+## The pair count buys accuracy, not depth -- and H(C,A) is quantified wrong
+
+The question the last entry left: the bad-word collision count is a two-fold
+correlation of the itinerary at depth log log y, where Paper B's machinery
+counts one orbit at a time. Does the pair count admit a treatment the single
+count does not, and at what depth does it stop?
+
+**Method note, and a limit on what follows.** This ran as a six-lens
+investigation with adversarial verification. Two lenses completed --- the
+tension with recorded negative knowledge, and the scope of the dispersion kill
+--- before a session limit killed the remaining eight agents. The recursion,
+analytic, literature and depth-ceiling lenses never ran, and no adversarial
+stage ran at all. What is recorded below is therefore two lenses' output with
+the three consequential claims re-verified here by direct computation, not a
+completed investigation. The unrun lenses are the next entry's work.
+
+**The answer, so far: accuracy, not depth.** The pair count's loss budget is
+exactly the square of the single count's. Asking
+`sum_{w bad} #[w] <= N 2^{-rL}` permits an excess `2^{(e(C)-r)L}` over the
+fair-coin value; asking the same of the squares permits `2^{2(e(C)-r)L}`. At
+`C = 32` that is `2^{1.199L}` against `2^{0.600L}`. Per letter both tend to
+`2^{0.0503}` and its square as `C` grows, so a method losing a factor 2 per
+letter survives 4.26 letters of the 114 required at `y = 10^100`, against 0.08
+of 72 for the single route --- 10.1% of the required depth against 5.0%. A
+factor of two in the budget is the whole gain, and it is the same factor two
+the Cauchy-Schwarz step costs. Meanwhile Proposition 10.3's depth-uniformity
+budget transfers unchanged: routed through per-cylinder input the pair count is
+*harder*, needing `c < 1/32` where the single count needs `c < 1/20`, against
+differencing's `c = 2`.
+
+**Where the dispersion kill lands.** Proposition CC splits into three legs and
+they transfer differently. Leg 1 --- the `k = 1` harmonic carries weight one, so
+no family average constrains it --- does not transfer: it kills family averaging
+as a route to a *pointwise* bound, and the collision route's target is the
+family average, which is exactly what the factor 2 was paid for. Leg 2 does
+transfer: dispersion needs a family external to the target, and the pair count
+*is* the second variable, already spent; `J-derandomization-obstruction` records
+the same objection independently at the Paper B frontier. Leg 3 transfers in a
+worse form: `1_bad` is not a character, so the restricted count expands as a
+bilinear form in the Walsh family weighted by the bad-set spectrum, and its
+`T = empty` term alone is `p_bad` times the unrestricted count --- false by a
+large power of L. Two further routes are recorded dead: the shift-dispersion
+`n' = n + 2h` re-enters the `T_1^{(3)}`-family at the fifth letter, and the
+congruence route that makes the Collatz analogue trivial --- Terras's exact
+equidistribution of parity vectors mod `2^k` --- stops at depth one here, since
+the 2-adic bridge admits no word of length two.
+
+So the pair count inherits the same unbounded-depth barrier as everything else,
+but through the bad-word restriction rather than through the averaging. The
+restriction is what makes the hypothesis true, and it is precisely what no
+family-averaging method supplies.
+
+**Two defects in the last entry's ledger row, both mine.** The row argued
+non-inversion from a Parseval computation about the *unrestricted* collision
+count --- a statement the sibling row declares false. The conclusion survives a
+fortiori, since the unrestricted bound implies the restricted one and a failure
+to invert the stronger is a failure to invert the weaker, but the row did not
+say so; and the restricted sum admits no Parseval identity at all, which is the
+cleaner reason. And "the four conditions Paper C imposes" was an attribution
+error: those four were the preceding entry's own synthesis, and only the last of
+them corresponds to a proved obstruction in Paper C. Both repaired.
+
+**And one strengthening.** Non-inversion can be upgraded from a failed
+derivation to a proved separation. Put mass `N p_bad` uniformly on half the
+L-bad words, each occupied bad cylinder at twice its fair share. Then
+`sum_{w bad} #[w]^2 = 2 N^2 p_bad 2^{-(d-1)}`, so the collision bound holds with
+`K = 2 p_bad <= 2`, while every occupied bad cylinder sits at 2x fair and
+`H(C,A)` permits only `fair (1 + o(1))`. Conversely `H` implies the crude form
+with `K = 1 + o(1)`. The crude form is a strict intermediate.
+
+**The export was the weakest member of a family.** Grading the hypothesis by
+`2^{-gamma e(C) L}` returns `M <= sqrt(K) N 2^{-(1+gamma) e(C) L / 2}`, so the
+least depth constant runs 32, 27, 24, 22, 20 at `gamma = 0, 1/4, 1/2, 3/4, 1`
+(28, 24, 21, 19, 18 under `lambda***`). At `gamma = 1` --- the fair-coin value
+of the restricted count, since `p_bad` is of order `2^{-e(C)L}` --- the
+Cauchy-Schwarz loss is absorbed entirely and the depth constant returns to
+20/18 with no penalty. The census normalizes against that fair value, so the
+Phase-0 falsifier was run on `gamma = 1` while the row exported `gamma = 0`.
+The headline was the fallback, not the operative statement.
+
+**A defect that is not mine: H(C,A) is quantified wrong in four places.** The
+hypothesis is stated over *every* `O`-rooted word of length `d(y)` in Paper C
+section 8.3, the Tao note section 4, the ledger row `J-tao-loglog-depth-bound`,
+and the active conjecture record `juggler_loglog_depth_cylinder_bound` --- whose
+`counterexamples` field reads "none" while stating the very criterion that is
+violated. In that form it is false, and not marginally. A start that reaches 1
+has an all-`O` tail, because `J(1) = 1` is odd, so a short prefix followed by
+`O^k` absorbs a constant proportion of all starts. Measured on exact orbits,
+20000 odd starts per configuration:
+
+| y | C | d | top cylinder | fair share | ratio |
+|---|---|---|---|---|---|
+| 1e12 | 20 | 11 | 4.07% | 9.77e-4 | 41.7 |
+| 1e12 | 32 | 17 | 4.07% | 1.53e-5 | 2667 |
+| 1e20 | 20 | 25 | 2.41% | 5.96e-8 | 4.0e5 |
+
+Every witness word has `bad_depth` 2, exactly as the mechanism predicts, and
+the additive slack `y (log y)^{-A}` is below 1e-14 at these scales. No theorem
+moves: Theorem 8.3 and Theorem B apply `H` only to the L-bad words, and both
+manuscripts already say so in prose --- "only for the L(y)-bad words". The
+quantifier is what needs the restriction. The collision hypotheses are stated
+over bad words and are unaffected. Recorded as
+`J-tao-cylinder-hypothesis-quantifier-defect`; the manuscript and conjecture-
+record edits are not made here, because they are referee-facing and belong to
+whoever owns those files.
+
+```text
+What was learned
+- the pair count's permitted loss is the square of the single count's, which
+  at C = 32 is 2^{1.199L} against 2^{0.600L}: a factor of two, and the same
+  factor two Cauchy-Schwarz costs
+- routed through per-cylinder input the pair count is strictly harder than the
+  single count -- c < 1/32 against c < 1/20, with differencing at c = 2
+- Proposition CC's three legs transfer differently: the weight-one harmonic
+  does not transfer, the missing auxiliary family does, and the circularity
+  transfers worse because 1_bad is not a character
+- the pair count inherits the unbounded-depth barrier through the bad-word
+  restriction rather than through the averaging, which is why no
+  family-averaging method reaches it
+- the exported hypothesis was the weakest member of a graded family whose
+  gamma = 1 member costs no depth at all and is what the census measured
+- H(C,A) is false as literally quantified in four places, by a factor 41.7 at
+  the shallowest configuration measured and 4.0e5 at y = 1e20
+Strongest theorem
+- the crude collision form is a strict intermediate: H implies it with
+  K = 1 + o(1), it implies the Tao bound at half the exponent, and an explicit
+  configuration satisfies it with K <= 2 while violating H pointwise
+Strongest refutation
+- H(C,A) as universally quantified over words of length d(y)
+Reusable machinery
+- graded_least_C, max_cylinder_overpopulation; two tests, one pinning the
+  quantifier defect and one the graded table
+Branch status
+- PARK
+Why
+  The pair count does not open a door. It widens the budget by exactly the
+  factor its own Cauchy-Schwarz step costs, and every mechanism that would
+  exploit the second variable is either recorded dead or blocked by the same
+  restriction that makes the hypothesis true. What the investigation actually
+  produced is three corrections -- two to the previous entry, one to a
+  hypothesis four documents state wrongly -- which is the usual yield of
+  looking closely at something that was written quickly.
+Best next question
+- four lenses never ran. The one with the clearest shape is self-similarity:
+  if word_d(n) = word_d(n') and both start odd, both images share d-1 letters,
+  so the pair count satisfies a recursion over image populations that the
+  single count does not. Does that recursion terminate at a known base case,
+  or does the image sparsity that killed the last-even reset wreck it too?
+```

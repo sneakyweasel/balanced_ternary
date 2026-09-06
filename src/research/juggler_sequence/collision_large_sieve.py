@@ -58,6 +58,56 @@ def half_exponent_least_C(required: float = REQUIRED_RATE, c_max: int = 10_000) 
     return None
 
 
+def graded_least_C(gamma: float, required: float = REQUIRED_RATE, c_max: int = 10_000) -> int | None:
+    """Least ``C`` for the graded hypothesis at accuracy ``gamma``.
+
+    The exported bound is the weakest member of a family: asking
+    ``sum_{w bad} #[w]^2 <= K N^2 2^{-(d-1)} 2^{-gamma e(C) L}`` returns
+    ``M <= sqrt(K) N 2^{-(1+gamma) e(C) L / 2}``.  ``gamma = 0`` is the crude form and costs
+    twelve letters of depth; ``gamma = 1`` is the fair-coin value of the restricted count,
+    since ``p_bad`` is of order ``2^{-e(C)L}``, and costs nothing at all.  The census
+    normalizes against the fair value, so it measures ``gamma = 1``.
+    """
+
+    for C in range(3, c_max):
+        if chernoff_exponent(C) * (1.0 + gamma) / 2.0 > required:
+            return C
+    return None
+
+
+def max_cylinder_overpopulation(
+    log10_y: int, C: int = 20, n0: int = N0_CERTIFIED, samples: int = 20_000, seed: int = 11
+) -> dict[str, Any]:
+    """The most populated depth-``d`` cylinder against its fair share.
+
+    Hypothesis ``H(C,A)`` is stated in four places over *every* ``O``-rooted word of length
+    ``d(y)``, and in that form it is false: a start that reaches 1 has an all-``O`` tail,
+    because ``J(1) = 1`` is odd, so a short prefix followed by ``O^k`` absorbs a constant
+    proportion of all starts.  Both manuscripts already say in prose that only the bad words
+    are used; the quantifier is what needs the restriction.  Nothing here touches the
+    theorems, which apply ``H`` only to bad words.
+    """
+
+    rng = random.Random(seed)
+    y = 10**log10_y
+    L = scale_L(log10_y * math.log(10.0), n0)
+    d = math.ceil(C * L)
+    tally: dict[tuple[int, ...], int] = {}
+    for _ in range(samples):
+        n = rng.randrange(y + 1, 2 * y + 1) | 1
+        w = juggler_word(n, d)
+        tally[w] = tally.get(w, 0) + 1
+    top, count = max(tally.items(), key=lambda kv: kv[1])
+    fair = 2.0 ** (-(d - 1))
+    return {
+        "log10_y": log10_y, "C": C, "d": d, "L": L, "samples": samples,
+        "top_share": count / samples, "fair_share": fair,
+        "overpopulation": (count / samples) / fair,
+        "top_word": "".join("O" if b else "E" for b in top),
+        "top_word_bad_depth": bad_depth(top, L),
+    }
+
+
 def bad_word_count(L: float, d: int) -> int:
     """Number of ``O``-rooted words of length ``d`` whose walk never reaches ``-L``.
 
@@ -227,6 +277,14 @@ def summary(samples: int = 120_000, d_max: int = 18) -> dict[str, Any]:
             "required_rate": REQUIRED_RATE,
             "required_rate_star3": REQUIRED_RATE_STAR3,
         },
+        "graded_family": [
+            {"gamma": g,
+             "least_C_unconditional": graded_least_C(g, REQUIRED_RATE),
+             "least_C_star3": graded_least_C(g, REQUIRED_RATE_STAR3)}
+            for g in (0.0, 0.25, 0.5, 0.75, 1.0)
+        ],
+        "H_quantifier_defect": [max_cylinder_overpopulation(e, C)
+                                for e, C in ((12, 20), (12, 32), (20, 20))],
         "censuses": censuses,
         "verdict": verdict(censuses),
         "classification": {
