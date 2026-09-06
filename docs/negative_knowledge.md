@@ -599,12 +599,22 @@ it because the spectrum is not low-degree concentrated and spreads with
 depth (\(\ell^2\) weight above order 2: \(0.218,0.269,0.303\) at
 \(d=12,16,20\)).
 Kind: `REFUTED` / `METHOD_OBSTRUCTION`.
-Do not: re-derive a spectral bound on \(W_T^{\mathrm{bad}}\) from better
-knowledge of the bad set; expect an order split to concentrate the
-spectrum; route any bound through \(\sum_U\lvert W_U\rvert^2\). Only
-correlation between the spectrum and the Walsh energy could win, and no
-bound on individual \(\lvert W_U\rvert\) supplies it.
-Member: `J-bad-set-spectrum-cannot-win`.
+Narrowed after adversarial review (same day): the units are \(M\), the
+number of bad starts, not \(Np_{\mathrm{bad}}\), which is not free ---
+\(M\le Np_{\mathrm{bad}}\) with exact \(p_{\mathrm{bad}}\) is stronger than
+Theorem 8.3's conclusion. What is killed is every bound *uniform in
+\(T\)*: the order-1 floor \(\max_T\lvert W_T^{\mathrm{bad}}\rvert\ge
+(2p_C-1)M\) makes a uniform saving self-referential, and the sharp
+per-character bound \((N/2)(p_{\mathrm{bad}}+\lvert\hat b_T\rvert)\) caps
+the gain at a factor 2. Per-order bounds are NOT killed: the aggregate
+tail is measured 5--26x below trivial and growing.
+Do not: route any bound through \(\sum_U\lvert W_U\rvert^2\); expect an
+order split to concentrate the spectrum; seek a \(T\)-uniform saving
+beyond the factor 2; use \(Np_{\mathrm{bad}}\) as a yardstick.
+Open: the product-shape bound \(\lvert W_T^{\mathrm{bad}}\rvert\le KMb^{\lvert T\rvert}\),
+\(b=\tanh(\theta/2)\), `J-walsh-restricted-product-shape` --- a refinement
+of the tail constant that does not by itself reach \(\mathrm P_\theta\).
+Members: `J-bad-set-spectrum-cannot-win`.
 
 **Hypothesis H(C,A) was quantified wrong, in five files (repaired 6 Sep 2026).** Killed claim:
 the log-log-depth cylinder bound holds for *every* \(O\)-rooted word of

@@ -34075,3 +34075,108 @@ Best next question
   and the four unrun lenses from the pair-count investigation -- recursion,
   analytic, literature, depth ceiling -- remain the open work.
 ```
+
+## The spectral kill, narrowed by its own adversarial review
+
+The adversarial workflow launched against the last entry finished --- nine of
+twelve agents before a session limit --- and every lens agreed the CLOSE stands
+for the reduction's purposes. Three of them also found that the entry stated
+its negative in the wrong units and one order too broadly. Both are mine, both
+are now corrected in the ledger and in negative knowledge, and the review
+surfaced one genuinely open question that had not been recorded.
+
+**Wrong units.** The entry compared everything against "the trivial bound
+\(\lvert W_T^{\mathrm{bad}}\rvert\le Np_{\mathrm{bad}}\)". That bound is
+neither trivial nor unconditional. The unconditional bound is \(M\), the number
+of starts whose depth-\(d\) word is bad, and \(W_\emptyset^{\mathrm{bad}}=M\)
+identically. Moreover \(M\le Np_{\mathrm{bad}}\) with the *exact*
+\(p_{\mathrm{bad}}\) is stronger than Theorem 8.3's conclusion, since exact
+\(p_{\mathrm{bad}}=0.106\) at \(y=10^{20}\), \(d=25\) sits far below the
+Chernoff surrogate \(2^{-e(C)L}=0.609\). Measured, \(M/(Np_{\mathrm{bad}})\)
+is \(0.998\) to \(1.005\) --- an equality in practice, not a reliable
+inequality. So "beat \(Np_{\mathrm{bad}}\)" contained the goal, and the
+previous entry's "shave by exactly \(e(C)\)" was conditional on
+\(H(C,A)\)'s own output. Every conclusion survives a fortiori, because the
+Cauchy--Schwarz bound exceeds \(M\) by the same margins it exceeded
+\(Np_{\mathrm{bad}}\); but the rows now say what is free and what is not.
+
+**One order too broad.** What is proved is that no bound *uniform in \(T\)*
+improves on \(M\) by more than a constant. The order-1 identity
+\(W_{\{s\}}^{\mathrm{bad}}=(1-2q_s)M\), with badness forcing odd-heaviness,
+gives \(\max_T\lvert W_T^{\mathrm{bad}}\rvert\ge(2p_C-1)M-O(1/d)\), and
+\(2p_C-1=\tanh(\theta_C/2)\) exactly --- \(0.1988\) at \(C=20\), measured
+\(0.62M\). A uniform saving on the characters is therefore a saving on \(M\)
+itself, self-referential, and the kill covers Cauchy--Schwarz, Hölder, the
+order split and every \(T\)-uniform bound. It does *not* cover per-order
+bounds. The aggregate tail \(\sum_{T\ne\emptyset}\tanh(\theta/2)^{|T|}
+\lvert W_T^{\mathrm{bad}}\rvert\) is measured at \(1.19M\) against a trivial
+\(6.35M\) at \(d=12\) --- a gap of \(5.3\times\), which I reproduced --- and
+\(2.91M\) against \(76.6M\) at \(y=10^{20}\), \(d=25\), the gap growing
+geometrically; from order three on the restricted sums sit at measurement noise.
+
+**A sharp per-character bound, and its ceiling.** Under \(H(C,A)\) on bad
+cylinders the counting identity
+\(\#\{w\in B:\chi_T(w)=+1\}=2^{d-2}(p_{\mathrm{bad}}+\hat b_T)\) gives
+\(\lvert W_T^{\mathrm{bad}}\rvert\le\tfrac N2(p_{\mathrm{bad}}+\lvert\hat b_T\rvert)\),
+attained by an admissible count vector and robust to imposing any collision
+count. Its gain is \((1+\lvert\hat b_T\rvert/p_{\mathrm{bad}})/2\in[\tfrac12,1)\):
+a proved ceiling of two, and no exponent moves. This is the exact form of
+"per character cannot win".
+
+**The open question the review surfaced.** Jensen on
+\(\mathbb E_{\mathrm{bad}}[(\sum_s\chi_s)^k]\) for even \(k\) extends the
+order-1 floor to order \(k\): the floor is \(b^k\) with \(b=\tanh(\theta/2)\),
+not \(1\). So a product-shape bound
+\(\lvert W_T^{\mathrm{bad}}\rvert\le KMb^{|T|}\) is consistent with every floor
+proved, says nothing about \(M\), and is measured to hold with a per-order
+rate \(r\approx0.30\)--\(0.35\) between the floor and the trivial \(1\).
+Recorded as `J-walsh-restricted-product-shape`, CONJECTURE. Priced honestly:
+it moves the live tail from \(2^{5.231L}M\) to \(2^{1.118L}M\) at the floor
+rate, and it does **not** yield \(\mathrm P_\theta\) at any \(C\) --- the
+per-letter slope \(\log_2(1+t_C^2)\to0.0559\) exceeds \(e(C)/C\to0.0503\),
+checked at \(C=20,32,50,100\). A refinement of the constant, not a route.
+
+**Two smaller things.** The literature lens reports that an exponentially
+large Wiener norm is the *generic* behaviour of threshold and ballot
+indicators, so the Hölder route was dead structurally and not numerically ---
+which strengthens the kill. And the machine has no Lean toolchain, so the
+standing request to formalise as much as possible cannot be honoured here
+without violating the no-`sorry`, kernel-checked standard; unverified Lean
+will not be committed to `formal/`.
+
+```text
+What was learned
+- the trivial bound on a restricted Walsh sum is M, not N p_bad; the latter
+  with exact p_bad is stronger than the theorem it was meant to serve, and
+  is measured as an equality
+- the kill is of T-uniform bounds: the order-1 floor (2p_C - 1) M makes any
+  uniform saving self-referential, and 2p_C - 1 = tanh(theta_C/2) exactly
+- per-order bounds are not killed; the aggregate tail is 5-26x below trivial
+  and the gap grows
+- the sharp per-character bound (N/2)(p_bad + |bhat_T|) caps the uniform
+  gain at a factor 2, attained
+- the product-shape bound is open, consistent with the proved b^k floors,
+  measured at r = 0.30-0.35, and worth a factor in the tail exponent but not
+  P_theta at any C
+Strongest theorem
+- the sharp per-character bound with its extremiser, and the order-k floor
+  b^k - O_k(1/d)
+Strongest refutation
+- my own headline "no non-trivial bound on W_T^bad exists": true uniformly
+  in T, false per order
+Reusable machinery
+- the corrected rows; the identity 2p_C - 1 = tanh(theta_C/2)
+Branch status
+- PARK (was CLOSE): the spectral line has one open question again, and it is
+  a refinement, not a route
+Why
+  An adversarial pass that agrees with the verdict and disagrees with the
+  statement is the useful kind. The verdict was right for every purpose the
+  reduction has; the statement claimed one order more than was proved and
+  measured against a yardstick that was itself the theorem. Both are the
+  sort of thing a referee finds in the first hour.
+Best next question
+- the product-shape rate: is r bounded away from 1 as d grows at fixed L,
+  and does it tend to the floor b or to something between? The measured
+  0.30-0.35 at d = 18 and 25 is two points.
+```
