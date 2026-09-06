@@ -34180,3 +34180,91 @@ Best next question
   and does it tend to the floor b or to something between? The measured
   0.30-0.35 at d = 18 and 25 is two points.
 ```
+
+## Loop, iteration 1: the rate sits on the floor, and the live set is tilted-fair to 0.3%
+
+A ten-minute loop opened on the live mass of odd starts. The brief names the
+only concentration target --- \(\mathrm M_{\theta,q}\), hence
+\(\mathrm P_\theta\) --- and lists the doors already shut. This iteration
+takes the one question the adversarial review left open on the spectral line
+and measures it.
+
+**The per-order rate is the floor.** The review estimated \(r\approx0.30\)--\(0.35\)
+for the product-shape bound \(\lvert W_T^{\mathrm{bad}}\rvert\le KMb^{|T|}\); that
+came from an aggregate fit with \(K\) folded in. Per order, on 400000 exact
+orbits at \(y=10^{20}\):
+
+| \(d\) | \(M\) | mean \(\lvert W_T^{\mathrm{bad}}\rvert/M\), \(k=1,2,3\) | \(r_{1\to2}\) | \(r_{2\to3}\) |
+|---|---|---|---|---|
+| 16 | 78490 | 0.338, 0.075, 0.014 | 0.221 | 0.183 |
+| 20 | 61126 | 0.320, 0.072, 0.011 | 0.227 | 0.155 |
+
+The floor is \(b=\tanh(\theta_{20}/2)=0.1988\). The rate brackets it, and
+\(K=\mathrm{mean}_1/b\approx1.6\) fits three orders to within 15%. Orders
+four and up sit at the noise floor \(1/\sqrt M\approx0.004\) and are
+unresolved at any reachable sample size. So the conjecture is sharper than it
+was recorded: not "somewhere between \(b\) and 1" but \(1.6\,M\,b^{|T|}\).
+Its payoff verdict does not move --- \(C\log_2(1+b^2)\) exceeds \(e(C)\) at
+every \(C\) --- but a conjecture with a constant is a different object from
+one with a range.
+
+**The direct object.** Rather than bound the tail, measure what the tail is a
+bound for. Let \(R_d\) be the live tilted moment divided by its fair
+unrestricted value \(Ne^{\theta}a_\theta^{d-1}\), and \(\varphi_d\) the same
+ratio for a fair coin restricted to bad words. \(\mathrm P_\theta\) asks
+\(R_d\le e^{o(d)}\); \(R_d=\varphi_d\) would be \(\mathrm P_\theta\) with the
+fair-coin constant.
+
+| \(d\) | \(M/N\) | \(R_d\) | \(\varphi_d\) | \(R_d/\varphi_d\) |
+|---|---|---|---|---|
+| 12 | 0.308 | 0.5405 | 0.5405 | 1.000 |
+| 16 | 0.196 | 0.4418 | 0.4414 | 1.001 |
+| 20 | 0.153 | 0.4003 | 0.3990 | 1.003 |
+
+The live set is tilted-fair to three decimals. This is a far tighter statement
+than the pressure census's "within 5--8% of the fair-coin DP", which compared
+against a different normalisation, and it is the cleanest observation of the
+hypothesis on record. It is also exactly what it is: \(L=1.25\), \(d\le20\),
+about a statement at \(L\to\infty\).
+
+One consequence worth writing down. \(\varphi_d\) decays like \(\rho^d\) with
+\(\rho=0.998\) per letter, the barrier rate of the tower entry, which is
+\(2^{-0.06L}\) at \(d=20L\). So if \(R_d=\varphi_d(1+o(1))\) held to the
+operative depth, \(\mathrm P_\theta\) would follow with room to spare. The
+whole hypothesis is the persistence of one ratio at one.
+
+**Lean.** The brief asks for as much as possible in Lean. There is no Lean
+toolchain on this machine, so nothing was formalised: the repository's standard
+is no `sorry` and kernel-checked, and unverified Lean would not meet it.
+
+```text
+What was learned
+- the product-shape rate is the floor b, measured 0.16-0.23 at orders 1-3
+  against b = 0.199, with K = 1.6; orders >= 4 are noise at any reachable M
+- the review's 0.30-0.35 was an aggregate artefact with K folded in
+- R_d / phi_d = 1.000, 1.001, 1.003: the live set is tilted-fair, which is
+  P_theta with the fair-coin constant
+- phi_d decays at 0.998 per letter, so persistence of that ratio to the
+  operative depth would give P_theta with room
+- no Lean toolchain here
+Strongest theorem
+- none; two measurements
+Strongest refutation
+- the review's rate estimate, replaced by a per-order one
+Reusable machinery
+- restricted_walsh_profile: per-order means, ratios, K, and R_d against
+  phi_d from one sample; two tests
+Branch status
+- PARK
+Why
+  The loop's first step should sharpen the one open object rather than open a
+  new one, and it did: the conjecture now carries a constant, and the
+  hypothesis it serves has a measured value of one to three decimals at every
+  depth the machine can reach. Neither is a proof and the entry says so.
+Best next question
+- R_d / phi_d = 1 is a statement about the whole live set. Does it hold
+  conditionally on the first k letters -- is every cylinder's live tilted
+  moment its fair value -- or does it hold only in aggregate, with cylinders
+  compensating? The first would be H-strength; the second is what M_theta,q
+  actually asks.
+```

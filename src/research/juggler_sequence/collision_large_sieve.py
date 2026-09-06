@@ -161,6 +161,82 @@ def bad_depth(word: tuple[int, ...], L: float) -> int:
     return len(word)
 
 
+def restricted_walsh_profile(
+    log10_y: int, depths: tuple[int, ...] = (12, 16), C: int = 20,
+    n0: int = N0_CERTIFIED, samples: int = 60_000, seed: int = 2026,
+) -> dict[str, Any]:
+    """Per-order profile of the restricted Walsh sums, and the live tilted moment itself.
+
+    Two things at once from one sample.  First, ``mean_{|T|=k} |W_T^bad| / M`` by order and
+    the per-order ratio ``r_k``: the product-shape conjecture says ``|W_T^bad| <= K M b^|T|``
+    with ``b = tanh(theta/2)``, and the measurement is that ``r`` sits ON the floor ``b`` at
+    orders 1..3 with ``K`` about 1.6, not between ``b`` and 1.  Second, the direct object:
+    ``R_d`` = live tilted moment over its fair unrestricted value, against ``phi_d``, the same
+    ratio for a fair coin restricted to bad words.  ``R_d / phi_d = 1`` says the live set is
+    tilted-fair, which is ``P_theta`` with the fair-coin constant; measured 1.000-1.003.
+    """
+
+    y = 10**log10_y
+    L = scale_L(log10_y * math.log(10.0), n0)
+    theta = theta_of_C(C)
+    e, b = math.exp(theta), math.tanh(theta_of_C(C) / 2.0)
+    a_theta = 0.5 * (1.0 + e)
+    rng = random.Random(seed)
+    dmax = max(depths)
+    words = [juggler_word(rng.randrange(y + 1, 2 * y + 1) | 1, dmax) for _ in range(samples)]
+    bd = [bad_depth(w, L) for w in words]
+
+    def phi(d: int) -> float:
+        bad = {1: e}
+        for t in range(2, d + 1):
+            nb: dict[int, float] = {}
+            for o, w in bad.items():
+                if o * LOG2_3 - t > -L:
+                    nb[o] = nb.get(o, 0.0) + w
+                if (o + 1) * LOG2_3 - t > -L:
+                    nb[o + 1] = nb.get(o + 1, 0.0) + w * e
+            bad = nb
+        return sum(bad.values()) / (e * (1.0 + e) ** (d - 1))
+
+    rows = []
+    for d in depths:
+        n = 1 << (d - 1)
+        cnt = [0.0] * n
+        M, live = 0, 0.0
+        for w, k in zip(words, bd):
+            if k >= d:
+                m = 0
+                for i, x in enumerate(w[1:d]):
+                    m |= x << i
+                cnt[m] += 1.0
+                M += 1
+                live += math.exp(theta * sum(w[:d]))
+        h = 1
+        while h < n:
+            for i in range(0, n, 2 * h):
+                for j in range(i, i + h):
+                    x, z = cnt[j], cnt[j + h]
+                    cnt[j], cnt[j + h] = x + z, x - z
+            h *= 2
+        absm: dict[int, float] = {}
+        num: dict[int, int] = {}
+        for T in range(1, n):
+            k = bin(T).count("1")
+            absm[k] = absm.get(k, 0.0) + abs(cnt[T]) / M
+            num[k] = num.get(k, 0) + 1
+        means = [absm[k] / num[k] for k in range(1, 5)]
+        R = live / (samples * e * a_theta ** (d - 1))
+        ph = phi(d)
+        rows.append({
+            "d": d, "M": M, "noise_floor": 1.0 / math.sqrt(M),
+            "mean_abs_by_order": means,
+            "ratio_1_to_2": means[1] / means[0], "ratio_2_to_3": means[2] / means[1],
+            "K_from_order_1": means[0] / b,
+            "R_d": R, "phi_d": ph, "R_over_phi": R / ph,
+        })
+    return {"log10_y": log10_y, "L": L, "C": C, "floor_b": b, "samples": samples, "rows": rows}
+
+
 def bad_set_spectrum(d: int, L: float) -> dict[str, Any]:
     """The Walsh spectrum of the L-bad set, and what it can and cannot buy.
 

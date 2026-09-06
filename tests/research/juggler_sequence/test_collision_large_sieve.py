@@ -390,3 +390,27 @@ def test_the_wiener_norm_grows_so_the_hoelder_route_is_worse_still() -> None:
     ratios = [bad_set_spectrum(d, 1.2486)["wiener_over_density"] for d in (8, 12, 16)]
     assert ratios[0] < ratios[1] < ratios[2], ratios
     assert ratios[-1] > 50, ratios
+
+
+def test_the_per_order_rate_sits_on_the_floor_not_between_floor_and_one() -> None:
+    """The review estimated r = 0.30-0.35 from an aggregate fit; the per-order means say the
+    rate at orders 1 -> 2 is at the proved floor b = tanh(theta/2) = 0.199, with K about 1.6."""
+
+    from research.juggler_sequence.collision_large_sieve import restricted_walsh_profile
+
+    out = restricted_walsh_profile(20, depths=(16,), samples=60_000)
+    row = out["rows"][0]
+    assert 0.12 < row["ratio_1_to_2"] < 0.30, row
+    assert 1.2 < row["K_from_order_1"] < 2.2, row
+
+
+def test_the_live_set_is_tilted_fair_to_a_few_tenths_of_a_percent() -> None:
+    """R_d / phi_d = 1 is P_theta with the fair-coin constant. This is the direct object, and
+    it is measured far tighter than the pressure census's 5-8%."""
+
+    from research.juggler_sequence.collision_large_sieve import restricted_walsh_profile
+
+    out = restricted_walsh_profile(20, depths=(12, 16), samples=60_000)
+    for row in out["rows"]:
+        assert abs(row["R_over_phi"] - 1.0) < 0.02, row
+        assert row["R_d"] < 1.0, "P_theta holds with room at accessible depth"
