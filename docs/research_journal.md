@@ -33982,3 +33982,96 @@ Best next question
   the same DP as bad_word_count -- and does any cancellation between that
   spectrum and the Walsh energy beat p_bad?
 ```
+
+## The bad-set spectrum cannot beat its own density
+
+The question the last entry left: the tail shave is exactly \(e(C)\) because
+\(p_{\mathrm{bad}}\) is all the restriction contributes to a *trivial* bound. Is
+there a non-trivial bound on \(W_T^{\mathrm{bad}}\)? The bad set is
+walk-defined and its spectrum is computable by the same DP as
+`bad_word_count`. Does any cancellation between that spectrum and the Walsh
+energy beat \(p_{\mathrm{bad}}\)?
+
+No, and the obstruction is sharper than "the arithmetic does not work out".
+
+**The spectrum has no slack to give.** Since \(1_{\mathrm{bad}}\) is not a
+character, \(W_T^{\mathrm{bad}}=\sum_S\hat b_SW_{S\triangle T}\), and
+Cauchy--Schwarz splits that into a bad-set factor and a Walsh-energy factor. The
+bad-set factor is
+\[
+\Bigl(\sum_S\hat b_S^2\Bigr)^{1/2}=\sqrt{p_{\mathrm{bad}}}
+\]
+*exactly* --- Parseval for a \(0/1\) indicator, an identity and not an
+inequality. So the thing the question proposed to learn more about enters
+through a quantity that is already known in closed form, and no sharper
+knowledge of it can improve the bound by anything. Every loss is on the other
+factor.
+
+**And the other factor is the object the restriction exists to remove.**
+\(\sum_U\lvert W_U\rvert^2=2^{d-1}\mathcal C_d\) is the *unrestricted*
+collision count --- dominated by the all-\(O\) tails of terminating starts,
+which is why the bad restriction was introduced in the first place. Writing
+\(\mathcal C_d=K_{\mathrm{all}}N^22^{-(d-1)}\), the route beats the trivial
+bound iff \(K_{\mathrm{all}}<p_{\mathrm{bad}}\), and \(K_{\mathrm{all}}\ge1\)
+while \(p_{\mathrm{bad}}<1\). It can never win. Measured on 20000 exact orbits
+at \(y=10^{12}\):
+
+| \(d\) | \(p_{\mathrm{bad}}\) | \(K_{\mathrm{all}}\) | trivial\(/N\) | C--S\(/N\) |
+|---|---|---|---|---|
+| 12 | 0.177 | 8.81 | 0.177 | 1.25 |
+| 16 | 0.127 | 133.33 | 0.127 | 4.12 |
+| 18 | 0.093 | 532.30 | 0.093 | 7.02 |
+
+Worse by \(7\times\) to \(75\times\), and from \(d=16\) on it is worse than
+the vacuous bound \(N\) itself.
+
+**The two escapes both fail, and measurably.** Hölder against the Wiener norm
+gives \(\lVert\hat b\rVert_1\cdot N\), and \(\lVert\hat b\rVert_1\) is
+\(3.81,7.75,26.25,57.65\) at \(d=8,12,16,20\) --- growing like \(1.25^d\), so
+\(\lVert\hat b\rVert_1/p_{\mathrm{bad}}\) is already \(378\) at \(d=20\).
+Splitting the sum by order would rescue Cauchy--Schwarz if the spectrum were
+low-degree concentrated, and it is not: the \(\ell^2\) weight above order 2 is
+\(0.218,0.269,0.303\) at \(d=12,16,20\) --- *rising* with depth --- and
+\(0.073\) still sits above order 10 at \(d=20\). A constant fraction survives
+every cut, so the split gains a constant where the tail needs an exponential.
+
+So only genuine correlation between the bad-set spectrum and the Walsh energy
+could win, and that is exactly what no bound on individual \(\lvert W_U\rvert\)
+supplies. This is the quantified form of the remark recorded three entries ago
+--- that the restricted count is a bilinear form in the Walsh family weighted by
+the bad-set spectrum, strictly harder than the family itself --- and it closes
+that line rather than opening one.
+
+```text
+What was learned
+- the bad-set factor in Cauchy-Schwarz is an identity, sqrt(p_bad), so better
+  knowledge of the spectrum is worth exactly nothing on that side
+- the whole loss is the unrestricted Walsh energy, which is the all-O-tail
+  object the restriction was introduced to avoid: the route re-imports it
+- C-S beats trivial iff K_all < p_bad, impossible since K_all >= 1 > p_bad;
+  measured it loses by 7x to 75x and is worse than vacuous from d = 16
+- the Wiener norm grows like 1.25^d, so the Hoelder route is worse still
+- the spectrum is not low-degree concentrated and spreads with depth, so an
+  order split gains a constant where an exponential is needed
+Strongest theorem
+- none; this is a method obstruction
+Strongest refutation
+- the spectral bound on W_T^bad, in all three forms
+  (J-bad-set-spectrum-cannot-win)
+Reusable machinery
+- bad_set_spectrum: density, Wiener norm, the Parseval identity as a check,
+  and the l2 tail profile by order; three tests
+Branch status
+- CLOSE
+Why
+  The question was whether knowing the bad set better could help, and the
+  answer has the cleanest possible shape: the only place that knowledge enters
+  is a quantity already known exactly. That is a stronger negative than a
+  failed estimate, because it does not depend on how hard anyone tries. The
+  pair-count line that began five entries ago ends here.
+Best next question
+- none on this line. The collision route stays as J-collision-bound-half-exponent
+  states it, with the trivial p_bad the only thing the restriction contributes,
+  and the four unrun lenses from the pair-count investigation -- recursion,
+  analytic, literature, depth ceiling -- remain the open work.
+```

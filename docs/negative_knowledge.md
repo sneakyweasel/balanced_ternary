@@ -580,6 +580,32 @@ reparameterization). Direct-attack dossier:
 [juggler_pressure_direct](problems/juggler_pressure_direct.md)
 (`J-pressure-direct-routes`).
 
+**The bad-set spectrum cannot beat its own density.** Killed claim:
+expanding \(1_{\mathrm{bad}}\) in the Walsh basis and bounding
+\(W_T^{\mathrm{bad}}=\sum_S\hat b_SW_{S\triangle T}\) improves on the
+trivial \(\lvert W_T^{\mathrm{bad}}\rvert\le Np_{\mathrm{bad}}\).
+Kill: Cauchy--Schwarz's bad-set factor is
+\((\sum_S\hat b_S^2)^{1/2}=\sqrt{p_{\mathrm{bad}}}\) *exactly* --- Parseval
+for a 0/1 indicator, an identity with no slack --- so no sharper knowledge
+of the spectrum can help; the whole loss sits on the other factor, the
+*unrestricted* Walsh energy \(2^{d-1}\mathcal C_d\), which is the object
+the all-\(O\) tails dominate and the bad restriction exists to remove. It
+beats the trivial bound iff \(K_{\mathrm{all}}<p_{\mathrm{bad}}\), and
+\(K_{\mathrm{all}}\ge1>p_{\mathrm{bad}}\) always (measured: \(8.81\),
+\(133.33\), \(532.30\) at \(d=12,16,18\), \(y=10^{12}\)). Hölder against
+the Wiener norm is worse (\(\lVert\hat b\rVert_1/p_{\mathrm{bad}}=378\) at
+\(d=20\), growing like \(1.25^d\)), and splitting by order does not rescue
+it because the spectrum is not low-degree concentrated and spreads with
+depth (\(\ell^2\) weight above order 2: \(0.218,0.269,0.303\) at
+\(d=12,16,20\)).
+Kind: `REFUTED` / `METHOD_OBSTRUCTION`.
+Do not: re-derive a spectral bound on \(W_T^{\mathrm{bad}}\) from better
+knowledge of the bad set; expect an order split to concentrate the
+spectrum; route any bound through \(\sum_U\lvert W_U\rvert^2\). Only
+correlation between the spectrum and the Walsh energy could win, and no
+bound on individual \(\lvert W_U\rvert\) supplies it.
+Member: `J-bad-set-spectrum-cannot-win`.
+
 **Hypothesis H(C,A) was quantified wrong, in five files (repaired 6 Sep 2026).** Killed claim:
 the log-log-depth cylinder bound holds for *every* \(O\)-rooted word of
 length \(d(y)\), as stated in Paper C §8.3, the Tao note §4, the

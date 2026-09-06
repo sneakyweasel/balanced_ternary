@@ -359,3 +359,34 @@ def test_the_downweighting_does_not_inherit_the_tower_factor() -> None:
         assert abs(row["shaved_by"] - chernoff_exponent(C)) < 1e-12
         assert row["tail_exponent_live"] < row["tail_exponent_unstopped"]
         assert row["tail_is_still_exponential"], "9.3(c)'s conclusion would change otherwise"
+
+
+def test_the_bad_set_l2_norm_is_its_density_so_the_spectrum_has_no_slack() -> None:
+    """Cauchy-Schwarz's bad-set factor is an identity, not an inequality: sum_S bhat^2 =
+    p_bad exactly for a 0/1 indicator. No better knowledge of the spectrum can help."""
+
+    from research.juggler_sequence.collision_large_sieve import bad_set_spectrum
+
+    for d in (8, 12, 14):
+        row = bad_set_spectrum(d, 1.2486)
+        assert row["l2_is_p_bad"], row
+        assert 0.0 < row["p_bad"] < 1.0
+
+
+def test_the_spectrum_is_not_low_degree_concentrated_so_an_order_split_fails() -> None:
+    """A split by order rescues Cauchy-Schwarz only under low-degree concentration. The
+    tail fraction is a constant that grows with depth instead of shrinking."""
+
+    from research.juggler_sequence.collision_large_sieve import bad_set_spectrum
+
+    tails = [bad_set_spectrum(d, 1.2486)["l2_tail_fraction_above_order"][2] for d in (12, 16)]
+    assert tails[0] > 0.15, tails
+    assert tails[1] > tails[0], "the spectrum spreads with depth, it does not concentrate"
+
+
+def test_the_wiener_norm_grows_so_the_hoelder_route_is_worse_still() -> None:
+    from research.juggler_sequence.collision_large_sieve import bad_set_spectrum
+
+    ratios = [bad_set_spectrum(d, 1.2486)["wiener_over_density"] for d in (8, 12, 16)]
+    assert ratios[0] < ratios[1] < ratios[2], ratios
+    assert ratios[-1] > 50, ratios

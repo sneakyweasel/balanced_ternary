@@ -161,6 +161,63 @@ def bad_depth(word: tuple[int, ...], L: float) -> int:
     return len(word)
 
 
+def bad_set_spectrum(d: int, L: float) -> dict[str, Any]:
+    """The Walsh spectrum of the L-bad set, and what it can and cannot buy.
+
+    ``1_B`` is not a character, so ``W_T^bad = sum_S bhat_S W_{S xor T}``.  Two standard
+    inequalities are available and both lose to the trivial ``|W_T^bad| <= N p_bad``:
+
+    * Cauchy-Schwarz gives ``sqrt(sum_S bhat_S^2) * sqrt(sum_U |W_U|^2)``.  The first factor
+      is ``sqrt(p_bad)`` EXACTLY -- Parseval for a 0/1 indicator, an identity with no slack --
+      so no better knowledge of the spectrum can improve that side.  The second is the
+      UNRESTRICTED Walsh energy ``2^{d-1} C_d``, the object dominated by the all-``O`` tails
+      the bad restriction exists to remove.  The route beats the trivial bound iff
+      ``K_all < p_bad``, and ``K_all >= 1 > p_bad`` always.
+    * Hoelder against the Wiener norm gives ``||bhat||_1 max_U |W_U|``, worse: the ratio
+      ``||bhat||_1 / p_bad`` grows like ``1.25^d``.
+
+    Splitting the sum by order would rescue Cauchy-Schwarz only if the spectrum were
+    low-degree concentrated.  It is not, and it gets worse with depth: the fraction of l2
+    weight above order 2 rises from 0.218 at ``d = 12`` to 0.303 at ``d = 20``.
+
+    Cost is ``2^(d-1)`` for the walk scan plus the transform, so keep ``d <= 20``.
+    """
+
+    if d < 2 or d > 24:
+        raise ValueError("d must be between 2 and 24")
+    n = 1 << (d - 1)
+    vec = [0.0] * n
+    for m in range(n):
+        o, ok = 1, True
+        for t in range(2, d + 1):
+            o += (m >> (t - 2)) & 1
+            if o * LOG2_3 - t <= -L:
+                ok = False
+                break
+        vec[m] = 1.0 if ok else 0.0
+    h = 1
+    while h < n:                                  # in-place Walsh-Hadamard transform
+        for i in range(0, n, h * 2):
+            for j in range(i, i + h):
+                x, y = vec[j], vec[j + h]
+                vec[j], vec[j + h] = x + y, x - y
+        h *= 2
+    bhat = [x / n for x in vec]
+    p_bad = bhat[0]
+    l2 = sum(x * x for x in bhat)
+    l1 = sum(abs(x) for x in bhat)
+    tails = {}
+    for k in (2, 5, 10, 15):
+        tails[k] = sum(x * x for s, x in enumerate(bhat) if bin(s).count("1") > k) / l2
+    return {
+        "d": d, "L": L, "p_bad": p_bad,
+        "l2_is_p_bad": abs(l2 - p_bad) < 1e-12,
+        "wiener_norm": l1, "wiener_over_density": l1 / p_bad if p_bad else None,
+        "l2_tail_fraction_above_order": tails,
+        "cauchy_schwarz_can_win_iff_K_all_below": p_bad,
+    }
+
+
 def walsh_downweighting(C: int = 20) -> dict[str, Any]:
     """Does 9.3(c)'s per-letter down-weighting survive the live restriction?
 

@@ -7122,5 +7122,18 @@
   "related_conjectures": [
    "juggler_loglog_depth_cylinder_bound"
   ]
+ },
+ {
+  "id": "J-bad-set-spectrum-cannot-win",
+  "tag": "REFUTED",
+  "statement": "The bad-set spectrum cannot improve on the trivial bound |W_T^bad| ≤ N·p_bad, and the obstruction is structural rather than a matter of effort. Since 1_bad is not a character, W_T^bad = Σ_S b̂_S W_{S△T}. Two standard inequalities are available and both lose. (i) CAUCHY–SCHWARZ splits it as (Σ_S b̂_S²)^{1/2}(Σ_U |W_U|²)^{1/2}. The bad-set factor is (Σ_S b̂_S²)^{1/2} = √p_bad EXACTLY — Parseval for a 0/1 indicator, an identity with no slack — so no sharper knowledge of the spectrum can improve that side at all; every loss is on the other. That other factor is the UNRESTRICTED Walsh energy Σ_U|W_U|² = 2^{d−1}C_d, which is precisely the object dominated by the all-O tails of terminating starts that the bad restriction exists to remove. Writing C_d = K_all N² 2^{−(d−1)}, the route beats the trivial bound iff K_all < p_bad, and K_all ≥ 1 > p_bad always. Measured on 20000 exact orbits at y = 10^12: K_all = 8.81, 133.33, 532.30 at d = 12, 16, 18 against p_bad = 0.177, 0.127, 0.093, so the Cauchy–Schwarz bound divided by N is 1.25, 4.12, 7.02 — worse than trivial by 7× to 75×, and worse than the vacuous bound N itself from d = 16 on. (ii) HÖLDER against the Wiener norm gives ‖b̂‖₁·max_U|W_U| ≤ ‖b̂‖₁·N, worse still: ‖b̂‖₁ = 3.81, 7.75, 26.25, 57.65 at d = 8, 12, 16, 20 (L = 1.249), growing like 1.25^d, so ‖b̂‖₁/p_bad reaches 378 at d = 20. (iii) SPLITTING BY ORDER would rescue Cauchy–Schwarz only under low-degree concentration, and the spectrum is not concentrated — it spreads with depth. The fraction of ℓ² weight above order 2 rises 0.218, 0.269, 0.303 at d = 12, 16, 20, and 0.073 still sits above order 10 at d = 20, so a constant fraction survives every cut and the split gains a constant at best, never the exponential the tail needs. Only genuine correlation between the bad-set spectrum and the Walsh energy could win, and that is exactly what no bound on individual |W_U| supplies — the quantified form of the recorded remark that the restricted count is 'a bilinear form in the Walsh family weighted by the bad-set spectrum, strictly harder than the family itself'.",
+  "source": "docs/research_journal.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_collision_large_sieve.py"
+  ],
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ]
  }
 ]
