@@ -36,7 +36,17 @@ definitions. The statements are:
   gain ratio `Λ(T; x) = C x / C (T x)` is multiplicative under
   composition and telescopes along a trajectory;
 * `exists_optimal_perturbation` — a finite menu of perturbations has a
-  most efficient member.
+  most efficient member;
+* `leverageBoundedOn_iff_lipschitzOnWith`, `originalLocus_inter_subset` —
+  the landscape dichotomy: on a *normal* region the interface is
+  Lipschitz and leverage is bounded, so a state of the *original* locus
+  (leverage above the bound) inside a normal region can only be
+  exploited by a perturbation that leaves the region;
+* `pow_le_gainRatio_trajectory` — compounding: `n` steps of gain at
+  least `g` give total gain at least `g ^ n`;
+* `prod_le_prod_exchange`, `exists_optimal_menu` — mining order:
+  swapping a candidate for one of larger gain never lowers the total
+  gain, and among all `k`-element menus a best one exists.
 
 The information space itself is left abstract; a *complexity* is any
 real-valued function on it (see `informationCost`). Nothing here is
@@ -251,7 +261,7 @@ theorem leverage_interface_comp {J : Type w} [MetricSpace J]
       rw [← hΘ, dist_self]
     · have h₂' : dist (Θ x) (T' (Θ x)) ≠ 0 := by rw [hT']; exact h₂
       unfold leverage physicalEffect
-      simp only [h₁, h₂', ↓reduceIte, Function.comp_apply, hT']
+      simp only [h₁, h₂, h₂', ↓reduceIte, Function.comp_apply, hT']
       rw [div_mul_div_comm, mul_comm (dist (Ψ (Θ x)) (Ψ (Θ (T x)))),
         mul_div_mul_left _ _ h₂]
 
@@ -451,5 +461,129 @@ theorem step_not_lipschitz : ¬ ∃ K : NNReal, LipschitzWith K step :=
   (amplifies_iff_not_lipschitz step).mp step_amplifies
 
 end Threshold
+
+/-! ## The landscape: normal versus original regions
+
+The information landscape is not homogeneous. On a *normal* region the
+interface is Lipschitz, so leverage is bounded and no small change has
+a large consequence. The *original* locus at level `K` is the set of
+states from which some perturbation has leverage above `K`. Inside a
+normal region such a perturbation must leave the region: high-leverage
+content lives at the frontier of what the ambient bound controls. -/
+
+section Landscape
+
+variable [MetricSpace I] [PseudoMetricSpace M] (Φ : Interface I M)
+
+/-- Leverage of perturbations that stay inside `A` is bounded by `K`. -/
+def LeverageBoundedOn (A : Set I) (K : ℝ) : Prop :=
+  ∀ (T : Perturbation I) (x : I), x ∈ A → T x ∈ A → leverage Φ T x ≤ K
+
+/-- The original locus at level `K`: states from which some
+perturbation has leverage above `K`. -/
+def originalLocus (K : ℝ) : Set I :=
+  {x | ∃ T : Perturbation I, K < leverage Φ T x}
+
+theorem amplifies_iff_originalLocus_nonempty :
+    Amplifies Φ ↔ ∀ K : ℝ, (originalLocus Φ K).Nonempty := by
+  simp only [Amplifies, originalLocus, Set.Nonempty, Set.mem_setOf_eq]
+  exact forall_congr' fun _ => exists_comm
+
+theorem leverageBoundedOn_of_lipschitzOnWith {A : Set I} {K : NNReal}
+    (hΦ : LipschitzOnWith K Φ A) : LeverageBoundedOn Φ A K := by
+  intro T x hx hTx
+  unfold leverage physicalEffect
+  split_ifs with h
+  · exact K.coe_nonneg
+  · rw [div_le_iff₀ (lt_of_le_of_ne dist_nonneg (Ne.symm h))]
+    exact hΦ.dist_le_mul x hx (T x) hTx
+
+theorem lipschitzOnWith_of_leverageBoundedOn {A : Set I} {K : ℝ}
+    (h : LeverageBoundedOn Φ A K) : LipschitzOnWith (Real.toNNReal K) Φ A := by
+  refine LipschitzOnWith.of_dist_le_mul fun x hx y hy => ?_
+  by_cases hxy : dist x y = 0
+  · rw [dist_eq_zero] at hxy
+    subst hxy
+    simp
+  · have hpos : 0 < dist x y := lt_of_le_of_ne dist_nonneg (Ne.symm hxy)
+    have hL := h (fun _ => y) x hx hy
+    simp only [leverage, physicalEffect, hxy, ↓reduceIte] at hL
+    rw [div_le_iff₀ hpos] at hL
+    calc dist (Φ x) (Φ y) ≤ K * dist x y := hL
+      _ ≤ (Real.toNNReal K : ℝ) * dist x y :=
+        mul_le_mul_of_nonneg_right (Real.le_coe_toNNReal K) dist_nonneg
+
+/-- A region is normal (bounded leverage for some constant) exactly when
+the interface is Lipschitz on it. -/
+theorem leverageBoundedOn_iff_lipschitzOnWith (A : Set I) :
+    (∃ K : ℝ, LeverageBoundedOn Φ A K) ↔ ∃ K : NNReal, LipschitzOnWith K Φ A :=
+  ⟨fun ⟨K, hK⟩ => ⟨_, lipschitzOnWith_of_leverageBoundedOn Φ hK⟩,
+    fun ⟨K, hK⟩ => ⟨K, leverageBoundedOn_of_lipschitzOnWith Φ hK⟩⟩
+
+/-- A perturbation whose leverage exceeds the Lipschitz constant of a
+region starts or lands outside that region. -/
+theorem exit_of_lt_leverage {A : Set I} {K : NNReal} (hΦ : LipschitzOnWith K Φ A)
+    (T : Perturbation I) (x : I) (hK : (K : ℝ) < leverage Φ T x) :
+    x ∉ A ∨ T x ∉ A := by
+  by_contra hcon
+  push_neg at hcon
+  exact absurd (leverageBoundedOn_of_lipschitzOnWith Φ hΦ T x hcon.1 hcon.2)
+    (not_le.mpr hK)
+
+/-- Original content inside a normal region is reached only by
+perturbations that leave the region. -/
+theorem originalLocus_inter_subset {A : Set I} {K : NNReal}
+    (hΦ : LipschitzOnWith K Φ A) :
+    originalLocus Φ K ∩ A ⊆
+      {x | ∃ T : Perturbation I, T x ∉ A ∧ (K : ℝ) < leverage Φ T x} := by
+  rintro x ⟨⟨T, hT⟩, hx⟩
+  refine Set.mem_setOf.mpr ⟨T, ?_, hT⟩
+  rcases exit_of_lt_leverage Φ hΦ T x hT with h | h
+  · exact absurd hx h
+  · exact h
+
+end Landscape
+
+/-! ## Compounding and mining order -/
+
+section Mining
+
+variable [MetricSpace I]
+
+/-- Compounding: if every step of a trajectory has gain ratio at least
+`g ≥ 0`, the total gain is at least `g ^ n`. One high-leverage lemma
+multiplies everything downstream of it. -/
+theorem pow_le_gainRatio_trajectory (C : I → ℝ) (Tseq : ℕ → Perturbation I) (x₀ : I)
+    (n : ℕ) (h : ∀ k, k ≤ n → C (trajectory Tseq x₀ k) ≠ 0) {g : ℝ} (hg : 0 ≤ g)
+    (hstep : ∀ k, k < n → g ≤ gainRatio C (Tseq k) (trajectory Tseq x₀ k)) :
+    g ^ n ≤ C x₀ / C (trajectory Tseq x₀ n) := by
+  rw [gainRatio_trajectory C Tseq x₀ n h]
+  calc g ^ n = ∏ _k ∈ Finset.range n, g := by
+        rw [Finset.prod_const, Finset.card_range]
+    _ ≤ _ := Finset.prod_le_prod (fun _ _ => hg)
+        (fun k hk => hstep k (Finset.mem_range.mp hk))
+
+/-- Exchange principle for mining order: in a menu with nonnegative
+gains, replacing a candidate by one of larger gain never lowers the
+total (multiplicative) gain. -/
+theorem prod_le_prod_exchange {α : Type w} [DecidableEq α] (gain : α → ℝ)
+    (S : Finset α) (hS : ∀ a ∈ S, 0 ≤ gain a) {a b : α} (hb : b ∈ S) (ha : a ∉ S)
+    (hab : gain b ≤ gain a) :
+    ∏ c ∈ S, gain c ≤ ∏ c ∈ insert a (S.erase b), gain c := by
+  rw [Finset.prod_insert (fun h => ha (Finset.mem_of_mem_erase h)),
+    ← Finset.mul_prod_erase S gain hb]
+  exact mul_le_mul_of_nonneg_right hab
+    (Finset.prod_nonneg fun c hc => hS c (Finset.mem_of_mem_erase hc))
+
+/-- Among all `k`-element sub-menus of a finite menu there is one of
+maximal total gain: the `k` lemmas to mine first exist. -/
+theorem exists_optimal_menu (gain : Perturbation I → ℝ) (S : Finset (Perturbation I))
+    (k : ℕ) (hk : k ≤ S.card) :
+    ∃ B ∈ S.powersetCard k, ∀ B' ∈ S.powersetCard k,
+      ∏ T ∈ B', gain T ≤ ∏ T ∈ B, gain T :=
+  Finset.exists_max_image (S.powersetCard k) (fun B => ∏ T ∈ B, gain T)
+    (Finset.powersetCard_nonempty.mpr hk)
+
+end Mining
 
 end Problems.Engine.InformationField
