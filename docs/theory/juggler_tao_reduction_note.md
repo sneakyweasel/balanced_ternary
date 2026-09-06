@@ -150,14 +150,21 @@ smaller on the range of the table in Section 6.
 
 **Hypothesis \(\mathrm H(C,A)\) (log-log-depth cylinder bound).** For
 all sufficiently large \(y\), with \(d=d(y)=\lceil C L(y)\rceil\),
-every word \(w\in\{O,E\}^{d}\) beginning with \(O\) satisfies
+every \(L(y)\)-*bad* word \(w\in\{O,E\}^{d}\) beginning with \(O\)
+satisfies
 \[
 \#\{n\ \text{odd},\ y<n\le 2y:\ \mathrm{word}_d(n)=w\}
 \ \le\ 2^{-(d-1)}\cdot\frac y2+\frac{y}{(\log y)^{A}} .
 \]
 
-Only an *upper* bound is asked, only at one depth per scale, and (as
-the proof shows) only for the \(L(y)\)-bad words. Since
+Only an *upper* bound is asked, and only at one depth per scale. The
+bad restriction sits in the quantifier because over all words the
+statement is false: \(J(1)=1\) is odd, so a start that reaches \(1\)
+carries an all-\(O\) tail and the cylinders "short prefix followed by
+\(O^k\)" hold a constant proportion of the odd starts at every depth
+(measured: \(4.07\%\) against a fair \(9.77\cdot10^{-4}\) at
+\(y=10^{12}\), \(C=20\)). Those witnesses have all descended, so none
+is bad and Theorem B never consults them. Since
 \(2^{-(d-1)}y/2\asymp y(\log y)^{-C}\) up to constants, \(\mathrm H(C,A)\)
 with \(A>C\) says that no \(O\)-rooted cylinder of depth \(d(y)\)
 exceeds its fair share among odd starts by more than a relative

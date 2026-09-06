@@ -580,7 +580,7 @@ reparameterization). Direct-attack dossier:
 [juggler_pressure_direct](problems/juggler_pressure_direct.md)
 (`J-pressure-direct-routes`).
 
-**Hypothesis H(C,A) is quantified wrong, in four places.** Killed claim:
+**Hypothesis H(C,A) was quantified wrong, in five files (repaired 6 Sep 2026).** Killed claim:
 the log-log-depth cylinder bound holds for *every* \(O\)-rooted word of
 length \(d(y)\), as stated in Paper C §8.3, the Tao note §4, the
 ledger row `J-tao-loglog-depth-bound`, and the active conjecture record
@@ -598,8 +598,17 @@ below \(10^{-14}\) at these scales.
 Kind: `REFUTED` (statement defect, not a mathematical retraction).
 No theorem moves: Theorem 8.3 and Theorem B apply \(H\) only to the
 \(L(y)\)-bad words, and both manuscripts already say so in prose. The
-correction is to move that restriction inside the quantifier in all four
-places; it is referee-facing and is not made from this branch. The
+correction was to move that restriction inside the quantifier, and it is
+now made in all five files (Paper C §8.3 and its `juggler_review`
+mirror, the Tao note §4, the ledger row, the conjecture record); no
+proof step changes. Still open: the one-sided form \(\mathrm H_q(C,A)\)
+(`J-tao-biased-split-bound`) carries the identical defect --- at
+\(y=10^{12}\), \(C=20\) the cylinder \(OEEEEE\) holds \(2.25\%\) of odd
+starts with odd-continuation share \(1.0000\) against the \(q<0.6309\)
+allowed --- and its repair is not a quantifier edit: Theorem 9.1 bounds
+\(\mathbb E[\sum_t\eta_t]\) over the whole population, so the
+exponent-walk martingale would also need stopping at the first passage
+below \(-L\). The
 collision hypotheses `J-collision-bound-half-exponent` are stated over
 \(L\)-bad words and are unaffected. Do not: quote \(H(C,A)\) in the
 universal form; treat the excess as absorbable by \(y(\log y)^{-A}\);

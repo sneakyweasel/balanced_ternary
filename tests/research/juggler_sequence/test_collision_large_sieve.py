@@ -7,7 +7,14 @@ that the measurement cannot mistake a finite sample for a deviation.
 
 from __future__ import annotations
 
+import json
 import math
+from pathlib import Path
+
+
+def fp_root() -> Path:
+    return Path(__file__).resolve().parents[3]
+
 
 from research.juggler_sequence.collision_large_sieve import (
     bad_depth,
@@ -135,3 +142,38 @@ def test_H_of_C_A_is_false_as_literally_quantified() -> None:
 
     deeper = max_cylinder_overpopulation(12, C=32, samples=20_000)
     assert deeper["overpopulation"] > row["overpopulation"], "the defect grows with depth"
+
+
+def test_H_of_C_A_now_reads_over_bad_words_in_every_place_that_states_it() -> None:
+    """The repair is a quantifier move, so it is checkable by reading the sources."""
+
+    for path in (
+        "docs/theory/juggler_fate_almost_all_note.md",
+        "juggler_review/juggler_fate_almost_all_note.md",
+        "docs/theory/juggler_tao_reduction_note.md",
+    ):
+        text = (fp_root() / path).read_text(encoding="utf-8")
+        assert "-*bad* word" in text, path
+        assert "every word\n\\(w\\in\\{O,E\\}^d\\) beginning with \\(O\\)" not in text, path
+
+    ledger = json.loads((fp_root() / "docs/theory/theorem_ledger.json").read_text(encoding="utf-8"))
+    row = next(r for r in ledger if r["id"] == "J-tao-loglog-depth-bound")
+    assert "every L(y)-bad O-rooted word" in row["statement"]
+    record = json.loads(
+        (fp_root() / "conjectures/active/juggler_loglog_depth_cylinder_bound.json")
+        .read_text(encoding="utf-8")
+    )
+    assert "every L(y)-bad word" in record["statement"]
+    assert "REFUTED IN THE UNRESTRICTED FORM" in record["counterexamples"]
+
+
+def test_H_q_carries_the_same_defect_and_is_not_repaired() -> None:
+    """Recorded, not fixed: repairing H_q needs a stopped martingale in Theorem 9.1."""
+
+    from research.juggler_sequence.collision_large_sieve import worst_odd_continuation_share
+
+    worst = worst_odd_continuation_share(12, C=20, samples=20_000)
+    assert worst["violates_H_q"], worst
+    assert worst["share"] > 0.99, worst
+    assert worst["bad_depth"] == 2, "the witness has already descended"
+    assert worst["mass"] > 0.01, "and it is not a rare cylinder"

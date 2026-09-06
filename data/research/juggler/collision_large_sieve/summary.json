@@ -1,5 +1,5 @@
 {
-  "git_commit": "da26ac7f38fd878b42b4026cc14d22e3f61df9f0",
+  "git_commit": "12ded1faea1ae98bbca3752975685bc45f2eaf9e",
   "N0": 350000000,
   "price": {
     "true_least_C_unconditional": 20,
@@ -38,44 +38,60 @@
       "least_C_star3": 18
     }
   ],
-  "H_quantifier_defect": [
-    {
+  "H_quantifier_defect": {
+    "H_repaired_in_five_files": true,
+    "max_cylinder": [
+      {
+        "log10_y": 12,
+        "C": 20,
+        "d": 11,
+        "L": 0.5257840793414886,
+        "samples": 20000,
+        "top_share": 0.0407,
+        "fair_share": 0.0009765625,
+        "overpopulation": 41.6768,
+        "top_word": "OEEEEOEEEOO",
+        "top_word_bad_depth": 2
+      },
+      {
+        "log10_y": 12,
+        "C": 32,
+        "d": 17,
+        "L": 0.5257840793414886,
+        "samples": 20000,
+        "top_share": 0.0407,
+        "fair_share": 1.52587890625e-05,
+        "overpopulation": 2667.3152,
+        "top_word": "OEEEEOEEEOOOOOOOO",
+        "top_word_bad_depth": 2
+      },
+      {
+        "log10_y": 20,
+        "C": 20,
+        "d": 25,
+        "L": 1.2485578843236127,
+        "samples": 20000,
+        "top_share": 0.02405,
+        "fair_share": 5.960464477539063e-08,
+        "overpopulation": 403492.0448,
+        "top_word": "OEEEEEEEOOOOOOOOOOOOOOOOO",
+        "top_word_bad_depth": 2
+      }
+    ],
+    "H_q_still_open": {
+      "share": 1.0,
+      "depth": 6,
+      "members": 449,
+      "mass": 0.02245,
+      "word": "OEEEEE",
+      "bad_depth": 2,
       "log10_y": 12,
       "C": 20,
       "d": 11,
-      "L": 0.5257840793414886,
-      "samples": 20000,
-      "top_share": 0.0407,
-      "fair_share": 0.0009765625,
-      "overpopulation": 41.6768,
-      "top_word": "OEEEEOEEEOO",
-      "top_word_bad_depth": 2
-    },
-    {
-      "log10_y": 12,
-      "C": 32,
-      "d": 17,
-      "L": 0.5257840793414886,
-      "samples": 20000,
-      "top_share": 0.0407,
-      "fair_share": 1.52587890625e-05,
-      "overpopulation": 2667.3152,
-      "top_word": "OEEEEOEEEOOOOOOOO",
-      "top_word_bad_depth": 2
-    },
-    {
-      "log10_y": 20,
-      "C": 20,
-      "d": 25,
-      "L": 1.2485578843236127,
-      "samples": 20000,
-      "top_share": 0.02405,
-      "fair_share": 5.960464477539063e-08,
-      "overpopulation": 403492.0448,
-      "top_word": "OEEEEEEEOOOOOOOOOOOOOOOOO",
-      "top_word_bad_depth": 2
+      "q_crit": 0.6309297535714575,
+      "violates_H_q": true
     }
-  ],
+  },
   "censuses": [
     {
       "log10_y": 12,

@@ -159,6 +159,50 @@ def bad_depth(word: tuple[int, ...], L: float) -> int:
     return len(word)
 
 
+def worst_odd_continuation_share(
+    log10_y: int, C: int = 20, n0: int = N0_CERTIFIED, samples: int = 20_000,
+    seed: int = 11, min_mass: int = 200,
+) -> dict[str, Any]:
+    """The largest odd-continuation share over cylinders carrying real mass.
+
+    ``H_q(C,A)`` asks that every cylinder of depth ``t < d(y)`` send at most ``q #[w]``
+    of its members to an odd next state, for a fixed ``q < log 2 / log 3 = 0.6309``.  Stated
+    over every ``w`` it fails for the same reason ``H(C,A)`` did, and maximally: a cylinder
+    whose starts have already reached 1 continues with ``O`` at share exactly 1.  Unlike
+    ``H(C,A)`` this one is not repaired by restricting the quantifier alone -- Theorem 9.1
+    averages the slack over the whole population -- so the probe records it rather than
+    assuming a fix.
+    """
+
+    rng = random.Random(seed)
+    y = 10**log10_y
+    L = scale_L(log10_y * math.log(10.0), n0)
+    d = math.ceil(C * L)
+    words = [juggler_word(rng.randrange(y + 1, 2 * y + 1) | 1, d) for _ in range(samples)]
+    worst = {"share": -1.0}
+    for t in range(1, d):
+        total: dict[tuple[int, ...], int] = {}
+        odd_next: dict[tuple[int, ...], int] = {}
+        for w in words:
+            key = w[:t]
+            total[key] = total.get(key, 0) + 1
+            if w[t]:
+                odd_next[key] = odd_next.get(key, 0) + 1
+        for key, tot in total.items():
+            if tot < min_mass:
+                continue
+            share = odd_next.get(key, 0) / tot
+            if share > worst["share"]:
+                worst = {
+                    "share": share, "depth": t, "members": tot, "mass": tot / samples,
+                    "word": "".join("O" if b else "E" for b in key),
+                    "bad_depth": bad_depth(key, L),
+                }
+    worst.update({"log10_y": log10_y, "C": C, "d": d, "q_crit": 1.0 / LOG2_3,
+                  "violates_H_q": worst["share"] > 1.0 / LOG2_3})
+    return worst
+
+
 def collision_census(
     log10_y: int,
     n0: int = N0_CERTIFIED,
@@ -283,8 +327,12 @@ def summary(samples: int = 120_000, d_max: int = 18) -> dict[str, Any]:
              "least_C_star3": graded_least_C(g, REQUIRED_RATE_STAR3)}
             for g in (0.0, 0.25, 0.5, 0.75, 1.0)
         ],
-        "H_quantifier_defect": [max_cylinder_overpopulation(e, C)
-                                for e, C in ((12, 20), (12, 32), (20, 20))],
+        "H_quantifier_defect": {
+            "H_repaired_in_five_files": True,
+            "max_cylinder": [max_cylinder_overpopulation(e, C)
+                             for e, C in ((12, 20), (12, 32), (20, 20))],
+            "H_q_still_open": worst_odd_continuation_share(12, 20),
+        },
         "censuses": censuses,
         "verdict": verdict(censuses),
         "classification": {

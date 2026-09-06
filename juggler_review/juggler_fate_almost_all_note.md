@@ -1484,17 +1484,28 @@ linearly in \(C\) with slope
 ### 8.3 The cylinder hypothesis and the bound
 
 **Hypothesis \(\mathrm H(C,A)\) (log-log-depth cylinder bound).** For
-all sufficiently large \(y\), with \(d=d(y)\), every word
+all sufficiently large \(y\), with \(d=d(y)\), every \(L(y)\)-*bad* word
 \(w\in\{O,E\}^d\) beginning with \(O\) satisfies
 \[
 \#[w]_y\ \le\ 2^{-(d-1)}\cdot\frac y2+\frac{y}{(\log y)^{A}} .
 \]
 
-Only an upper bound is asked, only at one depth per scale, and only
-for the \(L(y)\)-bad words. Since \(2^{-(d-1)}y/2\asymp y(\log y)^{-C}\),
-\(\mathrm H(C,A)\) with \(A>C\) says that no \(O\)-rooted cylinder of
-depth \(d(y)\) exceeds its fair share by more than a relative
-\(O((\log y)^{C-A})\).
+Only an upper bound is asked, and only at one depth per scale. The
+restriction to bad words belongs in the quantifier and not merely in
+the proof: over *all* words of length \(d(y)\) the statement is false,
+and not marginally. Since \(J(1)=1\) is odd, a start that reaches \(1\)
+carries an all-\(O\) tail, so the cylinders consisting of a short
+prefix followed by \(O^k\) absorb a constant proportion of the odd
+starts however large \(d\) is; on exact orbits at \(y=10^{12}\) with
+\(C=20\), \(d=11\), the most populated cylinder holds \(4.07\%\) of odd
+starts against a fair share \(9.77\cdot10^{-4}\), a ratio of \(41.7\),
+rising to \(4.0\cdot10^{5}\) at \(y=10^{20}\) — while the additive
+slack \(y(\log y)^{-A}\) is below \(10^{-14}\) there. Every such witness
+has already descended, so none of them is bad, and Theorem 8.3 never
+consults them. Since \(2^{-(d-1)}y/2\asymp y(\log y)^{-C}\),
+\(\mathrm H(C,A)\) with \(A>C\) says that no \(L(y)\)-bad \(O\)-rooted
+cylinder of depth \(d(y)\) exceeds its fair share by more than a
+relative \(O((\log y)^{C-A})\).
 
 **Theorem 8.3 (Tao-type bound from the cylinder hypothesis).** Assume
 \(\mathrm H(C,A)\) with \(C\ge 5\) and \(A>C+e(C)\). Then for every

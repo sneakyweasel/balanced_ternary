@@ -33480,3 +33480,94 @@ Best next question
   single count does not. Does that recursion terminate at a known base case,
   or does the image sparsity that killed the last-even reset wreck it too?
 ```
+
+## H(C,A) now says what its proofs always used; H_q still does not
+
+The last entry recorded that the log-log-depth cylinder hypothesis is quantified
+wrong. This one repairs it, and finds the same defect one hypothesis over.
+
+**Five files, not four.** Paper C section 8.3, its `juggler_review` mirror, the
+Tao note section 4, the ledger row `J-tao-loglog-depth-bound`, and the active
+conjecture record. The mirror was missed in the first count because the search
+was run over `docs/` alone.
+
+**The repair is a quantifier move and nothing else.** "Every word
+\(w\in\{O,E\}^{d}\) beginning with \(O\)" becomes "every \(L(y)\)-bad
+word", which is what Theorem 8.3 and Theorem B always consulted --- their proofs
+reach the hypothesis only after Lemma 8.2 has counted the bad words. No step of
+any proof changes, no constant moves, and the conclusion is untouched. What
+changes is that the sentence is now true.
+
+Both notes had already carried the restriction as a remark --- "and only for the
+\(L(y)\)-bad words", "(as the proof shows)". A remark is where a reader looks
+after being convinced, not while checking, and the conjecture record shows the
+cost of leaving it there: its `counterexamples` field read "none" while spelling
+out the refutation criterion that a measured cylinder violates by a factor of
+41.7. That field now records the refutation of the old wording and the criterion
+for the new one, separately.
+
+**The same defect, one hypothesis over, and it is not a quantifier move.** The
+one-sided form \(\mathrm H_q(C,A)\) asks that every cylinder of depth
+\(t<d(y)\) send at most \(q\,\#[w]\) of its members to an odd next state,
+for a fixed \(q<\log2/\log3=0.6309\). Over every \(w\) that fails, and
+maximally rather than marginally:
+
+| y | C | cylinder | mass | odd-continuation share | bad-depth |
+|---|---|---|---|---|---|
+| 1e12 | 20 | `OEEEEE` | 2.25% | 1.0000 | 2 |
+
+A share of exactly one, on a cylinder holding one start in forty-four, against a
+hypothesis that allows 0.63. The mechanism is the one that broke \(H\): the
+starts in that cylinder have already reached 1, and \(J(1)=1\) is odd, so every
+later letter is \(O\) with no exception at all.
+
+Restricting \(\mathrm H_q\) to bad prefixes is the analogous fix, and here it
+does not come free. Theorem 9.1 bounds \(\mathbb E[\sum_t\eta_t]\) over the
+whole population --- the slack is averaged, not applied cylinder by cylinder ---
+so the repaired hypothesis would also need the exponent-walk martingale stopped
+at the first passage below \(-L\). That is a proof edit, and this branch does
+not make it. The row, the conjecture record and the negative-knowledge entry all
+now say so, with the number.
+
+**Why the two hypotheses differ.** \(H\) is consumed after the bad words have
+been counted, so restricting it is free; \(\mathrm H_q\) is consumed inside a
+martingale argument that runs over every start, so restricting it moves work into
+the proof. The general shape is worth keeping: a hypothesis whose statement is
+wider than its use is repairable by narrowing the statement exactly when the use
+is a lookup, and not when the use is an average.
+
+```text
+What was learned
+- the fix for H is a quantifier move with no proof consequence, because
+  Theorem 8.3 reaches the hypothesis only after Lemma 8.2 has counted
+- it was five files and not four; the juggler_review mirror was missed by a
+  search scoped to docs/
+- H_q carries the identical defect and fails maximally: share 1.0000 on a
+  cylinder of mass 2.25%, against the 0.6309 it allows
+- H_q is not repairable by narrowing the quantifier alone, because Theorem 9.1
+  averages the slack over the whole population rather than looking it up per
+  cylinder
+- a remark is the wrong place for a restriction the statement needs: the
+  conjecture record read "counterexamples: none" while stating the criterion a
+  measured cylinder violates by 41.7
+Strongest theorem
+- none; this is a statement repair
+Strongest refutation
+- H_q(C,A) as universally quantified, by a cylinder whose odd-continuation
+  share is exactly one
+Reusable machinery
+- worst_odd_continuation_share; a test that reads the five sources and fails if
+  the unrestricted wording returns
+Branch status
+- PARK
+Why
+  The repair is small and the finding beside it is not. Two of the reduction's
+  three hypotheses were stated over all words when their proofs used only the
+  bad ones, and only one of the two can be fixed by editing the sentence. That
+  the other needs a stopped martingale is the useful part: it says where the
+  averaging really happens.
+Best next question
+- stop the exponent-walk martingale at the first passage below -L and see what
+  Theorem 9.1 costs. Does the biased-split exponent e_q(C) survive unchanged,
+  or does optional stopping move the least-C table (20, 44, 240, 1715)?
+```
