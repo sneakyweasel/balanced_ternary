@@ -305,3 +305,57 @@ def test_the_manuscript_now_carries_both_tower_readings() -> None:
     assert round(row["live_decay_rate_rho"], 4) == 0.9977
     assert round(row["overpopulation_factor_printed"], 2) == 1.67
     assert round(row["overpopulation_factor_live"], 2) == 1.67
+
+
+def test_the_walsh_expansion_holds_verbatim_once_restricted_to_bad_words() -> None:
+    """The weights come from factorising e^{theta X_s} letter by letter, which says nothing
+    about which n are summed -- so restricting moves into the sums, not the weights."""
+
+    import itertools
+
+    from research.juggler_sequence.tao_reduction import LOG2_3, theta_of_C
+
+    theta = theta_of_C(20)
+    a = 0.5 * (1 + math.exp(theta))
+    t = math.tanh(theta / 2.0)
+    d, L = 9, 1.0
+
+    def is_bad(w):
+        o = 0
+        for i, x in enumerate(w, 1):
+            o += x
+            if o * LOG2_3 - i <= -L:
+                return False
+        return True
+
+    words = [(1,) + w for w in itertools.product((0, 1), repeat=d - 1)]
+    counts = {w: 1 + (sum(w) * 3 + len(w)) % 7 for w in words}
+    bad_words = [w for w in words if is_bad(w)]
+    direct = sum(counts[w] * math.exp(theta * sum(w)) for w in bad_words)
+    expand = 0.0
+    for k in range(d + 1):
+        for T in itertools.combinations(range(d), k):
+            w_t = sum(counts[w] * (-1) ** sum(w[s] for s in T) for w in bad_words)
+            expand += (-t) ** k * w_t
+    assert abs(direct - expand * a**d) < 1e-6 * max(1.0, direct)
+
+
+def test_the_downweighting_does_not_inherit_the_tower_factor() -> None:
+    """The tower threshold picked up rho because it was a ratio with a shrinking
+    denominator. There is no denominator here, so the rate is unchanged; what improves is
+    the trivial bound on each restricted sum, by exactly e(C)."""
+
+    from research.juggler_sequence.collision_large_sieve import (
+        tower_threshold,
+        walsh_downweighting,
+    )
+    from research.juggler_sequence.tao_reduction import chernoff_exponent, theta_of_C
+
+    for C in (19, 20):
+        row = walsh_downweighting(C)
+        assert abs(row["per_letter_downweighting"] - math.tanh(theta_of_C(C) / 2)) < 1e-12
+        # not scaled by the tower's rho
+        assert row["per_letter_downweighting"] != tower_threshold(C)["live_decay_rate_rho"]
+        assert abs(row["shaved_by"] - chernoff_exponent(C)) < 1e-12
+        assert row["tail_exponent_live"] < row["tail_exponent_unstopped"]
+        assert row["tail_is_still_exponential"], "9.3(c)'s conclusion would change otherwise"

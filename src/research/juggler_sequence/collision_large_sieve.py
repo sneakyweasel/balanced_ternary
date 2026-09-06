@@ -40,11 +40,11 @@ from research.juggler_sequence.cycle_finance import git_commit
 from research.juggler_sequence.tao_reduction import (
     LOG2_3,
     N0_CERTIFIED,
+    chernoff_exponent,
     p_of_C,
     theta_of_C,
     REQUIRED_RATE,
     REQUIRED_RATE_STAR3,
-    chernoff_exponent,
     scale_L,
 )
 
@@ -159,6 +159,38 @@ def bad_depth(word: tuple[int, ...], L: float) -> int:
         if o * LOG2_3 - t <= -L:
             return t - 1
     return len(word)
+
+
+def walsh_downweighting(C: int = 20) -> dict[str, Any]:
+    """Does 9.3(c)'s per-letter down-weighting survive the live restriction?
+
+    It does, unchanged, and for a reason unlike the tower's.  The weights come from
+    factorising ``e^{theta X_s} = a_theta + b_theta (-1)^{J^s(n)}`` one letter at a time,
+    with ``-b_theta/a_theta = tanh(theta/2)``.  That is an identity about the tilt and says
+    nothing about which ``n`` are summed, so restricting the sum to the L-bad words leaves
+    every weight where it was and moves the restriction into the Walsh sums themselves:
+    ``W_T`` becomes ``W_T^bad = sum over bad n of the character``.  The tower threshold
+    inherited a factor rho because it was a ratio whose denominator shrank; there is no
+    denominator here.
+
+    What the restriction does buy is the trivial bound on each sum, ``|W_T^bad| <= N p_bad``
+    against ``|W_T| <= N``, which shaves the tail exponent by exactly ``e(C)`` -- since
+    ``p_bad`` is of order ``2^{-e(C)L}``.  The tail stays exponential either way, so 9.3(c)'s
+    conclusion is untouched.
+    """
+
+    theta = theta_of_C(C)
+    t = math.tanh(theta / 2.0)
+    unstopped = C * math.log2(1.0 + t)
+    e_c = chernoff_exponent(C)
+    return {
+        "C": C, "theta": theta,
+        "per_letter_downweighting": t,
+        "tail_exponent_unstopped": unstopped,
+        "tail_exponent_live": unstopped - e_c,
+        "shaved_by": e_c,
+        "tail_is_still_exponential": unstopped - e_c > 0.0,
+    }
 
 
 def tower_threshold(C: int = 20) -> dict[str, Any]:

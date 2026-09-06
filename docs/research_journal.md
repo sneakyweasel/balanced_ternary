@@ -33903,3 +33903,82 @@ Best next question
   down-weighting of high-order characters survive the live restriction, or
   inherit a factor of rho as the tower threshold did?
 ```
+
+## The Walsh down-weighting does not inherit rho, and 9.3(c) needs no repair
+
+The question the last entry left: Section 9.3(c) labels its Walsh identity as
+the unstopped moment but draws a conclusion about the live one. Does the
+per-letter down-weighting \(\tanh(\theta/2)\) survive the live restriction, or
+inherit a factor of \(\rho\) as the tower threshold did?
+
+It survives, exactly, and the reason it does is the reason the tower did not.
+
+**The weights are an identity about the tilt.** They come from factorising
+\(e^{\theta X_s}=a_\theta+b_\theta(-1)^{J^s(n)}\) one letter at a time, with
+\(-b_\theta/a_\theta=\tanh(\theta/2)\). Nothing in that factorisation
+mentions which \(n\) are summed, so restricting to the \(L\)-bad words leaves
+every weight where it is and moves the restriction into the sums themselves:
+\(W_T\) becomes \(W_T^{\mathrm{bad}}\), the same character summed over the bad
+\(n\) alone. Checked by exhaustive expansion at \(d=9\) against the direct sum.
+
+**Why the tower was different.** That threshold was a *ratio* --- a tower's
+tilted weight against the tilted mass it is measured in --- and the live
+restriction shrank the denominator. Here there is no denominator. \(\rho\) was
+never a property of the tilt; it was a property of that comparison, and it does
+not travel.
+
+**What the restriction does buy.** The trivial bound on each restricted sum
+improves from \(\lvert W_T\rvert\le N\) to
+\(\lvert W_T^{\mathrm{bad}}\rvert\le Np_{\mathrm{bad}}\), and since
+\(p_{\mathrm{bad}}\asymp2^{-e(C)L}\) the tail exponent falls by exactly
+\(e(C)\):
+
+| \(C\) | \(\tanh(\theta/2)\) | tail, unstopped | tail, live | shaved by |
+|---|---|---|---|---|
+| 19 | 0.1954 | \(2^{4.893L}\) | \(2^{4.367L}\) | \(e(19)=0.5269\) |
+| 20 | 0.1988 | \(2^{5.231L}\) | \(2^{4.657L}\) | \(e(20)=0.5738\) |
+
+Both remain exponential in \(L\), so the section's conclusion --- high-order
+characters exponentially down-weighted, the tail \(e^{\Theta(d)}\) and carrying
+the high-depth information --- holds for the live moment with a smaller
+constant. That the shave is exactly \(e(C)\) is not a coincidence: it is the
+bad-word density appearing as the only thing the restriction knows.
+
+**No repair needed.** The passage is correct as written and its label is
+accurate; it simply did not say whether the conclusion transfers, and now the
+answer is recorded. That is the fourth statement question of this run and the
+second to come back clean.
+
+```text
+What was learned
+- the down-weighting tanh(theta/2) is a property of the tilt and is unchanged
+  by the live restriction; the restriction lands in the Walsh sums instead
+- rho was a property of a ratio with a shrinking denominator, not of the tilt,
+  so it does not travel to a statement with no denominator
+- the restriction improves the trivial bound on each sum by p_bad, shaving the
+  tail exponent by exactly e(C) -- 5.231L to 4.657L at C = 20
+- the tail stays exponential, so 9.3(c) is untouched
+- 9.3(c) needed no repair: correct as written, correctly labelled, silent only
+  on whether the conclusion transfers
+Strongest theorem
+- the expansion holds verbatim on the restricted sum, verified exhaustively at
+  d = 9 (J-walsh-downweighting-survives-live)
+Strongest refutation
+- none
+Reusable machinery
+- walsh_downweighting; a test that expands the restricted moment exhaustively
+  and one that pins the down-weighting against the tower's rho
+Branch status
+- PARK
+Why
+  Four statement questions, two defects and two clean. The distinction that
+  organises all four is whether the quantity is a ratio: a ratio inherits
+  whatever the live restriction does to its denominator, a sum does not. That
+  is what separated H from H_q, and the tower threshold from this one.
+Best next question
+- the shave is exactly e(C) because p_bad is the only thing the restriction
+  contributes to a trivial bound. Is there a non-trivial bound on
+  W_T^{bad} -- the bad set is walk-defined and its spectrum is computable by
+  the same DP as bad_word_count -- and does any cancellation between that
+  spectrum and the Walsh energy beat p_bad?
+```

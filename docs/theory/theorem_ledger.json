@@ -7109,5 +7109,18 @@
   "related_conjectures": [
    "juggler_loglog_depth_cylinder_bound"
   ]
+ },
+ {
+  "id": "J-walsh-downweighting-survives-live",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Paper C §9.3(c)'s Walsh expansion is labelled for the unstopped moment, and its conclusion transfers to the live one unchanged. The weights arise from factorising e^{θX_s} = a_θ + b_θ(−1)^{J^s(n)} one letter at a time, with −b_θ/a_θ = tanh(θ/2); that is an identity about the tilt and is independent of which n are summed, so restricting the sum to the L-bad words leaves every weight in place and moves the restriction into the sums: W_T becomes W_T^bad = Σ over bad n of the character. Verified by exhaustive expansion at d = 9 against the direct sum. Hence the per-letter down-weighting is tanh(θ/2) for the live moment exactly as for the unstopped one — 0.1954 at θ_19, 0.1988 at θ_20 — and it does NOT inherit the factor ρ of J-tower-threshold-two-readings. The reason is structural: the tower threshold was a ratio whose denominator shrank under the live restriction, and there is no denominator here. What the restriction does buy is the trivial bound on each restricted sum, |W_T^bad| ≤ N·p_bad against |W_T| ≤ N, which shaves the tail exponent by exactly e(C) since p_bad is of order 2^{−e(C)L}: at C = 20 the tail Σ_T |weight|·(trivial bound) falls from 2^{5.231 L} to 2^{4.657 L}, and at C = 19 from 2^{4.893 L} to 2^{4.367 L}. Both remain exponential in L, so §9.3(c)'s conclusion — high-order characters are exponentially down-weighted while the tail is e^{Θ(d)} and carries the high-depth information — stands for the live moment with a smaller constant. No manuscript change is required; the passage is correct as written and its label is accurate.",
+  "source": "docs/research_journal.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_collision_large_sieve.py"
+  ],
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ]
  }
 ]
