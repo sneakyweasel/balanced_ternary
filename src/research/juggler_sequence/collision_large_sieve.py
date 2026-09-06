@@ -161,6 +161,78 @@ def bad_depth(word: tuple[int, ...], L: float) -> int:
     return len(word)
 
 
+def live_fairness_profile(
+    log10_y: int, d: int = 16, n0: int = N0_CERTIFIED, samples: int = 200_000, seed: int = 7,
+    cell_depth: int = 12,
+) -> dict[str, Any]:
+    """Is the live set fair cylinder by cylinder, and across the whole odd-count distribution?
+
+    Three statistics from one sample.  (i) The histogram of ``o_d`` over live starts against
+    the exact fair-coin count of bad words with that many odd letters: the ratio by ``o`` says
+    whether the whole distribution is fair or only one tilted moment of it, and the odd-heavy
+    end is where momentum would first appear.  (ii) The relative variance of ``#[w]`` over the
+    bad cells at ``cell_depth`` against Poisson: 1 means cylinders are individually fair to
+    sampling resolution, not compensating in aggregate.  (iii) The magnitude of ``J^d(n)`` on
+    live starts, because "live" is often read as "astronomically large" and it is not: the
+    median live orbit at ``d = 20`` is only 10^31 from ``y = 10^20``.
+    """
+
+    y = 10**log10_y
+    L = scale_L(log10_y * math.log(10.0), n0)
+    rng = random.Random(seed)
+    hist: dict[int, int] = {}
+    cells: dict[int, int] = {}
+    mags: list[float] = []
+    for _ in range(samples):
+        n = rng.randrange(y + 1, 2 * y + 1) | 1
+        x, o, key, fail_t = n, 0, 0, None
+        for t in range(1, d + 1):
+            bit = x & 1
+            o += bit
+            if 2 <= t <= cell_depth:
+                key |= bit << (t - 2)
+            x = math.isqrt(x * x * x) if bit else math.isqrt(x)
+            if fail_t is None and o * LOG2_3 - t <= -L:
+                fail_t = t
+        # the cell tally is over starts bad through cell_depth, whether or not they survive to d
+        if fail_t is None or fail_t > cell_depth:
+            cells[key] = cells.get(key, 0) + 1
+        if fail_t is None:
+            hist[o] = hist.get(o, 0) + 1
+            mags.append(x.bit_length() * math.log10(2.0))
+    fair_by_o = {}
+    st = {1: 1}
+    for t in range(2, d + 1):
+        nx: dict[int, int] = {}
+        for oo, c in st.items():
+            if oo * LOG2_3 - t > -L:
+                nx[oo] = nx.get(oo, 0) + c
+            if (oo + 1) * LOG2_3 - t > -L:
+                nx[oo + 1] = nx.get(oo + 1, 0) + c
+        st = nx
+    fair_by_o = {oo: samples * c / 2.0 ** (d - 1) for oo, c in st.items()}
+    ratio_by_o = {oo: hist.get(oo, 0) / f for oo, f in fair_by_o.items() if f >= 30}
+    fair_cell = samples / 2.0 ** (cell_depth - 1)
+    bad_cells = bad_word_count(L, cell_depth)
+    # every bad cell contributes; unoccupied bad cells count as zero
+    ss = sum((c - fair_cell) ** 2 for c in cells.values()) + (bad_cells - len(cells)) * fair_cell**2
+    relvar = ss / (bad_cells * fair_cell**2)
+    mags.sort()
+    q = lambda f: mags[int(f * (len(mags) - 1))] if mags else None
+    return {
+        "log10_y": log10_y, "L": L, "d": d, "samples": samples,
+        "live": sum(hist.values()), "fair_live": sum(fair_by_o.values()),
+        "ratio_by_odd_count": ratio_by_o,
+        "fair_by_odd_count": {oo: f for oo, f in fair_by_o.items() if f >= 30},
+        "worst_sigma_resolved": max(
+            abs(hist.get(oo, 0) - f) / math.sqrt(f) for oo, f in fair_by_o.items() if f >= 30
+        ),
+        "cell_depth": cell_depth, "bad_cells": bad_cells, "fair_per_cell": fair_cell,
+        "relative_variance_over_poisson": relvar * fair_cell,
+        "live_orbit_log10": {"min": q(0.0), "median": q(0.5), "p90": q(0.9), "max": q(1.0)},
+    }
+
+
 def restricted_walsh_profile(
     log10_y: int, depths: tuple[int, ...] = (12, 16), C: int = 20,
     n0: int = N0_CERTIFIED, samples: int = 60_000, seed: int = 2026,

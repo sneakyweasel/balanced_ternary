@@ -34268,3 +34268,93 @@ Best next question
   compensating? The first would be H-strength; the second is what M_theta,q
   actually asks.
 ```
+
+## Loop, iteration 2: fair by odd count, Poisson by cylinder, and not because the orbits are huge
+
+The question iteration 1 left: is the live set tilted-fair cylinder by cylinder,
+or only in aggregate with cylinders compensating? And the sharper version --- is
+the whole odd-count distribution on the live set fair, or only its
+\(\theta_C\)-tilted moment? Both answered by one sample, and the answers are
+the strong ones.
+
+**Error bars first.** \(R_d/\varphi_d=1.0033\pm0.0044\) at \(y=10^{20}\) and
+\(0.9986\pm0.0046\) at \(y=10^{50}\), \(d=20\): \(+0.7\sigma\) and
+\(-0.3\sigma\) from one. Iteration 1's "1.003" was within noise of exactly one
+and should be read that way.
+
+**The whole distribution is fair.** On \(10^6\) exact orbits at \(y=10^{20}\),
+the live count at each odd count \(o\), divided by the fair-coin count of bad
+words with that many odd letters:
+
+| \(d\) | \(o\) | ratio |
+|---|---|---|
+| 16 | 10, 11, 12, 13, 14, 15 | 0.999, 0.999, 0.991, 0.991, 0.978, 1.005 |
+| 20 | 12, 13, 14, 15, 16, 17, 18 | 0.996, 0.999, 0.999, 0.984, 1.004, 0.988, 0.944 |
+
+Every resolved cell within Poisson noise; the odd-heavy end, where momentum
+would show first, has no systematic excess and if anything a slight deficit. The
+same at \(y=10^{50}\), worst resolved cell \(1.03\) on \(554\) expected. So the
+tilt at \(\theta_C\) is not special: the Laplace transform of the live odd-count
+distribution matches fair at every \(\theta\) the data can resolve.
+
+**Poisson by cylinder.** The relative variance of \(\#[w]\) over the bad cells
+at depth 12 is \(0.996\) times Poisson at \(y=10^{20}\) (632 cells, 488 per
+cell) and \(1.025\) at \(y=10^{50}\) (1134 cells, 146 per cell). Bad cylinders
+are individually fair to sampling resolution; nothing is compensating. That is
+the answer to iteration 1's question, and it is the answer at the top of the
+hierarchy: at accessible depth the population satisfies \(H(C,A)\) with the fair
+constant, and the weakenings \(\mathrm H_q\), \(\mathrm M_{\theta,q}\),
+\(\mathrm P_\theta\) buy nothing there. The entire question is
+\(d\to\infty\), as the brief says.
+
+**The obvious mechanism is not the mechanism.** One would like to say: a live
+orbit has grown, a grown orbit is astronomically large, and the fractional part
+of \(x^{3/2}\) for astronomical \(x\) is fresh. Measured, live orbits at
+\(d=20\) have \(\log_{10}\) magnitude from \(10\) (minimum) through \(31\)
+(median) to \(277\) (90th percentile) and \(66850\) (maximum) from
+\(y=10^{20}\), and \(26/76/685/55753\) from \(y=10^{50}\). The bulk sits
+within a few dozen digits of the floor. Whatever makes the median live orbit's
+next parity fair, it is not that the orbit is enormous. That is the sharper
+question this leaves: is the next-letter share fair *conditional on the
+magnitude* of \(J^t(n)\), and in particular for live orbits within a factor
+\(10^{5}\) of \(N_0\), where a Paper-B-style saving would be weakest?
+
+One correction to my own probe on the way: a first version tallied cylinder
+counts only over starts surviving to \(d\) while comparing against the
+depth-12 fair value, and read the depletion as a variance thirteen times
+Poisson. The ad-hoc script that produced \(0.996\) had it right; the probe now
+does too, and returns \(1.023\).
+
+**Lean.** Still no toolchain on this machine; nothing formalised.
+
+```text
+What was learned
+- R_d / phi_d is one within noise at both scales: +0.7 sigma and -0.3 sigma
+- the whole live odd-count distribution matches the fair-coin bad-word count
+  cell by cell, with no excess in the odd-heavy tail
+- bad cylinders have Poisson variance (0.996, 1.025): individually fair, no
+  compensation -- H-strength at accessible depth, not merely M_theta,q
+- live orbits are not uniformly huge; median 10^31 at d = 20 from 10^20, so
+  magnitude alone does not explain the fairness
+- a probe that tallies over the wrong population reads depletion as variance
+Strongest theorem
+- none; three measurements
+Strongest refutation
+- "the live set is fair because its orbits are astronomical" -- the median
+  is not
+Reusable machinery
+- live_fairness_profile: odd-count histogram against the exact fair DP,
+  per-cylinder variance against Poisson, live-orbit magnitudes; one test
+Branch status
+- PARK
+Why
+  The data now say the strongest thing they could say at reachable depth, and
+  say it three ways. That sharpens what a proof would have to explain and
+  removes one explanation. It does not shorten the distance to d -> infinity
+  by a single letter, and the entry does not pretend otherwise.
+Best next question
+- condition on magnitude: among live starts at depth t, is the next-letter odd
+  share 1/2 in every band of log10 J^t(n), including the band within 10^5 of
+  the floor? If the smallest live orbits are the least fair, that is where a
+  proof must work hardest and where a laboratory estimate could still bite.
+```

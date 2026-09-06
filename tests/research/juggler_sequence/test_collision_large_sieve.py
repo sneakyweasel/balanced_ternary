@@ -414,3 +414,18 @@ def test_the_live_set_is_tilted_fair_to_a_few_tenths_of_a_percent() -> None:
     for row in out["rows"]:
         assert abs(row["R_over_phi"] - 1.0) < 0.02, row
         assert row["R_d"] < 1.0, "P_theta holds with room at accessible depth"
+
+
+def test_the_live_set_is_fair_by_odd_count_and_poisson_by_cylinder() -> None:
+    """Loop iteration 2. The whole odd-count distribution on live starts matches the fair-coin
+    bad-word count, and the per-cylinder variance on bad cells is Poisson: fairness holds
+    cylinder by cylinder, not merely in the theta_C-tilted aggregate."""
+
+    from research.juggler_sequence.collision_large_sieve import live_fairness_profile
+
+    out = live_fairness_profile(20, d=16, samples=120_000, cell_depth=12)
+    assert abs(out["live"] / out["fair_live"] - 1.0) < 0.02, out
+    # every resolved odd count within 4 sigma of its fair-coin count (Poisson noise per cell)
+    assert out["worst_sigma_resolved"] < 4.0, out
+    assert 0.85 < out["relative_variance_over_poisson"] < 1.15, out
+    assert out["live_orbit_log10"]["median"] < 100, "the bulk of live orbits is not astronomical"
