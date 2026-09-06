@@ -1,4 +1,5 @@
 import Mathlib.Algebra.Order.BigOperators.GroupWithZero.Finset
+import Mathlib.Data.List.Sort
 import Mathlib.Data.Nat.Factorial.BigOperators
 import Mathlib.Tactic.Positivity
 import Mathlib.Topology.MetricSpace.Lipschitz
@@ -52,6 +53,10 @@ definitions. The statements are:
 * `Prospect.before_iff`, `exists_max_priority` — the priority ratio
   `R(p) = D(p) F(p) / cost(p)` of a candidate proposition, its
   division-free ordering, and the existence of a best prospect;
+* `waitingCost_insertionSort_le` — Smith's rule: mining in order of
+  decreasing priority ratio minimises the value-weighted waiting cost
+  `Σ_i D_i F_i · (c_1 + ⋯ + c_i)` of a schedule, and
+  `waitingCost_swap_iff` is its local exchange form;
 * `regions_cover` and the disjointness lemmas — the landscape splits
   into noise, ordinary and original regimes by density thresholds;
 * `factorial_le_gainRatio_trajectory` — factorial impact: `n` steps
@@ -736,6 +741,165 @@ theorem factorial_le_gainRatio_trajectory (C : I → ℝ) (Tseq : ℕ → Pertur
     (fun k hk => hstep k (Finset.mem_range.mp hk))
 
 end Prospecting
+
+/-! ## Mining order: Smith's rule
+
+Mining a schedule of prospects in a given order realises the expected
+value `D_i F_i` of each prospect only once every cost before it and its
+own have been paid, so the value-weighted waiting cost of an order is
+`Σ_i D_i F_i · (c_1 + ⋯ + c_i)`. Smith's rule says that mining in order
+of decreasing priority ratio `R = D F / c` minimises this cost: the
+strategy "search first for high-`R` propositions" is optimal for it. -/
+
+section Schedule
+
+open Prospect
+
+namespace Prospect
+
+/-- The priority order is decidable (classically, as `≤` on `ℝ` is). -/
+noncomputable instance : DecidableRel Before :=
+  fun p q => (inferInstance : Decidable (q.value * p.cost ≤ p.value * q.cost))
+
+theorem before_refl (p : Prospect) : Before p p :=
+  le_refl _
+
+/-- With positive costs the priority order is transitive: from
+`v_p c_q ≥ v_q c_p` and `v_q c_r ≥ v_r c_q` follows `v_p c_r ≥ v_r c_p`.
+Positivity is genuinely needed: with `c_p = c_r = -1`, `c_q = 1`,
+`v_p = 10`, `v_q = v_r = 0` the hypotheses hold and the conclusion
+fails. -/
+theorem before_trans {p q r : Prospect} (hp : 0 < p.cost) (hq : 0 < q.cost) (hr : 0 < r.cost)
+    (hpq : Before p q) (hqr : Before q r) : Before p r := by
+  unfold Before at *
+  have key : r.value * p.cost * q.cost ≤ p.value * r.cost * q.cost :=
+    calc r.value * p.cost * q.cost = (r.value * q.cost) * p.cost := by ring
+      _ ≤ (q.value * r.cost) * p.cost := mul_le_mul_of_nonneg_right hqr hp.le
+      _ = (q.value * p.cost) * r.cost := by ring
+      _ ≤ (p.value * q.cost) * r.cost := mul_le_mul_of_nonneg_right hpq hr.le
+      _ = p.value * r.cost * q.cost := by ring
+  exact le_of_mul_le_mul_right key hq
+
+end Prospect
+
+/-- Total expected value `Σ D_i F_i` of a schedule. -/
+def totalValue (l : List Prospect) : ℝ :=
+  (l.map Prospect.value).sum
+
+@[simp] theorem totalValue_nil : totalValue [] = 0 :=
+  rfl
+
+@[simp] theorem totalValue_cons (p : Prospect) (l : List Prospect) :
+    totalValue (p :: l) = p.value + totalValue l := by
+  simp [totalValue]
+
+/-- The total value does not depend on the mining order. -/
+theorem totalValue_perm {l l' : List Prospect} (h : l.Perm l') :
+    totalValue l = totalValue l' :=
+  (h.map Prospect.value).sum_eq
+
+/-- Value-weighted waiting cost of mining a schedule in order:
+`Σ_i D_i F_i · (c_1 + ⋯ + c_i)`. Recursively, the head `p` pays
+`v_p c_p`, its cost `c_p` delays the whole value of the tail, and the
+tail is then mined on its own. -/
+def waitingCost : List Prospect → ℝ
+  | [] => 0
+  | p :: l => p.value * p.cost + p.cost * totalValue l + waitingCost l
+
+@[simp] theorem waitingCost_nil : waitingCost [] = 0 :=
+  rfl
+
+@[simp] theorem waitingCost_cons (p : Prospect) (l : List Prospect) :
+    waitingCost (p :: l) = p.value * p.cost + p.cost * totalValue l + waitingCost l :=
+  rfl
+
+/-- The waiting cost charged when a prefix cost `c` has already been
+paid before the schedule starts. -/
+def waitingCostFrom (c : ℝ) : List Prospect → ℝ
+  | [] => 0
+  | p :: l => p.value * (c + p.cost) + waitingCostFrom (c + p.cost) l
+
+theorem waitingCostFrom_eq (c : ℝ) (l : List Prospect) :
+    waitingCostFrom c l = c * totalValue l + waitingCost l := by
+  induction l generalizing c with
+  | nil => simp [waitingCostFrom]
+  | cons p l ih =>
+    simp only [waitingCostFrom, totalValue_cons, waitingCost_cons, ih]
+    ring
+
+/-- The recursive waiting cost is the prefix-sum form
+`Σ_i D_i F_i · (c_1 + ⋯ + c_i)`. -/
+theorem waitingCost_eq_waitingCostFrom (l : List Prospect) :
+    waitingCost l = waitingCostFrom 0 l := by
+  rw [waitingCostFrom_eq]; ring
+
+/-- The difference made by an adjacent exchange: mining `q` right
+before `p` rather than `p` right before `q` costs `v_p c_q - v_q c_p`
+more, independently of the rest of the schedule. -/
+theorem waitingCost_swap (p q : Prospect) (l : List Prospect) :
+    waitingCost (q :: p :: l) - waitingCost (p :: q :: l) =
+      p.value * q.cost - q.value * p.cost := by
+  simp only [waitingCost_cons, totalValue_cons]
+  ring
+
+/-- Adjacent exchange, the local form of Smith's rule: mining `p` just
+before `q` is no more expensive than the reverse order exactly when `p`
+has the larger priority ratio. -/
+theorem waitingCost_swap_iff (p q : Prospect) (l : List Prospect) :
+    waitingCost (p :: q :: l) ≤ waitingCost (q :: p :: l) ↔ Before p q := by
+  have h := waitingCost_swap p q l
+  unfold Before
+  constructor <;> intro h' <;> linarith
+
+theorem totalValue_orderedInsert (p : Prospect) (l : List Prospect) :
+    totalValue (List.orderedInsert Before p l) = p.value + totalValue l :=
+  totalValue_perm (List.perm_orderedInsert Before p l)
+
+/-- Inserting `p` at its priority position in `l` never costs more than
+mining `p` first: each prospect that `p` is pushed behind has a larger
+priority ratio, so each of those adjacent exchanges is profitable. -/
+theorem waitingCost_orderedInsert_le (p : Prospect) (l : List Prospect) :
+    waitingCost (List.orderedInsert Before p l) ≤ waitingCost (p :: l) := by
+  induction l with
+  | nil => simp
+  | cons q l ih =>
+    by_cases h : Before p q
+    · rw [List.orderedInsert_cons_of_le Before _ h]
+    · rw [List.orderedInsert_of_not_le Before _ h]
+      have hlt : p.value * q.cost < q.value * p.cost := by
+        unfold Before at h; exact lt_of_not_ge h
+      simp only [waitingCost_cons, totalValue_cons, totalValue_orderedInsert] at ih ⊢
+      linarith
+
+/-- The sorted schedule mines exactly the same prospects. -/
+theorem insertionSort_perm (l : List Prospect) :
+    (List.insertionSort Before l).Perm l :=
+  List.perm_insertionSort Before l
+
+theorem totalValue_insertionSort (l : List Prospect) :
+    totalValue (List.insertionSort Before l) = totalValue l :=
+  totalValue_perm (insertionSort_perm l)
+
+/-- **Smith's rule.** Mining prospects in order of decreasing priority
+ratio `R = D F / c` (highest first) never increases the value-weighted
+waiting cost `Σ_i D_i F_i · (c_1 + ⋯ + c_i)` of the schedule. No sign
+condition on the costs is needed: the adjacent exchange is profitable
+whenever the priority relation says so. -/
+theorem waitingCost_insertionSort_le (l : List Prospect) :
+    waitingCost (List.insertionSort Before l) ≤ waitingCost l := by
+  induction l with
+  | nil => simp
+  | cons p l ih =>
+    rw [List.insertionSort_cons]
+    calc waitingCost (List.orderedInsert Before p (List.insertionSort Before l))
+        ≤ waitingCost (p :: List.insertionSort Before l) :=
+          waitingCost_orderedInsert_le p _
+      _ = p.value * p.cost + p.cost * totalValue l + waitingCost (List.insertionSort Before l) := by
+          rw [waitingCost_cons, totalValue_insertionSort]
+      _ ≤ waitingCost (p :: l) := by
+          rw [waitingCost_cons]; linarith
+
+end Schedule
 
 /-! ## The discovery loop
 
