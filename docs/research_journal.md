@@ -33075,3 +33075,128 @@ Best next question
   right guard at all, given that the same theorem under another name passes
   every one of them?
 ```
+
+## What a direct treatment of the exponential moment would need
+
+The question: Paper B's Section 8 closes by naming two ways past the
+differencing wall -- a saving uniform in the depth up to a factor
+\(2^{d/19}\), or a direct treatment of the exponential moment -- and pursues
+neither. The first is priced there as a factor of 38 in the rate. The second is
+not priced anywhere. This entry states its requirements in one place.
+
+Nothing here is new mathematics. The hypothesis is Paper C's
+\(\mathrm P_\theta(C)\), its tolerances are that paper's Section 9.3, and every
+route recorded as closed was closed by the `pressure_direct` branch on
+3 September. What was missing was the statement of what a method would have to
+*be*, as opposed to the list of what it may not be.
+
+**The object is one number per scale.** With \(N=y/2\),
+\(d=d(y)\asymp C\log_2\log y\) and \(\tau\) the entrance time into the
+certified floor,
+\(\frac1N\sum_{\tau(n)>d}e^{\theta o_d(n)}\le a_\theta^{\,d}e^{o(d)}\)
+at \(\theta=\theta_C\), \(a_\theta=\tfrac12(1+e^{\theta})\). Four lines
+turn it into the Tao-type bound: liveness forces \(o_d\ge p_Cd\) by the
+envelope, exponential Markov applies, and \(\theta p_C-\log a_\theta\) is
+exactly \(D(p_C\|\tfrac12)\). The stopping is load-bearing -- \(J(1)=1\) is
+odd, so the unstopped odd count of every terminating start grows linearly and
+the unstopped moment is false.
+
+Constants recomputed from `research.juggler_sequence.tao_reduction` rather than
+transcribed: \(e(20)=0.5738\) against the unconditional rate \(0.5520\), and
+\(e(18)=0.4804\) against \(0.4608\) under Appendix C. So \(C\ge20\)
+unconditionally, \(C\ge18\) conditionally, with \(\theta_{20}=0.4029\) and
+\(p_{20}=0.5994\). The least-\(C\) tables agree with the paper at all four
+\(q\): Azuma \(20,44,240,1715\) and Chernoff \(20,43,230,1618\), against
+\(18,39,206,1451\) and \(18,38,198,1369\) under \(\lambda^{***}\). Journal
+entries before 4 September quote \(19\) and \(21\) for the same constants;
+those are superseded and the papers are internally consistent at \(20/18\).
+
+**Four requirements, each fatal to a standing method.** The moment is a *mean*
+over the \(\approx2^{0.97d}\) typical cylinders at each depth, not a supremum,
+so no cylinder need split fairly. It must reach depth \(\to\infty\), because
+by 9.3(e) the word measure fair to depth \(k\) and all-\(O\) afterwards
+satisfies every depth-\(\le k\) count exactly and violates the bound --- and
+symmetrically any \(o(d)\) initial depths are free, absorbed by the
+\(e^{o(d)}\), which is why Paper B's depth-4 and depth-5 results are neither
+necessary nor sufficient. It is one-sided. And it must not draw its saving
+per cylinder, where Paper B's own rate bar \(c<1/19\) applies against
+differencing's \(c=2\).
+
+**The tolerances are wide, which is the argument for looking.** A depth-\(t\)
+cylinder matters only if over-populated by \(1.67^{t}\). A tower splitting at
+odd share \(\beta\) is harmless for any \(\beta<0.834\) at \(\theta_{20}\),
+where the stronger \(\mathrm H_q\) needs \(0.6309\) and the conclusion itself
+survives to \(0.981\). The sufficient export is the no-momentum form,
+\(\sum_{t<d}(s_\theta(t)-q)^+=o(d)\) on the tilted odd share of live starts:
+one weighted average per depth, bounded above.
+
+**What is already closed, and why each closure is structural.** Every two-sided
+form -- almost-all-cylinders, its second moment, the pair-correlation
+asymptotic on the collision count -- returns to \(\mathrm H(C,A)\) by Parseval
+and Walsh inversion, so it is not weaker in substance. The Walsh expansion
+splits the moment the right way, with order-\(k\) terms down-weighted by
+\(\rho=\tanh(\theta/2)=0.199\) per letter, but fixed order is
+\(e^{o(d)}\) and free while the tail is \((1+\rho)^d=e^{\Theta(d)}\): the
+tail *is* the high-depth information, not an approach to it. The last-even
+reset has fair-coin room at \(k=4\) and none at \(k=3\), and dies on geometry
+rather than on arithmetic -- high-walk \(E\)-ending images are sparse
+(\(\mathtt{OOOE}\) at density \(1.04\cdot10^{-5}\), \(\mathtt{OOOOE}\) at
+\(1.45\cdot10^{-10}\)), so the complementary cylinders are not intervals and
+Paper B, a statement about dyadic odd starts, does not reach them.
+
+**Numerically the hypothesis is not visibly false.** 40000 exact orbits at each
+of \(y=10^{12},10^{20},10^{30},10^{50}\) to depth 40 keep
+\(s_\theta(t)\in[0.44,0.56]\), with cumulative excess over \(\tfrac12\) equal
+to the positive-part noise and live moments within 5-8% of the fair-coin
+walk. That is an observation about depth 40 and the hypothesis is about
+\(d\to\infty\); it earns no more than the absence of a visible obstruction.
+
+So the target has a shape, and it is not the shape of anything in Paper B: a
+one-sided bound on an exponentially tilted average over live words of unbounded
+length, drawing its cancellation from averaging over characters rather than
+from a bound per character. The tilt selects words with about 60% odd letters,
+so the nested towers of height \(\ge4\) that stop Paper B at depth five sit
+inside almost every cylinder that matters -- and none of them individually has
+to behave. Paper C names that shape and declines to pursue it. It is a
+mean-value target, not an exponent-pair target, which is the one-sentence
+reason the differencing machinery was never going to arrive.
+
+```text
+What was learned
+- the second escape route Paper B names is unpriced in a way the first is
+  not: there is no analogue of the factor 38, because the obstruction is a
+  choice of tool rather than a rate
+- four requirements pin the tool -- mean not supremum, depth to infinity,
+  one-sided, and cancellation not drawn per cylinder -- and each is
+  individually fatal to a method the laboratory has already built
+- the tolerances are wide where the requirements are strict: a cylinder must
+  be over-populated by 1.67^t to matter, a tower may split at 0.834
+- every closed route closed for a structural reason, not for want of effort:
+  two-sided forms return to H(C,A) by Walsh inversion, the Walsh tail is the
+  high-depth information itself, and the reset dies on the geometry of
+  E-ending images rather than on any estimate
+- the constants in journal entries before 4 September (19, 21) are superseded;
+  papers and code agree at 20 unconditional and 18 under lambda***
+Strongest theorem
+- none; this is a requirements statement over results already proved
+Strongest refutation
+- none new; the recorded ones stand
+Reusable machinery
+- none new; the entry is the machinery, in that it is what a next attempt
+  would otherwise have to reconstruct from three documents
+Branch status
+- CLOSE, opening nothing: pressure_direct stays closed and the no-momentum
+  form stays the export
+Why
+  Paper B's Section 8 prices the differencing route to the last factor and
+  leaves the alternative as a phrase. A phrase is not a target. Writing the
+  requirements down does not make the moment tractable, but it does make the
+  next attempt answerable in advance -- any proposed method can now be tested
+  against four conditions before anyone implements it, which is the check
+  that would have saved the reset route.
+Best next question
+- the mean-over-characters target resembles a large-sieve statement, and the
+  laboratory has never asked whether one applies: is there a mean-value
+  inequality for the Walsh sums W_T of the live population, at order growing
+  with d, whose loss per letter is below log(1+rho) = 0.181?
+```
