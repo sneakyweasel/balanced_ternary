@@ -7031,5 +7031,44 @@
    "tests/research/juggler_sequence/test_layer_architecture.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-collision-bound-half-exponent",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "If the depth-d(y) collision count restricted to L-bad words satisfies Σ_{w L-bad} #[w]² ≤ K N² 2^{−(d−1)} with K = O(1), then #{n odd in (y, 2y] : τ(n) > d} ≤ √K · N · 2^{−e(C)L/2}: the Tao-type bound of Paper C Theorem 8.3 at half the exponent. Proof: τ(n) > d forces word_d(n) to be L-bad (Lemma 8.1), so the count is Σ over bad w of #[w]; Cauchy–Schwarz against the bad-word count of Lemma 8.2, #bad ≤ 2^{d−1} 2^{−e(C)L}, gives the display. Half the exponent is bought back by depth: the least C rises from 20 to 32 unconditionally, and from 18 to 28 under the conditional exponent λ***, since e(32)/2 = 0.5758 > 0.5520 and e(28)/2 = 0.4784 > 0.4608. Restricting to bad words is essential and not cosmetic: over all words the collision count is dominated by terminating starts sharing an all-O tail, the same tail that makes the unstopped moment too large. Cauchy–Schwarz is saturated when the bad mass is uniform, so the factor 2 is not removable at that step. Not a halt theorem: the collision bound is not proved.",
+  "source": "docs/research_journal.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_collision_large_sieve.py"
+  ],
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ]
+ },
+ {
+  "id": "J-collision-bound-does-not-invert",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "The one-sided constant-factor collision bound of J-collision-bound-half-exponent is not a restatement of H(C,A). Paper C §9.3(d) shows that the pair-correlation asymptotic Σ_w #[w]² ≤ (N²/2^{t−1})(1 + (log y)^{−A'}) is equivalent, by Parseval and Walsh inversion, to polylogarithmic savings on every Walsh sum to depth d(y), hence to H(C,A) with another A. That argument consumes the accuracy: from a bound with a constant K in place of 1 + (log y)^{−A'} one obtains only Σ_T |W_T|² ≤ K N², hence |W_T| ≤ √K N for each character — no saving on any individual Walsh sum, and no cylinder bound. The crude form therefore sits strictly below the equivalence, and it satisfies all four conditions Paper C imposes on a route to the almost-all bound: it is a mean and not a supremum, it is stated at depth d(y) → ∞, it is one-sided, and its cancellation is not drawn per cylinder.",
+  "source": "docs/research_journal.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_collision_large_sieve.py"
+  ],
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ]
+ },
+ {
+  "id": "J-collision-bound-phase0-census",
+  "tag": "OBSERVATION",
+  "statement": "Phase-0 census of the bad-word collision count against a matched fair-coin null: 120000 exact odd orbits at each of y = 10^12, 10^20, 10^30, 10^50, depths ≤ 18. The ratio of the measured count to the null stays in [0.98, 1.01] at every depth and every scale, with worst depth-to-depth growth 1.009; at y = 10^12 the operative depth ceil(32 L) = 17 lies inside the measured range and the ratio there is 0.992. The falsifier — a ratio growing geometrically in d — does not fire. The comparison must be against the finite-sample null: the raw ratio to the N → ∞ fair value climbs to 2.09 at d = 18 purely because every bad word is then occupied at most once. This is an observation at L ≤ 2.56 and depth ≤ 18 about a hypothesis at L → ∞, and it is not evidence that the hypothesis holds.",
+  "source": "docs/research_journal.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_collision_large_sieve.py"
+  ],
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ]
  }
 ]

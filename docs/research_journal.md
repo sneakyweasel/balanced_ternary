@@ -33200,3 +33200,133 @@ Best next question
   inequality for the Walsh sums W_T of the live population, at order growing
   with d, whose loss per letter is below log(1+rho) = 0.181?
 ```
+
+## The collision route: half the exponent, twelve letters of depth, and a falsifier that did not fire
+
+The last entry ended by asking whether a large sieve applies to the Walsh sums
+of the live population. It does not, and the question was mis-posed twice over.
+
+The classical large sieve draws its power from *spacing* of the frequencies --
+Montgomery-Vaughan's \(N+\delta^{-1}\), the Bombieri-Davenport character
+forms. The Walsh characters of a parity word have no spacing input: they are an
+orthonormal basis of \(\{0,1\}^d\), so the abstract large sieve over them
+degenerates to Parseval, which Section 9.3(d) already uses. There is no
+inequality to import. And the vehicle was wrong anyway: the Walsh expansion
+computes the *unstopped* moment, which is too large by \(L^{5.2}\) because
+\(J(1)=1\) is odd and every terminating start carries an all-\(O\) tail. That
+is the "stopping is essential" remark, and it kills the route with no reference
+to any sieve.
+
+What survives is not a sieve but the shape of one: an \(L^2\) count where the
+argument wants an \(L^1\) one.
+
+```text
+Mathematical target     is  sum over L-bad w of #[w]^2  <=  K N^2 2^{-(d-1)}
+                        at d(y) = C log2 L -- one-sided, constant K -- true of
+                        the Juggler map, or does the ratio grow with depth?
+Novelty hypothesis      Cauchy-Schwarz against that count gives Theorem 8.3 at
+                        half the exponent; Paper C rules out the polylog-accurate
+                        pair correlation as a reparameterization of H(C,A) and
+                        never states the crude one-sided form, which does not
+                        invert back to H
+Falsifier               the measured count over a matched fair-coin null grows
+                        geometrically in d
+Existing machinery      tao_reduction (e(C), L(y), the walk DP), exact integer
+                        orbits, pressure_direct's census pattern
+Maximum Phase-0 scope   one probe: price the route, count bad words exactly,
+                        measure the ratio at four scales. No new estimate, no
+                        Paper B import, no manuscript edit.
+Promotion criterion     ratio bounded in d -> state and export the hypothesis
+Stop criterion          ratio grows -> the route is dead
+```
+
+**The step is three lines.** Liveness forces badness (Lemma 8.1), so
+\(M=\#\{\tau>d\}\le\sum_{w\ \mathrm{bad}}\#[w]\); Cauchy-Schwarz against
+Lemma 8.2's count \(\#\mathrm{bad}\le2^{d-1}2^{-e(C)L}\) gives
+\(M\le\sqrt K\,N\,2^{-e(C)L/2}\). Exactly half the exponent, bought back by
+depth: \(e(32)/2=0.5758>0.5520\) and \(e(28)/2=0.4784>0.4608\), so the least
+depth constant moves from 20 to 32 unconditionally and from 18 to 28 under
+\(\lambda^{***}\). Twelve letters and ten.
+
+**Restricting to bad words is the whole trick.** Over *all* words the collision
+count is dominated by terminating starts sharing an all-\(O\) tail -- the same
+tail that inflates the unstopped moment. But reaching the floor means the walk
+reached \(-L\), and an \(O\)-run afterwards cannot restore badness, so the
+bad-word restriction excludes exactly the population that was going to ruin the
+count. The two failures have one cause and one cure.
+
+**And it does not invert.** Section 9.3(d)'s equivalence consumes the accuracy:
+from \(K\) in place of \(1+(\log y)^{-A'}\) one recovers only
+\(\sum_T|W_T|^2\le KN^2\), hence \(|W_T|\le\sqrt K N\) per character, which
+is no saving on any Walsh sum and no cylinder bound at all. The crude form sits
+strictly below the equivalence, and it meets all four conditions the previous
+entry set out: a mean and not a supremum, at depth \(d(y)\to\infty\),
+one-sided, and not drawing cancellation per cylinder.
+
+**The falsifier did not fire.** 120000 exact odd orbits at each of
+\(y=10^{12},10^{20},10^{30},10^{50}\), depths \(\le18\): the measured count
+against a matched null stays in \([0.98,1.01]\) everywhere, worst
+depth-to-depth growth 1.009. At \(y=10^{12}\) the operative depth
+\(\lceil32L\rceil=17\) is inside the range and the ratio there is 0.992; at
+the other three scales the operative depths are 40, 59 and 82, and no sample can
+see collisions once \(2^d\) passes it.
+
+The null has to be the finite-sample one, and this is where the measurement
+nearly lied. Compared with the \(N\to\infty\) fair value the ratio climbs to
+2.09 by \(d=18\) -- monotonically, across every scale, exactly the shape the
+falsifier was written to catch -- and all of it is the Poisson term: at that
+depth every bad word is occupied at most once. A falsifier stated on the raw
+excess would have killed a live route on sample size. Both statistics are
+reported, with the sample support beside them, and one test exists only to hold
+them apart.
+
+What this does not do is make the hypothesis easier than the conclusion.
+Cauchy-Schwarz is saturated when the bad mass spreads uniformly over the bad
+words, so the \(L^2\) statement is tight against the \(L^1\) one it proves and
+the factor 2 is not removable at that step. The claim is narrower: the target
+has changed shape, from a first moment over an unknown live set to a pair count
+over a set defined by the walk alone, and pair counts are the objects
+mean-value methods reach when pointwise bounds fail.
+
+```text
+What was learned
+- no large sieve is importable: over an orthonormal Walsh basis the abstract
+  form is Parseval, which the paper already uses, and the classical form needs
+  a spacing input the parity characters do not have
+- the Walsh expansion is the wrong vehicle regardless -- it computes the
+  unstopped moment, too large by L^5.2 for the reason J(1) = 1 is odd
+- the crude one-sided collision bound gives Theorem 8.3 at half the exponent,
+  and half is bought back by moving C from 20 to 32 (18 to 28 conditionally)
+- restricting to bad words excludes the all-O tails by construction, so the
+  two ways this route could have died have one cause and one cure
+- the constant-factor form does not invert to H(C,A): the Walsh-inversion
+  argument consumes the polylog accuracy, and without it every character bound
+  is trivial
+- the falsifier did not fire, at the operative depth where that depth is
+  reachable -- but only against a finite-sample null; against the naive one it
+  fires spuriously and monotonically
+Strongest theorem
+- the collision bound implies the Tao-type bound at half the exponent, hence
+  the conjecture at C >= 32 (J-collision-bound-half-exponent)
+Strongest refutation
+- the large-sieve question of the previous entry, answered no on two
+  independent grounds
+Reusable machinery
+- collision_large_sieve: half_exponent_least_C, bad_word_count (the walk DP in
+  integers), bad_depth (prefix-closed, one pass), collision_census with the
+  matched null
+Branch status
+- PARK
+Why
+  The route is stated, priced and not visibly false, and that is all. It is not
+  a promotion because there is no theorem about the Juggler map here -- only a
+  reduction of one unproved statement to another of the same tightness, in a
+  shape that a different family of methods addresses. What it buys is that the
+  next attempt has an inequality to attack rather than a phrase, and a number
+  (32) to hit rather than an aspiration.
+Best next question
+- the bad-word collision count is #{(n,n') in (y,2y]^2 : word_d(n) = word_d(n'),
+  both bad}, a two-fold correlation of the itinerary at depth log log y. Paper
+  B's machinery counts one orbit at a time. Does the pair count admit a
+  treatment the single count does not -- and at what depth does it stop?
+```
