@@ -1,3 +1,4 @@
+import Mathlib.Algebra.Order.BigOperators.GroupWithZero.Finset
 import Mathlib.Tactic.Positivity
 import Mathlib.Topology.MetricSpace.Lipschitz
 
@@ -133,6 +134,7 @@ variable (Φ : Interface I M) (T T₁ T₂ : Perturbation I) (x : I)
 theorem perturbationSize_nonneg : 0 ≤ perturbationSize T x :=
   dist_nonneg
 
+omit [MetricSpace I] in
 theorem physicalEffect_nonneg : 0 ≤ physicalEffect Φ T x :=
   dist_nonneg
 
@@ -149,6 +151,7 @@ theorem perturbationSize_eq_zero_iff : perturbationSize T x = 0 ↔ T x = x := b
 @[simp] theorem perturbationSize_id : perturbationSize (id : Perturbation I) x = 0 :=
   dist_self x
 
+omit [MetricSpace I] in
 @[simp] theorem physicalEffect_id : physicalEffect Φ id x = 0 :=
   dist_self (Φ x)
 
@@ -203,7 +206,7 @@ theorem amplifies_iff_not_lipschitz :
     exact not_amplifies_of_lipschitz Φ hK h
   · intro h K
     by_contra hK
-    push_neg at hK
+    simp only [not_exists, not_lt] at hK
     apply h
     refine ⟨Real.toNNReal K, LipschitzWith.of_dist_le_mul fun x y => ?_⟩
     by_cases hxy : dist x y = 0
@@ -220,6 +223,7 @@ theorem amplifies_iff_not_lipschitz :
 
 /-! ## Chain rules -/
 
+omit [MetricSpace I] in
 /-- Triangle inequality for the effect of a composite perturbation. -/
 theorem physicalEffect_compose_le :
     physicalEffect Φ (compose T₁ T₂) x ≤
@@ -259,9 +263,8 @@ theorem leverage_interface_comp {J : Type w} [MetricSpace J]
       left
       show dist (Ψ (Θ x)) (Ψ (Θ (T x))) = 0
       rw [← hΘ, dist_self]
-    · have h₂' : dist (Θ x) (T' (Θ x)) ≠ 0 := by rw [hT']; exact h₂
-      unfold leverage physicalEffect
-      simp only [h₁, h₂, h₂', ↓reduceIte, Function.comp_apply, hT']
+    · unfold leverage physicalEffect
+      simp only [h₁, h₂, ↓reduceIte, Function.comp_apply, hT']
       rw [div_mul_div_comm, mul_comm (dist (Ψ (Θ x)) (Ψ (Θ (T x)))),
         mul_div_mul_left _ _ h₂]
 
@@ -281,8 +284,9 @@ theorem dist_trajectory_le :
         ≤ dist x₀ (trajectory Tseq x₀ n) +
             dist (trajectory Tseq x₀ n) (trajectory Tseq x₀ (n + 1)) :=
           dist_triangle _ _ _
-      _ ≤ _ := add_le_add_right ih _
+      _ ≤ _ := add_le_add ih le_rfl
 
+omit [MetricSpace I] in
 /-- The physical state moves at most the sum of the step effects. -/
 theorem dist_interface_trajectory_le :
     dist (Φ x₀) (Φ (trajectory Tseq x₀ n)) ≤
@@ -295,7 +299,7 @@ theorem dist_interface_trajectory_le :
         ≤ dist (Φ x₀) (Φ (trajectory Tseq x₀ n)) +
             dist (Φ (trajectory Tseq x₀ n)) (Φ (trajectory Tseq x₀ (n + 1))) :=
           dist_triangle _ _ _
-      _ ≤ _ := add_le_add_right ih _
+      _ ≤ _ := add_le_add ih le_rfl
 
 /-- Cumulative chain rule: the physical displacement along a trajectory
 is bounded by the sum of the step-wise weighted leverages. -/
@@ -339,6 +343,14 @@ size. -/
 theorem abs_sub_eq_computationalLeverage_mul :
     |C (T x) - C x| = computationalLeverage C T x * perturbationSize T x := by
   rw [computationalLeverage, leverage_mul_size, physicalEffect, Real.dist_eq, abs_sub_comm]
+
+end Computational
+
+/-! ## Gain ratios -/
+
+section Gain
+
+variable (C : I → ℝ) (T T₁ T₂ : Perturbation I) (x : I)
 
 /-- Capability cannot change without an informational change. -/
 theorem capability_eq_of_fixed (h : T x = x) : C (T x) = C x := by
@@ -384,7 +396,7 @@ theorem gainRatio_trajectory (Tseq : ℕ → Perturbation I) (x₀ : I) (n : ℕ
     rw [trajectory_succ, div_mul_div_comm, mul_comm (C x₀),
       mul_div_mul_left _ _ (h n (Nat.le_succ n))]
 
-end Computational
+end Gain
 
 /-! ## Information cost -/
 
@@ -485,9 +497,8 @@ def originalLocus (K : ℝ) : Set I :=
   {x | ∃ T : Perturbation I, K < leverage Φ T x}
 
 theorem amplifies_iff_originalLocus_nonempty :
-    Amplifies Φ ↔ ∀ K : ℝ, (originalLocus Φ K).Nonempty := by
-  simp only [Amplifies, originalLocus, Set.Nonempty, Set.mem_setOf_eq]
-  exact forall_congr' fun _ => exists_comm
+    Amplifies Φ ↔ ∀ K : ℝ, (originalLocus Φ K).Nonempty :=
+  forall_congr' fun _ => exists_comm
 
 theorem leverageBoundedOn_of_lipschitzOnWith {A : Set I} {K : NNReal}
     (hΦ : LipschitzOnWith K Φ A) : LeverageBoundedOn Φ A K := by
@@ -517,7 +528,7 @@ theorem lipschitzOnWith_of_leverageBoundedOn {A : Set I} {K : ℝ}
 the interface is Lipschitz on it. -/
 theorem leverageBoundedOn_iff_lipschitzOnWith (A : Set I) :
     (∃ K : ℝ, LeverageBoundedOn Φ A K) ↔ ∃ K : NNReal, LipschitzOnWith K Φ A :=
-  ⟨fun ⟨K, hK⟩ => ⟨_, lipschitzOnWith_of_leverageBoundedOn Φ hK⟩,
+  ⟨fun ⟨_, hK⟩ => ⟨_, lipschitzOnWith_of_leverageBoundedOn Φ hK⟩,
     fun ⟨K, hK⟩ => ⟨K, leverageBoundedOn_of_lipschitzOnWith Φ hK⟩⟩
 
 /-- A perturbation whose leverage exceeds the Lipschitz constant of a
@@ -525,10 +536,11 @@ region starts or lands outside that region. -/
 theorem exit_of_lt_leverage {A : Set I} {K : NNReal} (hΦ : LipschitzOnWith K Φ A)
     (T : Perturbation I) (x : I) (hK : (K : ℝ) < leverage Φ T x) :
     x ∉ A ∨ T x ∉ A := by
-  by_contra hcon
-  push_neg at hcon
-  exact absurd (leverageBoundedOn_of_lipschitzOnWith Φ hΦ T x hcon.1 hcon.2)
-    (not_le.mpr hK)
+  by_cases hx : x ∈ A
+  · by_cases hTx : T x ∈ A
+    · exact absurd (leverageBoundedOn_of_lipschitzOnWith Φ hΦ T x hx hTx) (not_le.mpr hK)
+    · exact Or.inr hTx
+  · exact Or.inl hx
 
 /-- Original content inside a normal region is reached only by
 perturbations that leave the region. -/
@@ -537,7 +549,8 @@ theorem originalLocus_inter_subset {A : Set I} {K : NNReal}
     originalLocus Φ K ∩ A ⊆
       {x | ∃ T : Perturbation I, T x ∉ A ∧ (K : ℝ) < leverage Φ T x} := by
   rintro x ⟨⟨T, hT⟩, hx⟩
-  refine Set.mem_setOf.mpr ⟨T, ?_, hT⟩
+  show ∃ T : Perturbation I, T x ∉ A ∧ (K : ℝ) < leverage Φ T x
+  refine ⟨T, ?_, hT⟩
   rcases exit_of_lt_leverage Φ hΦ T x hT with h | h
   · exact absurd hx h
   · exact h
@@ -547,8 +560,6 @@ end Landscape
 /-! ## Compounding and mining order -/
 
 section Mining
-
-variable [MetricSpace I]
 
 /-- Compounding: if every step of a trajectory has gain ratio at least
 `g ≥ 0`, the total gain is at least `g ^ n`. One high-leverage lemma
