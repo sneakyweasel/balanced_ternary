@@ -21,6 +21,7 @@ The project contains no `sorry` or `admit`.
 | `Problems/Juggler/` | one-way Juggler layers; Engine copies deleted |
 | `Problems/Ostrowski/` | Ostrowski adder theorems |
 | `Automata/` | placeholder; do not invent proofs |
+| `Problems/Engine/InformationField.lean` | abstract information-field dynamics: perturbation leverage, chain rules, gain ratios |
 
 Compiled theorem groups:
 
