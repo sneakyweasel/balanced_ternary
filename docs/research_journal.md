@@ -34446,3 +34446,102 @@ Best next question
   at exponent e ~ 4 to 9 -- and is the obstruction the sparsity of the image,
   or the size of e?
 ```
+
+## Loop, iteration 4: the tilted walk is a meander, so the exponent is bounded and the floors are the barrier
+
+The question iteration 3 left: on the expanding prefixes that carry the tilted
+mass, exponent \(e\approx4\)--\(9\), is the obstruction the sparsity of the
+image or the size of \(e\)? Both --- but only one of them grows with depth, and
+seeing which required deriving the shape of iteration 3's table rather than
+reading it.
+
+**A meander.** Under the \(\theta_C\) tilt the exponent walk steps
+\(+(\log_23-1)\) with probability \(p_C\) and \(-1\) otherwise: mean
+\(-0.050\), sd \(\sigma=0.777\) per letter. \(\theta_C\) is chosen so that
+the unconditioned mean endpoint sits at the barrier \(-L\), so conditioning on
+survival over \(d=20L\) letters is conditioning a drifting walk to stay above a
+barrier it is aimed at --- a meander, whose endpoint sits about one standard
+deviation above the barrier:
+\[
+u_d\;\approx\;-L+c\,\sigma\sqrt d .
+\]
+Against the exact DP the implied \(c\) is \(1.044,1.049,1.054,1.050,1.044,1.029,
+1.018,1.004,0.997,0.989,0.983\) at \(L=1,1.25,2,3,4,6,8,10,12,14,16\):
+constant to 7% across a factor sixteen in \(L\). The formula's stationary
+point \(L^*=(c\sigma\sqrt{20}/2)^2=3.3\) is where the DP mean peaks, at
+\(u\approx3.3\); the mean crosses zero near \(L=12\), which is the crossover
+iteration 3 found by hand; the 90th percentile saturates near 10--11.
+
+**So the exponent is bounded.** The envelope exponent \(2^{u_d}\) at which the
+hypothesis puts its weight has median below \(2^{3.4}\approx10\) and 90th
+percentile below \(2^{10.8}\) at every scale, however large \(y\). On real
+orbits at \(y=10^{20}\), \(d=20\), the \(\theta\)-tilted quantiles of
+\(\log_{10}J^d(n)\) are \(31/92/830\) against untilted \(10/31/277\): the tilt
+moves the weight from the \(10^{31}\) median orbit to \(10^{92}\), which
+reconciles iteration 2 (the untilted median is not astronomical) with
+iteration 3 (the tilted mass is).
+
+**Pricing the two obstructions.** The next parity on a prefix of exponent
+\(e\) is that of \(\lfloor x^{3/2}\rfloor\) over the depth-\(t\) image, so two
+things enter: the pure monomial sum \(\sum e(n^{3e/2}/2)\), and the nested
+floors. For the monomial, the \(k\)-th derivative test gives a saving
+\(N^{-\delta}\) with
+
+| \(e\) | best \(k\) | \(\delta\) |
+|---|---|---|
+| 4 | 5 | 0.033 |
+| 7 | 8 | 0.0039 |
+| 10 | 11 | 0.00049 |
+
+decaying like \(2^{-e}\): tiny, but since \(e\) is bounded it is a cost paid
+once. For the floors, each of the \(t\) intermediate defects contributes a
+sawtooth of polynomial amplitude \(n^{e-3/2}(3/2)^{k}\) to the phase, and
+\(t\to\infty\). So **the difficulty that grows with depth is the nesting count
+alone; the exponent is a fixed, small factor.** That relocates the
+unbounded-depth barrier: not "the orbits get too big" but "the floors
+accumulate", at bounded magnitude ratio.
+
+This does not open a door. It says which door is the door. The sparsity of the
+image is the accumulated floors, and the closed reset entry's reason ("high-walk
+\(E\)-images are sparse") is this same fact at one step.
+
+**Lean.** No toolchain; nothing formalised.
+
+```text
+What was learned
+- the tilted-live exponent walk is a meander: u_d = -L + c sigma sqrt(d)
+  with c = 1.0-1.05 across L = 1..16, peak at L* = 3.3 where the DP peaks,
+  zero crossing near L = 12 where iteration 3 found it by hand
+- the hypothesis's exponent is bounded at every scale: median 2^u <= 10,
+  90th percentile <= 2^10.8
+- the tilt moves the weight from the 10^31 median orbit to 10^92, which
+  reconciles iterations 2 and 3
+- the size-of-e cost is N^{-delta} with delta ~ 2^{-e}: 0.033 at e = 4,
+  0.00049 at e = 10, fixed in depth
+- the difficulty that grows with depth is the count of nested floors, not
+  the exponent
+Strongest theorem
+- the van der Corput pricing is a standard bound applied; the meander law
+  is fitted against an exact DP, not proved
+Strongest refutation
+- none
+Reusable machinery
+- tilted_live_meander (DP with quantiles and implied c),
+  van_der_corput_saving; two tests
+Branch status
+- PARK
+Why
+  A fitted asymptotic with a derived stationary point and a verified
+  crossover is a small theorem's worth of structure about where the
+  hypothesis lives, and it decides a question the brief poses in the
+  abstract -- which obstruction grows. The answer removes one worry
+  (magnitude) and names the other (nesting) with its rate. It shortens no
+  distance; it says which distance.
+Best next question
+- with e bounded and t unbounded, the accumulated floor defect at depth t
+  on the tilted-typical prefix is a sum of t sawteeth with amplitudes
+  n^{e_k - 3/2} (3/2)^{t-k}. Which single defect dominates the phase at
+  the last step -- the innermost, amplified most, or the outermost, largest
+  in n -- and does the answer change the shape of the barrier from "t
+  objects" to "one object at each depth"?
+```

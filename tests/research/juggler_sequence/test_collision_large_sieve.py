@@ -453,3 +453,24 @@ def test_fairness_does_not_depend_on_exponent_class_or_magnitude() -> None:
     # both classes are populated at this depth
     assert any(b["hi"] <= 0.0 for b in out["by_exponent_walk"]), "no contracting bin"
     assert any(b["lo"] >= 0.5 for b in out["by_exponent_walk"]), "no expanding bin"
+
+
+def test_the_tilted_live_walk_is_a_meander_with_a_bounded_endpoint() -> None:
+    """u_d ~ -L + c sigma sqrt(d) with c near one at every L, so the exponent the hypothesis
+    lives at is bounded: the size-of-e cost does not grow with depth."""
+
+    from research.juggler_sequence.collision_large_sieve import tilted_live_meander
+
+    cs = [tilted_live_meander(L)["implied_meander_c"] for L in (1.0, 2.0, 4.0, 8.0, 12.0, 16.0)]
+    assert all(0.95 < c < 1.10 for c in cs), cs
+    peak = max(tilted_live_meander(L)["mean_u_d"] for L in (2.0, 3.0, 3.5, 4.0))
+    assert 3.0 < peak < 3.6, peak
+    assert all(tilted_live_meander(L)["q90"] < 11.5 for L in (8.0, 12.0, 16.0))
+
+
+def test_the_size_of_e_cost_decays_like_two_to_the_minus_e() -> None:
+    from research.juggler_sequence.collision_large_sieve import van_der_corput_saving
+
+    d4, d7, d10 = (van_der_corput_saving(e)["saving_delta"] for e in (4.0, 7.0, 10.0))
+    assert d4 > d7 > d10 > 0.0
+    assert abs(d4 - 0.0333) < 1e-3 and abs(d10 - 0.00049) < 1e-4

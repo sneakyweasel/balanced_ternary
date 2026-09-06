@@ -7174,5 +7174,18 @@
   "related_conjectures": [
    "juggler_loglog_depth_cylinder_bound"
   ]
+ },
+ {
+  "id": "J-tilted-live-meander",
+  "tag": "OBSERVATION",
+  "statement": "The exponent walk of the θ_C-tilted live population is a meander above the barrier, and its endpoint is bounded at every scale. Under the tilt the walk steps +(log₂3−1) with probability p_C and −1 otherwise (mean −0.050, sd σ = 0.777 per letter at C = 20); θ_C is chosen so the unconditioned mean endpoint sits at the barrier −L, so conditioning on survival over d = 20L letters gives a meander with endpoint about one sd above the barrier. Exact fair-coin DP: writing the tilted-live mean as u_d = −L + c·σ·√d, the implied c is 1.044, 1.049, 1.054, 1.050, 1.044, 1.029, 1.018, 1.004, 0.997, 0.989, 0.983 at L = 1, 1.25, 2, 3, 4, 6, 8, 10, 12, 14, 16 — constant to 7% across a factor 16 in L — and the formula's stationary point L* = (cσ√20/2)² = 3.3 is where the DP mean peaks, at u ≈ 3.3. The mean crosses zero near L = 12; the 90th percentile of u_d saturates near 10–11 for L ≥ 10. CONSEQUENCE: the envelope exponent 2^{u_d} at which the no-momentum hypothesis puts its weight is bounded — median below 2^{3.4} ≈ 10, 90th percentile below 2^{10.8} ≈ 1800 — however large y is. On real orbits at y = 1e20, d = 20 the θ-tilted quantiles of log₁₀ J^d(n) are 31 / 92 / 830 (10/50/90) against untilted 10 / 31 / 277, reconciling J-live-set-tilted-fair (the untilted median is not astronomical) with J-tilted-live-mass-is-expanding (the tilted mass is). PRICING THE TWO OBSTRUCTIONS ON EXPANDING PREFIXES. The next parity on a prefix of exponent e is that of ⌊x^{3/2}⌋ over the depth-t image, so (i) the pure monomial sum Σ e(n^{3e/2}/2) and (ii) the nested floors both enter. For (i) the k-th derivative test gives saving N^{−δ} with δ = max_{k>e} min((k−e)/(2^k−2), 2^{2−k} − (k−e)/(2^k−2)): δ = 0.033 at e = 4, 0.0039 at e = 7, 0.00049 at e = 10, decaying like 2^{−e} — tiny, but since e is bounded this is a cost paid once. For (ii) each of the t intermediate floors contributes a sawtooth of polynomial amplitude n^{e−3/2}·(3/2)^{k} to the phase, and t → ∞. So the difficulty that grows with depth is the NESTING COUNT alone; the exponent is a fixed, small factor. That relocates the unbounded-depth barrier: not 'the orbits get too big' but 'the floors accumulate', at bounded magnitude ratio.",
+  "source": "docs/research_journal.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_collision_large_sieve.py"
+  ],
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ]
  }
 ]

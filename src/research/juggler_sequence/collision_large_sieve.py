@@ -161,6 +161,72 @@ def bad_depth(word: tuple[int, ...], L: float) -> int:
     return len(word)
 
 
+def tilted_live_meander(L: float, d: int | None = None, C: int = 20) -> dict[str, Any]:
+    """The tilted-live exponent walk is a meander, and its endpoint is bounded at every scale.
+
+    Under the theta_C tilt the walk steps +(log2(3)-1) with probability p_C and -1 otherwise:
+    mean -0.050, sd 0.777 per letter at C = 20.  theta_C is chosen so that the unconditioned
+    mean endpoint sits at the barrier -L, so conditioning on survival over d = 20 L steps
+    produces a meander whose endpoint sits about one standard deviation above the barrier,
+    ``u_d ~ -L + c sigma sqrt(d)`` with c = 1.0-1.05 from the exact DP at L = 1..16.  It peaks
+    near L* = 3.3 at u ~ 3.3 and crosses zero near L = 12.  So the exponent 2^{u_d} at which
+    the hypothesis lives is bounded -- median at most 2^3.4, 90th percentile at most 2^10.8 --
+    and the size-of-e obstruction is a cost paid once, not one that grows with depth.
+    """
+
+    if d is None:
+        d = math.ceil(C * L)
+    theta = theta_of_C(C)
+    e, pc = math.exp(theta), p_of_C(C)
+    mu = pc * (LOG2_3 - 1.0) - (1.0 - pc)
+    sigma = math.sqrt(pc * (LOG2_3 - 1.0) ** 2 + (1.0 - pc) - mu**2)
+    st = {1: e}
+    for t in range(2, d + 1):
+        nx: dict[int, float] = {}
+        for o, w in st.items():
+            if o * LOG2_3 - t > -L:
+                nx[o] = nx.get(o, 0.0) + w
+            if (o + 1) * LOG2_3 - t > -L:
+                nx[o + 1] = nx.get(o + 1, 0.0) + w * e
+        st = nx
+    tot = sum(st.values())
+    us = sorted((o * LOG2_3 - d, w / tot) for o, w in st.items())
+    mean = sum(u * w for u, w in us)
+    q: dict[float, float] = {}
+    acc = 0.0
+    for u, w in us:
+        acc += w
+        for f in (0.1, 0.5, 0.9):
+            if f not in q and acc >= f:
+                q[f] = u
+    return {"L": L, "d": d, "C": C, "step_mean": mu, "step_sd": sigma,
+            "mean_u_d": mean, "q10": q[0.1], "q50": q[0.5], "q90": q[0.9],
+            "implied_meander_c": (mean + L) / (sigma * math.sqrt(d)),
+            "median_exponent": 2.0 ** q[0.5]}
+
+
+def van_der_corput_saving(e: float, k_max: int = 64) -> dict[str, Any]:
+    """Best k-th derivative-test saving N^{-delta} for the pure monomial sum sum e(n^e / 2).
+
+    With f^{(k)} ~ N^{e-k} =: lambda <= 1 the classical bound is
+    N lambda^{1/(2^k-2)} + N^{1-2^{2-k}} lambda^{-1/(2^k-2)}, so the saving exponent is
+    max over k > e of min((k-e)/(2^k-2), 2^{2-k} - (k-e)/(2^k-2)).  It decays like 2^{-e}:
+    0.033 at e = 4, 0.0039 at e = 7, 0.00049 at e = 10.  This prices the "size of e" half of
+    the obstruction on expanding prefixes, before any nested floor enters.
+    """
+
+    best, best_k = 0.0, None
+    for k in range(2, k_max):
+        if k <= e:
+            continue
+        a = (k - e) / (2.0**k - 2.0)
+        b = 2.0 ** (2 - k) - a
+        dlt = min(a, b)
+        if dlt > best:
+            best, best_k = dlt, k
+    return {"e": e, "best_k": best_k, "saving_delta": best}
+
+
 def tilted_live_split(L: float, d: int, C: int = 20) -> dict[str, Any]:
     """How the theta_C-tilted live mass divides between contracting and expanding prefixes.
 
