@@ -161,6 +161,81 @@ def bad_depth(word: tuple[int, ...], L: float) -> int:
     return len(word)
 
 
+def tilted_live_split(L: float, d: int, C: int = 20) -> dict[str, Any]:
+    """How the theta_C-tilted live mass divides between contracting and expanding prefixes.
+
+    A prefix at depth ``d`` has exponent ``e = 3^o / 2^d = 2^{u_d}``.  Contracting prefixes
+    (``u_d < 0``) map their cylinder many-to-one onto a dense integer interval, where parity of
+    the image is a counting question; expanding ones (``u_d > 0``) have sparse images, the
+    Piatetski-Shapiro-hard class.  The tilt at ``theta_C`` selects odd share ``p_C = 0.599``,
+    below ``1/log2(3) = 0.631``, so one expects it to select contracting prefixes.  It does
+    not, until ``L`` is about 12: the tilt is chosen so the walk's mean endpoint sits at the
+    barrier, so conditioning on survival always selects upward paths, and the tilted-live
+    mean of ``u_d`` stays at +2 to +3 for ``L <= 8``.  Fair-coin DP, exact.
+    """
+
+    theta = theta_of_C(C)
+    e = math.exp(theta)
+    st = {1: e}
+    for t in range(2, d + 1):
+        nx: dict[int, float] = {}
+        for o, w in st.items():
+            if o * LOG2_3 - t > -L:
+                nx[o] = nx.get(o, 0.0) + w
+            if (o + 1) * LOG2_3 - t > -L:
+                nx[o + 1] = nx.get(o + 1, 0.0) + w * e
+        st = nx
+    tot = sum(st.values())
+    con = sum(w for o, w in st.items() if o * LOG2_3 - d < 0.0)
+    mean_u = sum(w * (o * LOG2_3 - d) for o, w in st.items()) / tot
+    return {"L": L, "d": d, "C": C, "contracting_fraction": con / tot,
+            "mean_u_d": mean_u, "unconditioned_mean_u_d": (LOG2_3 - 1.0) - 0.050 * (d - 1)}
+
+
+def fairness_by_class(
+    log10_y: int, depth: int = 12, n0: int = N0_CERTIFIED, samples: int = 200_000, seed: int = 11,
+) -> dict[str, Any]:
+    """Next-letter odd share on live starts at `depth`, by prefix exponent and by magnitude.
+
+    Loop iteration 3 asked whether the smallest live orbits, or the expanding ones, are less
+    fair.  Neither: every bin is within 2 sigma of one half at y = 10^20, N = 10^6.
+    """
+
+    y = 10**log10_y
+    L = scale_L(log10_y * math.log(10.0), n0)
+    rng = random.Random(seed)
+    rows: list[tuple[float, float, int]] = []
+    for _ in range(samples):
+        n = rng.randrange(y + 1, 2 * y + 1) | 1
+        x, o, alive = n, 0, True
+        for t in range(1, depth + 1):
+            o += x & 1
+            x = math.isqrt(x * x * x) if x & 1 else math.isqrt(x)
+            if o * LOG2_3 - t <= -L:
+                alive = False
+                break
+        if alive:
+            rows.append((o * LOG2_3 - depth, x.bit_length() * math.log10(2.0), x & 1))
+
+    def bins(keyf, edges):
+        out = []
+        for lo, hi in zip(edges, edges[1:]):
+            sel = [r for r in rows if lo <= keyf(r) < hi]
+            if len(sel) < 50:
+                continue
+            c = len(sel)
+            share = sum(r[2] for r in sel) / c
+            out.append({"lo": lo, "hi": hi, "count": c, "odd_share": share,
+                        "z": (share - 0.5) / (0.5 / math.sqrt(c))})
+        return out
+
+    by_u = bins(lambda r: r[0], [-L, -0.5, 0.0, 0.5, 1.5, 3.0, 99.0])
+    by_mag = bins(lambda r: r[1], [0.0, 10.0, 15.0, 20.0, 30.0, 50.0, 1e9])
+    worst = max([abs(b["z"]) for b in by_u + by_mag] or [0.0])
+    return {"log10_y": log10_y, "L": L, "depth": depth, "live": len(rows),
+            "by_exponent_walk": by_u, "by_magnitude": by_mag, "worst_abs_z": worst}
+
+
 def live_fairness_profile(
     log10_y: int, d: int = 16, n0: int = N0_CERTIFIED, samples: int = 200_000, seed: int = 7,
     cell_depth: int = 12,

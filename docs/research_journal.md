@@ -34358,3 +34358,91 @@ Best next question
   the floor? If the smallest live orbits are the least fair, that is where a
   proof must work hardest and where a laboratory estimate could still bite.
 ```
+
+## Loop, iteration 3: fair in every band, and the tilted mass is on the hard class
+
+The question iteration 2 left: is the next-letter share fair conditional on the
+magnitude of \(J^t(n)\), including the band just above the floor? And a
+structural cut suggested itself: a prefix at depth \(t\) has exponent
+\(e=3^{o_t}/2^t=2^{u_t}\), and *contracting* prefixes (\(e<1\)) map their
+cylinder many-to-one onto a dense integer interval, where the parity of the
+image is a block-counting question, while *expanding* ones have sparse images,
+the class Paper B addresses at depth \(\le4\) and no one addresses beyond.
+
+**Fair in every band.** On \(10^6\) exact orbits at \(y=10^{20}\), live
+starts at \(t=8,12,16\) binned by \(u_t\) and separately by
+\(\log_{10}J^t(n)\): every bin of fifty or more has odd share within
+\(2\sigma\) of one half. The worst is \(z=-1.89\) on 218700 starts. The band
+\(10^{10}\)--\(10^{15}\), a few orders above the floor and the place a
+laboratory estimate would be weakest, sits at \(0.4978\), \(z=-1.2\) on
+73872. The band above \(10^{50}\) sits at \(0.4999\). The smallest live orbits
+are not the least fair, and at this depth the expanding class is not visibly
+harder than the contracting one.
+
+**Where the tilt puts its weight --- and an intuition corrected mid-iteration.**
+The tilt at \(\theta_C\) selects odd share \(p_C=0.599\), below
+\(1/\log_23=0.631\), so I expected the tilted live mass to sit on contracting
+prefixes, where the counting argument lives and the closed reset door
+("high-walk \(E\)-images are sparse") does not reach. Measured, and then
+computed exactly by the fair-coin DP, which the measurement matches to three
+decimals:
+
+| \(L\) | \(d=20L\) | contracting share of tilted-live mass | mean \(u_d\), tilted-live | unconditioned |
+|---|---|---|---|---|
+| 1.25 | 25 | 0.063 | +2.8 | −0.6 |
+| 4 | 80 | 0.247 | +3.3 | −3.4 |
+| 8 | 160 | 0.373 | +2.0 | −7.4 |
+| 12 | 240 | 0.565 | 0.0 | −11.4 |
+
+The tilt is chosen so that the walk's mean endpoint sits at the barrier, so
+conditioning on survival always selects upward paths, and the surviving tilted
+mass has mean exponent \(2^{2.8}\) to \(2^{3.3}\) --- the orbit at \(n^4\) to
+\(n^9\) in envelope terms --- until \(L\approx12\), which is
+\(\log2y\approx2^{12}\log N_0\), \(y\approx10^{35000}\). Everywhere short of
+that, \(\mathrm M_{\theta,q}\) is predominantly a statement about expanding
+prefixes with sparse images. The dense-image class, where a counting argument
+would work, carries 6% to 37% of the mass for \(L\le8\).
+
+So the dichotomy is a valid decomposition and it cuts the wrong way for hope:
+the closed door's reason applies to the class that carries the weight. That is
+worth having exactly, because the natural reading of "the tilt selects
+sixty-percent-odd words" is that they contract, and they do not survive the
+barrier by contracting.
+
+**Lean.** No toolchain; nothing formalised.
+
+```text
+What was learned
+- next-letter fairness on live starts is independent of exponent class and of
+  orbit magnitude, every bin within 2 sigma, including the band just above
+  the floor
+- the tilted live mass sits on EXPANDING prefixes, mean u_d = +2 to +3, until
+  L ~ 12 (y ~ 10^35000): survivorship under the barrier beats the tilt's
+  contracting drift, because theta_C puts the mean endpoint at the barrier
+- the dense-image counting class is 6-37% of the tilted mass for L <= 8; the
+  closed reset door's reason applies to the class that carries the weight
+- the measured split matches the fair-coin DP to three decimals, so this is a
+  property of the walk under the barrier, not of the Juggler map
+Strongest theorem
+- none; a DP and a measurement
+Strongest refutation
+- my own in-iteration expectation that the tilt selects contracting prefixes
+Reusable machinery
+- tilted_live_split (exact DP), fairness_by_class; two tests
+Branch status
+- PARK
+Why
+  Locating the hypothesis's weight is the kind of thing that decides where a
+  proof must work, and the answer is the unwelcome one: on the sparse-image
+  class, at every scale that will ever be computed. That closes the hopeful
+  reading of the dichotomy rather than opening it, and it does so with a
+  number and a crossover scale.
+Best next question
+- the surviving tilted mass has mean exponent 4 to 9 for L <= 8. On such
+  prefixes J^t(n) ~ n^e with e ~ 2^{u}, and the parity of the next floor is a
+  Piatetski-Shapiro question at exponent 3e/2 in n. Paper B's savings are for
+  e <= 27/8 at depth 4. What does the standard exponent-pair machinery give
+  for the parity of floor(x^{3/2}) over x in the depth-t image of a cylinder
+  at exponent e ~ 4 to 9 -- and is the obstruction the sparsity of the image,
+  or the size of e?
+```

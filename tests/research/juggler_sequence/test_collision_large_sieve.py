@@ -429,3 +429,27 @@ def test_the_live_set_is_fair_by_odd_count_and_poisson_by_cylinder() -> None:
     assert out["worst_sigma_resolved"] < 4.0, out
     assert 0.85 < out["relative_variance_over_poisson"] < 1.15, out
     assert out["live_orbit_log10"]["median"] < 100, "the bulk of live orbits is not astronomical"
+
+
+def test_the_tilted_live_mass_sits_on_expanding_prefixes_until_L_is_about_twelve() -> None:
+    """The tilt selects odd share 0.599 < 0.631, so one expects contracting prefixes; the
+    barrier's survivorship bias wins until L ~ 12, i.e. y ~ 10^35000."""
+
+    from research.juggler_sequence.collision_large_sieve import tilted_live_split
+
+    fracs = [tilted_live_split(L, math.ceil(20 * L))["contracting_fraction"]
+             for L in (1.249, 4.0, 8.0, 12.0)]
+    assert fracs[0] < 0.10 and fracs[1] < 0.30 and fracs[2] < 0.40, fracs
+    assert fracs[3] > 0.5, "the crossover to mostly-contracting is near L = 12"
+    assert tilted_live_split(1.249, 25)["mean_u_d"] > 2.0, "live tilted mean sits well above the barrier"
+
+
+def test_fairness_does_not_depend_on_exponent_class_or_magnitude() -> None:
+    from research.juggler_sequence.collision_large_sieve import fairness_by_class
+
+    out = fairness_by_class(20, depth=12, samples=150_000)
+    assert out["live"] > 20_000
+    assert out["worst_abs_z"] < 3.5, out
+    # both classes are populated at this depth
+    assert any(b["hi"] <= 0.0 for b in out["by_exponent_walk"]), "no contracting bin"
+    assert any(b["lo"] >= 0.5 for b in out["by_exponent_walk"]), "no expanding bin"

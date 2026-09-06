@@ -7161,5 +7161,18 @@
   "related_conjectures": [
    "juggler_loglog_depth_cylinder_bound"
   ]
+ },
+ {
+  "id": "J-tilted-live-mass-is-expanding",
+  "tag": "OBSERVATION",
+  "statement": "Two facts about where the no-momentum hypothesis puts its weight, and one about where the data are fair. (1) A prefix at depth t has exponent e = 3^{o_t}/2^t = 2^{u_t}; contracting prefixes (u_t < 0) map their cylinder many-to-one onto a dense integer interval, where the parity of the image is a block-counting question, while expanding ones (u_t > 0) have sparse images, the Piatetski–Shapiro-hard class that Paper B addresses at depth ≤ 4. The tilt at θ_C selects odd share p_C = 0.599 < 1/log₂3 = 0.631, so one expects the tilted live mass on contracting prefixes. It is not, at any reachable scale: by exact fair-coin DP the contracting fraction of the θ_20-tilted live mass at d = ⌈20L⌉ is 0.063, 0.188, 0.140, 0.247, 0.313, 0.373, 0.565 at L = 1.25, 2, 3, 4, 6, 8, 12, and the tilted-live mean of u_d is +2.8, +3.2, +3.3, +3.3, +2.8, +2.0, 0.0 — exponent 4 to 9 — against an unconditioned tilted mean of 0.585 − 0.050(d−1) ≈ −L. The reason is that θ_C is chosen so the walk's mean endpoint sits at the barrier, so conditioning on survival always selects upward paths; the crossover to mostly-contracting is at L ≈ 12, i.e. log 2y ≈ 2^12 log N₀, y ≈ 10^35000. So M_θ,q is, everywhere short of that, predominantly a statement about expanding prefixes with sparse images, and the dense-image counting argument covers a minority of its mass. On exact Juggler orbits (6e5 at y = 1e20) the measured split matches the DP to three decimals (0.365/0.364, 0.135/0.134, 0.213/0.213, 0.091/0.090 at t = 8, 12, 16, 20). (2) Fairness of the next letter on live starts does not depend on the class: on 1e6 exact orbits at y = 1e20, binned by u_t and separately by log₁₀ J^t(n) at t = 8, 12, 16, every bin with ≥ 50 members has odd share within 2σ of one half (worst |z| = 1.89, on 218700 starts), including the band 10^10–10^15 within a few orders of the floor (0.4978, z = −1.2 on 73872) and the band above 10^50. The smallest live orbits are not the least fair, and the expanding class is not visibly harder at this depth. (3) Consequence for the reset door: the recorded closure 'high-walk E-images are sparse' applies to the class that carries the tilted mass; the dense-image class where a counting argument would work is 6–37% of it for L ≤ 8.",
+  "source": "docs/research_journal.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_collision_large_sieve.py"
+  ],
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ]
  }
 ]
