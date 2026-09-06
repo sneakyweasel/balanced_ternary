@@ -7187,5 +7187,18 @@
   "related_conjectures": [
    "juggler_loglog_depth_cylinder_bound"
   ]
+ },
+ {
+  "id": "J-dominant-defect-at-walk-minimum",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Along a Juggler orbit write x_k = X_k − D_k with X_k = n^{e_k} the floorless composition, e_k = 3^{o_k}/2^k = 2^{u_k}. The defect θ_k = {x_{k−1}^{3/2}} or {√x_{k−1}} injected when x_k is formed reaches x_{T−1} multiplied, to leading order, by A_k = Π_{j=k}^{T−2} m_j with m_j = (3/2)x_j^{1/2} on an odd step and (1/2)x_j^{−1/2} on an even one — the derivative of the composed map x_k ↦ x_{T−1}, which is x ↦ x^{e_{T−1}/e_k} — so that A_k ≈ (e_{T−1}/e_k)·x_{T−1}/x_k ≈ (e_{T−1}/e_k)·n^{e_{T−1}−e_k}, and D_{T−1} = Σ_k θ_k A_k. Three consequences. (i) A_k is decreasing in e_k, so the DOMINANT defect is the one injected at the WALK MINIMUM k* = argmin_k u_k: measured on 58869 live orbits at y = 1e20, depth 16, the argmax of A_k is the walk minimum in 100.0% of cases (100.0% under the θ_20 tilt), and the law's residual is +0.00/+0.30/+0.65 in log₁₀ at the 10/50/90th percentiles (median log₁₀ A_{k*} = 26.3, 90th percentile 300). (ii) θ_k is active for the parity of x_T — enters D_{T−1} mod 1 with A_k ≥ 1 — iff u_k ≤ u_{T−1}, the steps at which the walk was at or below its final value; for a meander ending high that is most of them: median 9 of 15, tilted mean 10.1. So the last-step phase is ONE object in size and Θ(T) objects mod 1; the nesting count is not reduced by the hierarchy. (iii) The dominant defect is injected where the prefix is at its most contracting and its image {x_{k*−1}} at its densest, and the parity of x_T probes θ_{k*} at scale 1/A_{k*} = n^{−(e_{T−1}−e_{k*})}, tilted-mean exponent Δe = 10.9 (10/50/90: 0.07/1.27/14.7), while the discrepancy of {m^{3/2}} over that image — of size ≈ n^{e_{k*−1}} — resolves at best n^{−e_{k*−1}/2}, tilted-mean exponent 0.70. The requirement exceeds the resolution by n^{10.2} on tilted average, 10^205 at y = 1e20. This is Paper B's growing-sawtooth obstacle located and priced: the amplification that makes the parity fair in fact is exactly what puts it beyond any equidistribution bound on the defect that carries it. The walk's climb from its minimum, e_{T−1} − e_{k*}, is the single number that measures both.",
+  "source": "docs/research_journal.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_collision_large_sieve.py"
+  ],
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ]
  }
 ]

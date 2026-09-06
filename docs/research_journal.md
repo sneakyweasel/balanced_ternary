@@ -34545,3 +34545,97 @@ Best next question
   in n -- and does the answer change the shape of the barrier from "t
   objects" to "one object at each depth"?
 ```
+
+## Loop, iteration 5: the dominant defect is at the walk minimum, and the climb from it is the barrier
+
+The question iteration 4 left: with the exponent bounded and the nesting
+unbounded, which of the \(t\) floor defects dominates the last-step phase, and
+does the answer collapse "\(t\) objects" to one?
+
+**A one-line derivative settles where.** Write \(x_k=X_k-D_k\) with
+\(X_k=n^{e_k}\) the floorless composition. The defect \(\theta_k\) injected
+when \(x_k\) is formed reaches \(x_{T-1}\) multiplied by the derivative of the
+composed map \(x_k\mapsto x_{T-1}\), which is \(x\mapsto x^{e_{T-1}/e_k}\), so
+\[
+A_k\;\approx\;\frac{e_{T-1}}{e_k}\,\frac{x_{T-1}}{x_k}
+\;\approx\;\frac{e_{T-1}}{e_k}\,n^{\,e_{T-1}-e_k}.
+\]
+That is decreasing in \(e_k\), so the dominant defect is the one injected at
+the **walk minimum**. On 58869 live orbits at \(y=10^{20}\), depth 16, the
+argmax of the exactly computed \(A_k\) is the walk minimum in 100.0% of cases;
+the law's residual is \(+0.00/+0.30/+0.65\) in \(\log_{10}\) at the 10/50/90th
+percentiles, against a median \(\log_{10}A_{k^*}=26.3\) and a 90th percentile
+of 300.
+
+**But not one object mod 1.** A defect enters the parity of \(x_T\) iff
+\(A_k\ge1\), i.e. iff \(u_k\le u_{T-1}\): the steps at which the walk was at
+or below its final value. For a meander ending high that is most of them ---
+median 9 of 15, tilted mean 10.1. So the last-step phase is one object in size
+and \(\Theta(T)\) objects mod 1. The hierarchy of amplifications does not
+reduce the nesting count; it orders it.
+
+**The provability gap, priced at the object that carries it.** The dominant
+defect is injected where the prefix is at its most contracting and its image
+\(\{x_{k^*-1}\}\) at its densest --- iteration 3's dense-image class, at the
+one step of every live orbit where it is guaranteed to occur. The parity of
+\(x_T\) probes \(\theta_{k^*}=\{x_{k^*-1}^{3/2}\}\) at scale
+\(1/A_{k^*}=n^{-(e_{T-1}-e_{k^*})}\), tilted-mean exponent \(\Delta e=10.9\).
+The discrepancy of \(\{m^{3/2}\}\) over that image, of size about
+\(n^{e_{k^*-1}}\), resolves at best \(n^{-e_{k^*-1}/2}\), tilted-mean exponent
+\(0.70\). The requirement exceeds the resolution by \(n^{10.2}\) on tilted
+average --- \(10^{205}\) at this \(y\).
+
+That is Paper B's growing sawtooth, located and priced. The amplification that
+makes the parity fair *in fact* --- a huge multiple of a fractional part is as
+mixed as anything can be --- is exactly what puts it beyond any equidistribution
+bound on the defect that carries it. Both are measured by one number: the
+walk's climb from its minimum, \(e_{T-1}-e_{k^*}\).
+
+**What it does and does not change.** It does not open a door. It replaces
+"\(t\) sawteeth of growing amplitude" with a structure: one dominant defect at
+a known location, amplified by a known factor, plus \(\Theta(t)\) active
+subordinates; and it says why the obvious proof strategy --- equidistribute the
+dominant defect --- fails by two hundred orders of magnitude rather than by a
+constant. Any proof has to get its cancellation without resolving
+\(\theta_{k^*}\) at scale \(n^{-\Delta e}\). That is the same sentence Paper C
+writes as "a mean over characters, not a supremum", now with the character
+named.
+
+**Lean.** No toolchain; nothing formalised.
+
+```text
+What was learned
+- A_k ~ (e_{T-1}/e_k) n^{e_{T-1}-e_k}: the dominant defect is at the walk
+  minimum, 100.0% of live orbits, law residual within a factor 4
+- a defect is active mod 1 iff u_k <= u_{T-1}; tilted mean 10.1 of 15 are,
+  so the nesting count is ordered, not reduced
+- the dominant defect is injected on the densest image of the orbit and
+  probed at scale n^{-Delta e}, Delta e = 10.9 tilted mean, against a best
+  resolution n^{-0.7}: a gap of n^{10}, 10^205 at y = 1e20
+- the climb from the walk minimum is the one number that measures both why
+  the parity is fair and why that cannot be proved by equidistribution
+Strongest theorem
+- the dominant-defect proposition (J-dominant-defect-at-walk-minimum), a
+  derivative computation verified exactly
+Strongest refutation
+- "equidistribute the dominant defect" as a proof strategy, by 205 orders
+Reusable machinery
+- dominant_defect_profile; one test
+Branch status
+- PARK
+Why
+  Five iterations have turned the barrier from a phrase into a located,
+  priced structure: bounded exponent, meander walk, dominant defect at the
+  minimum, Theta(t) active subordinates, and a two-hundred-order gap between
+  what parity probes and what discrepancy resolves. None of it is a route.
+  All of it is what a route would have to route around.
+Best next question
+- the gap is between scale n^{-Delta e} and resolution n^{-e_{k*-1}/2}. A
+  proof that does not resolve theta_{k*} must average over it. The only
+  averaging the hypothesis permits is over cylinders under the tilt. Does the
+  tilt-weighted average over live orbits of (-1)^{x_T} decompose along the
+  walk minimum -- condition on (k*, x_{k*}) -- into a sum whose inner terms
+  are single-floor sums over dense images, with the outer sum over the
+  meander's minimum carrying all the nesting? If so the nesting has moved
+  from the phase into the measure, which is a different kind of object.
+```

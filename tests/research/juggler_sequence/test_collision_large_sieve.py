@@ -474,3 +474,18 @@ def test_the_size_of_e_cost_decays_like_two_to_the_minus_e() -> None:
     d4, d7, d10 = (van_der_corput_saving(e)["saving_delta"] for e in (4.0, 7.0, 10.0))
     assert d4 > d7 > d10 > 0.0
     assert abs(d4 - 0.0333) < 1e-3 and abs(d10 - 0.00049) < 1e-4
+
+
+def test_the_dominant_defect_sits_at_the_walk_minimum_and_most_defects_stay_active() -> None:
+    """A_k ~ (e_{T-1}/e_k) n^{e_{T-1}-e_k} is monotone in e_k, so the argmax is the walk minimum;
+    but every k with u_k <= u_{T-1} is active mod 1, so the nesting count is not reduced."""
+
+    from research.juggler_sequence.collision_large_sieve import dominant_defect_profile
+
+    out = dominant_defect_profile(20, depth=16, samples=60_000)
+    assert out["live"] > 5_000
+    assert out["dominant_at_walk_minimum"] > 0.99, out
+    assert abs(out["amplitude_law_residual_log10_median"]) < 1.0, out
+    assert 0.4 * 15 < out["active_defects_tilted_mean"] < 0.85 * 15, out
+    # the requirement on the dominant defect exceeds any discrepancy resolution by a large power
+    assert out["probe_scale_exponent_tilted_mean"] > 5 * out["resolution_exponent_tilted_mean"], out
