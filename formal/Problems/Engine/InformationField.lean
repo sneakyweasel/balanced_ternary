@@ -1,4 +1,5 @@
 import Mathlib.Algebra.Order.BigOperators.GroupWithZero.Finset
+import Mathlib.Data.Nat.Factorial.BigOperators
 import Mathlib.Tactic.Positivity
 import Mathlib.Topology.MetricSpace.Lipschitz
 
@@ -47,7 +48,17 @@ definitions. The statements are:
   least `g` give total gain at least `g ^ n`;
 * `prod_le_prod_exchange`, `exists_optimal_menu` — mining order:
   swapping a candidate for one of larger gain never lowers the total
-  gain, and among all `k`-element menus a best one exists.
+  gain, and among all `k`-element menus a best one exists;
+* `Prospect.before_iff`, `exists_max_priority` — the priority ratio
+  `R(p) = D(p) F(p) / cost(p)` of a candidate proposition, its
+  division-free ordering, and the existence of a best prospect;
+* `regions_cover` and the disjointness lemmas — the landscape splits
+  into noise, ordinary and original regimes by density thresholds;
+* `factorial_le_gainRatio_trajectory` — factorial impact: `n` steps
+  whose `k`-th gain is at least `k + 1` multiply capability by `n!`;
+* `originalRegion_trajectory_mono` — the discovery loop: along a
+  trajectory of landscapes whose steps only add structure, the original
+  region never shrinks.
 
 The information space itself is left abstract; a *complexity* is any
 real-valued function on it (see `informationCost`). Nothing here is
@@ -596,5 +607,168 @@ theorem exists_optimal_menu (gain : Perturbation I → ℝ) (S : Finset (Perturb
     (Finset.powersetCard_nonempty.mpr hk)
 
 end Mining
+
+/-! ## Prospecting: candidates, priority, regimes
+
+A candidate proposition `p` is scored by a discovery probability `D p`
+(true and novel), an expected downstream impact `F p`, and an
+information/verification cost. The mining objective is not the
+maximal quality `Q x` of a state but the maximal priority ratio
+`R p = D p · F p / cost p`: a hard theorem without consequences ranks
+low, a small lemma that collapses an architecture ranks high. -/
+
+section Prospecting
+
+/-- A candidate proposition with its estimated discovery probability
+`D(p)`, expected downstream impact `F(p)` and cost. -/
+structure Prospect where
+  /-- Probability that the proposition is true and genuinely novel. -/
+  discovery : ℝ
+  /-- Expected downstream mathematical or computational impact. -/
+  impact : ℝ
+  /-- Information and verification cost. -/
+  cost : ℝ
+
+namespace Prospect
+
+/-- Expected downstream value `D(p) · F(p)`. -/
+def value (p : Prospect) : ℝ :=
+  p.discovery * p.impact
+
+/-- The priority ratio `R(p) = D(p) F(p) / cost(p)`. -/
+noncomputable def priority (p : Prospect) : ℝ :=
+  p.value / p.cost
+
+/-- `p` is mined before `q`: `R p ≥ R q`, stated without division so
+that it makes sense for every cost. -/
+def Before (p q : Prospect) : Prop :=
+  q.value * p.cost ≤ p.value * q.cost
+
+theorem before_iff (p q : Prospect) (hp : 0 < p.cost) (hq : 0 < q.cost) :
+    Before p q ↔ q.priority ≤ p.priority := by
+  unfold Before priority
+  rw [div_le_div_iff₀ hq hp]
+
+theorem before_total (p q : Prospect) : Before p q ∨ Before q p :=
+  le_total _ _
+
+/-- Difficulty without consequence has no priority. -/
+theorem priority_of_impact_eq_zero (p : Prospect) (h : p.impact = 0) : p.priority = 0 := by
+  simp [priority, value, h]
+
+/-- Consequence without any chance of novelty has no priority either. -/
+theorem priority_of_discovery_eq_zero (p : Prospect) (h : p.discovery = 0) :
+    p.priority = 0 := by
+  simp [priority, value, h]
+
+end Prospect
+
+/-- A finite menu of prospects has a member of maximal priority. -/
+theorem exists_max_priority (S : Finset Prospect) (hS : S.Nonempty) :
+    ∃ p ∈ S, ∀ q ∈ S, q.priority ≤ p.priority :=
+  S.exists_max_image Prospect.priority hS
+
+variable (ρ : I → ℝ) (τ₀ τ₁ : ℝ)
+
+/-- States whose density of useful information is below `τ₀`. -/
+def noiseRegion : Set I :=
+  {x | ρ x < τ₀}
+
+/-- States of ordinary density, between `τ₀` and `τ₁`. -/
+def ordinaryRegion : Set I :=
+  {x | τ₀ ≤ ρ x ∧ ρ x < τ₁}
+
+/-- States of unusually high density: the original region. -/
+def originalRegion : Set I :=
+  {x | τ₁ ≤ ρ x}
+
+@[simp] theorem mem_noiseRegion {x : I} : x ∈ noiseRegion ρ τ₀ ↔ ρ x < τ₀ :=
+  Iff.rfl
+
+@[simp] theorem mem_ordinaryRegion {x : I} :
+    x ∈ ordinaryRegion ρ τ₀ τ₁ ↔ τ₀ ≤ ρ x ∧ ρ x < τ₁ :=
+  Iff.rfl
+
+@[simp] theorem mem_originalRegion {x : I} : x ∈ originalRegion ρ τ₁ ↔ τ₁ ≤ ρ x :=
+  Iff.rfl
+
+/-- The three regimes cover the landscape. -/
+theorem regions_cover :
+    noiseRegion ρ τ₀ ∪ ordinaryRegion ρ τ₀ τ₁ ∪ originalRegion ρ τ₁ = Set.univ := by
+  ext x
+  simp only [Set.mem_union, mem_noiseRegion, mem_ordinaryRegion, mem_originalRegion,
+    Set.mem_univ, iff_true]
+  rcases lt_or_ge (ρ x) τ₀ with h₀ | h₀
+  · exact Or.inl (Or.inl h₀)
+  · rcases lt_or_ge (ρ x) τ₁ with h₁ | h₁
+    · exact Or.inl (Or.inr ⟨h₀, h₁⟩)
+    · exact Or.inr h₁
+
+theorem noise_disjoint_ordinary : Disjoint (noiseRegion ρ τ₀) (ordinaryRegion ρ τ₀ τ₁) := by
+  simp only [Set.disjoint_left, mem_noiseRegion, mem_ordinaryRegion]
+  intro x hx hx'
+  exact absurd hx'.1 (not_le.mpr hx)
+
+theorem ordinary_disjoint_original :
+    Disjoint (ordinaryRegion ρ τ₀ τ₁) (originalRegion ρ τ₁) := by
+  simp only [Set.disjoint_left, mem_ordinaryRegion, mem_originalRegion]
+  intro x hx hx'
+  exact absurd hx' (not_le.mpr hx.2)
+
+theorem noise_disjoint_original (hτ : τ₀ ≤ τ₁) :
+    Disjoint (noiseRegion ρ τ₀) (originalRegion ρ τ₁) := by
+  simp only [Set.disjoint_left, mem_noiseRegion, mem_originalRegion]
+  intro x hx hx'
+  exact absurd (hτ.trans hx') (not_le.mpr hx)
+
+/-- Factorial impact. If the `k`-th step of a mining trajectory
+eliminates one more family of cases than the step before it — gain
+ratio at least `k + 1` — then `n` steps multiply capability by at least
+`n!`: the consequence of the sequence is combinatorial in its length. -/
+theorem factorial_le_gainRatio_trajectory (C : I → ℝ) (Tseq : ℕ → Perturbation I) (x₀ : I)
+    (n : ℕ) (h : ∀ k, k ≤ n → C (trajectory Tseq x₀ k) ≠ 0)
+    (hstep : ∀ k, k < n → ((k : ℝ) + 1) ≤ gainRatio C (Tseq k) (trajectory Tseq x₀ k)) :
+    (n.factorial : ℝ) ≤ C x₀ / C (trajectory Tseq x₀ n) := by
+  rw [gainRatio_trajectory C Tseq x₀ n h, ← Finset.prod_range_add_one_eq_factorial,
+    Nat.cast_prod]
+  push_cast
+  exact Finset.prod_le_prod (fun k _ => by positivity)
+    (fun k hk => hstep k (Finset.mem_range.mp hk))
+
+end Prospecting
+
+/-! ## The discovery loop
+
+A landscape is itself an information state: a density `ρ : X → ℝ`.
+Establishing a theorem perturbs the landscape. When such perturbations
+only add structure (they never lower density), the original region can
+only grow along the trajectory `new theorem → new structure → new
+high-density region → new theorem`. -/
+
+section Loop
+
+variable {X : Type w}
+
+/-- A perturbation of landscapes adds structure when it never lowers
+the density anywhere. -/
+def AddsStructure (T : Perturbation (X → ℝ)) : Prop :=
+  ∀ (ρ : X → ℝ) (x : X), ρ x ≤ T ρ x
+
+theorem originalRegion_mono {ρ ρ' : X → ℝ} (h : ∀ x, ρ x ≤ ρ' x) (τ : ℝ) :
+    originalRegion ρ τ ⊆ originalRegion ρ' τ :=
+  fun x hx => (mem_originalRegion ρ' τ).mpr ((mem_originalRegion ρ τ).mp hx |>.trans (h x))
+
+/-- Along a trajectory of landscapes whose steps only add structure, the
+original region never shrinks: the discovery loop is self-amplifying in
+the weak sense that it never destroys a high-density region. -/
+theorem originalRegion_trajectory_mono (Tseq : ℕ → Perturbation (X → ℝ))
+    (hT : ∀ n, AddsStructure (Tseq n)) (ρ₀ : X → ℝ) (τ : ℝ) (n : ℕ) :
+    originalRegion ρ₀ τ ⊆ originalRegion (trajectory Tseq ρ₀ n) τ := by
+  induction n with
+  | zero => rw [trajectory_zero]
+  | succ n ih =>
+    exact ih.trans (originalRegion_mono (hT n (trajectory Tseq ρ₀ n)) τ)
+
+end Loop
 
 end Problems.Engine.InformationField
