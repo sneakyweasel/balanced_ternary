@@ -167,8 +167,9 @@ def test_H_of_C_A_now_reads_over_bad_words_in_every_place_that_states_it() -> No
     assert "REFUTED IN THE UNRESTRICTED FORM" in record["counterexamples"]
 
 
-def test_H_q_carries_the_same_defect_and_is_not_repaired() -> None:
-    """Recorded, not fixed: repairing H_q needs a stopped martingale in Theorem 9.1."""
+def test_H_q_needed_the_repair_and_the_witness_still_stands() -> None:
+    """The witness that forced the stopped martingale: a cylinder whose members have all
+    reached 1, so its odd-continuation share is exactly one."""
 
     from research.juggler_sequence.collision_large_sieve import worst_odd_continuation_share
 
@@ -177,3 +178,36 @@ def test_H_q_carries_the_same_defect_and_is_not_repaired() -> None:
     assert worst["share"] > 0.99, worst
     assert worst["bad_depth"] == 2, "the witness has already descended"
     assert worst["mass"] > 0.01, "and it is not a rare cylinder"
+
+
+def test_H_q_now_reads_over_bad_prefixes_and_the_proof_is_stopped() -> None:
+    """Both halves of the repair are checkable by reading: the quantifier, and the stopping
+    time that lets the hypothesis be used only where it is asserted."""
+
+    for path in (
+        "docs/theory/juggler_fate_almost_all_note.md",
+        "juggler_review/juggler_fate_almost_all_note.md",
+        "docs/theory/juggler_tao_reduction_note.md",
+    ):
+        text = (fp_root() / path).read_text(encoding="utf-8")
+        assert "-*bad* \\(w\\in\\{O,E\\}^t\\)" in text, path
+        assert "\\sigma=\\min\\{t\\ge 1:\\ u_t\\le-L\\}" in text or \
+               "\\sigma=\\min\\{t\\ge1:u_t\\le-L\\}" in text, path
+        assert "\\tilde\\eta_t=\\eta_t\\mathbf 1[\\sigma>t]" in text, path
+        assert "\\tilde M" in text, path
+
+
+def test_stopping_leaves_the_biased_split_exponent_where_it_was() -> None:
+    """The claim the repair rests on: e_q(C) is untouched, so the printed least-C table is
+    still the one the code computes."""
+
+    from research.juggler_sequence.tao_reduction import least_C_biased
+
+    assert [least_C_biased(q) for q in (0.5, 0.55, 0.60, 0.62)] == [20, 44, 240, 1715]
+    assert [least_C_biased(q, REQUIRED_RATE_STAR3) for q in (0.5, 0.55, 0.60, 0.62)] == [
+        18, 39, 206, 1451
+    ]
+    note = (fp_root() / "docs/theory/juggler_tao_reduction_note.md").read_text(encoding="utf-8")
+    assert "Stopping costs nothing" in note
+    for C in ("20", "44", "240", "1715"):
+        assert f"| \\({C}\\) |" in note, C

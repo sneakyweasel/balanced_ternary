@@ -338,7 +338,7 @@ cylinder \(\{n\ \text{odd}\in(y,2y]:\mathrm{word}_t(n)=w\}\),
 
 **Hypothesis \(\mathrm H_q(C,A)\) (log-log-depth odd-share bound).**
 For all sufficiently large \(y\), every \(1\le t<d(y)=\lceil CL(y)\rceil\)
-and every \(w\in\{O,E\}^t\),
+and every \(L(y)\)-*bad* \(w\in\{O,E\}^t\),
 \[
 \#\{n\in[w]_y:\ \mathrm{word}_{t+1}(n)=wO\}\ \le\ q\,\#[w]_y+\frac{y}{(\log y)^{A}} .
 \]
@@ -366,31 +366,60 @@ Consequently, if \(e_q(C)>1-\lambda^{**}\), Theorem A gives
 \(t\ge 1\), and \(u_t=(\log_2 3-1)+\sum_{1\le s<t}(X_s\log_2 3-1)\) the
 exponent walk (the first letter is \(O\)). Put
 \(\eta_t=\max\bigl(0,\ \mathbb P(X_t=1\mid\mathcal F_t)-q\bigr)\) for
-\(t\ge 1\). On a cylinder \([w]\) of depth \(t\), \(\mathrm H_q\)
-gives \(\eta_t\le y(\log y)^{-A}/\#[w]\), so
-\(\mathbb E[\eta_t]\le\sum_w\frac{\#[w]}{y/2}\cdot\frac{y(\log y)^{-A}}{\#[w]}\le 2^{t+1}(\log y)^{-A}\)
-and \(\mathbb E\bigl[\sum_{1\le t<d}\eta_t\bigr]\le 2^{d+1}(\log y)^{-A}\le 4(\log 2y/\log N_0)^{C}(\log y)^{-A}\).
-Since \(\mathbb E[u_{t+1}-u_t\mid\mathcal F_t]\le-\mu+\eta_t\log_2 3\)
-for \(t\ge 1\), the process
-\(M_t=u_t-u_1-\sum_{1\le s<t}\mathbb E[u_{s+1}-u_s\mid\mathcal F_s]\)
-is a martingale with increments in an interval of length
-\(\log_2 3\), and
-\(u_d\le u_1+M_d-(d-1)\mu+\log_2 3\sum_{1\le s<d}\eta_s\). Fix
+\(t\ge 1\). Let \(\sigma=\min\{t\ge1:u_t\le-L\}\) (\(\infty\) if
+there is no such \(t\)) be the first passage below \(-L\); \(u_t\) is
+\(\mathcal F_t\)-measurable, so \(\sigma\) is a stopping time, and
+\(\mathrm{word}_t(n)\) is \(L\)-bad exactly when \(\sigma>t\).
+Since \(\mathrm H_q\) is asserted only on bad cylinders, use it only
+there: put \(\tilde\eta_t=\eta_t\mathbf 1[\sigma>t]\),
+\(\mathcal F_t\)-measurable because \(\{\sigma>t\}\in\mathcal F_t\).
+On a bad cylinder \([w]\) of depth \(t\), \(\mathrm H_q\)
+gives \(\eta_t\le y(\log y)^{-A}/\#[w]\), so summing over the bad
+cylinders alone --- a subfamily of all of them ---
+\(\mathbb E[\tilde\eta_t]\le\sum_{w\ \mathrm{bad}}\frac{\#[w]}{y/2}\cdot\frac{y(\log y)^{-A}}{\#[w]}\le 2^{t+1}(\log y)^{-A}\)
+and \(\mathbb E\bigl[\sum_{1\le t<d}\tilde\eta_t\bigr]\le 2^{d+1}(\log y)^{-A}\le 4(\log 2y/\log N_0)^{C}(\log y)^{-A}\).
+Since \(e_t:=\mathbb E[u_{t+1}-u_t\mid\mathcal F_t]\le-\mu+\eta_t\log_2 3\)
+for \(t\ge 1\), stop the walk at \(\sigma\): with
+\(\tilde u_t=u_{t\wedge\sigma}\) the process
+\(\tilde M_t=\tilde u_t-u_1-\sum_{1\le s<t}\mathbf 1[\sigma>s]e_s\)
+is a martingale, its increment
+\(\mathbf 1[\sigma>s]\,(u_{s+1}-u_s-e_s)\) having zero conditional mean
+because \(\{\sigma>s\}\in\mathcal F_s\). Its increments still lie in an
+\(\mathcal F_s\)-measurable interval of length \(\log_2 3\) --- on
+\(\{\sigma>s\}\) in \([-1-e_s,\log_2 3-1-e_s]\), on
+\(\{\sigma\le s\}\) equal to \(0\), hence in
+\([a_s,a_s+\log_2 3]\) with \(a_s=\mathbf 1[\sigma>s]\,(-1-e_s)\) ---
+which is what Azuma–Hoeffding needs, and is the one point at which
+stopping could have cost something. Fix
 \(\kappa\in(0,1)\). If \(n\notin R\) then by Lemma 2.1 the walk never
-reaches \(-L\), so \(u_d>-L\), hence either
-\(\log_2 3\sum_s\eta_s>\kappa(d-1)\mu\) or
-\(M_d>-L-u_1+(1-\kappa)(d-1)\mu\). By Markov and the bound on
-\(\mathbb E[\sum\eta_s]\), the first event has probability
+reaches \(-L\), so \(\sigma>d\), whence \(\tilde u_d=u_d>-L\) and
+\(\mathbf 1[\sigma>s]=1\) for every \(s<d\); therefore
+\(u_d\le u_1+\tilde M_d-(d-1)\mu+\log_2 3\sum_{1\le s<d}\tilde\eta_s\),
+and either
+\(\log_2 3\sum_s\tilde\eta_s>\kappa(d-1)\mu\) or
+\(\tilde M_d>-L-u_1+(1-\kappa)(d-1)\mu\). By Markov and the bound on
+\(\mathbb E[\sum\tilde\eta_s]\), the first event has probability
 \(\le\frac{4\log_2 3}{\kappa(d-1)\mu}(\log 2y/\log N_0)^{C}(\log y)^{-A}=O((\log y)^{C-A})\),
 negligible for \(A>C+1\). By Azuma–Hoeffding, with
 \(a=(1-\kappa)(d-1)\mu-L-u_1\ge L\bigl((1-\kappa)C\mu-1\bigr)-\log_2 3\),
 \[
-\mathbb P(M_d>a)\le\exp\Bigl(-\frac{2a^2}{(d-1)(\log_2 3)^2}\Bigr)
+\mathbb P(\tilde M_d>a)\le\exp\Bigl(-\frac{2a^2}{(d-1)(\log_2 3)^2}\Bigr)
 \le 2^{-L\,(e_q^{(\kappa)}(C)-o(1))},
 \qquad
 e^{(\kappa)}_q(C)=\frac{2((1-\kappa)C\mu-1)^2}{C(\log_2 3)^2\ln 2},
 \]
 and \(e^{(\kappa)}_q(C)\to e_q(C)\) as \(\kappa\to 0\). \(\square\)
+
+Stopping costs nothing: the increment range is still \(\log_2 3\),
+the drift is still \(-\mu\) wherever the walk is running, and
+\(\sum_t\tilde\eta_t\) is bounded over a smaller family of cylinders,
+so \(e_q(C)\) and the table below are those of the unrestricted
+hypothesis. The restriction is nevertheless required: over all \(w\)
+the hypothesis is false, since \(J(1)=1\) is odd and a start that has
+reached \(1\) emits \(O\) for ever --- at \(y=10^{12}\), \(C=20\) the
+cylinder \(OEEEEE\) carries \(2.25\%\) of the odd starts with
+odd-continuation share exactly \(1\). Such a cylinder has already
+passed below \(-L\), so \(\sigma\) has stopped the walk there.
 
 The least \(C\) with \(e_q(C)>1-\lambda^{**}\) (`least_C_biased`):
 

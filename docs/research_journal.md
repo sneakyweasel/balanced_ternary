@@ -33571,3 +33571,99 @@ Best next question
   Theorem 9.1 costs. Does the biased-split exponent e_q(C) survive unchanged,
   or does optional stopping move the least-C table (20, 44, 240, 1715)?
 ```
+
+## H_q, repaired with a stopped walk, and stopping costs nothing
+
+The question the last entry left: stop the exponent-walk martingale at the first
+passage below \(-L\) and see what Theorem 9.1 costs. Does \(e_q(C)\) survive,
+or does optional stopping move the least-\(C\) table?
+
+It survives, exactly. The table does not move.
+
+**The repair.** Restrict the hypothesis to \(L(y)\)-bad prefixes, and let
+\(\sigma=\min\{t\ge1:u_t\le-L\}\) be the first passage of the exponent walk
+below \(-L\). Since \(u_t\) is \(\mathcal F_t\)-measurable, \(\sigma\) is a
+stopping time, and the depth-\(t\) prefix is bad precisely when
+\(\sigma>t\) --- so the hypothesis is available exactly on \(\{\sigma>t\}\)
+and nowhere else. Two substitutions carry the proof:
+
+- \(\eta_t\rightsquigarrow\tilde\eta_t=\eta_t\mathbf 1[\sigma>t]\), which is
+  \(\mathcal F_t\)-measurable because \(\{\sigma>t\}\in\mathcal F_t\), and
+  whose expectation is bounded by the same computation run over the bad
+  cylinders alone --- a subfamily, so the bound
+  \(\mathbb E[\tilde\eta_t]\le2^{t+1}(\log y)^{-A}\) is unchanged.
+- \(M_t\rightsquigarrow\tilde M_t=u_{t\wedge\sigma}-u_1-\sum_{s<t}\mathbf
+  1[\sigma>s]e_s\), a martingale because \(\{\sigma>s\}\in\mathcal F_s\).
+
+**Where it could have cost something, and did not.** Azuma-Hoeffding needs the
+increments in an interval of fixed length with \(\mathcal F_s\)-measurable
+endpoints. The stopped increment is \(u_{s+1}-u_s-e_s\) on \(\{\sigma>s\}\)
+and \(0\) on \(\{\sigma\le s\}\); taking
+\(a_s=\mathbf 1[\sigma>s]\,(-1-e_s)\) puts both cases in
+\([a_s,a_s+\log_2 3]\). The naive reading --- that the two cases need a common
+interval containing both the running range and \(0\), of length
+\(2\log_2 3\) --- would have quartered the exponent. It is avoided because
+\(a_s\) may depend on \(\mathcal F_s\), and \(\{\sigma>s\}\) is exactly the
+kind of thing \(\mathcal F_s\) knows.
+
+The rest is bookkeeping: \(n\notin R\) forces \(\sigma>d\), so on that event
+\(\tilde u_d=u_d\) and \(\mathbf 1[\sigma>s]=1\) throughout, and the displayed
+inequality, the Markov step and the Azuma bound run verbatim in the stopped
+variables. Hence \(e_q(C)\) is untouched and the least \(C\) stays
+\(20,44,240,1715\) at \(q=\tfrac12,0.55,0.60,0.62\) --- \(18,39,206,1451\)
+under \(\lambda^{***}\).
+
+**Why the two hypotheses came apart, restated now that both are done.** The
+repair of \(H(C,A)\) was free because Theorem 8.3 consults the hypothesis
+*after* Lemma 8.2 has counted the bad words: the use is a lookup on a set that
+is already restricted. \(\mathrm H_q\) is consulted inside an expectation over
+every start, so narrowing the statement leaves a gap that has to be closed in
+the proof. Closing it is the stopping time, and the reason it is free is that
+the walk's own filtration already contains the event the restriction names. A
+hypothesis wider than its use is repairable by narrowing the statement when the
+use is a lookup; when the use is an average, the repair is a stopping time, and
+it is free exactly when the restriction is measurable with respect to the
+process being averaged.
+
+Edited in five places for each hypothesis: Paper C, its `juggler_review` mirror,
+the Tao note, the ledger row and the conjecture record. Three tests: the witness
+that forced the repair, the two halves of the repair read back out of the
+sources, and the least-\(C\) table checked against the code.
+
+```text
+What was learned
+- optional stopping is free here: the stopped increments lie in an
+  F_s-measurable interval of the same length log2(3), so Azuma applies with
+  the same constant and e_q(C) does not move
+- the naive reading -- one interval covering the running range and zero, of
+  length 2 log2(3) -- would have quartered the exponent; the F_s-measurable
+  form of Azuma is what avoids it
+- the restricted expectation bound is the same computation over a subfamily,
+  so nothing is lost there either
+- H was free to repair and H_q was not, for a reason worth keeping: a lookup
+  on an already-restricted set versus an average over everything
+- both hypotheses of the reduction now say what their proofs use
+Strongest theorem
+- Theorem 9.1 / Theorem B' with H_q restricted to L-bad prefixes and the walk
+  stopped at the first passage below -L, with e_q(C) unchanged
+Strongest refutation
+- none new; the OEEEEE witness that forced the repair stands
+Reusable machinery
+- the stopping-time repair itself, and the observation that it is free when
+  the restriction is measurable with respect to the averaged process
+Branch status
+- PARK
+Why
+  Two hypotheses that were stated more widely than they were used now say what
+  they use, and the second repair cost nothing beyond a stopping time. The
+  constants are untouched, which is the whole point: had e_q(C) moved, the
+  least-C table in three documents would have needed re-deriving, and every
+  statement conditional on H_q would have shifted with it.
+Best next question
+- the pressure form P_theta is stated over live starts, which is already the
+  restricted population, and Proposition 9.3 derives it from the tilted odd
+  share of live starts. Is the live restriction there exactly the sigma of this
+  entry, or is tau (entrance into the floor) strictly finer than the walk's
+  first passage -- and if it is finer, does anything in Section 9.2 quietly use
+  the difference?
+```

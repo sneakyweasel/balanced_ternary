@@ -601,14 +601,20 @@ No theorem moves: Theorem 8.3 and Theorem B apply \(H\) only to the
 correction was to move that restriction inside the quantifier, and it is
 now made in all five files (Paper C §8.3 and its `juggler_review`
 mirror, the Tao note §4, the ledger row, the conjecture record); no
-proof step changes. Still open: the one-sided form \(\mathrm H_q(C,A)\)
-(`J-tao-biased-split-bound`) carries the identical defect --- at
+proof step changes. The one-sided form \(\mathrm H_q(C,A)\)
+(`J-tao-biased-split-bound`) carried the identical defect --- at
 \(y=10^{12}\), \(C=20\) the cylinder \(OEEEEE\) holds \(2.25\%\) of odd
 starts with odd-continuation share \(1.0000\) against the \(q<0.6309\)
-allowed --- and its repair is not a quantifier edit: Theorem 9.1 bounds
-\(\mathbb E[\sum_t\eta_t]\) over the whole population, so the
-exponent-walk martingale would also need stopping at the first passage
-below \(-L\). The
+allowed --- and is now repaired too. That one was not a quantifier edit:
+Theorem 9.1 bounds \(\mathbb E[\sum_t\eta_t]\) over the whole
+population, so the exponent walk is stopped at
+\(\sigma=\min\{t:u_t\le-L\}\) and the argument run with
+\(\tilde\eta_t=\eta_t\mathbf 1[\sigma>t]\) and the stopped martingale.
+Stopping costs nothing --- the increments still lie in an
+\(\mathcal F_s\)-measurable interval of length \(\log_2 3\), which is
+the form Azuma--Hoeffding needs --- so \(e_q(C)\) and the least-\(C\)
+table \((20,44,240,1715)\) are unchanged. Do not restate either
+hypothesis over all words. The
 collision hypotheses `J-collision-bound-half-exponent` are stated over
 \(L\)-bad words and are unaffected. Do not: quote \(H(C,A)\) in the
 universal form; treat the excess as absorbable by \(y(\log y)^{-A}\);
