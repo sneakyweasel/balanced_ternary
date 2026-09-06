@@ -33753,3 +33753,98 @@ Best next question
   live count. Does the threshold move when the live restriction is carried
   through, and in which direction?
 ```
+
+## The tower threshold answers two questions, and 0.836 is the answer to the other one
+
+The question the last entry left: Section 9.3(b) calls a tower harmless below
+odd share \(0.836\), computed against the fair total with \(\#[w]\) rather than
+the live count. Does the threshold move, and in which direction?
+
+Down, by \(0.3\%\), and the interesting part is why so little.
+
+**There are two questions and one printed number.** Charging a tower \(O^t\) as
+\(\#[O^t]e^{\theta t}=N\beta^{t-1}e^{\theta t}\) against \(Ne^{\theta}a_\theta^{t-1}\)
+gives geometric decay iff \(\beta<a_\theta e^{-\theta}\) --- \(0.8365\) at
+\(\theta_{19}\), \(0.8342\) at \(\theta_{20}\), printed as \(0.836\). That
+denominator is the *unrestricted* fair value, and it is exactly right for one
+question: can the tower alone break \(\mathrm P_\theta\)? It can not, because
+\(\mathrm P_\theta\) bounds the live sum by the unrestricted fair value, so the
+unrestricted total is the hypothesis's own right-hand side.
+
+The conclusion drawn from it is the other question --- whether the tower
+contributes a bounded total to \(\sum_t(s_\theta(t)-\tfrac12)^+\) --- and there
+\(s_\theta(t)\) averages over the live population, whose tilted mass decays. The
+denominator shrinks, the tower's share grows, and the threshold tightens.
+
+**The rate is a barrier problem.** Write the walk in its own steps:
+\(+(\log_2 3-1)\) with weight \(e^{\theta}\) on an odd letter, \(-1\) with
+weight \(1\) on an even one, held above \(-L\). The tilted drift is
+\(-0.050\) per letter at \(C=20\), so absorption is certain and the surviving
+weight grows like \(\lambda^t\) with
+\(\lambda=\min_{s\ge0}\bigl(e^{\theta}e^{(\log_2 3-1)s}+e^{-s}\bigr)\) against
+\((1+e^{\theta})^t\) unconstrained. So \(\rho=\lambda/(1+e^{\theta})\) is
+\(0.99769\) at \(C=19\) and \(0.99791\) at \(C=20\), and the no-momentum
+threshold is \(\rho\) times the printed one:
+
+| \(C\) | printed (breaks \(\mathrm P_\theta\)) | live (no-momentum) | over-population factor |
+|---|---|---|---|
+| 19 | 0.8365 | 0.8346 | 1.6730 -> 1.6691 |
+| 20 | 0.8342 | 0.8324 | 1.6684 -> 1.6649 |
+
+Transfer-operator iteration on the exact odd-count DP agrees with the analytic
+rate to \(10^{-3}\) at \(y=10^{100}\) and \(10^{1000}\). A first attempt at the
+DP alone did not converge --- it returned \(\rho=1.0000\) at \(L=1.249\), which
+is the tell, since a negative-drift walk under a barrier cannot have unit
+survival ratio --- and the analytic minimum is what caught it.
+
+**Why the correction is tiny, which is the real content.** The tilt sits at odd
+share \(p_C=0.5994\); the barrier asks for \(1/\log_2 3=0.6309\). Those are
+\(0.03\) apart, so the tilted walk is only just sub-critical against the
+survival constraint and loses \(0.2\%\) of its mass per letter to it. The tilt
+already selects almost exactly the words that survive --- which is Section 9.4's
+own observation, that the tilt picks out words with about \(60\%\) odd letters,
+arriving here as a quantity.
+
+Nothing the section argues changes. The ordering it exists to display ---
+\(0.6309\) what \(\mathrm H_q\) needs, \(0.832\) what the pressure form
+tolerates, \(0.981\) where Theorem 8.3's conclusion fails --- is untouched, and
+both numbers round to \(0.83\). The printed sentence is nonetheless answering a
+question it does not ask, and both numbers are now recorded.
+
+```text
+What was learned
+- 0.836 is the correct threshold for "can the tower alone break P_theta",
+  because P_theta bounds the live sum by the unrestricted fair value
+- it is 0.3% generous for the no-momentum conclusion the section draws from
+  it, where the denominator is the live tilted mass
+- the corrected numbers are 0.8346 (C=19) and 0.8324 (C=20); the
+  over-population factor moves 1.6684 -> 1.6649
+- the rate is a barrier problem with an analytic minimum, and the DP alone
+  did not converge -- rho = 1.0000 at L = 1.249 is impossible for a
+  negative-drift walk under a barrier, and that is what exposed it
+- the correction is small because the tilt sits at odd share 0.5994 and the
+  barrier asks 0.6309: the tilt already selects the survivors
+Strongest theorem
+- the two readings and their ratio rho = min_s(e^theta e^{0.585 s} + e^{-s})
+  / (1 + e^theta) (J-tower-threshold-two-readings)
+Strongest refutation
+- none; the printed number is right for one question and 0.3% generous for
+  the other, and the ordering the section argues is unaffected
+Reusable machinery
+- tower_threshold, returning both readings, the rate, and the two
+  over-population factors; two tests
+Branch status
+- PARK
+Why
+  A printed constant that answers a neighbouring question is the mildest of the
+  three statement problems this run has turned up, and the only one where the
+  number was right about something. Recording both readings costs a sentence
+  and removes the ambiguity; changing the manuscript is a one-number edit that
+  has not been made.
+Best next question
+- the same substitution appears in 9.3(c): the Walsh identity there is written
+  for the unstopped moment and labelled as such, but the conclusion drawn --
+  that high-order characters are exponentially down-weighted -- is about the
+  live one. Does the down-weighting survive the live restriction at the same
+  rate tanh(theta/2) = 0.199, or does it inherit a factor of rho as well?
+```

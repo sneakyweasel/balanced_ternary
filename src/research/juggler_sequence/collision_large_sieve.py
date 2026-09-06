@@ -40,6 +40,8 @@ from research.juggler_sequence.cycle_finance import git_commit
 from research.juggler_sequence.tao_reduction import (
     LOG2_3,
     N0_CERTIFIED,
+    p_of_C,
+    theta_of_C,
     REQUIRED_RATE,
     REQUIRED_RATE_STAR3,
     chernoff_exponent,
@@ -157,6 +159,58 @@ def bad_depth(word: tuple[int, ...], L: float) -> int:
         if o * LOG2_3 - t <= -L:
             return t - 1
     return len(word)
+
+
+def tower_threshold(C: int = 20) -> dict[str, Any]:
+    """The odd share below which a tower ``O^t`` stays harmless -- both readings.
+
+    Section 9.3(b) computes ``a_theta e^{-theta} = 0.836`` by charging the tower
+    ``#[O^t] e^{theta t}`` against the fair total ``N e^theta a_theta^{t-1}``.  That is the
+    right comparison for one question and not for the other:
+
+    * *Can the tower alone break* ``P_theta``?  ``P_theta`` bounds the live sum by the
+      UNRESTRICTED fair value, so the denominator is the unrestricted total and the answer
+      is the printed ``a_theta e^{-theta}``.
+    * *Does the tower contribute a bounded total to* ``sum_t (s_theta(t) - 1/2)^+``?  Here
+      ``s_theta(t)`` averages over the LIVE population, whose tilted mass decays, so the
+      denominator shrinks and the threshold tightens by that decay rate.
+
+    The rate is a barrier problem: steps ``+log2(3)-1`` with weight ``e^theta`` and ``-1``
+    with weight 1, held above ``-L``.  The tilted drift is negative, so absorption is
+    certain and the surviving weight grows like ``lambda^t`` with
+    ``lambda = min_{s>=0}(e^theta e^{(log2(3)-1)s} + e^{-s})`` against ``(1+e^theta)^t``.
+    The correction is small -- about 0.2% -- because the tilt already sits at odd share
+    ``p_C ~ 0.599`` while the barrier asks for ``1/log2(3) = 0.631``: the tilt selects
+    almost exactly the words that survive.
+    """
+
+    theta = theta_of_C(C)
+    e = math.exp(theta)
+    a_theta = 0.5 * (1.0 + e)
+    printed = a_theta * math.exp(-theta)
+    step_o = LOG2_3 - 1.0
+
+    def f(s: float) -> float:
+        return e * math.exp(step_o * s) + math.exp(-s)
+
+    lo, hi = 0.0, 5.0
+    for _ in range(200):
+        x, z = lo + (hi - lo) / 3.0, hi - (hi - lo) / 3.0
+        if f(x) < f(z):
+            hi = z
+        else:
+            lo = x
+    rho = f((lo + hi) / 2.0) / (1.0 + e)
+    return {
+        "C": C, "theta": theta,
+        "threshold_against_P_theta": printed,
+        "live_decay_rate_rho": rho,
+        "threshold_for_the_no_momentum_sum": printed * rho,
+        "overpopulation_factor_printed": 2.0 * printed,
+        "overpopulation_factor_live": 2.0 * printed * rho,
+        "tilt_odd_share_p_C": p_of_C(C),
+        "barrier_needs_odd_share": 1.0 / LOG2_3,
+    }
 
 
 def tau_vs_sigma(

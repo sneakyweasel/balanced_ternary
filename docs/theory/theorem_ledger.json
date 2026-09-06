@@ -7096,5 +7096,18 @@
   "related_conjectures": [
    "juggler_loglog_depth_cylinder_bound"
   ]
+ },
+ {
+  "id": "J-tower-threshold-two-readings",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Paper C §9.3(b)'s tower threshold has two readings and the printed one answers the other question. Charging a tower O^t as #[O^t] e^{θt} = N β^{t−1} e^{θt} against the fair total N e^θ a_θ^{t−1} gives geometric decay iff β < a_θ e^{−θ} = ½(1+e^{−θ}) — 0.8365 at θ_19 = 0.396, 0.8342 at θ_20 = 0.403, printed as 0.836. That denominator is the UNRESTRICTED fair value, which is exactly right for the question 'can the tower alone break P_θ', since P_θ bounds the live sum by the unrestricted fair value. The conclusion drawn from it is a different one — that the tower contributes a bounded total to Σ_t (s_θ(t) − ½)^+ — and there s_θ(t) averages over the LIVE population, whose tilted mass decays, so the denominator shrinks and the threshold tightens. The decay rate is a barrier problem: steps +log₂3−1 with weight e^θ and −1 with weight 1, held above −L; the tilted drift is −0.050 per letter at C = 20, so absorption is certain and the surviving weight grows like λ^t with λ = min_{s≥0}(e^θ e^{(log₂3−1)s} + e^{−s}), against (1+e^θ)^t. Hence ρ = λ/(1+e^θ) = 0.99769 at C = 19 and 0.99791 at C = 20, and the threshold for the no-momentum reading is ρ times the printed one: 0.8346 at C = 19, 0.8324 at C = 20. Confirmed by transfer-operator iteration on the exact odd-count DP, which agrees with the analytic rate to 1e-3 at y = 10^100 and 10^1000. The over-population factor 2 a_θ e^{−θ} moves from 1.6684 to 1.6649 in the same way. The correction is small — under 0.3% — and it is small for a structural reason: the tilt sits at odd share p_C = 0.5994 while the barrier asks for 1/log₂3 = 0.6309, so the tilt already selects almost exactly the words that survive. Nothing the section argues changes: the ordering 0.6309 (what H_q needs) ≪ 0.832 (what the pressure form tolerates) ≪ 0.981 (where Theorem 8.3's conclusion fails) is untouched, and both numbers round to 0.83.",
+  "source": "docs/research_journal.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_collision_large_sieve.py"
+  ],
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ]
  }
 ]

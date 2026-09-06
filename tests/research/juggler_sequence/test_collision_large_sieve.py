@@ -252,3 +252,32 @@ def test_the_containment_costs_almost_nothing_at_the_operative_depth() -> None:
         row = tau_vs_sigma(e10, C=C, samples=4_000)
         assert row["containment_cost"] is not None
         assert 1.0 <= row["containment_cost"] < 1.10, row
+
+
+def test_the_tower_threshold_has_two_readings_and_they_differ_slightly() -> None:
+    """0.836 is right for "can the tower alone break P_theta" and slightly generous for
+    "does it contribute a bounded total to the no-momentum sum", where the denominator is
+    the live tilted mass and shrinks."""
+
+    from research.juggler_sequence.collision_large_sieve import tower_threshold
+
+    for C, printed in ((19, 0.8365), (20, 0.8342)):
+        row = tower_threshold(C)
+        assert abs(row["threshold_against_P_theta"] - printed) < 5e-5, row
+        assert row["threshold_for_the_no_momentum_sum"] < row["threshold_against_P_theta"]
+        # the correction is real but small: under half a percent
+        assert 0.995 < row["live_decay_rate_rho"] < 1.0, row
+        assert abs(row["threshold_for_the_no_momentum_sum"] - printed) < 0.003, row
+        # and it does not disturb the ordering the section actually argues
+        assert 0.6309 < row["threshold_for_the_no_momentum_sum"] < 0.981
+
+
+def test_the_correction_is_small_because_the_tilt_already_selects_survivors() -> None:
+    """The tilt sits at odd share p_C ~ 0.599 and the barrier asks for 1/log2(3) = 0.631,
+    so the live mass decays only slowly relative to the unrestricted one."""
+
+    from research.juggler_sequence.collision_large_sieve import tower_threshold
+
+    row = tower_threshold(20)
+    assert row["tilt_odd_share_p_C"] < row["barrier_needs_odd_share"]
+    assert row["barrier_needs_odd_share"] - row["tilt_odd_share_p_C"] < 0.04
