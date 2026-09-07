@@ -234,6 +234,304 @@ def dominant_defect_profile(
     }
 
 
+def damping_at_running_minima(
+    log10_y: int = 20, depth: int = 16, n0: int = N0_CERTIFIED, samples: int = 100_000, seed: int = 3,
+    C: int = 20,
+) -> dict[str, Any]:
+    """The mirror of ``dominant_defect_profile``: at a RUNNING MINIMUM the state is a single floor.
+
+    Write ``x_k = X_k - D_k`` with ``X_k = n^{e_k}``.  Since every step is monotone and the floor
+    only lowers, ``0 <= D_k < 1 + c_k D_{k-1}`` with ``c_k = (3/2) X_{k-1}^{1/2}`` on an odd step
+    and ``c_k = (1/2) x_{k-1}^{-1/2}`` on an even one (convexity / concavity of the step map), so
+    ``D_k < 1 + Delta_k`` with ``Delta_k = sum_{j<k} prod_{i=j+1}^{k} c_i``.  At a running minimum
+    ``s`` of the exponent walk every product is ``~ (e_s/e_j) n^{e_s-e_j} < 1``, so ``Delta_s`` is
+    small and ``x_s in {floor(X_s), floor(X_s) - 1}``, with ``x_s = floor(X_s)`` whenever
+    ``{X_s} >= Delta_s``.  Amplification (iteration 5) and damping are the same derivative with
+    opposite signs of the walk increment; the walk minimum is the seam between them.
+
+    Also returns the argmin law of the live set over ``0..depth`` (tilted), for the cross-check
+    against the Wiener--Hopf DP in ``ladder_factorisation``, and the number of strict descending
+    ladder epochs per live orbit.
+    """
+
+    from mpmath import mp, mpf
+    from mpmath import floor as mfloor
+
+    mp.dps = 60
+    y = 10**log10_y
+    L = scale_L(log10_y * math.log(10.0), n0)
+    theta = theta_of_C(C)
+    rng = random.Random(seed)
+    T = depth
+    lg = lambda x: (x.bit_length() - 1) * math.log10(2.0)
+    counts = {"live": 0, "running_minima": 0, "in_floor_or_floor_minus_one": 0, "equal_floor": 0,
+              "floor_minus_one": 0, "predicted_equal": 0, "predicted_equal_violations": 0,
+              "lemma_checked": 0, "lemma_violations": 0}
+    ks: list[int] = []
+    epochs: list[int] = []
+    mscale: list[float] = []
+    weights: list[float] = []
+    for _ in range(samples):
+        n = rng.randrange(y + 1, 2 * y + 1) | 1
+        xs, us, o, ok = [n], [0.0], 0, True
+        for t in range(1, T + 1):
+            b = xs[-1] & 1
+            o += b
+            xs.append(math.isqrt(xs[-1] ** 3) if b else math.isqrt(xs[-1]))
+            u = o * LOG2_3 - t
+            us.append(u)
+            if u <= -L:
+                ok = False
+                break
+        if not ok:
+            continue
+        counts["live"] += 1
+        l10n = math.log10(n)
+        l10X = [2.0 ** us[k] * l10n for k in range(T + 1)]
+        l10c = [0.0] * (T + 1)
+        for i in range(1, T + 1):
+            l10c[i] = (math.log10(1.5) + 0.5 * l10X[i - 1]) if xs[i - 1] & 1 else (math.log10(0.5) - 0.5 * lg(xs[i - 1]))
+        Delta = [0.0] * (T + 1)
+        for k in range(1, T + 1):
+            acc, s = 0.0, 0.0
+            for j in range(k - 1, -1, -1):
+                acc += l10c[j + 1]
+                s += 10.0 ** acc if acc < 300 else float("inf")
+            Delta[k] = s
+        exact_X = lambda k: mp.power(mpf(n), mpf(3) ** round((us[k] + k) / LOG2_3) / mpf(2) ** k)
+        n_epochs = 0
+        for s_ in range(1, T + 1):
+            if all(us[k] > us[s_] for k in range(s_)):
+                n_epochs += 1
+                counts["running_minima"] += 1
+                X = exact_X(s_)
+                fX = int(mfloor(X))
+                frac = float(X - fX)
+                dd = fX - xs[s_]
+                counts["in_floor_or_floor_minus_one"] += dd in (0, 1)
+                counts["equal_floor"] += dd == 0
+                counts["floor_minus_one"] += dd == 1
+                if frac >= Delta[s_]:
+                    counts["predicted_equal"] += 1
+                    counts["predicted_equal_violations"] += dd != 0
+        for k in range(1, T + 1):
+            if l10X[k] < 40:
+                counts["lemma_checked"] += 1
+                D = float(exact_X(k) - xs[k])
+                counts["lemma_violations"] += not (0.0 <= D < 1.0 + Delta[k])
+        km = min(range(T + 1), key=lambda k: us[k])
+        ks.append(km)
+        epochs.append(n_epochs)
+        mscale.append(lg(xs[km]) / math.log10(n0))
+        weights.append(math.exp(theta * o))
+    W = sum(weights)
+    law: dict[int, float] = {k: 0.0 for k in range(T + 1)}
+    for k, wt in zip(ks, weights):
+        law[k] += wt / W
+
+    def tq(v: list[float], f: float) -> float:
+        idx = sorted(range(len(v)), key=lambda i: v[i])
+        c = 0.0
+        for i in idx:
+            c += weights[i]
+            if c >= f * W:
+                return v[i]
+        return v[idx[-1]]
+
+    return {
+        "log10_y": log10_y, "L": L, "depth": T, **counts,
+        "argmin_law_tilted": law,
+        "P_argmin_zero_tilted": law[0],
+        "mean_argmin_over_depth_tilted": sum(k * wt for k, wt in zip(ks, weights)) / W / T,
+        "ladder_epochs_per_orbit": sum(epochs) / len(epochs),
+        "ladder_epochs_per_orbit_tilted": sum(e * wt for e, wt in zip(epochs, weights)) / W,
+        "min_scale_over_log_n0_tilted_quantiles": [tq(mscale, f) for f in (0.1, 0.25, 0.5, 0.75, 0.9)],
+        "start_scale_over_log_n0": log10_y / math.log10(n0),
+    }
+
+
+def _tilted_walk_count(length: int, level: float, barrier: float, a: float) -> float:
+    """Tilted count (weight ``a`` per odd letter) of words of `length` free letters whose walk from
+    `level` stays strictly above `barrier` at every step."""
+
+    cur = {0: 1.0}
+    for t in range(1, length + 1):
+        nxt: dict[int, float] = {}
+        for o, wt in cur.items():
+            for o2, mult in ((o, 1.0), (o + 1, a)):
+                if level + o2 * LOG2_3 - t > barrier:
+                    nxt[o2] = nxt.get(o2, 0.0) + wt * mult
+        cur = nxt
+        if not cur:
+            return 0.0
+    return sum(cur.values())
+
+
+def ladder_factorisation(L: float, d: int | None = None, C: int = 20) -> dict[str, Any]:
+    """Wiener--Hopf factorisation of the tilted L-bad count at the walk minimum.
+
+    Every L-bad word ``w`` of length ``d`` has a unique argmin ``k*`` of its exponent walk over
+    ``0..d`` (levels ``o log2 3 - t`` are distinct for distinct ``(o,t)``), and splits as a prefix
+    that descends to a strict new minimum at ``k*`` followed by a positive excursion of length
+    ``d - k*``.  The tilt ``e^{theta o(w)}`` factorises across the split, so::
+
+        N_bad^theta(L, d) = Exc_theta(d) + sum_{k*>=1, o*} e^{theta o*} N_desc(k*, o*) Exc_theta(d - k*),
+
+    ``N_desc`` counted by time reversal (the reversed, negated walk is a positive excursion whose
+    last letter is the forced initial ``O``) and ``Exc_theta`` the tilted positive-excursion count,
+    which does not depend on the level.  The identity is checked against the direct tilted DP.
+    Reported: the tilted argmin law (``P(k* = 0)``, quantiles and mean of ``k*/d``), the overshoot
+    of the minimum above the barrier, and the tilted mean number of strict descending ladder epochs
+    (each epoch is a single-floor state by ``damping_at_running_minima``).
+    """
+
+    if d is None:
+        d = math.ceil(C * L)
+    a = math.exp(theta_of_C(C))
+    exc = [1.0]
+    cur = {0: 1.0}
+    for t in range(1, d + 1):
+        nxt: dict[int, float] = {}
+        for o, wt in cur.items():
+            for o2, mult in ((o, 1.0), (o + 1, a)):
+                if o2 * LOG2_3 - t > 0:
+                    nxt[o2] = nxt.get(o2, 0.0) + wt * mult
+        cur = nxt
+        exc.append(sum(cur.values()))
+    desc: dict[tuple[int, int], float] = {}
+    cur = {0: 1.0}
+    for j in range(1, d + 1):
+        nxt = {}
+        last_odd: dict[int, float] = {}
+        for oo, wt in cur.items():
+            if j - oo * LOG2_3 > 0:
+                nxt[oo] = nxt.get(oo, 0.0) + wt
+            if j - (oo + 1) * LOG2_3 > 0:
+                nxt[oo + 1] = nxt.get(oo + 1, 0.0) + wt * a
+                last_odd[oo + 1] = last_odd.get(oo + 1, 0.0) + wt * a
+        cur = nxt
+        for oo, wt in last_odd.items():
+            if oo * LOG2_3 - j > -L:
+                desc[(j, oo)] = wt
+    mass = {(0, 0): exc[d]}
+    for (k, o), wt in desc.items():
+        mass[(k, o)] = wt * exc[d - k]
+    Z = sum(mass.values())
+    direct = _tilted_walk_count(d - 1, LOG2_3 - 1.0, -L, a) * a if LOG2_3 - 1.0 > -L else 0.0
+    epochs = 0.0
+    cache: dict[tuple[int, float], float] = {}
+    for (k, o), wt in desc.items():
+        key = (d - k, round(o * LOG2_3 - k, 9))
+        if key not in cache:
+            cache[key] = _tilted_walk_count(d - k, o * LOG2_3 - k, -L, a)
+        epochs += wt * cache[key]
+
+    def q(f: float, key) -> float:
+        items = sorted((key(k, o), wt) for (k, o), wt in mass.items())
+        c = 0.0
+        for v, wt in items:
+            c += wt
+            if c >= f * Z:
+                return v
+        return items[-1][0]
+
+    fs = (0.1, 0.25, 0.5, 0.75, 0.9)
+    law: dict[int, float] = {}
+    for (k, o), wt in mass.items():
+        law[k] = law.get(k, 0.0) + wt / Z
+    return {
+        "L": L, "d": d, "C": C,
+        "factorisation_over_direct_minus_one": Z / direct - 1.0,
+        "P_argmin_zero": mass[(0, 0)] / Z,
+        "argmin_law": law,
+        "argmin_over_depth_quantiles": [q(f, lambda k, o: k / d) for f in fs],
+        "mean_argmin_over_depth": sum(k * wt for (k, o), wt in mass.items()) / Z / d,
+        "overshoot_over_L_quantiles": [q(f, lambda k, o: (o * LOG2_3 - k + L) / L) for f in fs],
+        "overshoot_median": q(0.5, lambda k, o: o * LOG2_3 - k + L),
+        "ladder_epochs_tilted_mean": epochs / Z,
+    }
+
+
+def ladder_density_first_renewal(m0: int = 10**9, count: int = 4000, depth: int = 8, C: int = 20) -> dict[str, Any]:
+    """The ladder measure at the first renewal, for the prefix ``OE`` (``k* = 2``, ``e = 3/4``).
+
+    The fibre of ``m = x_2`` is the interval ``J_m = {n : m^2 <= floor(n^{3/2}) < (m+1)^2}``, of
+    length ``(4/3) m^{1/3}``, and ``x_2 = floor(n^{3/4})`` EXACTLY (an even step absorbs the floor
+    before it: ``floor(sqrt(floor(a))) = floor(sqrt(a))``).  The ladder density is
+    ``f(m) = #{odd n in J_m : floor(n^{3/2}) even} / #{odd n in J_m}``: a short-interval parity
+    count of a Piatetski-Shapiro sequence whose local frequency ``gamma(m) = {(3/2) m^{2/3}}``
+    drifts by ``m^{-1/3}`` per unit of ``m``.  Measured against the Poisson spread, binned by
+    ``gamma``, and correlated with the parity of the excursion ``chi_l(m) = (-1)^{x_l(m)}`` on the
+    ``m`` whose word is a positive excursion to depth ``l`` -- the decomposition sum
+    ``sum_m mu(m) chi_l(m)`` against its null with ``mu`` replaced by ``f-bar |J_m|``.
+    """
+
+    x1 = lambda n: math.isqrt(n * n * n)
+    rows = []
+    exact_floor_violations = 0
+    for m in range(m0, m0 + count):
+        lo = round(m ** (4 / 3)) - 3
+        while x1(lo) < m * m:
+            lo += 1
+        while lo > 0 and x1(lo - 1) >= m * m:
+            lo -= 1
+        hi = lo
+        while x1(hi) < (m + 1) * (m + 1):
+            hi += 1
+        n = lo if lo & 1 else lo + 1
+        nodd = mu = 0
+        while n < hi:
+            nodd += 1
+            mu += x1(n) % 2 == 0
+            exact_floor_violations += math.isqrt(x1(n)) != m
+            n += 2
+        x, o, exc, chis, excs = m, 0, True, [], []
+        for l in range(1, depth + 1):
+            b = x & 1
+            o += b
+            x = math.isqrt(x ** 3) if b else math.isqrt(x)
+            exc = exc and (o * LOG2_3 - l > 0)
+            chis.append(1 - 2 * (x & 1))
+            excs.append(exc)
+        rows.append((m, nodd, mu, (1.5 * m ** (2 / 3)) % 1.0, chis, excs))
+    f = [r[2] / r[1] for r in rows]
+    J = [r[1] for r in rows]
+    mean = lambda v: sum(v) / len(v)
+    fbar = mean(f)
+    std = lambda v: math.sqrt(mean([(x - mean(v)) ** 2 for x in v]))
+    B = 12
+    bins: list[list[float]] = [[] for _ in range(B)]
+    for r, fv in zip(rows, f):
+        bins[min(B - 1, int(r[3] * B))].append(fv)
+    near0 = [fv for r, fv in zip(rows, f) if min(r[3], 1 - r[3]) < 0.05]
+    nearh = [fv for r, fv in zip(rows, f) if abs(r[3] - 0.5) < 0.05]
+    per_depth = []
+    for l in range(1, depth + 1):
+        sel = [(fv - fbar, r[4][l - 1], r) for r, fv in zip(rows, f) if r[5][l - 1]]
+        if len(sel) < 20:
+            per_depth.append({"depth": l, "excursions": len(sel)})
+            continue
+        av = [s[0] for s in sel]
+        bv = [s[1] for s in sel]
+        corr = sum(x * yv for x, yv in zip(av, bv)) / math.sqrt(sum(x * x for x in av) * sum(yv * yv for yv in bv))
+        S = sum(r[2] * r[4][l - 1] for _, _, r in sel)
+        Snull = sum(fbar * r[1] * r[4][l - 1] for _, _, r in sel)
+        noise = math.sqrt(sum((r[2] - fbar * r[1]) ** 2 for _, _, r in sel))
+        per_depth.append({"depth": l, "excursions": len(sel), "corr": corr, "one_over_sqrt_n": 1 / math.sqrt(len(sel)),
+                          "z_decomposition_minus_null": (S - Snull) / noise})
+    return {
+        "m0": m0, "count": count, "mean_fibre_odd": mean(J), "fibre_law": (4 / 3) * m0 ** (1 / 3) / 2,
+        "exact_floor_violations": exact_floor_violations,
+        "mean_f": fbar, "std_f": std(f), "poisson_std": math.sqrt(0.25 / mean(J)),
+        "gamma_bins_mean_std": [(mean(b), std(b), len(b)) for b in bins if b],
+        "near_resonance_mean_abs_dev": mean([abs(v - 0.5) for v in near0]) if near0 else None,
+        "near_half_mean_abs_dev": mean([abs(v - 0.5) for v in nearh]) if nearh else None,
+        "lag1_mean_abs_diff": mean([abs(f[i + 1] - f[i]) for i in range(len(f) - 1)]),
+        "mean_abs_dev": mean([abs(v - fbar) for v in f]),
+        "per_depth": per_depth,
+    }
+
+
 def tilted_live_meander(L: float, d: int | None = None, C: int = 20) -> dict[str, Any]:
     """The tilted-live exponent walk is a meander, and its endpoint is bounded at every scale.
 

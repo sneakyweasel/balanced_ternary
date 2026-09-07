@@ -34639,3 +34639,130 @@ Best next question
   meander's minimum carrying all the nesting? If so the nesting has moved
   from the phase into the measure, which is a different kind of object.
 ```
+
+## Loop 6: the split at the minimum is a Wiener–Hopf factorisation, and it sorts the floors by sign
+
+Iteration 5 ended on a question: does the tilt-weighted parity sum over live
+orbits decompose along the walk minimum into single-floor inner sums, with the
+nesting moved from the phase into the measure? The answer is exact, and it is
+no in the way hoped and yes in a way that is worth having.
+
+**A damping lemma, the mirror of iteration 5.** With \(x_k=X_k-D_k\) and
+\(X_k=n^{e_k}\), monotonicity and one convexity inequality per step give
+\(0\le D_k<1+c_kD_{k-1}\), \(c_k=\tfrac32X_{k-1}^{1/2}\) on an odd step and
+\(\tfrac12x_{k-1}^{-1/2}\) on an even one, hence \(D_k<1+\Delta_k\) with
+\(\Delta_k=\sum_{j<k}\prod_{i=j+1}^k c_i\) — the same derivative products as
+the amplifications \(A_j\), now read in the other direction. At a *running
+minimum* \(s\) of the walk every earlier exponent is larger, every product is
+about \((e_s/e_j)n^{e_s-e_j}<1\), and so \(x_s\in\{\lfloor X_s\rfloor,
+\lfloor X_s\rfloor-1\}\), with equality to the floor whenever
+\(\{X_s\}\ge\Delta_s\). Verified on 19615 live orbits at \(y=10^{20}\), depth
+16: all 19917 running minima, 0 exceptions, and the general bound at all
+132796 steps small enough to check exactly. (An even step absorbs the floor
+before it outright, \(\lfloor\sqrt{\lfloor a\rfloor}\rfloor=\lfloor\sqrt a\rfloor\),
+so \(OE^j\) gives \(\lfloor n^{3/2^{j+1}}\rfloor\) with no exception at all.)
+Amplification and damping are one derivative with two signs; the walk minimum
+is the seam.
+
+**The factorisation.** Levels \(u_t\) are distinct for distinct \((o_t,t)\),
+so every \(L\)-bad word has a unique argmin \(k^*\) and splits as a descent to
+a strict new minimum followed by a positive excursion. The tilt factorises
+across the split:
+\[
+N^\theta_{\rm bad}(L,d)=\mathrm{Exc}_\theta(d)+\sum_{k^*\ge1,\,o^*}
+e^{\theta o^*}N_{\rm desc}(k^*,o^*)\,\mathrm{Exc}_\theta(d-k^*),
+\]
+the descent counted by time reversal, the excursion count level-free. Checked
+against the direct tilted DP to \(2\cdot10^{-15}\) up to \(d=480\). On orbits
+the fibre of the minimum state \(m\) is an interval of consecutive \(n\) and the
+continuation is a function of \(m\), so the live parity sum is exactly
+\(\sum_{k^*}\sum_m\mu_{k^*}(m)\chi_{d-k^*}(m)\): \(\mu\) carries the \(k^*\)
+damped floors, \(\chi\) the \(d-k^*\) amplified ones. **Floors are conserved.**
+The decomposition sorts them; it removes none.
+
+**The ladder law says which side is heavy.** Tilted, \(C=20\), by DP and
+cross-checked on exact orbits (\(P(k^*{=}0)=0.440\) DP vs \(0.437\) orbits):
+\(P(k^*{=}0)\) falls \(0.43\to0.012\) and the mean of \(k^*/d\) rises
+\(0.25\to0.69\) from \(L=1.25\) to \(24\). The argmin moves *late* as \(L\)
+grows: at large \(L\) most floors sit on the damped side. The minimum's
+overshoot above the barrier grows sublinearly (median \(1.0\to8.4\) walk
+units), so its scale \(N_0^{2^{u^*+L}}\) is far from both \(N_0\) and \(y\).
+And the descent is not one object: the tilted mean number of strict descending
+ladder epochs is \(0.93,\,2.58,\,4.96,\,10.6\) at \(L=1.25,\,3.3,\,6,\,12\),
+about \(0.9\) per unit \(L\), one every \(22\)–\(27\) letters — one per \(C\).
+
+**So this is what "nesting in the measure" means.** The live measure is a
+Markov renewal chain over \(\mathbb N\): states \(m_i\) at the ladder epochs,
+links \(m_i=\lfloor m_{i-1}^{e_i}\rfloor\) that are single Piatetski–Shapiro
+contractions (the damping lemma), weights that are the nested parity selection
+of one positive excursion of mean length \(\approx C\) from \(m_{i-1}\), and
+\(\Theta(L)\) such segments; the phase is the final excursion, of length
+\((1-k^*/d)\,d\). That is a different kind of object from one \(d\)-deep
+composition, and the question it isolates is *coarse/fine independence at a
+renewal*: is the parity selection of the excursion from \(m_{i-1}\), which is
+fine in \(m_{i-1}\), independent of the next state \(\lfloor m_{i-1}^{e}\rfloor\),
+which is coarse?
+
+**Seen once, at the shortest segment.** For the prefix \(OE\) the fibre of
+\(m\) has \((4/3)m^{1/3}\) integers and the ladder density \(f(m)\) is a
+short-interval parity count of \(\lfloor n^{3/2}\rfloor\) whose local frequency
+\(\gamma(m)=\{\tfrac32m^{2/3}\}\) drifts by \(m^{-1/3}\) per step. It is not
+smooth plus noise: its mean is \(0.500\pm0.004\) in every \(\gamma\)-bin, its
+spread is a quarter of Poisson off resonance and four to fifteen times that in
+the bins at \(\gamma\approx0\), and consecutive \(m\) are as different as random
+ones. Against the excursion parity to depth \(8\) it is orthogonal: every
+correlation within \(1/\sqrt n\), the decomposition sum within \(1.4\) noise
+units of its null at every depth.
+
+**What it is not.** Not a door. The per-segment selection at unbounded segment
+length is the original problem, and the tilted mass of long segments is the
+live-pressure bound at segment level — the hypothesis again, restricted to one
+excursion from the barrier. What it is: the first reformulation in which the
+unbounded depth is a product over \(\Theta(L)\) renewals of bounded-mean-length
+pieces, with the tilt factorising across each, and with the hypothesis's own
+anatomy (tolerance for rare odd-heavy towers) reappearing as the exponential
+tail of the segment-length law.
+
+**Lean.** No toolchain; nothing formalised. The damping lemma is the most
+Lean-ready statement so far: two real inequalities (\(\sqrt X-\sqrt x\le
+(X-x)/2\sqrt x\), \(X^{3/2}-x^{3/2}\le\tfrac32\sqrt X\,(X-x)\)) and an
+induction over the word.
+
+```text
+What was learned
+- damping lemma: at a running minimum x_s = floor(n^{e_s}) or one less, and
+  the floor itself whenever {X_s} >= Delta_s; 0 exceptions on 19917 minima
+- the live set factorises at the walk minimum (Wiener-Hopf); the tilt
+  factorises with it; identity checked to 2e-15 to d = 480
+- floors are conserved: k* damped into the measure, d - k* amplified into
+  the phase; nothing becomes single-floor
+- the argmin moves late with L (mean k*/d 0.25 -> 0.69), so at large L the
+  damped side is the heavy one, cut by ~0.9 L ladder epochs into segments
+  of mean length ~ C linked by single floors
+- the first-renewal density is quasi-periodic in its local frequency, mean
+  1/2 in every bin, orthogonal to the excursion parity to depth 8
+Strongest theorem
+- J-damping-at-running-minimum and J-live-set-ladder-factorisation (both
+  EXACT, the second with a DP identity verified to machine precision)
+Strongest refutation
+- "the inner sums become single-floor": no, by conservation of floors
+Reusable machinery
+- damping_at_running_minima, ladder_factorisation,
+  ladder_density_first_renewal; three tests
+Branch status
+- PARK, with a named object: the renewal chain over ladder epochs
+Why
+  The unbounded depth is now a chain of Theta(L) bounded-mean-length
+  segments linked by single floors, and the hypothesis is a law of large
+  numbers over that chain plus coarse/fine independence at each link. The
+  link is proved; the independence is seen once; the segment selection at
+  unbounded segment length is the same problem it always was.
+Best next question
+- coarse/fine independence with a rate: for a segment of length 2..5 (Paper
+  B's depth) from a state m, is the parity selection independent of
+  floor(m^e) on fibres of length (1/e) m^{1/e-1} -- a short-interval version
+  of Paper B's bounds? If Paper B's exponential-sum estimates localise to
+  intervals of that length with a saving, the chain's links are proved for
+  short segments, and the whole hypothesis reduces to the tilted mass of
+  segments longer than B, one-sided, from the barrier.
+```

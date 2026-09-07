@@ -489,3 +489,47 @@ def test_the_dominant_defect_sits_at_the_walk_minimum_and_most_defects_stay_acti
     assert 0.4 * 15 < out["active_defects_tilted_mean"] < 0.85 * 15, out
     # the requirement on the dominant defect exceeds any discrepancy resolution by a large power
     assert out["probe_scale_exponent_tilted_mean"] > 5 * out["resolution_exponent_tilted_mean"], out
+
+
+def test_ladder_factorisation_is_an_exact_identity() -> None:
+    """The tilted bad count splits at the walk minimum; the argmin moves late as L grows."""
+
+    from research.juggler_sequence.collision_large_sieve import ladder_factorisation
+
+    outs = [ladder_factorisation(L) for L in (1.2486, 3.3, 6.0)]
+    for out in outs:
+        assert abs(out["factorisation_over_direct_minus_one"]) < 1e-10
+        assert abs(sum(out["argmin_law"].values()) - 1.0) < 1e-9
+    assert outs[0]["P_argmin_zero"] > outs[1]["P_argmin_zero"] > outs[2]["P_argmin_zero"]
+    assert outs[0]["mean_argmin_over_depth"] < outs[1]["mean_argmin_over_depth"] < outs[2]["mean_argmin_over_depth"]
+    assert 2.4 < outs[1]["ladder_epochs_tilted_mean"] < 2.8
+
+
+def test_damping_lemma_holds_at_every_running_minimum() -> None:
+    """x_s is floor(n^{e_s}) or one less at a running minimum, and equal whenever {X_s} >= Delta_s;
+    the argmin law of exact orbits matches the Wiener--Hopf DP."""
+
+    from research.juggler_sequence.collision_large_sieve import damping_at_running_minima, ladder_factorisation
+
+    out = damping_at_running_minima(20, depth=16, samples=12_000)
+    assert out["live"] > 1500
+    assert out["running_minima"] == out["in_floor_or_floor_minus_one"]
+    assert out["predicted_equal_violations"] == 0
+    assert out["lemma_checked"] > 5000 and out["lemma_violations"] == 0
+    dp = ladder_factorisation(out["L"], d=16)
+    assert abs(dp["P_argmin_zero"] - out["P_argmin_zero_tilted"]) < 0.03
+
+
+def test_first_renewal_density_is_fair_and_orthogonal_to_the_excursion() -> None:
+    """f(m) averages 1/2, x_2 = floor(n^{3/4}) exactly, and the decomposition sum sits on its null."""
+
+    from research.juggler_sequence.collision_large_sieve import ladder_density_first_renewal
+
+    out = ladder_density_first_renewal(m0=10**8, count=600, depth=4)
+    assert out["exact_floor_violations"] == 0
+    assert abs(out["mean_fibre_odd"] - out["fibre_law"]) < 1.0
+    assert abs(out["mean_f"] - 0.5) < 0.01
+    for row in out["per_depth"]:
+        if "corr" in row:
+            assert abs(row["corr"]) < 0.2
+            assert abs(row["z_decomposition_minus_null"]) < 3.0
