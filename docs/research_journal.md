@@ -34850,3 +34850,90 @@ Best next question
   general first-passage link OOEE (e = 9/16, fibre length (16/9) M^{7/9})
   is the next exponent pair to price.
 ```
+
+## Loop 8: the chain conserves depth
+
+Loop 7 ended by asking whether Paper B's kernel estimate survives a second
+exponent pair and a monomial twist, because that looked like what the
+shortest link of the renewal chain needed. Before pricing it, sum the link
+identity the other way.
+
+**The identity summed over \(n\).** Independence at the \(OE\) renewal with
+\(\ell\) forward letters is \(\sum_M\mu(M)\chi_\ell(M)\approx\bar f\sum_M|F_M|\chi_\ell(M)\).
+Summed over \(n\) instead of \(M\), the left side is exactly
+\(\sum_{n\ \mathrm{odd},\,x_1\ \mathrm{even}}(-1)^{x_{2+\ell}(n)}\mathbf 1[\text{excursion}]\)
+— the parity balance of the cylinder \(OE\cdot w\) at depth \(2+\ell\), Paper
+B's own object, with no twist and no short interval — and the null is the
+same sum over all odd \(n\) for the counterfactual orbit of
+\(\lfloor n^{3/4}\rfloor\). Verified exactly on \(3000\) fibres at \(M=10^9\) to
+depth four (\(4892/4892\), \(3804/3804\), \(13778/13778\), \(2635/2635\)).
+So loop 7's twisted Paper B is a harder proof of the same depth-\((2+\ell)\)
+statement, and Paper B's depth-four theorem already gives this link for
+\(\ell\le2\).
+
+**Why, in general.** A link whose ladder measure carries \(k\) floors of
+history against \(\ell\) forward letters is the depth-\((k+\ell)\) statement.
+The damping lemma makes the measure's *support* a single floor; its
+*density* carries the whole history at full frequency — the earliest
+segment's parities wind fastest across the fibre, so recovering them from
+the epoch state needs the highest harmonics. Chaining the links is the
+depth-\(d\) statement it always was. Floors were conserved across the split
+(loop 6); depth is conserved across the chain. The Markov property a renewal
+argument needs is not a weaker hypothesis than fixed-depth equidistribution
+at the summed depth.
+
+**Two prices, for the record.** Paper B's slow-twist localization (Theorem
+4.11 via Lemma 4.10) removes a twist after differencing when its total
+variation \(2h|I|\sup|g''|\) is small; for the monomial \(a\cdot\tfrac34M^{2/3}\)
+that is \((a/3)P^{-1/4}\), fine for \(a\ll P^{1/4}\), while the link's
+frequency coordinate needs \(a\) up to \(\tfrac43P^{1/3}\), where the
+variation is \(2.5\) to \(20.6\) and the twist's first derivative is \(2/3\).
+And a supermartingale bound epoch by epoch would need a uniform-in-state
+bound on the tilted excursion mass from one state — the every-cylinder form
+of \(\mathrm H(C,A)\). Neither matters now: nothing beyond depth four is
+bought either way.
+
+**What the three loops leave.** Two exact structures (the factorisation
+with its tilt, the damping lemma), one named object (the renewal chain),
+and the knowledge that it does not shorten anything. And one identity that
+was always there and now has a use: an even step absorbs the floor before
+it, so every word without consecutive \(O\)'s is an exact iterated
+\(\lfloor\cdot^{3/4}\rfloor\). That is the fate note's \(OEOEE\) route —
+fifteen sign sums, second-derivative test and Kusmin–Landau, savings
+\(P^{-3/32}\) and \(P^{-1/16}\), no Paper B, no exceptional set — which
+raises \(\lambda^{**}\) from \(0.4480\) to \(0.4801\) unconditionally and is
+the first item of door 3. It has been pending since the note was written.
+
+**Lean.** No toolchain; nothing formalised.
+
+```text
+What was learned
+- the OE-link identity summed over n is the depth-(2+l) cylinder balance,
+  exactly; the twisted Paper B of loop 7 is a harder proof of the same
+  statement; Paper B depth 4 covers l <= 2 already
+- in general k floors of history against l forward letters is the
+  depth-(k+l) statement: the chain conserves depth as the split conserved
+  floors; support is single-floor, density is full-history
+- Paper B's slow twist reaches a << P^{1/4}; the link needs a <= P^{1/3},
+  twist first derivative 2/3 there; moot either way beyond depth 4
+Strongest theorem
+- none new; J-renewal-chain-conserves-depth is a reparameterisation
+Strongest refutation
+- "the renewal chain makes the unbounded depth a chain of bounded pieces"
+Reusable machinery
+- link_depth_accounting; one test; negative-knowledge entry
+Branch status
+- CLOSE for the renewal chain as a route; its two exact lemmas stay
+Why
+  Three iterations built a genuinely new decomposition and then found the
+  conservation law that makes it a reparameterisation. That is the right
+  order and the right ending. The only thing it hands on is an exact
+  identity with a priced, unconditional, still-unexecuted use.
+Best next question
+- execute the OEOEE route: the fifteen sign sums of the fate note, eight
+  one-variable sums in w = floor(n^{3/4}) by the second-derivative test
+  and the Proposition 4.4 pairing, seven by Cauchy-Schwarz and
+  Kusmin-Landau per block, savings P^{-3/32} and P^{-1/16}; measure each
+  of the fifteen on exact orbits first, then write the proof. It lifts
+  lambda** from 0.4480 to 0.4801 unconditionally and needs no Paper B.
+```

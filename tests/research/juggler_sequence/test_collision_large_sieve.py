@@ -557,3 +557,16 @@ def test_excursion_parities_are_orthogonal_to_monomial_twists() -> None:
     out = twisted_excursion_census(m0=10**8, states=30_000, depth=4)
     assert out["excursions_by_depth"][0] == out["states"]
     assert out["worst_z"] < 4.0
+
+
+def test_renewal_link_is_the_cylinder_statement_at_summed_depth() -> None:
+    """Summing the OE-link identity over n instead of M gives the depth-(2+l) cylinder balance exactly."""
+
+    from research.juggler_sequence.collision_large_sieve import link_depth_accounting
+
+    out = link_depth_accounting(m0=10**8, count=400, depth=3)
+    assert out["identity_holds"] and out["null_identity_holds"]
+    assert out["link_letters_covered_by_paper_b"] == out["paper_b_depth"] - 2
+    tv = {(round(math.log10(t["P"])), i % 3): t for i, t in enumerate(out["twist_pricing"])}
+    assert tv[(9, 1)]["tv_after_differencing"] < 0.5 < tv[(9, 2)]["tv_after_differencing"]
+    assert abs(tv[(9, 2)]["twist_first_derivative"] - 2 / 3) < 1e-9

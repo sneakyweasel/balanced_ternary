@@ -656,6 +656,92 @@ def twisted_excursion_census(
     return {"m0": m0, "states": total, "depth": depth, "excursions_by_depth": exc_n, "rows": rows, "worst_z": worst}
 
 
+def link_depth_accounting(m0: int = 10**9, count: int = 3000, depth: int = 4) -> dict[str, Any]:
+    """The renewal chain conserves depth: the OE-link identity summed over ``n`` is the cylinder statement.
+
+    Coarse/fine independence at the OE renewal with ``l`` forward letters is
+    ``sum_M mu(M) chi_l(M) ~ f-bar sum_M |F_M| chi_l(M)``.  Summing over ``n`` instead of ``M``,
+    the left side is ``sum_{n odd, x_1 even} (-1)^{x_{2+l}(n)} 1[excursion]`` -- the parity balance
+    of the cylinder ``OE.w`` at depth ``2 + l``, Paper B's object with no twist and no short
+    interval -- and the null is the same sum over ALL odd ``n`` for the counterfactual orbit of
+    ``floor(n^{3/4})``.  Both identities are checked exactly here.  The twisted formulation of
+    iteration 7 is a harder proof of the same depth-``(2+l)`` statement, and Paper B's depth-4
+    theorem already gives the link for ``l <= 2``.  Also priced: Paper B's slow-twist mechanism
+    (Lemma 4.10, total variation after differencing ``<= 2 h |I| sup|g''|`` with ``h <= P^{1/12}``)
+    against the monomial twist ``a (3/4) M^{2/3}``: the variation is ``(a/3) P^{-1/4}``, small
+    only for ``a << P^{1/4}``, while the link needs ``a`` up to ``H = (4/3) P^{1/3}``, where the
+    twist's first derivative is ``2/3``.
+    """
+
+    x1 = lambda n: math.isqrt(n * n * n)
+
+    def orbit(x: int) -> tuple[list[int], list[bool]]:
+        chis, excs, o, exc = [], [], 0, True
+        for l in range(1, depth + 1):
+            b = x & 1
+            o += b
+            x = math.isqrt(x**3) if b else math.isqrt(x)
+            exc = exc and (o * LOG2_3 - l > 0)
+            chis.append(1 - 2 * (x & 1))
+            excs.append(exc)
+        return chis, excs
+
+    def fibre(M: int) -> tuple[int, int]:
+        lo = round(M ** (4 / 3)) - 3
+        while x1(lo) < M * M:
+            lo += 1
+        while x1(lo - 1) >= M * M:
+            lo -= 1
+        hi = lo
+        while x1(hi) < (M + 1) * (M + 1):
+            hi += 1
+        return lo, hi
+
+    via_M = [0] * depth
+    null_M = [0.0] * depth
+    for M in range(m0, m0 + count):
+        lo, hi = fibre(M)
+        n = lo if lo & 1 else lo + 1
+        cnt = mu = 0
+        while n < hi:
+            cnt += 1
+            mu += x1(n) % 2 == 0
+            n += 2
+        chis, excs = orbit(M)
+        for l in range(depth):
+            if excs[l]:
+                via_M[l] += mu * chis[l]
+                null_M[l] += 0.5 * cnt * chis[l]
+    lo0, _ = fibre(m0)
+    _, hi_end = fibre(m0 + count - 1)
+    via_n = [0] * depth
+    counter_n = [0.0] * depth
+    n = lo0 if lo0 & 1 else lo0 + 1
+    while n < hi_end:
+        a = x1(n)
+        chis, excs = orbit(math.isqrt(a))
+        for l in range(depth):
+            if excs[l]:
+                if a % 2 == 0:
+                    via_n[l] += chis[l]
+                counter_n[l] += 0.5 * chis[l]
+        n += 2
+    twist = []
+    for P in (1e9, 1e12, 1e20):
+        H = (4 / 3) * P ** (1 / 3)
+        for a in (1.0, P**0.25, H):
+            twist.append({"P": P, "a": a, "tv_after_differencing": 2 * P ** (1 / 12) * P * (a / 6) * P ** (-4 / 3),
+                          "twist_first_derivative": (a / 2) * P ** (-1 / 3)})
+    return {
+        "m0": m0, "count": count, "depth": depth,
+        "via_M": via_M, "via_n": via_n, "identity_holds": via_M == via_n,
+        "null_via_M": null_M, "counterfactual_via_n": counter_n,
+        "null_identity_holds": all(abs(x - y) < 1e-6 for x, y in zip(null_M, counter_n)),
+        "paper_b_depth": 4, "link_letters_covered_by_paper_b": 2,
+        "twist_pricing": twist,
+    }
+
+
 def tilted_live_meander(L: float, d: int | None = None, C: int = 20) -> dict[str, Any]:
     """The tilted-live exponent walk is a meander, and its endpoint is bounded at every scale.
 

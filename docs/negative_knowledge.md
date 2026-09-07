@@ -616,6 +616,25 @@ Open: the product-shape bound \(\lvert W_T^{\mathrm{bad}}\rvert\le KMb^{\lvert T
 of the tail constant that does not by itself reach \(\mathrm P_\theta\).
 Members: `J-bad-set-spectrum-cannot-win`.
 
+**The renewal chain conserves depth.** Killed claim (loops 6--7): splitting
+the live set at the walk minimum into a ladder measure and a forward
+excursion, and iterating over the \(\Theta(L)\) strict descending ladder
+epochs, turns the \(d\)-deep parity statement into a chain of
+bounded-mean-length links whose coarse/fine independence is a short-interval
+or twisted Paper B estimate. Kill: summed over \(n\) instead of the epoch
+state, the independence statement at a link with \(k\) floors of history and
+\(\ell\) forward letters *is* the depth-\((k+\ell)\) cylinder balance ---
+verified exactly at the \(OE\) link to depth \(4\) --- so chaining the links
+is the depth-\(d\) statement it always was, and the twisted formulation is a
+harder proof of the same thing. The damping lemma makes the ladder measure's
+*support* a single floor; its *density* carries the whole history at full
+frequency. Paper B's depth-\(4\) theorem already gives the \(OE\) link for
+\(\ell\le2\) with no twist; its slow-twist localization reaches
+\(a\ll P^{1/4}\) while the link would need \(a\le P^{1/3}\), where the twist's
+first derivative is \(2/3\) (`J-renewal-chain-conserves-depth`). What survives:
+the exact factorisation and damping lemma as structure, and the
+\(E\)-absorbs-floor identity behind the pending \(OEOEE\) rate lift.
+
 **Hypothesis H(C,A) was quantified wrong, in five files (repaired 6 Sep 2026).** Killed claim:
 the log-log-depth cylinder bound holds for *every* \(O\)-rooted word of
 length \(d(y)\), as stated in Paper C §8.3, the Tao note §4, the
