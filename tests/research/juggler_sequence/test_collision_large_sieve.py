@@ -533,3 +533,27 @@ def test_first_renewal_density_is_fair_and_orthogonal_to_the_excursion() -> None
         if "corr" in row:
             assert abs(row["corr"]) < 0.2
             assert abs(row["z_decomposition_minus_null"]) < 3.0
+
+
+def test_first_renewal_density_is_a_function_of_three_phases() -> None:
+    """The offset/frequency/curvature model reproduces f(M) fibre by fibre; the offset is BV,
+    the frequency is not, and the frequency is the monomial phase to far below 1/H."""
+
+    from research.juggler_sequence.collision_large_sieve import first_renewal_phase_representation
+
+    out = first_renewal_phase_representation(m0=10**8, count=400, tv_every=200)
+    assert out["fraction_within_one_count"] == 1.0
+    assert out["fraction_exact"] > 0.99
+    assert max(out["tv_offset"]) <= 2.0
+    assert min(out["tv_frequency"]) > 10 * max(out["tv_offset"])
+    assert out["frequency_minus_monomial_max"] < 0.01 * out["one_over_H"]
+
+
+def test_excursion_parities_are_orthogonal_to_monomial_twists() -> None:
+    """To depth 4 on 30000 states, every twisted mean on excursions sits within 4 noise units."""
+
+    from research.juggler_sequence.collision_large_sieve import twisted_excursion_census
+
+    out = twisted_excursion_census(m0=10**8, states=30_000, depth=4)
+    assert out["excursions_by_depth"][0] == out["states"]
+    assert out["worst_z"] < 4.0

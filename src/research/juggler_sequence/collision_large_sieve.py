@@ -532,6 +532,130 @@ def ladder_density_first_renewal(m0: int = 10**9, count: int = 4000, depth: int 
     }
 
 
+def first_renewal_phase_representation(m0: int = 10**9, count: int = 6000, tv_every: int = 600) -> dict[str, Any]:
+    """The OE ladder density is an explicit function of three phases of the epoch state.
+
+    For ``M = x_2 = floor(n^{3/4})`` let ``n_0`` be the least odd ``n`` in the fibre and ``H`` the
+    number of odd ``n`` in it.  With ``n = n_0 + 2j``::
+
+        n^{3/2} = n_0^{3/2} + 3 sqrt(n_0) j + (3/2) n_0^{-1/2} j^2 - (1/2) n_0^{-3/2} j^3 + ...
+
+    so ``f(M) = (1/H) #{j < H : {off + g j + q j^2 + c j^3}_2 < 1}`` with the OFFSET
+    ``off = {n_0^{3/2}}_2`` (a level-2 wave with exponents (4/3, 3/2): ``n_0 = ceil(M^{4/3})``
+    adjusted to odd), the FREQUENCY ``g = {3 sqrt(n_0)}_2 = {3 M^{2/3}}_2 + O(M^{-2/3})`` (a
+    monomial phase, to far below the scale ``1/H``), and the curvature ``q``.  The representation
+    is checked fibre by fibre; the total variation of the model in the offset (bounded by 2) and
+    in the frequency (of order ``H``) says which coordinate needs fine resolution.
+    """
+
+    x1 = lambda n: math.isqrt(n * n * n)
+    S = 10**12
+
+    def model(off: float, g: float, q: float, c3: float, cnt: int) -> float:
+        mm = 0
+        for j in range(cnt):
+            mm += ((off + g * j + q * j * j + c3 * j * j * j) % 2.0) < 1.0
+        return mm / cnt
+
+    errs: list[float] = []
+    tv_off: list[float] = []
+    tv_g: list[float] = []
+    dg: list[float] = []
+    cnts: list[int] = []
+    for i, M in enumerate(range(m0, m0 + count)):
+        lo = round(M ** (4 / 3)) - 3
+        while x1(lo) < M * M:
+            lo += 1
+        while x1(lo - 1) >= M * M:
+            lo -= 1
+        hi = lo
+        while x1(hi) < (M + 1) * (M + 1):
+            hi += 1
+        n0 = lo if lo & 1 else lo + 1
+        cnt = mu = 0
+        n = n0
+        while n < hi:
+            cnt += 1
+            mu += x1(n) % 2 == 0
+            n += 2
+        off = (math.isqrt(n0**3 * S * S) % (2 * S)) / S
+        g = (3 * math.sqrt(n0)) % 2.0
+        q, c3 = 1.5 / math.sqrt(n0), -0.5 / n0**1.5
+        errs.append(abs(mu / cnt - model(off, g, q, c3, cnt)))
+        cnts.append(cnt)
+        gm = (3 * M ** (2 / 3)) % 2.0
+        dg.append(min(abs(gm - g), 2.0 - abs(gm - g)))
+        if i % tv_every == 0:
+            v = [model(o / 100.0, g, q, c3, cnt) for o in range(200)]
+            tv_off.append(sum(abs(v[k + 1] - v[k]) for k in range(199)))
+            v = [model(off, gg / 10000.0, q, c3, cnt) for gg in range(20000)]
+            tv_g.append(sum(abs(v[k + 1] - v[k]) for k in range(19999)))
+    H = sum(cnts) / len(cnts)
+    return {
+        "m0": m0, "count": count, "mean_fibre_odd": H,
+        "model_mean_abs_err": sum(errs) / len(errs), "model_max_abs_err": max(errs),
+        "fraction_exact": sum(e == 0.0 for e in errs) / len(errs),
+        "fraction_within_one_count": sum(e <= 1.01 / H for e in errs) / len(errs),
+        "tv_offset": tv_off, "tv_frequency": tv_g, "half_H": H / 2,
+        "frequency_minus_monomial_max": max(dg), "one_over_H": 1.0 / H,
+    }
+
+
+def twisted_excursion_census(
+    m0: int = 10**9, states: int = 400_000, depth: int = 5,
+    twists: tuple[tuple[int, int, int], ...] = ((0, 0, 0), (1, 0, 0), (2, 0, 0), (0, 1, 0), (0, 2, 0), (1, 1, 0), (1, -1, 0), (0, 0, 1), (1, 0, 1), (0, 1, 1)),
+) -> dict[str, Any]:
+    """Excursion parities against the fibre's monomial phases.
+
+    For odd states ``M`` whose word is a positive excursion to depth ``l``, the mean of
+    ``(-1)^{x_l(M)} e(a (3/4) M^{2/3} + b M^{4/3} + c (4/3) M^{1/3})`` — the parity of the forward
+    excursion twisted by the monomial phases that enter the backward fibre (its frequency, its
+    endpoint, its length).  Coarse/fine independence at the renewal needs these to vanish jointly
+    with the level-2 offset wave; here the monomial part is measured alone.  The same means over
+    ALL odd ``M`` are dominated by contracting words whose state is constant across the range and
+    are reported only as a warning.
+    """
+
+    import cmath
+
+    acc: dict[tuple[int, int, int, int], complex] = {}
+    acc_all: dict[tuple[int, int, int, int], complex] = {}
+    exc_n = [0] * depth
+    total = 0
+    for M in range(m0 | 1, m0 + 2 * states, 2):
+        p23, p43, p13 = 0.75 * M ** (2 / 3), M ** (4 / 3), (4 / 3) * M ** (1 / 3)
+        x, o, exc = M, 0, True
+        chis = []
+        for l in range(1, depth + 1):
+            b = x & 1
+            o += b
+            x = math.isqrt(x**3) if b else math.isqrt(x)
+            exc = exc and (o * LOG2_3 - l > 0)
+            chis.append((1 - 2 * (x & 1), exc))
+            exc_n[l - 1] += exc
+        total += 1
+        for a, bb, c in twists:
+            tw = cmath.exp(2j * math.pi * (a * p23 + bb * p43 + c * p13))
+            for l in range(depth):
+                key = (a, bb, c, l + 1)
+                acc_all[key] = acc_all.get(key, 0j) + chis[l][0] * tw
+                if chis[l][1]:
+                    acc[key] = acc.get(key, 0j) + chis[l][0] * tw
+    rows = []
+    worst = 0.0
+    for a, bb, c in twists:
+        for l in range(1, depth + 1):
+            key = (a, bb, c, l)
+            n = exc_n[l - 1]
+            z = abs(acc.get(key, 0j)) / n * math.sqrt(n) if n else 0.0
+            worst = max(worst, z)
+            rows.append({"twist": (a, bb, c), "depth": l, "excursions": n,
+                         "abs_mean_on_excursions": abs(acc.get(key, 0j)) / n if n else None,
+                         "noise": 1 / math.sqrt(n) if n else None, "z": z,
+                         "abs_mean_all_states": abs(acc_all.get(key, 0j)) / total})
+    return {"m0": m0, "states": total, "depth": depth, "excursions_by_depth": exc_n, "rows": rows, "worst_z": worst}
+
+
 def tilted_live_meander(L: float, d: int | None = None, C: int = 20) -> dict[str, Any]:
     """The tilted-live exponent walk is a meander, and its endpoint is bounded at every scale.
 

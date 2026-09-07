@@ -34766,3 +34766,87 @@ Best next question
   short segments, and the whole hypothesis reduces to the tilted mass of
   segments longer than B, one-sided, from the barrier.
 ```
+
+## Loop 7: the shortest link, made exact — three phases, one of them fine
+
+Loop 6 left the renewal chain with one question: coarse/fine independence at
+a link, with a rate, for short segments. This iteration takes the shortest
+link there is — the \(OE\) renewal, state \(M=\lfloor n^{3/4}\rfloor\) — and
+writes its ladder density down exactly.
+
+**Three phases.** Let \(n_0\) be the least odd \(n\) in the fibre of \(M\)
+and \(H\) the number of odd \(n\) in it. With \(n=n_0+2j\),
+\[
+n^{3/2}=n_0^{3/2}+3\sqrt{n_0}\,j+\tfrac32n_0^{-1/2}j^2-\tfrac12n_0^{-3/2}j^3+\dots,
+\]
+so \(f(M)=H^{-1}\#\{j<H:\{\mathrm{off}+gj+qj^2+cj^3\}_2<1\}\) with offset
+\(\mathrm{off}=\{n_0^{3/2}\}_2\), frequency \(g=\{3\sqrt{n_0}\}_2\) and
+curvature \(q\). Checked fibre by fibre on 6000 states at \(M=10^9\): exact in
+\(99.98\%\) of fibres, within one count in all.
+
+**Which coordinate is fine.** The model has total variation at most \(2\) in
+the offset (measured \(0.86\)–\(1.88\)) and of order \(H\) in the frequency
+(measured \(\approx80\) on a coarse sweep against the bound \(H/2=333\)). So
+the offset — a level-2 wave with exponents \((4/3,3/2)\), the same "wave riding
+a frozen floor" as Paper B's kernel with \((3/2,3/2)\) — is needed only at
+\(O(1)\) frequencies, while the frequency is needed at resolution \(1/H\). And
+the frequency is the *monomial* \(\{3M^{2/3}\}_2\) to within \(3\cdot10^{-6}\),
+far below \(1/H=1.5\cdot10^{-3}\): Weyl sums of \(3M^{2/3}\) at frequencies up
+to \(M^{1/3}\), inside van der Corput's range. That is why loop 6's coarse
+binning explained nothing: the dependence lives at scale \(1/H\).
+
+**So the link is not a short-interval statement.** Coarse/fine independence
+at the \(OE\) renewal with the first \(\ell\) excursion letters is the joint
+equidistribution of one level-2 wave at \(O(1)\) frequencies, one monomial at
+frequencies up to \(M^{1/3}\), and the forward nested parities to depth
+\(\ell\). The fibre's structure has been traded for a twist: Paper B at depth
+\(\ell\) with one extra kernel of a different exponent pair and one monomial
+twist in van der Corput's range.
+
+**The monomial part, measured.** On two million odd states from \(10^9\),
+restricted at each depth to positive excursions, every twisted mean of the
+excursion parity by \(e(a\tfrac34M^{2/3}+bM^{4/3}+c\tfrac43M^{1/3})\) for ten
+small twists sits at noise to depth \(5\) (worst \(2.0\sigma\)); the untwisted
+excursion parities are fair to \(10^{-3}\). A warning for anyone repeating
+this: over *all* states the depth-\(4\) and \(5\) means are \(0.11\) and
+\(0.20\), which is not bias — contracting words send the whole range to one
+constant state — so a census of nested parities on a short range of states
+must restrict to expanding words.
+
+**Lean.** No toolchain; nothing formalised.
+
+```text
+What was learned
+- the OE ladder density is exactly f = H^{-1} #{j : {off + g j + q j^2}_2 < 1}
+  with off a (4/3, 3/2) level-2 wave, g the monomial {3 M^{2/3}}_2, q a
+  parameter; exact in 99.98% of 6000 fibres, within one count in all
+- BV <= 2 in the offset, TV ~ H in the frequency: the offset needs O(1)
+  frequencies, the frequency needs resolution 1/H, and it is a monomial
+  to 3e-6, so that resolution is van der Corput's range
+- the link is Paper B at depth l with one more level-2 kernel (exponent
+  pair (4/3, 3/2)) and one monomial twist -- not a short-interval statement
+- excursion parities to depth 5 are orthogonal to the monomial twists at
+  noise level on 2e6 states; the "all states" census is an artefact of
+  contracting words and is recorded as a warning
+Strongest theorem
+- J-first-renewal-density-three-phases (EXACT, verified fibre by fibre)
+Strongest refutation
+- "the link is a short-interval Paper B" -- it is a twisted one
+Reusable machinery
+- first_renewal_phase_representation, twisted_excursion_census; two tests
+Branch status
+- PARK, sharpened: the shortest link is a named Paper-B-type estimate
+Why
+  The renewal chain's links are now concrete objects: a level-2 kernel with
+  a new exponent pair, a monomial twist inside van der Corput's range, and
+  Paper B's forward parities. Whether Paper B's Lemma 5.2 survives the
+  extra kernel is a question about that paper, not about the laboratory.
+  The long-segment mass is untouched and is the hypothesis.
+Best next question
+- does Paper B's kernel estimate |q|^{-1/6} P^{23/24+eps} for the level-2
+  wave e(q floor(n^{3/2})^{3/2}) hold with the exponent pair (4/3, 3/2),
+  and jointly with a monomial twist e(a 3M^{2/3}) for a up to M^{1/3}? If
+  both, the OE link is proved to depth 4 with a power saving, and the
+  general first-passage link OOEE (e = 9/16, fibre length (16/9) M^{7/9})
+  is the next exponent pair to price.
+```
