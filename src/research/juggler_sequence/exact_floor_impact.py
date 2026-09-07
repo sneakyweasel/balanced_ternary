@@ -673,6 +673,10 @@ def write_research_note(summary: dict[str, Any]) -> None:
             f"| [{row['lo']},{row['hi']}) | {row['letter']} | {row['n_visited']} | "
             f"{row['n_exact']} | {observed} | {baseline} | {ratio} | {row['ok']} |"
         )
+    # Hoisted like ``ratio`` above: nesting an f-string that reuses the same quote character is
+    # a syntax error before Python 3.12.  ``None`` is spelled out to keep the rendered text.
+    e_ratio = descent["e_ratio"]
+    e_ratio_text = "None" if e_ratio is None else f"{e_ratio:.3f}"
     lines.extend(
         [
             "",
@@ -681,7 +685,7 @@ def write_research_note(summary: dict[str, Any]) -> None:
             f"- E-certificates: `{descent['e_certs']}` with exact descending even "
             f"`{descent['e_certs_exact']}` (observed {_fmt_pct(descent['e_observed'])}, "
             f"baseline {_fmt_pct(descent['e_baseline'])}, ratio "
-            f"{descent['e_ratio'] if descent['e_ratio'] is None else f'{descent['e_ratio']:.3f}'})",
+            f"{e_ratio_text})",
             f"- class mix, start is a square: `{descent['class_start_square']}`",
             f"- class mix, mid-path isolated exact: `{descent['class_mid_isolated']}`",
             f"- class mix, no isolated exact: `{descent['class_none']}`",

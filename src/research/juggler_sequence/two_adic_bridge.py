@@ -858,6 +858,12 @@ def write_docs(scan_row: dict[str, Any], path: Path = DOC_PATH) -> None:
         for rec in scan_row["bt"]["same_jet_mixed_first_letter"]
     ]
     documented = scan_row["bt"]["documented_mod16"]
+    # Built here rather than inline below: a replacement field of an f-string may not contain a
+    # backslash before Python 3.12, and the set-difference columns carry escaped ones.
+    cmp_table = _md_table(
+        ["k", "A_P (weak)", "I(k) in n<=4000", "A ∩ I", "A \\\\ I", "I \\\\ A", "Forced_P"],
+        cmp_rows,
+    )
     text = f"""# Juggler 2-adic / positive-integer bridge
 
 Status: **{decision["classification"]}**
@@ -943,7 +949,7 @@ length \\(k\\) for every tested \\(P\\ge 1\\), because every word has a
 first-letter-compatible residue and no later letter is 2-adically
 forced.
 
-{_md_table(["k", "A_P (weak)", "I(k) in n<=4000", "A ∩ I", "A \\\\ I", "I \\\\ A", "Forced_P"], cmp_rows)}
+{cmp_table}
 
 `I \\\\ A` is empty: every observed realizer satisfies the first-letter
 law. That direction is expected and is not the bridge.
