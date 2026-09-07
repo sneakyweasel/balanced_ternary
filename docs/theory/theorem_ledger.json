@@ -7278,5 +7278,17 @@
   "related_conjectures": [
    "juggler_loglog_depth_cylinder_bound"
   ]
+ },
+ {
+  "id": "J-oeoee-envelope-audited",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Second-pass audit of the explicit constants behind the OEOEE production (juggler_oeoee_production.md §11, now §12). The count on the exact fibre J(m') = [m'^{32/9}, (m'+1)^{32/9}) satisfies |O(m')| = (Y/16)(1 + θ) with |θ| ≤ 100 m'^{−4/9}(1 + log m')² for every m' ≥ 4, Y the number of odd n in J(m'); m'^{−4/9} = P^{−1/8} at scale P = m'^{32/9}. The first pass reduced the count to fifteen sign sums (Lemmas 1–2: an even step absorbs the floor before it, so J²(n) = ⌊n^{3/4}⌋ exactly and every later parity is ψ of a smooth monomial of that one integer) and bounded them with Vaaler, Kusmin–Landau, a second-derivative test, block counting and pairing. The audit evaluated every intermediate inequality on exact data at m' = 60, 120, 200 — sizes; Σ_w|S_q(w)| at 0.06–0.17 of its bound for q ≤ 24; per-block Kusmin–Landau with ‖f'‖ ≥ jδ (worst 0.76); annulus counts ≤ 0.75·4(V+1); block lengths within 1% of δ; Σ_w|T| at 0.024–0.031 of its bound; the end-to-end deviation 600–8000× below the assembled bound — and re-assembled the envelope independently with every factor explicit. THREE CORRECTIONS: (T3) the second-derivative test's additive constant is 2, not 1 (two discarded near-integer intervals per piece; worst ratio on the actual modes 0.30); (T4) the block-counting constant 4(V+1) needs blocks of nearly equal length, [(1 − 8/(9m'))δ, δ] here, not merely ≤ δ — with that hypothesis it holds because f' is monotone, so an endpoint is the minimum of ‖f'‖ over at most one block per annulus; the Λ_3-alone pairing bound 0.89 m'^{14/9} omits the VΔ/2 term of (T5) — consecutive level sets of ⌊w^{3/4}⌋ differ in length by one, so Δ ≈ ω — and the honest bound is (2/3)m'^{17/9} + (8/9)m'^{14/9}; the data exceed the stated constant at m' = 200 (4031 > 3379) and sit below the corrected one everywhere. ONE OMISSION: the two Half A terms with both Λ_2 and Λ_3 present carry the second Vaaler expansion's harmonic factor ≤ 4(1 + log U) + 1, absorbed by the (1 + log m')² of the envelope. RESULT: assembled bound / [100 Y m'^{−4/9}(1+log m')²] = 0.67, 0.47, 0.20, 0.05, 0.014 at m' = 4, 5, 10, 60, 1e8; above 1 only at m' = 2, 3, where the bound exceeds 200 and is vacuous (least constant valid from m' = 2: 290). Neither the exponent nor the constant moves; the envelope is non-vacuous from m' ≈ 1e11 (x ≈ 1e39), the same character as Proposition 4.4's C_0 = 250. CONSEQUENCE, not enacted: with Proposition 4 (+1/27 g_A(9t/32), EXACT) the contagion exponent λ** rises from 0.4480 to 0.4801 unconditionally and λ*** from 0.5392 to 0.5665 (least Tao depth C: 20 → 19, 18 → 17); the promotion touches Theorem 1 of the fate note, §5.5, the §8.4 constants table, the Paper C audit module and every row quoting λ**, and is a deliberate bookkeeping edit left for its own pass. Door 3's first item is no longer pending on analysis.",
+  "source": "docs/theory/juggler_oeoee_production.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_oeoee_audit.py",
+   "tests/research/juggler_sequence/test_oeoee_production.py"
+  ],
+  "related_conjectures": []
  }
 ]

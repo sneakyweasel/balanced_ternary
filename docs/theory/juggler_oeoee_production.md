@@ -1,6 +1,7 @@
 # The \(OEOEE\) production, and the elementary \((OE)^{k-1}OEE\) family
 
-Status: **reduction complete, constants pending** (4 September 2026).
+Status: **reduction complete, constants audited** (second pass, 7 September
+2026, Section 12; first pass 4 September 2026).
 The word \(OEOEE\) was listed in
 [juggler_contagion_exponent_calculus.md](juggler_contagion_exponent_calculus.md)
 as "needs localized Paper B depth 2". That label is **wrong**: the
@@ -618,3 +619,80 @@ assembly in 11.5 are mine rather than the corpus's. I would not move
 Theorem 1's printed exponent to \(0.4801\) on this alone — the right
 next step is an audit pass in the style of the Paper B ledger, after
 which the promotion is a bookkeeping change.
+
+
+## 12. Audit, second pass
+
+An independent pass over Section 11 (module
+`src/research/juggler_sequence/oeoee_audit.py`, tests
+`tests/research/juggler_sequence/test_oeoee_audit.py`). Every
+intermediate inequality was evaluated on exact data at
+\(m'=60,120,200\), and the whole envelope was re-assembled with every
+factor explicit — \((m'+1)\) where the first pass wrote \(m'\), the
+partial-summation factor \(2\varphi_{\max}-\varphi_{\min}\), the
+\(\eta\)-part \(\tfrac32L\), and the full product of the two Vaaler
+expansions where both \(\Lambda_2\) and \(\Lambda_3\) are present.
+
+**Confirmed on exact data.** The sizes of 11.2 (\(|\omega-\tfrac23w^{1/3}|\le0.99\)).
+The Half B chain at every mode \(q\le24\): \(\sum_w|S_q(w)|\) is
+\(0.06\)–\(0.17\) of the 11.3 bound; the per-block Kusmin–Landau
+inequality with \(\lVert f'\rVert\ge j\delta\) holds (worst \(0.76\));
+the annulus counts are at most \(0.75\cdot4(V_q+1)\); the block lengths
+are within \(1\%\) of \(\delta_q\). Half B as assembled: \(\sum_w|T|\)
+is \(0.024\)–\(0.031\) of its bound. The end-to-end deviation
+\(|16|\mathcal O|-Y|\) is \(600\)–\(8000\) times below the assembled
+bound.
+
+**Three corrections.**
+
+1. *(T3).* The additive constant is \(2\), not \(1\): the two discarded
+   near-integer intervals of a piece each cost one extra lattice point.
+   Equivalently \((\alpha\lambda M+2)(2.26\lambda^{-1/2}+1)\), pairing
+   the two discarded intervals around each crossed integer. Checked on
+   the actual Half A modes: worst ratio \(0.30\).
+2. *(T4).* "Each of length \(\le\delta\)" is not enough for the constant
+   \(4(V+1)\): with blocks of length in \([\delta/2,\delta]\) an
+   interval of length \(\delta\) can meet three of them. The hypothesis
+   that holds here is length in \([(1-\tfrac8{9m'})\delta,\ \delta]\),
+   and then the constant is right: \(f'\) is monotone, so for every
+   annulus \(j\ge1\) the minimum of \(\lVert f'\rVert\) over a block is
+   attained at an endpoint, and an endpoint is that minimum for at most
+   one block; two endpoints per \(\delta\)-interval, two intervals per
+   unit — four. For \(j=0\) the crossing block joins three endpoint
+   blocks — four again.
+3. *\(\Lambda_3\) alone.* The bound \(0.89m'^{14/9}\) keeps only the
+   \(G\) term of (T5) and drops \(V\Delta/2\). Consecutive level sets of
+   \(\lfloor w^{3/4}\rfloor\) differ in length by one, so
+   \(\Delta\approx\omega\approx\tfrac23m'^{8/9}\), \(V\approx2m'\), and the
+   honest bound is \(\tfrac23m'^{17/9}+\tfrac89m'^{14/9}\). The data
+   exceed the stated constant at \(m'=200\) (\(4031>3379\)) and sit
+   below the corrected one everywhere (\(18\,658\) at \(m'=200\), with the
+   exact (T5) inputs \(V=401\), \(\Delta=76\), \(G=3420\)).
+
+**One omission.** For the two Half A terms with both \(\Lambda_2\) and
+\(\Lambda_3\) present, the second Vaaler expansion multiplies the
+\(d=0\) bound by \(\sum_{0<|u|\le U}(|a_u|+\tfrac1{U+1})+\tfrac1{U+1}\le4(1+\log U)+1\);
+a single constant cannot hold both cases. The factor is a log and is
+absorbed by the envelope's \((1+\log m')^2\); it is the reason the
+envelope needs the square.
+
+**The envelope stands.** With all of the above, the assembled bound
+divided by \(100\,Y\,m'^{-4/9}(1+\log m')^2\) is \(0.67\) at \(m'=4\),
+\(0.47\) at \(5\), \(0.20\) at \(10\), \(0.05\) from \(m'=60\) on, and
+decreasing (\(0.014\) at \(10^8\)). It exceeds \(1\) only at
+\(m'=2,3\) (\(2.9\), \(1.1\)), where the bound itself exceeds \(200\)
+and is vacuous; the least constant valid from \(m'=2\) is \(290\).
+So: **\(|\theta|\le100\,m'^{-4/9}(1+\log m')^2\) for every \(m'\ge4\)**,
+by an assembly that is longer than the first pass and never shorter.
+Neither the exponent \(-\tfrac49=-\tfrac18\cdot\tfrac{32}9\) nor the
+constant moves. The envelope is non-vacuous only from
+\(m'\approx10^{11}\), i.e. \(x\approx10^{39}\) — the same character as
+Proposition 4.4's \(C_0=250\), and all the recursion needs.
+
+**What this changes.** Proposition 3 now meets the ledger's
+`EXACT — HUMAN PROOF` bar with the three corrections applied; Theorem
+1's exponent \(0.4480\to0.4801\) is the bookkeeping change the first
+pass named, touching the fate note's Theorem 1, Section 5.5, Section
+8.4's constants table (least \(C\) \(20\to19\)), the Paper C audit
+module and every ledger row that quotes \(\lambda^{**}\). That edit is
+deliberate and is not made here.

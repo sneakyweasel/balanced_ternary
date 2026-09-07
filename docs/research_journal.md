@@ -34937,3 +34937,95 @@ Best next question
   of the fifteen on exact orbits first, then write the proof. It lifts
   lambda** from 0.4480 to 0.4801 unconditionally and needs no Paper B.
 ```
+
+## Loop 9: the OEOEE constants, audited
+
+Loop 8 handed on one item: the \(OEOEE\) production, door 3's first
+entry, "pending and priced". It was further along than the brief said.
+The production note already carries the reduction (an even step absorbs
+the floor before it, so \(J^2(n)=\lfloor n^{3/4}\rfloor\) exactly and the
+fifteen sign sums are \(\psi\) of smooth monomials of one integer), the
+bookkeeping (\(+\tfrac1{27}g_A(9t/32)\), exact), the telescoping family,
+the census, and — in its Section 11 — explicit constants ending in
+\(|\theta|\le100\,m'^{-4/9}(1+\log m')^2\). Its status line asked for one
+thing before promoting \(\lambda^{**}\): an audit pass. This iteration is
+that pass.
+
+**Method.** Every intermediate inequality of Section 11 evaluated on
+exact data at \(m'=60,120,200\) — not the end-to-end envelope only —
+and the whole envelope re-assembled independently with every factor
+explicit: \((m'+1)\) where the first pass wrote \(m'\), the
+partial-summation factor, the \(\eta\)-part, and the full product of two
+Vaaler expansions where both \(\Lambda_2\) and \(\Lambda_3\) are present.
+
+**Confirmed.** Sizes; the Half B chain at every mode \(q\le24\)
+(\(\sum_w|S_q|\) at \(0.06\)–\(0.17\) of its bound, per-block
+Kusmin–Landau worst \(0.76\), annulus counts at most \(0.75\) of
+\(4(V+1)\), block lengths within \(1\%\) of \(\delta\)); \(\sum_w|T|\) at
+\(0.03\) of its bound; the measured deviation \(600\)–\(8000\) times
+below the assembled bound.
+
+**Corrected.** Three constants and one omission. The second-derivative
+test's additive constant is \(2\), not \(1\). The block-counting constant
+\(4(V+1)\) needs blocks of nearly equal length, which they are (within
+\(8/(9m')\)), and then holds for a reason the first pass did not state:
+\(f'\) monotone makes an endpoint the minimum of \(\lVert f'\rVert\) over
+at most one block. The \(\Lambda_3\)-alone pairing bound dropped the
+\(V\Delta/2\) term of the pairing lemma; consecutive level sets of
+\(\lfloor w^{3/4}\rfloor\) differ in length by one, so \(\Delta\approx\omega\),
+the honest bound is \(\tfrac23m'^{17/9}+\tfrac89m'^{14/9}\), and the
+data actually exceed the stated constant at \(m'=200\) (\(4031>3379\)).
+And the two Half A terms with both \(\Lambda_2\) and \(\Lambda_3\) carry a
+harmonic factor \(\le4(1+\log U)+1\) from the second expansion — a log,
+absorbed by the envelope's square.
+
+**Result.** The assembled bound divided by the envelope is \(0.67\) at
+\(m'=4\), \(0.47\) at \(5\), \(0.05\) from \(60\) on, decreasing; above
+\(1\) only at \(m'=2,3\), where the bound exceeds \(200\) and means
+nothing. So \(|\theta|\le100\,m'^{-4/9}(1+\log m')^2\) for every
+\(m'\ge4\), by an assembly longer than the first pass and never shorter.
+Neither the exponent nor the constant moves.
+
+**What it changes.** Proposition 3 of the production note now meets the
+`EXACT — HUMAN PROOF` bar, with the corrections written into the note's
+new Section 12. With Proposition 4, \(\lambda^{**}\) rises
+\(0.4480\to0.4801\) unconditionally and \(\lambda^{***}\)
+\(0.5392\to0.5665\); the least Tao depth \(C\) moves \(20\to19\) and
+\(18\to17\). The promotion itself — Theorem 1 of the fate note,
+Section 5.5, the constants table, the Paper C audit module, every row
+quoting \(\lambda^{**}\) — is a deliberate bookkeeping edit and is left
+for its own pass. Door 3's first item is no longer pending on analysis.
+
+**Lean.** No toolchain; nothing formalised. Lemmas 1–2 of the note use
+only `sqrt_sqrt_eq_iff` and are the most Lean-ready pieces in this
+branch.
+
+```text
+What was learned
+- the OEOEE envelope |theta| <= 100 m'^{-4/9} (1+log m')^2 holds for
+  every m' >= 4 by an independent assembly with every factor explicit;
+  measured deviations sit 600-8000x below it
+- three constants corrected ((T3) +2, (T4) needs near-equal blocks and
+  a monotonicity argument, Lambda_3 pairing needs V Delta/2) and one
+  log-factor omission named; none moves the exponent or the constant
+Strongest theorem
+- J-oeoee-envelope-audited: Proposition 3 of the production note at the
+  EXACT bar; with Proposition 4, lambda** = 0.4801 unconditionally
+Strongest refutation
+- the first pass's Lambda_3 constant, exceeded by the data at m' = 200
+Reusable machinery
+- oeoee_audit.py (measured, assemble, t3_worst_ratio); four tests
+Branch status
+- DONE for the analysis; the exponent promotion is a bookkeeping pass
+Why
+  Door 3's first item was not a research problem, it was an unaudited
+  proof. Auditing it found real errors in the constants and no error in
+  the theorem, which is what an audit of a sound single pass should
+  find. The unconditional contagion exponent can now move for the first
+  time since Paper C was written.
+Best next question
+- make the promotion: Theorem 1 at 0.4801, least C = 19, the constants
+  table, the Paper C audit module, and every ledger row that quotes
+  lambda**; then the family V_3 (0.4891) is the next rung, whose
+  Proposition 8 has the same shape and no constants yet.
+```
